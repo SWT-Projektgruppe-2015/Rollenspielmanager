@@ -1,0 +1,6 @@
+Minimalziel: Grundprogramm mit Spieler und Gegner-DB, Kampfsimulation
+Zusätzliche Ziele: Spezialfälle im Kampf, Handel, Loot Generator, Charaktergenerator, Einheitenrechner, Abenteuergruppen
+
+Programmiersprache: Java
+Zielplattform: Computer, insb. Windows
+
