@@ -1,0 +1,11 @@
+- English mit deutschen Eigennamen (10)
+- Tabs als 4 Leerzeichen einstellen (35)
+- Kommentare in Deutsch (80)
+- Punkt 62 Typ 1(kompakte Version) Block beginning parenthesis in same line as command after tab 
+- akzeptieren 65
+- 24 Abkuerzungen nicht verwenden (mit Liste von genutzten Abkuerzungen)
+- 52 kein break und continue(versuchen)
+- 74 rejected
+- 85 generics verwenden
+- 76 3 Zeilen zwischen Methoden
+
