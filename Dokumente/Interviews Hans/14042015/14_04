@@ -1,0 +1,34 @@
+Darf jeder Spielleiter Objekte in die Datenbank einpflegen?
+- ja
+
+NPCs auf Spielerseite?
+- ja, Prio 1,5
+
+Updatemöglichkeiten fuer externe Spielleiter
+- Nein
+
+Faehigkeiten Creator: z.B Feuerschaden
+- Die dienen dazu den Kampf zu führen
+
+Ja, Prio 1
+
+Loot: Die Wahrscheinlichkeitverteilung soll Lootqualitaet bestimmen.
+ja, genauso wichtig wie Handel
+
+Wählbare Rüstungen?! Individuelle Entscheidung von Spieler. (In GUI wird es manuell eingegeben)
+Nein.
+
+Welche tempörere und permanente Kämpfe?! spezielle Effekte
+Wir haben eine Liste(z.B BLind, verletzt oder einfroren ...)
+
+Kategorie von Fähigkeiten von Hans erstellen lassen.
+
+Bei Kampfsimulator mussen wir die Sondereffekte der Fähigleiten berücksichtigen.(z.B reiten und resizdenten)
+
+Töten/ Entfernen von Gegner(Erfahrungspunkte zu rechnen) z.B wenn lebenspunkte auf null gesetzt ist. Die Schaden der Spieler wird auf Lebenspunkte eines Gegners gerechnet.
+Ja
+
+Übersichtlichkeit ist wichtiger als Klicken!(eine 1 zu 1 Beziehung zwischen Spieler und Gegner)
+
+Runden jeweils nach Gegnerangriff?
+ja
