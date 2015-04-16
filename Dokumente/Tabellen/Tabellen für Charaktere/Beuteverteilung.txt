@@ -1,0 +1,9 @@
+Beuteverteilung (Loot)
+----------------------
+Beuteprofil (PK)
+WktWaffe
+WktRüstung
+Schwächungsfaktor (Schwächt Beute des Spielers ab, verschiebt Mittelwert)
+WktBesonders
+Geldverteilung
+// Streuung, also Varianz (optional)

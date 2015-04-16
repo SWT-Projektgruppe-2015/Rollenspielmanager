@@ -1,0 +1,50 @@
+Fähigkeiten
+-----------------------
+Spielername (FK)
+Fähigkeitenname (PK)
+Fähigkeitentyp
+
+
+Effekte
+-----------------------
+Fähigkeitenname (FK)
+Effekt (PK)
+
+//////////////////////////////////////////////////
+
+Entweder:
+
+Fähigkeiten (Änderbar)
+-----------------------
+Spielername (FK)
+Fähigkeitenname (PK)
+Fähigkeitentyp
+Effekt1
+//Effekt2 (optional)
+
+
+
+Beispiele:
+
+Feuerball1
+typ1
+300 Schaden
+
+Blutbad3
+typ2
+150% Waffenschaden (alle)
+15LP wiederherstellen
+
+Blutbad3 (Teil1)
+typ2
+150% Waffenschaden (alle)
+
+Blutbad3 (Teil2)
+typ2
+15LP wiederherstellen
+
+Blenden1
+typ3
+Gegner Geschick -5 (alle)
+Macht 2 RUA Schaden (alle)
+
