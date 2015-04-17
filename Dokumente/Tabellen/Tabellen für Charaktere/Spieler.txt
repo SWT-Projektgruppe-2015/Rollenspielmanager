@@ -1,0 +1,18 @@
+Spieler
+-----------------------
+Spielernamen
+Kreis
+Stufe
+Disziplin (optional)
+Rasse (optional)
+Helm (DefH)
+Rüstung (DefR)
+Schild
+
+
+***** Ausrüstung
+***** -----------------------
+***** Spielername (FK)
+***** Helm (DefH) (JPK)
+***** Rüstung (DefR) (JPK)
+***** Schild	  (JPK)

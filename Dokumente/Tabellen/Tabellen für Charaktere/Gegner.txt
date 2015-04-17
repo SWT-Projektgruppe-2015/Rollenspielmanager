@@ -1,0 +1,14 @@
+Gegner
+-----------------------
+Gegnernamen
+Kreis
+Stufe
+Disziplin (optional)
+Rasse (optional)
+Helm (DefH)
+Rüstung (DefR)
+Schild
+Erfahrung
+Stärke
+Geschick
+Beuteprofil
