@@ -1,4 +1,4 @@
 Funktionsanforderungen an Datenspeicherung
 - offline, da wir keine Interaktion zwischen Usern benötigen. Außerdem ist das vermutlich einfacher zu realisieren.
 - Transfer von Computer zu Computer sollte für den User einfach sein, z.B. durch Kopie eines bestimmten Ordners
-- es sollte ein verlustfreies Update der Datenbank möglich sein: der User sollte seine Version auf die offizielle aktualisieren können. Daten, die er selbst eingefügt hat, sollten nicht verloren gehen. Bei Konflikten (Änderungen an gleicher Tabellenzeile oder ähnliches) sollte der User optimalerweise vorher spezifizieren können, ob er seinen Stand oder den offiziellen Stand vorzieht.
+- Laut Hans nicht nötig: es sollte ein verlustfreies Update der Datenbank möglich sein: der User sollte seine Version auf die offizielle aktualisieren können. Daten, die er selbst eingefügt hat, sollten nicht verloren gehen. Bei Konflikten (Änderungen an gleicher Tabellenzeile oder ähnliches) sollte der User optimalerweise vorher spezifizieren können, ob er seinen Stand oder den offiziellen Stand vorzieht.
