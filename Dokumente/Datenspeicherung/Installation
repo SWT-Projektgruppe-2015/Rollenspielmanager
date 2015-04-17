@@ -1,0 +1,8 @@
+1. Installiere jboss tools für Luna (http://tools.jboss.org/downloads/jbosstools/luna/4.2.3.Final.html) - nur alle Pakete mit "Hibernate" im Namen (2 Stück) (ALS ADMIN!!!)
+2. Installiere h2 jar (http://www.h2database.com/html/download.html)
+3. Fuege h2 jar und alles unter eclipse/plugin/jboss.tools.hibernateSTUFF/lib/required dem Class Path hinzu, außerdem hibernate-entitymanager und dom4j
+4. Download db visualizer
+
+Wenn man eine h2 Embedded Datenbank lesen will:
+5. Bei der Einrichtung von db visualizer: h2 angeben, einmal mit "embedded". Als Name nur den Ort der DB, nicht den genauen ".h2.db".
+
