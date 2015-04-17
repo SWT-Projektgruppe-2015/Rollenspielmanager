@@ -1,10 +1,12 @@
-DbVisualizer versteht Dateitypendungen nicht, also muessen sie vom Pathnamen entfernt werden, sonst wird eine neue Datenbank mit der Endung als Teil des Namens angelegt.
+DbVisualizer versteht Dateitypendungen nicht, also muessen sie vom Pathnamen entfernt werden, 
+sonst wird eine neue Datenbank mit der Endung als Teil des Namens angelegt.
 
 Bei der persistence.xml, um eine Datenbank zu erstellen, muss, innerhalb dem properties-Block, 
 folgendes stehen:	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 Und zum updaten:	<property name="hibernate.hbm2ddl.auto" value="update-drop"/>
 
-Damit die Datenbank von DbVisualizer lessbar ist muss man MV_STORE=false ans Ende des Blocks wir hier: <property name="hibernate.connection.url" value="jdbc:h2:./db/repository;MV_STORE=false"/>
+Damit die Datenbank von DbVisualizer lessbar ist muss man MV_STORE=false ans Ende des Blocks wir hier: 
+<property name="hibernate.connection.url" value="jdbc:h2:./db/repository;MV_STORE=false"/>
 
 Fuer Entities:
 import javax.persistence.*
