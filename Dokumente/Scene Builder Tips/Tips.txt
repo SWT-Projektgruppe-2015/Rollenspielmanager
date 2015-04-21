@@ -1,3 +1,3 @@
 In Scene Builder, under Miscellaneous you will find Tootip
 Drop-Down Menu is named Combo Box.
- 
+Tooltip only works for some element, like buttons, not say buttonbar. 
