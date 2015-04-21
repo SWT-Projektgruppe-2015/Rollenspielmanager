@@ -5,11 +5,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import view.MainMenuController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Startet das Programm und zeigt das Hauptmenü an.
+ * @author Britta Heymann
+ *
+ */
 public class Hauptprogramm extends Application {
 
 	private Stage primaryStage;
@@ -49,6 +55,9 @@ public class Hauptprogramm extends Application {
 	        AnchorPane mainMenu = (AnchorPane) loader.load();
 
             menuBar.setCenter(mainMenu);
+            
+            MainMenuController controller = loader.getController();
+            controller.setHauptProgramm(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
