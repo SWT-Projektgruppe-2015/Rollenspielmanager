@@ -1,0 +1,30 @@
+DbVisualizer versteht Dateitypendungen nicht, also muessen sie vom Pathnamen entfernt werden, 
+sonst wird eine neue Datenbank mit der Endung als Teil des Namens angelegt.
+
+Bei der persistence.xml, um eine Datenbank zu erstellen, muss, innerhalb dem properties-Block, 
+folgendes stehen:	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+Und zum updaten:	<property name="hibernate.hbm2ddl.auto" value="update-drop"/>
+
+Damit die Datenbank von DbVisualizer lessbar ist muss man MV_STORE=false ans Ende des Blocks wir hier: 
+<property name="hibernate.connection.url" value="jdbc:h2:./db/repository;MV_STORE=false"/>
+
+Fuer Entities (um Klassen zu Entities zu befördern):
+import javax.persistence.*
+(zum Beispiel:	import javax.persistence.Entity;
+			import javax.persistence.Id;
+			import javax.persistence.Column;
+			import javax.persistence.GeneratedValue;)
+Syntax of Collumn Annotation:
+	@Collumn(name = "NAME")
+	String othername;
+Sonst kann man nur die Variablendeklaration schreiben, dann wird eine Spalte angelegt die den Variablennamen hat.
+
+Die Annotation @GeneratedValue scheint automatisch Eintraege zu erstellen.
+
+Fuer die Datenbankmanipulations Klasse wichtige imports:
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+for further reading:
+https://docs.jboss.org/hibernate/orm/3.6/quickstart/en-US/html/hibernate-gsg-tutorial-jpa.html

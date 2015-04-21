@@ -1,4 +1,4 @@
-Szenarien:
+﻿Szenarien:
 
 - neuen Spieler aufnehmen: 
 
@@ -12,12 +12,12 @@ Greifen nicht mehr an
 - Kampfszenarien
 
 - Kampfszenario 1: 3 vs 3
-Gegner beginnt mit Angriff (Standardgegner oder "irgendwas spezielles" ausgewaehlt nach dem Durchschnittslevel der Spieler)
+1) Gegner beginnt mit Angriff (Standardgegner oder "irgendwas spezielles" ausgewaehlt nach dem Durchschnittslevel der Spieler)
 Für jeden Gegner wird gewürfelt. Verbindung Gegner->Spieler durch Würfel oder Logik.
 Jeweils Schaden berechnen. Abzug bei Schilden.
 Chance des Ablenkens. (Sagt der Spieler)
 Spieler stellen selbstständig fest, ob das den totalen Schaden überschritten hat.
-Spieler sagen, welchen Gegner sie angreifen.
+2) Spieler sagen, welchen Gegner sie angreifen.
 Sie sagen, wo sie getroffen haben -> Schaden wird nach Trefferzone berechnet.
 Hans würfelt aus, ob Gegner den Schlag abgelenkt haben.
 Hans überprüft totalen Schaden.
