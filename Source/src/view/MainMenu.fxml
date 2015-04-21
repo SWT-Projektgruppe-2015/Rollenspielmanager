@@ -8,15 +8,54 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="350.0" prefWidth="600.0" styleClass="ba" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="360.0" prefWidth="800.0" styleClass="ba" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="84.0" layoutY="87.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Kampf" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
-         <font>
-            <Font name="DejaVu Sans Bold" size="23.0" />
-         </font>
-         <styleClass>
-            <String fx:value="button-kampf" />
-            <String fx:value="button-menu" />
-         </styleClass></Button>
+      <SplitPane dividerPositions="0.6641604010025063" layoutX="258.0" layoutY="95.0" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="500.0">
+               <children>
+                  <Button mnemonicParsing="false" styleClass="button-menu" text="Händler" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="20.0">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Kampf" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="23.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="button-kampf" />
+                        <String fx:value="button-menu" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="357.0" layoutY="89.0" mnemonicParsing="false" styleClass="button-menu" text="Würfeln" AnchorPane.topAnchor="20.0" />
+                  <Button layoutX="64.0" layoutY="248.0" mnemonicParsing="false" styleClass="button-menu" text="Gruppen" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="190.0" />
+                  <Button layoutX="224.0" layoutY="248.0" mnemonicParsing="false" styleClass="button-menu" text="Charaktergenerator" textOverrun="LEADING_ELLIPSIS" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="190.0">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="300.0">
+               <children>
+                  <TitledPane layoutX="6.0" layoutY="101.0" prefHeight="348.0" prefWidth="211.0" text="Keine Gruppe gewählt" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <TableView prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="120.0" text="Name" />
+                            <TableColumn prefWidth="55.0" text="Kreis" />
+                              <TableColumn prefWidth="36.0" text="Lvl" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </content>
+                  </TitledPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
    </children>
 </AnchorPane>
