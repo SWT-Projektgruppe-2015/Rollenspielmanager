@@ -1,0 +1,31 @@
+.background {
+	-fx-background-color: grey;
+}
+
+.button-menu {
+	-fx-background-color: white;
+	-fx-background-repeat: no-repeat;
+    -fx-background-size: 80%;
+    -fx-background-position: 10% 10%;
+    -fx-padding: 100 0 0 0;
+    -fx-text-fill: black;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 150px;
+    
+    -fx-font-family: DejaVu Sans;
+    -fx-font-style: bold;
+    -fx-font-size: 23px;
+}
+
+.button-menu:hover {
+    -fx-text-fill: red;
+}
+
+.button-kampf {	
+    -fx-background-image: url('../../img/kaempfer.jpg');   
+}
+
+.button-menu:pressed {
+  -fx-background-color: grey;
+  -fx-text-fill: red;
+}
