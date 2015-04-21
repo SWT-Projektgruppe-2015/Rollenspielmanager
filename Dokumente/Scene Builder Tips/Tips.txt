@@ -1,0 +1,3 @@
+In Scene Builder, under Miscellaneous you will find Tootip
+Drop-Down Menu is named Combo Box.
+ 

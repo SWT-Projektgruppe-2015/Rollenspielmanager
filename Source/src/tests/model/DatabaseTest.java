@@ -1,6 +1,7 @@
 package tests.model;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
@@ -19,12 +20,16 @@ public class DatabaseTest {
         theManager.getTransaction().begin();
         Person person = new Person();
         person.setFirstName("andreas");
+        
+        Person person2 = new Person();
+        person2.setFirstName("Boris");
+        
         theManager.merge(person);
+        theManager.merge(person2);
         theManager.getTransaction().commit();
-        System.out.println(person.getId());
-
+        assertNull(person.getId());
+        
         Person p = (Person)theManager.find(Person.class, 1);
-        System.out.println(person.getId());
 
         assertNotNull(p);
     }

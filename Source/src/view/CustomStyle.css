@@ -1,0 +1,50 @@
+.background {
+	-fx-background-color: grey;
+}
+
+.button-mainmenu {
+	-fx-background-color: white;
+	-fx-background-repeat: no-repeat;
+    -fx-background-size: 80%;
+    -fx-background-position: 10% 10%;
+    -fx-padding: 100 0 0 0;
+    -fx-text-fill: black;
+    -fx-pref-width: 150px;
+    -fx-pref-height: 150px;
+    
+    -fx-font-family: DejaVu Sans;
+    -fx-font-style: bold;
+    -fx-font-size: 23px;
+}
+
+.button-mainmenu:hover {
+   -fx-text-fill: red;
+}
+
+.button-mainmenu:pressed {
+  -fx-text-fill: red;
+  -fx-border-color: red;
+}
+
+.button-kampf {	
+    -fx-background-image: url('../../img/kaempfer.jpg');   
+}
+
+.button-haendler {
+	-fx-background-image: url('../../img/schwerter.jpg');
+}
+
+.button-wuerfeln {
+	-fx-background-image: url('../../img/wuerfel.jpg');
+}
+
+.button-gruppen {
+	-fx-background-image: url('../../img/gruppe.jpg');
+	-fx-font-size: 14px;
+}
+
+.button-charaktergenerator {
+	-fx-background-image: url('../../img/kneipe.jpg');
+	-fx-font-size: 14px;
+	
+}

@@ -8,7 +8,7 @@ Und zum updaten:	<property name="hibernate.hbm2ddl.auto" value="update-drop"/>
 Damit die Datenbank von DbVisualizer lessbar ist muss man MV_STORE=false ans Ende des Blocks wir hier: 
 <property name="hibernate.connection.url" value="jdbc:h2:./db/repository;MV_STORE=false"/>
 
-Fuer Entities:
+Fuer Entities (um Klassen zu Entities zu befördern):
 import javax.persistence.*
 (zum Beispiel:	import javax.persistence.Entity;
 			import javax.persistence.Id;
@@ -21,7 +21,7 @@ Sonst kann man nur die Variablendeklaration schreiben, dann wird eine Spalte ang
 
 Die Annotation @GeneratedValue scheint automatisch Eintraege zu erstellen.
 
-Fuer die Daetnbankmanipulations Klasse wichtige imports:
+Fuer die Datenbankmanipulations Klasse wichtige imports:
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

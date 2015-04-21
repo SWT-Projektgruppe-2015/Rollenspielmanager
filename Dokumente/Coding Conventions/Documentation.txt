@@ -1,0 +1,11 @@
+Dokumentation:
+
+Javadocs
+In Eclipse: Project -> Generate Javadoc
+
+Kommentiere:
+-Klassen
+-Interfaces
+
+Wenn es sinnvoll ist
+-public Dinge
