@@ -1,0 +1,48 @@
+Hallo liebe TeamleiterInnen,
+
+da es doch einige Nachfragen bzgl. der Vorträge gab, haben wir mal eine
+kleine, unverbindliche Orientierungshilfe für den Aufbau der Vorträge
+zusammengestellt. Alle vorherigen Äußerungen bzgl. der Anforderungen an
+die Vorträge sind somit nichtig ;-)
+
+1. Wo starten wir? (1 Folie, Idee des Projekts nochmal kurz vorstellen)
+
+2. Übersicht
+2.1 Rollenverteilung (Teamleiter, Kunde, Entwickler)
+2.2 Stories
+Abhängigkeiten / Prioritäten / Schätzungen
+daraus motiviert: Was war für Iteration 1 geplant?
+
+3. Was ist passiert?
+Inhaltlich (Use-Case Diagramme, Oberflächenprototypen,
+BCE-Einteilung, ...)
+Verwendete Technologien/Frameworks
+Das Ganze muss nicht detailliert für jede einzelne Story vorgestellt
+werden, behaltet die Zeit im Auge und konzentriert euch auf interessante
+bzw. für euer Projekt wichtige Stories
+
+4. Demo
+Zeigt was schon funktioniert. (Entgegen eventueller vorheriger
+Ankündigungen wird hier wirklich eine lauffähige Demo erwartet. Gerade
+für die erste Iteration ist es nicht tragisch, wenn es noch nicht viel
+ist, es geht einfach nur darum zu zeigen, was schon funktioniert)
+
+5. (grobe) Vorschau auf die nächste Iteration (welche Stories sollen als
+nächstes bearbeitet werden und vor allem: was ist noch offen aus
+Iteration 1?)
+
+6. Reflektion der Planung (Burn-Down-Chart)
+Vergleich von Ist/Soll der Zeitplanung
+Was wurde realistisch eingeschätzt? Wo hat man sich vertan? Was
+waren die Gründe für mögliche falsche Planungen?
+Impediments (grundsätzliche Hindernisse, Schwierigkeiten, ...)
+
+7. Fazit
+Wie zufrieden bin ich mit dem aktuellen Stand / dem Abauf der
+Projektgruppe?
+Eigene Arbeit als Teamleiter/in, Arbeit des gesamten Teams, Betreuung
+
+Wenn es noch Fragen oder Unklarheiten gibt könnt ihr euch bei uns melden.
+
+Viel Erfolg und bis spätestens Dienstag,
+Fabian und Andreas
