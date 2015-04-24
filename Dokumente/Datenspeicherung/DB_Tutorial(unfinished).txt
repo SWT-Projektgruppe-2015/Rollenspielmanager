@@ -28,3 +28,19 @@ import javax.persistence.Persistence;
 
 for further reading:
 https://docs.jboss.org/hibernate/orm/3.6/quickstart/en-US/html/hibernate-gsg-tutorial-jpa.html
+
+
+From the community documentation:
+
+hibernate.hbm2ddl.auto Automatically validates or exports schema DDL to the database when the SessionFactory is created. With create-drop, the database schema will be dropped when the SessionFactory is closed explicitly.
+
+e.g. validate | update | create | create-drop
+
+So the list of possible options are,
+
+    validate: validate the schema, makes no changes to the database.
+    update: update the schema.
+    create: creates the schema, destroying previous data.
+    create-drop: drop the schema at the end of the session.
+
+These options seem intended to be developers tools and not to facilitate any production level databases, you may want to have a look at the following question; Hibernate: hbm2ddl.auto=update in production?
