@@ -31,4 +31,9 @@ public class MainMenuController {
     private void onWuerfelSimulatorClick() {
     	hauptProgramm_.openWuerfelSimulator();
     }
+    
+    @FXML
+    private void onCharakterManagerClick() {
+    	hauptProgramm_.openCharakterManager();
+    }
 }

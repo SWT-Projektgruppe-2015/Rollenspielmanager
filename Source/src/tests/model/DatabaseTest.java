@@ -25,7 +25,7 @@ public class DatabaseTest {
         Person person = new Person();
         person.setFirstName("andreas");
         Ausruestung test = new Ausruestung();
-        theManager.merge(test);
+        theManager.persist(test);
         Person person2 = new Person();
         person2.setFirstName("Boris");
         
@@ -35,12 +35,12 @@ public class DatabaseTest {
         theManager.merge(person2);
         theManager.getTransaction().commit();
         
-        /*theManager.getTransaction().begin();
+        theManager.getTransaction().begin();
         Spieler testPlayer = new Spieler();
         testPlayer.name_ = "Krssk";
         testPlayer.ausruestung_ = test;
-        theManager.merge(testPlayer);
-        theManager.getTransaction().commit();*/
+        theManager.persist(testPlayer);
+        theManager.getTransaction().commit();
         
         assertNull(person.getId());
         
