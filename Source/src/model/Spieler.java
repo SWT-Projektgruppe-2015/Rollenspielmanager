@@ -36,7 +36,7 @@ public class Spieler {
 	public static List<Spieler> getAllPlayers() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
-        TypedQuery<Spieler> getAllRows = theManager.createQuery("SELECT s FROM SPIELER s", Spieler.class);
+        TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler", Spieler.class);
         return getAllRows.getResultList();
 	}
 }
