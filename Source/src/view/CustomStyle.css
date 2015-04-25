@@ -46,5 +46,9 @@
 .button-charaktergenerator {
 	-fx-background-image: url('../../img/kneipe.jpg');
 	-fx-font-size: 14px;
-	
+}
+
+.button-wuerfel {
+	-fx-pref-width: 100px;
+	-fx-pref-height: 40px;
 }

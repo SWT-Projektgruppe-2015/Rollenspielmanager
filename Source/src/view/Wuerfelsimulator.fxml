@@ -1,13 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WuerfelsimulatorController">
    <children>
-      <Label layoutX="214.0" layoutY="197.0" text="TEST!!!" />
+      <GridPane alignment="CENTER_LEFT" prefHeight="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW4ButtonClick" styleClass="button-wuerfel" text="W4">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW6ButtonClick" styleClass="button-wuerfel" text="W6" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW8ButtonClick" styleClass="button-wuerfel" text="W8" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW10ButtonClick" styleClass="button-wuerfel" text="W10" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW12ButtonClick" styleClass="button-wuerfel" text="W12" GridPane.columnIndex="1" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW20ButtonClick" styleClass="button-wuerfel" text="W20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW30ButtonClick" styleClass="button-wuerfel" text="W30" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </GridPane>
+      <Label layoutX="85.0" layoutY="380.0" text="Ergebnis:">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="rollResult_" layoutX="250.0" layoutY="380.0">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="49.0" layoutY="35.0" text="Klicke, um zu Würfeln!" textAlignment="CENTER">
+         <font>
+            <Font name="System Italic" size="22.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
