@@ -7,153 +7,256 @@ import java.util.function.IntSupplier;
 import controller.DiceRoller;
 
 public class DiceTest {
-	private void assertCorrectRange(int result, int max) {
-		assertTrue(1<=result);
-		assertTrue(result<=max);
-	}
-	
-	
-	
-	private void assertCoversRange(int[] results) {
-		for(int i = 0; i<results.length; i++) {
-			assertTrue(results[i] != 0);
-		}
-	}
-	
-	
-	
-	private void rollCoversRange(IntSupplier roller, int max) {
-		int result;
-		int[] rolled = new int[max];
-		
-		for(int i = 0; i<1000; i++) {
-			result = roller.getAsInt();
-			rolled[result-1]++;
+	private abstract class DiceTester {	
+		public void rollCoversRange() {
+			int result;
+			int[] rolled = new int[getMaxValue()];
+			
+			for(int i = 0; i<1000; i++) {
+				result = roll();
+				rolled[result-1]++;
+			}
+			
+			assertCoversRange(rolled);
 		}
 		
-		assertCoversRange(rolled);
+		
+		
+		public void rollIsInCorrectRange() {
+			int result;
+			for(int i = 0; i<100; i++) {
+				result = roll();
+				assertCorrectRange(result, getMaxValue());
+			}
+		}
+		
+		
+		protected abstract int roll();
+		protected abstract int getMaxValue();
+		
+		
+		
+		private void assertCorrectRange(int result, int max) {
+			assertTrue(1<=result);
+			assertTrue(result<=max);
+		}
+		
+		
+		
+		private void assertCoversRange(int[] results) {
+			for(int i = 0; i<results.length; i++) {
+				assertTrue(results[i] != 0);
+			}
+		}
+		
+	}
+	
+	private class W4Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW4();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 4;
+		}		
 	}
 	
 	
 	
-	private void rollIsInCorrectRange(IntSupplier roller, int max) {
-		int result;
-		for(int i = 0; i<100; i++) {
-			result = roller.getAsInt();
-			assertCorrectRange(result, max);
+	private class W6Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW6();
 		}
+
+		@Override
+		protected int getMaxValue() {
+			return 6;
+		}		
+	}
+	
+	
+	
+	private class W8Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW8();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 8;
+		}		
+	}
+	
+	
+	
+	private class W10Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW10();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 10;
+		}		
+	}
+	
+	
+	
+	private class W12Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW12();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 12;
+		}		
+	}
+	
+	
+	
+	private class W20Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW20();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 20;
+		}		
+	}
+	
+	
+	
+	private class W30Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW30();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 30;
+		}
+		
 	}
 	
 	
 	
 	@Test
 	public void W4IsInCorrectRange() {
-		IntSupplier w4Roller = () -> DiceRoller.RollW4();
-		rollIsInCorrectRange(w4Roller, 4);
+		W4Tester w4Roller = new W4Tester();
+		w4Roller.rollIsInCorrectRange();
 	}
 	
 	
 	
 	@Test
 	public void W4CoversRange() {
-		IntSupplier w4Roller = () -> DiceRoller.RollW4();
-		rollCoversRange(w4Roller, 4);
+		W4Tester w4Roller = new W4Tester();
+		w4Roller.rollCoversRange();
 	}
-	
 	
 	
 	
 	@Test
 	public void W6IsInCorrectRange() {
-		IntSupplier w6Roller = () -> DiceRoller.RollW6();
-		rollIsInCorrectRange(w6Roller, 6);
+		W6Tester w6Roller = new W6Tester();
+		w6Roller.rollIsInCorrectRange();
 	}
 	
 	
 	
 	@Test
 	public void W6CoversRange() {
-		IntSupplier w6Roller = () -> DiceRoller.RollW6();
-		rollCoversRange(w6Roller, 6);
+		W6Tester w6Roller = new W6Tester();
+		w6Roller.rollCoversRange();
 	}
 	
 	
 	
 	@Test
 	public void W8IsInCorrectRange() {
-		IntSupplier w8Roller = () -> DiceRoller.RollW8();
-		rollIsInCorrectRange(w8Roller, 8);
+		W8Tester w8Roller = new W8Tester();
+		w8Roller.rollIsInCorrectRange();
 	}
 	
 	
 	
 	@Test
 	public void W8CoversRange() {
-		IntSupplier w8Roller = () -> DiceRoller.RollW8();
-		rollCoversRange(w8Roller, 8);
-	}
-	
-	
-	
-	@Test
-	public void W12IsInCorrectRange() {
-		IntSupplier w12Roller = () -> DiceRoller.RollW12();
-		rollIsInCorrectRange(w12Roller, 12);
-	}
-	
-	
-	
-	@Test
-	public void W12CoversRange() {
-		IntSupplier w12Roller = () -> DiceRoller.RollW12();
-		rollCoversRange(w12Roller, 12);
+		W8Tester w8Roller = new W8Tester();
+		w8Roller.rollCoversRange();
 	}
 	
 	
 	
 	@Test
 	public void W10IsInCorrectRange() {
-		IntSupplier w10Roller = () -> DiceRoller.RollW10();
-		rollIsInCorrectRange(w10Roller, 10);
+		W10Tester w10Roller = new W10Tester();
+		w10Roller.rollIsInCorrectRange();
 	}
 	
 	
 	
 	@Test
 	public void W10CoversRange() {
-		IntSupplier w10Roller = () -> DiceRoller.RollW10();
-		rollCoversRange(w10Roller, 10);
+		W10Tester w10Roller = new W10Tester();
+		w10Roller.rollCoversRange();
+	}
+	
+	
+	
+	@Test
+	public void W12IsInCorrectRange() {
+		W12Tester w12Roller = new W12Tester();
+		w12Roller.rollIsInCorrectRange();
+	}
+	
+	
+	
+	@Test
+	public void W12CoversRange() {
+		W12Tester w12Roller = new W12Tester();
+		w12Roller.rollCoversRange();
 	}
 	
 	
 	
 	@Test
 	public void W20IsInCorrectRange() {
-		IntSupplier w20Roller = () -> DiceRoller.RollW20();
-		rollIsInCorrectRange(w20Roller, 20);
+		W12Tester w12Roller = new W12Tester();
+		w12Roller.rollIsInCorrectRange();
 	}
 	
 	
 	
 	@Test
 	public void W20CoversRange() {
-		IntSupplier w20Roller = () -> DiceRoller.RollW20();
-		rollCoversRange(w20Roller, 20);
+		W20Tester w20Roller = new W20Tester();
+		w20Roller.rollCoversRange();
 	}
 	
 	
 	
 	@Test
 	public void W30IsInCorrectRange() {
-		IntSupplier w30Roller = () -> DiceRoller.RollW30();
-		rollIsInCorrectRange(w30Roller, 30);
+		W30Tester w30Roller = new W30Tester();
+		w30Roller.rollIsInCorrectRange();
 	}
 	
 	
 	
 	@Test
 	public void W30CoversRange() {
-		IntSupplier w30Roller = () -> DiceRoller.RollW30();
-		rollCoversRange(w30Roller, 30);
+		W30Tester w30Roller = new W30Tester();
+		w30Roller.rollCoversRange();
 	}
 }
