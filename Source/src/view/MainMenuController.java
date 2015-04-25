@@ -6,9 +6,9 @@ import javafx.scene.control.ComboBox;
 
 public class MainMenuController {
     @FXML
-    private ComboBox<String> gruppenDropDown;
+    private ComboBox<String> gruppenDropDown_;
 
-    private Hauptprogramm hauptProgramm;
+    private Hauptprogramm hauptProgramm_;
 
     public MainMenuController() {
     }
@@ -17,13 +17,18 @@ public class MainMenuController {
     
     @FXML
     private void initialize() {
-    	gruppenDropDown.getItems().addAll("Keine Gruppe ausgewählt", "Test");
-        gruppenDropDown.setValue("Keine Gruppe ausgewählt");
+    	gruppenDropDown_.getItems().addAll("Keine Gruppe ausgewählt", "Test");
+        gruppenDropDown_.setValue("Keine Gruppe ausgewählt");
     }
 
     
     
     public void setHauptProgramm(Hauptprogramm hauptProgramm) {
-        this.hauptProgramm = hauptProgramm;
+        hauptProgramm_ = hauptProgramm;
+    }
+    
+    @FXML
+    private void onWuerfelSimulatorClick() {
+    	hauptProgramm_.openWuerfelSimulator();
     }
 }

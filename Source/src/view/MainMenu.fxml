@@ -33,7 +33,7 @@
                         <String fx:value="button-mainmenu" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="357.0" layoutY="89.0" mnemonicParsing="false" text="Würfeln" AnchorPane.topAnchor="20.0">
+                  <Button layoutX="357.0" layoutY="89.0" mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" text="Würfeln" AnchorPane.topAnchor="20.0">
                      <styleClass>
                         <String fx:value="button-mainmenu" />
                         <String fx:value="button-wuerfeln" />
@@ -68,7 +68,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <ComboBox fx:id="gruppenDropDown" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>

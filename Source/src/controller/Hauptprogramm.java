@@ -1,6 +1,7 @@
 package controller;
 
 import javafx.application.Application;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,8 +35,7 @@ public class Hauptprogramm extends Application {
 	
 	public void initializeMenuBar() {
 	    try {
-	        FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(Hauptprogramm.class.getResource("../view/MenuBar.fxml"));
+	        FXMLLoader loader = getLoaderForXML("../view/MenuBar.fxml");
 	        menuBar = (BorderPane) loader.load();
 
 	        Scene scene = new Scene(menuBar);
@@ -50,8 +50,7 @@ public class Hauptprogramm extends Application {
 	
 	public void showMainMenu() {
 	    try {
-	        FXMLLoader loader = new FXMLLoader();
-	        loader.setLocation(Hauptprogramm.class.getResource("../view/MainMenu.fxml"));
+	        FXMLLoader loader = getLoaderForXML("../view/MainMenu.fxml");
 	        AnchorPane mainMenu = (AnchorPane) loader.load();
 
             menuBar.setCenter(mainMenu);
@@ -62,6 +61,35 @@ public class Hauptprogramm extends Application {
             e.printStackTrace();
         }
     }
+	
+	public boolean openWuerfelSimulator() {
+		try {
+	        openNewWindow("../view/Wuerfelsimulator.fxml", "Würfelsimulator");
+	        return true;
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
+	
+	private void openNewWindow(String resourceFile, String title) throws IOException {
+		AnchorPane page = (AnchorPane) getLoaderForXML(resourceFile).load();
+		
+		Stage newStage = new Stage();
+		newStage.setTitle(title);
+		newStage.initModality(Modality.WINDOW_MODAL);
+		newStage.initOwner(primaryStage);
+		newStage.setScene(new Scene(page));
+		
+		newStage.showAndWait();
+	}
+	
+	private FXMLLoader getLoaderForXML(String pathToXML) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(Hauptprogramm.class.getResource(pathToXML));
+		
+		return loader;
+	}
 
 	
 	public Stage getPrimaryStage() {
