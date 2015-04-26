@@ -72,6 +72,8 @@ public class Hauptprogramm extends Application {
 	    }
 	}
 	
+	
+	
 	private void openNewWindow(String resourceFile, String title) throws IOException {
 		AnchorPane page = (AnchorPane) getLoaderForXML(resourceFile).load();
 		
@@ -83,6 +85,8 @@ public class Hauptprogramm extends Application {
 		
 		newStage.showAndWait();
 	}
+	
+	
 	
 	private FXMLLoader getLoaderForXML(String pathToXML) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
