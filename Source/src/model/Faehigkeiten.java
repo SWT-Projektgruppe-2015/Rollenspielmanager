@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FAEHIGKEITEN")
-public class Faehigkeiten {
+public class Faehigkeiten implements Named {
 	
 	public String name_;
 	@Id
@@ -22,4 +22,9 @@ public class Faehigkeiten {
 	@OneToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID")
 	public Ausruestung ausruestung_;
+	
+	@Override
+	public String getName() {
+		return name_;
+	}
 }

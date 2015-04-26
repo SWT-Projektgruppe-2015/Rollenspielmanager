@@ -58,13 +58,13 @@
                            <content>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <ListView editable="true" layoutX="8.0" layoutY="16.0" prefHeight="141.0" prefWidth="103.0" />
+                                    <ListView fx:id="waffen_" editable="true" layoutX="8.0" layoutY="16.0" prefHeight="141.0" prefWidth="103.0" />
                                     <VBox layoutX="131.0" layoutY="4.0" prefHeight="196.0" prefWidth="84.0">
                                        <children>
                                           <Label text="Effekt" />
                                           <ComboBox prefHeight="25.0" prefWidth="123.0" />
                                           <Label text="Damage" />
-                                          <TextField prefHeight="25.0" prefWidth="66.0" />
+                                          <TextField fx:id="damage_" prefHeight="25.0" prefWidth="66.0" />
                                        </children>
                                     </VBox>
                                     <Button layoutX="8.0" layoutY="157.0" mnemonicParsing="false" text="-" />
@@ -78,9 +78,9 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="252.0">
                                        <children>
-                                          <TextField layoutX="69.0" layoutY="53.0" prefHeight="25.0" prefWidth="40.0" />
-                                          <TextField layoutX="69.0" layoutY="78.0" prefHeight="25.0" prefWidth="40.0" />
-                                          <TextField layoutX="69.0" layoutY="103.0" prefHeight="25.0" prefWidth="40.0" />
+                                          <TextField fx:id="defR_" layoutX="69.0" layoutY="53.0" prefHeight="25.0" prefWidth="40.0" />
+                                          <TextField fx:id="defH_" layoutX="69.0" layoutY="78.0" prefHeight="25.0" prefWidth="40.0" />
+                                          <TextField fx:id="defS_" layoutX="69.0" layoutY="103.0" prefHeight="25.0" prefWidth="40.0" />
                                           <Text layoutX="23.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefR:" />
                                           <Text layoutX="23.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefH:" />
                                           <Text layoutX="23.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefS:" />
@@ -94,7 +94,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <ListView editable="true" layoutY="23.0" prefHeight="130.0" prefWidth="106.0" />
+                                    <ListView fx:id="faehigkeiten_" editable="true" layoutY="23.0" prefHeight="130.0" prefWidth="106.0" />
                                     <Label layoutX="133.0" layoutY="23.0" text="Effekttyp" />
                                     <ComboBox layoutX="133.0" layoutY="52.0" prefHeight="25.0" prefWidth="113.0" />
                                     <Button layoutX="18.0" layoutY="167.0" mnemonicParsing="false" text="-" />
