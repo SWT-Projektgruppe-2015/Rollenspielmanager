@@ -13,7 +13,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 /**
- * Startet das Programm und zeigt das Hauptmenü an.
+ * Startet das Programm und zeigt das Hauptmenue an.
  * @author Britta Heymann
  *
  */
