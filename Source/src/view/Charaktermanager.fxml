@@ -15,12 +15,12 @@
                <children>
                   <Text layoutX="128.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Neue Gruppe:" />
                   <TextField fx:id="newGroupName_" layoutX="227.0" layoutY="14.0" />
-                  <ListView fx:id="players_" layoutX="100.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="playersNotInGroup_" layoutX="100.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0" />
                   <ListView fx:id="playersInGroup_" layoutX="300.0" layoutY="97.0" prefHeight="200.0" prefWidth="200.0" />
-                  <Button layoutX="275.0" layoutY="185.0" mnemonicParsing="false" text="&lt;" />
-                  <Button layoutX="301.0" layoutY="185.0" mnemonicParsing="false" text="&gt;" />
+                  <Button layoutX="275.0" layoutY="185.0" mnemonicParsing="false" onAction="#removePlayerFromGroup" text="&lt;" />
+                  <Button layoutX="301.0" layoutY="185.0" mnemonicParsing="false" onAction="#addPlayerToGroup" text="&gt;" />
                   <ComboBox fx:id="groupDropdown_" editable="true" layoutX="227.0" layoutY="40.0" prefWidth="150.0" promptText="wähle Gruppe aus..." />
-                  <Button layoutX="420.0" layoutY="28.0" mnemonicParsing="false" text="OK" />
+                  <Button layoutX="420.0" layoutY="28.0" mnemonicParsing="false" onAction="#changeGroup" text="OK" />
                   <Label layoutX="128.0" layoutY="80.0" text="Spielerliste" />
                   <Label layoutX="326.0" layoutY="80.0" text="Abenteuergruppe" />
                </children>
@@ -31,10 +31,10 @@
             <AnchorPane prefHeight="303.0" prefWidth="600.0">
                <children>
                   <Label layoutX="31.0" layoutY="43.0" text="Spielerliste" />
-                  <TextField layoutX="7.0" layoutY="60.0" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
+                  <TextField fx:id="searchPlayer_" layoutX="7.0" layoutY="60.0" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
                   <ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
                      <content>
-                        <ListView prefHeight="200.0" prefWidth="211.0" />
+                        <ListView fx:id="players_" prefHeight="200.0" prefWidth="211.0" />
                      </content>
                   </ScrollPane>
                   <TabPane layoutX="237.0" layoutY="60.0" prefHeight="228.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE">
@@ -43,13 +43,13 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
-                                    <TextField editable="false" layoutX="36.0" layoutY="83.0" prefHeight="25.0" prefWidth="50.0" />
+                                    <TextField fx:id="playerStufe_" editable="false" layoutX="36.0" layoutY="83.0" prefHeight="25.0" prefWidth="50.0" />
                                     <Label layoutX="36.0" layoutY="66.0" text="Stufe" />
-                                    <Button layoutX="37.0" layoutY="108.0" mnemonicParsing="false" text="-" />
-                                    <Button layoutX="60.0" layoutY="108.0" mnemonicParsing="false" text="+" />
-                                    <TextField layoutX="36.0" layoutY="31.0" />
+                                    <Button layoutX="37.0" layoutY="108.0" mnemonicParsing="false" onAction="#decreaseStufe" text="-" />
+                                    <Button layoutX="60.0" layoutY="108.0" mnemonicParsing="false" onAction="#increaseStufe" text="+" />
+                                    <TextField fx:id="playerName_" layoutX="36.0" layoutY="31.0" />
                                     <Text layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielername" />
-                                    <Button layoutX="172.0" layoutY="160.0" mnemonicParsing="false" text="Spieler löschen" />
+                                    <Button layoutX="172.0" layoutY="160.0" mnemonicParsing="false" onAction="#deletePlayer" text="Spieler löschen" />
                                  </children>
                               </AnchorPane>
                           </content>
