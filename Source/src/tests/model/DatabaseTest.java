@@ -13,6 +13,7 @@ import model.Ausruestung;
 import model.Spieler;
 import model.Waffen;
 import model.Faehigkeiten;
+import model.Beute;
 
 public class DatabaseTest {
     @Test
@@ -22,8 +23,22 @@ public class DatabaseTest {
         EntityManager theManager = factory.createEntityManager();
         theManager.getTransaction().begin();
         
-        Ausruestung test = new Ausruestung();
-        theManager.merge(test);
+        /*
+        Ausruestung defaultAusruestung = new Ausruestung();
+        defaultAusruestung.defH_=0;
+        defaultAusruestung.defR_=0;
+        defaultAusruestung.defS_=0;
+        theManager.merge(defaultAusruestung);
+        Beute defaultBeute = new Beute();
+        defaultBeute.besonderesWkt_ = 0.0;
+        defaultBeute.ruestungWkt_ = 0.0;
+        defaultBeute.waffenWkt_ = 0;
+        defaultBeute.geldBetrag_ = 0;
+        defaultBeute.profil_ = "Default";
+        defaultBeute.schwaechungsFaktor_ = 0.0;
+        theManager.merge(defaultBeute);
+        */
+        
         
         theManager.getTransaction().commit();
         
