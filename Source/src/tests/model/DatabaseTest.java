@@ -26,10 +26,10 @@ public class DatabaseTest {
         
         /*
         Ausruestung defaultAusruestung = new Ausruestung();
-        defaultAusruestung.defH_=0;
-        defaultAusruestung.defR_=0;
-        defaultAusruestung.defS_=0;
-        theManager.merge(defaultAusruestung);
+        defaultAusruestung.defH_=1;
+        defaultAusruestung.defR_=1;
+        defaultAusruestung.defS_=1;
+        theManager.persist(defaultAusruestung);
         Beute defaultBeute = new Beute();
         defaultBeute.besonderesWkt_ = 0.0;
         defaultBeute.ruestungWkt_ = 0.0;
@@ -38,10 +38,10 @@ public class DatabaseTest {
         defaultBeute.profil_ = "Default";
         defaultBeute.schwaechungsFaktor_ = 0.0;
         theManager.merge(defaultBeute);
-        */
+        //*/
         
         
-
+        /*
         theManager.getTransaction().commit();
         
         theManager.getTransaction().begin();
@@ -53,11 +53,10 @@ public class DatabaseTest {
         testWaffe.waffenName_="testWaffe";
         testWaffe.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
         
-        theManager.merge(testWaffe);
-        theManager.merge(testPlayer);
+        theManager.persist(testWaffe);
+        theManager.persist(testPlayer);
         theManager.getTransaction().commit();
-        
-        //assertNull(test.ID_);
+        //*/
         
         Ausruestung a = (Ausruestung)theManager.find(Ausruestung.class, 1);
 
