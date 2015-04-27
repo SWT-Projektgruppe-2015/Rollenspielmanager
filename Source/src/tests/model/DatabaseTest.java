@@ -9,7 +9,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import model.Person;
+
 import model.Ausruestung;
 import model.Spieler;
 import model.Waffen;
@@ -22,17 +22,10 @@ public class DatabaseTest {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
         theManager.getTransaction().begin();
-        Person person = new Person();
-        person.setFirstName("andreas");
+        
         Ausruestung test = new Ausruestung();
         theManager.merge(test);
-        Person person2 = new Person();
-        person2.setFirstName("Boris");
         
-        
-        
-        theManager.merge(person);
-        theManager.merge(person2);
         theManager.getTransaction().commit();
         
         /*theManager.getTransaction().begin();
@@ -42,10 +35,10 @@ public class DatabaseTest {
         theManager.merge(testPlayer);
         theManager.getTransaction().commit();*/
         
-        assertNull(person.getId());
+        //assertNull(test.ID_);
         
-        Person p = (Person)theManager.find(Person.class, 1);
+        Ausruestung a = (Ausruestung)theManager.find(Ausruestung.class, 1);
 
-        assertNotNull(p);
+        assertNotNull(a);
     }
 }
