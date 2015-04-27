@@ -39,7 +39,7 @@
                         <String fx:value="button-wuerfeln" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="64.0" layoutY="248.0" mnemonicParsing="false" text="Charaktermanager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="190.0">
+                  <Button layoutX="64.0" layoutY="248.0" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="190.0">
                      <styleClass>
                         <String fx:value="button-mainmenu" />
                         <String fx:value="button-gruppen" />

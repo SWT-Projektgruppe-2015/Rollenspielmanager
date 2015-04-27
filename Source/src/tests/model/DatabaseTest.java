@@ -22,6 +22,7 @@ public class DatabaseTest {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
         theManager.getTransaction().begin();
+
         
         /*
         Ausruestung defaultAusruestung = new Ausruestung();
@@ -40,14 +41,21 @@ public class DatabaseTest {
         */
         
         
+
         theManager.getTransaction().commit();
         
-        /*theManager.getTransaction().begin();
+        theManager.getTransaction().begin();
         Spieler testPlayer = new Spieler();
         testPlayer.name_ = "Krssk";
-        testPlayer.ausruestung_ = test;
+        testPlayer.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
+       
+        Waffen testWaffe = new Waffen();
+        testWaffe.waffenName_="testWaffe";
+        testWaffe.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
+        
+        theManager.merge(testWaffe);
         theManager.merge(testPlayer);
-        theManager.getTransaction().commit();*/
+        theManager.getTransaction().commit();
         
         //assertNull(test.ID_);
         

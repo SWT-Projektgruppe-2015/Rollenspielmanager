@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "WAFFEN")
-public class Waffen {
+public class Waffen implements Named {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -24,4 +24,9 @@ public class Waffen {
 	@OneToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", nullable = false)
 	public Ausruestung ausruestung_;
+	
+	@Override
+	public String getName() {
+		return waffenName_;
+	}
 }

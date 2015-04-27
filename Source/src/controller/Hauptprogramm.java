@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import view.MainMenuController;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -62,18 +63,26 @@ public class Hauptprogramm extends Application {
         }
     }
 	
-	public boolean openWuerfelSimulator() {
+	public void openWuerfelSimulator() {
 		try {
 	        openNewWindow("../view/Wuerfelsimulator.fxml", "Würfelsimulator");
-	        return true;
 	    } catch (IOException e) {
 	        e.printStackTrace();
-	        return false;
 	    }
 	}
 	
+	
+	
+	public void openCharakterManager() {
+		try {
+			openNewWindow("../view/Charaktermanager.fxml", "Charaktermanager");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void openNewWindow(String resourceFile, String title) throws IOException {
-		AnchorPane page = (AnchorPane) getLoaderForXML(resourceFile).load();
+		Parent page = getLoaderForXML(resourceFile).load();
 		
 		Stage newStage = new Stage();
 		newStage.setTitle(title);

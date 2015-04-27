@@ -1,17 +1,23 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Persistence;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
 
 
 @Entity
 @Table( name = "SPIELER")
-public class Spieler {
+public class Spieler implements Named {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -27,4 +33,47 @@ public class Spieler {
 	@OneToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", nullable = false)
 	public Ausruestung ausruestung_;
+	
+	public String getName() {
+		return name_;
+	}
+	
+	
+	
+	public int getDefR() {
+		return ausruestung_.defR_;
+	}
+	
+	
+	
+	public int getDefH() {
+		return ausruestung_.defH_;
+	}
+	
+	
+	
+	public int getDefS() {
+		return ausruestung_.defS_;
+	}
+	
+	
+	
+	public List<Waffen> getWaffen() {
+		return ausruestung_.getWaffen();
+	}
+	
+	
+	
+	public List<Faehigkeiten> getFaehigkeiten() {
+		return ausruestung_.getFaehigkeiten();
+	}
+	
+	
+	
+	public static List<Spieler> getAllPlayers() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
+        EntityManager theManager = factory.createEntityManager();
+        TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler", Spieler.class);
+        return getAllRows.getResultList();
+	}
 }
