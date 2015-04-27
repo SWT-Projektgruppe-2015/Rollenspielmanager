@@ -5,7 +5,6 @@ import static org.junit.Assert.assertNotNull;
 import java.util.List;
 
 import model.Spieler;
-import model.charakterdaten.Charakter;
 
 import org.junit.Test;
 
