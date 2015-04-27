@@ -5,10 +5,10 @@
   <persistence-unit name="thePersistenceUnit" transaction-type="RESOURCE_LOCAL">
   <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <class>model.Spieler</class>
-    <class>model.Ausruestung</class>
     <class>model.Waffen</class>
     <class>model.Faehigkeiten</class>
     <class>model.Gegner</class>
+    <class>model.Ausruestung</class>
     <class>model.Beute</class>
     <properties>
       	<property name="connection.driver_class" value="org.h2.Driver"/>
