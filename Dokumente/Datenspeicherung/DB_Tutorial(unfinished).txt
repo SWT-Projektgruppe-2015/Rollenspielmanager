@@ -44,3 +44,8 @@ So the list of possible options are,
     create-drop: drop the schema at the end of the session.
 
 These options seem intended to be developers tools and not to facilitate any production level databases, you may want to have a look at the following question; Hibernate: hbm2ddl.auto=update in production?
+
+
+@Table( name = "NAME" ) um den Namen der Tabelle zu aendern(vom default name der Klasse).
+
+http://docs.oracle.com/javaee/6/api/javax/persistence/OneToOne.html
