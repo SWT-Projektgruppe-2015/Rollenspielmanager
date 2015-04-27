@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
+import javax.persistence.PrePersist;
 
 
 @Entity
@@ -22,18 +23,28 @@ public class Spieler implements Named {
 	@GeneratedValue
 	@Column(name = "ID")
 	public int ID_;
-	@Column(name = "NAME", nullable = false)
+	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Jane Doe'")
 	public String name_;
-	@Column(name = "KREIS", nullable = false)
+	@Column(name = "KREIS", columnDefinition="INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS <= 4)")
 	public int kreis_;
-	@Column(name = "LEVEL", nullable = false)
+	@Column(name = "LEVEL", columnDefinition="INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
 	public int level_;
 	@Column(name = "DISZIPLIN")
 	public String disziplin_;
 	@OneToOne(optional=false)
-	@JoinColumn(name = "AUSRUESTNGS_ID", nullable = false)
+	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="Integer NOT NULL default '1'")
 	public Ausruestung ausruestung_;
 	
+	@PrePersist
+	public void onCreate()	{
+		if(name_ == null)	{
+			name_="Jane Doe";
+		}
+		if(kreis_ == 0)	{
+			kreis_ = 1;
+		}
+		
+	}
 	public String getName() {
 		return name_;
 	}

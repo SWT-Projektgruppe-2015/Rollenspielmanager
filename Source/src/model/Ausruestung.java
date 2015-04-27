@@ -9,20 +9,21 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Persistence;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
 
 @Entity
-@Table( name = "AUSRUESTUNGEN")
+@Table(name = "AUSRUESTUNGEN")
 public class Ausruestung {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
 	public int ID_;
-	@Column(name = "DEFR")
+	@Column(name = "DEFR", columnDefinition="INTEGER NOT NULL DEFAULT '1' CHECK(DEFR >= 1)")
 	public int defR_;
-	@Column(name = "DEFH")
+	@Column(name = "DEFH", columnDefinition="INTEGER NOT NULL DEFAULT '1' CHECK(DEFH >= 1)")
 	public int defH_;
 	@Column(name = "DEFS")
 	public int defS_;
@@ -34,7 +35,16 @@ public class Ausruestung {
         		"FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
         return getWaffenInAusruestung.getResultList();
 	}
-
+	@PrePersist
+	public void onCreate()	{
+		if(defH_ == 0)	{
+			defH_=1;
+		}
+		if(defR_ == 0)	{
+			defR_ = 1;
+		}
+		
+	}
 	
 	
 	public List<Faehigkeiten> getFaehigkeiten() {
