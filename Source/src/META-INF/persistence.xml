@@ -8,12 +8,14 @@
     <class>model.Ausruestung</class>
     <class>model.Waffen</class>
     <class>model.Faehigkeiten</class>
+    <class>model.Gegner</class>
+    <class>model.Beute</class>
     <properties>
       	<property name="connection.driver_class" value="org.h2.Driver"/>
         <property name="hibernate.connection.url" value="jdbc:h2:./db/repository;MV_STORE=false"/>
         <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
  		<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
-        <property name="hibernate.hbm2ddl.auto" value="create"/>
+        <property name="hibernate.hbm2ddl.auto" value="update"/>
         <property name="hibernate.show_sql" value="true" />
     </properties>
   </persistence-unit>

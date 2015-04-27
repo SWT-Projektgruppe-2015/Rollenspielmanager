@@ -9,7 +9,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-
 import model.Ausruestung;
 import model.Spieler;
 import model.Waffen;
