@@ -15,11 +15,11 @@ public class Faehigkeiten {
 	public String name_;
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "ID", nullable = false)
 	public int ID_;
-	@Column(name = "EFFEKT_TYP")
+	@Column(name = "EFFEKT_TYP", nullable = false)
 	public int effekttypen_;
 	@OneToOne(optional=false)
-	@JoinColumn(name = "AUSRUESTNGS_ID")
+	@JoinColumn(name = "AUSRUESTNGS_ID", nullable = false)
 	public Ausruestung ausruestung_;
 }

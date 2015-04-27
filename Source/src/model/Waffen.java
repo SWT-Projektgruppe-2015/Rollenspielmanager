@@ -17,11 +17,11 @@ public class Waffen {
 	public int ID_;
 	@Column(name = "EFFEKT_TYP")
 	public int effektTyp_;
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = false)
 	public String waffenName_;
-	@Column(name = "SCHADEN")
+	@Column(name = "SCHADEN", nullable = false)
 	public int waffenSchaden_;
 	@OneToOne(optional=false)
-	@JoinColumn(name = "AUSRUESTNGS_ID")
+	@JoinColumn(name = "AUSRUESTNGS_ID", nullable = false)
 	public Ausruestung ausruestung_;
 }

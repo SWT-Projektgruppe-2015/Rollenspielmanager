@@ -16,15 +16,15 @@ public class Spieler {
 	@GeneratedValue
 	@Column(name = "ID")
 	public int ID_;
-	@Column(name = "NAME")
+	@Column(name = "NAME", nullable = false)
 	public String name_;
-	@Column(name = "KREIS")
+	@Column(name = "KREIS", nullable = false)
 	public int kreis_;
-	@Column(name = "LEVEL")
+	@Column(name = "LEVEL", nullable = false)
 	public int level_;
 	@Column(name = "DISZIPLIN")
 	public String disziplin_;
 	@OneToOne(optional=false)
-	@JoinColumn(name = "AUSRUESTNGS_ID")
+	@JoinColumn(name = "AUSRUESTNGS_ID", nullable = false)
 	public Ausruestung ausruestung_;
 }
