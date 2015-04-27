@@ -24,5 +24,5 @@ public class Beute {
 	@Column(name = "BESONDERES_WKT")
 	public double besonderesWkt_;
 	@Column(name = "GELDBETRAG")
-	public int geldBetrag;
+	public int geldBetrag_;
 }
