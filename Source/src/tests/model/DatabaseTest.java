@@ -24,42 +24,40 @@ public class DatabaseTest {
         theManager.getTransaction().begin();
 
         
-        /*
-        Ausruestung defaultAusruestung = new Ausruestung();
-        defaultAusruestung.defH_=1;
-        defaultAusruestung.defR_=1;
-        defaultAusruestung.defS_=1;
-        theManager.persist(defaultAusruestung);
-        Beute defaultBeute = new Beute();
-        defaultBeute.besonderesWkt_ = 0.0;
-        defaultBeute.ruestungWkt_ = 0.0;
-        defaultBeute.waffenWkt_ = 0;
-        defaultBeute.geldBetrag_ = 0;
-        defaultBeute.profil_ = "Default";
-        defaultBeute.schwaechungsFaktor_ = 0.0;
-        theManager.merge(defaultBeute);
-        //*/
         
-        
-        /*
-        theManager.getTransaction().commit();
-        
-        theManager.getTransaction().begin();
-        Spieler testPlayer = new Spieler();
-        testPlayer.name_ = "Krssk";
-        testPlayer.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
-       
-        Waffen testWaffe = new Waffen();
-        testWaffe.waffenName_="testWaffe";
-        testWaffe.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
-        
-        theManager.persist(testWaffe);
-        theManager.persist(testPlayer);
-        theManager.getTransaction().commit();
-        //*/
-        
-        Ausruestung a = (Ausruestung)theManager.find(Ausruestung.class, 1);
+//        Ausruestung defaultAusruestung = new Ausruestung();
+//        defaultAusruestung.defH_=2;
+//        defaultAusruestung.defR_=2;
+//        defaultAusruestung.defS_=2;
+//        theManager.persist(defaultAusruestung);
+//        Beute defaultBeute = new Beute();
+//        defaultBeute.besonderesWkt_ = 0.0;
+//        defaultBeute.ruestungWkt_ = 0.0;
+//        defaultBeute.waffenWkt_ = 0;
+//        defaultBeute.geldBetrag_ = 0;
+//        defaultBeute.profil_ = "Default";
+//        defaultBeute.schwaechungsFaktor_ = 0.0;
+//        theManager.merge(defaultBeute);
+//        
+//        
+//        
+//        theManager.getTransaction().commit();
+//        
+//        theManager.getTransaction().begin();
+//        Spieler testPlayer = new Spieler();
+//        testPlayer.name_ = "Hovalit";
+//        testPlayer.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 2);
+//       
+//        Waffen testWaffe = new Waffen();
+//        testWaffe.waffenName_="Stab";
+//        testWaffe.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 2);
+//        
+//        theManager.persist(testWaffe);
+//        theManager.persist(testPlayer);
+//        theManager.getTransaction().commit();
+//        
+//        Ausruestung a = (Ausruestung)theManager.find(Ausruestung.class, 2);
 
-        assertNotNull(a);
+//        assertNotNull(a);
     }
 }

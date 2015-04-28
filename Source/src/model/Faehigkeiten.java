@@ -10,7 +10,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FAEHIGKEITEN")
-public class Faehigkeiten implements Named {
+public class Faehigkeiten {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID", nullable = false)
@@ -24,7 +24,7 @@ public class Faehigkeiten implements Named {
 	public Ausruestung ausruestung_;
 	
 	@Override
-	public String getName() {
+	public String toString() {
 		return name_;
 	}
 	

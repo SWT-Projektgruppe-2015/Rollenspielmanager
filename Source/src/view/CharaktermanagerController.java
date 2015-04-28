@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Faehigkeiten;
 import model.Gruppe;
 import model.Spieler;
@@ -12,39 +15,41 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class CharaktermanagerController {
+	private List<Spieler> playerList_;
+	private Gruppe chosenGruppe_;
 	@FXML
-	private TextField newGroupName_;
+	private TextField newGroupNameTextField_;
 	@FXML
-	private ComboBox<Gruppe> groupDropdown_;
+	private ComboBox<Gruppe> groupComboBox_;
 	@FXML
-	private ListView<Spieler> playersNotInGroup_; //linke Liste
+	private ListView<Spieler> playersNotInGroupListView_; //linke Liste
 	@FXML
-	private ListView<Spieler> playersInGroup_; //rechte Liste
+	private ListView<Spieler> playersInGroupListView_; //rechte Liste
 	
 	@FXML
-	private ListView<Spieler> players_;
+	private ListView<Spieler> playersListView_;
 	@FXML
-	private TextField searchPlayer_;
+	private TextField searchPlayerTextField_;
 	
 	@FXML
-	private TextField playerName_;
+	private TextField playerNameTextField_;
 	@FXML
-	private TextField playerStufe_;
+	private TextField playerStufeTextField_;
 	
 	@FXML
-	private ListView<Waffen> waffen_;
+	private ListView<Waffen> waffenListView_;
 	@FXML
-	private TextField damage_;
+	private TextField damageTextField_;
 	
 	@FXML
-	private TextField defR_;
+	private TextField defRTextField_;
 	@FXML
-	private TextField defH_;
+	private TextField defHTextField_;
 	@FXML
-	private TextField defS_;
+	private TextField defSTextField_;
 	
 	@FXML
-	private ListView<Faehigkeiten> faehigkeiten_;
+	private ListView<Faehigkeiten> faehigkeitenListView_;
 	
 	
 	public CharaktermanagerController() {
@@ -54,15 +59,31 @@ public class CharaktermanagerController {
 	
 	@FXML
 	private void initialize() {
-		intializeGroupManager();	
+		initializeController();
+		initializeGroupManager();	
 		initializePlayerManager();
 	}
 	
 	
 	
-	private void intializeGroupManager() {
-		playersNotInGroup_.getItems().setAll(Spieler.getAllPlayers());
-		playersNotInGroup_.setCellFactory(new NameCellFactory<Spieler>());
+	private void initializeController() {
+		playerList_= Spieler.getAllPlayers();
+		
+	}
+
+
+
+	private void initializeGroupManager() {
+		playersNotInGroupListView_.getItems().setAll(playerList_);
+//		List<Gruppe> allGruppen = GruppenManipulator.getAll();
+		List<Gruppe> allGruppen = new ArrayList<Gruppe>();
+		Gruppe test1 = new Gruppe();
+		test1.name_ = "Dienstag";
+		Gruppe test2 = new Gruppe();
+		test2.name_ = "Freitag";
+		allGruppen.add(test1);
+		allGruppen.add(test2);
+		groupComboBox_.getItems().setAll(allGruppen);
 	}
 	
 	
@@ -76,11 +97,10 @@ public class CharaktermanagerController {
 	
 	
 	private void initializePlayerList() {
-		players_.getItems().setAll(Spieler.getAllPlayers());
-		players_.setCellFactory(new NameCellFactory<Spieler>());		
+		playersListView_.getItems().setAll(Spieler.getAllPlayers());
 		showPlayerDetails(null);
 		
-		players_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Spieler>() {
+		playersListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Spieler>() {
             public void changed(ObservableValue<? extends Spieler> observable, Spieler oldValue, Spieler newValue) {
                showPlayerDetails(newValue);
             }
@@ -90,10 +110,10 @@ public class CharaktermanagerController {
 	
 	
 	private void initializeWaffenList() {
-		waffen_.setCellFactory(new NameCellFactory<Waffen>());		
+//		waffenListView_.setCellFactory(new NameCellFactory<Waffen>());		
 		showWaffenDetails(null);		
 		
-		waffen_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Waffen>() {
+		waffenListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Waffen>() {
 			public void changed(ObservableValue<? extends Waffen> observable, Waffen oldValue, Waffen newValue) {
 				showWaffenDetails(newValue);
 			}
@@ -103,10 +123,10 @@ public class CharaktermanagerController {
 	
 	
 	private void initializeFaehigkeitenList() {
-		faehigkeiten_.setCellFactory(new NameCellFactory<Faehigkeiten>());
+//		faehigkeitenListView_.setCellFactory(new NameCellFactory<Faehigkeiten>());
 		showFaehigkeitenDetails(null);
 		
-		faehigkeiten_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Faehigkeiten>() {
+		faehigkeitenListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Faehigkeiten>() {
 			public void changed(ObservableValue<? extends Faehigkeiten> observable, Faehigkeiten oldValue, Faehigkeiten newValue) {
 				showFaehigkeitenDetails(newValue);
 			}
@@ -116,8 +136,18 @@ public class CharaktermanagerController {
 	
 	
 	@FXML
-	private void changeGroup() {
+	private void updateGroup() {
 	}
+	
+	@FXML
+	private void createGroup() {
+		
+	}
+	
+	@FXML
+	private void deleteGroup() {
+		
+	}	
 	
 	
 	
@@ -138,34 +168,34 @@ public class CharaktermanagerController {
 			showEmptyPlayerDetails();
 		}
 		else {
-			playerName_.setText(player.name_);
-			playerStufe_.setText(Integer.toString(player.level_));
+			playerNameTextField_.setText(player.name_);
+			playerStufeTextField_.setText(Integer.toString(player.level_));
 			
-			waffen_.getItems().setAll(player.getWaffen());
-			waffen_.getSelectionModel().select(0);
+			waffenListView_.getItems().setAll(player.getWaffen());
+			waffenListView_.getSelectionModel().select(0);
 			
-			defR_.setText(Integer.toString(player.getDefR()));
-			defH_.setText(Integer.toString(player.getDefH()));
-			defS_.setText(Integer.toString(player.getDefS()));
+			defRTextField_.setText(Integer.toString(player.getDefR()));
+			defHTextField_.setText(Integer.toString(player.getDefH()));
+			defSTextField_.setText(Integer.toString(player.getDefS()));
 			
-			faehigkeiten_.getItems().setAll(player.getFaehigkeiten());
-			faehigkeiten_.getSelectionModel().select(0);
+			faehigkeitenListView_.getItems().setAll(player.getFaehigkeiten());
+			faehigkeitenListView_.getSelectionModel().select(0);
 		}
 	}
 	
 	
 	
 	private void showEmptyPlayerDetails() {
-		playerName_.setText("");
-		playerStufe_.setText("");
+		playerNameTextField_.setText("");
+		playerStufeTextField_.setText("");
 		
-		waffen_.getItems().clear();
+		waffenListView_.getItems().clear();
 		
-		defR_.setText("");
-		defH_.setText("");
-		defS_.setText("");
+		defRTextField_.setText("");
+		defHTextField_.setText("");
+		defSTextField_.setText("");
 		
-		faehigkeiten_.getItems().clear();
+		faehigkeitenListView_.getItems().clear();
 	}
 	
 	
@@ -175,14 +205,14 @@ public class CharaktermanagerController {
 			showEmptyWaffenDetails();
 		} 
 		else {
-			damage_.setText(Integer.toString(waffen.waffenSchaden_));
+			damageTextField_.setText(Integer.toString(waffen.waffenSchaden_));
 		}
 	}
 	
 	
 	
 	private void showEmptyWaffenDetails() {
-		damage_.setText("");
+		damageTextField_.setText("");
 	}
 	
 	
