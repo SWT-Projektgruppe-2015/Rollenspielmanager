@@ -80,6 +80,8 @@ public class Hauptprogramm extends Application {
 			e.printStackTrace();
 		}
 	}
+
+	
 	
 	private void openNewWindow(String resourceFile, String title) throws IOException {
 		Parent page = getLoaderForXML(resourceFile).load();
@@ -92,6 +94,8 @@ public class Hauptprogramm extends Application {
 		
 		newStage.showAndWait();
 	}
+	
+	
 	
 	private FXMLLoader getLoaderForXML(String pathToXML) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
