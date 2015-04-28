@@ -9,11 +9,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import model.Person;
 import model.Ausruestung;
 import model.Spieler;
 import model.Waffen;
 import model.Faehigkeiten;
+import model.Beute;
 
 public class DatabaseTest {
     @Test
@@ -22,30 +22,44 @@ public class DatabaseTest {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
         theManager.getTransaction().begin();
-        Person person = new Person();
-        person.setFirstName("andreas");
-        Ausruestung test = new Ausruestung();
-        theManager.merge(test);
-        Person person2 = new Person();
-        person2.setFirstName("Boris");
+
+        
+        /*
+        Ausruestung defaultAusruestung = new Ausruestung();
+        defaultAusruestung.defH_=1;
+        defaultAusruestung.defR_=1;
+        defaultAusruestung.defS_=1;
+        theManager.persist(defaultAusruestung);
+        Beute defaultBeute = new Beute();
+        defaultBeute.besonderesWkt_ = 0.0;
+        defaultBeute.ruestungWkt_ = 0.0;
+        defaultBeute.waffenWkt_ = 0;
+        defaultBeute.geldBetrag_ = 0;
+        defaultBeute.profil_ = "Default";
+        defaultBeute.schwaechungsFaktor_ = 0.0;
+        theManager.merge(defaultBeute);
+        //*/
         
         
-        
-        theManager.merge(person);
-        theManager.merge(person2);
+        /*
         theManager.getTransaction().commit();
         
-        /*theManager.getTransaction().begin();
+        theManager.getTransaction().begin();
         Spieler testPlayer = new Spieler();
         testPlayer.name_ = "Krssk";
-        testPlayer.ausruestung_ = test;
-        theManager.merge(testPlayer);
-        theManager.getTransaction().commit();*/
+        testPlayer.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
+       
+        Waffen testWaffe = new Waffen();
+        testWaffe.waffenName_="testWaffe";
+        testWaffe.ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
         
-        assertNull(person.getId());
+        theManager.persist(testWaffe);
+        theManager.persist(testPlayer);
+        theManager.getTransaction().commit();
+        //*/
         
-        Person p = (Person)theManager.find(Person.class, 1);
+        Ausruestung a = (Ausruestung)theManager.find(Ausruestung.class, 1);
 
-        assertNotNull(p);
+        assertNotNull(a);
     }
 }

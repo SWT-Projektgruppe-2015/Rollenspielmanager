@@ -44,3 +44,23 @@ So the list of possible options are,
     create-drop: drop the schema at the end of the session.
 
 These options seem intended to be developers tools and not to facilitate any production level databases, you may want to have a look at the following question; Hibernate: hbm2ddl.auto=update in production?
+
+
+@Table( name = "NAME" ) um den Namen der Tabelle zu aendern(vom default name der Klasse).
+
+http://docs.oracle.com/javaee/6/api/javax/persistence/OneToOne.html
+
+Bei der Annotation Column soll nullable und columnDefinition nicht beides verwendet werden da das bei dem Zusammenspiel von java und der Datenbank uergendwo Probleme macht. einfach bei columnDefenition 
+"NOT NULL" in den String schreiben.
+
+Um Default Werte einzutragen wenn man persist verwendet muss man @PrePersist, mit einer passenden Methode darunter, verwenden, da das DEFAULT constraint nicht bei persist/merge funktioniert. So etwa:
+	@PrePersist
+	public void onCreate()	{
+		if(name_ == null)	{
+			name_="Jane Doe";
+		}
+		if(kreis_ == 0)	{
+			kreis_ = 1;
+		}
+		
+	}
