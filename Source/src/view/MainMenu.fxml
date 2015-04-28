@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="360.0" prefWidth="800.0" styleClass="ba" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenuController">
+   <children>
+      <SplitPane dividerPositions="0.6641604010025063" layoutX="258.0" layoutY="95.0" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="500.0">
+               <children>
+                  <Button mnemonicParsing="false" text="Händler" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="20.0">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="button-mainmenu" />
+                        <String fx:value="button-haendler" />
+                     </styleClass>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Kampf" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                     <font>
+                        <Font name="DejaVu Sans Bold" size="23.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="button-kampf" />
+                        <String fx:value="button-mainmenu" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="357.0" layoutY="89.0" mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" text="Würfeln" AnchorPane.topAnchor="20.0">
+                     <styleClass>
+                        <String fx:value="button-mainmenu" />
+                        <String fx:value="button-wuerfeln" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="64.0" layoutY="248.0" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="190.0">
+                     <styleClass>
+                        <String fx:value="button-mainmenu" />
+                        <String fx:value="button-gruppen" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="224.0" layoutY="248.0" mnemonicParsing="false" text="Charaktergenerator" textOverrun="LEADING_ELLIPSIS" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="190.0">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="button-mainmenu" />
+                        <String fx:value="button-charaktergenerator" />
+                     </styleClass>
+                  </Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="300.0">
+               <children>
+                  <TableView layoutY="32.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+                    <columns>
+                      <TableColumn prefWidth="120.0" text="Name" />
+                      <TableColumn prefWidth="55.0" text="Kreis" />
+                        <TableColumn prefWidth="36.0" text="Lvl" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+                  <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
