@@ -15,5 +15,10 @@ public class Gruppe {
 	@Column(name = "ID")
 	public int ID_;
 	@Column(name = "NAME", columnDefinition =" VARCHAR(30) NOT NULL DEFAULT 'Montags Gruppe'")
-	String name_;
+	public String name_;
+
+	@Override
+	public String toString() {
+		return name_;
+	}
 }

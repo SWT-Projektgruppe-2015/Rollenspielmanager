@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table( name = "WAFFEN")
-public class Waffen implements Named {
+public class Waffen {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -27,7 +27,7 @@ public class Waffen implements Named {
 	public Ausruestung ausruestung_;
 	
 	@Override
-	public String getName() {
+	public String toString() {
 		return waffenName_;
 	}
 	

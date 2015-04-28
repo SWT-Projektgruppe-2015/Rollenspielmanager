@@ -18,7 +18,7 @@ import javax.persistence.PrePersist;
 
 @Entity
 @Table( name = "SPIELER")
-public class Spieler implements Named {
+public class Spieler {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -45,7 +45,9 @@ public class Spieler implements Named {
 		}
 		
 	}
-	public String getName() {
+	
+	@Override
+	public String toString() {
 		return name_;
 	}
 	

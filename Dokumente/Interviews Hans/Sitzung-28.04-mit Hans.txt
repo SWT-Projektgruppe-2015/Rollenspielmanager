@@ -1,0 +1,24 @@
+-Spielergruppe: de Listen alphabetisch sortieren
+
+-DefS default=0
+- DefR && DefH default=1
+
+-Gegner && Waffen haben nie Effekte!
+
+- Anzahl der Waffen bei Gegner = 1, Waffenliste rausnehmen und Schadenswert berücksichtigen
+
+- Beutespalte für Gegner erstellen
+
+- Auf der Hauptmenu -> Rechts -> die Spalten nach Namen, Kreis und Lever sortierbar machen
+
+- Spieler kann in zwei verschiedenen Spielgruppen vorhanden/mitglied sein
+
+- Das Wort "Fries" statt eingefroren nehmen
+
+- Für den Fall, dass Spieler Waffen gekauft haben, haben Spielerwaffen 1-Effekt
+
+- Bei Kampfsimulator Erfahrung prozentual berechenbar machen
+
+- LP für Gegner berücksichtigen
+
+- Skillschaden bei Schadensberechnung berücksichtigen
