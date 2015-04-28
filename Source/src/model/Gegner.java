@@ -19,8 +19,8 @@ public class Gegner {
 	public String name_;
 	@Column(name = "KREIS", columnDefinition="INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS<=4)")
 	public int kreis_;
-	@Column(name = "STUFE", columnDefinition="INTEGER NOT NULL default '0' check(STUFE >= 0 and STUFE<=12)")
-	public int stufe_;
+	@Column(name = "LEVEL", columnDefinition="INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL<=12)")
+	public int level_;
 	@Column(name = "DISZIPLIN")
 	public String disziplin_;
 	@Column(name = "RASSE")
