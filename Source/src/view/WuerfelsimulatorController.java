@@ -2,7 +2,6 @@ package view;
 
 import controller.DiceRoller;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class WuerfelsimulatorController {
@@ -10,7 +9,16 @@ public class WuerfelsimulatorController {
 	private Label rollResult_;
 	
 	
-    
+	@FXML
+    private void onW2ButtonClick() {
+    	showResult(DiceRoller.RollW2());
+    }
+	
+	@FXML
+    private void onW3ButtonClick() {
+    	showResult(DiceRoller.RollW3());
+    }
+	
     @FXML
     private void onW4ButtonClick() {
     	showResult(DiceRoller.RollW4());

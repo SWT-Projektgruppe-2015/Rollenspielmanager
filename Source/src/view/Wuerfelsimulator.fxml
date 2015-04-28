@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.WuerfelsimulatorController">
    <children>
-      <GridPane alignment="CENTER_LEFT" prefHeight="200.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
+      <GridPane alignment="CENTER_LEFT" prefHeight="260.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -20,19 +20,22 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW4ButtonClick" styleClass="button-wuerfel" text="W4">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW4ButtonClick" styleClass="button-wuerfel" text="W4" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW6ButtonClick" styleClass="button-wuerfel" text="W6" GridPane.rowIndex="1" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW8ButtonClick" styleClass="button-wuerfel" text="W8" GridPane.rowIndex="2" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW10ButtonClick" styleClass="button-wuerfel" text="W10" GridPane.rowIndex="3" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW12ButtonClick" styleClass="button-wuerfel" text="W12" GridPane.columnIndex="1" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW20ButtonClick" styleClass="button-wuerfel" text="W20" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW30ButtonClick" styleClass="button-wuerfel" text="W30" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW6ButtonClick" styleClass="button-wuerfel" text="W6" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW8ButtonClick" styleClass="button-wuerfel" text="W8" GridPane.rowIndex="4" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW10ButtonClick" styleClass="button-wuerfel" text="W10" GridPane.columnIndex="1" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW12ButtonClick" styleClass="button-wuerfel" text="W12" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW20ButtonClick" styleClass="button-wuerfel" text="W20" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW30ButtonClick" styleClass="button-wuerfel" text="W30" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW2ButtonClick" styleClass="button-wuerfel" text="W2" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW3ButtonClick" styleClass="button-wuerfel" text="W3" GridPane.rowIndex="1" />
          </children>
          <opaqueInsets>
             <Insets />

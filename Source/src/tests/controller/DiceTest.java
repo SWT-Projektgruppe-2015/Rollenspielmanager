@@ -3,7 +3,6 @@ package tests.controller;
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
-import java.util.function.IntSupplier;
 import controller.DiceRoller;
 
 public class DiceTest {
@@ -50,6 +49,36 @@ public class DiceTest {
 		}
 		
 	}
+	
+	
+	
+	private class W2Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW2();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 2;
+		}		
+	}
+	
+	
+	
+	private class W3Tester extends DiceTester {
+		@Override
+		protected int roll() {
+			return DiceRoller.RollW3();
+		}
+
+		@Override
+		protected int getMaxValue() {
+			return 3;
+		}		
+	}
+	
+	
 	
 	private class W4Tester extends DiceTester {
 		@Override
@@ -146,6 +175,37 @@ public class DiceTest {
 			return 30;
 		}
 		
+	}
+	
+	
+	@Test
+	public void W2IsInCorrectRange() {
+		W2Tester w2Roller = new W2Tester();
+		w2Roller.rollIsInCorrectRange();
+	}
+	
+	
+	
+	@Test
+	public void W2CoversRange() {
+		W2Tester w2Roller = new W2Tester();
+		w2Roller.rollCoversRange();
+	}
+	
+	
+	
+	@Test
+	public void W3IsInCorrectRange() {
+		W3Tester w3Roller = new W3Tester();
+		w3Roller.rollIsInCorrectRange();
+	}
+	
+	
+	
+	@Test
+	public void W3CoversRange() {
+		W3Tester w3Roller = new W3Tester();
+		w3Roller.rollCoversRange();
 	}
 	
 	

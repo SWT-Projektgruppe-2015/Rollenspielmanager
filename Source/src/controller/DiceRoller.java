@@ -50,6 +50,16 @@ public class DiceRoller {
 	}
 
 	
+	public static int RollW2() {
+		return rollDice(2);
+	}
+
+
+
+	public static int RollW3() {
+		return rollDice(3);
+	}
+	
 	
 	private static int rollDice(int faces) {
 		Random random = new Random();
