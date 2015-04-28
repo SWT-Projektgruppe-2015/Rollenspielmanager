@@ -10,10 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 import model.Ausruestung;
+import model.Beute;
+import model.Faehigkeiten;
 import model.Spieler;
 import model.Waffen;
-import model.Faehigkeiten;
-import model.Beute;
 
 public class DatabaseTest {
     @Test
