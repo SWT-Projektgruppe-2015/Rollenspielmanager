@@ -110,7 +110,6 @@ public class CharaktermanagerController {
 	
 	
 	private void initializeWaffenList() {
-//		waffenListView_.setCellFactory(new NameCellFactory<Waffen>());		
 		showWaffenDetails(null);		
 		
 		waffenListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Waffen>() {
@@ -123,9 +122,7 @@ public class CharaktermanagerController {
 	
 	
 	private void initializeFaehigkeitenList() {
-//		faehigkeitenListView_.setCellFactory(new NameCellFactory<Faehigkeiten>());
 		showFaehigkeitenDetails(null);
-		
 		faehigkeitenListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Faehigkeiten>() {
 			public void changed(ObservableValue<? extends Faehigkeiten> observable, Faehigkeiten oldValue, Faehigkeiten newValue) {
 				showFaehigkeitenDetails(newValue);
@@ -153,12 +150,20 @@ public class CharaktermanagerController {
 	
 	@FXML
 	private void addPlayerToGroup() {	
+		Spieler chosenSpieler = this.playersNotInGroupListView_.getSelectionModel().getSelectedItem();
+		this.playersInGroupListView_.getItems().add(chosenSpieler);
+		this.playersNotInGroupListView_.getItems().remove(chosenSpieler);
+		// TODO : Gruppe in Datenbank aktualisieren.
 	}
 	
 	
 	
 	@FXML
 	private void removePlayerFromGroup() {
+		Spieler chosenSpieler = this.playersInGroupListView_.getSelectionModel().getSelectedItem();
+		this.playersNotInGroupListView_.getItems().add(chosenSpieler);
+		this.playersInGroupListView_.getItems().remove(chosenSpieler);
+		// TODO : Gruppe in Datenbank aktualisieren.
 	}
 	
 	
