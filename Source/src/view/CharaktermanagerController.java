@@ -17,9 +17,9 @@ public class CharaktermanagerController {
 	@FXML
 	private ComboBox<Gruppe> groupDropdown_;
 	@FXML
-	private ListView<Spieler> playersNotInGroup_;	
+	private ListView<Spieler> playersNotInGroup_; //linke Liste
 	@FXML
-	private ListView<Spieler> playersInGroup_;
+	private ListView<Spieler> playersInGroup_; //rechte Liste
 	
 	@FXML
 	private ListView<Spieler> players_;
