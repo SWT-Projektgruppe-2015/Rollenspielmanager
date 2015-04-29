@@ -8,9 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import model.interfaces.DBObject;
+
 @Entity
 @Table(name = "GEGNER")
-public class Gegner {
+public class Gegner implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -21,16 +23,14 @@ public class Gegner {
 	public int kreis_;
 	@Column(name = "LEVEL", columnDefinition="INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL<=12)")
 	public int level_;
-	@Column(name = "DISZIPLIN")
-	public String disziplin_;
-	@Column(name = "RASSE")
-	public String rasse_;
 	@Column(name = "ERFAHRUNG", columnDefinition="INTEGER NOT NULL default '1' check(ERFAHRUNG >= 1)")
 	public int erfahrung_;
 	@Column(name = "STAERKE", columnDefinition="INTEGER NOT NULL default '1' check(STAERKE >= 1)")
 	public int staerke_;
 	@Column(name = "GESCHICK", columnDefinition="INTEGER NOT NULL default '1' check(GESCHICK >= 1)")
 	public int geschick_;
+	@Column(name = "LEBENSPUNKTE", columnDefinition="INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
+	public int lebenspunkte_;
 	@OneToOne(optional=false)
 	@JoinColumn(name = "BEUTETYP_ID", columnDefinition="INTEGER NOT NULL default '1'")
 	public Beute beuteTyp;

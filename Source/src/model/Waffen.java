@@ -9,9 +9,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import model.interfaces.DBObject;
+
 @Entity
 @Table( name = "WAFFEN")
-public class Waffen {
+public class Waffen implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")

@@ -8,9 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import model.interfaces.DBObject;
+
 @Entity
 @Table(name = "SPIELER_IN_GRUPPE")
-public class SpielerInGruppe {
+public class SpielerInGruppe implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")

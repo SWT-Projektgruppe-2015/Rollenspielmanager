@@ -13,10 +13,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
+import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "AUSRUESTUNGEN")
-public class Ausruestung {
+public class Ausruestung implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -25,7 +26,7 @@ public class Ausruestung {
 	public int defR_;
 	@Column(name = "DEFH", columnDefinition="INTEGER NOT NULL DEFAULT '1' CHECK(DEFH >= 1)")
 	public int defH_;
-	@Column(name = "DEFS")
+	@Column(name = "DEFS", columnDefinition="INTEGER DEFAULT '0' CHECK(DEFS >= 0")
 	public int defS_;
 	
 	public List<Waffen> getWaffen() {

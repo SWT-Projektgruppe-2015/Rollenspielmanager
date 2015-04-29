@@ -8,9 +8,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import model.interfaces.DBObject;
+
 @Entity
 @Table(name = "FAEHIGKEITEN")
-public class Faehigkeiten {
+public class Faehigkeiten implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID", nullable = false)

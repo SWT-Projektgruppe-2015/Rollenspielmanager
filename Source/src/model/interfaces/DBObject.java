@@ -1,4 +1,4 @@
 package model.interfaces;
 
-public interface Entity {
+public interface DBObject {
 }

@@ -6,10 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "GRUPPEN")
-public class Gruppe {
+public class Gruppe implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")

@@ -15,10 +15,12 @@ import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 import javax.persistence.PrePersist;
 
+import model.interfaces.DBObject;
 
 @Entity
 @Table( name = "SPIELER")
-public class Spieler {
+
+public class Spieler implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
