@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import model.interfaces.DBObject;
@@ -29,7 +30,7 @@ public class Faehigkeiten implements DBObject {
 	public String toString() {
 		return name_;
 	}
-	
+	@PrePersist
 	public void onCreate()	{
 		if(name_ == null)	{
 			name_="Geheime Magie";

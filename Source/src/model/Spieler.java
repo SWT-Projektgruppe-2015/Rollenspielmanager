@@ -20,6 +20,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 import javax.persistence.CascadeType;
 
+import controller.AusruestungsManipulator;
 import model.interfaces.DBObject;
 
 @Entity
@@ -63,6 +64,7 @@ public class Spieler implements DBObject {
 			ausruestung_.defH_ = 1;
 			ausruestung_.defR_ = 1;
 			ausruestung_.defS_ = 0;
+			AusruestungsManipulator.getInstance().add(ausruestung_);
 		}
 		
 	}

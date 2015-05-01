@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
@@ -24,7 +24,7 @@ public class Waffen implements DBObject {
 	public String waffenName_;
 	@Column(name = "SCHADEN", columnDefinition="INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
 	public int waffenSchaden_;
-	@OneToOne(optional=false)
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="INTEGER NOT NULL default '1'")
 	public Ausruestung ausruestung_;
 	

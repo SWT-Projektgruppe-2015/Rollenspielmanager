@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import controller.AusruestungsManipulator;
 import model.interfaces.DBObject;
 
 @Entity
@@ -53,6 +54,13 @@ public class Gegner implements DBObject {
 		}
 		if(geschick_ == 0)	{
 			geschick_ = 1;
+		}
+		if(ausruestung_ == null)	{
+			ausruestung_ = new Ausruestung();
+			ausruestung_.defH_ = 1;
+			ausruestung_.defR_ = 1;
+			ausruestung_.defS_ = 0;
+			AusruestungsManipulator.getInstance().add(ausruestung_);
 		}
 	}
 }
