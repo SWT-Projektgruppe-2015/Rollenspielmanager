@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import model.interfaces.DBObject;
@@ -21,7 +21,7 @@ public class Faehigkeiten implements DBObject {
 	public String name_;
 	@Column(name = "EFFEKT_TYP", columnDefinition="INTEGER NOT NULL default '0' check(EFFEKT_TYP >= 0 and EFFEKT_TYP <= 4)")
 	public int effekttypen_;
-	@OneToOne(optional=false)
+	@ManyToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="INTEGER NOT NULL default '1'")
 	public Ausruestung ausruestung_;
 	
