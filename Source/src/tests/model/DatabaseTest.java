@@ -21,14 +21,15 @@ public class DatabaseTest {
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
-        theManager.getTransaction().begin();
 
         
         
+        
+//        theManager.getTransaction().begin();        
 //        Ausruestung defaultAusruestung = new Ausruestung();
-//        defaultAusruestung.defH_=2;
-//        defaultAusruestung.defR_=2;
-//        defaultAusruestung.defS_=2;
+//        defaultAusruestung.defH_=1;
+//        defaultAusruestung.defR_=1;
+//        defaultAusruestung.defS_=0;
 //        theManager.persist(defaultAusruestung);
 //        Beute defaultBeute = new Beute();
 //        defaultBeute.besonderesWkt_ = 0.0;
@@ -38,9 +39,6 @@ public class DatabaseTest {
 //        defaultBeute.profil_ = "Default";
 //        defaultBeute.schwaechungsFaktor_ = 0.0;
 //        theManager.merge(defaultBeute);
-//        
-//        
-//        
 //        theManager.getTransaction().commit();
 //        
 //        theManager.getTransaction().begin();
