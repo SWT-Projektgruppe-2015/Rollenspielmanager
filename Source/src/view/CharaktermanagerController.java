@@ -1,6 +1,7 @@
 package view;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import model.Faehigkeiten;
@@ -16,7 +17,8 @@ import javafx.scene.control.TextField;
 
 public class CharaktermanagerController {
 	private List<Spieler> playerList_;
-	private Gruppe chosenGruppe_;
+	private List<Gruppe> gruppen_;
+	
 	@FXML
 	private TextField newGroupNameTextField_;
 	@FXML
@@ -76,14 +78,52 @@ public class CharaktermanagerController {
 	private void initializeGroupManager() {
 		playersNotInGroupListView_.getItems().setAll(playerList_);
 //		List<Gruppe> allGruppen = GruppenManipulator.getAll();
-		List<Gruppe> allGruppen = new ArrayList<Gruppe>();
+		gruppen_ = new ArrayList<Gruppe>();
 		Gruppe test1 = new Gruppe();
-		test1.name_ = "Dienstag";
+		test1.setName("Dienstag");
 		Gruppe test2 = new Gruppe();
-		test2.name_ = "Freitag";
-		allGruppen.add(test1);
-		allGruppen.add(test2);
-		groupComboBox_.getItems().setAll(allGruppen);
+		test2.setName("Freitag");
+		gruppen_.add(test1);
+		gruppen_.add(test2);
+		groupComboBox_.getItems().setAll(gruppen_);
+		groupComboBox_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Gruppe>() {
+			@Override
+			public void changed(ObservableValue<? extends Gruppe> observable, Gruppe oldValue, Gruppe newValue) {
+				showGroupName(newValue);
+				updateGroupListViews(newValue);
+			}
+		});
+	}
+	
+	
+	
+	private void showGroupName(Gruppe gruppe) {
+		if(gruppe == null) {
+			newGroupNameTextField_.setText("");
+		}
+		else {
+			newGroupNameTextField_.setText(gruppe.getName());
+		}
+	}
+	
+	
+	
+	private void updateGroupListViews(Gruppe gruppe) {
+		if(gruppe == null) {
+			playersInGroupListView_.getItems().clear();
+			playersNotInGroupListView_.getItems().setAll(playerList_);
+			return;
+		}
+		
+		Collection<Spieler> playersInGroup = gruppe.getAllSpieler();
+		playersInGroupListView_.getItems().setAll(playersInGroup);
+		
+		playersNotInGroupListView_.getItems().clear();
+		for(Spieler player : playerList_) {
+			if(!playersInGroup.contains(player)) {
+				playersNotInGroupListView_.getItems().add(player);
+			}
+		}
 	}
 	
 	
@@ -133,27 +173,61 @@ public class CharaktermanagerController {
 	
 	
 	@FXML
-	private void updateGroup() {
+	private void updateGroup() {		
+		Gruppe selectedGruppe = getSelectedGruppe();
+		if(selectedGruppe == null)
+			return;
+		
+		selectedGruppe.setName(newGroupNameTextField_.getText());
+		groupComboBox_.getItems().setAll(gruppen_);
+		groupComboBox_.getSelectionModel().select(selectedGruppe);
 	}
 	
 	@FXML
 	private void createGroup() {
-		
+		Gruppe newGroup = new Gruppe();
+		newGroup.setName(newGroupNameTextField_.getText());
+		gruppen_.add(newGroup);
+		groupComboBox_.getItems().add(newGroup);
+		groupComboBox_.getSelectionModel().select(newGroup);
 	}
 	
 	@FXML
 	private void deleteGroup() {
+		Gruppe groupToDelete = getSelectedGruppe();
+		if(groupToDelete != null) {
+			groupComboBox_.getItems().remove(groupToDelete);
+			gruppen_.remove(groupToDelete);
+		}
+		//TODO:: loeschen in DB
+	}
+
+
+
+	private Gruppe getSelectedGruppe() {
+		int selectedIndex = groupComboBox_.getSelectionModel().getSelectedIndex();
+		if(selectedIndex < 0)
+			return null;
+					
+		Gruppe selectedGruppe = groupComboBox_.getItems().get(selectedIndex);
 		
+		return selectedGruppe;
 	}	
 	
 	
 	
 	@FXML
 	private void addPlayerToGroup() {	
-		Spieler chosenSpieler = this.playersNotInGroupListView_.getSelectionModel().getSelectedItem();
-		this.playersInGroupListView_.getItems().add(chosenSpieler);
-		this.playersNotInGroupListView_.getItems().remove(chosenSpieler);
-		// TODO : Gruppe in Datenbank aktualisieren.
+		Gruppe selectedGruppe = getSelectedGruppe();
+		if(selectedGruppe == null)
+			return;
+		
+		Spieler chosenSpieler = playersNotInGroupListView_.getSelectionModel().getSelectedItem();
+		if(chosenSpieler != null) {
+			playersInGroupListView_.getItems().add(chosenSpieler);
+			playersNotInGroupListView_.getItems().remove(chosenSpieler);
+			selectedGruppe.addSpieler(chosenSpieler);
+		}
 	}
 	
 	
@@ -161,9 +235,13 @@ public class CharaktermanagerController {
 	@FXML
 	private void removePlayerFromGroup() {
 		Spieler chosenSpieler = this.playersInGroupListView_.getSelectionModel().getSelectedItem();
-		this.playersNotInGroupListView_.getItems().add(chosenSpieler);
-		this.playersInGroupListView_.getItems().remove(chosenSpieler);
-		// TODO : Gruppe in Datenbank aktualisieren.
+		if(chosenSpieler != null) {
+			playersNotInGroupListView_.getItems().add(chosenSpieler);
+			playersInGroupListView_.getItems().remove(chosenSpieler);
+			
+			Gruppe selectedGruppe = getSelectedGruppe();
+			selectedGruppe.removePlayer(chosenSpieler);
+		}
 	}
 	
 	

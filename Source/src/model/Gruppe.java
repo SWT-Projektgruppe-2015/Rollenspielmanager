@@ -1,5 +1,6 @@
 package model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -19,12 +20,43 @@ public class Gruppe implements DBObject {
 	@Column(name = "ID")
 	public int ID_;
 	@Column(name = "NAME", columnDefinition =" VARCHAR(30) NOT NULL DEFAULT 'Montags Gruppe'")
-	public String name_;
+	private String name_;
 	@ManyToMany(mappedBy = "membership_")
-	public Set<Spieler> members_;
+	private Set<Spieler> members_;
 
 	@Override
 	public String toString() {
 		return name_;
+	}
+	
+	public void addSpieler(Spieler spieler) {
+		if(members_ == null) {
+			members_ = new HashSet<Spieler>();
+		}
+		members_.add(spieler);
+	}
+	
+	public Set<Spieler> getAllSpieler() {
+		if(members_ == null) {
+			members_ = new HashSet<Spieler>();
+		}
+		return members_;
+	}
+
+	public void removePlayer(Spieler spieler) {
+		if(members_ != null) {
+			members_.remove(spieler);
+		}
+	}
+	
+	public String getName() {
+		return name_;
+	}
+	
+	public void setName(String name) {
+		name_ = name;
+	}
+	
+	public void remove() {
 	}
 }
