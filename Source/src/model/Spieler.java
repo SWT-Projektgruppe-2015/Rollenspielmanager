@@ -39,7 +39,7 @@ public class Spieler implements DBObject {
 	@Column(name = "LEVEL", columnDefinition="INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
 	public int level_;
 	@OneToOne(optional=false)
-	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="Integer NOT NULL default '1'")
+	@JoinColumn(name = "AUSRUESTNGS_ID", unique = false, columnDefinition="Integer NOT NULL default '1'")
 	public Ausruestung ausruestung_;
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name = "SPIELER_IN_GRUPPE", 		
@@ -59,7 +59,10 @@ public class Spieler implements DBObject {
 			kreis_ = 1;
 		}
 		if(ausruestung_ == null)	{
-			ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
+			ausruestung_ = new Ausruestung();
+			ausruestung_.defH_ = 1;
+			ausruestung_.defR_ = 1;
+			ausruestung_.defS_ = 0;
 		}
 		
 	}
