@@ -15,6 +15,17 @@ import javax.persistence.TypedQuery;
 
 import model.interfaces.DBObject;
 
+/** 
+ * Entity-Objekt fuer die Speicherung der Ausruestung. 
+ * Der Zeileneintrag, mit der ID = 1, ist fuer die Default-Ruestung bestimmt:
+ * DEFR = 1
+ * DEFH = 1
+ * DEFS = 0
+ * Diese wird verwendet, um den anderen Entity-Objekten einen Fremdschluessel zugeben,
+ * falls sie beim Einfuegen in die DB keine eigene haben.
+ * 
+ * 
+ */
 @Entity
 @Table(name = "AUSRUESTUNGEN")
 public class Ausruestung implements DBObject {
