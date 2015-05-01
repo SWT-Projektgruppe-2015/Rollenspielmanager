@@ -16,7 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class CharaktermanagerController {
-	private List<Spieler> playerList_;
+	private List<Spieler> spielerList_;
 	private List<Gruppe> gruppen_;
 	
 	@FXML
@@ -69,14 +69,14 @@ public class CharaktermanagerController {
 	
 	
 	private void initializeController() {
-		playerList_= Spieler.getAllPlayers();
+		spielerList_= Spieler.getAllPlayers();
 		
 	}
 
 
 
 	private void initializeGroupManager() {
-		playersNotInGroupListView_.getItems().setAll(playerList_);
+		playersNotInGroupListView_.getItems().setAll(spielerList_);
 //		List<Gruppe> allGruppen = GruppenManipulator.getAll();
 		gruppen_ = new ArrayList<Gruppe>();
 		Gruppe test1 = new Gruppe();
@@ -111,7 +111,7 @@ public class CharaktermanagerController {
 	private void updateGroupListViews(Gruppe gruppe) {
 		if(gruppe == null) {
 			playersInGroupListView_.getItems().clear();
-			playersNotInGroupListView_.getItems().setAll(playerList_);
+			playersNotInGroupListView_.getItems().setAll(spielerList_);
 			return;
 		}
 		
@@ -119,7 +119,7 @@ public class CharaktermanagerController {
 		playersInGroupListView_.getItems().setAll(playersInGroup);
 		
 		playersNotInGroupListView_.getItems().clear();
-		for(Spieler player : playerList_) {
+		for(Spieler player : spielerList_) {
 			if(!playersInGroup.contains(player)) {
 				playersNotInGroupListView_.getItems().add(player);
 			}
@@ -138,6 +138,10 @@ public class CharaktermanagerController {
 	
 	private void initializePlayerList() {
 		playersListView_.getItems().setAll(Spieler.getAllPlayers());
+		Spieler defaultSpieler = new Spieler();
+		defaultSpieler.name_ = "Neuer Spieler";
+		playersListView_.getItems().add(defaultSpieler);
+		
 		showPlayerDetails(null);
 		
 		playersListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Spieler>() {
@@ -163,6 +167,7 @@ public class CharaktermanagerController {
 	
 	private void initializeFaehigkeitenList() {
 		showFaehigkeitenDetails(null);
+		
 		faehigkeitenListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Faehigkeiten>() {
 			public void changed(ObservableValue<? extends Faehigkeiten> observable, Faehigkeiten oldValue, Faehigkeiten newValue) {
 				showFaehigkeitenDetails(newValue);
@@ -198,8 +203,8 @@ public class CharaktermanagerController {
 		if(groupToDelete != null) {
 			groupComboBox_.getItems().remove(groupToDelete);
 			gruppen_.remove(groupToDelete);
+			groupToDelete.remove();
 		}
-		//TODO:: loeschen in DB
 	}
 
 
@@ -319,10 +324,28 @@ public class CharaktermanagerController {
 	
 	@FXML
 	private void deletePlayer() {	
+		Spieler spielerToDelete = getSelectedSpieler();
+		if(spielerToDelete != null) {
+			playersListView_.getItems().remove(spielerToDelete);
+			spielerList_.remove(spielerToDelete);
+			spielerToDelete.remove();
+		}
 	}
 	
 	
 	
+	private Spieler getSelectedSpieler() {
+		int selectedIndex = playersListView_.getSelectionModel().getSelectedIndex();
+		if(selectedIndex < 0)
+			return null;
+					
+		Spieler selectedSpieler = playersListView_.getItems().get(selectedIndex);
+		
+		return selectedSpieler;
+	}
+
+
+
 	@FXML
 	private void increaseStufe() {
 		
@@ -333,5 +356,19 @@ public class CharaktermanagerController {
 	@FXML
 	private void decreaseStufe() {
 		
+	}
+	
+	
+	
+	@FXML
+	private void searchSpieler() {
+		String search = searchPlayerTextField_.getText().toLowerCase();
+		playersListView_.getItems().clear();
+		
+		for(Spieler player : spielerList_) {
+			if(player.name_.toLowerCase().contains(search)) {
+				playersListView_.getItems().add(player);
+			}
+		}
 	}
 }

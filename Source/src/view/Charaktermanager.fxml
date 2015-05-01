@@ -33,7 +33,7 @@
             <AnchorPane prefHeight="303.0" prefWidth="600.0">
                <children>
                   <Label layoutX="31.0" layoutY="43.0" text="Spielerliste" />
-                  <TextField fx:id="searchPlayerTextField_" layoutX="7.0" layoutY="60.0" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
+                  <TextField fx:id="searchPlayerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchSpieler" onKeyReleased="#searchSpieler" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
                   <ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
                      <content>
                         <ListView fx:id="playersListView_" prefHeight="200.0" prefWidth="211.0" />

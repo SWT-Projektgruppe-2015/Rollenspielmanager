@@ -196,4 +196,9 @@ public class Spieler implements DBObject {
         TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler", Spieler.class);
         return getAllRows.getResultList();
 	}
+
+	public void remove() {
+		// TODO loesche Spieler in der DB mit DB Manipulatoren
+		
+	}
 }
