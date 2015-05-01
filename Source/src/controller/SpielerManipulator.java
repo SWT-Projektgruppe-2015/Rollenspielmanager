@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TransactionRequiredException;
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
 
 import model.Spieler;
 import model.interfaces.DBObject;
@@ -36,27 +38,79 @@ public class SpielerManipulator implements DBManipulator {
 		try {
 			theManager_.persist((Spieler)entity);
 		}
-		catch(EntityExistsException addExceptionOne)	{
-			System.err.println("EntityExistsException: " + addExceptionOne.getMessage());
+		catch(EntityExistsException persistExceptionOne)	{
+			System.err.println("EntityExistsException: " + persistExceptionOne.getMessage());
 			theManager_.getTransaction().commit();
 			return false;
 		}
-		catch(TransactionRequiredException addExceptionTwo)	{
-			System.err.println("TransactionRequiredException: " + addExceptionTwo.getMessage());
+		catch(TransactionRequiredException persistExceptionTwo)	{
+			System.err.println("TransactionRequiredException: " + persistExceptionTwo.getMessage());
+			theManager_.getTransaction().commit();
 			return false;
 		}
-		catch(IllegalArgumentException addExceptionThree)	{
-			System.err.println("IllegalArgumentException: " + addExceptionThree.getMessage());
+		catch(IllegalArgumentException persistExceptionThree)	{
+			System.err.println("IllegalArgumentException: " + persistExceptionThree.getMessage());
+			theManager_.getTransaction().commit();
 			return false;
 		}
-		theManager_.getTransaction().commit();
+		catch(PersistenceException persistExceptionFinal)	{
+			System.err.println("PersistenceException: " + persistExceptionFinal.getMessage());
+			theManager_.getTransaction().commit();
+			return false;
+			
+		}
+		try	{
+			theManager_.getTransaction().commit();
+		}
+		catch(RollbackException commitExceptionOne)	{
+			System.err.println("RollBackException: " + commitExceptionOne.getMessage());
+			return false;
+		}
+		catch(PersistenceException commitExceptionTwo)	{
+			System.err.println("PersistenceException: " + commitExceptionTwo.getMessage());
+			theManager_.getTransaction().commit();
+			return false;
+			
+		}
 		return true;
 	}
 
 	
 	public boolean delete(DBObject entity) {
-		// TODO Auto-generated method stub
-		return false;
+		theManager_.getTransaction().begin();
+		try {
+			theManager_.remove((Spieler)entity);
+		}
+		catch(TransactionRequiredException persistExceptionTwo)	{
+			System.err.println("TransactionRequiredException: " + persistExceptionTwo.getMessage());
+			theManager_.getTransaction().commit();
+			return false;
+		}
+		catch(IllegalArgumentException persistExceptionThree)	{
+			System.err.println("IllegalArgumentException: " + persistExceptionThree.getMessage());
+			theManager_.getTransaction().commit();
+			return false;
+		}
+		catch(PersistenceException persistExceptionFinal)	{
+			System.err.println("PersistenceException: " + persistExceptionFinal.getMessage());
+			theManager_.getTransaction().commit();
+			return false;
+			
+		}
+		try	{
+			theManager_.getTransaction().commit();
+		}
+		catch(RollbackException commitExceptionOne)	{
+			System.err.println("RollBackException: " + commitExceptionOne.getMessage());
+			return false;
+		}
+		catch(PersistenceException commitExceptionTwo)	{
+			System.err.println("PersistenceException: " + commitExceptionTwo.getMessage());
+			theManager_.getTransaction().commit();
+			return false;
+			
+		}
+		return true;
 	}
 
 	
