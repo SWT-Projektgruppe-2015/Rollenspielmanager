@@ -27,8 +27,6 @@ public class SpielerManipulatorenTest {
 	
 	private static SpielerManipulator testInstance;
 	private static Spieler testSpieler;
-	//private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
-    //private static EntityManager theManager = factory.createEntityManager();
 	@BeforeClass
 	public static void setUpBeforeClass() {
 		testInstance = SpielerManipulator.getInstance();
@@ -50,6 +48,7 @@ public class SpielerManipulatorenTest {
 	public void canAddSpieler()	{
 		assertTrue("Couldn't add new Spieler.", testInstance.add(testSpieler));
 	}
+	
 	/**
 	 * Ignoriert bis man rausbekommt wie man die Exception ausloest.
 	 */
@@ -63,8 +62,18 @@ public class SpielerManipulatorenTest {
 	}
 	
 	@Test
-	public void canDeletePlayer()	{
-		assertTrue("Can't delete player", testInstance.delete(testSpieler));
+	public void cantAddNonExistantSpieler()	{
+		assertFalse("Can delete non existant Spieler", testInstance.add(null));	
+	}
+	
+	@Test
+	public void canDeleteSpieler()	{
+		assertTrue("Can't delete Spieler", testInstance.delete(testSpieler));
+	}
+	
+	@Test
+	public void cantDeleteNonExistantSpieler()	{
+		assertFalse("Can delete non existant Spieler", testInstance.delete(null));
 	}
 	
 }
