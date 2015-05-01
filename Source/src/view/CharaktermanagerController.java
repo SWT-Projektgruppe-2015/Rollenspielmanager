@@ -12,6 +12,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -37,6 +38,8 @@ public class CharaktermanagerController {
 	private TextField playerNameTextField_;
 	@FXML
 	private TextField playerStufeTextField_;
+	@FXML
+	private Label playerKreisLabel_;
 	
 	@FXML
 	private ListView<Waffen> waffenListView_;
@@ -258,6 +261,7 @@ public class CharaktermanagerController {
 		else {
 			playerNameTextField_.setText(player.getName_());
 			playerStufeTextField_.setText(Integer.toString(player.getLevel_()));
+			playerKreisLabel_.setText(Integer.toString(player.getKreis_()));
 			
 			waffenListView_.getItems().setAll(player.getWaffen());
 			waffenListView_.getSelectionModel().select(0);
@@ -276,6 +280,7 @@ public class CharaktermanagerController {
 	private void showEmptyPlayerDetails() {
 		playerNameTextField_.setText("");
 		playerStufeTextField_.setText("");
+		playerKreisLabel_.setText("");
 		
 		waffenListView_.getItems().clear();
 		
@@ -348,13 +353,28 @@ public class CharaktermanagerController {
 
 	@FXML
 	private void increaseStufe() {
+		Spieler selectedSpieler = getSelectedSpieler();
+		if(selectedSpieler == null)
+			return;
+		
+		selectedSpieler.increaseLevel();
+		
+		playerStufeTextField_.setText(Integer.toString(selectedSpieler.getLevel_()));
+		playerKreisLabel_.setText(Integer.toString(selectedSpieler.getKreis_()));
 	}
 	
 	
 	
 	@FXML
 	private void decreaseStufe() {
+		Spieler selectedSpieler = getSelectedSpieler();
+		if(selectedSpieler == null)
+			return;
 		
+		selectedSpieler.decreaseLevel();
+		
+		playerStufeTextField_.setText(Integer.toString(selectedSpieler.getLevel_()));
+		playerKreisLabel_.setText(Integer.toString(selectedSpieler.getKreis_()));
 	}
 	
 	

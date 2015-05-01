@@ -52,6 +52,8 @@
                                     <TextField fx:id="playerNameTextField_" layoutX="36.0" layoutY="31.0" />
                                     <Text layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielername" />
                                     <Button layoutX="172.0" layoutY="160.0" mnemonicParsing="false" onAction="#deletePlayer" text="Spieler löschen" />
+                                    <Label layoutX="104.0" layoutY="66.0" text="Kreis" />
+                                    <Label fx:id="playerKreisLabel_" layoutX="104.0" layoutY="88.0" />
                                  </children>
                               </AnchorPane>
                           </content>

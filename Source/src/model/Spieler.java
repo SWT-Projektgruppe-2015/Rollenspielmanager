@@ -28,6 +28,9 @@ import model.interfaces.DBObject;
 @Table( name = "SPIELER")
 
 public class Spieler implements DBObject {
+	public static final int MAX_KREIS = 4;
+	public static final int MAX_LEVEL = 12;
+	
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
     private static EntityManager theManager = factory.createEntityManager();
 	@Id
@@ -221,5 +224,45 @@ public class Spieler implements DBObject {
 	public void remove() {
 		// TODO loesche Spieler in der DB mit DB Manipulatoren
 		
+	}
+	
+	public void increaseLevel() {
+		boolean spielerHasMaximumLevelInKreis = getLevel_() == MAX_LEVEL;
+		
+		if(!spielerHasMaximumLevelInKreis) {
+			setLevel_(getLevel_()+1);
+		}
+		else {
+			increaseKreis();
+		}
+	}
+	
+	private void increaseKreis() {
+		boolean spielerHasMaximumKreis = getKreis_() == MAX_KREIS;
+		
+		if(!spielerHasMaximumKreis) {
+			setLevel_(1);
+			setKreis_(getKreis_()+1);
+		}
+	}
+
+	public void decreaseLevel() {
+		boolean spielerHasMinimumLevelInKreis = getLevel_() == 1;
+		
+		if(!spielerHasMinimumLevelInKreis) {
+			setLevel_(getLevel_()-1);
+		}
+		else {
+			decreaseKreis();
+		}
+	}
+	
+	private void decreaseKreis() {
+		boolean spielerHasMinimumKreis = getKreis_() == 1;
+		
+		if(!spielerHasMinimumKreis) {
+			setLevel_(MAX_LEVEL);
+			setKreis_(getKreis_()-1);
+		}
 	}
 }
