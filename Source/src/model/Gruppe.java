@@ -1,9 +1,12 @@
 package model;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 import model.interfaces.DBObject;
@@ -17,6 +20,8 @@ public class Gruppe implements DBObject {
 	public int ID_;
 	@Column(name = "NAME", columnDefinition =" VARCHAR(30) NOT NULL DEFAULT 'Montags Gruppe'")
 	public String name_;
+	@ManyToMany(mappedBy = "membership_")
+	public Set<Spieler> members_;
 
 	@Override
 	public String toString() {

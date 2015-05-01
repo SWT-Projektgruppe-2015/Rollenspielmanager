@@ -1,7 +1,9 @@
 package model;
 
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.EntityManager;
@@ -14,6 +16,9 @@ import javax.persistence.Persistence;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 import javax.persistence.PrePersist;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.CascadeType;
 
 import model.interfaces.DBObject;
 
@@ -36,6 +41,14 @@ public class Spieler implements DBObject {
 	@OneToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="Integer NOT NULL default '1'")
 	public Ausruestung ausruestung_;
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name = "SPIELER_IN_GRUPPE", 		
+		joinColumns=
+			{@JoinColumn(name="SPIELER_ID", referencedColumnName="ID")},
+        inverseJoinColumns=
+            {@JoinColumn(name="GRUPPEN_ID", referencedColumnName="ID")}
+	)
+	public Set<Gruppe> membership_;
 	
 	@PrePersist
 	public void onCreate()	{
