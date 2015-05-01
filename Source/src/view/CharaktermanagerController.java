@@ -19,6 +19,7 @@ import javafx.scene.control.TextField;
 public class CharaktermanagerController {
 	private List<Spieler> spielerList_;
 	private List<Gruppe> gruppen_;
+	private Spieler entryForNewSpieler_;
 	
 	@FXML
 	private TextField newGroupNameTextField_;
@@ -74,6 +75,15 @@ public class CharaktermanagerController {
 	private void initializeController() {
 		spielerList_= Spieler.getAllPlayers();
 		
+	}
+	
+	private void updateSpielerLists(Spieler changedSpieler) {
+		playersListView_.getItems().setAll(spielerList_);
+		playersListView_.getItems().add(entryForNewSpieler_);
+		playersListView_.getSelectionModel().select(changedSpieler);
+		
+		playersNotInGroupListView_.getItems().setAll(spielerList_);
+		playersNotInGroupListView_.getSelectionModel().select(changedSpieler);
 	}
 
 
@@ -141,9 +151,9 @@ public class CharaktermanagerController {
 	
 	private void initializePlayerList() {
 		playersListView_.getItems().setAll(Spieler.getAllPlayers());
-		Spieler defaultSpieler = new Spieler();
-		defaultSpieler.setName_("Neuer Spieler");
-		playersListView_.getItems().add(defaultSpieler);
+		entryForNewSpieler_ = new Spieler();
+		entryForNewSpieler_.setName_("Neuer Spieler");
+		playersListView_.getItems().add(entryForNewSpieler_);
 		
 		showPlayerDetails(null);
 		
@@ -389,5 +399,25 @@ public class CharaktermanagerController {
 				playersListView_.getItems().add(player);
 			}
 		}
+		
+		if(search.isEmpty())
+			playersListView_.getItems().add(entryForNewSpieler_);
+	}
+	
+	
+	
+	@FXML
+	private void changeName() {
+		Spieler selectedSpieler = getSelectedSpieler();
+		if(selectedSpieler == null)
+			return;
+		
+		String newName = playerNameTextField_.getText();
+		selectedSpieler.setName_(newName);
+		
+		if(selectedSpieler == entryForNewSpieler_)
+			spielerList_.add(selectedSpieler);
+		
+		updateSpielerLists(selectedSpieler);
 	}
 }
