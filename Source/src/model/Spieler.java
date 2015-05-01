@@ -32,16 +32,16 @@ public class Spieler implements DBObject {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	public int ID_;
+	private int ID_;
 	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Jane Doe'")
-	public String name_;
+	private String name_;
 	@Column(name = "KREIS", columnDefinition="INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS <= 4)")
-	public int kreis_;
+	private int kreis_;
 	@Column(name = "LEVEL", columnDefinition="INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
-	public int level_;
+	private int level_;
 	@OneToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", unique = false, columnDefinition="Integer NOT NULL default '1'")
-	public Ausruestung ausruestung_;
+	private Ausruestung ausruestung_;
 	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name = "SPIELER_IN_GRUPPE", 		
 		joinColumns=
@@ -49,59 +49,143 @@ public class Spieler implements DBObject {
         inverseJoinColumns=
             {@JoinColumn(name="GRUPPEN_ID", referencedColumnName="ID")}
 	)
-	public Set<Gruppe> membership_;
+	private Set<Gruppe> membership_;
 	
 	@PrePersist
 	public void onCreate()	{
-		if(name_ == null)	{
-			name_="Jane Doe";
+		if(getName_() == null)	{
+			setName_("Jane Doe");
 		}
-		if(kreis_ == 0)	{
-			kreis_ = 1;
+		if(getKreis_() == 0)	{
+			setKreis_(1);
 		}
-		if(ausruestung_ == null)	{
-			ausruestung_ = new Ausruestung();
-			ausruestung_.defH_ = 1;
-			ausruestung_.defR_ = 1;
-			ausruestung_.defS_ = 0;
-			AusruestungsManipulator.getInstance().add(ausruestung_);
+		if(getAusruestung_() == null)	{
+			setAusruestung_(new Ausruestung());
+			getAusruestung_().defH_ = 1;
+			getAusruestung_().defR_ = 1;
+			getAusruestung_().defS_ = 0;
+			AusruestungsManipulator.getInstance().add(getAusruestung_());
 		}
 		
 	}
 	
 	@Override
 	public String toString() {
-		return name_;
+		return getName_();
 	}
 	
 	
 	
+	/**
+	 * @return the iD_
+	 */
+	public int getID_() {
+		return ID_;
+	}
+
+	/**
+	 * @return the name_
+	 */
+	public String getName_() {
+		return name_;
+	}
+
+	/**
+	 * @return the kreis_
+	 */
+	public int getKreis_() {
+		return kreis_;
+	}
+
+	/**
+	 * @return the level_
+	 */
+	public int getLevel_() {
+		return level_;
+	}
+
+	/**
+	 * @return the ausruestung_
+	 */
+	public Ausruestung getAusruestung_() {
+		return ausruestung_;
+	}
+
+	/**
+	 * @return the membership_
+	 */
+	public Set<Gruppe> getMembership_() {
+		return membership_;
+	}
+
+	/**
+	 * @param membership_ the membership_ to set
+	 */
+	public void setMembership_(Set<Gruppe> membership_) {
+		this.membership_ = membership_;
+	}
+
+	/**
+	 * @param ausruestung_ the ausruestung_ to set
+	 */
+	public void setAusruestung_(Ausruestung ausruestung_) {
+		this.ausruestung_ = ausruestung_;
+	}
+
+	/**
+	 * @param level_ the level_ to set
+	 */
+	public void setLevel_(int level_) {
+		this.level_ = level_;
+	}
+
+	/**
+	 * @param kreis_ the kreis_ to set
+	 */
+	public void setKreis_(int kreis_) {
+		this.kreis_ = kreis_;
+	}
+
+	/**
+	 * @param name_ the name_ to set
+	 */
+	public void setName_(String name_) {
+		this.name_ = name_;
+	}
+
+	/**
+	 * @param iD_ the iD_ to set
+	 */
+	public void setID_(int iD_) {
+		ID_ = iD_;
+	}
+
 	public int getDefR() {
-		return ausruestung_.defR_;
+		return getAusruestung_().defR_;
 	}
 	
 	
 	
 	public int getDefH() {
-		return ausruestung_.defH_;
+		return getAusruestung_().defH_;
 	}
 	
 	
 	
 	public int getDefS() {
-		return ausruestung_.defS_;
+		return getAusruestung_().defS_;
 	}
 	
 	
 	
 	public List<Waffen> getWaffen() {
-		return ausruestung_.getWaffen();
+		return getAusruestung_().getWaffen();
 	}
 	
 	
 	
 	public List<Faehigkeiten> getFaehigkeiten() {
-		return ausruestung_.getFaehigkeiten();
+		return getAusruestung_().getFaehigkeiten();
 	}
 	
 	
