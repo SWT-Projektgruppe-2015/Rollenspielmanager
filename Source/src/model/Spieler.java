@@ -26,6 +26,8 @@ import model.interfaces.DBObject;
 @Table( name = "SPIELER")
 
 public class Spieler implements DBObject {
+	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
+    private static EntityManager theManager = factory.createEntityManager();
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
@@ -36,8 +38,6 @@ public class Spieler implements DBObject {
 	public int kreis_;
 	@Column(name = "LEVEL", columnDefinition="INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
 	public int level_;
-	@Column(name = "DISZIPLIN")
-	public String disziplin_;
 	@OneToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="Integer NOT NULL default '1'")
 	public Ausruestung ausruestung_;
@@ -57,6 +57,9 @@ public class Spieler implements DBObject {
 		}
 		if(kreis_ == 0)	{
 			kreis_ = 1;
+		}
+		if(ausruestung_ == null)	{
+			ausruestung_ = (Ausruestung)theManager.find(Ausruestung.class, 1);
 		}
 		
 	}
