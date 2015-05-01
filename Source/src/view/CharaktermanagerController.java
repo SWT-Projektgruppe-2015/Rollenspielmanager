@@ -139,7 +139,7 @@ public class CharaktermanagerController {
 	private void initializePlayerList() {
 		playersListView_.getItems().setAll(Spieler.getAllPlayers());
 		Spieler defaultSpieler = new Spieler();
-		defaultSpieler.name_ = "Neuer Spieler";
+		defaultSpieler.setName_("Neuer Spieler");
 		playersListView_.getItems().add(defaultSpieler);
 		
 		showPlayerDetails(null);
@@ -348,7 +348,6 @@ public class CharaktermanagerController {
 
 	@FXML
 	private void increaseStufe() {
-		
 	}
 	
 	
@@ -366,7 +365,7 @@ public class CharaktermanagerController {
 		playersListView_.getItems().clear();
 		
 		for(Spieler player : spielerList_) {
-			if(player.name_.toLowerCase().contains(search)) {
+			if(player.getName_().toLowerCase().contains(search)) {
 				playersListView_.getItems().add(player);
 			}
 		}

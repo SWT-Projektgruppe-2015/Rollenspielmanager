@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -161,30 +162,50 @@ public class Spieler implements DBObject {
 	}
 
 	public int getDefR() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return 1;
+		
 		return getAusruestung_().defR_;
 	}
 	
 	
 	
 	public int getDefH() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return 1;
+		
 		return getAusruestung_().defH_;
 	}
 	
 	
 	
 	public int getDefS() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return 0;
+		
 		return getAusruestung_().defS_;
 	}
 	
 	
 	
 	public List<Waffen> getWaffen() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return new ArrayList<Waffen>();
+		
 		return getAusruestung_().getWaffen();
 	}
 	
 	
 	
 	public List<Faehigkeiten> getFaehigkeiten() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return new ArrayList<Faehigkeiten>();
+		
 		return getAusruestung_().getFaehigkeiten();
 	}
 	
