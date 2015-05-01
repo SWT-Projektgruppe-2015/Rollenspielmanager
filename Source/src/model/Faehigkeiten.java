@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import controller.AusruestungsManipulator;
 import model.interfaces.DBObject;
 
 @Entity
@@ -35,5 +36,13 @@ public class Faehigkeiten implements DBObject {
 		if(name_ == null)	{
 			name_="Geheime Magie";
 		}	
+		if(ausruestung_ == null)	{
+			ausruestung_ = new Ausruestung();
+			ausruestung_.defH_ = 1;
+			ausruestung_.defR_ = 1;
+			ausruestung_.defS_ = 0;
+			AusruestungsManipulator.getInstance().add(ausruestung_);
+		}
 	}
+	
 }
