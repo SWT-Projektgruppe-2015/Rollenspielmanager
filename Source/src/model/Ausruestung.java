@@ -26,7 +26,7 @@ public class Ausruestung implements DBObject {
 	public int defR_;
 	@Column(name = "DEFH", columnDefinition="INTEGER NOT NULL DEFAULT '1' CHECK(DEFH >= 1)")
 	public int defH_;
-	@Column(name = "DEFS", columnDefinition="INTEGER DEFAULT '0' CHECK(DEFS >= 0")
+	@Column(name = "DEFS", columnDefinition="INTEGER DEFAULT '0' CHECK(DEFS >= 0)")
 	public int defS_;
 	
 	public List<Waffen> getWaffen() {
