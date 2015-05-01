@@ -19,7 +19,7 @@ public class SpielerTest {
 	public void allPlayersAreReturned() {
 		List<Spieler> allPlayers = Spieler.getAllPlayers();
 		for(Spieler player : allPlayers) {
-			System.out.println(player.name_);
+			System.out.println(player.getName_());
 		}
 	}
 	

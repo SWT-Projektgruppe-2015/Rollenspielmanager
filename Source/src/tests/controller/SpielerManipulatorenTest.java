@@ -21,7 +21,7 @@ public class SpielerManipulatorenTest {
 	private static SpielerManipulator testInstance;
 	private static Spieler testSpieler;
 	@BeforeClass
-	public static void setUp() {
+	public static void setUpBeforeClass() {
 		testInstance = SpielerManipulator.getInstance();
 		testSpieler = new Spieler();
 	}

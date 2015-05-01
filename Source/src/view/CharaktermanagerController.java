@@ -251,8 +251,8 @@ public class CharaktermanagerController {
 			showEmptyPlayerDetails();
 		}
 		else {
-			playerNameTextField_.setText(player.name_);
-			playerStufeTextField_.setText(Integer.toString(player.level_));
+			playerNameTextField_.setText(player.getName_());
+			playerStufeTextField_.setText(Integer.toString(player.getLevel_()));
 			
 			waffenListView_.getItems().setAll(player.getWaffen());
 			waffenListView_.getSelectionModel().select(0);
