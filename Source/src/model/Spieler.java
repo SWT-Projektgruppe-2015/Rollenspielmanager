@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 
 import controller.AusruestungsManipulator;
+import controller.SpielerManipulator;
 import model.interfaces.DBObject;
 
 @Entity
@@ -74,7 +75,13 @@ public class Spieler implements DBObject {
 		return getName_();
 	}
 	
+	public void remove() {
+		// TODO loesche Spieler in der DB mit DB Manipulatoren		
+	}
 	
+	public void add() {
+		SpielerManipulator.getInstance().add(this);
+	}
 	
 	/**
 	 * @return the iD_
@@ -244,11 +251,6 @@ public class Spieler implements DBObject {
         EntityManager theManager = factory.createEntityManager();
         TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler", Spieler.class);
         return getAllRows.getResultList();
-	}
-
-	public void remove() {
-		// TODO loesche Spieler in der DB mit DB Manipulatoren
-		
 	}
 	
 	public void increaseLevel() {

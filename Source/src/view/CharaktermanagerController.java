@@ -204,6 +204,7 @@ public class CharaktermanagerController {
 	private void updateSpielerLists(Spieler changedSpieler) {
 		if(changedSpieler == entryForNewSpieler_) {
 			spielerList_.add(changedSpieler);
+			changedSpieler.add();
 			entryForNewSpieler_ = getEntryForNewSpieler();
 		}
 		
