@@ -300,4 +300,9 @@ public class Spieler implements DBObject {
 		Ausruestung ausruestung = getAusruestungForModification();
 		ausruestung.deleteWaffe(waffe);
 	}
+
+	public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.deleteFaehigkeit(faehigkeit);
+	}
 }

@@ -22,6 +22,7 @@ public class CharaktermanagerController {
 	private List<Gruppe> gruppen_;
 	private Spieler entryForNewSpieler_;
 	private Waffen entryForNewWaffe_;
+	private Faehigkeiten entryForNewFaehigkeit_;
 	
 	@FXML
 	private TextField newGroupNameTextField_;
@@ -47,6 +48,8 @@ public class CharaktermanagerController {
 	@FXML
 	private ListView<Waffen> waffenListView_;
 	@FXML
+	private TextField waffenNameTextField_;
+	@FXML
 	private TextField damageTextField_;
 	
 	@FXML
@@ -58,6 +61,8 @@ public class CharaktermanagerController {
 	
 	@FXML
 	private ListView<Faehigkeiten> faehigkeitenListView_;
+	@FXML
+	private TextField faehigkeitenNameTextField_;
 	
 	
 	public CharaktermanagerController() {
@@ -186,7 +191,7 @@ public class CharaktermanagerController {
 			public void changed(ObservableValue<? extends Waffen> observable, Waffen oldValue, Waffen newValue) {
 				showWaffenDetails(newValue);
 			}
-		});
+		});		
 	}
 	
 	private Waffen getEntryForNewWaffe() {
@@ -199,6 +204,8 @@ public class CharaktermanagerController {
 	
 	
 	private void initializeFaehigkeitenList() {
+		entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
+		
 		showFaehigkeitenDetails(null);
 		
 		faehigkeitenListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Faehigkeiten>() {
@@ -206,6 +213,13 @@ public class CharaktermanagerController {
 				showFaehigkeitenDetails(newValue);
 			}
 		});
+	}
+	
+	private Faehigkeiten getEntryForNewFaehigkeit() {
+		Faehigkeiten entryForNewFaehigkeit = new Faehigkeiten();
+		entryForNewFaehigkeit.setName_("Neue Fähigkeit");
+		
+		return entryForNewFaehigkeit;
 	}
 	
 	
@@ -302,6 +316,7 @@ public class CharaktermanagerController {
 			defSTextField_.setText(Integer.toString(player.getDefS()));
 			
 			faehigkeitenListView_.getItems().setAll(player.getFaehigkeiten());
+			faehigkeitenListView_.getItems().add(entryForNewFaehigkeit_);
 			faehigkeitenListView_.getSelectionModel().select(0);
 		}
 	}
@@ -329,6 +344,7 @@ public class CharaktermanagerController {
 			showEmptyWaffenDetails();
 		} 
 		else {
+			waffenNameTextField_.setText(waffen.getWaffenName_());
 			damageTextField_.setText(Integer.toString(waffen.getWaffenSchaden_()));
 		}
 	}
@@ -336,6 +352,7 @@ public class CharaktermanagerController {
 	
 	
 	private void showEmptyWaffenDetails() {
+		waffenNameTextField_.setText("");
 		damageTextField_.setText("");
 	}
 	
@@ -346,14 +363,14 @@ public class CharaktermanagerController {
 			showEmptyFaehigkeitenDetails();
 		}
 		else {
-			
+			faehigkeitenNameTextField_.setText(faehigkeit.getName_());
 		}
 	}
 	
 	
 	
 	private void showEmptyFaehigkeitenDetails() {
-		
+		faehigkeitenNameTextField_.setText("");
 	}
 	
 	
@@ -485,6 +502,18 @@ public class CharaktermanagerController {
 			
 		}
 	}
+	
+	@FXML
+	private void changeWaffenName() {
+		Waffen selectedWaffe = getSelectedWaffe();
+		if(selectedWaffe == null)
+			return;
+		
+		String newName = waffenNameTextField_.getText();
+		selectedWaffe.setWaffenName_(newName);
+		
+		updateWaffenList(selectedWaffe);
+	}
 
 	@FXML
 	private void deleteWaffe() {
@@ -520,5 +549,53 @@ public class CharaktermanagerController {
 		Waffen selectedWaffe = waffenListView_.getItems().get(selectedIndex);
 		
 		return selectedWaffe;
+	}
+	
+	private Faehigkeiten getSelectedFaehigkeit() {
+		int selectedIndex = faehigkeitenListView_.getSelectionModel().getSelectedIndex();
+		if(selectedIndex < 0)
+			return null;
+					
+		Faehigkeiten selectedFaehigkeit = faehigkeitenListView_.getItems().get(selectedIndex);
+		
+		return selectedFaehigkeit;
+	}
+	
+	@FXML
+	private void changeFaehigkeitName() {
+		Faehigkeiten selectedFaehigkeit = getSelectedFaehigkeit();
+		if(selectedFaehigkeit == null)
+			return;
+		
+		String newName = faehigkeitenNameTextField_.getText();
+		selectedFaehigkeit.setName_(newName);
+		
+		updateFaehigkeitList(selectedFaehigkeit);
+	}
+
+	private void updateFaehigkeitList(Faehigkeiten changedFaehigkeit) {
+		faehigkeitenListView_.getItems().remove(changedFaehigkeit);
+		faehigkeitenListView_.getItems().add(changedFaehigkeit);
+		
+		if(changedFaehigkeit == entryForNewFaehigkeit_) {
+			entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
+			faehigkeitenListView_.getItems().add(entryForNewFaehigkeit_);
+		}
+	}
+
+
+
+	@FXML
+	private void deleteFaehigkeit() {
+		Faehigkeiten selectedFaehigkeit = getSelectedFaehigkeit();
+		if(selectedFaehigkeit == null || selectedFaehigkeit == entryForNewFaehigkeit_)
+			return;
+		
+		Spieler selectedSpieler = getSelectedSpieler();
+		if(selectedSpieler == null)
+			return;
+		
+		selectedSpieler.deleteFaehigkeit(selectedFaehigkeit);
+		faehigkeitenListView_.getItems().remove(selectedFaehigkeit);
 	}
 }
