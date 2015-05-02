@@ -84,32 +84,12 @@ public class CharaktermanagerController {
 		
 	}
 	
-	private void updateSpielerLists(Spieler changedSpieler) {
-		if(changedSpieler == entryForNewSpieler_) {
-			spielerList_.add(changedSpieler);
-			entryForNewSpieler_ = getEntryForNewSpieler();
-		}
-		
-		playersListView_.getItems().setAll(spielerList_);		
-		playersListView_.getItems().add(entryForNewSpieler_);		
-		playersListView_.getSelectionModel().select(changedSpieler);
-		
-		playersNotInGroupListView_.getItems().setAll(spielerList_);
-		playersNotInGroupListView_.getSelectionModel().select(changedSpieler);
-	}
-
-
-
+	
+	
 	private void initializeGroupManager() {
 		playersNotInGroupListView_.getItems().setAll(spielerList_);
 //		List<Gruppe> allGruppen = GruppenManipulator.getAll();
 		gruppen_ = new ArrayList<Gruppe>();
-		Gruppe test1 = new Gruppe();
-		test1.setName("Dienstag");
-		Gruppe test2 = new Gruppe();
-		test2.setName("Freitag");
-		gruppen_.add(test1);
-		gruppen_.add(test2);
 		groupComboBox_.getItems().setAll(gruppen_);
 		groupComboBox_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Gruppe>() {
 			@Override
@@ -118,37 +98,6 @@ public class CharaktermanagerController {
 				updateGroupListViews(newValue);
 			}
 		});
-	}
-	
-	
-	
-	private void showGroupName(Gruppe gruppe) {
-		if(gruppe == null) {
-			newGroupNameTextField_.setText("");
-		}
-		else {
-			newGroupNameTextField_.setText(gruppe.getName());
-		}
-	}
-	
-	
-	
-	private void updateGroupListViews(Gruppe gruppe) {
-		if(gruppe == null) {
-			playersInGroupListView_.getItems().clear();
-			playersNotInGroupListView_.getItems().setAll(spielerList_);
-			return;
-		}
-		
-		Collection<Spieler> playersInGroup = gruppe.getAllSpieler();
-		playersInGroupListView_.getItems().setAll(playersInGroup);
-		
-		playersNotInGroupListView_.getItems().clear();
-		for(Spieler player : spielerList_) {
-			if(!playersInGroup.contains(player)) {
-				playersNotInGroupListView_.getItems().add(player);
-			}
-		}
 	}
 	
 	
@@ -175,12 +124,7 @@ public class CharaktermanagerController {
         });
 	}
 	
-	private Spieler getEntryForNewSpieler() {
-		Spieler entryForNewSpieler = new Spieler();
-		entryForNewSpieler.setName_("Neuer Spieler");
-		
-		return entryForNewSpieler;
-	}
+	
 	
 	private void initializeWaffenList() {
 		entryForNewWaffe_ = getEntryForNewWaffe();
@@ -194,14 +138,7 @@ public class CharaktermanagerController {
 		});		
 	}
 	
-	private Waffen getEntryForNewWaffe() {
-		Waffen entryForNewWaffe = new Waffen();
-		entryForNewWaffe.setWaffenName_("Neue Waffe");
-		
-		return entryForNewWaffe;
-	}
-	
-	
+
 	
 	private void initializeFaehigkeitenList() {
 		entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
@@ -215,11 +152,167 @@ public class CharaktermanagerController {
 		});
 	}
 	
+	
+	
+	private Spieler getEntryForNewSpieler() {
+		Spieler entryForNewSpieler = new Spieler();
+		entryForNewSpieler.setName_("Neuer Spieler");
+		
+		return entryForNewSpieler;
+	}
+	
+	
+	
+	private Waffen getEntryForNewWaffe() {
+		Waffen entryForNewWaffe = new Waffen();
+		entryForNewWaffe.setWaffenName_("Neue Waffe");
+		
+		return entryForNewWaffe;
+	}
+	
+	
+	
 	private Faehigkeiten getEntryForNewFaehigkeit() {
 		Faehigkeiten entryForNewFaehigkeit = new Faehigkeiten();
 		entryForNewFaehigkeit.setName_("Neue Fähigkeit");
 		
 		return entryForNewFaehigkeit;
+	}
+	
+	
+	
+	private void updateGroupListViews(Gruppe selectedGruppe) {
+		if(selectedGruppe == null) {
+			playersInGroupListView_.getItems().clear();
+			playersNotInGroupListView_.getItems().setAll(spielerList_);
+			return;
+		}
+		
+		Collection<Spieler> playersInGroup = selectedGruppe.getAllSpieler();
+		playersInGroupListView_.getItems().setAll(playersInGroup);
+		
+		playersNotInGroupListView_.getItems().clear();
+		for(Spieler player : spielerList_) {
+			if(!playersInGroup.contains(player)) {
+				playersNotInGroupListView_.getItems().add(player);
+			}
+		}
+	}
+	
+	
+	
+	private void updateSpielerLists(Spieler changedSpieler) {
+		if(changedSpieler == entryForNewSpieler_) {
+			spielerList_.add(changedSpieler);
+			entryForNewSpieler_ = getEntryForNewSpieler();
+		}
+		
+		playersListView_.getItems().setAll(spielerList_);		
+		playersListView_.getItems().add(entryForNewSpieler_);		
+		playersListView_.getSelectionModel().select(changedSpieler);
+		
+		playersNotInGroupListView_.getItems().setAll(spielerList_);
+		playersNotInGroupListView_.getSelectionModel().select(changedSpieler);
+	}
+	
+	
+	
+	private void updateWaffenList(Waffen changedWaffe) {
+		waffenListView_.getItems().remove(changedWaffe);
+		waffenListView_.getItems().add(changedWaffe);
+		
+		if(changedWaffe == entryForNewWaffe_) {
+			entryForNewWaffe_ = getEntryForNewWaffe();
+			waffenListView_.getItems().add(entryForNewWaffe_);
+		}
+	}
+	
+	
+	
+	private void updateFaehigkeitList(Faehigkeiten changedFaehigkeit) {
+		faehigkeitenListView_.getItems().remove(changedFaehigkeit);
+		faehigkeitenListView_.getItems().add(changedFaehigkeit);
+		
+		if(changedFaehigkeit == entryForNewFaehigkeit_) {
+			entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
+			faehigkeitenListView_.getItems().add(entryForNewFaehigkeit_);
+		}
+	}
+
+
+	
+	private Gruppe getSelectedGruppe() {
+		int selectedIndex = groupComboBox_.getSelectionModel().getSelectedIndex();
+		if(selectedIndex < 0)
+			return null;
+					
+		Gruppe selectedGruppe = groupComboBox_.getItems().get(selectedIndex);
+		
+		return selectedGruppe;
+	}
+	
+	
+	
+	private Spieler getSelectedSpieler() {
+		return getSelected(playersListView_);
+	}
+	
+	
+
+	private Waffen getSelectedWaffe() {
+		return getSelected(waffenListView_);
+	}
+	
+	
+	
+	private Faehigkeiten getSelectedFaehigkeit() {
+		return getSelected(faehigkeitenListView_);
+	}
+	
+	
+	
+	private <T> T getSelected(ListView<T> listView) {
+		int selectedIndex = listView.getSelectionModel().getSelectedIndex();
+		if(selectedIndex < 0)
+			return null;
+					
+		T selected = listView.getItems().get(selectedIndex);
+		
+		return selected;
+	}
+	
+	
+	
+	private void showGroupName(Gruppe gruppe) {
+		if(gruppe == null) {
+			newGroupNameTextField_.setText("");
+		}
+		else {
+			newGroupNameTextField_.setText(gruppe.getName());
+		}
+	}
+	
+	
+	
+	@FXML
+	private void createGroup() {
+		Gruppe newGroup = new Gruppe();
+		newGroup.setName(newGroupNameTextField_.getText());
+		gruppen_.add(newGroup);
+		groupComboBox_.getItems().add(newGroup);
+		groupComboBox_.getSelectionModel().select(newGroup);
+	}
+	
+	
+	
+	@FXML
+	private void deleteGroup() {
+		Gruppe groupToDelete = getSelectedGruppe();
+		if(groupToDelete != null) {
+			groupComboBox_.getItems().remove(groupToDelete);
+			gruppen_.remove(groupToDelete);
+			groupToDelete.remove();
+		}
 	}
 	
 	
@@ -233,37 +326,6 @@ public class CharaktermanagerController {
 		selectedGruppe.setName(newGroupNameTextField_.getText());
 		groupComboBox_.getItems().setAll(gruppen_);
 		groupComboBox_.getSelectionModel().select(selectedGruppe);
-	}
-	
-	@FXML
-	private void createGroup() {
-		Gruppe newGroup = new Gruppe();
-		newGroup.setName(newGroupNameTextField_.getText());
-		gruppen_.add(newGroup);
-		groupComboBox_.getItems().add(newGroup);
-		groupComboBox_.getSelectionModel().select(newGroup);
-	}
-	
-	@FXML
-	private void deleteGroup() {
-		Gruppe groupToDelete = getSelectedGruppe();
-		if(groupToDelete != null) {
-			groupComboBox_.getItems().remove(groupToDelete);
-			gruppen_.remove(groupToDelete);
-			groupToDelete.remove();
-		}
-	}
-
-
-
-	private Gruppe getSelectedGruppe() {
-		int selectedIndex = groupComboBox_.getSelectionModel().getSelectedIndex();
-		if(selectedIndex < 0)
-			return null;
-					
-		Gruppe selectedGruppe = groupComboBox_.getItems().get(selectedIndex);
-		
-		return selectedGruppe;
 	}	
 	
 	
@@ -286,7 +348,7 @@ public class CharaktermanagerController {
 	
 	@FXML
 	private void removePlayerFromGroup() {
-		Spieler chosenSpieler = this.playersInGroupListView_.getSelectionModel().getSelectedItem();
+		Spieler chosenSpieler = playersInGroupListView_.getSelectionModel().getSelectedItem();
 		if(chosenSpieler != null) {
 			playersNotInGroupListView_.getItems().add(chosenSpieler);
 			playersInGroupListView_.getItems().remove(chosenSpieler);
@@ -374,6 +436,22 @@ public class CharaktermanagerController {
 	}
 	
 	
+	@FXML
+	private void searchSpieler() {
+		String search = searchPlayerTextField_.getText().toLowerCase();
+		playersListView_.getItems().clear();
+		
+		for(Spieler player : spielerList_) {
+			if(player.getName_().toLowerCase().contains(search)) {
+				playersListView_.getItems().add(player);
+			}
+		}
+		
+		if(search.isEmpty())
+			playersListView_.getItems().add(entryForNewSpieler_);
+	}
+	
+	
 	
 	@FXML
 	private void deletePlayer() {	
@@ -381,20 +459,10 @@ public class CharaktermanagerController {
 		if(spielerToDelete != null) {
 			playersListView_.getItems().remove(spielerToDelete);
 			spielerList_.remove(spielerToDelete);
+			updateGroupListViews(getSelectedGruppe());
+			
 			spielerToDelete.remove();
 		}
-	}
-	
-	
-	
-	private Spieler getSelectedSpieler() {
-		int selectedIndex = playersListView_.getSelectionModel().getSelectedIndex();
-		if(selectedIndex < 0)
-			return null;
-					
-		Spieler selectedSpieler = playersListView_.getItems().get(selectedIndex);
-		
-		return selectedSpieler;
 	}
 
 
@@ -428,23 +496,6 @@ public class CharaktermanagerController {
 	
 	
 	@FXML
-	private void searchSpieler() {
-		String search = searchPlayerTextField_.getText().toLowerCase();
-		playersListView_.getItems().clear();
-		
-		for(Spieler player : spielerList_) {
-			if(player.getName_().toLowerCase().contains(search)) {
-				playersListView_.getItems().add(player);
-			}
-		}
-		
-		if(search.isEmpty())
-			playersListView_.getItems().add(entryForNewSpieler_);
-	}
-	
-	
-	
-	@FXML
 	private void changeName() {
 		Spieler selectedSpieler = getSelectedSpieler();
 		if(selectedSpieler == null)
@@ -455,6 +506,8 @@ public class CharaktermanagerController {
 		
 		updateSpielerLists(selectedSpieler);
 	}
+	
+	
 	
 	@FXML
 	private void changeDef() {
@@ -480,28 +533,7 @@ public class CharaktermanagerController {
 		}
 	}
 	
-	@FXML
-	private void changeWaffenDamage() {
-		Waffen selectedWaffe = getSelectedWaffe();
-		if(selectedWaffe == null)
-			return;
-		
-		try {
-			int newDamage = Integer.parseInt(damageTextField_.getText());
-			
-			if(newDamage >= 0) {
-				selectedWaffe.setWaffenSchaden_(newDamage);
-				if(selectedWaffe == entryForNewWaffe_) {
-					Spieler selectedSpieler = getSelectedSpieler();
-					selectedSpieler.addWaffe(selectedWaffe);
-				}				
-				updateWaffenList(selectedWaffe);
-			}
-		}
-		catch (NumberFormatException e) {
-			
-		}
-	}
+	
 	
 	@FXML
 	private void changeWaffenName() {
@@ -516,9 +548,12 @@ public class CharaktermanagerController {
 			Spieler selectedSpieler = getSelectedSpieler();
 			selectedSpieler.addWaffe(selectedWaffe);
 		}
+		
 		updateWaffenList(selectedWaffe);
 	}
 
+	
+	
 	@FXML
 	private void deleteWaffe() {
 		Waffen selectedWaffe = getSelectedWaffe();
@@ -532,38 +567,35 @@ public class CharaktermanagerController {
 		selectedSpieler.deleteWaffe(selectedWaffe);
 		waffenListView_.getItems().remove(selectedWaffe);
 	}
-
-	private void updateWaffenList(Waffen changedWaffe) {
-		waffenListView_.getItems().remove(changedWaffe);
-		waffenListView_.getItems().add(changedWaffe);
+	
+	
+	
+	@FXML
+	private void changeWaffenDamage() {
+		Waffen selectedWaffe = getSelectedWaffe();
+		if(selectedWaffe == null)
+			return;
 		
-		if(changedWaffe == entryForNewWaffe_) {
-			entryForNewWaffe_ = getEntryForNewWaffe();
-			waffenListView_.getItems().add(entryForNewWaffe_);
+		try {
+			int newDamage = Integer.parseInt(damageTextField_.getText());
+			
+			if(newDamage >= 0) {
+				selectedWaffe.setWaffenSchaden_(newDamage);
+				
+				if(selectedWaffe == entryForNewWaffe_) {
+					Spieler selectedSpieler = getSelectedSpieler();
+					selectedSpieler.addWaffe(selectedWaffe);
+				}				
+				
+				updateWaffenList(selectedWaffe);
+			}
+		}
+		catch (NumberFormatException e) {
+			
 		}
 	}
 
 
-
-	private Waffen getSelectedWaffe() {
-		int selectedIndex = waffenListView_.getSelectionModel().getSelectedIndex();
-		if(selectedIndex < 0)
-			return null;
-					
-		Waffen selectedWaffe = waffenListView_.getItems().get(selectedIndex);
-		
-		return selectedWaffe;
-	}
-	
-	private Faehigkeiten getSelectedFaehigkeit() {
-		int selectedIndex = faehigkeitenListView_.getSelectionModel().getSelectedIndex();
-		if(selectedIndex < 0)
-			return null;
-					
-		Faehigkeiten selectedFaehigkeit = faehigkeitenListView_.getItems().get(selectedIndex);
-		
-		return selectedFaehigkeit;
-	}
 	
 	@FXML
 	private void changeFaehigkeitName() {
@@ -578,17 +610,8 @@ public class CharaktermanagerController {
 			Spieler selectedSpieler = getSelectedSpieler();
 			selectedSpieler.addFaehigkeit(selectedFaehigkeit);
 		}
-		updateFaehigkeitList(selectedFaehigkeit);
-	}
-
-	private void updateFaehigkeitList(Faehigkeiten changedFaehigkeit) {
-		faehigkeitenListView_.getItems().remove(changedFaehigkeit);
-		faehigkeitenListView_.getItems().add(changedFaehigkeit);
 		
-		if(changedFaehigkeit == entryForNewFaehigkeit_) {
-			entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
-			faehigkeitenListView_.getItems().add(entryForNewFaehigkeit_);
-		}
+		updateFaehigkeitList(selectedFaehigkeit);
 	}
 
 
