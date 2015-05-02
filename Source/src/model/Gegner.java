@@ -18,7 +18,7 @@ public class Gegner implements DBObject {
 	@GeneratedValue
 	@Column(name = "ID")
 	public int ID_;
-	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Gegner Nr. 460'")
+	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Gegner Nr. 420'")
 	public String name_;
 	@Column(name = "KREIS", columnDefinition="INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS<=4)")
 	public int kreis_;
