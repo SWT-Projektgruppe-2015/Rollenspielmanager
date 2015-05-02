@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import model.Spieler;
+import model.Waffen;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -142,6 +143,23 @@ public class SpielerTest {
 		spielerOnMinLevel.setLevel_(1);
 		
 		return spielerOnMinLevel;
+	}
+	
+	@Test
+	public void addWaffe() {
+		Waffen waffe = new Waffen();
+		
+		normalSpieler.addWaffe(waffe);
+		assertTrue(normalSpieler.getWaffen().contains(waffe));
+	}
+	
+	@Test
+	public void deleteWaffe() {
+		Waffen waffe = new Waffen();		
+		normalSpieler.addWaffe(waffe);
+		
+		normalSpieler.deleteWaffe(waffe);
+		assertTrue(!normalSpieler.getWaffen().contains(waffe));
 	}
 	
 	

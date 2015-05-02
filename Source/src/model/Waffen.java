@@ -19,14 +19,19 @@ public class Waffen implements DBObject {
 	@Column(name = "ID")
 	public int ID_;
 	@Column(name = "EFFEKT_TYP")
-	public int effektTyp_;
+	private int effektTyp_;
 	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Deus Ex Machina'")
-	public String waffenName_;
+	private String waffenName_;
 	@Column(name = "SCHADEN", columnDefinition="INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
-	public int waffenSchaden_;
+	private int waffenSchaden_;
 	@ManyToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="INTEGER NOT NULL default '1'")
-	public Ausruestung ausruestung_;
+	private Ausruestung ausruestung_;
+
+	public Waffen() {
+		super();
+		setWaffenSchaden_(0);
+	}
 	
 	@Override
 	public String toString() {
@@ -38,5 +43,41 @@ public class Waffen implements DBObject {
 		if(waffenName_ == null)	{
 			waffenName_="Deus Ex Machina";
 		}
+	}
+
+	public int getEffektTyp_() {
+		return effektTyp_;
+	}
+
+	public void setEffektTyp_(int effektTyp_) {
+		this.effektTyp_ = effektTyp_;
+	}
+
+	public String getWaffenName_() {
+		return waffenName_;
+	}
+
+	public void setWaffenName_(String waffenName_) {
+		this.waffenName_ = waffenName_;
+	}
+
+	public int getWaffenSchaden_() {
+		return waffenSchaden_;
+	}
+
+	public void setWaffenSchaden_(int waffenSchaden_) {
+		this.waffenSchaden_ = waffenSchaden_;
+	}
+	
+	public Ausruestung getAusruestung_() {
+		return ausruestung_;
+	}
+
+	public void setAusruestung_(Ausruestung ausruestung_) {
+		this.ausruestung_ = ausruestung_;
+	}
+
+	public void remove() {
+		// entferne Waffe aus DB mithilfe von Manipulatoren
 	}
 }

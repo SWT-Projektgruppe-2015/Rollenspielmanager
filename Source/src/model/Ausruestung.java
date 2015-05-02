@@ -56,15 +56,19 @@ public class Ausruestung implements DBObject {
 	public int getDefH_() {
 		return defH_;
 	}
+	
 	public void setDefH_(int defH_) {
 		this.defH_ = defH_;
 	}
+	
 	public int getDefS_() {
 		return defS_;
 	}
+	
 	public void setDefS_(int defS_) {
 		this.defS_ = defS_;
 	}
+	
 	public List<Waffen> getWaffen() {
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
@@ -72,6 +76,7 @@ public class Ausruestung implements DBObject {
         		"FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
         return getWaffenInAusruestung.getResultList();
 	}
+	
 	@PrePersist
 	public void onCreate()	{
 		if(defH_ == 0)	{
@@ -90,5 +95,13 @@ public class Ausruestung implements DBObject {
         TypedQuery<Faehigkeiten> getFaehigkeitenInAusruestung = theManager.createQuery(
         		"FROM Faehigkeiten f WHERE f.ausruestung_ = " + ID_, Faehigkeiten.class);
         return getFaehigkeitenInAusruestung.getResultList();
+	}
+
+	public void addWaffe(Waffen selectedWaffe) {
+		selectedWaffe.setAusruestung_(this);
+	}
+
+	public void deleteWaffe(Waffen waffe) {
+		waffe.remove();
 	}
 }

@@ -290,4 +290,14 @@ public class Spieler implements DBObject {
 			setKreis_(getKreis_()-1);
 		}
 	}
+
+	public void addWaffe(Waffen waffe) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.addWaffe(waffe);
+	}
+
+	public void deleteWaffe(Waffen waffe) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.deleteWaffe(waffe);
+	}
 }

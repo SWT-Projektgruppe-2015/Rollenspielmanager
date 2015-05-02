@@ -18,8 +18,10 @@ import javafx.scene.control.TextField;
 
 public class CharaktermanagerController {
 	private List<Spieler> spielerList_;
+	
 	private List<Gruppe> gruppen_;
 	private Spieler entryForNewSpieler_;
+	private Waffen entryForNewWaffe_;
 	
 	@FXML
 	private TextField newGroupNameTextField_;
@@ -176,6 +178,8 @@ public class CharaktermanagerController {
 	}
 	
 	private void initializeWaffenList() {
+		entryForNewWaffe_ = getEntryForNewWaffe();
+		
 		showWaffenDetails(null);		
 		
 		waffenListView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Waffen>() {
@@ -183,6 +187,13 @@ public class CharaktermanagerController {
 				showWaffenDetails(newValue);
 			}
 		});
+	}
+	
+	private Waffen getEntryForNewWaffe() {
+		Waffen entryForNewWaffe = new Waffen();
+		entryForNewWaffe.setWaffenName_("Neue Waffe");
+		
+		return entryForNewWaffe;
 	}
 	
 	
@@ -283,6 +294,7 @@ public class CharaktermanagerController {
 			playerKreisLabel_.setText(Integer.toString(player.getKreis_()));
 			
 			waffenListView_.getItems().setAll(player.getWaffen());
+			waffenListView_.getItems().add(entryForNewWaffe_);
 			waffenListView_.getSelectionModel().select(0);
 			
 			defRTextField_.setText(Integer.toString(player.getDefR()));
@@ -317,7 +329,7 @@ public class CharaktermanagerController {
 			showEmptyWaffenDetails();
 		} 
 		else {
-			damageTextField_.setText(Integer.toString(waffen.waffenSchaden_));
+			damageTextField_.setText(Integer.toString(waffen.getWaffenSchaden_()));
 		}
 	}
 	
@@ -449,5 +461,64 @@ public class CharaktermanagerController {
 		catch (NumberFormatException e) {
 			
 		}
+	}
+	
+	@FXML
+	private void changeWaffenDamage() {
+		Waffen selectedWaffe = getSelectedWaffe();
+		if(selectedWaffe == null)
+			return;
+		
+		try {
+			int newDamage = Integer.parseInt(damageTextField_.getText());
+			
+			if(newDamage >= 0) {
+				selectedWaffe.setWaffenSchaden_(newDamage);
+				if(selectedWaffe == entryForNewWaffe_) {
+					Spieler selectedSpieler = getSelectedSpieler();
+					selectedSpieler.addWaffe(selectedWaffe);
+				}				
+				updateWaffenList(selectedWaffe);
+			}
+		}
+		catch (NumberFormatException e) {
+			
+		}
+	}
+
+	@FXML
+	private void deleteWaffe() {
+		Waffen selectedWaffe = getSelectedWaffe();
+		if(selectedWaffe == null || selectedWaffe == entryForNewWaffe_)
+			return;
+		
+		Spieler selectedSpieler = getSelectedSpieler();
+		if(selectedSpieler == null)
+			return;
+		
+		selectedSpieler.deleteWaffe(selectedWaffe);
+		waffenListView_.getItems().remove(selectedWaffe);
+	}
+
+	private void updateWaffenList(Waffen changedWaffe) {
+		waffenListView_.getItems().remove(changedWaffe);
+		waffenListView_.getItems().add(changedWaffe);
+		
+		if(changedWaffe == entryForNewWaffe_) {
+			entryForNewWaffe_ = getEntryForNewWaffe();
+			waffenListView_.getItems().add(entryForNewWaffe_);
+		}
+	}
+
+
+
+	private Waffen getSelectedWaffe() {
+		int selectedIndex = waffenListView_.getSelectionModel().getSelectedIndex();
+		if(selectedIndex < 0)
+			return null;
+					
+		Waffen selectedWaffe = waffenListView_.getItems().get(selectedIndex);
+		
+		return selectedWaffe;
 	}
 }
