@@ -19,7 +19,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
-import javax.persistence.CascadeType;
 
 import controller.AusruestungsManipulator;
 import model.interfaces.DBObject;
@@ -65,9 +64,6 @@ public class Spieler implements DBObject {
 		}
 		if(getAusruestung_() == null)	{
 			setAusruestung_(new Ausruestung());
-			getAusruestung_().defH_ = 1;
-			getAusruestung_().defR_ = 1;
-			getAusruestung_().defS_ = 0;
 			AusruestungsManipulator.getInstance().add(getAusruestung_());
 		}
 		
@@ -169,29 +165,52 @@ public class Spieler implements DBObject {
 		if(ausruestung == null)
 			return 1;
 		
-		return getAusruestung_().defR_;
+		return getAusruestung_().getDefR_();
 	}
 	
-	
+	public void setDefR(int def) {
+		Ausruestung ausruestung = getAusruestungForModification();		
+		ausruestung.setDefR_(def);
+	}
 	
 	public int getDefH() {
 		Ausruestung ausruestung = getAusruestung_();
 		if(ausruestung == null)
 			return 1;
 		
-		return getAusruestung_().defH_;
+		return getAusruestung_().getDefH_();
 	}
 	
-	
+	public void setDefH(int def) {
+		Ausruestung ausruestung = getAusruestungForModification();		
+		ausruestung.setDefH_(def);
+	}
 	
 	public int getDefS() {
 		Ausruestung ausruestung = getAusruestung_();
 		if(ausruestung == null)
 			return 0;
 		
-		return getAusruestung_().defS_;
+		return getAusruestung_().getDefS_();
 	}
 	
+	public void setDefS(int def) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.setDefS_(def);
+	}
+
+	/**
+	 * Falls keine Ausruestung vorhanden ist, wird eine neue erstellt und mit dem Spieler verbunden.
+	 * @return Ausruestung des Spielers, niemals null.
+	 */
+	private Ausruestung getAusruestungForModification() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null) {
+			ausruestung = new Ausruestung();
+			setAusruestung_(ausruestung);
+		}
+		return ausruestung;
+	}
 	
 	
 	public List<Waffen> getWaffen() {

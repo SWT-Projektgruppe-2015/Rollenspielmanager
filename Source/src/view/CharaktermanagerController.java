@@ -78,8 +78,13 @@ public class CharaktermanagerController {
 	}
 	
 	private void updateSpielerLists(Spieler changedSpieler) {
-		playersListView_.getItems().setAll(spielerList_);
-		playersListView_.getItems().add(entryForNewSpieler_);
+		if(changedSpieler == entryForNewSpieler_) {
+			spielerList_.add(changedSpieler);
+			entryForNewSpieler_ = getEntryForNewSpieler();
+		}
+		
+		playersListView_.getItems().setAll(spielerList_);		
+		playersListView_.getItems().add(entryForNewSpieler_);		
 		playersListView_.getSelectionModel().select(changedSpieler);
 		
 		playersNotInGroupListView_.getItems().setAll(spielerList_);
@@ -151,8 +156,7 @@ public class CharaktermanagerController {
 	
 	private void initializePlayerList() {
 		playersListView_.getItems().setAll(Spieler.getAllPlayers());
-		entryForNewSpieler_ = new Spieler();
-		entryForNewSpieler_.setName_("Neuer Spieler");
+		entryForNewSpieler_ = getEntryForNewSpieler();
 		playersListView_.getItems().add(entryForNewSpieler_);
 		
 		showPlayerDetails(null);
@@ -164,7 +168,12 @@ public class CharaktermanagerController {
         });
 	}
 	
-	
+	private Spieler getEntryForNewSpieler() {
+		Spieler entryForNewSpieler = new Spieler();
+		entryForNewSpieler.setName_("Neuer Spieler");
+		
+		return entryForNewSpieler;
+	}
 	
 	private void initializeWaffenList() {
 		showWaffenDetails(null);		
@@ -415,9 +424,30 @@ public class CharaktermanagerController {
 		String newName = playerNameTextField_.getText();
 		selectedSpieler.setName_(newName);
 		
-		if(selectedSpieler == entryForNewSpieler_)
-			spielerList_.add(selectedSpieler);
-		
 		updateSpielerLists(selectedSpieler);
+	}
+	
+	@FXML
+	private void changeDef() {
+		Spieler selectedSpieler = getSelectedSpieler();
+		if(selectedSpieler == null)
+			return;
+		
+		try {
+			int newDefR = Integer.parseInt(defRTextField_.getText());
+			int newDefH = Integer.parseInt(defHTextField_.getText());
+			int newDefS = Integer.parseInt(defSTextField_.getText());
+			
+			if(newDefR > 0 && newDefH > 0 && newDefS >= 0) {
+				selectedSpieler.setDefR(newDefR);
+				selectedSpieler.setDefH(newDefH);
+				selectedSpieler.setDefS(newDefS);
+				
+				updateSpielerLists(selectedSpieler);
+			}
+		}
+		catch (NumberFormatException e) {
+			
+		}
 	}
 }

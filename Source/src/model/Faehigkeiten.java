@@ -38,9 +38,6 @@ public class Faehigkeiten implements DBObject {
 		}	
 		if(ausruestung_ == null)	{
 			ausruestung_ = new Ausruestung();
-			ausruestung_.defH_ = 1;
-			ausruestung_.defR_ = 1;
-			ausruestung_.defS_ = 0;
 			AusruestungsManipulator.getInstance().add(ausruestung_);
 		}
 	}

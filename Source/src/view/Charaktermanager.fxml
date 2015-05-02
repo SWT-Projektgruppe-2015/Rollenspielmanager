@@ -82,9 +82,9 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="252.0">
                                        <children>
-                                          <TextField fx:id="defRTextField_" layoutX="69.0" layoutY="53.0" prefHeight="25.0" prefWidth="40.0" />
-                                          <TextField fx:id="defHTextField_" layoutX="69.0" layoutY="78.0" prefHeight="25.0" prefWidth="40.0" />
-                                          <TextField fx:id="defSTextField_" layoutX="69.0" layoutY="103.0" prefHeight="25.0" prefWidth="40.0" />
+                                          <TextField fx:id="defRTextField_" layoutX="69.0" layoutY="53.0" onAction="#changeDef" prefHeight="25.0" prefWidth="40.0" />
+                                          <TextField fx:id="defHTextField_" layoutX="69.0" layoutY="78.0" onAction="#changeDef" prefHeight="25.0" prefWidth="40.0" />
+                                          <TextField fx:id="defSTextField_" layoutX="69.0" layoutY="103.0" onAction="#changeDef" prefHeight="25.0" prefWidth="40.0" />
                                           <Text layoutX="23.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefR:" />
                                           <Text layoutX="23.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefH:" />
                                           <Text layoutX="23.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefS:" />
