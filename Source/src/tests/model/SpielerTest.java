@@ -85,6 +85,48 @@ public class SpielerTest {
 	}
 	
 	@Test
+	public void setDefH() {
+		normalSpieler.setDefH(200);
+		assertTrue(normalSpieler.getDefH() == 200);
+	}
+	
+	@Test
+	public void setNegativeDefH() {
+		int defHBefore = normalSpieler.getDefH();
+		
+		normalSpieler.setDefH(-200);
+		assertTrue(normalSpieler.getDefH() == defHBefore);
+	}
+	
+	@Test
+	public void setDefR() {
+		normalSpieler.setDefR(200);
+		assertTrue(normalSpieler.getDefR() == 200);
+	}
+	
+	@Test
+	public void setNegativeDefR() {
+		int defRBefore = normalSpieler.getDefR();
+		
+		normalSpieler.setDefR(-200);
+		assertTrue(normalSpieler.getDefR() == defRBefore);
+	}
+	
+	@Test
+	public void setDefS() {
+		normalSpieler.setDefS(200);
+		assertTrue(normalSpieler.getDefS() == 200);
+	}
+	
+	@Test
+	public void setNegativeDefS() {
+		int defSBefore = normalSpieler.getDefS();
+		
+		normalSpieler.setDefS(-200);
+		assertTrue(normalSpieler.getDefS() == defSBefore);
+	}
+	
+	@Test
 	public void levelDecreaseOnMinLevelAndKreis() {
 		Spieler spielerOnMinLevelAndKreis = createSpielerOnMinLevel();
 		spielerOnMinLevelAndKreis.setKreis_(1);

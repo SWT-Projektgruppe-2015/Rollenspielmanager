@@ -169,8 +169,10 @@ public class Spieler implements DBObject {
 	}
 	
 	public void setDefR(int def) {
-		Ausruestung ausruestung = getAusruestungForModification();		
-		ausruestung.setDefR_(def);
+		Ausruestung ausruestung = getAusruestungForModification();
+		
+		if(def > 0)
+			ausruestung.setDefR_(def);
 	}
 	
 	public int getDefH() {
@@ -182,8 +184,10 @@ public class Spieler implements DBObject {
 	}
 	
 	public void setDefH(int def) {
-		Ausruestung ausruestung = getAusruestungForModification();		
-		ausruestung.setDefH_(def);
+		Ausruestung ausruestung = getAusruestungForModification();
+		
+		if(def > 0)
+			ausruestung.setDefH_(def);
 	}
 	
 	public int getDefS() {
@@ -196,7 +200,9 @@ public class Spieler implements DBObject {
 	
 	public void setDefS(int def) {
 		Ausruestung ausruestung = getAusruestungForModification();
-		ausruestung.setDefS_(def);
+		
+		if(def >= 0)
+			ausruestung.setDefS_(def);
 	}
 
 	/**
