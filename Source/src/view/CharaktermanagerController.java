@@ -299,6 +299,7 @@ public class CharaktermanagerController {
 	private void createGroup() {
 		Gruppe newGroup = new Gruppe();
 		newGroup.setName(newGroupNameTextField_.getText());
+		newGroup.add();
 		gruppen_.add(newGroup);
 		groupComboBox_.getItems().add(newGroup);
 		groupComboBox_.getSelectionModel().select(newGroup);
