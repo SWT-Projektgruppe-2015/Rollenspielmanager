@@ -512,6 +512,10 @@ public class CharaktermanagerController {
 		String newName = waffenNameTextField_.getText();
 		selectedWaffe.setWaffenName_(newName);
 		
+		if(selectedWaffe == entryForNewWaffe_) {
+			Spieler selectedSpieler = getSelectedSpieler();
+			selectedSpieler.addWaffe(selectedWaffe);
+		}
 		updateWaffenList(selectedWaffe);
 	}
 
@@ -570,6 +574,10 @@ public class CharaktermanagerController {
 		String newName = faehigkeitenNameTextField_.getText();
 		selectedFaehigkeit.setName_(newName);
 		
+		if(selectedFaehigkeit == entryForNewFaehigkeit_) {
+			Spieler selectedSpieler = getSelectedSpieler();
+			selectedSpieler.addFaehigkeit(selectedFaehigkeit);
+		}
 		updateFaehigkeitList(selectedFaehigkeit);
 	}
 

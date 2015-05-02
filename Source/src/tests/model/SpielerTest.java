@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import model.Faehigkeiten;
 import model.Spieler;
 import model.Waffen;
 
@@ -160,6 +161,23 @@ public class SpielerTest {
 		
 		normalSpieler.deleteWaffe(waffe);
 		assertTrue(!normalSpieler.getWaffen().contains(waffe));
+	}
+	
+	@Test
+	public void addFaehigkeit() {
+		Faehigkeiten faehigkeit = new Faehigkeiten();
+		
+		normalSpieler.addFaehigkeit(faehigkeit);
+		assertTrue(normalSpieler.getFaehigkeiten().contains(faehigkeit));
+	}
+	
+	@Test
+	public void deleteFaehigkeit() {
+		Faehigkeiten faehigkeit = new Faehigkeiten();
+		normalSpieler.addFaehigkeit(faehigkeit);
+		
+		normalSpieler.deleteFaehigkeit(faehigkeit);
+		assertTrue(!normalSpieler.getFaehigkeiten().contains(faehigkeit));
 	}
 	
 	

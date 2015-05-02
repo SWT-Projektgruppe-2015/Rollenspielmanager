@@ -104,7 +104,11 @@ public class Ausruestung implements DBObject {
 	public void deleteWaffe(Waffen waffe) {
 		waffe.remove();
 	}
-
+	
+	public void addFaehigkeit(Faehigkeiten faehigkeit) {
+		faehigkeit.setAusruestung_(this);
+	}
+	
 	public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
 		faehigkeit.remove();
 	}
