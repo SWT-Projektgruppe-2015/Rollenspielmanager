@@ -26,7 +26,8 @@ public class GruppenmanagerController {
     @FXML
     private ListView<Spieler> spielerInGruppeListView_; 
     
-    void initialize() {
+    void initialize(List<Spieler> spielerList) {
+        spielerList_ = spielerList;
         spielerNotInGruppeListView_.getItems().setAll(spielerList_);
         // TODO nutze Gruppenmanipulator
         gruppenList_ = new ArrayList<Gruppe>();
@@ -41,12 +42,6 @@ public class GruppenmanagerController {
                         updateGruppenListViews(newValue);
                     }
                 });
-    }
-    
-    
-    
-    void setAllSpielerList(List<Spieler> spielerList) {
-        spielerList_ = spielerList;
     }
     
     
