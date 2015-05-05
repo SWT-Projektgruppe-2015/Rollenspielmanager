@@ -15,52 +15,53 @@ import javax.persistence.TypedQuery;
 
 import model.interfaces.DBObject;
 
-/** 
- * Die Default-Werte fuer Ausruestung, verwendet bei PrePersist Methoden, 
- * die sicherstellen das ein Fremdschluessel vorhanden ist.
- * DEFR = 1
- * DEFH = 1
- * DEFS = 0
+/**
+ * Die Default-Werte fuer Ausruestung, verwendet bei PrePersist Methoden, die
+ * sicherstellen das ein Fremdschluessel vorhanden ist. DEFR = 1 DEFH = 1 DEFS =
+ * 0
  * 
  */
 @Entity
 @Table(name = "AUSRUESTUNGEN")
 public class Ausruestung implements DBObject {
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
-	public int ID_;
-	@Column(name = "DEFR", columnDefinition="INTEGER NOT NULL DEFAULT '1' CHECK(DEFR >= 1)")
-	public int defR_;
-	@Column(name = "DEFH", columnDefinition="INTEGER NOT NULL DEFAULT '1' CHECK(DEFH >= 1)")
-	public int defH_;
-	@Column(name = "DEFS", columnDefinition="INTEGER DEFAULT '0' CHECK(DEFS >= 0)")
-	public int defS_;
-	
-	public List<Waffen> getWaffen() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
+    @Id
+    @GeneratedValue
+    @Column(name = "ID")
+    public int ID_;
+    @Column(name = "DEFR", columnDefinition = "INTEGER NOT NULL DEFAULT '1' CHECK(DEFR >= 1)")
+    public int defR_;
+    @Column(name = "DEFH", columnDefinition = "INTEGER NOT NULL DEFAULT '1' CHECK(DEFH >= 1)")
+    public int defH_;
+    @Column(name = "DEFS", columnDefinition = "INTEGER DEFAULT '0' CHECK(DEFS >= 0)")
+    public int defS_;
+    
+    public List<Waffen> getWaffen() {
+        EntityManagerFactory factory = Persistence
+                .createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
         TypedQuery<Waffen> getWaffenInAusruestung = theManager.createQuery(
-        		"FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
+                "FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
         return getWaffenInAusruestung.getResultList();
-	}
-	@PrePersist
-	public void onCreate()	{
-		if(defH_ == 0)	{
-			defH_=1;
-		}
-		if(defR_ == 0)	{
-			defR_ = 1;
-		}
-		
-	}
-	
-	
-	public List<Faehigkeiten> getFaehigkeiten() {
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
+    }
+    
+    @PrePersist
+    public void onCreate() {
+        if (defH_ == 0) {
+            defH_ = 1;
+        }
+        if (defR_ == 0) {
+            defR_ = 1;
+        }
+        
+    }
+    
+    public List<Faehigkeiten> getFaehigkeiten() {
+        EntityManagerFactory factory = Persistence
+                .createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
-        TypedQuery<Faehigkeiten> getFaehigkeitenInAusruestung = theManager.createQuery(
-        		"FROM Faehigkeiten f WHERE f.ausruestung_ = " + ID_, Faehigkeiten.class);
+        TypedQuery<Faehigkeiten> getFaehigkeitenInAusruestung = theManager
+                .createQuery("FROM Faehigkeiten f WHERE f.ausruestung_ = "
+                        + ID_, Faehigkeiten.class);
         return getFaehigkeitenInAusruestung.getResultList();
-	}
+    }
 }
