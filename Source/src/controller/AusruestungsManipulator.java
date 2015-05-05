@@ -50,6 +50,7 @@ public class AusruestungsManipulator implements DBManipulator {
     
     @Override
     public boolean delete(DBObject entity) {
+        boolean returnValue = true;
         theManager.getTransaction().begin();
         try {
             theManager.remove((Ausruestung) entity);
@@ -57,14 +58,17 @@ public class AusruestungsManipulator implements DBManipulator {
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "
                     + persistExceptionTwo.getMessage());
+            returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
             System.err.println("IllegalArgumentException: "
                     + persistExceptionThree.getMessage());
+            returnValue = false;
         }
         catch (PersistenceException persistExceptionFinal) {
             System.err.println("PersistenceException: "
                     + persistExceptionFinal.getMessage());
+            returnValue = false;
         }
         finally {
             try {
@@ -83,7 +87,7 @@ public class AusruestungsManipulator implements DBManipulator {
             }
         }
         
-        return true;
+        return returnValue;
     }
     
     @Override
