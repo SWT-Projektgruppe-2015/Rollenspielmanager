@@ -66,11 +66,11 @@
                                     <VBox layoutX="131.0" layoutY="4.0" prefHeight="196.0" prefWidth="84.0">
                                        <children>
                                           <Label text="Name" />
-                                          <TextField fx:id="waffenNameTextField_" onAction="#changeWaffenName" />
+                                          <TextField fx:id="waffenNameTextField_" onAction="#changeWaffenDetails" />
                                           <Label text="Effekt" />
                                           <ComboBox prefHeight="25.0" prefWidth="123.0" />
                                           <Label text="Damage" />
-                                          <TextField fx:id="damageTextField_" onAction="#changeWaffenDamage" prefHeight="25.0" prefWidth="66.0" />
+                                          <TextField fx:id="damageTextField_" onAction="#changeWaffenDetails" prefHeight="25.0" prefWidth="66.0" />
                                        </children>
                                     </VBox>
                                     <Button layoutX="8.0" layoutY="157.0" mnemonicParsing="false" onAction="#deleteWaffe" text="-" />

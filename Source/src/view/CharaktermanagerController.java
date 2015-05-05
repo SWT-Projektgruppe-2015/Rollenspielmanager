@@ -534,25 +534,6 @@ public class CharaktermanagerController {
 			
 		}
 	}
-	
-	
-	
-	@FXML
-	private void changeWaffenName() {
-		Waffen selectedWaffe = getSelectedWaffe();
-		if(selectedWaffe == null)
-			return;
-		
-		String newName = waffenNameTextField_.getText();
-		selectedWaffe.setWaffenName_(newName);
-		
-		if(selectedWaffe == entryForNewWaffe_) {
-			Spieler selectedSpieler = getSelectedSpieler();
-			selectedSpieler.addWaffe(selectedWaffe);
-		}
-		
-		updateWaffenList(selectedWaffe);
-	}
 
 	
 	
@@ -573,28 +554,51 @@ public class CharaktermanagerController {
 	
 	
 	@FXML
-	private void changeWaffenDamage() {
+	private void changeWaffenDetails() {
 		Waffen selectedWaffe = getSelectedWaffe();
 		if(selectedWaffe == null)
 			return;
 		
+		boolean waffeChanged = false;
+		waffeChanged = changeWaffenName(selectedWaffe);
+		waffeChanged = changeWaffenDamage(selectedWaffe) || waffeChanged;
+		
+		if(waffeChanged) {
+			if(selectedWaffe == entryForNewWaffe_) {
+				Spieler selectedSpieler = getSelectedSpieler();
+				selectedSpieler.addWaffe(selectedWaffe);
+			}
+			
+			updateWaffenList(selectedWaffe);
+		}
+	}
+	
+	
+	
+	private boolean changeWaffenName(Waffen selectedWaffe) {		
+		String newName = waffenNameTextField_.getText();
+		if(!newName.equals(selectedWaffe.getWaffenName_())) {
+			selectedWaffe.setWaffenName_(newName);
+			return true;
+		}
+
+		return false;
+	}
+	
+	
+	
+	private boolean changeWaffenDamage(Waffen selectedWaffe) {		
 		try {
 			int newDamage = Integer.parseInt(damageTextField_.getText());
 			
-			if(newDamage >= 0) {
-				selectedWaffe.setWaffenSchaden_(newDamage);
-				
-				if(selectedWaffe == entryForNewWaffe_) {
-					Spieler selectedSpieler = getSelectedSpieler();
-					selectedSpieler.addWaffe(selectedWaffe);
-				}				
-				
-				updateWaffenList(selectedWaffe);
+			if(newDamage >= 0 && newDamage != selectedWaffe.getWaffenSchaden_()) {
+				selectedWaffe.setWaffenSchaden_(newDamage);				
+				return true;
 			}
 		}
 		catch (NumberFormatException e) {
-			
 		}
+		return false;
 	}
 
 
