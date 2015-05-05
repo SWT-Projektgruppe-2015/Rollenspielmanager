@@ -16,20 +16,13 @@ import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "GEGNER")
-<<<<<<< Updated upstream
-public class Gegner implements DBObject {
-=======
+
 public class Gegner implements DBObject, Charakter {
->>>>>>> Stashed changes
     @Id
     @GeneratedValue
     @Column(name = "ID")
     public int ID_;
-<<<<<<< Updated upstream
     @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Gegner Nr. 420'")
-=======
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Gegner Nr. 460'")
->>>>>>> Stashed changes
     public String name_;
     @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS<=4)")
     public int kreis_;
@@ -49,11 +42,9 @@ public class Gegner implements DBObject, Charakter {
     @OneToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     public Ausruestung ausruestung_;
-<<<<<<< Updated upstream
-    
-=======
 
->>>>>>> Stashed changes
+    
+    
     public void onCreate() {
         if (name_ == null) {
             name_ = "Gegner Nr. 460";
@@ -75,8 +66,6 @@ public class Gegner implements DBObject, Charakter {
             AusruestungsManipulator.getInstance().add(ausruestung_);
         }
     }
-<<<<<<< Updated upstream
-=======
 
     public String getName_() {
         return name_;
@@ -143,5 +132,4 @@ public class Gegner implements DBObject, Charakter {
         // TODO Auto-generated method stub
         return 0;
     }
->>>>>>> Stashed changes
 }
