@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -18,15 +19,18 @@ import javax.persistence.TypedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
-import javax.persistence.CascadeType;
 
 import controller.AusruestungsManipulator;
+import controller.SpielerManipulator;
 import model.interfaces.DBObject;
 
 @Entity
 @Table( name = "SPIELER")
 
 public class Spieler implements DBObject {
+	public static final int MAX_KREIS = 4;
+	public static final int MAX_LEVEL = 12;
+	
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
     private static EntityManager theManager = factory.createEntityManager();
 	@Id
@@ -61,9 +65,6 @@ public class Spieler implements DBObject {
 		}
 		if(getAusruestung_() == null)	{
 			setAusruestung_(new Ausruestung());
-			getAusruestung_().defH_ = 1;
-			getAusruestung_().defR_ = 1;
-			getAusruestung_().defS_ = 0;
 			AusruestungsManipulator.getInstance().add(getAusruestung_());
 		}
 		
@@ -74,7 +75,13 @@ public class Spieler implements DBObject {
 		return getName_();
 	}
 	
+	public void remove() {
+		// TODO loesche Spieler in der DB mit DB Manipulatoren		
+	}
 	
+	public void add() {
+		SpielerManipulator.getInstance().add(this);
+	}
 	
 	/**
 	 * @return the iD_
@@ -161,30 +168,79 @@ public class Spieler implements DBObject {
 	}
 
 	public int getDefR() {
-		return getAusruestung_().defR_;
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return 1;
+		
+		return getAusruestung_().getDefR_();
 	}
 	
-	
+	public void setDefR(int def) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		
+		if(def > 0)
+			ausruestung.setDefR_(def);
+	}
 	
 	public int getDefH() {
-		return getAusruestung_().defH_;
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return 1;
+		
+		return getAusruestung_().getDefH_();
 	}
 	
-	
+	public void setDefH(int def) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		
+		if(def > 0)
+			ausruestung.setDefH_(def);
+	}
 	
 	public int getDefS() {
-		return getAusruestung_().defS_;
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return 0;
+		
+		return getAusruestung_().getDefS_();
 	}
 	
+	public void setDefS(int def) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		
+		if(def >= 0)
+			ausruestung.setDefS_(def);
+	}
+
+	/**
+	 * Falls keine Ausruestung vorhanden ist, wird eine neue erstellt und mit dem Spieler verbunden.
+	 * @return Ausruestung des Spielers, niemals null.
+	 */
+	private Ausruestung getAusruestungForModification() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null) {
+			ausruestung = new Ausruestung();
+			setAusruestung_(ausruestung);
+		}
+		return ausruestung;
+	}
 	
 	
 	public List<Waffen> getWaffen() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return new ArrayList<Waffen>();
+		
 		return getAusruestung_().getWaffen();
 	}
 	
 	
 	
 	public List<Faehigkeiten> getFaehigkeiten() {
+		Ausruestung ausruestung = getAusruestung_();
+		if(ausruestung == null)
+			return new ArrayList<Faehigkeiten>();
+		
 		return getAusruestung_().getFaehigkeiten();
 	}
 	
@@ -196,9 +252,64 @@ public class Spieler implements DBObject {
         TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler", Spieler.class);
         return getAllRows.getResultList();
 	}
-
-	public void remove() {
-		// TODO loesche Spieler in der DB mit DB Manipulatoren
+	
+	public void increaseLevel() {
+		boolean spielerHasMaximumLevelInKreis = getLevel_() == MAX_LEVEL;
 		
+		if(!spielerHasMaximumLevelInKreis) {
+			setLevel_(getLevel_()+1);
+		}
+		else {
+			increaseKreis();
+		}
+	}
+	
+	private void increaseKreis() {
+		boolean spielerHasMaximumKreis = getKreis_() == MAX_KREIS;
+		
+		if(!spielerHasMaximumKreis) {
+			setLevel_(1);
+			setKreis_(getKreis_()+1);
+		}
+	}
+
+	public void decreaseLevel() {
+		boolean spielerHasMinimumLevelInKreis = getLevel_() == 1;
+		
+		if(!spielerHasMinimumLevelInKreis) {
+			setLevel_(getLevel_()-1);
+		}
+		else {
+			decreaseKreis();
+		}
+	}
+	
+	private void decreaseKreis() {
+		boolean spielerHasMinimumKreis = getKreis_() == 1;
+		
+		if(!spielerHasMinimumKreis) {
+			setLevel_(MAX_LEVEL);
+			setKreis_(getKreis_()-1);
+		}
+	}
+
+	public void addWaffe(Waffen waffe) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.addWaffe(waffe);
+	}
+
+	public void deleteWaffe(Waffen waffe) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.deleteWaffe(waffe);
+	}
+
+	public void addFaehigkeit(Faehigkeiten faehigkeit) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.addFaehigkeit(faehigkeit);
+	}
+	
+	public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
+		Ausruestung ausruestung = getAusruestungForModification();
+		ausruestung.deleteFaehigkeit(faehigkeit);
 	}
 }

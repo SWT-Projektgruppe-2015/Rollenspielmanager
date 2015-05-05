@@ -59,4 +59,9 @@ public class Gruppe implements DBObject {
 	
 	public void remove() {
 	}
+
+	public void add() {
+		// TODO Gruppe per Manipulator speichern
+		
+	}
 }

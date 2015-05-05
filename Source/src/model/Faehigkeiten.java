@@ -20,12 +20,12 @@ public class Faehigkeiten implements DBObject {
 	@Column(name = "ID", nullable = false)
 	public int ID_;
 	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Geheime Magie'")
-	public String name_;
+	private String name_;
 	@Column(name = "EFFEKT_TYP", columnDefinition="INTEGER NOT NULL default '0' check(EFFEKT_TYP >= 0 and EFFEKT_TYP <= 4)")
-	public int effekttypen_;
+	private int effekttypen_;
 	@ManyToOne(optional=false)
 	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="INTEGER NOT NULL default '1'")
-	public Ausruestung ausruestung_;
+	private Ausruestung ausruestung_;
 	
 	@Override
 	public String toString() {
@@ -38,11 +38,29 @@ public class Faehigkeiten implements DBObject {
 		}	
 		if(ausruestung_ == null)	{
 			ausruestung_ = new Ausruestung();
-			ausruestung_.defH_ = 1;
-			ausruestung_.defR_ = 1;
-			ausruestung_.defS_ = 0;
 			AusruestungsManipulator.getInstance().add(ausruestung_);
 		}
+	}
+	public String getName_() {
+		return name_;
+	}
+	public void setName_(String name_) {
+		this.name_ = name_;
+	}
+	public int getEffekttypen_() {
+		return effekttypen_;
+	}
+	public void setEffekttypen_(int effekttypen_) {
+		this.effekttypen_ = effekttypen_;
+	}
+	public Ausruestung getAusruestung_() {
+		return ausruestung_;
+	}
+	public void setAusruestung_(Ausruestung ausruestung_) {
+		this.ausruestung_ = ausruestung_;
+	}
+	public void remove() {
+		// TODO lösche aus DB mithilfe von DB Manipulatoren	
 	}
 	
 }
