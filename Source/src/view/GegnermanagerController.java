@@ -24,7 +24,7 @@ public class GegnermanagerController extends CharakterTabController {
     @FXML
     private TextField gegnerNameTextField_;
     @FXML
-    private TextField gegnerStufeTextField_;
+    private TextField gegnerLevelTextField_;
     @FXML
     private TextField gegnerKreisTextField_;
     @FXML
@@ -105,15 +105,15 @@ public class GegnermanagerController extends CharakterTabController {
         
         try {
             String newName = gegnerNameTextField_.getText();
-            int newStufe = Integer.parseInt(this.gegnerStufeTextField_.getText());
-            int newKreis = Integer.parseInt(this.gegnerKreisTextField_.getText());
-            int newGeschick = Integer.parseInt(this.geschickTextField_.getText());
-            int newStaerke = Integer.parseInt(this.staerkeTextField_.getText());
-            int newErfahrung = Integer.parseInt(this.erfahrungsTextField_.getText());
+            int newLevel = Integer.parseInt(gegnerLevelTextField_.getText());
+            int newKreis = Integer.parseInt(gegnerKreisTextField_.getText());
+            int newGeschick = Integer.parseInt(geschickTextField_.getText());
+            int newStaerke = Integer.parseInt(staerkeTextField_.getText());
+            int newErfahrung = Integer.parseInt(erfahrungsTextField_.getText());
       
-            if(Gegner.detailsAreValid(newStufe, newKreis, newGeschick, newStaerke, newErfahrung)){
+            if(Gegner.detailsAreValid(newLevel, newKreis, newGeschick, newStaerke, newErfahrung)){
                 selectedGegner.setName_(newName);
-                selectedGegner.setLevel_(newStufe);
+                selectedGegner.setLevel_(newLevel);
                 selectedGegner.setKreis_(newKreis);
                 selectedGegner.setGeschick_(newGeschick);
                 selectedGegner.setStaerke_(newStaerke);
@@ -187,7 +187,7 @@ public class GegnermanagerController extends CharakterTabController {
         else {
             gegnerNameTextField_.setText(gegner.getName_());
             gegnerKreisTextField_.setText(Integer.toString(gegner.getKreis_()));
-            gegnerStufeTextField_.setText(Integer.toString(gegner.getLevel_()));
+            gegnerLevelTextField_.setText(Integer.toString(gegner.getLevel_()));
 
             staerkeTextField_.setText(Integer.toString(gegner.getStaerke_()));
             geschickTextField_.setText(Integer.toString(gegner.getGeschick_()));
@@ -205,7 +205,7 @@ public class GegnermanagerController extends CharakterTabController {
     private void showEmptyGegnerDetails() {
         gegnerNameTextField_.setText("");
         gegnerKreisTextField_.setText("");
-        gegnerStufeTextField_.setText("");
+        gegnerLevelTextField_.setText("");
 
         staerkeTextField_.setText("");
         geschickTextField_.setText("");
