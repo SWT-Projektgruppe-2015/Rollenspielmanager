@@ -81,7 +81,7 @@ public class Waffen implements DBObject {
         this.ausruestung_ = ausruestung_;
     }
 
-    public void remove() {
+    public void deleteFromDB() {
         // entferne Waffe aus DB mithilfe von Manipulatoren
     }
 }

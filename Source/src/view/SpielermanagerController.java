@@ -103,7 +103,7 @@ public class SpielermanagerController extends CharakterTabController{
     private void updateSpielerLists(Spieler changedSpieler) {
         if (changedSpieler == entryForNewSpieler_) {
             spielerList_.add(changedSpieler);
-            changedSpieler.add();
+            changedSpieler.addToDB();
             entryForNewSpieler_ = getEntryForNewSpieler();
         }
 
@@ -156,7 +156,7 @@ public class SpielermanagerController extends CharakterTabController{
             spielerList_.remove(spielerToDelete);
             gruppenManagerController.updateGruppenListViews(gruppenManagerController.getSelectedGruppe());
 
-            spielerToDelete.remove();
+            spielerToDelete.deleteFromDB();
         }
     }
 

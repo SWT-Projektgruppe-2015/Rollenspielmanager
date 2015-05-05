@@ -70,11 +70,11 @@ public class Spieler extends Charakter implements DBObject {
     
     
 
-    public void remove() {
-        // TODO loesche Spieler in der DB mit DB Manipulatoren
+    public void deleteFromDB() {
+        SpielerManipulator.getInstance().delete(this);
     }
 
-    public void add() {
+    public void addToDB() {
         SpielerManipulator.getInstance().add(this);
     }
 

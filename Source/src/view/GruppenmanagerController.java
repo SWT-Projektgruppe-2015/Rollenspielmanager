@@ -102,7 +102,7 @@ public class GruppenmanagerController {
     private void createGruppe() {
         Gruppe newGruppe = new Gruppe();
         newGruppe.setName(newGruppenNameTextField_.getText());
-        newGruppe.add();
+        newGruppe.addToDB();
         gruppenList_.add(newGruppe);
         gruppenComboBox_.getItems().add(newGruppe);
         gruppenComboBox_.getSelectionModel().select(newGruppe);
@@ -129,7 +129,7 @@ public class GruppenmanagerController {
         if (gruppeToDelete != null) {
             gruppenComboBox_.getItems().remove(gruppeToDelete);
             gruppenList_.remove(gruppeToDelete);
-            gruppeToDelete.remove();
+            gruppeToDelete.deleteFromDB();
         }
     }
     
