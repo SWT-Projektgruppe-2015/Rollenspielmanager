@@ -6,21 +6,20 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
+import javax.persistence.RollbackException;
 import javax.persistence.TransactionRequiredException;
 
 import model.Ausruestung;
+import model.Spieler;
 import model.interfaces.DBObject;
 import controller.interfaces.DBManipulator;
 
 public class AusruestungsManipulator implements DBManipulator {
-    private static EntityManagerFactory factory_ = Persistence
-            .createEntityManagerFactory("thePersistenceUnit");
-    private static EntityManager theManager = factory_.createEntityManager();
+    private static EntityManager theManager = EntityManagerFactoryProvider.getFactory().createEntityManager();
     private static AusruestungsManipulator singelton;
     
-    private AusruestungsManipulator() {
-        
-    }
+    private AusruestungsManipulator() {}
     
     @Override
     public boolean add(DBObject entity) {
@@ -51,8 +50,40 @@ public class AusruestungsManipulator implements DBManipulator {
     
     @Override
     public boolean delete(DBObject entity) {
-        // TODO Auto-generated method stub
-        return false;
+        theManager.getTransaction().begin();
+        try {
+            theManager.remove((Ausruestung) entity);
+        }
+        catch (TransactionRequiredException persistExceptionTwo) {
+            System.err.println("TransactionRequiredException: "
+                    + persistExceptionTwo.getMessage());
+        }
+        catch (IllegalArgumentException persistExceptionThree) {
+            System.err.println("IllegalArgumentException: "
+                    + persistExceptionThree.getMessage());
+        }
+        catch (PersistenceException persistExceptionFinal) {
+            System.err.println("PersistenceException: "
+                    + persistExceptionFinal.getMessage());
+        }
+        finally {
+            try {
+                theManager.getTransaction().commit();
+            }
+            catch (RollbackException commitExceptionOne) {
+                System.err.println("RollBackException: "
+                        + commitExceptionOne.getMessage());
+                return false;
+            }
+            catch (PersistenceException commitExceptionTwo) {
+                System.err.println("PersistenceException: "
+                        + commitExceptionTwo.getMessage());
+                theManager.getTransaction().commit();
+                return false;
+            }
+        }
+        
+        return true;
     }
     
     @Override

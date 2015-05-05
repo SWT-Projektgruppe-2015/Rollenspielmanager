@@ -27,7 +27,7 @@ public class Ausruestung implements DBObject {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    public int ID_;
+    private int ID_;
     @Column(name = "DEFR", columnDefinition = "INTEGER NOT NULL DEFAULT '1' CHECK(DEFR >= 1)")
     private int defR_;
     @Column(name = "DEFH", columnDefinition = "INTEGER NOT NULL DEFAULT '1' CHECK(DEFH >= 1)")
@@ -74,7 +74,7 @@ public class Ausruestung implements DBObject {
                 .createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
         TypedQuery<Waffen> getWaffenInAusruestung = theManager.createQuery(
-                "FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
+                "FROM Waffen w WHERE w.ausruestung_ = " + getID_(), Waffen.class);
         return getWaffenInAusruestung.getResultList();
     }
     
@@ -95,7 +95,7 @@ public class Ausruestung implements DBObject {
         EntityManager theManager = factory.createEntityManager();
         TypedQuery<Faehigkeiten> getFaehigkeitenInAusruestung = theManager
                 .createQuery("FROM Faehigkeiten f WHERE f.ausruestung_ = "
-                        + ID_, Faehigkeiten.class);
+                        + getID_(), Faehigkeiten.class);
         return getFaehigkeitenInAusruestung.getResultList();
     }
     
@@ -113,5 +113,19 @@ public class Ausruestung implements DBObject {
     
     public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
         faehigkeit.remove();
+    }
+
+    /**
+     * @return the iD_
+     */
+    public int getID_() {
+        return ID_;
+    }
+
+    /**
+     * @param iD_ the iD_ to set
+     */
+    public void setID_(int iD_) {
+        ID_ = iD_;
     }
 }

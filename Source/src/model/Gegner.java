@@ -3,12 +3,15 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import controller.AusruestungsManipulator;
@@ -36,15 +39,15 @@ public class Gegner extends Charakter implements DBObject {
     public int geschick_;
     @Column(name = "LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
     public int lebenspunkte_;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     public Beute beuteTyp;
     @OneToOne(optional = false)
-    @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
+    @JoinColumn(name = "AUSRUΩSTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     public Ausruestung ausruestung_;
 
     
-    
+    @PrePersist
     public void onCreate() {
         if (name_ == null) {
             name_ = "Gegner Nr. 460";

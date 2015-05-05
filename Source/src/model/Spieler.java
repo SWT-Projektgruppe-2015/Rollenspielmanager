@@ -47,7 +47,7 @@ public class Spieler extends Charakter implements DBObject {
     @OneToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", unique = false, columnDefinition = "Integer NOT NULL default '1'")
     private Ausruestung ausruestung_;
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "SPIELER_IN_GRUPPE", joinColumns = { @JoinColumn(name = "SPIELER_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "GRUPPEN_ID", referencedColumnName = "ID") })
     private Set<Gruppe> membership_;
 

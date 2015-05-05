@@ -6,6 +6,10 @@ package tests.controller;
 //
 //import model.Ausruestung;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import model.Spieler;
 
 import org.junit.BeforeClass;
@@ -13,22 +17,28 @@ import org.junit.Ignore;
 import org.junit.Test;
 //import org.junit.Before;
 
+
+
+
+import controller.EntityManagerFactoryProvider;
 import controller.SpielerManipulator;
 import static org.junit.Assert.assertNotNull;
 //import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertEquals;
 
 public class SpielerManipulatorenTest {
     
     private static SpielerManipulator testInstance;
     private static Spieler testSpieler;
-
+    private static EntityManager theManager;
     @BeforeClass
     public static void setUpBeforeClass() {
         testInstance = SpielerManipulator.getInstance();
         testSpieler = new Spieler();
+        theManager = EntityManagerFactoryProvider.getFactory().createEntityManager();
     }
     
     
@@ -66,20 +76,32 @@ public class SpielerManipulatorenTest {
         assertFalse("Can add same player twice.", testInstance.add(testSpieler));
         
     }
-    
     @Test
     public void cantAddNonExistantSpieler() {
-        assertFalse("Can delete non existant Spieler", testInstance.add(null));
+        assertFalse("Can add non existant Spieler", testInstance.add(null));
     }
-    
     @Test
     public void canDeleteSpieler() {
         assertTrue("Can't delete Spieler", testInstance.delete(testSpieler));
     }
-    
     @Test
     public void cantDeleteNonExistantSpieler() {
         assertFalse("Can delete non existant Spieler",
                 testInstance.delete(null));
     }
+    
+    @Test
+    public void canUpdateSpieler()   {
+        if(testInstance.add(testSpieler)) {
+            testSpieler.setName_("Spieler formerly known as Jane");
+            assertTrue(testInstance.update(testSpieler));
+        }
+    }
+    
+    @Test
+    public void cantUpdateNonExistantSpieler()  {
+        assertFalse("Can update non existant Spieler", testInstance.update(null));
+    }
+    
+    
 }
