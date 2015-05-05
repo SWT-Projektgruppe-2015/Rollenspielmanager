@@ -64,3 +64,5 @@ Um Default Werte einzutragen wenn man persist verwendet muss man @PrePersist, mi
 		}
 		
 	}
+
+http://meri-stuff.blogspot.de/2012/03/jpa-tutorial.html#RelationshipsBidirectionalOneToManyManyToOneConsistency
