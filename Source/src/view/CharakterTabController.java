@@ -2,6 +2,8 @@ package view;
 
 import java.util.List;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Charakter;
@@ -33,6 +35,36 @@ public abstract class CharakterTabController {
 
         if (search.isEmpty())
             listviewToUpdate.getItems().add(defaultEntry);
+    }
+    
+    
+    
+    protected void initializeFaehigkeitenList(ListView<Faehigkeiten> view) {
+        createEntryForNewFaehigkeit();
+
+        showFaehigkeitenDetails(null);
+
+        view.getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<Faehigkeiten>() {
+                    public void changed(
+                            ObservableValue<? extends Faehigkeiten> observable,
+                            Faehigkeiten oldValue, Faehigkeiten newValue) {
+                        showFaehigkeitenDetails(newValue);
+                    }
+                });
+    }
+    
+    
+    
+    protected abstract void createEntryForNewFaehigkeit();
+    
+    
+    
+    protected Faehigkeiten getEntryForNewFaehigkeit() {
+        Faehigkeiten entryForNewFaehigkeit = new Faehigkeiten();
+        entryForNewFaehigkeit.setName_("Neue Fähigkeit");
+
+        return entryForNewFaehigkeit;
     }
     
     

@@ -97,23 +97,6 @@ public class SpielermanagerController extends CharakterTabController{
                     }
                 });
     }
-    
-    
-    
-    private void initializeFaehigkeitenList(ListView<Faehigkeiten> view) {
-        entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
-
-        showFaehigkeitenDetails(null);
-
-        view.getSelectionModel().selectedItemProperty()
-                .addListener(new ChangeListener<Faehigkeiten>() {
-                    public void changed(
-                            ObservableValue<? extends Faehigkeiten> observable,
-                            Faehigkeiten oldValue, Faehigkeiten newValue) {
-                        showFaehigkeitenDetails(newValue);
-                    }
-                });
-    }
       
 
     
@@ -434,15 +417,6 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    private Faehigkeiten getEntryForNewFaehigkeit() {
-        Faehigkeiten entryForNewFaehigkeit = new Faehigkeiten();
-        entryForNewFaehigkeit.setName_("Neue Fähigkeit");
-
-        return entryForNewFaehigkeit;
-    }
-
-    
-    
     private Spieler getSelectedSpieler() {
         return getSelected(spielerListView_);
     }
@@ -464,6 +438,13 @@ public class SpielermanagerController extends CharakterTabController{
     @Override
     protected TextField getFaehigkeitenNameTextField() {
         return faehigkeitenNameTextField_;
+    }
+
+
+
+    @Override
+    protected void createEntryForNewFaehigkeit() {
+        entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
     }
     
 }
