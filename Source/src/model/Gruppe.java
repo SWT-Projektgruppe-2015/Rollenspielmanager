@@ -49,7 +49,7 @@ public class Gruppe implements DBObject {
 
 
 
-    public void removePlayer(Spieler spieler) {
+    public void removePlayer(Charakter spieler) {
         if (members_ != null) {
             members_.remove(spieler);
         }

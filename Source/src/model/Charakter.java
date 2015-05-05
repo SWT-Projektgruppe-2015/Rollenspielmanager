@@ -1,10 +1,13 @@
 package model;
 
 public abstract class Charakter {
+    public static final int MAX_KREIS = 4;
+    public static final int MAX_LEVEL = 12;
+
     public abstract String getName_();
     abstract Ausruestung getAusruestung_();
     abstract void setAusruestung_(Ausruestung ausruestung);
-
+    
     
     
     /**
@@ -20,7 +23,7 @@ public abstract class Charakter {
             setAusruestung_(ausruestung);
         }
         return ausruestung;
-    }    
+    }
     
     
     
@@ -69,10 +72,18 @@ public abstract class Charakter {
         return getAusruestung_().getDefS_();
     }
     
+    
+    
     public void setDefS(int def) {
         Ausruestung ausruestung = getAusruestungForModification();
         
         if (def >= 0)
             ausruestung.setDefS_(def);
+    }
+    
+    
+    
+    public static boolean ausruestungIsValid(int newDefR, int newDefH, int newDefS) {
+        return newDefR > 0 && newDefH > 0 && newDefS >= 0;
     }
 }

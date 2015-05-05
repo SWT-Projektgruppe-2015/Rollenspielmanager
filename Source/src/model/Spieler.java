@@ -27,9 +27,6 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "SPIELER")
 public class Spieler extends Charakter implements DBObject {
-    public static final int MAX_KREIS = 4;
-    public static final int MAX_LEVEL = 12;
-
     private static EntityManagerFactory factory = Persistence
             .createEntityManagerFactory("thePersistenceUnit");
     private static EntityManager theManager = factory.createEntityManager();
@@ -218,6 +215,7 @@ public class Spieler extends Charakter implements DBObject {
 
     
     public static List<Spieler> getAllPlayers() {
+        // TODO:: Hier sollte der DB Manipulator verwendet werden.
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();

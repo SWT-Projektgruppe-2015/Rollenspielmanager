@@ -21,8 +21,8 @@ import javafx.scene.control.TextField;
 public class CharaktermanagerController {
     private List<Spieler> spielerList_;
     private List<Gegner> gegnerList_;
-
-    private List<Gruppe> gruppen_;
+    private List<Gruppe> gruppeList_;
+    
     private Spieler entryForNewSpieler_;
     private Waffen entryForNewWaffe_;
     private Faehigkeiten entryForNewFaehigkeit_;
@@ -33,9 +33,9 @@ public class CharaktermanagerController {
     @FXML
     private ComboBox<Gruppe> groupComboBox_;
     @FXML
-    private ListView<Spieler> playersNotInGroupListView_; // linke Liste
+    private ListView<Spieler> playersNotInGroupListView_; 
     @FXML
-    private ListView<Spieler> playersInGroupListView_; // rechte Liste
+    private ListView<Spieler> playersInGroupListView_; 
 
     @FXML
     private ListView<Spieler> playersListView_;
@@ -120,8 +120,8 @@ public class CharaktermanagerController {
     private void initializeGroupManager() {
         playersNotInGroupListView_.getItems().setAll(spielerList_);
         // List<Gruppe> allGruppen = GruppenManipulator.getAll();
-        gruppen_ = new ArrayList<Gruppe>();
-        groupComboBox_.getItems().setAll(gruppen_);
+        gruppeList_ = new ArrayList<Gruppe>();
+        groupComboBox_.getItems().setAll(gruppeList_);
         groupComboBox_.getSelectionModel().selectedItemProperty()
                 .addListener(new ChangeListener<Gruppe>() {
                     @Override
@@ -269,7 +269,33 @@ public class CharaktermanagerController {
         playersNotInGroupListView_.getItems().setAll(spielerList_);
         playersNotInGroupListView_.getSelectionModel().select(changedSpieler);
     }
+    
+    
+    
+    private void handleGegnerUpdate(Gegner changedGegner) {
+        if (changedGegner == entryForNewGegner_)
+            addNewGegner(changedGegner);
+        updateGegnerList(changedGegner);
+    }
 
+    
+    
+    private void updateGegnerList(Gegner changedGegner) {
+        gegnerListView_.getItems().setAll(gegnerList_);
+        gegnerListView_.getItems().add(entryForNewGegner_);
+        gegnerListView_.getSelectionModel().select(changedGegner);
+    }
+
+    
+    
+    private void addNewGegner(Gegner changedGegner) {
+        gegnerList_.add(changedGegner);
+        changedGegner.addToDB();
+        entryForNewGegner_ = getEntryForNewGegner();
+    }
+    
+    
+    
     private void updateWaffenList(Waffen changedWaffe) {
         waffenListView_.getItems().remove(changedWaffe);
         waffenListView_.getItems().add(changedWaffe);
@@ -304,6 +330,10 @@ public class CharaktermanagerController {
     private Spieler getSelectedSpieler() {
         return getSelected(playersListView_);
     }
+    
+    private Gegner getSelectedGegner() {
+        return getSelected(gegnerListView_);
+    }
 
     private Waffen getSelectedWaffe() {
         return getSelected(waffenListView_);
@@ -337,7 +367,7 @@ public class CharaktermanagerController {
         Gruppe newGroup = new Gruppe();
         newGroup.setName(newGroupNameTextField_.getText());
         newGroup.add();
-        gruppen_.add(newGroup);
+        gruppeList_.add(newGroup);
         groupComboBox_.getItems().add(newGroup);
         groupComboBox_.getSelectionModel().select(newGroup);
     }
@@ -347,7 +377,7 @@ public class CharaktermanagerController {
         Gruppe groupToDelete = getSelectedGruppe();
         if (groupToDelete != null) {
             groupComboBox_.getItems().remove(groupToDelete);
-            gruppen_.remove(groupToDelete);
+            gruppeList_.remove(groupToDelete);
             groupToDelete.remove();
         }
     }
@@ -359,7 +389,7 @@ public class CharaktermanagerController {
             return;
 
         selectedGruppe.setName(newGroupNameTextField_.getText());
-        groupComboBox_.getItems().setAll(gruppen_);
+        groupComboBox_.getItems().setAll(gruppeList_);
         groupComboBox_.getSelectionModel().select(selectedGruppe);
     }
 
@@ -427,8 +457,10 @@ public class CharaktermanagerController {
             geschickTextField_.setText(Integer.toString(gegner.getGeschick_()));
             erfahrungsTextField_.setText(Integer.toString(gegner.getErfahrung_()));
             
-            this.gegnerDefRTextField_.setText(Integer.toString(gegner.getDefR()));
-            damageTextField_.setText(Integer.toString(gegner.getDamage()));
+            gegnerDefRTextField_.setText(Integer.toString(gegner.getDefR()));
+            gegnerDefHTextField_.setText(Integer.toString(gegner.getDefH()));
+            gegnerDefSTextField_.setText(Integer.toString(gegner.getDefS()));
+            gegnerDamageTextField_.setText(Integer.toString(gegner.getDamage()));
         }
     }
 
@@ -442,6 +474,7 @@ public class CharaktermanagerController {
         defRTextField_.setText("");
         defHTextField_.setText("");
         defSTextField_.setText("");
+        gegnerDamageTextField_.setText("");
 
         faehigkeitenListView_.getItems().clear();
     }
@@ -453,6 +486,10 @@ public class CharaktermanagerController {
 
         staerkeTextField_.setText("");
         geschickTextField_.setText("");
+        
+        gegnerDefRTextField_.setText("");
+        gegnerDefHTextField_.setText("");
+        gegnerDefSTextField_.setText("");        
         
         erfahrungsTextField_.setText("");
 
@@ -556,7 +593,7 @@ public class CharaktermanagerController {
     }
 
     @FXML
-    private void changeName() {
+    private void changeSpielerName() {
         Spieler selectedSpieler = getSelectedSpieler();
         if (selectedSpieler == null)
             return;
@@ -578,7 +615,7 @@ public class CharaktermanagerController {
             int newDefH = Integer.parseInt(defHTextField_.getText());
             int newDefS = Integer.parseInt(defSTextField_.getText());
 
-            if (newDefR > 0 && newDefH > 0 && newDefS >= 0) {
+            if (Charakter.ausruestungIsValid(newDefR, newDefH, newDefS)) {
                 selectedSpieler.setDefR(newDefR);
                 selectedSpieler.setDefH(newDefH);
                 selectedSpieler.setDefS(newDefS);
@@ -681,4 +718,76 @@ public class CharaktermanagerController {
         selectedSpieler.deleteFaehigkeit(selectedFaehigkeit);
         faehigkeitenListView_.getItems().remove(selectedFaehigkeit);
     }
+    
+    @FXML
+    private void updateGegnerDetails(){
+        Gegner selectedGegner = getSelectedGegner();
+        if(selectedGegner == null)
+            return;
+        
+        try {
+            String newName = gegnerNameTextField_.getText();
+            int newStufe = Integer.parseInt(this.gegnerStufeTextField_.getText());
+            int newKreis = Integer.parseInt(this.gegnerKreisTextField_.getText());
+            int newGeschick = Integer.parseInt(this.geschickTextField_.getText());
+            int newStaerke = Integer.parseInt(this.staerkeTextField_.getText());
+            int newErfahrung = Integer.parseInt(this.erfahrungsTextField_.getText());
+      
+            if(Gegner.detailsAreValid(newStufe, newKreis, newGeschick, newStaerke, newErfahrung)){
+                selectedGegner.setName_(newName);
+                selectedGegner.setLevel_(newStufe);
+                selectedGegner.setKreis_(newKreis);
+                selectedGegner.setGeschick_(newGeschick);
+                selectedGegner.setStaerke_(newStaerke);
+                selectedGegner.setErfahrung_(newErfahrung);
+                this.handleGegnerUpdate(selectedGegner);
+            }
+        }
+        catch (NumberFormatException e) {
+            
+        }
+    }
+    
+    
+    
+    @FXML
+    private void updateGegnerAusruestung() {
+        Gegner selectedGegner = getSelectedGegner();
+        if(selectedGegner == null)
+            return;
+        
+        try {
+            int newDefR = Integer.parseInt(gegnerDefRTextField_.getText());
+            int newDefH = Integer.parseInt(gegnerDefHTextField_.getText());
+            int newDefS = Integer.parseInt(gegnerDefSTextField_.getText());
+            int newDamage = Integer.parseInt(gegnerDamageTextField_.getText());
+            
+            if(Charakter.ausruestungIsValid(newDefR, newDefH, newDefS) || newDamage >= 0) {
+                selectedGegner.setDefR(newDefR);
+                selectedGegner.setDefH(newDefH);
+                selectedGegner.setDefS(newDefS);
+                selectedGegner.setDamage(newDamage);
+                handleGegnerUpdate(selectedGegner);
+            }
+        }
+        catch (NumberFormatException e) {
+            
+        }
+
+    }
+    
+    
+    
+    @FXML
+    private void deleteGegner() {
+        Gegner selectedGegner = getSelectedGegner();
+        if(selectedGegner == null || selectedGegner == entryForNewGegner_)
+            return;
+        
+        selectedGegner.deleteFromDB();
+        gegnerList_.remove(selectedGegner);
+        gegnerListView_.getItems().remove(selectedGegner);
+    }
 }
+
+
