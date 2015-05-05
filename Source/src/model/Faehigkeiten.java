@@ -15,35 +15,34 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "FAEHIGKEITEN")
 public class Faehigkeiten implements DBObject {
-    @Id
-    @GeneratedValue
-    @Column(name = "ID", nullable = false)
-    public int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Geheime Magie'")
-    public String name_;
-    @Column(name = "EFFEKT_TYP", columnDefinition = "INTEGER NOT NULL default '0' check(EFFEKT_TYP >= 0 and EFFEKT_TYP <= 4)")
-    public int effekttypen_;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
-    public Ausruestung ausruestung_;
-    
-    @Override
-    public String toString() {
-        return name_;
-    }
-    
-    @PrePersist
-    public void onCreate() {
-        if (name_ == null) {
-            name_ = "Geheime Magie";
-        }
-        if (ausruestung_ == null) {
-            ausruestung_ = new Ausruestung();
-            ausruestung_.defH_ = 1;
-            ausruestung_.defR_ = 1;
-            ausruestung_.defS_ = 0;
-            AusruestungsManipulator.getInstance().add(ausruestung_);
-        }
-    }
-    
+	@Id
+	@GeneratedValue
+	@Column(name = "ID", nullable = false)
+	public int ID_;
+	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Geheime Magie'")
+	public String name_;
+	@Column(name = "EFFEKT_TYP", columnDefinition="INTEGER NOT NULL default '0' check(EFFEKT_TYP >= 0 and EFFEKT_TYP <= 4)")
+	public int effekttypen_;
+	@ManyToOne(optional=false)
+	@JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition="INTEGER NOT NULL default '1'")
+	public Ausruestung ausruestung_;
+	
+	@Override
+	public String toString() {
+		return name_;
+	}
+	@PrePersist
+	public void onCreate()	{
+		if(name_ == null)	{
+			name_="Geheime Magie";
+		}	
+		if(ausruestung_ == null)	{
+			ausruestung_ = new Ausruestung();
+			ausruestung_.defH_ = 1;
+			ausruestung_.defR_ = 1;
+			ausruestung_.defS_ = 0;
+			AusruestungsManipulator.getInstance().add(ausruestung_);
+		}
+	}
+	
 }

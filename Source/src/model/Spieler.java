@@ -18,178 +18,187 @@ import javax.persistence.TypedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
-//import javax.persistence.CascadeType;
+import javax.persistence.CascadeType;
 
 import controller.AusruestungsManipulator;
 import model.interfaces.DBObject;
 
 @Entity
-@Table(name = "SPIELER")
+@Table( name = "SPIELER")
+
 public class Spieler implements DBObject {
-    // private static EntityManagerFactory factory =
-    // Persistence.createEntityManagerFactory("thePersistenceUnit");
-    // private static EntityManager theManager = factory.createEntityManager();
-    @Id
-    @GeneratedValue
-    @Column(name = "ID")
-    private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Jane Doe'")
-    private String name_;
-    @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS <= 4)")
-    private int kreis_;
-    @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
-    private int level_;
-    @OneToOne(optional = false)
-    @JoinColumn(name = "AUSRUESTNGS_ID", unique = false, columnDefinition = "Integer NOT NULL default '1'")
-    private Ausruestung ausruestung_;
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(name = "SPIELER_IN_GRUPPE", joinColumns = { @JoinColumn(name = "SPIELER_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "GRUPPEN_ID", referencedColumnName = "ID") })
-    private Set<Gruppe> membership_;
-    
-    @PrePersist
-    public void onCreate() {
-        if (getName_() == null) {
-            setName_("Jane Doe");
-        }
-        if (getKreis_() == 0) {
-            setKreis_(1);
-        }
-        if (getAusruestung_() == null) {
-            setAusruestung_(new Ausruestung());
-            getAusruestung_().defH_ = 1;
-            getAusruestung_().defR_ = 1;
-            getAusruestung_().defS_ = 0;
-            AusruestungsManipulator.getInstance().add(getAusruestung_());
-        }
-        
-    }
-    
-    @Override
-    public String toString() {
-        return getName_();
-    }
-    
-    /**
-     * @return the iD_
-     */
-    public int getID_() {
-        return ID_;
-    }
-    
-    /**
-     * @return the name_
-     */
-    public String getName_() {
-        return name_;
-    }
-    
-    /**
-     * @return the kreis_
-     */
-    public int getKreis_() {
-        return kreis_;
-    }
-    
-    /**
-     * @return the level_
-     */
-    public int getLevel_() {
-        return level_;
-    }
-    
-    /**
-     * @return the ausruestung_
-     */
-    public Ausruestung getAusruestung_() {
-        return ausruestung_;
-    }
-    
-    /**
-     * @return the membership_
-     */
-    public Set<Gruppe> getMembership_() {
-        return membership_;
-    }
-    
-    /**
-     * @param membership_
-     *            the membership_ to set
-     */
-    public void setMembership_(Set<Gruppe> membership_) {
-        this.membership_ = membership_;
-    }
-    
-    /**
-     * @param ausruestung_
-     *            the ausruestung_ to set
-     */
-    public void setAusruestung_(Ausruestung ausruestung_) {
-        this.ausruestung_ = ausruestung_;
-    }
-    
-    /**
-     * @param level_
-     *            the level_ to set
-     */
-    public void setLevel_(int level_) {
-        this.level_ = level_;
-    }
-    
-    /**
-     * @param kreis_
-     *            the kreis_ to set
-     */
-    public void setKreis_(int kreis_) {
-        this.kreis_ = kreis_;
-    }
-    
-    /**
-     * @param name_
-     *            the name_ to set
-     */
-    public void setName_(String name_) {
-        this.name_ = name_;
-    }
-    
-    /**
-     * @param iD_
-     *            the iD_ to set
-     */
-    public void setID_(int iD_) {
-        ID_ = iD_;
-    }
-    
-    public int getDefR() {
-        return getAusruestung_().defR_;
-    }
-    
-    public int getDefH() {
-        return getAusruestung_().defH_;
-    }
-    
-    public int getDefS() {
-        return getAusruestung_().defS_;
-    }
-    
-    public List<Waffen> getWaffen() {
-        return getAusruestung_().getWaffen();
-    }
-    
-    public List<Faehigkeiten> getFaehigkeiten() {
-        return getAusruestung_().getFaehigkeiten();
-    }
-    
-    public static List<Spieler> getAllPlayers() {
-        EntityManagerFactory factory = Persistence
-                .createEntityManagerFactory("thePersistenceUnit");
+	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
+    private static EntityManager theManager = factory.createEntityManager();
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
+	private int ID_;
+	@Column(name = "NAME", columnDefinition="VARCHAR(30) NOT NULL default 'Jane Doe'")
+	private String name_;
+	@Column(name = "KREIS", columnDefinition="INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS <= 4)")
+	private int kreis_;
+	@Column(name = "LEVEL", columnDefinition="INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
+	private int level_;
+	@OneToOne(optional=false)
+	@JoinColumn(name = "AUSRUESTNGS_ID", unique = false, columnDefinition="Integer NOT NULL default '1'")
+	private Ausruestung ausruestung_;
+	@ManyToMany(cascade = {CascadeType.ALL})
+	@JoinTable(name = "SPIELER_IN_GRUPPE", 		
+		joinColumns=
+			{@JoinColumn(name="SPIELER_ID", referencedColumnName="ID")},
+        inverseJoinColumns=
+            {@JoinColumn(name="GRUPPEN_ID", referencedColumnName="ID")}
+	)
+	private Set<Gruppe> membership_;
+	
+	@PrePersist
+	public void onCreate()	{
+		if(getName_() == null)	{
+			setName_("Jane Doe");
+		}
+		if(getKreis_() == 0)	{
+			setKreis_(1);
+		}
+		if(getAusruestung_() == null)	{
+			setAusruestung_(new Ausruestung());
+			getAusruestung_().defH_ = 1;
+			getAusruestung_().defR_ = 1;
+			getAusruestung_().defS_ = 0;
+			AusruestungsManipulator.getInstance().add(getAusruestung_());
+		}
+		
+	}
+	
+	@Override
+	public String toString() {
+		return getName_();
+	}
+	
+	
+	
+	/**
+	 * @return the iD_
+	 */
+	public int getID_() {
+		return ID_;
+	}
+
+	/**
+	 * @return the name_
+	 */
+	public String getName_() {
+		return name_;
+	}
+
+	/**
+	 * @return the kreis_
+	 */
+	public int getKreis_() {
+		return kreis_;
+	}
+
+	/**
+	 * @return the level_
+	 */
+	public int getLevel_() {
+		return level_;
+	}
+
+	/**
+	 * @return the ausruestung_
+	 */
+	public Ausruestung getAusruestung_() {
+		return ausruestung_;
+	}
+
+	/**
+	 * @return the membership_
+	 */
+	public Set<Gruppe> getMembership_() {
+		return membership_;
+	}
+
+	/**
+	 * @param membership_ the membership_ to set
+	 */
+	public void setMembership_(Set<Gruppe> membership_) {
+		this.membership_ = membership_;
+	}
+
+	/**
+	 * @param ausruestung_ the ausruestung_ to set
+	 */
+	public void setAusruestung_(Ausruestung ausruestung_) {
+		this.ausruestung_ = ausruestung_;
+	}
+
+	/**
+	 * @param level_ the level_ to set
+	 */
+	public void setLevel_(int level_) {
+		this.level_ = level_;
+	}
+
+	/**
+	 * @param kreis_ the kreis_ to set
+	 */
+	public void setKreis_(int kreis_) {
+		this.kreis_ = kreis_;
+	}
+
+	/**
+	 * @param name_ the name_ to set
+	 */
+	public void setName_(String name_) {
+		this.name_ = name_;
+	}
+
+	/**
+	 * @param iD_ the iD_ to set
+	 */
+	public void setID_(int iD_) {
+		ID_ = iD_;
+	}
+
+	public int getDefR() {
+		return getAusruestung_().defR_;
+	}
+	
+	
+	
+	public int getDefH() {
+		return getAusruestung_().defH_;
+	}
+	
+	
+	
+	public int getDefS() {
+		return getAusruestung_().defS_;
+	}
+	
+	
+	
+	public List<Waffen> getWaffen() {
+		return getAusruestung_().getWaffen();
+	}
+	
+	
+	
+	public List<Faehigkeiten> getFaehigkeiten() {
+		return getAusruestung_().getFaehigkeiten();
+	}
+	
+	
+	
+	public static List<Spieler> getAllPlayers() {
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
         EntityManager theManager = factory.createEntityManager();
-        TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler",
-                Spieler.class);
+        TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler", Spieler.class);
         return getAllRows.getResultList();
-    }
-    
-    public void remove() {
-        // TODO loesche Spieler in der DB mit DB Manipulatoren
-        
-    }
+	}
+
+	public void remove() {
+		// TODO loesche Spieler in der DB mit DB Manipulatoren
+		
+	}
 }

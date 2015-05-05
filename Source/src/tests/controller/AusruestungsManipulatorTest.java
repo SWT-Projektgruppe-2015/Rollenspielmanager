@@ -14,35 +14,36 @@ import org.junit.Test;
 import controller.AusruestungsManipulator;
 
 public class AusruestungsManipulatorTest {
-    
-    private static AusruestungsManipulator testInstance;
-    private static Ausruestung testAusruestung;
-    
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-        
-        testInstance = AusruestungsManipulator.getInstance();
-        testAusruestung = new Ausruestung();
-        
-    }
-    
-    @Test
-    public void getInstanceTest() {
-        testInstance = AusruestungsManipulator.getInstance();
-        assertNotNull(testInstance);
-    }
-    
-    @Test
-    public void twoInstanceAreSame() {
-        AusruestungsManipulator testInstanceTwo = AusruestungsManipulator
-                .getInstance();
-        assertSame(testInstanceTwo, testInstance);
-    }
-    
+	
+	
+	private static AusruestungsManipulator testInstance;
+	private static Ausruestung testAusruestung;
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		
+		
+		testInstance = AusruestungsManipulator.getInstance();
+		testAusruestung = new Ausruestung();
+
+	}
+	
+	@Test
+	public void getInstanceTest() {
+		testInstance = AusruestungsManipulator.getInstance();
+		assertNotNull(testInstance);
+	}
+	
+	@Test 
+	public void twoInstanceAreSame() {
+		AusruestungsManipulator testInstanceTwo = AusruestungsManipulator.getInstance();
+		assertSame(testInstanceTwo,testInstance);
+	}
+	
     @Test
     public void testAdd() {
-        assertTrue(testInstance.add(testAusruestung));
-        
-    }
+    	assertTrue(testInstance.add(testAusruestung));
     
+    }
+	
 }
