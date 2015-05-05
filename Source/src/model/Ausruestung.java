@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -70,12 +71,13 @@ public class Ausruestung implements DBObject {
     }
     
     public List<Waffen> getWaffen() {
-        EntityManagerFactory factory = Persistence
-                .createEntityManagerFactory("thePersistenceUnit");
-        EntityManager theManager = factory.createEntityManager();
-        TypedQuery<Waffen> getWaffenInAusruestung = theManager.createQuery(
-                "FROM Waffen w WHERE w.ausruestung_ = " + getID_(), Waffen.class);
-        return getWaffenInAusruestung.getResultList();
+        // TODO:: Mit dem Waffenmanipulator diesen Code ersetzen.
+//        EntityManagerFactory factory = Persistence
+//                .createEntityManagerFactory("thePersistenceUnit");
+//        EntityManager theManager = factory.createEntityManager();
+//        TypedQuery<Waffen> getWaffenInAusruestung = theManager.createQuery(
+//                "FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
+        return new ArrayList<Waffen>();
     }
     
     @PrePersist
