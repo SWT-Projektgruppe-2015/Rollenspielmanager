@@ -20,10 +20,9 @@ public class SpielerManipulator implements DBManipulator {
     private static EntityManager theManager;
     
     private SpielerManipulator() {
-        theManager = EntityManagerFactoryProvider.getFactory().createEntityManager();
+        theManager = EntityManagerFactoryProvider.getFactory()
+                .createEntityManager();
     }
-    
-
     
     public static SpielerManipulator getInstance() {
         if (Singleton == null) {
@@ -31,8 +30,6 @@ public class SpielerManipulator implements DBManipulator {
         }
         return Singleton;
     }
-
-    
     
     public boolean add(DBObject entity) {
         boolean returnValue = true;
@@ -83,8 +80,9 @@ public class SpielerManipulator implements DBManipulator {
         boolean returnValue = true;
         theManager.getTransaction().begin();
         try {
-            Ausruestung besitz = theManager.find(Ausruestung.class, ((Spieler) entity).getAusruestung_().getID_());
-            if(AusruestungsManipulator.getInstance().delete(besitz))    {
+            Ausruestung besitz = theManager.find(Ausruestung.class,
+                    ((Spieler) entity).getAusruestung_().getID_());
+            if (AusruestungsManipulator.getInstance().delete(besitz)) {
                 theManager.remove((Spieler) entity);
             }
         }
@@ -103,8 +101,9 @@ public class SpielerManipulator implements DBManipulator {
                     + persistExceptionFour.getMessage());
             returnValue = false;
         }
-        catch (NullPointerException persistExceptionFive)   {
-            System.err.println("NullPointerException: " + persistExceptionFive.getMessage());
+        catch (NullPointerException persistExceptionFive) {
+            System.err.println("NullPointerException: "
+                    + persistExceptionFive.getMessage());
             returnValue = false;
         }
         finally {
@@ -126,8 +125,6 @@ public class SpielerManipulator implements DBManipulator {
         
         return returnValue;
     }
-
-    
     
     public boolean update(DBObject entity) {
         boolean returnValue = true;
@@ -173,8 +170,6 @@ public class SpielerManipulator implements DBManipulator {
         }
         return returnValue;
     }
-
-    
     
     public List<DBObject> getAll() {
         // TODO Auto-generated method stub

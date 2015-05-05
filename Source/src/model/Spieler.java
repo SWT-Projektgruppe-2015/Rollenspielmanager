@@ -26,8 +26,12 @@ import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "SPIELER")
+<<<<<<< 84668c646b7e1c3751af7692d8f1ec22e3f16fd2
 
 public class Spieler extends Charakter implements DBObject {
+=======
+public class Spieler implements DBObject, Charakter {
+>>>>>>> 5d305b61ef8a5ed44c11338802db64b9d74d52dc
     public static final int MAX_KREIS = 4;
     public static final int MAX_LEVEL = 12;
 
@@ -50,8 +54,6 @@ public class Spieler extends Charakter implements DBObject {
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "SPIELER_IN_GRUPPE", joinColumns = { @JoinColumn(name = "SPIELER_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "GRUPPEN_ID", referencedColumnName = "ID") })
     private Set<Gruppe> membership_;
-
-    
     
     @PrePersist
     public void onCreate() {
@@ -130,8 +132,7 @@ public class Spieler extends Charakter implements DBObject {
     }
     
     
-    
-    
+
     /**
      * @return the membership_
      */
@@ -140,8 +141,7 @@ public class Spieler extends Charakter implements DBObject {
     }
     
     
-    
-    
+
     /**
      * @param membership_
      *            the membership_ to set
@@ -220,6 +220,8 @@ public class Spieler extends Charakter implements DBObject {
         return getAusruestung_().getFaehigkeiten();
     }
 
+
+    
     public static List<Spieler> getAllPlayers() {
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory("thePersistenceUnit");
@@ -233,7 +235,7 @@ public class Spieler extends Charakter implements DBObject {
 
     public void increaseLevel() {
         boolean spielerHasMaximumLevelInKreis = getLevel_() == MAX_LEVEL;
-
+        
         if (!spielerHasMaximumLevelInKreis) {
             setLevel_(getLevel_() + 1);
         }
