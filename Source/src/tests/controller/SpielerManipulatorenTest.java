@@ -5,6 +5,7 @@ package tests.controller;
 //import javax.persistence.Persistence;
 //
 //import model.Ausruestung;
+
 import model.Spieler;
 
 import org.junit.BeforeClass;
@@ -23,17 +24,21 @@ public class SpielerManipulatorenTest {
     
     private static SpielerManipulator testInstance;
     private static Spieler testSpieler;
-    
+
     @BeforeClass
     public static void setUpBeforeClass() {
         testInstance = SpielerManipulator.getInstance();
         testSpieler = new Spieler();
     }
     
+    
+    
     @Test
     public void CanMakeInstance() {
         assertNotNull(testInstance);
     }
+    
+    
     
     @Test
     public void twoInstancesAreSame() {
@@ -41,10 +46,14 @@ public class SpielerManipulatorenTest {
         assertSame(testInstance, testInstance2);
     }
     
+    
+    
     @Test
     public void canAddSpieler() {
         assertTrue("Couldn't add new Spieler.", testInstance.add(testSpieler));
     }
+    
+    
     
     /**
      * Ignoriert bis man rausbekommt wie man die Exception ausloest.
@@ -73,5 +82,4 @@ public class SpielerManipulatorenTest {
         assertFalse("Can delete non existant Spieler",
                 testInstance.delete(null));
     }
-    
 }

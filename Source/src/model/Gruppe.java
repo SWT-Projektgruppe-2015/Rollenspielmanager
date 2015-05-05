@@ -23,45 +23,52 @@ public class Gruppe implements DBObject {
     private String name_;
     @ManyToMany(mappedBy = "membership_")
     private Set<Spieler> members_;
-    
+
     @Override
     public String toString() {
         return name_;
     }
-    
+
+
+
     public void addSpieler(Spieler spieler) {
         if (members_ == null) {
             members_ = new HashSet<Spieler>();
         }
         members_.add(spieler);
     }
-    
+
+
+
     public Set<Spieler> getAllSpieler() {
         if (members_ == null) {
             members_ = new HashSet<Spieler>();
         }
         return members_;
     }
-    
+
+
+
     public void removePlayer(Spieler spieler) {
         if (members_ != null) {
             members_.remove(spieler);
         }
     }
-    
+
+
+
     public String getName() {
         return name_;
     }
-    
+
     public void setName(String name) {
         name_ = name;
     }
-    
+
     public void remove() {
     }
-    
+
     public void add() {
         // TODO Gruppe per Manipulator speichern
-        
     }
 }

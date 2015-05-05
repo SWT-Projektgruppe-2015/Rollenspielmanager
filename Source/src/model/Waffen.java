@@ -27,23 +27,36 @@ public class Waffen implements DBObject {
     @ManyToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Ausruestung ausruestung_;
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     public Waffen() {
         super();
         setWaffenSchaden_(0);
     }
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     @Override
     public String toString() {
         return waffenName_;
     }
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     @PrePersist
     public void onCreate() {
         if (waffenName_ == null) {
             waffenName_ = "Deus Ex Machina";
         }
     }
+<<<<<<< Updated upstream
     
     public int getEffektTyp_() {
         return effektTyp_;
@@ -77,6 +90,41 @@ public class Waffen implements DBObject {
         this.ausruestung_ = ausruestung_;
     }
     
+=======
+
+    public int getEffektTyp_() {
+        return effektTyp_;
+    }
+
+    public void setEffektTyp_(int effektTyp_) {
+        this.effektTyp_ = effektTyp_;
+    }
+
+    public String getWaffenName_() {
+        return waffenName_;
+    }
+
+    public void setWaffenName_(String waffenName_) {
+        this.waffenName_ = waffenName_;
+    }
+
+    public int getWaffenSchaden_() {
+        return waffenSchaden_;
+    }
+
+    public void setWaffenSchaden_(int waffenSchaden_) {
+        this.waffenSchaden_ = waffenSchaden_;
+    }
+
+    public Ausruestung getAusruestung_() {
+        return ausruestung_;
+    }
+
+    public void setAusruestung_(Ausruestung ausruestung_) {
+        this.ausruestung_ = ausruestung_;
+    }
+
+>>>>>>> Stashed changes
     public void remove() {
         // entferne Waffe aus DB mithilfe von Manipulatoren
     }

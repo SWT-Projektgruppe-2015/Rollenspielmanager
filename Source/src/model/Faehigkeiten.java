@@ -26,12 +26,20 @@ public class Faehigkeiten implements DBObject {
     @ManyToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Ausruestung ausruestung_;
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     @Override
     public String toString() {
         return name_;
     }
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     @PrePersist
     public void onCreate() {
         if (name_ == null) {
@@ -42,6 +50,7 @@ public class Faehigkeiten implements DBObject {
             AusruestungsManipulator.getInstance().add(ausruestung_);
         }
     }
+<<<<<<< Updated upstream
     
     public String getName_() {
         return name_;
@@ -71,4 +80,35 @@ public class Faehigkeiten implements DBObject {
         // TODO lösche aus DB mithilfe von DB Manipulatoren
     }
     
+=======
+
+    public String getName_() {
+        return name_;
+    }
+
+    public void setName_(String name_) {
+        this.name_ = name_;
+    }
+
+    public int getEffekttypen_() {
+        return effekttypen_;
+    }
+
+    public void setEffekttypen_(int effekttypen_) {
+        this.effekttypen_ = effekttypen_;
+    }
+
+    public Ausruestung getAusruestung_() {
+        return ausruestung_;
+    }
+
+    public void setAusruestung_(Ausruestung ausruestung_) {
+        this.ausruestung_ = ausruestung_;
+    }
+
+    public void remove() {
+        // TODO lösche aus DB mithilfe von DB Manipulatoren
+    }
+
+>>>>>>> Stashed changes
 }

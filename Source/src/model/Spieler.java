@@ -26,10 +26,11 @@ import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "SPIELER")
-public class Spieler implements DBObject {
+
+public class Spieler implements DBObject, Charakter {
     public static final int MAX_KREIS = 4;
     public static final int MAX_LEVEL = 12;
-    
+
     private static EntityManagerFactory factory = Persistence
             .createEntityManagerFactory("thePersistenceUnit");
     private static EntityManager theManager = factory.createEntityManager();
@@ -49,6 +50,8 @@ public class Spieler implements DBObject {
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(name = "SPIELER_IN_GRUPPE", joinColumns = { @JoinColumn(name = "SPIELER_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "GRUPPEN_ID", referencedColumnName = "ID") })
     private Set<Gruppe> membership_;
+
+    
     
     @PrePersist
     public void onCreate() {
@@ -62,21 +65,26 @@ public class Spieler implements DBObject {
             setAusruestung_(new Ausruestung());
             AusruestungsManipulator.getInstance().add(getAusruestung_());
         }
-        
     }
+    
+    
     
     @Override
     public String toString() {
         return getName_();
     }
     
+    
+
     public void remove() {
         // TODO loesche Spieler in der DB mit DB Manipulatoren
     }
-    
+
     public void add() {
         SpielerManipulator.getInstance().add(this);
     }
+
+
     
     /**
      * @return the iD_
@@ -85,12 +93,16 @@ public class Spieler implements DBObject {
         return ID_;
     }
     
+    
+    
     /**
      * @return the name_
      */
     public String getName_() {
         return name_;
     }
+    
+    
     
     /**
      * @return the kreis_
@@ -99,12 +111,16 @@ public class Spieler implements DBObject {
         return kreis_;
     }
     
+    
+    
     /**
      * @return the level_
      */
     public int getLevel_() {
         return level_;
     }
+    
+    
     
     /**
      * @return the ausruestung_
@@ -113,12 +129,18 @@ public class Spieler implements DBObject {
         return ausruestung_;
     }
     
+    
+    
+    
     /**
      * @return the membership_
      */
     public Set<Gruppe> getMembership_() {
         return membership_;
     }
+    
+    
+    
     
     /**
      * @param membership_
@@ -128,6 +150,8 @@ public class Spieler implements DBObject {
         this.membership_ = membership_;
     }
     
+    
+    
     /**
      * @param ausruestung_
      *            the ausruestung_ to set
@@ -135,6 +159,8 @@ public class Spieler implements DBObject {
     public void setAusruestung_(Ausruestung ausruestung_) {
         this.ausruestung_ = ausruestung_;
     }
+    
+    
     
     /**
      * @param level_
@@ -144,6 +170,8 @@ public class Spieler implements DBObject {
         this.level_ = level_;
     }
     
+    
+    
     /**
      * @param kreis_
      *            the kreis_ to set
@@ -151,6 +179,8 @@ public class Spieler implements DBObject {
     public void setKreis_(int kreis_) {
         this.kreis_ = kreis_;
     }
+    
+    
     
     /**
      * @param name_
@@ -160,6 +190,8 @@ public class Spieler implements DBObject {
         this.name_ = name_;
     }
     
+    
+    
     /**
      * @param iD_
      *            the iD_ to set
@@ -168,20 +200,25 @@ public class Spieler implements DBObject {
         ID_ = iD_;
     }
     
+    
+    
     public int getDefR() {
         Ausruestung ausruestung = getAusruestung_();
         if (ausruestung == null)
             return 1;
-        
+
         return getAusruestung_().getDefR_();
     }
+
+    
     
     public void setDefR(int def) {
         Ausruestung ausruestung = getAusruestungForModification();
-        
+
         if (def > 0)
             ausruestung.setDefR_(def);
     }
+    
     
     public int getDefH() {
         Ausruestung ausruestung = getAusruestung_();
@@ -191,12 +228,16 @@ public class Spieler implements DBObject {
         return getAusruestung_().getDefH_();
     }
     
+    
+
     public void setDefH(int def) {
         Ausruestung ausruestung = getAusruestungForModification();
-        
+
         if (def > 0)
             ausruestung.setDefH_(def);
     }
+
+    
     
     public int getDefS() {
         Ausruestung ausruestung = getAusruestung_();
@@ -212,7 +253,9 @@ public class Spieler implements DBObject {
         if (def >= 0)
             ausruestung.setDefS_(def);
     }
-    
+
+
+
     /**
      * Falls keine Ausruestung vorhanden ist, wird eine neue erstellt und mit
      * dem Spieler verbunden.
@@ -228,6 +271,8 @@ public class Spieler implements DBObject {
         return ausruestung;
     }
     
+    
+    
     public List<Waffen> getWaffen() {
         Ausruestung ausruestung = getAusruestung_();
         if (ausruestung == null)
@@ -235,6 +280,8 @@ public class Spieler implements DBObject {
         
         return getAusruestung_().getWaffen();
     }
+
+    
     
     public List<Faehigkeiten> getFaehigkeiten() {
         Ausruestung ausruestung = getAusruestung_();
@@ -243,7 +290,7 @@ public class Spieler implements DBObject {
         
         return getAusruestung_().getFaehigkeiten();
     }
-    
+
     public static List<Spieler> getAllPlayers() {
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory("thePersistenceUnit");
@@ -252,10 +299,12 @@ public class Spieler implements DBObject {
                 Spieler.class);
         return getAllRows.getResultList();
     }
+
     
+
     public void increaseLevel() {
         boolean spielerHasMaximumLevelInKreis = getLevel_() == MAX_LEVEL;
-        
+
         if (!spielerHasMaximumLevelInKreis) {
             setLevel_(getLevel_() + 1);
         }
@@ -264,18 +313,22 @@ public class Spieler implements DBObject {
         }
     }
     
+    
+
     private void increaseKreis() {
         boolean spielerHasMaximumKreis = getKreis_() == MAX_KREIS;
-        
+
         if (!spielerHasMaximumKreis) {
             setLevel_(1);
             setKreis_(getKreis_() + 1);
         }
     }
+
     
+
     public void decreaseLevel() {
         boolean spielerHasMinimumLevelInKreis = getLevel_() == 1;
-        
+
         if (!spielerHasMinimumLevelInKreis) {
             setLevel_(getLevel_() - 1);
         }
@@ -284,29 +337,39 @@ public class Spieler implements DBObject {
         }
     }
     
+    
+
     private void decreaseKreis() {
         boolean spielerHasMinimumKreis = getKreis_() == 1;
-        
+
         if (!spielerHasMinimumKreis) {
             setLevel_(MAX_LEVEL);
             setKreis_(getKreis_() - 1);
         }
     }
     
+    
+    
     public void addWaffe(Waffen waffe) {
         Ausruestung ausruestung = getAusruestungForModification();
         ausruestung.addWaffe(waffe);
     }
+    
+    
     
     public void deleteWaffe(Waffen waffe) {
         Ausruestung ausruestung = getAusruestungForModification();
         ausruestung.deleteWaffe(waffe);
     }
     
+    
+    
     public void addFaehigkeit(Faehigkeiten faehigkeit) {
         Ausruestung ausruestung = getAusruestungForModification();
         ausruestung.addFaehigkeit(faehigkeit);
     }
+    
+    
     
     public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
         Ausruestung ausruestung = getAusruestungForModification();

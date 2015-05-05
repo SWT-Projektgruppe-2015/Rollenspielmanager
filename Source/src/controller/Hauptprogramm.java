@@ -33,6 +33,8 @@ public class Hauptprogramm extends Application {
         showMainMenu();
     }
     
+    
+    
     public void initializeMenuBar() {
         try {
             FXMLLoader loader = getLoaderForXML("../view/MenuBar.fxml");
@@ -47,13 +49,15 @@ public class Hauptprogramm extends Application {
         }
     }
     
+    
+    
     public void showMainMenu() {
         try {
             FXMLLoader loader = getLoaderForXML("../view/MainMenu.fxml");
             AnchorPane mainMenu = (AnchorPane) loader.load();
             
             menuBar.setCenter(mainMenu);
-            
+
             MainMenuController controller = loader.getController();
             controller.setHauptProgramm(this);
         }
@@ -71,6 +75,8 @@ public class Hauptprogramm extends Application {
         }
     }
     
+    
+    
     public void openCharakterManager() {
         try {
             openNewWindow("../view/Charaktermanager.fxml", "Charaktermanager");
@@ -79,6 +85,8 @@ public class Hauptprogramm extends Application {
             e.printStackTrace();
         }
     }
+    
+    
     
     private void openNewWindow(String resourceFile, String title)
             throws IOException {
@@ -103,6 +111,8 @@ public class Hauptprogramm extends Application {
     public Stage getPrimaryStage() {
         return primaryStage;
     }
+    
+    
     
     public static void main(String[] args) {
         launch(args);

@@ -24,12 +24,16 @@ public class SpielerManipulator implements DBManipulator {
         theManager = factory.createEntityManager();
     }
     
+
+    
     public static SpielerManipulator getInstance() {
         if (Singleton == null) {
             Singleton = new SpielerManipulator();
         }
         return Singleton;
     }
+
+    
     
     public boolean add(DBObject entity) {
         theManager.getTransaction().begin();
@@ -107,15 +111,18 @@ public class SpielerManipulator implements DBManipulator {
         
         return true;
     }
+
+    
     
     public boolean update(DBObject entity) {
         // TODO Auto-generated method stub
         return false;
     }
+
+    
     
     public List<DBObject> getAll() {
         // TODO Auto-generated method stub
         return null;
     }
-    
 }

@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,12 +16,20 @@ import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "GEGNER")
+<<<<<<< Updated upstream
 public class Gegner implements DBObject {
+=======
+public class Gegner implements DBObject, Charakter {
+>>>>>>> Stashed changes
     @Id
     @GeneratedValue
     @Column(name = "ID")
     public int ID_;
+<<<<<<< Updated upstream
     @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Gegner Nr. 420'")
+=======
+    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Gegner Nr. 460'")
+>>>>>>> Stashed changes
     public String name_;
     @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS<=4)")
     public int kreis_;
@@ -38,7 +49,11 @@ public class Gegner implements DBObject {
     @OneToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     public Ausruestung ausruestung_;
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     public void onCreate() {
         if (name_ == null) {
             name_ = "Gegner Nr. 460";
@@ -60,4 +75,73 @@ public class Gegner implements DBObject {
             AusruestungsManipulator.getInstance().add(ausruestung_);
         }
     }
+<<<<<<< Updated upstream
+=======
+
+    public String getName_() {
+        return name_;
+    }
+
+    public void setName_(String name_) {
+        this.name_ = name_;
+    }
+
+    public int getKreis_() {
+        return kreis_;
+    }
+
+    public void setKreis_(int kreis_) {
+        this.kreis_ = kreis_;
+    }
+
+    public int getLevel_() {
+        return level_;
+    }
+
+    public void setLevel_(int level_) {
+        this.level_ = level_;
+    }
+
+    public int getErfahrung_() {
+        return erfahrung_;
+    }
+
+    public void setErfahrung_(int erfahrung_) {
+        this.erfahrung_ = erfahrung_;
+    }
+
+    public int getStaerke_() {
+        return staerke_;
+    }
+
+    public void setStaerke_(int staerke_) {
+        this.staerke_ = staerke_;
+    }
+
+    public int getGeschick_() {
+        return geschick_;
+    }
+
+    public void setGeschick_(int geschick_) {
+        this.geschick_ = geschick_;
+    }
+
+    public int getLebenspunkte_() {
+        return lebenspunkte_;
+    }
+
+    public void setLebenspunkte_(int lebenspunkte_) {
+        this.lebenspunkte_ = lebenspunkte_;
+    }
+
+    public static List<Gegner> getAllGegner() {
+        return new ArrayList<Gegner>();
+        // TODO alle Gegner aus DB holen
+    }
+
+    public int getDamage() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+>>>>>>> Stashed changes
 }
