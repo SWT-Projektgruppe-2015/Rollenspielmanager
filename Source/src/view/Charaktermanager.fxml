@@ -11,22 +11,7 @@
   <tabs>
     <Tab closable="false" text="Gruppen">
          <content>
-            <AnchorPane prefHeight="311.0" prefWidth="600.0">
-               <children>
-                  <Text layoutX="100.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppenname:" />
-                  <TextField fx:id="newGroupNameTextField_" layoutX="187.0" layoutY="14.0" onAction="#createGroup" prefHeight="25.0" prefWidth="165.0" />
-                  <ListView fx:id="playersNotInGroupListView_" layoutX="100.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" />
-                  <ListView fx:id="playersInGroupListView_" layoutX="300.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" />
-                  <Button layoutX="275.0" layoutY="195.0" mnemonicParsing="false" onAction="#removePlayerFromGroup" text="&lt;" />
-                  <Button layoutX="301.0" layoutY="195.0" mnemonicParsing="false" onAction="#addPlayerToGroup" text="&gt;" />
-                  <ComboBox fx:id="groupComboBox_" layoutX="187.0" layoutY="40.0" prefHeight="25.0" prefWidth="190.0" promptText="wähle Gruppe aus..." />
-                  <Label layoutX="128.0" layoutY="87.0" text="Spielerliste" />
-                  <Label layoutX="326.0" layoutY="87.0" text="Abenteuergruppe" />
-                  <Button layoutX="390.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateGroup" prefHeight="25.0" prefWidth="60.0" text="Update" />
-                  <Button layoutX="390.0" layoutY="40.0" mnemonicParsing="false" onAction="#deleteGroup" text="Löschen" />
-                  <Button layoutX="450.0" layoutY="14.0" mnemonicParsing="false" onAction="#createGroup" prefHeight="25.0" prefWidth="60.0" text="Neu" />
-               </children>
-            </AnchorPane>
+          <fx:include fx:id="gruppenManager" source="Gruppenmanager.fxml" />
          </content></Tab>
     <Tab closable="false" text="Spieler">
          <content>

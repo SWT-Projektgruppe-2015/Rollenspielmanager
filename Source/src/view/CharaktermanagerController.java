@@ -1,19 +1,15 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import model.Charakter;
 import model.Faehigkeiten;
 import model.Gegner;
-import model.Gruppe;
 import model.Spieler;
 import model.Waffen;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -21,7 +17,6 @@ import javafx.scene.control.TextField;
 public class CharaktermanagerController {
     private List<Spieler> spielerList_;
     private List<Gegner> gegnerList_;
-    private List<Gruppe> gruppeList_;
     
     private Spieler entryForNewSpieler_;
     private Waffen entryForNewWaffe_;
@@ -29,14 +24,8 @@ public class CharaktermanagerController {
     private Gegner entryForNewGegner_;
 
     @FXML
-    private TextField newGroupNameTextField_;
-    @FXML
-    private ComboBox<Gruppe> groupComboBox_;
-    @FXML
-    private ListView<Spieler> playersNotInGroupListView_; 
-    @FXML
-    private ListView<Spieler> playersInGroupListView_; 
-
+    private GruppenmanagerController gruppenManagerController;
+    
     @FXML
     private ListView<Spieler> playersListView_;
     @FXML
@@ -106,32 +95,16 @@ public class CharaktermanagerController {
     @FXML
     private void initialize() {
         initializeController();
-        initializeGroupManager();
+        gruppenManagerController.initialize();
         initializePlayerManager();
         initializeGegnerManager();
     }
 
     private void initializeController() {
         spielerList_ = Spieler.getAllPlayers();
+        gruppenManagerController.setAllSpielerList(spielerList_);
         gegnerList_ = Gegner.getAllGegner();
 
-    }
-
-    private void initializeGroupManager() {
-        playersNotInGroupListView_.getItems().setAll(spielerList_);
-        // List<Gruppe> allGruppen = GruppenManipulator.getAll();
-        gruppeList_ = new ArrayList<Gruppe>();
-        groupComboBox_.getItems().setAll(gruppeList_);
-        groupComboBox_.getSelectionModel().selectedItemProperty()
-                .addListener(new ChangeListener<Gruppe>() {
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends Gruppe> observable,
-                            Gruppe oldValue, Gruppe newValue) {
-                        showGroupName(newValue);
-                        updateGroupListViews(newValue);
-                    }
-                });
     }
 
     private void initializePlayerManager() {
@@ -237,24 +210,6 @@ public class CharaktermanagerController {
         return entryForNewFaehigkeit;
     }
 
-    private void updateGroupListViews(Gruppe selectedGruppe) {
-        if (selectedGruppe == null) {
-            playersInGroupListView_.getItems().clear();
-            playersNotInGroupListView_.getItems().setAll(spielerList_);
-            return;
-        }
-
-        Collection<Spieler> playersInGroup = selectedGruppe.getAllSpieler();
-        playersInGroupListView_.getItems().setAll(playersInGroup);
-
-        playersNotInGroupListView_.getItems().clear();
-        for (Spieler player : spielerList_) {
-            if (!playersInGroup.contains(player)) {
-                playersNotInGroupListView_.getItems().add(player);
-            }
-        }
-    }
-
     private void updateSpielerLists(Spieler changedSpieler) {
         if (changedSpieler == entryForNewSpieler_) {
             spielerList_.add(changedSpieler);
@@ -266,8 +221,7 @@ public class CharaktermanagerController {
         playersListView_.getItems().add(entryForNewSpieler_);
         playersListView_.getSelectionModel().select(changedSpieler);
 
-        playersNotInGroupListView_.getItems().setAll(spielerList_);
-        playersNotInGroupListView_.getSelectionModel().select(changedSpieler);
+        gruppenManagerController.updateAllSpieler(spielerList_, changedSpieler);
     }
     
     
@@ -316,16 +270,7 @@ public class CharaktermanagerController {
         }
     }
 
-    private Gruppe getSelectedGruppe() {
-        int selectedIndex = groupComboBox_.getSelectionModel()
-                .getSelectedIndex();
-        if (selectedIndex < 0)
-            return null;
-
-        Gruppe selectedGruppe = groupComboBox_.getItems().get(selectedIndex);
-
-        return selectedGruppe;
-    }
+    
 
     private Spieler getSelectedSpieler() {
         return getSelected(playersListView_);
@@ -353,73 +298,7 @@ public class CharaktermanagerController {
         return selected;
     }
 
-    private void showGroupName(Gruppe gruppe) {
-        if (gruppe == null) {
-            newGroupNameTextField_.setText("");
-        }
-        else {
-            newGroupNameTextField_.setText(gruppe.getName());
-        }
-    }
-
-    @FXML
-    private void createGroup() {
-        Gruppe newGroup = new Gruppe();
-        newGroup.setName(newGroupNameTextField_.getText());
-        newGroup.add();
-        gruppeList_.add(newGroup);
-        groupComboBox_.getItems().add(newGroup);
-        groupComboBox_.getSelectionModel().select(newGroup);
-    }
-
-    @FXML
-    private void deleteGroup() {
-        Gruppe groupToDelete = getSelectedGruppe();
-        if (groupToDelete != null) {
-            groupComboBox_.getItems().remove(groupToDelete);
-            gruppeList_.remove(groupToDelete);
-            groupToDelete.remove();
-        }
-    }
-
-    @FXML
-    private void updateGroup() {
-        Gruppe selectedGruppe = getSelectedGruppe();
-        if (selectedGruppe == null)
-            return;
-
-        selectedGruppe.setName(newGroupNameTextField_.getText());
-        groupComboBox_.getItems().setAll(gruppeList_);
-        groupComboBox_.getSelectionModel().select(selectedGruppe);
-    }
-
-    @FXML
-    private void addPlayerToGroup() {
-        Gruppe selectedGruppe = getSelectedGruppe();
-        if (selectedGruppe == null)
-            return;
-
-        Spieler chosenSpieler = playersNotInGroupListView_.getSelectionModel()
-                .getSelectedItem();
-        if (chosenSpieler != null) {
-            playersInGroupListView_.getItems().add(chosenSpieler);
-            playersNotInGroupListView_.getItems().remove(chosenSpieler);
-            selectedGruppe.addSpieler(chosenSpieler);
-        }
-    }
-
-    @FXML
-    private void removePlayerFromGroup() {
-        Spieler chosenSpieler = playersInGroupListView_.getSelectionModel()
-                .getSelectedItem();
-        if (chosenSpieler != null) {
-            playersNotInGroupListView_.getItems().add(chosenSpieler);
-            playersInGroupListView_.getItems().remove(chosenSpieler);
-
-            Gruppe selectedGruppe = getSelectedGruppe();
-            selectedGruppe.removePlayer(chosenSpieler);
-        }
-    }
+    
 
     private void showPlayerDetails(Spieler player) {
         if (player == null) {
@@ -558,7 +437,7 @@ public class CharaktermanagerController {
         if (spielerToDelete != null) {
             playersListView_.getItems().remove(spielerToDelete);
             spielerList_.remove(spielerToDelete);
-            updateGroupListViews(getSelectedGruppe());
+            gruppenManagerController.updateGruppenListViews(gruppenManagerController.getSelectedGruppe());
 
             spielerToDelete.remove();
         }
