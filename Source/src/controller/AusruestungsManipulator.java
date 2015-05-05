@@ -17,11 +17,11 @@ public class AusruestungsManipulator implements DBManipulator {
             .createEntityManagerFactory("thePersistenceUnit");
     private static EntityManager theManager = factory_.createEntityManager();
     private static AusruestungsManipulator singelton;
-
+    
     private AusruestungsManipulator() {
-
+        
     }
-
+    
     @Override
     public boolean add(DBObject entity) {
         theManager.getTransaction().begin();
@@ -44,34 +44,34 @@ public class AusruestungsManipulator implements DBManipulator {
                     + addExceptionThree.getMessage());
             return false;
         }
-
+        
         theManager.getTransaction().commit();
         return true;
     }
-
+    
     @Override
     public boolean delete(DBObject entity) {
         // TODO Auto-generated method stub
         return false;
     }
-
+    
     @Override
     public boolean update(DBObject entity) {
         // TODO Auto-generated method stub
         return false;
     }
-
+    
     @Override
     public List<DBObject> getAll() {
         // TODO Auto-generated method stub
         return null;
     }
-
+    
     public static AusruestungsManipulator getInstance() {
         if (singelton == null) {
             singelton = new AusruestungsManipulator();
         }
         return singelton;
     }
-
+    
 }

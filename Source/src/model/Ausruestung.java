@@ -34,7 +34,7 @@ public class Ausruestung implements DBObject {
     private int defH_;
     @Column(name = "DEFS", columnDefinition = "INTEGER DEFAULT '0' CHECK(DEFS >= 0)")
     private int defS_;
-
+    
     /**
      * Setzt DefR, DefH und DefS auf die Default-Werte.
      */
@@ -44,31 +44,31 @@ public class Ausruestung implements DBObject {
         setDefH_(1);
         setDefS_(0);
     }
-
+    
     public int getDefR_() {
         return defR_;
     }
-
+    
     public void setDefR_(int defR_) {
         this.defR_ = defR_;
     }
-
+    
     public int getDefH_() {
         return defH_;
     }
-
+    
     public void setDefH_(int defH_) {
         this.defH_ = defH_;
     }
-
+    
     public int getDefS_() {
         return defS_;
     }
-
+    
     public void setDefS_(int defS_) {
         this.defS_ = defS_;
     }
-
+    
     public List<Waffen> getWaffen() {
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory("thePersistenceUnit");
@@ -77,7 +77,7 @@ public class Ausruestung implements DBObject {
                 "FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
         return getWaffenInAusruestung.getResultList();
     }
-
+    
     @PrePersist
     public void onCreate() {
         if (defH_ == 0) {
@@ -86,9 +86,9 @@ public class Ausruestung implements DBObject {
         if (defR_ == 0) {
             defR_ = 1;
         }
-
+        
     }
-
+    
     public List<Faehigkeiten> getFaehigkeiten() {
         EntityManagerFactory factory = Persistence
                 .createEntityManagerFactory("thePersistenceUnit");
@@ -98,19 +98,19 @@ public class Ausruestung implements DBObject {
                         + ID_, Faehigkeiten.class);
         return getFaehigkeitenInAusruestung.getResultList();
     }
-
+    
     public void addWaffe(Waffen selectedWaffe) {
         selectedWaffe.setAusruestung_(this);
     }
-
+    
     public void deleteWaffe(Waffen waffe) {
         waffe.remove();
     }
-
+    
     public void addFaehigkeit(Faehigkeiten faehigkeit) {
         faehigkeit.setAusruestung_(this);
     }
-
+    
     public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
         faehigkeit.remove();
     }
