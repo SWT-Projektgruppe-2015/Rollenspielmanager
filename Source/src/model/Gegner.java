@@ -17,7 +17,7 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "GEGNER")
 
-public class Gegner implements DBObject, Charakter {
+public class Gegner extends Charakter implements DBObject {
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -66,11 +66,20 @@ public class Gegner implements DBObject, Charakter {
             AusruestungsManipulator.getInstance().add(ausruestung_);
         }
     }
+    
+    
+    public String toString() {
+    	return name_;
+    }
 
+    
+    
     public String getName_() {
         return name_;
     }
 
+    
+    
     public void setName_(String name_) {
         this.name_ = name_;
     }
@@ -129,7 +138,18 @@ public class Gegner implements DBObject, Charakter {
     }
 
     public int getDamage() {
-        // TODO Auto-generated method stub
         return 0;
     }
+
+
+	@Override
+	Ausruestung getAusruestung_() {
+		return ausruestung_;
+	}
+
+
+	@Override
+	void setAusruestung_(Ausruestung ausruestung) {
+		ausruestung_ = ausruestung;
+	}
 }

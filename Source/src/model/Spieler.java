@@ -27,7 +27,7 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "SPIELER")
 
-public class Spieler implements DBObject, Charakter {
+public class Spieler extends Charakter implements DBObject {
     public static final int MAX_KREIS = 4;
     public static final int MAX_LEVEL = 12;
 
@@ -156,8 +156,8 @@ public class Spieler implements DBObject, Charakter {
      * @param ausruestung_
      *            the ausruestung_ to set
      */
-    public void setAusruestung_(Ausruestung ausruestung_) {
-        this.ausruestung_ = ausruestung_;
+    public void setAusruestung_(Ausruestung ausruestung) {
+        this.ausruestung_ = ausruestung;
     }
     
     
@@ -199,78 +199,7 @@ public class Spieler implements DBObject, Charakter {
     public void setID_(int iD_) {
         ID_ = iD_;
     }
-    
-    
-    
-    public int getDefR() {
-        Ausruestung ausruestung = getAusruestung_();
-        if (ausruestung == null)
-            return 1;
 
-        return getAusruestung_().getDefR_();
-    }
-
-    
-    
-    public void setDefR(int def) {
-        Ausruestung ausruestung = getAusruestungForModification();
-
-        if (def > 0)
-            ausruestung.setDefR_(def);
-    }
-    
-    
-    public int getDefH() {
-        Ausruestung ausruestung = getAusruestung_();
-        if (ausruestung == null)
-            return 1;
-        
-        return getAusruestung_().getDefH_();
-    }
-    
-    
-
-    public void setDefH(int def) {
-        Ausruestung ausruestung = getAusruestungForModification();
-
-        if (def > 0)
-            ausruestung.setDefH_(def);
-    }
-
-    
-    
-    public int getDefS() {
-        Ausruestung ausruestung = getAusruestung_();
-        if (ausruestung == null)
-            return 0;
-        
-        return getAusruestung_().getDefS_();
-    }
-    
-    public void setDefS(int def) {
-        Ausruestung ausruestung = getAusruestungForModification();
-        
-        if (def >= 0)
-            ausruestung.setDefS_(def);
-    }
-
-
-
-    /**
-     * Falls keine Ausruestung vorhanden ist, wird eine neue erstellt und mit
-     * dem Spieler verbunden.
-     * 
-     * @return Ausruestung des Spielers, niemals null.
-     */
-    private Ausruestung getAusruestungForModification() {
-        Ausruestung ausruestung = getAusruestung_();
-        if (ausruestung == null) {
-            ausruestung = new Ausruestung();
-            setAusruestung_(ausruestung);
-        }
-        return ausruestung;
-    }
-    
     
     
     public List<Waffen> getWaffen() {

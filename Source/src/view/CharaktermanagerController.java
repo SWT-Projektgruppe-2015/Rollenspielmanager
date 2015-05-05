@@ -425,7 +425,9 @@ public class CharaktermanagerController {
 
             staerkeTextField_.setText(Integer.toString(gegner.getStaerke_()));
             geschickTextField_.setText(Integer.toString(gegner.getGeschick_()));
-
+            erfahrungsTextField_.setText(Integer.toString(gegner.getErfahrung_()));
+            
+            this.gegnerDefRTextField_.setText(Integer.toString(gegner.getDefR()));
             damageTextField_.setText(Integer.toString(gegner.getDamage()));
         }
     }
@@ -445,7 +447,16 @@ public class CharaktermanagerController {
     }
 
     private void showEmptyGegnerDetails() {
+        gegnerNameTextField_.setText("");
+        gegnerKreisTextField_.setText("");
+        gegnerStufeTextField_.setText("");
 
+        staerkeTextField_.setText("");
+        geschickTextField_.setText("");
+        
+        erfahrungsTextField_.setText("");
+
+        damageTextField_.setText("");
     }
 
     private void showWaffenDetails(Waffen waffen) {
