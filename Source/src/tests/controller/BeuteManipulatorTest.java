@@ -68,6 +68,8 @@ public class BeuteManipulatorTest {
     
     @Test
     public void testDelete() {
+        testBeute = new Beute();
+        assertTrue(testInstance.add(testBeute));
         assertTrue(testInstance.delete(testBeute));
     }
 
@@ -77,4 +79,27 @@ public class BeuteManipulatorTest {
         assertFalse(testInstance.delete(testBeute));
     }
     
+    
+    
+    @Test
+    public void canGetBeuteList()     {
+        assertNotNull(testInstance.getAll());
+    }
+    
+    
+    @Test
+    public void canUpdateBeute() {
+        testBeute = new Beute();
+        if (testInstance.add(testBeute)) {
+            testBeute.setProfil_("Updated");
+            assertTrue(testInstance.update(testBeute));
+            testInstance.delete(testBeute);
+        }
+    }
+    
+    @Test
+    public void cantUpdateNonExistantBeute() {
+        assertFalse("Can update non existant Beute",
+                testInstance.update(null));
+    }
 }
