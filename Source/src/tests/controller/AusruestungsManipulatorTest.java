@@ -107,5 +107,37 @@ public class AusruestungsManipulatorTest {
             fail("This is fail.");
         }        
     }
-
+    
+    
+    
+    @Test 
+    public void testNullToDelete() {
+        assertFalse(testInstance.delete(null));
+        
+    }
+    
+    
+    
+    @Test
+    public void canUpdateAusruestung() {
+        if(testInstance.add(testAusruestung)) {
+            testAusruestung.setDefH_(2);
+            assertTrue("Can't update", testInstance.update(testAusruestung));
+        }
+    }
+    
+    
+    
+    @Test
+    public void cantUpdateNonExistantAuesrustung() {
+        assertFalse("Can update non existant Auesrustung",testInstance.update(null));
+        
+    }
+    
+    
+    @Test
+    public void testGetAll() {
+        assertNotNull("List of Ausruestungen is Null.", testInstance.getAll());
+        
+    }
 }

@@ -5,10 +5,14 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.LockTimeoutException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.persistence.PessimisticLockException;
+import javax.persistence.QueryTimeoutException;
 import javax.persistence.RollbackException;
 import javax.persistence.TransactionRequiredException;
+import javax.persistence.TypedQuery;
 
 import model.Ausruestung;
 import model.Spieler;
@@ -128,15 +132,89 @@ public class AusruestungsManipulator implements DBManipulator {
     
     @Override
     public boolean update(DBObject entity) {
-        // TODO Auto-generated method stub
-        return false;
+        boolean returnValue = true;
+        theManager.getTransaction().begin();
+        try {
+            theManager.merge((Ausruestung) entity);
+        }
+        catch (EntityExistsException persistExceptionOne) {
+            System.err.println("EntityExistsException: "
+                    + persistExceptionOne.getMessage());
+            returnValue = false;
+        }
+        catch (TransactionRequiredException persistExceptionTwo) {
+            System.err.println("TransactionRequiredException: "
+                    + persistExceptionTwo.getMessage());
+            returnValue = false;
+        }
+        catch (IllegalArgumentException persistExceptionThree) {
+            System.err.println("IllegalArgumentException: "
+                    + persistExceptionThree.getMessage());
+            returnValue = false;
+        }
+        catch (PersistenceException persistExceptionFinal) {
+            System.err.println("PersistenceException: "
+                    + persistExceptionFinal.getMessage());
+            returnValue = false;
+        }
+        finally {
+            try {
+                theManager.getTransaction().commit();
+            }
+            catch (RollbackException commitExceptionOne) {
+                System.err.println("RollBackException: "
+                        + commitExceptionOne.getMessage());
+                return false;
+            }
+            catch (PersistenceException commitExceptionTwo) {
+                System.err.println("PersistenceException: "
+                        + commitExceptionTwo.getMessage());
+                return false;
+                
+            }
+        }
+        return returnValue;
     }
     
     
     
-    public List<DBObject> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Ausruestung> getAll() {
+        TypedQuery<Ausruestung> getAllRows;
+        try {
+            getAllRows = theManager.createQuery("FROM Ausruestung",
+                Ausruestung.class);
+        }
+        catch(IllegalArgumentException createQueryExceptionOne)   {
+            System.err.println("IllegalArgumentException: ");
+            return null;
+        }
+        try {
+            return getAllRows.getResultList();
+        }
+        catch(IllegalStateException getResultListExceptionOne)  {
+            System.err.println("IllegalStateException: ");
+            return null;
+        }
+        catch(QueryTimeoutException getResultListExceptionTwo)  {
+            System.err.println("QueryTimeoutException: ");
+            return null;
+        }
+        catch(TransactionRequiredException getResultListExceptionThree)  {
+            System.err.println("TransactionRequiredException: ");
+            return null;
+        }
+        catch(PessimisticLockException getResultListExceptionFour)  {
+            System.err.println("PessimisticLockException: ");
+            return null;
+        }
+        catch(LockTimeoutException getResultListExceptionFive)  {
+            System.err.println("LockTimeoutException: ");
+            return null;
+        }
+        catch(PersistenceException getResultListExceptionSix)  {
+            System.err.println("PersistenceException: ");
+            return null;
+        }
     }
     
     
