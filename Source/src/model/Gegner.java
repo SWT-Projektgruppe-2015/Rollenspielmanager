@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -48,6 +47,7 @@ public class Gegner extends Charakter implements DBObject {
     private Ausruestung ausruestung_;
 
     
+    
     public Gegner() {
         name_ = "Gegner Nr. 460";
         kreis_ = 1;
@@ -56,6 +56,7 @@ public class Gegner extends Charakter implements DBObject {
         geschick_ = 1;
         lebenspunkte_ = 25;
     }
+    
     
     
     @PrePersist
@@ -90,10 +91,12 @@ public class Gegner extends Charakter implements DBObject {
     }
     
     
+    
     public Beute getBeute_() {
         return beuteTyp_;
     }
 
+    
 
     public String toString() {
     	return name_;
@@ -105,11 +108,13 @@ public class Gegner extends Charakter implements DBObject {
         return ID_;
     }
 
+    
 
     public void setID_(int iD_) {
         ID_ = iD_;
     }
 
+    
 
     public String getName_() {
         return name_;
@@ -121,58 +126,86 @@ public class Gegner extends Charakter implements DBObject {
         this.name_ = name_;
     }
 
+    
+
     public int getKreis_() {
         return kreis_;
     }
+
+    
 
     public void setKreis_(int kreis_) {
         this.kreis_ = kreis_;
     }
 
+    
+
     public int getLevel_() {
         return level_;
     }
+
+    
 
     public void setLevel_(int level_) {
         this.level_ = level_;
     }
 
+    
+
     public int getErfahrung_() {
         return erfahrung_;
     }
+
+    
 
     public void setErfahrung_(int erfahrung_) {
         this.erfahrung_ = erfahrung_;
     }
 
+    
+
     public int getStaerke_() {
         return staerke_;
     }
+
+    
 
     public void setStaerke_(int staerke_) {
         this.staerke_ = staerke_;
     }
 
+    
+
     public int getGeschick_() {
         return geschick_;
     }
+
+    
 
     public void setGeschick_(int geschick_) {
         this.geschick_ = geschick_;
     }
 
+    
+
     public int getLebenspunkte_() {
         return lebenspunkte_;
     }
+
+    
 
     public void setLebenspunkte_(int lebenspunkte_) {
         this.lebenspunkte_ = lebenspunkte_;
     }
 
+    
+
     public static List<Gegner> getAllGegner() {
         // TODO:: Hier sollte der DB Manipulator verwendet werden. 
         return new ArrayList<Gegner>();
     }
+
+    
 
     public int getDamage() {
         // TODO:: Nutze den DB Manipulator um den Waffenschaden der Ausruestung zu bestimmen.
@@ -181,6 +214,7 @@ public class Gegner extends Charakter implements DBObject {
         return 0;
     }
 
+    
 
 	@Override
 	public Ausruestung getAusruestung_() {
@@ -188,12 +222,14 @@ public class Gegner extends Charakter implements DBObject {
 	}
 
 
+	
 	@Override
 	public void setAusruestung_(Ausruestung ausruestung) {
 		ausruestung_ = ausruestung;
 	}
 
 
+	
     public static boolean detailsAreValid
         (int level, int kreis, int geschick, int staerke, int erfahrung) {
        
@@ -215,17 +251,23 @@ public class Gegner extends Charakter implements DBObject {
         return true;
     }
 
+    
+
 
     public void addToDB() {
         // TODO Auto-generated method stub
         
     }
 
+    
+
 
     public void setDamage(int newDamage) {
         // TODO Mit DB Manipulatoren Waffe aendern.       
     }
 
+    
+    
 
     public void deleteFromDB() {
         // TODO Auto-generated method stub

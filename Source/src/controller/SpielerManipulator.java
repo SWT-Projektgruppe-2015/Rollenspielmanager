@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.LockTimeoutException;
-import javax.persistence.Persistence;
 import javax.persistence.PessimisticLockException;
 import javax.persistence.QueryTimeoutException;
 import javax.persistence.TransactionRequiredException;
@@ -17,6 +15,7 @@ import javax.persistence.TypedQuery;
 import model.Ausruestung;
 import model.Spieler;
 import model.interfaces.DBObject;
+
 import controller.interfaces.DBManipulator;
 
 
@@ -24,6 +23,8 @@ import controller.interfaces.DBManipulator;
 public class SpielerManipulator implements DBManipulator {
     private static SpielerManipulator Singleton;
     private static EntityManager theManager;
+    
+    
     
     private SpielerManipulator() {
         theManager = EntityManagerFactoryProvider.getFactory()
@@ -50,21 +51,25 @@ public class SpielerManipulator implements DBManipulator {
         catch (EntityExistsException persistExceptionOne) {
             System.err.println("EntityExistsException: "
                     + persistExceptionOne.getMessage());
+            persistExceptionOne.printStackTrace();
             returnValue = false;
         }
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "
                     + persistExceptionTwo.getMessage());
+            persistExceptionTwo.printStackTrace();
             returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
             System.err.println("IllegalArgumentException: "
                     + persistExceptionThree.getMessage());
+            persistExceptionThree.printStackTrace();
             returnValue = false;
         }
         catch (PersistenceException persistExceptionFinal) {
             System.err.println("PersistenceException: "
                     + persistExceptionFinal.getMessage());
+            persistExceptionFinal.printStackTrace();
             returnValue = false;
         }
         finally {
@@ -74,11 +79,13 @@ public class SpielerManipulator implements DBManipulator {
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
+                commitExceptionTwo.printStackTrace();
                 return false;            
             }
         }
@@ -100,21 +107,25 @@ public class SpielerManipulator implements DBManipulator {
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "
                     + persistExceptionTwo.getMessage());
+            persistExceptionTwo.printStackTrace();
             returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
             System.err.println("IllegalArgumentException: "
                     + persistExceptionThree.getMessage());
+            persistExceptionThree.printStackTrace();
             returnValue = false;
         }
         catch (PersistenceException persistExceptionFour) {
             System.err.println("PersistenceException: "
                     + persistExceptionFour.getMessage());
+            persistExceptionFour.printStackTrace();
             returnValue = false;
         }
         catch (NullPointerException persistExceptionFive) {
             System.err.println("NullPointerException: "
                     + persistExceptionFive.getMessage());
+            persistExceptionFive.printStackTrace();
             returnValue = false;
         }
         finally {
@@ -124,11 +135,13 @@ public class SpielerManipulator implements DBManipulator {
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
+                commitExceptionTwo.printStackTrace();
                 return false;
             }
         }
@@ -146,21 +159,25 @@ public class SpielerManipulator implements DBManipulator {
         catch (EntityExistsException persistExceptionOne) {
             System.err.println("EntityExistsException: "
                     + persistExceptionOne.getMessage());
+            persistExceptionOne.printStackTrace();
             returnValue = false;
         }
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "
                     + persistExceptionTwo.getMessage());
+            persistExceptionTwo.printStackTrace();
             returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
             System.err.println("IllegalArgumentException: "
                     + persistExceptionThree.getMessage());
+            persistExceptionThree.printStackTrace();
             returnValue = false;
         }
         catch (PersistenceException persistExceptionFinal) {
             System.err.println("PersistenceException: "
                     + persistExceptionFinal.getMessage());
+            persistExceptionFinal.printStackTrace();
             returnValue = false;
         }
         finally {
@@ -170,11 +187,13 @@ public class SpielerManipulator implements DBManipulator {
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
+                commitExceptionTwo.printStackTrace();
                 return false;
                 
             }
@@ -192,6 +211,7 @@ public class SpielerManipulator implements DBManipulator {
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {
             System.err.println("IllegalArgumentException: ");
+            createQueryExceptionOne.printStackTrace();
             return null;
         }
         try {
@@ -199,26 +219,32 @@ public class SpielerManipulator implements DBManipulator {
         }
         catch(IllegalStateException getResultListExceptionOne)  {
             System.err.println("IllegalStateException: ");
+            getResultListExceptionOne.printStackTrace();
             return null;
         }
         catch(QueryTimeoutException getResultListExceptionTwo)  {
             System.err.println("QueryTimeoutException: ");
+            getResultListExceptionTwo.printStackTrace();
             return null;
         }
         catch(TransactionRequiredException getResultListExceptionThree)  {
             System.err.println("TransactionRequiredException: ");
+            getResultListExceptionThree.printStackTrace();
             return null;
         }
         catch(PessimisticLockException getResultListExceptionFour)  {
             System.err.println("PessimisticLockException: ");
+            getResultListExceptionFour.printStackTrace();
             return null;
         }
         catch(LockTimeoutException getResultListExceptionFive)  {
             System.err.println("LockTimeoutException: ");
+            getResultListExceptionFive.printStackTrace();
             return null;
         }
         catch(PersistenceException getResultListExceptionSix)  {
             System.err.println("PersistenceException: ");
+            getResultListExceptionSix.printStackTrace();
             return null;
         }
     }
