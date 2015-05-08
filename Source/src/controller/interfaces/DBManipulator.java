@@ -1,7 +1,5 @@
 package controller.interfaces;
 
-import java.util.List;
-
 import model.interfaces.DBObject;
 
 public interface DBManipulator {

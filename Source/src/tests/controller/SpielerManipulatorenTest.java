@@ -7,15 +7,15 @@ package tests.controller;
 //import model.Ausruestung;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import model.Spieler;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 //import org.junit.Before;
+
 
 import controller.EntityManagerFactoryProvider;
 import controller.SpielerManipulator;
@@ -24,8 +24,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
-
 public class SpielerManipulatorenTest {
     
     private static SpielerManipulator testInstance;
@@ -54,9 +52,6 @@ public class SpielerManipulatorenTest {
     @Test
     public void canAddSpieler() {
         assertTrue("Couldn't add new Spieler.", testInstance.add(testSpieler));
-        theManager.getTransaction().begin();
-        theManager.remove(testSpieler);
-        theManager.getTransaction().commit();
     }
     
     /**
@@ -103,5 +98,9 @@ public class SpielerManipulatorenTest {
     @Test
     public void canGetSpielerList()     {
         assertNotNull(testInstance.getAll());
-     }
+    }
+    @AfterClass
+    public static void cleanUp(){
+        testInstance.delete(testSpieler);
+    }
 }

@@ -5,7 +5,10 @@ import java.util.List;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.LockTimeoutException;
 import javax.persistence.Persistence;
+import javax.persistence.PessimisticLockException;
+import javax.persistence.QueryTimeoutException;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
@@ -16,6 +19,8 @@ import model.Spieler;
 import model.interfaces.DBObject;
 import controller.interfaces.DBManipulator;
 
+
+
 public class SpielerManipulator implements DBManipulator {
     private static SpielerManipulator Singleton;
     private static EntityManager theManager;
@@ -25,12 +30,16 @@ public class SpielerManipulator implements DBManipulator {
                 .createEntityManager();
     }
     
+    
+    
     public static SpielerManipulator getInstance() {
         if (Singleton == null) {
             Singleton = new SpielerManipulator();
         }
         return Singleton;
     }
+    
+    
     
     public boolean add(DBObject entity) {
         boolean returnValue = true;
@@ -70,12 +79,13 @@ public class SpielerManipulator implements DBManipulator {
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
-                return false;
-                
+                return false;            
             }
         }
         return returnValue;
     }
+    
+    
     
     public boolean delete(DBObject entity) {
         boolean returnValue = true;
@@ -123,9 +133,10 @@ public class SpielerManipulator implements DBManipulator {
                 return false;
             }
         }
-        
         return returnValue;
     }
+    
+    
     
     public boolean update(DBObject entity) {
         boolean returnValue = true;
@@ -172,9 +183,44 @@ public class SpielerManipulator implements DBManipulator {
         return returnValue;
     }
     
+    
+    
     public List<Spieler> getAll() {
-        TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler",
+        TypedQuery<Spieler> getAllRows;
+        try {
+            getAllRows = theManager.createQuery("FROM Spieler",
                 Spieler.class);
-        return getAllRows.getResultList();
+        }
+        catch(IllegalArgumentException createQueryExceptionOne)   {
+            System.err.println("IllegalArgumentException: ");
+            return null;
+        }
+        try {
+            return getAllRows.getResultList();
+        }
+        catch(IllegalStateException getResultListExceptionOne)  {
+            System.err.println("IllegalStateException: ");
+            return null;
+        }
+        catch(QueryTimeoutException getResultListExceptionTwo)  {
+            System.err.println("QueryTimeoutException: ");
+            return null;
+        }
+        catch(TransactionRequiredException getResultListExceptionThree)  {
+            System.err.println("TransactionRequiredException: ");
+            return null;
+        }
+        catch(PessimisticLockException getResultListExceptionFour)  {
+            System.err.println("PessimisticLockException: ");
+            return null;
+        }
+        catch(LockTimeoutException getResultListExceptionFive)  {
+            System.err.println("LockTimeoutException: ");
+            return null;
+        }
+        catch(PersistenceException getResultListExceptionSix)  {
+            System.err.println("PersistenceException: ");
+            return null;
+        }
     }
 }

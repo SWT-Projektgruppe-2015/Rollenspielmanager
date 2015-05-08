@@ -96,7 +96,6 @@ public class AusruestungsManipulator implements DBManipulator {
         return false;
     }
     
-    @Override
     public List<DBObject> getAll() {
         // TODO Auto-generated method stub
         return null;

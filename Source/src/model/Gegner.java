@@ -47,7 +47,6 @@ public class Gegner extends Charakter implements DBObject {
     private Ausruestung ausruestung_;
 
     
-    
     public Gegner() {
         name_ = "Gegner Nr. 460";
         kreis_ = 1;
