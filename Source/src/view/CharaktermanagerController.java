@@ -2,6 +2,9 @@ package view;
 
 import java.util.List;
 
+import controller.GruppenManipulator;
+import controller.SpielerManipulator;
+import controller.interfaces.DBManipulator;
 import model.Spieler;
 import javafx.fxml.FXML;
 
@@ -22,7 +25,7 @@ public class CharaktermanagerController {
     
     @FXML
     private void initialize() {
-        List<Spieler >spielerList = Spieler.getAllPlayers();
+        List<Spieler> spielerList = SpielerManipulator.getInstance().getAll();
         gruppenManagerController.initialize(spielerList);
         spielerManagerController.initialize(spielerList, gruppenManagerController);
         gegnerManagerController.initialize();

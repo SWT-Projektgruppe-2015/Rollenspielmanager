@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import controller.GruppenManipulator;
+import controller.interfaces.DBManipulator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -28,9 +30,8 @@ public class GruppenmanagerController {
     
     void initialize(List<Spieler> spielerList) {
         spielerList_ = spielerList;
+        gruppenList_ = Gruppe.getAll();
         spielerNotInGruppeListView_.getItems().setAll(spielerList_);
-        // TODO nutze Gruppenmanipulator
-        gruppenList_ = new ArrayList<Gruppe>();
         gruppenComboBox_.getItems().setAll(gruppenList_);
         gruppenComboBox_.getSelectionModel().selectedItemProperty()
                 .addListener(new ChangeListener<Gruppe>() {

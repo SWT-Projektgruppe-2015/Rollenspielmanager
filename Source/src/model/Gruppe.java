@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import controller.GruppenManipulator;
 import model.interfaces.DBObject;
 
 @Entity
@@ -23,13 +25,23 @@ public class Gruppe implements DBObject {
     private String name_;
     @ManyToMany(mappedBy = "membership_")
     private Set<Spieler> members_;
-
+    
+    private static GruppenManipulator gruppenManipulator_ = GruppenManipulator.getInstance();
+    
+    
+    public Gruppe(){
+        name_ = "DefaultGruppe";
+        members_ = new HashSet<Spieler>();
+    }
+    
+    public static List<Gruppe> getAll() {
+        return gruppenManipulator_.getAll();
+    }
+    
     @Override
     public String toString() {
         return name_;
     }
-
-
 
     public void addSpieler(Spieler spieler) {
         if (members_ == null) {
@@ -67,6 +79,41 @@ public class Gruppe implements DBObject {
 
     public void deleteFromDB() {
     }
+    
+
+    public int getID_() {
+        return ID_;
+    }
+
+
+
+    public void setID_(int iD_) {
+        ID_ = iD_;
+    }
+
+
+
+    public String getName_() {
+        return name_;
+    }
+
+
+
+    public void setName_(String name_) {
+        this.name_ = name_;
+    }
+
+
+
+    public Set<Spieler> getMembers_() {
+        return members_;
+    }
+
+
+
+    public void setMembers_(Set<Spieler> members_) {
+        this.members_ = members_;
+    }    
 
     public void addToDB() {
         // TODO Gruppe per Manipulator speichern

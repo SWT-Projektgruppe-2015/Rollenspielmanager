@@ -21,6 +21,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 
 import controller.AusruestungsManipulator;
+import controller.GruppenManipulator;
 import controller.SpielerManipulator;
 import model.interfaces.DBObject;
 
@@ -45,6 +46,10 @@ public class Spieler extends Charakter implements DBObject {
     @JoinTable(name = "SPIELER_IN_GRUPPE", joinColumns = { @JoinColumn(name = "SPIELER_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "GRUPPEN_ID", referencedColumnName = "ID") })
     private Set<Gruppe> membership_;
     
+    private static SpielerManipulator spielerManipulator_ = SpielerManipulator.getInstance();
+    
+    
+    
     @PrePersist
     public void onCreate() {
         if (getName_() == null) {
@@ -64,6 +69,11 @@ public class Spieler extends Charakter implements DBObject {
     @Override
     public String toString() {
         return getName_();
+    }
+    
+    
+    public static List<Spieler> getAll() {
+        return spielerManipulator_.getAll();
     }
     
     
