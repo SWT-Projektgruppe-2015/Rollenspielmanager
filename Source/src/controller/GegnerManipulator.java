@@ -46,22 +46,22 @@ public class GegnerManipulator {
             theManager.persist((Gegner) entity);
         }
         catch (EntityExistsException persistExceptionOne) {
-            System.err.println("EntityExistsException: "
+            System.err.println("EntityExistsException: in add from GegnerManipulator "
                     + persistExceptionOne.getMessage());
             returnValue = false;
         }
         catch (TransactionRequiredException persistExceptionTwo) {
-            System.err.println("TransactionRequiredException: "
+            System.err.println("TransactionRequiredException: in add from GegnerManipulator "
                     + persistExceptionTwo.getMessage());
             returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
-            System.err.println("IllegalArgumentException: "
+            System.err.println("IllegalArgumentException: in add from GegnerManipulator "
                     + persistExceptionThree.getMessage());
             returnValue = false;
         }
         catch (PersistenceException persistExceptionFinal) {
-            System.err.println("PersistenceException: "
+            System.err.println("PersistenceException: in add from GegnerManipulator "
                     + persistExceptionFinal.getMessage());
             returnValue = false;
         }
@@ -70,12 +70,12 @@ public class GegnerManipulator {
                 theManager.getTransaction().commit();
             }
             catch (RollbackException commitExceptionOne) {
-                System.err.println("RollBackException: "
+                System.err.println("RollBackException: in add from GegnerManipulator "
                         + commitExceptionOne.getMessage());
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
-                System.err.println("PersistenceException: "
+                System.err.println("PersistenceException: in add from GegnerManipulator "
                         + commitExceptionTwo.getMessage());
                 return false;
             }
