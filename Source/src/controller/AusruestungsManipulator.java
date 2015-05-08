@@ -45,7 +45,7 @@ public class AusruestungsManipulator implements DBManipulator {
             returnValue =  false;
         }
         catch (IllegalArgumentException addExceptionThree) {
-            System.err.println("IllegalArgumentException: "
+            System.err.println("IllegalArgumentException in add in Ausruestungsmanager: "
                     + addExceptionThree.getMessage());
             addExceptionThree.printStackTrace();
             returnValue =  false;
@@ -92,7 +92,7 @@ public class AusruestungsManipulator implements DBManipulator {
             returnValue = false;
         }
         catch (IllegalArgumentException removeExceptionTwo) {
-            System.err.println("IllegalArgumentException: "
+            System.err.println("IllegalArgumentException in delete in Ausruestungsmanager: "
                     + removeExceptionTwo.getMessage());
             removeExceptionTwo.printStackTrace();
             returnValue = false;

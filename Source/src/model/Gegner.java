@@ -15,6 +15,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import controller.AusruestungsManipulator;
+import controller.BeuteManipulator;
 import model.interfaces.DBObject;
 
 @Entity
@@ -84,6 +85,7 @@ public class Gegner extends Charakter implements DBObject {
         }
         if (this.getBeute_() == null) {
             beuteTyp_ = new Beute();
+            BeuteManipulator.getInstance().add(beuteTyp_);
         }
     }
     

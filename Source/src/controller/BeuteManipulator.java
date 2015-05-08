@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.PessimisticLockException;
+import javax.persistence.Query;
 import javax.persistence.QueryTimeoutException;
 import javax.persistence.RollbackException;
 import javax.persistence.TransactionRequiredException;
@@ -50,7 +51,7 @@ public class BeuteManipulator implements DBManipulator{
             return false;
         }
         catch (IllegalArgumentException addExceptionThree) {
-            System.err.println("IllegalArgumentException: "
+            System.err.println("IllegalArgumentException in add in Beutemanipulator: "
                     + addExceptionThree.getMessage());
             return false;
         }
@@ -106,10 +107,10 @@ public class BeuteManipulator implements DBManipulator{
     
     
     private boolean replaceBeute(Beute defaultBeute, Beute deletedBeute) {
-        TypedQuery<Gegner> getAllRows;
+        Query getAllRows;
         try {
             getAllRows = theManager.createQuery("UPDATE Gegner SET beuteTyp_ = "+ defaultBeute.ID_ 
-                    + " WHERE beuteTyp_ = " + deletedBeute.ID_, Gegner.class);
+                    + " WHERE beuteTyp_ = " + deletedBeute.ID_);
         }
         catch(IllegalArgumentException createQueryExceptionOne) {
             System.err.println("IllegalArgumentException: in replace Beute from BeuteManipulator ");
@@ -134,13 +135,14 @@ public class BeuteManipulator implements DBManipulator{
                 Beute.class);
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {
-            System.err.println("IllegalArgumentException: ");
+            System.err.println("IllegalArgumentException in getDefaultBeute: ");
             return null;
         }
         try {
             return getAllRows.getSingleResult();
         }
         catch(NoResultException noResult) {
+            System.err.println("NoResultException in getDefaultBeute: ");
             Beute defaultBeute = new Beute();
             add(defaultBeute);
             return getAllRows.getSingleResult();
@@ -177,13 +179,13 @@ public class BeuteManipulator implements DBManipulator{
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
-                return false;
+                return null;
             }
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
                 theManager.getTransaction().commit();
-                return false;
+                return null;
             }
         }
     }

@@ -68,7 +68,6 @@ public class BeuteManipulatorTest {
     
     @Test
     public void testDelete() {
-//        assertNull(testBeute);
         assertTrue(testInstance.delete(testBeute));
     }
 
