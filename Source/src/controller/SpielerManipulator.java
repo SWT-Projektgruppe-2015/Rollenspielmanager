@@ -129,7 +129,6 @@ public class SpielerManipulator implements DBManipulator {
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
-                theManager.getTransaction().commit();
                 return false;
             }
         }

@@ -24,7 +24,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
-public class SpielerManipulatorenTest {
+public class SpielerManipulatorTest {
     
     private static SpielerManipulator testInstance;
     private static Spieler testSpieler;

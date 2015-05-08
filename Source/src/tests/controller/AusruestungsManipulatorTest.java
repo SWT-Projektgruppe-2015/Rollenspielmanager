@@ -35,48 +35,77 @@ public class AusruestungsManipulatorTest {
 
     }
 
+    
+    
     @Test
     public void getInstanceTest() {
         testInstance = AusruestungsManipulator.getInstance();
         assertNotNull(testInstance);
     }
 
+    
+    
     @Test
     public void twoInstanceAreSame() {
         AusruestungsManipulator testInstanceTwo = AusruestungsManipulator
                 .getInstance();
         assertSame(testInstanceTwo, testInstance);
     }
-
+    
+    
+    
     @Test
     public void testAdd() {
+        System.err.println("----\n59\n----");
         assertTrue(testInstance.add(testAusruestung));
-        
     }
+    
+    
     
     @Test
     public void testNullAdd() {
+        System.err.println("----\n67\n----");
         assertFalse(testInstance.add(null));
 
     }
+    
     
     @Ignore
     @Test
     public void twoAusruestungAddAreSame() {
        testInstance.add(testAusruestung);
        theManager.detach(testAusruestung);
+       System.err.println("----\n78\n----");
        assertFalse(testInstance.add(testAusruestung));
     }
     
+    
+    
     @Test
     public void testDelete() {
-        assertTrue(testInstance.delete(testAusruestung));
+        if(testInstance.add(testAusruestung)) {
+            System.err.println("----\n87\n----");
+            assertTrue(testInstance.delete(testAusruestung));
+        }
+        else {
+            fail("This is fail.");
+        }
     }
+    
+    
     
     @Test
     public void twoAusruestungDeleteAreSame() {
-        assertFalse(testInstance.delete(testAusruestung));
-        
+        Ausruestung testAusruestungHope = new Ausruestung();
+        boolean test = testInstance.add(testAusruestungHope);
+        if(test) {
+            testInstance.delete(testAusruestungHope);
+            System.err.println("----\n103\n----");
+            assertFalse(testInstance.delete(testAusruestungHope));
+        }
+        else {
+            fail("This is fail.");
+        }        
     }
 
 }

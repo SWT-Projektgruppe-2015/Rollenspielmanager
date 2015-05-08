@@ -19,10 +19,15 @@ public class AusruestungsManipulator implements DBManipulator {
     private static EntityManager theManager = EntityManagerFactoryProvider.getFactory().createEntityManager();
     private static AusruestungsManipulator singelton;
     
+    
+    
     private AusruestungsManipulator() {}
+    
+    
     
     @Override
     public boolean add(DBObject entity) {
+        boolean returnValue = true;
         theManager.getTransaction().begin();
         try {
             theManager.persist((Ausruestung) entity);
@@ -30,44 +35,72 @@ public class AusruestungsManipulator implements DBManipulator {
         catch (EntityExistsException addExceptionOne) {
             System.err.println("EntityExistsException: "
                     + addExceptionOne.getMessage());
-            theManager.getTransaction().commit();
-            return false;
+            addExceptionOne.printStackTrace();
+            returnValue =  false;
         }
         catch (TransactionRequiredException addExceptionTwo) {
             System.err.println("TransactionRequiredException: "
                     + addExceptionTwo.getMessage());
-            return false;
+            addExceptionTwo.printStackTrace();
+            returnValue =  false;
         }
         catch (IllegalArgumentException addExceptionThree) {
             System.err.println("IllegalArgumentException: "
                     + addExceptionThree.getMessage());
-            return false;
+            addExceptionThree.printStackTrace();
+            returnValue =  false;
         }
-        
-        theManager.getTransaction().commit();
-        return true;
+        finally {
+            try {
+                theManager.getTransaction().commit();
+            }
+            catch (RollbackException commitExceptionOne) {
+                System.err.println("RollBackException: "
+                        + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
+                return false;
+            }
+            catch (PersistenceException commitExceptionTwo) {
+                System.err.println("PersistenceException: "
+                        + commitExceptionTwo.getMessage());
+                commitExceptionTwo.printStackTrace();
+                return false;            
+            }
+        }
+        return returnValue;
     }
+    
+    
     
     @Override
     public boolean delete(DBObject entity) {
         boolean returnValue = true;
+        if(entity == null)  {
+            System.err.println("Why!!!!!\n");
+        }
         theManager.getTransaction().begin();
         try {
+            if(entity == null)  {
+                System.err.println("Why!!!!!\n");
+            }
             theManager.remove((Ausruestung) entity);
         }
-        catch (TransactionRequiredException persistExceptionTwo) {
+        catch (TransactionRequiredException removeExceptionOne) {
             System.err.println("TransactionRequiredException: "
-                    + persistExceptionTwo.getMessage());
+                    + removeExceptionOne.getMessage());
+            removeExceptionOne.printStackTrace();
             returnValue = false;
         }
-        catch (IllegalArgumentException persistExceptionThree) {
+        catch (IllegalArgumentException removeExceptionTwo) {
             System.err.println("IllegalArgumentException: "
-                    + persistExceptionThree.getMessage());
+                    + removeExceptionTwo.getMessage());
+            removeExceptionTwo.printStackTrace();
             returnValue = false;
         }
-        catch (PersistenceException persistExceptionFinal) {
+        catch (PersistenceException removeExceptionFinal) {
             System.err.println("PersistenceException: "
-                    + persistExceptionFinal.getMessage());
+                    + removeExceptionFinal.getMessage());
+            removeExceptionFinal.printStackTrace();
             returnValue = false;
         }
         finally {
@@ -77,12 +110,13 @@ public class AusruestungsManipulator implements DBManipulator {
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
-                theManager.getTransaction().commit();
+                commitExceptionTwo.printStackTrace();
                 return false;
             }
         }
@@ -90,16 +124,22 @@ public class AusruestungsManipulator implements DBManipulator {
         return returnValue;
     }
     
+    
+    
     @Override
     public boolean update(DBObject entity) {
         // TODO Auto-generated method stub
         return false;
     }
     
+    
+    
     public List<DBObject> getAll() {
         // TODO Auto-generated method stub
         return null;
     }
+    
+    
     
     public static AusruestungsManipulator getInstance() {
         if (singelton == null) {
@@ -107,5 +147,4 @@ public class AusruestungsManipulator implements DBManipulator {
         }
         return singelton;
     }
-    
 }
