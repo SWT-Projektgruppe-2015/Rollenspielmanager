@@ -27,9 +27,7 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "SPIELER")
 public class Spieler extends Charakter implements DBObject {
-    private static EntityManagerFactory factory = Persistence
-            .createEntityManagerFactory("thePersistenceUnit");
-    private static EntityManager theManager = factory.createEntityManager();
+    
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -74,6 +72,8 @@ public class Spieler extends Charakter implements DBObject {
         SpielerManipulator.getInstance().delete(this);
     }
 
+    
+    
     public void addToDB() {
         SpielerManipulator.getInstance().add(this);
     }
