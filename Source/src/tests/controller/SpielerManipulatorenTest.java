@@ -54,6 +54,9 @@ public class SpielerManipulatorenTest {
     @Test
     public void canAddSpieler() {
         assertTrue("Couldn't add new Spieler.", testInstance.add(testSpieler));
+        theManager.getTransaction().begin();
+        theManager.remove(testSpieler);
+        theManager.getTransaction().commit();
     }
     
     /**
@@ -63,9 +66,7 @@ public class SpielerManipulatorenTest {
     @Test
     public void causeEntityExistsException() {
         testInstance.add(testSpieler);
-        
         assertFalse("Can add same player twice.", testInstance.add(testSpieler));
-        
     }
     
     @Test
@@ -75,6 +76,7 @@ public class SpielerManipulatorenTest {
     
     @Test
     public void canDeleteSpieler() {
+        testInstance.add(testSpieler);
         assertTrue("Can't delete Spieler", testInstance.delete(testSpieler));
     }
     

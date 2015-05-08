@@ -10,6 +10,4 @@ public interface DBManipulator {
     public boolean delete(DBObject entity);
 
     public boolean update(DBObject entity);
-
-    public List<DBObject> getAll();
 }

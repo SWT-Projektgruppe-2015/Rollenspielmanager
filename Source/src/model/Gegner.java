@@ -6,17 +6,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-import javax.persistence.Persistence;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.TypedQuery;
 
 import controller.AusruestungsManipulator;
 import model.interfaces.DBObject;
@@ -43,7 +39,7 @@ public class Gegner extends Charakter implements DBObject {
     private int geschick_;
     @Column(name = "LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
     private int lebenspunkte_;
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Beute beuteTyp;
     @OneToOne(optional = false)

@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
+import javax.persistence.TypedQuery;
 
 import model.Ausruestung;
 import model.Spieler;
@@ -171,8 +172,9 @@ public class SpielerManipulator implements DBManipulator {
         return returnValue;
     }
     
-    public List<DBObject> getAll() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Spieler> getAll() {
+        TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler",
+                Spieler.class);
+        return getAllRows.getResultList();
     }
 }
