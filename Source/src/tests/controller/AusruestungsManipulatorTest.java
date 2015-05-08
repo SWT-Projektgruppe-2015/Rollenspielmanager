@@ -4,13 +4,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 
 import javax.persistence.EntityManager;
 
 import model.Ausruestung;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -22,17 +22,16 @@ public class AusruestungsManipulatorTest {
 
     private static AusruestungsManipulator testInstance;
     private static Ausruestung testAusruestung;
-    
     private static EntityManager theManager;
 
+    
+    
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-
         testInstance = AusruestungsManipulator.getInstance();
         testAusruestung = new Ausruestung();
         theManager = EntityManagerFactoryProvider.getFactory()
                 .createEntityManager();
-
     }
 
     
@@ -56,7 +55,6 @@ public class AusruestungsManipulatorTest {
     
     @Test
     public void testAdd() {
-        System.err.println("----\n59\n----");
         assertTrue(testInstance.add(testAusruestung));
     }
     
@@ -64,7 +62,6 @@ public class AusruestungsManipulatorTest {
     
     @Test
     public void testNullAdd() {
-        System.err.println("----\n67\n----");
         assertFalse(testInstance.add(null));
 
     }
@@ -75,7 +72,6 @@ public class AusruestungsManipulatorTest {
     public void twoAusruestungAddAreSame() {
        testInstance.add(testAusruestung);
        theManager.detach(testAusruestung);
-       System.err.println("----\n78\n----");
        assertFalse(testInstance.add(testAusruestung));
     }
     
@@ -84,7 +80,6 @@ public class AusruestungsManipulatorTest {
     @Test
     public void testDelete() {
         if(testInstance.add(testAusruestung)) {
-            System.err.println("----\n87\n----");
             assertTrue(testInstance.delete(testAusruestung));
         }
         else {
@@ -100,7 +95,6 @@ public class AusruestungsManipulatorTest {
         boolean test = testInstance.add(testAusruestungHope);
         if(test) {
             testInstance.delete(testAusruestungHope);
-            System.err.println("----\n103\n----");
             assertFalse(testInstance.delete(testAusruestungHope));
         }
         else {
@@ -113,7 +107,6 @@ public class AusruestungsManipulatorTest {
     @Test 
     public void testNullToDelete() {
         assertFalse(testInstance.delete(null));
-        
     }
     
     
@@ -123,6 +116,10 @@ public class AusruestungsManipulatorTest {
         if(testInstance.add(testAusruestung)) {
             testAusruestung.setDefH_(2);
             assertTrue("Can't update", testInstance.update(testAusruestung));
+            testInstance.delete(testAusruestung);
+        }
+        else    {
+            fail();
         }
     }
     
@@ -131,13 +128,22 @@ public class AusruestungsManipulatorTest {
     @Test
     public void cantUpdateNonExistantAuesrustung() {
         assertFalse("Can update non existant Auesrustung",testInstance.update(null));
-        
     }
+    
     
     
     @Test
     public void testGetAll() {
         assertNotNull("List of Ausruestungen is Null.", testInstance.getAll());
-        
+    }
+    
+    
+    
+    @AfterClass
+    public static void cleanUp()    {
+        Ausruestung cleanUpEquipment = theManager.find(Ausruestung.class, testAusruestung.getID_());
+        theManager.getTransaction().begin();
+        theManager.remove(cleanUpEquipment);
+        theManager.getTransaction().commit();
     }
 }
