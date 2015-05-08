@@ -1,0 +1,14 @@
+1. In meiner Vorstellung existiert ein Zusammenhang zwischen Loot und Händler, dessen Abhängigkeitsverhältnis folgende ist: Ohne Händlerdatenbank, keinen Loot. (=> Wenn man sich um Loot kümmert - übrigens ein Wort, das ich noch nie leiden konnte. ;) Nennen wir es doch "Beute",  um jeden gänzlich zu verwirren - muss man dafür also quasi den Händler gemacht haben). Ob dieser Zusammenhang faktisch-technisch existiert, weiß ich natürlich nicht.
+Beispiel: Wenn ein Gegner getötet wird, kann ein Beutegenerator ja nur sagen, dass ein Krummdolch mit einem gewissen Wert gefunden wurde, wenn es einen solchen in der Datenbank gibt. Und diese, so mein Eindruck, ist der Händler.
+ 
+Der Händler muss mindestens:
+- Spezifische Gegenstände finden können (z.B. "Wie viel bekomme ich für eine Holzfälleraxt?")
+- Kategorien von Gegenständen auflisten können (z.B. "Ich möchte mir eine Art Seil kaufen. Was haben die im Angebot?")
+ 
+Der perfekte Händler kann:
+- Feilschen. ;P
+- ortstypische Entscheidungen treffen (z.B. "Du bist bei einem Händler der Zwerge in den Handelsposten zwischen Ang und Mar. Hier gibt es ...")
+--> Diese letzte Sache macht aber,  auch das meine ich gesagt zu haben, vermutlich nur in Zusammenhang mit der Beute Sinn. Denn auch bei der Beute ist es ja interessant zu wissen, ob man gerade einen therranischen Räuber, einen orkischen Krieger, einen fremdländischen Talverr'k-Pestiziliat oder einen elfischen Freiheitskämpfer aus Sarraîr bezwungen hat.  Dieses würde bei der Beute auch einen möglichen Rückschluss auf den Wohlstand des Gegners zulassen.
+ 
+2. Wenn ein Charakter Level 12 eines Kreises erreicht hat, ist er automatisch Kreis 2 Level 0. Ich denke das meintest du, oder? Wenn man einen neuen Charakter macht ist man ja ebenso Kreis 1 Level 0. Das kann also als standard-Fall gewertet werden. Mit dem Erreichen von Level 12 ist der Spieler interessiert daran wie viele Erfahrungspunkte er für das nächste Level benötigt. Dafür ist er vom Charakterbogen her angehalten dort bei Kreis 2 ein Kreuzchen zu setzen (um den Faktor 100 sich zu sichern). Er ist daher laut Charakterbogen Kreis 2. Folglich ist man also nicht Kreis 1 Level 12, sondern durch dieses erreichen immer gleich Kreis 2 Level 0.
+[Ebenso wie es nicht 24 Uhr auf einer Digitaluhr ist, sondern immer 0 Uhr). Hoffe es ist klar geworden. 
