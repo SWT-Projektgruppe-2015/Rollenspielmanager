@@ -98,4 +98,8 @@ public class SpielerManipulatorenTest {
                 testInstance.update(null));
     }
     
+    @Test
+    public void canGetSpielerList()     {
+        assertNotNull(testInstance.getAll());
+     }
 }
