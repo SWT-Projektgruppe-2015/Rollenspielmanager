@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="303.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.GegnermanagerController">
+	<children>
+		<Label layoutX="31.0" layoutY="43.0" text="Gegnerliste" />
+		<TextField fx:id="searchGegnerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchGegner" onKeyReleased="#searchGegner" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
+		<ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
+			<content>
+				<ListView fx:id="gegnerListView_" prefHeight="200.0" prefWidth="211.0" />
+			</content>
+		</ScrollPane>
+		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="228.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE">
+			<tabs>
+				<Tab text="Details">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+							<children>
+								<GridPane layoutX="14.0" layoutY="65.0" prefHeight="120.0" prefWidth="123.0">
+									<columnConstraints>
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="121.0" minWidth="10.0" prefWidth="73.0" />
+										<ColumnConstraints hgrow="SOMETIMES" maxWidth="92.0" minWidth="10.0" prefWidth="50.0" />
+									</columnConstraints>
+									<rowConstraints>
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+									</rowConstraints>
+									<children>
+										<Label text="Stufe" />
+										<TextField fx:id="gegnerLevelTextField_" onAction="#updateGegnerDetails" prefHeight="13.0" prefWidth="59.0" GridPane.columnIndex="1" />
+										<TextField fx:id="gegnerKreisTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+										<Label text="Kreis" GridPane.rowIndex="1" />
+										<Label text="Geschick" GridPane.rowIndex="2" />
+										<Label text="Stärke" GridPane.rowIndex="3" />
+										<TextField fx:id="geschickTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+										<TextField fx:id="staerkeTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+										<TextField fx:id="erfahrungsTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+										<Label text="Erfahrung" GridPane.rowIndex="4" />
+									</children>
+								</GridPane>
+								<Label layoutX="14.0" layoutY="14.0" text="Name" />
+								<TextField fx:id="gegnerNameTextField_" layoutX="88.0" layoutY="19.0" onAction="#updateGegnerDetails" />
+								<Button layoutX="160.0" layoutY="155.0" mnemonicParsing="false" onAction="#deleteGegner" text="Gegner löschen" />
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Ausrüstung">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+							<children>
+								<AnchorPane prefHeight="200.0" prefWidth="252.0">
+									<children>
+										<TextField fx:id="gegnerDefRTextField_" layoutX="69.0" layoutY="53.0" onAction="#updateGegnerAusruestung" prefHeight="25.0" prefWidth="40.0" />
+										<TextField fx:id="gegnerDefHTextField_" layoutX="69.0" layoutY="78.0" onAction="#updateGegnerAusruestung" prefHeight="25.0" prefWidth="40.0" />
+										<TextField fx:id="gegnerDefSTextField_" layoutX="69.0" layoutY="103.0" onAction="#updateGegnerAusruestung" prefHeight="25.0" prefWidth="40.0" />
+										<Text layoutX="23.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefR:" />
+										<Text layoutX="23.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefH:" />
+										<Text layoutX="23.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefS:" />
+										<Text layoutX="22.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Damage:" />
+										<TextField fx:id="gegnerDamageTextField_" layoutX="89.0" layoutY="140.0" onAction="#updateGegnerAusruestung" prefHeight="26.0" prefWidth="49.0" />
+									</children>
+								</AnchorPane>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="Fähigkeiten">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+							<children>
+								<AnchorPane layoutX="7.0" prefHeight="200.0" prefWidth="280.0">
+									<children>
+										<ListView fx:id="gegnerFaehigkeitenListView_" editable="true" layoutY="21.0" prefHeight="130.0" prefWidth="106.0" />
+										<Button layoutX="4.0" layoutY="161.0" mnemonicParsing="false" text="-" />
+										<VBox layoutX="130.0" layoutY="24.0" prefHeight="200.0" prefWidth="100.0">
+											<children>
+												<Label text="Name" />
+												<TextField fx:id="gegnerFaehigkeitenNameTextField_" />
+												<Label text="Effekttyp" />
+												<ComboBox prefHeight="25.0" prefWidth="113.0" />
+											</children>
+										</VBox>
+									</children>
+								</AnchorPane>
+							</children>
+						</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
+</AnchorPane>

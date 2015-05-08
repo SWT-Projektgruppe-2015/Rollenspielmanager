@@ -65,10 +65,10 @@ public class Gruppe implements DBObject {
         name_ = name;
     }
 
-    public void remove() {
+    public void deleteFromDB() {
     }
 
-    public void add() {
+    public void addToDB() {
         // TODO Gruppe per Manipulator speichern
     }
 }
