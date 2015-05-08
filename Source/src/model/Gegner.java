@@ -41,7 +41,7 @@ public class Gegner extends Charakter implements DBObject {
     private int lebenspunkte_;
     @ManyToOne(optional = false)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
-    private Beute beuteTyp;
+    private Beute beuteTyp_;
     @OneToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Ausruestung ausruestung_;
@@ -54,13 +54,6 @@ public class Gegner extends Charakter implements DBObject {
         staerke_ = 1;
         geschick_ = 1;
         lebenspunkte_ = 25;
-        
-        ausruestung_ = new Ausruestung();
-        Waffen defaultWaffe = new Waffen();
-        defaultWaffe.setWaffenName_("Default Gegner Waffe");
-        defaultWaffe.setWaffenSchaden_(0);
-        ausruestung_.addWaffe(defaultWaffe);
-        
     }
     
     
@@ -81,7 +74,7 @@ public class Gegner extends Charakter implements DBObject {
         if (geschick_ == 0) {
             geschick_ = 1;
         }
-        if (ausruestung_ == null) {
+        if (getAusruestung_() == null) {
             ausruestung_ = new Ausruestung();
             Waffen defaultWaffe = new Waffen();
             defaultWaffe.setWaffenName_("Default Gegner Waffe");
@@ -89,9 +82,17 @@ public class Gegner extends Charakter implements DBObject {
             ausruestung_.addWaffe(defaultWaffe);
             AusruestungsManipulator.getInstance().add(ausruestung_);
         }
+        if (this.getBeute_() == null) {
+            beuteTyp_ = new Beute();
+        }
     }
     
     
+    public Beute getBeute_() {
+        return beuteTyp_;
+    }
+
+
     public String toString() {
     	return name_;
     }
@@ -180,13 +181,13 @@ public class Gegner extends Charakter implements DBObject {
 
 
 	@Override
-	Ausruestung getAusruestung_() {
+	public Ausruestung getAusruestung_() {
 		return ausruestung_;
 	}
 
 
 	@Override
-	void setAusruestung_(Ausruestung ausruestung) {
+	public void setAusruestung_(Ausruestung ausruestung) {
 		ausruestung_ = ausruestung;
 	}
 
