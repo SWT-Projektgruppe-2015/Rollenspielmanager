@@ -19,14 +19,10 @@ import controller.GegnerManipulator;
 public class GegnerManipulatorenTest {
     private static GegnerManipulator gegnerManipulator;
     private static Gegner testGegner;
-    private static EntityManager theManager;
     
     @BeforeClass
     public static void setUpBeforeClass() {
         gegnerManipulator = GegnerManipulator.getInstance();
-//        testGegner = new Gegner();
-        theManager = EntityManagerFactoryProvider.getFactory()
-                .createEntityManager();
     }
     
     @Test
@@ -50,6 +46,7 @@ public class GegnerManipulatorenTest {
         testGegner = new Gegner();
         gegnerManipulator.add(testGegner);
         assertFalse("Can add same player twice.", gegnerManipulator.add(testGegner));
+        gegnerManipulator.delete(testGegner);
         
     }
     
@@ -64,6 +61,7 @@ public class GegnerManipulatorenTest {
     public void canAddGegner() {
         testGegner = new Gegner();
         assertTrue("Couldn't add new Gegner.", gegnerManipulator.add(testGegner));
+        gegnerManipulator.delete(testGegner);
     }
     
     
@@ -86,6 +84,7 @@ public class GegnerManipulatorenTest {
         if (gegnerManipulator.add(testGegner)) {
             testGegner.setName_("Nr. 461");
             assertTrue(gegnerManipulator.update(testGegner));
+            gegnerManipulator.delete(testGegner);
         }
     }
     
