@@ -14,6 +14,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
+import controller.AusruestungsManipulator;
+import controller.SpielerManipulator;
 import model.interfaces.DBObject;
 
 /**
@@ -25,6 +27,8 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "AUSRUESTUNGEN")
 public class Ausruestung implements DBObject {
+    private static AusruestungsManipulator dbManipulator_ = AusruestungsManipulator.getInstance();
+
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -35,6 +39,11 @@ public class Ausruestung implements DBObject {
     private int defH_;
     @Column(name = "DEFS", columnDefinition = "INTEGER DEFAULT '0' CHECK(DEFS >= 0)")
     private int defS_;
+    
+    private void updateInDB() {
+        if(getID_() != 0)
+            dbManipulator_.update(this);
+    }
     
     /**
      * Setzt DefR, DefH und DefS auf die Default-Werte.
@@ -51,6 +60,7 @@ public class Ausruestung implements DBObject {
     
     public void setDefR_(int defR_) {
         this.defR_ = defR_;
+        updateInDB();
     }
     
     public int getDefH_() {
@@ -59,6 +69,7 @@ public class Ausruestung implements DBObject {
     
     public void setDefH_(int defH_) {
         this.defH_ = defH_;
+        updateInDB();
     }
     
     public int getDefS_() {
@@ -67,6 +78,7 @@ public class Ausruestung implements DBObject {
     
     public void setDefS_(int defS_) {
         this.defS_ = defS_;
+        updateInDB();
     }
     
     public List<Waffen> getWaffen() {

@@ -57,6 +57,7 @@ public class SpielerManipulatorTest {
     
     @Test
     public void canAddSpieler() {
+        testSpieler = new Spieler();
         assertTrue("Couldn't add new Spieler.", testInstance.add(testSpieler));
     }
     

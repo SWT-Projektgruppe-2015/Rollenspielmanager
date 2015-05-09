@@ -7,28 +7,24 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Column;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Persistence;
 import javax.persistence.Table;
-import javax.persistence.TypedQuery;
 import javax.persistence.PrePersist;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 
 import controller.AusruestungsManipulator;
-import controller.GruppenManipulator;
 import controller.SpielerManipulator;
 import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "SPIELER")
 public class Spieler extends Charakter implements DBObject {
-    
+    private static SpielerManipulator spielerManipulator_ = SpielerManipulator.getInstance();
+
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -44,10 +40,7 @@ public class Spieler extends Charakter implements DBObject {
     private Ausruestung ausruestung_;
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "SPIELER_IN_GRUPPE", joinColumns = { @JoinColumn(name = "SPIELER_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "GRUPPEN_ID", referencedColumnName = "ID") })
-    private Set<Gruppe> membership_;
-    
-    private static SpielerManipulator spielerManipulator_ = SpielerManipulator.getInstance();
-    
+    private Set<Gruppe> membership_;    
     
     
     @PrePersist
@@ -60,7 +53,6 @@ public class Spieler extends Charakter implements DBObject {
         }
         if (getAusruestung_() == null) {
             setAusruestung_(new Ausruestung());
-            AusruestungsManipulator.getInstance().add(getAusruestung_());
         }
     }
     
@@ -89,6 +81,12 @@ public class Spieler extends Charakter implements DBObject {
     }
 
 
+    
+    private void updateInDB() {
+        if(this.getID_() != 0)
+            spielerManipulator_.update(this);
+    }
+    
     
     /**
      * @return the iD_
@@ -145,11 +143,12 @@ public class Spieler extends Charakter implements DBObject {
     
 
     /**
-     * @param membership_
+     * @param gruppe
      *            the membership_ to set
      */
-    public void setMembership_(Set<Gruppe> membership_) {
-        this.membership_ = membership_;
+    public void setMembership_(Set<Gruppe> gruppe) {
+        membership_ = gruppe;
+        updateInDB();
     }
     
     
@@ -159,7 +158,8 @@ public class Spieler extends Charakter implements DBObject {
      *            the ausruestung_ to set
      */
     public void setAusruestung_(Ausruestung ausruestung) {
-        this.ausruestung_ = ausruestung;
+        ausruestung_ = ausruestung;
+        AusruestungsManipulator.getInstance().add(ausruestung);
     }
     
     
@@ -170,6 +170,7 @@ public class Spieler extends Charakter implements DBObject {
      */
     public void setLevel_(int level_) {
         this.level_ = level_;
+        updateInDB();
     }
     
     
@@ -180,6 +181,7 @@ public class Spieler extends Charakter implements DBObject {
      */
     public void setKreis_(int kreis_) {
         this.kreis_ = kreis_;
+        updateInDB();
     }
     
     
@@ -190,6 +192,7 @@ public class Spieler extends Charakter implements DBObject {
      */
     public void setName_(String name_) {
         this.name_ = name_;
+        updateInDB();
     }
     
     
@@ -225,13 +228,7 @@ public class Spieler extends Charakter implements DBObject {
 
     
     public static List<Spieler> getAllPlayers() {
-        // TODO:: Hier sollte der DB Manipulator verwendet werden.
-        EntityManagerFactory factory = Persistence
-                .createEntityManagerFactory("thePersistenceUnit");
-        EntityManager theManager = factory.createEntityManager();
-        TypedQuery<Spieler> getAllRows = theManager.createQuery("FROM Spieler",
-                Spieler.class);
-        return getAllRows.getResultList();
+        return spielerManipulator_.getAll();
     }
 
     
