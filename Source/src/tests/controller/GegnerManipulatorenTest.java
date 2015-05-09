@@ -5,15 +5,12 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import javax.persistence.EntityManager;
-
 import model.Gegner;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import controller.EntityManagerFactoryProvider;
 import controller.GegnerManipulator;
 
 public class GegnerManipulatorenTest {

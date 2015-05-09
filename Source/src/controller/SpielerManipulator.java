@@ -20,7 +20,7 @@ import controller.interfaces.DBManipulator;
 
 
 
-public class SpielerManipulator implements DBManipulator {
+public class SpielerManipulator extends DBManipulator {
     private static SpielerManipulator Singleton;
     private static EntityManager theManager;
     
@@ -247,5 +247,29 @@ public class SpielerManipulator implements DBManipulator {
             getResultListExceptionSix.printStackTrace();
             return null;
         }
+    }
+
+
+
+    @Override
+    protected void persistEntity(DBObject entity) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+
+    @Override
+    protected void removeEntity(DBObject entity) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+
+    @Override
+    protected void mergeEntity(DBObject entity) {
+        // TODO Auto-generated method stub
+        
     }
 }

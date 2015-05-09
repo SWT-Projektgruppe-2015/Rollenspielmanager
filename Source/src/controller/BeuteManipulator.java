@@ -2,8 +2,6 @@ package controller;
 
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityManager;
 import javax.persistence.LockTimeoutException;
 import javax.persistence.NoResultException;
 import javax.persistence.NonUniqueResultException;
@@ -24,84 +22,9 @@ import controller.interfaces.DBManipulator;
 import model.Beute;
 import model.interfaces.DBObject;
 
-public class BeuteManipulator implements DBManipulator{
-    private static EntityManager theManager = EntityManagerFactoryProvider.getFactory().createEntityManager();
+public class BeuteManipulator extends DBManipulator{
     private static BeuteManipulator singelton;
-    
-    private BeuteManipulator() {}
-    
-    @Override
-    public boolean add(DBObject entity) {
-        theManager.getTransaction().begin();
-        try {
-            theManager.persist((Beute) entity);
-        }
-        catch (EntityExistsException addExceptionOne) {
-            System.err.println("EntityExistsException: "
-                    + addExceptionOne.getMessage());
-            theManager.getTransaction().commit();
-            return false;
-        }
-        catch (TransactionRequiredException addExceptionTwo) {
-            System.err.println("TransactionRequiredException: "
-                    + addExceptionTwo.getMessage());
-            return false;
-        }
-        catch (IllegalArgumentException addExceptionThree) {
-            System.err.println("IllegalArgumentException in add in Beutemanipulator: "
-                    + addExceptionThree.getMessage());
-            return false;
-        }
-        
-        theManager.getTransaction().commit();
-        return true;
-    }
-    
-    @Override
-    public boolean delete(DBObject entity) {
-        boolean returnValue = true;
-        try {
-            Beute defaultBeute = getDefaultBeute();
-            theManager.getTransaction().begin();
-            replaceBeute(defaultBeute, (Beute)entity);
-            theManager.remove((Beute) entity);
-        }
-        catch (TransactionRequiredException persistExceptionTwo) {
-            System.err.println("TransactionRequiredException: "
-                    + persistExceptionTwo.getMessage());
-            returnValue = false;
-        }
-        catch (IllegalArgumentException persistExceptionThree) {
-            System.err.println("IllegalArgumentException in delete from BeuteManipulator"
-                    + persistExceptionThree.getMessage());
-            returnValue = false;
-        }
-        catch (PersistenceException persistExceptionFinal) {
-            System.err.println("PersistenceException: "
-                    + persistExceptionFinal.getMessage());
-            returnValue = false;
-        }
-        finally {
-            try {
-                theManager.getTransaction().commit();
-            }
-            catch (RollbackException commitExceptionOne) {
-                System.err.println("RollBackException: "
-                        + commitExceptionOne.getMessage());
-                return false;
-            }
-            catch (PersistenceException commitExceptionTwo) {
-                System.err.println("PersistenceException: "
-                        + commitExceptionTwo.getMessage());
-                theManager.getTransaction().commit();
-                return false;
-            }
-        }
-        
-        return returnValue;
-    }
-    
-    
+      
     
     private boolean replaceBeute(Beute defaultBeute, Beute deletedBeute) {
         Query getAllRows;
@@ -124,9 +47,9 @@ public class BeuteManipulator implements DBManipulator{
     }
     
     
+    
     private Beute getDefaultBeute() {
         TypedQuery<Beute> getAllRows;
-        theManager.getTransaction().begin();
         try {
             getAllRows = theManager.createQuery("FROM Beute WHERE profil_ = '" + Beute.DEFAULTNAME + "'",
                 Beute.class);
@@ -171,7 +94,6 @@ public class BeuteManipulator implements DBManipulator{
         }
         finally {
             try {
-                theManager.getTransaction().commit();
             }
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
@@ -181,59 +103,12 @@ public class BeuteManipulator implements DBManipulator{
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
-                theManager.getTransaction().commit();
                 return null;
             }
         }
     }
     
-    
-    
-    @Override
-    public boolean update(DBObject entity) {
-        boolean returnValue = true;
-        theManager.getTransaction().begin();
-        try {
-            theManager.merge((Beute) entity);
-        }
-        catch (EntityExistsException persistExceptionOne) {
-            System.err.println("EntityExistsException: "
-                    + persistExceptionOne.getMessage());
-            returnValue = false;
-        }
-        catch (TransactionRequiredException persistExceptionTwo) {
-            System.err.println("TransactionRequiredException: "
-                    + persistExceptionTwo.getMessage());
-            returnValue = false;
-        }
-        catch (IllegalArgumentException persistExceptionThree) {
-            System.err.println("IllegalArgumentException: "
-                    + persistExceptionThree.getMessage());
-            returnValue = false;
-        }
-        catch (PersistenceException persistExceptionFinal) {
-            System.err.println("PersistenceException: "
-                    + persistExceptionFinal.getMessage());
-            returnValue = false;
-        }
-        finally {
-            try {
-                theManager.getTransaction().commit();
-            }
-            catch (RollbackException commitExceptionOne) {
-                System.err.println("RollBackException: "
-                        + commitExceptionOne.getMessage());
-                return false;
-            }
-            catch (PersistenceException commitExceptionTwo) {
-                System.err.println("PersistenceException: "
-                        + commitExceptionTwo.getMessage());
-                return false;
-                
-            }
-        }
-        return returnValue;
-    }
+
     
     public List<Beute> getAll() {
         TypedQuery<Beute> getAllRows;
@@ -273,10 +148,32 @@ public class BeuteManipulator implements DBManipulator{
         }
     }
     
+    
+    
     public static BeuteManipulator getInstance() {
         if (singelton == null) {
             singelton = new BeuteManipulator();
         }
         return singelton;
+    }
+
+    @Override
+    protected void persistEntity(DBObject entity) {
+        theManager.persist((Beute) entity);
+    }
+
+
+
+    @Override
+    protected void removeEntity(DBObject entity) {
+        Beute defaultBeute = getDefaultBeute();
+        replaceBeute(defaultBeute, (Beute)entity);
+    }
+
+
+
+    @Override
+    protected void mergeEntity(DBObject entity) {
+        theManager.merge((Beute) entity);       
     }
 }

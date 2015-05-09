@@ -2,13 +2,10 @@ package controller;
 
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityManager;
 import javax.persistence.LockTimeoutException;
 import javax.persistence.PersistenceException;
 import javax.persistence.PessimisticLockException;
 import javax.persistence.QueryTimeoutException;
-import javax.persistence.RollbackException;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
@@ -16,171 +13,9 @@ import model.Ausruestung;
 import model.interfaces.DBObject;
 import controller.interfaces.DBManipulator;
 
-public class AusruestungsManipulator implements DBManipulator {
-    private static EntityManager theManager = EntityManagerFactoryProvider.getFactory().createEntityManager();
-    private static AusruestungsManipulator singelton;
-    
-    
-    
-    private AusruestungsManipulator() {}
-    
-    
-    
-    @Override
-    public boolean add(DBObject entity) {
-        boolean returnValue = true;
-        theManager.getTransaction().begin();
-        try {
-            theManager.persist((Ausruestung) entity);
-        }
-        catch (EntityExistsException addExceptionOne) {
-            System.err.println("EntityExistsException: "
-                    + addExceptionOne.getMessage());
-            addExceptionOne.printStackTrace();
-            returnValue =  false;
-        }
-        catch (TransactionRequiredException addExceptionTwo) {
-            System.err.println("TransactionRequiredException: "
-                    + addExceptionTwo.getMessage());
-            addExceptionTwo.printStackTrace();
-            returnValue =  false;
-        }
-        catch (IllegalArgumentException addExceptionThree) {
-            System.err.println("IllegalArgumentException in add in Ausruestungsmanager: "
-                    + addExceptionThree.getMessage());
-            addExceptionThree.printStackTrace();
-            returnValue =  false;
-        }
-        finally {
-            try {
-                theManager.getTransaction().commit();
-            }
-            catch (RollbackException commitExceptionOne) {
-                System.err.println("RollBackException: "
-                        + commitExceptionOne.getMessage());
-                commitExceptionOne.printStackTrace();
-                return false;
-            }
-            catch (PersistenceException commitExceptionTwo) {
-                System.err.println("PersistenceException: "
-                        + commitExceptionTwo.getMessage());
-                commitExceptionTwo.printStackTrace();
-                return false;            
-            }
-        }
-        return returnValue;
-    }
-    
-    
-    
-    @Override
-    public boolean delete(DBObject entity) {
-        boolean returnValue = true;
-        if(entity == null)  {
-            System.err.println("Why!!!!!\n");
-        }
-        theManager.getTransaction().begin();
-        try {
-            if(entity == null)  {
-                System.err.println("Why!!!!!\n");
-            }
-            theManager.remove((Ausruestung) entity);
-        }
-        catch (TransactionRequiredException removeExceptionOne) {
-            System.err.println("TransactionRequiredException: "
-                    + removeExceptionOne.getMessage());
-            removeExceptionOne.printStackTrace();
-            returnValue = false;
-        }
-        catch (IllegalArgumentException removeExceptionTwo) {
-            System.err.println("IllegalArgumentException in delete in Ausruestungsmanager: "
-                    + removeExceptionTwo.getMessage());
-            removeExceptionTwo.printStackTrace();
-            returnValue = false;
-        }
-        catch (PersistenceException removeExceptionFinal) {
-            System.err.println("PersistenceException: "
-                    + removeExceptionFinal.getMessage());
-            removeExceptionFinal.printStackTrace();
-            returnValue = false;
-        }
-        finally {
-            try {
-                theManager.getTransaction().commit();
-            }
-            catch (RollbackException commitExceptionOne) {
-                System.err.println("RollBackException: "
-                        + commitExceptionOne.getMessage());
-                commitExceptionOne.printStackTrace();
-                return false;
-            }
-            catch (PersistenceException commitExceptionTwo) {
-                System.err.println("PersistenceException: "
-                        + commitExceptionTwo.getMessage());
-                commitExceptionTwo.printStackTrace();
-                return false;
-            }
-        }
-        
-        return returnValue;
-    }
-    
-    
-    
-    @Override
-    public boolean update(DBObject entity) {
-        boolean returnValue = true;
-        theManager.getTransaction().begin();
-        try {
-            theManager.merge((Ausruestung) entity);
-        }
-        catch (EntityExistsException persistExceptionOne) {
-            System.err.println("EntityExistsException: "
-                    + persistExceptionOne.getMessage());
-            persistExceptionOne.printStackTrace();
-            returnValue = false;
-        }
-        catch (TransactionRequiredException persistExceptionTwo) {
-            System.err.println("TransactionRequiredException: "
-                    + persistExceptionTwo.getMessage());
-            persistExceptionTwo.printStackTrace();
-            returnValue = false;
-        }
-        catch (IllegalArgumentException persistExceptionThree) {
-            System.err.println("IllegalArgumentException: "
-                    + persistExceptionThree.getMessage());
-            persistExceptionThree.printStackTrace();
-            returnValue = false;
-        }
-        catch (PersistenceException persistExceptionFinal) {
-            System.err.println("PersistenceException: "
-                    + persistExceptionFinal.getMessage());
-            persistExceptionFinal.printStackTrace();
-            returnValue = false;
-        }
-        finally {
-            try {
-                theManager.getTransaction().commit();
-            }
-            catch (RollbackException commitExceptionOne) {
-                System.err.println("RollBackException: "
-                        + commitExceptionOne.getMessage());
-                commitExceptionOne.printStackTrace();
-                return false;
-            }
-            catch (PersistenceException commitExceptionTwo) {
-                System.err.println("PersistenceException: "
-                        + commitExceptionTwo.getMessage());
-                commitExceptionTwo.printStackTrace();
-                return false;
-                
-            }
-        }
-        return returnValue;
-    }
-    
-    
-    
+public class AusruestungsManipulator extends DBManipulator {
+    private static AusruestungsManipulator singelton;   
+   
     public List<Ausruestung> getAll() {
         TypedQuery<Ausruestung> getAllRows;
         try {
@@ -228,11 +63,32 @@ public class AusruestungsManipulator implements DBManipulator {
     }
     
     
-    
+   
     public static AusruestungsManipulator getInstance() {
         if (singelton == null) {
             singelton = new AusruestungsManipulator();
         }
         return singelton;
+    }
+
+
+
+    @Override
+    protected void persistEntity(DBObject entity) {
+        theManager.persist((Ausruestung) entity);
+    }
+
+
+
+    @Override
+    protected void removeEntity(DBObject entity) {
+       theManager.remove((Ausruestung) entity);        
+    }
+
+
+
+    @Override
+    protected void mergeEntity(DBObject entity) {
+        theManager.merge((Ausruestung) entity);
     }
 }

@@ -9,11 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import controller.WaffenManipulator;
 import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "WAFFEN")
 public class Waffen implements DBObject {
+    private static WaffenManipulator dbManipulator_ = WaffenManipulator.getInstance();
+
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -29,10 +32,16 @@ public class Waffen implements DBObject {
     private Ausruestung ausruestung_;
 
     public Waffen() {
-        super();
         setWaffenSchaden_(0);
+        ausruestung_ = new Ausruestung();
     }
     
+    
+    
+    private void updateInDB() {
+        if(ID_ != 0)
+            dbManipulator_.add(this);
+    }
     
     
     @Override
@@ -55,6 +64,7 @@ public class Waffen implements DBObject {
 
     public void setEffektTyp_(int effektTyp_) {
         this.effektTyp_ = effektTyp_;
+        updateInDB();
     }
 
     public String getWaffenName_() {
@@ -63,6 +73,7 @@ public class Waffen implements DBObject {
 
     public void setWaffenName_(String waffenName_) {
         this.waffenName_ = waffenName_;
+        updateInDB();
     }
 
     public int getWaffenSchaden_() {
@@ -71,6 +82,7 @@ public class Waffen implements DBObject {
 
     public void setWaffenSchaden_(int waffenSchaden_) {
         this.waffenSchaden_ = waffenSchaden_;
+        updateInDB();
     }
 
     public Ausruestung getAusruestung_() {
@@ -79,9 +91,17 @@ public class Waffen implements DBObject {
 
     public void setAusruestung_(Ausruestung ausruestung_) {
         this.ausruestung_ = ausruestung_;
+        updateInDB();
     }
 
     public void deleteFromDB() {
-        // entferne Waffe aus DB mithilfe von Manipulatoren
+        if(ID_ != 0)
+            dbManipulator_.delete(this);
+    }
+    
+    
+    
+    public void addToDB() {
+        dbManipulator_.add(this);
     }
 }

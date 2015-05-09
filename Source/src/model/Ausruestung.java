@@ -141,4 +141,8 @@ public class Ausruestung implements DBObject {
     public void setID_(int iD_) {
         ID_ = iD_;
     }
+
+    public void addToDB() {
+        dbManipulator_.add(this);
+    }
 }

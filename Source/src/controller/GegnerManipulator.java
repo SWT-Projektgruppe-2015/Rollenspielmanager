@@ -1,6 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityExistsException;
@@ -19,7 +18,7 @@ import model.Beute;
 import model.Gegner;
 import model.interfaces.DBObject;
 
-public class GegnerManipulator {
+public class GegnerManipulator extends DBManipulator {
     private static GegnerManipulator Singleton;
     private static EntityManager theManager;
     
@@ -38,7 +37,7 @@ public class GegnerManipulator {
     }
 
     
-    
+    @Override
     public boolean add(DBObject entity) {
         boolean returnValue = true;
         theManager.getTransaction().begin();
@@ -93,6 +92,7 @@ public class GegnerManipulator {
         return ausruestungManipulator.delete(ausruestung) && beuteManipulator.delete(beute);
     }
     
+    @Override
     public boolean delete(DBObject entity) {
         boolean returnValue = true;
         theManager.getTransaction().begin();
@@ -132,7 +132,6 @@ public class GegnerManipulator {
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
-                theManager.getTransaction().commit();
                 return false;
             }
         }
@@ -140,6 +139,8 @@ public class GegnerManipulator {
         return returnValue;
     }
     
+    
+    @Override
     public boolean update(DBObject entity) {
         boolean returnValue = true;
         theManager.getTransaction().begin();
@@ -223,5 +224,29 @@ public class GegnerManipulator {
             System.err.println("PersistenceException: ");
             return null;
         }
+    }
+
+
+
+    @Override
+    protected void persistEntity(DBObject entity) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+
+    @Override
+    protected void removeEntity(DBObject entity) {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+
+    @Override
+    protected void mergeEntity(DBObject entity) {
+        // TODO Auto-generated method stub
+        
     }
 }
