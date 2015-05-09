@@ -56,6 +56,7 @@ public class AusruestungsManipulatorTest {
     @Test
     public void testAdd() {
         assertTrue(testInstance.add(testAusruestung));
+        testInstance.delete(testAusruestung);
     }
     
     
@@ -73,12 +74,14 @@ public class AusruestungsManipulatorTest {
        testInstance.add(testAusruestung);
        theManager.detach(testAusruestung);
        assertFalse(testInstance.add(testAusruestung));
+       testInstance.delete(testAusruestung);
     }
     
     
     
     @Test
     public void testDelete() {
+        testAusruestung = new Ausruestung();
         if(testInstance.add(testAusruestung)) {
             assertTrue(testInstance.delete(testAusruestung));
         }
@@ -113,6 +116,7 @@ public class AusruestungsManipulatorTest {
     
     @Test
     public void canUpdateAusruestung() {
+        testAusruestung = new Ausruestung();
         if(testInstance.add(testAusruestung)) {
             testAusruestung.setDefH_(2);
             assertTrue("Can't update", testInstance.update(testAusruestung));
@@ -143,7 +147,8 @@ public class AusruestungsManipulatorTest {
     public static void cleanUp()    {
         Ausruestung cleanUpEquipment = theManager.find(Ausruestung.class, testAusruestung.getID_());
         theManager.getTransaction().begin();
-        theManager.remove(cleanUpEquipment);
+        if(cleanUpEquipment != null)
+            theManager.remove(cleanUpEquipment);
         theManager.getTransaction().commit();
     }
 }

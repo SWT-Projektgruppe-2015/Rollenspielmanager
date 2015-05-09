@@ -11,6 +11,9 @@ public class EntityManagerFactoryProvider {
      * @return the factory
      */
     public static EntityManagerFactory getFactory() {
+        if(factory == null) {
+            factory = Persistence.createEntityManagerFactory("thePersistenceUnit");
+        }
         return factory;
     }
 

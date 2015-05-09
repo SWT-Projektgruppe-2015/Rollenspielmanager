@@ -21,10 +21,7 @@ import javax.persistence.TypedQuery;
 import org.hibernate.HibernateException;
 
 import controller.interfaces.DBManipulator;
-import model.Ausruestung;
 import model.Beute;
-import model.Gegner;
-import model.Spieler;
 import model.interfaces.DBObject;
 
 public class BeuteManipulator implements DBManipulator{
