@@ -177,24 +177,36 @@ public class SpielerTest {
         return spielerOnMinLevel;
     }
     
-    @Ignore
+    
+    
     @Test
     public void addWaffe() {
+        Spieler spielerWithWaffe = new Spieler();
+        spielerWithWaffe.addToDB();
+        
         Waffen waffe = new Waffen();
         
-        normalSpieler.addWaffe(waffe);
-        assertTrue(normalSpieler.getWaffen().contains(waffe));
+        spielerWithWaffe.addWaffe(waffe);
+        assertTrue(spielerWithWaffe.getWaffen().contains(waffe));
+        
+        waffe.deleteFromDB();
+        spielerWithWaffe.deleteFromDB();
     }
 
     
-    @Ignore
+
     @Test
     public void deleteWaffe() {
-        Waffen waffe = new Waffen();
-        normalSpieler.addWaffe(waffe);
-        normalSpieler.deleteWaffe(waffe);
+        Spieler spielerWithWaffe = new Spieler();
+        spielerWithWaffe.addToDB();
         
-        assertTrue(!normalSpieler.getWaffen().contains(waffe));
+        Waffen waffe = new Waffen();
+        spielerWithWaffe.addWaffe(waffe);
+        spielerWithWaffe.deleteWaffe(waffe);
+        
+        assertTrue(!spielerWithWaffe.getWaffen().contains(waffe));
+        
+        waffe.deleteFromDB();
     }
 
     @Ignore

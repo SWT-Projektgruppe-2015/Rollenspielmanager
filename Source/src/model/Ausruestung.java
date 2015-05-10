@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
 import controller.AusruestungsManipulator;
+import controller.WaffenManipulator;
 import model.interfaces.DBObject;
 
 /**
@@ -81,13 +81,7 @@ public class Ausruestung implements DBObject {
     }
     
     public List<Waffen> getWaffen() {
-        // TODO:: Mit dem Waffenmanipulator diesen Code ersetzen.
-//        EntityManagerFactory factory = Persistence
-//                .createEntityManagerFactory("thePersistenceUnit");
-//        EntityManager theManager = factory.createEntityManager();
-//        TypedQuery<Waffen> getWaffenInAusruestung = theManager.createQuery(
-//                "FROM Waffen w WHERE w.ausruestung_ = " + ID_, Waffen.class);
-        return new ArrayList<Waffen>();
+        return WaffenManipulator.getInstance().getWaffenInAusruestung(this);
     }
     
     @PrePersist
@@ -111,11 +105,12 @@ public class Ausruestung implements DBObject {
         return getFaehigkeitenInAusruestung.getResultList();
     }
     
-    public void addWaffe(Waffen selectedWaffe) {
-        boolean ausruestungInDbButWaffeIsNot = selectedWaffe.ID_ == 0 && getID_() != 0;
-        if(ausruestungInDbButWaffeIsNot)
-            selectedWaffe.addToDB();
+    public void addWaffe(Waffen selectedWaffe) {       
         selectedWaffe.setAusruestung_(this);
+        boolean ausruestungInDbButWaffeIsNot = selectedWaffe.ID_ == 0 && getID_() != 0;
+        if(ausruestungInDbButWaffeIsNot) {
+            selectedWaffe.addToDB();
+        }
     }
     
     public void deleteWaffe(Waffen waffe) {
@@ -146,5 +141,9 @@ public class Ausruestung implements DBObject {
 
     public void addToDB() {
         dbManipulator_.add(this);
+    }
+
+    public void deleteFromDB() {
+        dbManipulator_.delete(this);
     }
 }

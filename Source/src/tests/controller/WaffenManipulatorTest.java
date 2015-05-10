@@ -6,6 +6,8 @@ import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import model.Ausruestung;
@@ -74,7 +76,6 @@ public class WaffenManipulatorTest {
     }
     
     
-    @Ignore
     @Test
     public void testNullAdd() {
         assertFalse(waffenManipulator.add(null));
@@ -145,5 +146,30 @@ public class WaffenManipulatorTest {
     @Test
     public void cantUpdateNonExistantWaffen() {
         assertFalse("Can update non existant Waffen",waffenManipulator.update(null));
+    }
+    
+    
+    
+    @Test
+    public void getWaffenForAusruestung() {
+        Ausruestung testAusruestung = new Ausruestung();
+        testAusruestung.addToDB();
+        Waffen waffe1 = new Waffen();
+        waffe1.setWaffenName_("Waffe1");
+        waffe1.setAusruestung_(testAusruestung);
+        waffe1.addToDB();
+        Waffen waffe2 = new Waffen();
+        waffe2.setWaffenName_("Waffe2");
+        waffe2.setAusruestung_(testAusruestung);
+        waffe2.addToDB();
+
+        List<Waffen> waffenInAusruestung = waffenManipulator.getWaffenInAusruestung(testAusruestung);
+        assertTrue(waffenInAusruestung.contains(waffe1));
+        assertTrue(waffenInAusruestung.contains(waffe2));
+        assertTrue(waffenInAusruestung.size() == 2);
+        
+        waffe1.deleteFromDB();
+        waffe2.deleteFromDB();
+        testAusruestung.deleteFromDB();
     }
 }
