@@ -16,7 +16,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 
-import controller.AusruestungsManipulator;
 import controller.SpielerManipulator;
 import model.interfaces.DBObject;
 
@@ -52,7 +51,8 @@ public class Spieler extends Charakter implements DBObject {
             setKreis_(1);
         }
         if (getAusruestung_() == null) {
-            setAusruestung_(new Ausruestung());
+            ausruestung_ = new Ausruestung();
+            ausruestung_.addToDB();
         }
     }
     
@@ -158,8 +158,10 @@ public class Spieler extends Charakter implements DBObject {
      *            the ausruestung_ to set
      */
     public void setAusruestung_(Ausruestung ausruestung) {
+        boolean spielerInDbButAusruestungIsNot = getID_() != 0 && ausruestung.getID_() == 0;
+        if(spielerInDbButAusruestungIsNot)
+            ausruestung.addToDB();
         ausruestung_ = ausruestung;
-        AusruestungsManipulator.getInstance().add(ausruestung);
     }
     
     

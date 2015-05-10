@@ -17,6 +17,8 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "GRUPPEN")
 public class Gruppe implements DBObject {
+    private static GruppenManipulator dbManipulator_ = GruppenManipulator.getInstance();
+
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -24,18 +26,22 @@ public class Gruppe implements DBObject {
     @Column(name = "NAME", columnDefinition = " VARCHAR(30) NOT NULL DEFAULT 'Montags Gruppe'")
     private String name_;
     @ManyToMany(mappedBy = "membership_")
-    private Set<Spieler> members_;
-    
-    private static GruppenManipulator gruppenManipulator_ = GruppenManipulator.getInstance();
-    
+    private Set<Spieler> members_;    
     
     public Gruppe(){
         name_ = "DefaultGruppe";
         members_ = new HashSet<Spieler>();
     }
     
+    
+    
+    private void updateInDB() {
+        if(ID_ != 0)
+            dbManipulator_.update(this);
+    }
+    
     public static List<Gruppe> getAll() {
-        return gruppenManipulator_.getAll();
+        return dbManipulator_.getAll();
     }
     
     @Override
@@ -72,12 +78,11 @@ public class Gruppe implements DBObject {
     public String getName() {
         return name_;
     }
-
-    public void setName(String name) {
-        name_ = name;
-    }
+    
+    
 
     public void deleteFromDB() {
+        dbManipulator_.delete(this);
     }
     
 
@@ -101,6 +106,7 @@ public class Gruppe implements DBObject {
 
     public void setName_(String name_) {
         this.name_ = name_;
+        updateInDB();
     }
 
 
@@ -116,6 +122,6 @@ public class Gruppe implements DBObject {
     }    
 
     public void addToDB() {
-        // TODO Gruppe per Manipulator speichern
+        dbManipulator_.add(this);
     }
 }

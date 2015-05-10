@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -13,14 +12,15 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import controller.AusruestungsManipulator;
-import controller.BeuteManipulator;
+import controller.GegnerManipulator;
 import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "GEGNER")
 
 public class Gegner extends Charakter implements DBObject {
+    private static GegnerManipulator dbManipulator_ = GegnerManipulator.getInstance();
+
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -78,19 +78,24 @@ public class Gegner extends Charakter implements DBObject {
         }
         if (getAusruestung_() == null) {
             ausruestung_ = new Ausruestung();
+            ausruestung_.addToDB();
             Waffen defaultWaffe = new Waffen();
             defaultWaffe.setWaffenName_("Default Gegner Waffe");
             defaultWaffe.setWaffenSchaden_(0);
-            ausruestung_.addWaffe(defaultWaffe);
-            AusruestungsManipulator.getInstance().add(ausruestung_);
+            defaultWaffe.setAusruestung_(ausruestung_);
         }
         if (this.getBeute_() == null) {
             beuteTyp_ = new Beute();
-            BeuteManipulator.getInstance().add(beuteTyp_);
+            beuteTyp_.addToDB();
         }
     }
     
     
+    
+    private void updateInDB() {
+        if(getID_() != 0)
+            dbManipulator_.update(this);
+    }
     
     public Beute getBeute_() {
         return beuteTyp_;
@@ -124,6 +129,7 @@ public class Gegner extends Charakter implements DBObject {
     
     public void setName_(String name_) {
         this.name_ = name_;
+        updateInDB();
     }
 
     
@@ -136,6 +142,7 @@ public class Gegner extends Charakter implements DBObject {
 
     public void setKreis_(int kreis_) {
         this.kreis_ = kreis_;
+        updateInDB();
     }
 
     
@@ -148,6 +155,7 @@ public class Gegner extends Charakter implements DBObject {
 
     public void setLevel_(int level_) {
         this.level_ = level_;
+        updateInDB();
     }
 
     
@@ -160,6 +168,7 @@ public class Gegner extends Charakter implements DBObject {
 
     public void setErfahrung_(int erfahrung_) {
         this.erfahrung_ = erfahrung_;
+        updateInDB();
     }
 
     
@@ -172,6 +181,7 @@ public class Gegner extends Charakter implements DBObject {
 
     public void setStaerke_(int staerke_) {
         this.staerke_ = staerke_;
+        updateInDB();
     }
 
     
@@ -184,6 +194,7 @@ public class Gegner extends Charakter implements DBObject {
 
     public void setGeschick_(int geschick_) {
         this.geschick_ = geschick_;
+        updateInDB();
     }
 
     
@@ -196,13 +207,13 @@ public class Gegner extends Charakter implements DBObject {
 
     public void setLebenspunkte_(int lebenspunkte_) {
         this.lebenspunkte_ = lebenspunkte_;
+        updateInDB();
     }
 
     
 
     public static List<Gegner> getAllGegner() {
-        // TODO:: Hier sollte der DB Manipulator verwendet werden. 
-        return new ArrayList<Gegner>();
+        return dbManipulator_.getAll();
     }
 
     
@@ -225,6 +236,9 @@ public class Gegner extends Charakter implements DBObject {
 	
 	@Override
 	public void setAusruestung_(Ausruestung ausruestung) {
+	    boolean gegnerInDbButAusruestungIsNot = getID_() != 0 && ausruestung.getID_() == 0;
+        if(gegnerInDbButAusruestungIsNot)
+            ausruestung.addToDB();
 		ausruestung_ = ausruestung;
 	}
 
@@ -255,8 +269,7 @@ public class Gegner extends Charakter implements DBObject {
 
 
     public void addToDB() {
-        // TODO Auto-generated method stub
-        
+        dbManipulator_.add(this);
     }
 
     
@@ -270,7 +283,6 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public void deleteFromDB() {
-        // TODO Auto-generated method stub
-        
+        dbManipulator_.delete(this);
     }
 }

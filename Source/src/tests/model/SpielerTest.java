@@ -187,7 +187,7 @@ public class SpielerTest {
     }
 
     
-    
+    @Ignore
     @Test
     public void deleteWaffe() {
         Waffen waffe = new Waffen();

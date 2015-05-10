@@ -6,12 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import controller.BeuteManipulator;
 import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "BEUTE")
 public class Beute implements DBObject {
     public static final String DEFAULTNAME = "Standard#DontUseThis";
+    private static BeuteManipulator dbManipulator_ = BeuteManipulator.getInstance();
     
     @Id
     @GeneratedValue
@@ -39,6 +41,11 @@ public class Beute implements DBObject {
         geldBetrag_ = 5;
     }
     
+    private void updateInDB() {
+        if(getID_() != 0)
+            dbManipulator_.update(this);
+    }
+    
     public int getID_() {
         return ID_;
     }
@@ -53,6 +60,7 @@ public class Beute implements DBObject {
 
     public void setProfil_(String profil_) {
         this.profil_ = profil_;
+        updateInDB();
     }
 
     public double getWaffenWkt_() {
@@ -61,6 +69,7 @@ public class Beute implements DBObject {
 
     public void setWaffenWkt_(double waffenWkt_) {
         this.waffenWkt_ = waffenWkt_;
+        updateInDB();
     }
 
     public double getRuestungWkt_() {
@@ -69,6 +78,7 @@ public class Beute implements DBObject {
 
     public void setRuestungWkt_(double ruestungWkt_) {
         this.ruestungWkt_ = ruestungWkt_;
+        updateInDB();
     }
 
     public double getSchwaechungsFaktor_() {
@@ -77,6 +87,7 @@ public class Beute implements DBObject {
 
     public void setSchwaechungsFaktor_(double schwaechungsFaktor_) {
         this.schwaechungsFaktor_ = schwaechungsFaktor_;
+        updateInDB();
     }
 
     public double getBesonderesWkt_() {
@@ -85,6 +96,7 @@ public class Beute implements DBObject {
 
     public void setBesonderesWkt_(double besonderesWkt_) {
         this.besonderesWkt_ = besonderesWkt_;
+        updateInDB();
     }
 
     public int getGeldBetrag_() {
@@ -93,5 +105,12 @@ public class Beute implements DBObject {
 
     public void setGeldBetrag_(int geldBetrag_) {
         this.geldBetrag_ = geldBetrag_;
+        updateInDB();
+    }
+
+    
+    
+    public void addToDB() {
+        dbManipulator_.add(this);
     }
 }

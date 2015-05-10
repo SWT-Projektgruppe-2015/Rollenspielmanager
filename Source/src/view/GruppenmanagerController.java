@@ -102,7 +102,7 @@ public class GruppenmanagerController {
     @FXML
     private void createGruppe() {
         Gruppe newGruppe = new Gruppe();
-        newGruppe.setName(newGruppenNameTextField_.getText());
+        newGruppe.setName_(newGruppenNameTextField_.getText());
         newGruppe.addToDB();
         gruppenList_.add(newGruppe);
         gruppenComboBox_.getItems().add(newGruppe);
@@ -117,7 +117,7 @@ public class GruppenmanagerController {
         if (selectedGruppe == null)
             return;
 
-        selectedGruppe.setName(newGruppenNameTextField_.getText());
+        selectedGruppe.setName_(newGruppenNameTextField_.getText());
         gruppenComboBox_.getItems().setAll(gruppenList_);
         gruppenComboBox_.getSelectionModel().select(selectedGruppe);
     }

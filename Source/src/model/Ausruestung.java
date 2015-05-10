@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
 import controller.AusruestungsManipulator;
-import controller.SpielerManipulator;
 import model.interfaces.DBObject;
 
 /**
@@ -113,6 +112,9 @@ public class Ausruestung implements DBObject {
     }
     
     public void addWaffe(Waffen selectedWaffe) {
+        boolean ausruestungInDbButWaffeIsNot = selectedWaffe.ID_ == 0 && getID_() != 0;
+        if(ausruestungInDbButWaffeIsNot)
+            selectedWaffe.addToDB();
         selectedWaffe.setAusruestung_(this);
     }
     
