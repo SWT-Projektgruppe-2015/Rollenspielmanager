@@ -71,9 +71,11 @@ public class BeuteManipulatorTest {
         assertTrue(testInstance.delete(testBeute));
     }
 
-    @Ignore
     @Test
     public void twoBeuteDeleteAreSame() {
+        testBeute = new Beute();
+        testInstance.add(testBeute);
+        testInstance.delete(testBeute);
         assertFalse(testInstance.delete(testBeute));
     }
     

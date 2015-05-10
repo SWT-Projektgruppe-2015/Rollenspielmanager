@@ -54,6 +54,7 @@ public class Gruppe implements DBObject {
             members_ = new HashSet<Spieler>();
         }
         members_.add(spieler);
+        spieler.addToGruppe(this);
     }
 
 

@@ -63,6 +63,14 @@ public class Spieler extends Charakter implements DBObject {
         return getName_();
     }
     
+    @Override
+    public boolean equals(Object otherSpieler) {
+        return true;
+        /*boolean objectIsSpieler = ((Spieler)otherSpieler) != null;
+        boolean isInDB = getID_() != 0;
+        return isInDB ? objectIsSpieler && getID_() == ((Spieler)otherSpieler).getID_() : super.equals(otherSpieler);*/
+    }
+    
     
     public static List<Spieler> getAll() {
         return spielerManipulator_.getAll();
@@ -307,5 +315,12 @@ public class Spieler extends Charakter implements DBObject {
     public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
         Ausruestung ausruestung = getAusruestungForModification();
         ausruestung.deleteFaehigkeit(faehigkeit);
+    }
+
+
+
+    public void addToGruppe(Gruppe gruppe) {
+        membership_.add(gruppe);
+        updateInDB();
     }
 }

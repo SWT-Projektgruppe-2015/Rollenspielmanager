@@ -64,7 +64,13 @@ public class GruppenmanagerController {
 
         spielerNotInGruppeListView_.getItems().clear();
         for (Spieler spieler : spielerList_) {
-            if (!spielerInGruppe.contains(spieler)) {
+            boolean isInGruppe = false;
+            for (Spieler gruppenSpieler : spielerInGruppe) {
+                if(gruppenSpieler.getID_() == spieler.getID_())
+                    isInGruppe = true;
+            }
+            
+            if (!isInGruppe) {
                 spielerNotInGruppeListView_.getItems().add(spieler);
             }
         }

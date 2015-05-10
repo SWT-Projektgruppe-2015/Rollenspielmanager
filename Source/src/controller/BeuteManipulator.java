@@ -168,6 +168,7 @@ public class BeuteManipulator extends DBManipulator{
     protected void removeEntity(DBObject entity) {
         Beute defaultBeute = getDefaultBeute();
         replaceBeute(defaultBeute, (Beute)entity);
+        theManager.remove((Beute)entity);
     }
 
 
