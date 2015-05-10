@@ -32,12 +32,25 @@ public class GegnerTest {
         assertTrue(normalerGegner.getStaerke_() == 1);
     }
     
-    @Ignore
+    
+    
     @Test
     public void ensureDefaultWaffenDmg() {
+        normalerGegner = new Gegner();
         assertTrue(normalerGegner.getDamage() == 0);
-//        this.normalerGegner.setDmg(100);
-//        assertTrue(normalGegner.getDmg(100));
+    }
+    
+    
+    
+    @Test
+    public void damageCanBeChanged() {
+        Gegner gegnerWithDamage = new Gegner();
+        gegnerWithDamage.addToDB();
+        
+        gegnerWithDamage.setDamage(100);
+        assertTrue(gegnerWithDamage.getDamage() == 100);
+        
+        gegnerWithDamage.deleteFromDB();
     }
     
 }

@@ -13,6 +13,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import controller.GegnerManipulator;
+import controller.WaffenManipulator;
 import model.interfaces.DBObject;
 
 @Entity
@@ -219,10 +220,14 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public int getDamage() {
-        // TODO:: Nutze den DB Manipulator um den Waffenschaden der Ausruestung zu bestimmen.
-//        List<Waffen> waffen = this.getAusruestung_().getWaffen();
-//        return waffen.get(0).getWaffenSchaden_();
-        return 0;
+        if(getAusruestung_() == null)
+            return 0;
+        
+        List<Waffen> waffen = WaffenManipulator.getInstance().getWaffenInAusruestung(getAusruestung_());
+        if(waffen.isEmpty())
+            return 0;
+        
+        return waffen.get(0).getWaffenSchaden_();
     }
 
     
@@ -276,7 +281,18 @@ public class Gegner extends Charakter implements DBObject {
 
 
     public void setDamage(int newDamage) {
-        // TODO Mit DB Manipulatoren Waffe aendern.       
+        if(getAusruestung_() == null)
+            return;
+        
+        List<Waffen> waffen = WaffenManipulator.getInstance().getWaffenInAusruestung(getAusruestung_());
+        if(waffen.isEmpty()) {
+            Waffen waffe = new Waffen();
+            getAusruestung_().addWaffe(waffe);
+            waffe.setWaffenSchaden_(newDamage);
+        }
+        else {
+            waffen.get(0).setWaffenSchaden_(newDamage); 
+        }
     }
 
     
