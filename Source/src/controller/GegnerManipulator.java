@@ -16,6 +16,8 @@ import controller.interfaces.DBManipulator;
 import model.Ausruestung;
 import model.Beute;
 import model.Gegner;
+import model.Spieler;
+import model.Waffen;
 import model.interfaces.DBObject;
 
 public class GegnerManipulator extends DBManipulator {
@@ -83,22 +85,20 @@ public class GegnerManipulator extends DBManipulator {
     }
     
     
-    private boolean deleteBeuteAndAusruestung(Gegner gegner) {
-        Ausruestung ausruestung = theManager.find(Ausruestung.class, gegner.getAusruestung_().getID_());
-        Beute beute = theManager.find(Beute.class, gegner.getBeute_().getID_());
-        DBManipulator ausruestungManipulator = AusruestungsManipulator.getInstance();
-        DBManipulator beuteManipulator = BeuteManipulator.getInstance();
-        
-        return ausruestungManipulator.delete(ausruestung) && beuteManipulator.delete(beute);
-    }
     
     @Override
     public boolean delete(DBObject entity) {
         boolean returnValue = true;
         theManager.getTransaction().begin();
         try {
-            if (deleteBeuteAndAusruestung((Gegner) entity)) 
-                theManager.remove((Gegner) entity);
+            Ausruestung besitz = theManager.find(Ausruestung.class,
+                    ((Gegner) entity).getAusruestung_().getID_());
+            Beute beute = theManager.find(Beute.class, ((Gegner)entity).getBeute_().getID_());
+            for(Waffen waffe : besitz.getWaffen())
+                waffe.deleteFromDB();
+            theManager.remove((Gegner) entity);
+            theManager.remove(theManager.contains(besitz) ? besitz : (Ausruestung) theManager.merge(besitz));
+            theManager.remove(theManager.contains(beute) ? beute : (Beute) theManager.merge(beute));
         }
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "

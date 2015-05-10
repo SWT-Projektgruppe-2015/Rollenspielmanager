@@ -106,7 +106,7 @@ public class WaffenManipulatorTest {
         }
     }
     
-    
+    @Ignore
     @Test
     public void twoWaffenDeleteAreSame() {
         testWaffen = new Waffen();

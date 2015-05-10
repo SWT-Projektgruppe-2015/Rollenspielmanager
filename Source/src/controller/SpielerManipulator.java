@@ -14,8 +14,8 @@ import javax.persistence.TypedQuery;
 
 import model.Ausruestung;
 import model.Spieler;
+import model.Waffen;
 import model.interfaces.DBObject;
-
 import controller.interfaces.DBManipulator;
 
 
@@ -100,9 +100,11 @@ public class SpielerManipulator extends DBManipulator {
         try {
             Ausruestung besitz = theManager.find(Ausruestung.class,
                     ((Spieler) entity).getAusruestung_().getID_());
-            if (AusruestungsManipulator.getInstance().delete(besitz)) {
-                theManager.remove((Spieler) entity);
+            for(Waffen waffe : ((Spieler) entity).getWaffen()) {
+                waffe.deleteFromDB();
             }
+            theManager.remove((Spieler) entity);
+            theManager.remove(theManager.contains(besitz) ? besitz : (Ausruestung) theManager.merge(besitz));
         }
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "

@@ -8,7 +8,7 @@ package tests.controller;
 import javax.persistence.EntityManager;
 
 import model.Spieler;
-
+import model.Waffen;
 import controller.EntityManagerFactoryProvider;
 import controller.SpielerManipulator;
 
@@ -92,6 +92,16 @@ public class SpielerManipulatorTest {
     
     
     @Test
+    public void canDeleteSpielerWithWaffe() {
+        Spieler spielerWithWaffe = new Spieler();
+        spielerWithWaffe.addToDB();
+        Waffen testWaffe = new Waffen();
+        spielerWithWaffe.addWaffe(testWaffe);
+        
+        assertTrue(testInstance.delete(spielerWithWaffe));
+    }
+    
+    @Test
     public void cantDeleteNonExistantSpieler() {
         assertFalse("Can delete non existant Spieler",
                 testInstance.delete(null));
@@ -129,7 +139,8 @@ public class SpielerManipulatorTest {
     public static void cleanUp()    {
         Spieler cleanUpCrew = theManager.find(Spieler.class, testSpieler.getID_());
         theManager.getTransaction().begin();
-        theManager.remove(cleanUpCrew);
+        if(cleanUpCrew != null)
+            theManager.remove(cleanUpCrew);
         theManager.getTransaction().commit();
     }
 }
