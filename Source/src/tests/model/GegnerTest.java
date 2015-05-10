@@ -2,10 +2,8 @@ package tests.model;
 
 import static org.junit.Assert.*;
 import model.Gegner;
-import model.Spieler;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class GegnerTest {

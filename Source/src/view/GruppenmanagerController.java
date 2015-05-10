@@ -1,11 +1,8 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import controller.GruppenManipulator;
-import controller.interfaces.DBManipulator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;

@@ -2,9 +2,7 @@ package view;
 
 import java.util.List;
 
-import controller.GruppenManipulator;
 import controller.SpielerManipulator;
-import controller.interfaces.DBManipulator;
 import model.Spieler;
 import javafx.fxml.FXML;
 
