@@ -16,7 +16,6 @@ import controller.interfaces.DBManipulator;
 import model.Ausruestung;
 import model.Beute;
 import model.Gegner;
-import model.Spieler;
 import model.Waffen;
 import model.interfaces.DBObject;
 
