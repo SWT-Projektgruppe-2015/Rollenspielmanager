@@ -97,7 +97,8 @@ public class TeilnehmerAuswahlController {
         gegnerNotInKampfTableView_.getItems().clear();
         
         for (Gegner item : gegnerNotInKampfList_) {
-            if (item.getName_().toLowerCase().contains(search)) {
+            if ((item.getName_().toLowerCase().contains(search)) || (Integer.toString(item.getKreis_()).contains(search)) ||
+                    (Integer.toString(item.getLevel_()).contains(search))) {
                 gegnerNotInKampfTableView_.getItems().add(item);
             }
         }
