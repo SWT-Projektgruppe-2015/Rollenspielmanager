@@ -20,7 +20,7 @@ import controller.manipulators.BeuteManipulator;
 
 public class BeuteManipulatorTest {
     
-    private static BeuteManipulator testInstance;
+    private static BeuteManipulator beuteManipulator_;
     private static Beute testBeute;
     
     private static EntityManager theManager;
@@ -29,7 +29,7 @@ public class BeuteManipulatorTest {
     
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        testInstance = BeuteManipulator.getInstance();
+        beuteManipulator_ = BeuteManipulator.getInstance();
         testBeute = new Beute();
         theManager = EntityManagerFactoryProvider.getFactory()
                 .createEntityManager();
@@ -39,8 +39,8 @@ public class BeuteManipulatorTest {
     
     @Test
     public void getInstanceTest() {
-        testInstance = BeuteManipulator.getInstance();
-        assertNotNull(testInstance);
+        beuteManipulator_ = BeuteManipulator.getInstance();
+        assertNotNull(beuteManipulator_);
     }
 
     
@@ -49,23 +49,23 @@ public class BeuteManipulatorTest {
     public void twoInstanceAreSame() {
         BeuteManipulator testInstanceTwo = BeuteManipulator
                 .getInstance();
-        assertSame(testInstanceTwo, testInstance);
+        assertSame(testInstanceTwo, beuteManipulator_);
     }
 
     
     
     @Test
     public void testAddAndDelete() {
-        assertTrue("Adding Beute failed", testInstance.add(testBeute));
-        assertTrue("Deleteing Beute failed", testInstance.delete(testBeute));
-        
+        testBeute = new Beute();
+        assertTrue("Adding Beute failed", beuteManipulator_.add(testBeute));
+        assertTrue("Deleteing Beute failed", beuteManipulator_.delete(testBeute));
     }
     
     
     
     @Test
     public void testNullAdd() {
-        assertFalse(testInstance.add(null));
+        assertFalse(beuteManipulator_.add(null));
     }
     
     
@@ -73,10 +73,10 @@ public class BeuteManipulatorTest {
     @Ignore
     @Test
     public void twoBeuteAddAreSame() {
-       testInstance.add(testBeute);
+       beuteManipulator_.add(testBeute);
        theManager.detach(testBeute);
-       assertFalse(testInstance.add(testBeute));
-       testInstance.delete(testBeute);
+       assertFalse(beuteManipulator_.add(testBeute));
+       beuteManipulator_.delete(testBeute);
     }
 
     
@@ -84,16 +84,16 @@ public class BeuteManipulatorTest {
     @Test
     public void twoBeuteDeleteAreSame() {
         testBeute = new Beute();
-        testInstance.add(testBeute);
-        testInstance.delete(testBeute);
-        assertFalse(testInstance.delete(testBeute));
+        beuteManipulator_.add(testBeute);
+        beuteManipulator_.delete(testBeute);
+        assertFalse(beuteManipulator_.delete(testBeute));
     }
     
     
     
     @Test
     public void canGetBeuteList()     {
-        assertNotNull(testInstance.getAll());
+        assertNotNull(beuteManipulator_.getAll());
     }
     
     
@@ -101,10 +101,10 @@ public class BeuteManipulatorTest {
     @Test
     public void canUpdateBeute() {
         testBeute = new Beute();
-        if (testInstance.add(testBeute)) {
+        if (beuteManipulator_.add(testBeute)) {
             testBeute.setProfil_("Updated");
-            assertTrue(testInstance.update(testBeute));
-            testInstance.delete(testBeute);
+            assertTrue(beuteManipulator_.update(testBeute));
+            beuteManipulator_.delete(testBeute);
         }
     }
     
@@ -114,7 +114,7 @@ public class BeuteManipulatorTest {
     @Test
     public void cantUpdateNonExistantBeute() {
         assertFalse("Can update non existant Beute",
-                testInstance.update(null));
+                beuteManipulator_.update(null));
     }
     
     @AfterClass

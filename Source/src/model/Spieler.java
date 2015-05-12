@@ -72,13 +72,13 @@ public class Spieler extends Charakter implements DBObject {
     
 
     public void deleteFromDB() {
-        SpielerManipulator.getInstance().delete(this);
+        spielerManipulator_.delete(this);
     }
 
     
     
     public void addToDB() {
-        SpielerManipulator.getInstance().add(this);
+        spielerManipulator_.add(this);
     }
 
 

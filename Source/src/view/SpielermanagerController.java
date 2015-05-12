@@ -89,13 +89,13 @@ public class SpielermanagerController extends CharakterTabController{
         showWaffenDetails(null);
 
         waffenListView_.getSelectionModel().selectedItemProperty()
-                .addListener(new ChangeListener<Waffen>() {
-                    public void changed(
-                            ObservableValue<? extends Waffen> observable,
-                            Waffen oldValue, Waffen newValue) {
-                        showWaffenDetails(newValue);
-                    }
-                });
+        .addListener(new ChangeListener<Waffen>() {
+            public void changed(
+                    ObservableValue<? extends Waffen> observable,
+                    Waffen oldValue, Waffen newValue) {
+                showWaffenDetails(newValue);
+            }
+        });
     }
       
 
