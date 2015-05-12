@@ -65,7 +65,7 @@
             </AnchorPane>
          </children>
       </GridPane>
-      <Button layoutX="505.0" layoutY="546.0" mnemonicParsing="false" text="Kampf!" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
+      <Button layoutX="505.0" layoutY="546.0" mnemonicParsing="false" onAction="#kampfButton" text="Kampf!" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
       <Text layoutX="300.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teilnehmer:" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="30.0" />
       <Text layoutX="90.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
       <Text layoutX="20.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gegner:" AnchorPane.leftAnchor="20.0" />

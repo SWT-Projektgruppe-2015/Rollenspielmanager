@@ -3,6 +3,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.Hauptprogramm;
 import model.Charakter;
 import model.Gegner;
 import model.Gruppe;
@@ -43,6 +44,8 @@ public class TeilnehmerAuswahlController {
     
     private List<Spieler> spielerNotInKampfList_;
     private List<Gegner> gegnerNotInKampfList_;
+    
+    private Hauptprogramm hauptProgramm_;
     
     @FXML
     void initialize() {
@@ -157,6 +160,18 @@ public class TeilnehmerAuswahlController {
             gegnerInKampfListView_.getItems().add(chosenGegner);
             gegnerNotInKampfTableView_.getItems().remove(chosenGegner);
         }
+    }
+    
+    
+    public void setHauptProgramm(Hauptprogramm hauptProgramm) {
+        hauptProgramm_ = hauptProgramm;
+    }
+    
+    
+    
+    @FXML
+    private void kampfButton() {
+        hauptProgramm_.startKampf();
     }
     
 
