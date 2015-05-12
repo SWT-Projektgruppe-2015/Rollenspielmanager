@@ -13,8 +13,8 @@ import model.EinfacherGegenstand;
 import model.interfaces.DBObject;
 import controller.interfaces.DBManipulator;
 
-public class SimpleSalesItemManipulator extends DBManipulator{
-    private static SimpleSalesItemManipulator singleton;
+public class EinfacherGegenstandManipulator extends DBManipulator{
+    private static EinfacherGegenstandManipulator singleton;
 
     @Override
     protected void persistEntity(DBObject entity) {
@@ -38,9 +38,9 @@ public class SimpleSalesItemManipulator extends DBManipulator{
 
     
     
-    public static SimpleSalesItemManipulator getInstance() {
+    public static EinfacherGegenstandManipulator getInstance() {
         if(singleton == null)
-            singleton = new SimpleSalesItemManipulator();
+            singleton = new EinfacherGegenstandManipulator();
         
         return singleton;
     }
@@ -50,7 +50,7 @@ public class SimpleSalesItemManipulator extends DBManipulator{
     public List<EinfacherGegenstand> getAll() {
         TypedQuery<EinfacherGegenstand> getAllRows;
         try {
-            getAllRows = theManager.createQuery("FROM SimpleSalesItem",
+            getAllRows = theManager.createQuery("FROM EinfacherGegenstand",
                 EinfacherGegenstand.class);
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {

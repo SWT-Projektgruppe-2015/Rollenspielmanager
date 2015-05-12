@@ -12,7 +12,7 @@ import model.interfaces.DBObject;
  * Einfaches Item für den Händler: Name, Beschreibung, Preis.
  */
 @Entity
-@Table(name = "EinfacherGegenstand")
+@Table(name = "EINFACHERGEGENSTAND")
 public class EinfacherGegenstand implements DBObject {
     @Id
     @GeneratedValue
