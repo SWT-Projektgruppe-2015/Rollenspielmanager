@@ -7,10 +7,10 @@ package tests.controller;
 
 import javax.persistence.EntityManager;
 
-import manipulators.SpielerManipulator;
 import model.Spieler;
 import model.Waffen;
 import controller.EntityManagerFactoryProvider;
+import controller.manipulators.SpielerManipulator;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

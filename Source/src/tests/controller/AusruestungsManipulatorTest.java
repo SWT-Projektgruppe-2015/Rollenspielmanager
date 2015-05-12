@@ -8,7 +8,6 @@ import static org.junit.Assert.assertSame;
 
 import javax.persistence.EntityManager;
 
-import manipulators.AusruestungsManipulator;
 import model.Ausruestung;
 
 import org.junit.AfterClass;
@@ -17,6 +16,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import controller.EntityManagerFactoryProvider;
+import controller.manipulators.AusruestungsManipulator;
 
 public class AusruestungsManipulatorTest {
 

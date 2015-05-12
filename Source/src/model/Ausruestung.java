@@ -13,8 +13,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
-import manipulators.AusruestungsManipulator;
-import manipulators.WaffenManipulator;
+import controller.manipulators.AusruestungsManipulator;
+import controller.manipulators.WaffenManipulator;
 import model.interfaces.DBObject;
 
 /**
