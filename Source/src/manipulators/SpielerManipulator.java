@@ -1,4 +1,4 @@
-package controller;
+package manipulators;
 
 import java.util.List;
 
@@ -16,6 +16,7 @@ import model.Ausruestung;
 import model.Spieler;
 import model.Waffen;
 import model.interfaces.DBObject;
+import controller.EntityManagerFactoryProvider;
 import controller.interfaces.DBManipulator;
 
 

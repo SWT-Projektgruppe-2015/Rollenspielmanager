@@ -1,4 +1,4 @@
-package controller;
+package manipulators;
 
 import java.util.List;
 
@@ -10,39 +10,17 @@ import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
 import model.Ausruestung;
-import model.Waffen;
 import model.interfaces.DBObject;
 import controller.interfaces.DBManipulator;
 
-public class WaffenManipulator extends DBManipulator {
-    private static WaffenManipulator singleton;   
-
-    @Override
-    protected void persistEntity(DBObject entity) {
-        theManager.persist((Waffen) entity);
-    }
-
-    @Override
-    protected void removeEntity(DBObject entity) {
-        theManager.remove((Waffen) entity);
-    }
-
-    @Override
-    protected void mergeEntity(DBObject entity) {
-        theManager.merge((Waffen) entity);
-    }
-
-    public static WaffenManipulator getInstance() {
-        if(singleton == null)
-            singleton = new WaffenManipulator();
-        return singleton;
-    }
-    
-    public List<Waffen> getWaffenInAusruestung(Ausruestung ausruestung) {
-        TypedQuery<Waffen> waffenInAusruestung;
+public class AusruestungsManipulator extends DBManipulator {
+    private static AusruestungsManipulator singelton;   
+   
+    public List<Ausruestung> getAll() {
+        TypedQuery<Ausruestung> getAllRows;
         try {
-            waffenInAusruestung = theManager.createQuery(
-                "FROM Waffen w WHERE w.ausruestung_ = " + ausruestung.getID_(), Waffen.class);
+            getAllRows = theManager.createQuery("FROM Ausruestung",
+                Ausruestung.class);
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {
             System.err.println("IllegalArgumentException: ");
@@ -50,7 +28,7 @@ public class WaffenManipulator extends DBManipulator {
             return null;
         }
         try {
-            return waffenInAusruestung.getResultList();
+            return getAllRows.getResultList();
         }
         catch(IllegalStateException getResultListExceptionOne)  {
             System.err.println("IllegalStateException: ");
@@ -84,4 +62,33 @@ public class WaffenManipulator extends DBManipulator {
         }
     }
     
+    
+   
+    public static AusruestungsManipulator getInstance() {
+        if (singelton == null) {
+            singelton = new AusruestungsManipulator();
+        }
+        return singelton;
+    }
+
+
+
+    @Override
+    protected void persistEntity(DBObject entity) {
+        theManager.persist((Ausruestung) entity);
+    }
+
+
+
+    @Override
+    protected void removeEntity(DBObject entity) {
+       theManager.remove((Ausruestung) entity);        
+    }
+
+
+
+    @Override
+    protected void mergeEntity(DBObject entity) {
+        theManager.merge((Ausruestung) entity);
+    }
 }
