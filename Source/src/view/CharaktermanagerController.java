@@ -2,7 +2,7 @@ package view;
 
 import java.util.List;
 
-import controller.SpielerManipulator;
+import manipulators.SpielerManipulator;
 import model.Spieler;
 import javafx.fxml.FXML;
 

@@ -10,6 +10,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import manipulators.AusruestungsManipulator;
+import manipulators.WaffenManipulator;
 import model.Ausruestung;
 import model.Waffen;
 
@@ -18,8 +20,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import controller.AusruestungsManipulator;
-import controller.WaffenManipulator;
 import controller.EntityManagerFactoryProvider;
 
 public class WaffenManipulatorTest {

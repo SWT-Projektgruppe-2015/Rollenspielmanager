@@ -1,4 +1,4 @@
-package controller;
+package manipulators;
 
 import java.util.List;
 
@@ -12,6 +12,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
+import controller.EntityManagerFactoryProvider;
 import controller.interfaces.DBManipulator;
 import model.Ausruestung;
 import model.Beute;

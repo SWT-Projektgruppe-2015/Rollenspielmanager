@@ -12,8 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import controller.GegnerManipulator;
-import controller.WaffenManipulator;
+import manipulators.GegnerManipulator;
+import manipulators.WaffenManipulator;
 import model.interfaces.DBObject;
 
 @Entity

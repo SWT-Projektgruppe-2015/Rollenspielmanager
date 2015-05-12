@@ -4,13 +4,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import manipulators.GruppenManipulator;
 import model.Gruppe;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
-
-import controller.GruppenManipulator;
 
 public class GruppenManipulatorTest {
     private static GruppenManipulator gruppenManipulator;
