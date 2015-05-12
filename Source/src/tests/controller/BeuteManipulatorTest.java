@@ -22,7 +22,6 @@ public class BeuteManipulatorTest {
     
     private static BeuteManipulator beuteManipulator_;
     private static Beute testBeute;
-    
     private static EntityManager theManager;
 
     
@@ -34,7 +33,7 @@ public class BeuteManipulatorTest {
         theManager = EntityManagerFactoryProvider.getFactory()
                 .createEntityManager();
     }
-
+    
     
     
     @Test
@@ -110,15 +109,16 @@ public class BeuteManipulatorTest {
     
     
     
-    
     @Test
     public void cantUpdateNonExistantBeute() {
         assertFalse("Can update non existant Beute",
                 beuteManipulator_.update(null));
     }
     
+    
+    
     @AfterClass
-    public static void cleanUp()    {
+    public static void cleanUp() {
         Beute cleanUpBeute = theManager.find(Beute.class, testBeute.getID_());
         theManager.getTransaction().begin();
         if(cleanUpBeute != null)
