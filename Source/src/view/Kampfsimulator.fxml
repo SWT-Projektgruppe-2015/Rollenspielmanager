@@ -7,36 +7,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.KampfsimulatorController">
   <tabs>
-    <Tab text="Gegner Runde">
+    <Tab closable="false" text="Gegner Runde">
          <content>
-            <AnchorPane>
-               <children>
-                  <ListView layoutX="23.0" layoutY="22.0" prefHeight="200.0" prefWidth="190.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
-                  <Button layoutX="235.0" layoutY="171.0" maxHeight="25.0" maxWidth="50.0" minHeight="25.0" minWidth="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="50.0" text="Fight!!!" textFill="#b50000">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Button>
-                  <Polygon fill="#b50000" layoutX="325.0" layoutY="194.0" rotate="90.0" scaleX="0.3" scaleY="0.3" stroke="BLACK" strokeType="INSIDE" AnchorPane.bottomAnchor="133.0" AnchorPane.leftAnchor="275.0" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="134.0">
-                    <points>
-                      <Double fx:value="-50.0" />
-                      <Double fx:value="40.0" />
-                      <Double fx:value="50.0" />
-                      <Double fx:value="40.0" />
-                      <Double fx:value="0.0" />
-                      <Double fx:value="-60.0" />
-                    </points>
-                  </Polygon>
-                  <TableView layoutX="375.0" layoutY="20.0" prefHeight="327.0" prefWidth="225.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-                    <columns>
-                      <TableColumn prefWidth="161.0" text="C1" />
-                      <TableColumn prefWidth="62.0" text="C2" />
-                    </columns>
-                  </TableView>
-               </children>
-            </AnchorPane>
-         </content></Tab>
+         	<fx:include fx:id="gegnerRunde" source="Gegnerrunde.fxml" />
+         </content>
+    </Tab>
   </tabs>
 </TabPane>
