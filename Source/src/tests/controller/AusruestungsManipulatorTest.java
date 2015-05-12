@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import model.Ausruestung;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -25,7 +26,7 @@ public class AusruestungsManipulatorTest {
     private static EntityManager theManager;
 
     
-    
+        
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         testInstance = AusruestungsManipulator.getInstance();
@@ -34,6 +35,20 @@ public class AusruestungsManipulatorTest {
                 .createEntityManager();
     }
 
+    
+    
+    @Before
+    public static void cleanUpAndRestart()    {
+        if(testAusruestung != null) {
+            Ausruestung cleanUpEquipment = theManager.find(Ausruestung.class, testAusruestung.getID_());
+            theManager.getTransaction().begin();
+            if(cleanUpEquipment != null)
+                theManager.remove(cleanUpEquipment);
+            theManager.getTransaction().commit();
+        }
+        testAusruestung = new Ausruestung();
+    }
+    
     
     
     @Test
@@ -81,7 +96,6 @@ public class AusruestungsManipulatorTest {
     
     @Test
     public void testDelete() {
-        testAusruestung = new Ausruestung();
         if(testInstance.add(testAusruestung)) {
             assertTrue(testInstance.delete(testAusruestung));
         }
@@ -116,7 +130,6 @@ public class AusruestungsManipulatorTest {
     
     @Test
     public void canUpdateAusruestung() {
-        testAusruestung = new Ausruestung();
         if(testInstance.add(testAusruestung)) {
             testAusruestung.setDefH_(2);
             assertTrue("Can't update", testInstance.update(testAusruestung));
@@ -145,10 +158,14 @@ public class AusruestungsManipulatorTest {
     
     @AfterClass
     public static void cleanUp()    {
-        Ausruestung cleanUpEquipment = theManager.find(Ausruestung.class, testAusruestung.getID_());
-        theManager.getTransaction().begin();
-        if(cleanUpEquipment != null)
-            theManager.remove(cleanUpEquipment);
-        theManager.getTransaction().commit();
+        if(testAusruestung != null) {
+            Ausruestung cleanUpEquipment = theManager.find(Ausruestung.class, testAusruestung.getID_());
+            theManager.getTransaction().begin();
+            if(cleanUpEquipment != null)
+                theManager.remove(cleanUpEquipment);
+            theManager.getTransaction().commit();
+        }
     }
+    
+    
 }
