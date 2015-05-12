@@ -38,7 +38,7 @@ public class AusruestungsManipulatorTest {
     
     
     @Before
-    public static void cleanUpAndRestart()    {
+    public void cleanUpAndRestart()    {
         if(testAusruestung != null) {
             Ausruestung cleanUpEquipment = theManager.find(Ausruestung.class, testAusruestung.getID_());
             theManager.getTransaction().begin();
