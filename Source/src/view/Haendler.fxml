@@ -6,28 +6,28 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.HaendlerController">
   <tabs>
     <Tab text="Einfache Gegenstände">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="200.0">
                <children>
-                  <ListView layoutX="39.0" layoutY="84.0" prefHeight="191.0" prefWidth="171.0" />
-                  <TextField layoutX="39.0" layoutY="39.0" promptText="Suche..." />
-                  <TextArea layoutX="450.0" layoutY="50.0" prefHeight="184.0" prefWidth="200.0" />
+                  <ListView fx:id="gegenstandListView_" layoutX="39.0" layoutY="84.0" prefHeight="191.0" prefWidth="171.0" />
+                  <TextField fx:id="searchTextField_" layoutX="39.0" layoutY="39.0" onAction="#search" onKeyReleased="#search" promptText="Suche..." />
+                  <TextArea fx:id="gegenstandBeschreibungTextField_" layoutX="450.0" layoutY="50.0" onInputMethodTextChanged="#changeGegenstand" prefHeight="184.0" prefWidth="200.0" />
                   <VBox layoutX="236.0" layoutY="39.0" prefHeight="200.0" prefWidth="199.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
-                        <TextField />
+                        <TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preis:" />
-                        <TextField />
+                        <TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" />
                      </children>
                   </VBox>
                   <Text layoutX="450.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:" />
                   <ButtonBar layoutX="450.0" layoutY="239.0" prefHeight="40.0" prefWidth="200.0">
                     <buttons>
-                      <Button mnemonicParsing="false" text="Save" />
-                        <Button mnemonicParsing="false" text="Delete" />
+                      <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save" />
+                        <Button mnemonicParsing="false" onAction="#deleteGegenstand" text="Delete" />
                     </buttons>
                   </ButtonBar>
                </children></AnchorPane>

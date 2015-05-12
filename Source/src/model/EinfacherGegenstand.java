@@ -1,11 +1,15 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import controller.manipulators.EinfacherGegenstandManipulator;
+import controller.manipulators.GruppenManipulator;
 import model.interfaces.DBObject;
 
 /**
@@ -14,6 +18,8 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name="EINFACHERGEGENSTAND")
 public class EinfacherGegenstand implements DBObject {
+    private static EinfacherGegenstandManipulator dbManipulator_ = EinfacherGegenstandManipulator.getInstance();
+
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -32,6 +38,11 @@ public class EinfacherGegenstand implements DBObject {
     
     
     
+    public String toString() {
+        return getName_();
+    }
+    
+    
     public String getName_() {
         return name_;
     }
@@ -40,6 +51,7 @@ public class EinfacherGegenstand implements DBObject {
     
     public void setName_(String name_) {
         this.name_ = name_;
+        updateInDB();
     }
     
     
@@ -52,6 +64,7 @@ public class EinfacherGegenstand implements DBObject {
     
     public void setBeschreibung_(String description_) {
         this.beschreibung_ = description_;
+        updateInDB();
     }
     
     
@@ -64,11 +77,37 @@ public class EinfacherGegenstand implements DBObject {
     
     public void setKosten_(int kosten_) {
         this.kosten_ = kosten_;
+        updateInDB();
     }
     
     
     
+    private void updateInDB() {
+        if(ID_ != 0)
+            dbManipulator_.update(this);
+    }
+
+
+
     public int getID_() {
         return ID_;
+    }
+
+
+
+    public static List<EinfacherGegenstand> getAll() {
+        return dbManipulator_.getAll();
+    }
+
+
+
+    public void addToDB() {
+        dbManipulator_.add(this);
+    }
+
+
+
+    public void deleteFromDB() {
+        dbManipulator_.delete(this);
     }
 }
