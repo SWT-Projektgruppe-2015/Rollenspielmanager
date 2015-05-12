@@ -3,6 +3,7 @@ package tests.model;
 import static org.junit.Assert.*;
 import model.Gegner;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,6 +13,12 @@ public class GegnerTest {
     @Before
     public void initObjects() {
         normalerGegner = new Gegner();
+        normalerGegner.addToDB();
+    }
+    
+    @After
+    public void deleteFromDB() {
+        normalerGegner.deleteFromDB();
     }
     
     /**

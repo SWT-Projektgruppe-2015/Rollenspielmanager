@@ -42,6 +42,7 @@ public class Spieler extends Charakter implements DBObject {
     private Set<Gruppe> membership_;    
     
     
+    
     @PrePersist
     public void onCreate() {
         if (getName_() == null) {

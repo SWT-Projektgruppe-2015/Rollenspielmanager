@@ -48,10 +48,12 @@ public class Ausruestung implements DBObject {
      * Setzt DefR, DefH und DefS auf die Default-Werte.
      */
     public Ausruestung() {
-        setDefR_(1);
         setDefH_(1);
+        setDefR_(1);
         setDefS_(0);
     }
+
+    
     
     public int getDefR_() {
         return defR_;

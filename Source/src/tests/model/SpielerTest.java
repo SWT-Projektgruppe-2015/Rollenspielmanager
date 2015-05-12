@@ -10,6 +10,7 @@ import model.Faehigkeiten;
 import model.Spieler;
 import model.Waffen;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -22,8 +23,14 @@ public class SpielerTest {
     @Before
     public void initObjects() {
         normalSpieler = new Spieler();
+        normalSpieler.addToDB();
         normalSpieler.setLevel_(2);
         normalSpieler.setKreis_(1);
+    }
+    
+    @After
+    public void deleteFromDB() {
+        normalSpieler.deleteFromDB();
     }
     
     
