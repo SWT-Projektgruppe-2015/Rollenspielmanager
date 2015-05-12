@@ -1,9 +1,10 @@
 package tests.controller;
 
+import org.junit.Ignore;
 import org.junit.Test;
-import static org.junit.Assert.assertTrue;
 
-import controller.DiceRoller;
+import static org.junit.Assert.assertTrue;
+import controller.Dice;
 
 public class DiceTest {
     private abstract class DiceTester {
@@ -47,7 +48,7 @@ public class DiceTest {
     private class W2Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW2();
+            return Dice.RollW2();
         }
 
         @Override
@@ -59,7 +60,7 @@ public class DiceTest {
     private class W3Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW3();
+            return Dice.RollW3();
         }
 
         @Override
@@ -71,7 +72,7 @@ public class DiceTest {
     private class W4Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW4();
+            return Dice.RollW4();
         }
 
         @Override
@@ -83,7 +84,7 @@ public class DiceTest {
     private class W6Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW6();
+            return Dice.RollW6();
         }
 
         @Override
@@ -95,7 +96,7 @@ public class DiceTest {
     private class W8Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW8();
+            return Dice.RollW8();
         }
 
         @Override
@@ -107,7 +108,7 @@ public class DiceTest {
     private class W10Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW10();
+            return Dice.RollW10();
         }
 
         @Override
@@ -119,7 +120,7 @@ public class DiceTest {
     private class W12Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW12();
+            return Dice.RollW12();
         }
 
         @Override
@@ -131,7 +132,7 @@ public class DiceTest {
     private class W20Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW20();
+            return Dice.RollW20();
         }
 
         @Override
@@ -143,7 +144,7 @@ public class DiceTest {
     private class W30Tester extends DiceTester {
         @Override
         protected int roll() {
-            return DiceRoller.RollW30();
+            return Dice.RollW30();
         }
 
         @Override
@@ -248,16 +249,66 @@ public class DiceTest {
         W20Tester w20Roller = new W20Tester();
         w20Roller.rollCoversRange();
     }
-
+    
     @Test
     public void W30IsInCorrectRange() {
         W30Tester w30Roller = new W30Tester();
         w30Roller.rollIsInCorrectRange();
     }
-
+    
     @Test
     public void W30CoversRange() {
         W30Tester w30Roller = new W30Tester();
         w30Roller.rollCoversRange();
+    }
+    
+    
+    @Test
+    public void verifyIndependentRolls() {
+        Dice die = new Dice();
+        for(int i = 0; i < 20; ++i){
+            int a[] = {die.RollW30() , die.RollW30() , die.RollW30()};
+            int b[] = {die.RollW30() , die.RollW30() , die.RollW30()};
+            assertTrue(a!=b);
+        }
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick30Roll() {
+        Dice die = new Dice();
+        int geschick = 30; 
+        int upperBound = 18, lowerBound = -1;
+        for(int i = 0; i < 100; ++i){
+            int ergebnis = die.rollGeschick(geschick);
+            assertTrue(ergebnis <= upperBound);
+            assertTrue(ergebnis >= lowerBound);
+        }
+    }
+    
+    @Test
+    public void verifySingleGeschick4Roll() {
+        Dice die = new Dice();
+        int geschick = 4; 
+        int upperBound = 5, lowerBound = 1;
+        for(int i = 0; i < 100; ++i){
+            int ergebnis = die.rollGeschick(geschick);
+            assertTrue(ergebnis <= upperBound);
+            assertTrue(ergebnis >= lowerBound);
+        }
+    }
+    
+    
+    @Test
+    public void verifySingleGeschick55Roll() {
+        Dice die = new Dice();
+        int geschick = 67; 
+        int upperBound = 35, lowerBound = 6;
+        for(int i = 0; i < 100; ++i){
+            int ergebnis = die.rollGeschick(geschick);
+            assertTrue(ergebnis <= upperBound);
+            assertTrue(ergebnis >= lowerBound);
+        }
     }
 }

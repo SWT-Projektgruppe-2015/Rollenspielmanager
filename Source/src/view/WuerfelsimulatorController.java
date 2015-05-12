@@ -1,6 +1,6 @@
 package view;
 
-import controller.DiceRoller;
+import controller.Dice;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -12,63 +12,63 @@ public class WuerfelsimulatorController {
     
     @FXML
     private void onW2ButtonClick() {
-        showResult(DiceRoller.RollW2());
+        showResult(Dice.RollW2());
     }
 
     
     
     @FXML
     private void onW3ButtonClick() {
-        showResult(DiceRoller.RollW3());
+        showResult(Dice.RollW3());
     }
 
     
     
     @FXML
     private void onW4ButtonClick() {
-        showResult(DiceRoller.RollW4());
+        showResult(Dice.RollW4());
     }
 
     
     
     @FXML
     private void onW6ButtonClick() {
-        showResult(DiceRoller.RollW6());
+        showResult(Dice.RollW6());
     }
 
     
     
     @FXML
     private void onW8ButtonClick() {
-        showResult(DiceRoller.RollW8());
+        showResult(Dice.RollW8());
     }
 
     
     
     @FXML
     private void onW10ButtonClick() {
-        showResult(DiceRoller.RollW10());
+        showResult(Dice.RollW10());
     }
 
     
     
     @FXML
     private void onW12ButtonClick() {
-        showResult(DiceRoller.RollW12());
+        showResult(Dice.RollW12());
     }
 
     
     
     @FXML
     private void onW20ButtonClick() {
-        showResult(DiceRoller.RollW20());
+        showResult(Dice.RollW20());
     }
 
     
     
     @FXML
     private void onW30ButtonClick() {
-        showResult(DiceRoller.RollW30());
+        showResult(Dice.RollW30());
     }
 
     
