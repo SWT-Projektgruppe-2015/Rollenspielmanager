@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import manipulators.BeuteManipulator;
+import controller.manipulators.BeuteManipulator;
 import model.interfaces.DBObject;
 
 @Entity

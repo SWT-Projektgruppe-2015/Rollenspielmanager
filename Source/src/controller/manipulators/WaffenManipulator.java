@@ -1,4 +1,4 @@
-package manipulators;
+package controller.manipulators;
 
 import java.util.List;
 

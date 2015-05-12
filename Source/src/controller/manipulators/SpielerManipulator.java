@@ -1,4 +1,4 @@
-package manipulators;
+package controller.manipulators;
 
 import java.util.List;
 
@@ -12,58 +12,65 @@ import javax.persistence.PersistenceException;
 import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
-import controller.EntityManagerFactoryProvider;
-import controller.interfaces.DBManipulator;
 import model.Ausruestung;
-import model.Beute;
-import model.Gegner;
+import model.Spieler;
 import model.Waffen;
 import model.interfaces.DBObject;
+import controller.EntityManagerFactoryProvider;
+import controller.interfaces.DBManipulator;
 
-public class GegnerManipulator extends DBManipulator {
-    private static GegnerManipulator Singleton;
+
+
+public class SpielerManipulator extends DBManipulator {
+    private static SpielerManipulator Singleton;
     private static EntityManager theManager;
     
-    private GegnerManipulator() {
+    
+    
+    private SpielerManipulator() {
         theManager = EntityManagerFactoryProvider.getFactory()
                 .createEntityManager();
     }
     
     
     
-    public static GegnerManipulator getInstance() {
+    public static SpielerManipulator getInstance() {
         if (Singleton == null) {
-            Singleton = new GegnerManipulator();
+            Singleton = new SpielerManipulator();
         }
         return Singleton;
     }
-
     
-    @Override
+    
+    
     public boolean add(DBObject entity) {
         boolean returnValue = true;
         theManager.getTransaction().begin();
         try {
-            theManager.persist((Gegner) entity);
+            theManager.persist((Spieler) entity);
         }
         catch (EntityExistsException persistExceptionOne) {
-            System.err.println("EntityExistsException: in add from GegnerManipulator "
+            System.err.println("EntityExistsException: "
                     + persistExceptionOne.getMessage());
+            persistExceptionOne.printStackTrace();
             returnValue = false;
         }
         catch (TransactionRequiredException persistExceptionTwo) {
-            System.err.println("TransactionRequiredException: in add from GegnerManipulator "
+            System.err.println("TransactionRequiredException: "
                     + persistExceptionTwo.getMessage());
+            persistExceptionTwo.printStackTrace();
             returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
-            System.err.println("IllegalArgumentException: in add from GegnerManipulator "
+            System.err.println("IllegalArgumentException: "
                     + persistExceptionThree.getMessage());
+            persistExceptionThree.printStackTrace();
             returnValue = false;
         }
         catch (PersistenceException persistExceptionFinal) {
-            System.err.println("PersistenceException: in add from GegnerManipulator "
+            System.err.println("PersistenceException: "
                     + persistExceptionFinal.getMessage());
+            persistExceptionFinal.printStackTrace();
             returnValue = false;
         }
         finally {
@@ -71,14 +78,16 @@ public class GegnerManipulator extends DBManipulator {
                 theManager.getTransaction().commit();
             }
             catch (RollbackException commitExceptionOne) {
-                System.err.println("RollBackException: in add from GegnerManipulator "
+                System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
-                System.err.println("PersistenceException: in add from GegnerManipulator "
+                System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
-                return false;
+                commitExceptionTwo.printStackTrace();
+                return false;            
             }
         }
         return returnValue;
@@ -86,38 +95,40 @@ public class GegnerManipulator extends DBManipulator {
     
     
     
-    @Override
     public boolean delete(DBObject entity) {
         boolean returnValue = true;
         theManager.getTransaction().begin();
         try {
             Ausruestung besitz = theManager.find(Ausruestung.class,
-                    ((Gegner) entity).getAusruestung_().getID_());
-            Beute beute = theManager.find(Beute.class, ((Gegner)entity).getBeute_().getID_());
-            for(Waffen waffe : besitz.getWaffen())
+                    ((Spieler) entity).getAusruestung_().getID_());
+            for(Waffen waffe : ((Spieler) entity).getWaffen()) {
                 waffe.deleteFromDB();
-            theManager.remove((Gegner) entity);
+            }
+            theManager.remove((Spieler) entity);
             theManager.remove(theManager.contains(besitz) ? besitz : (Ausruestung) theManager.merge(besitz));
-            theManager.remove(theManager.contains(beute) ? beute : (Beute) theManager.merge(beute));
         }
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "
                     + persistExceptionTwo.getMessage());
+            persistExceptionTwo.printStackTrace();
             returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
             System.err.println("IllegalArgumentException: "
                     + persistExceptionThree.getMessage());
+            persistExceptionThree.printStackTrace();
             returnValue = false;
         }
         catch (PersistenceException persistExceptionFour) {
             System.err.println("PersistenceException: "
                     + persistExceptionFour.getMessage());
+            persistExceptionFour.printStackTrace();
             returnValue = false;
         }
         catch (NullPointerException persistExceptionFive) {
             System.err.println("NullPointerException: "
                     + persistExceptionFive.getMessage());
+            persistExceptionFive.printStackTrace();
             returnValue = false;
         }
         finally {
@@ -127,44 +138,49 @@ public class GegnerManipulator extends DBManipulator {
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
+                commitExceptionTwo.printStackTrace();
                 return false;
             }
         }
-        
         return returnValue;
     }
     
     
-    @Override
+    
     public boolean update(DBObject entity) {
         boolean returnValue = true;
         theManager.getTransaction().begin();
         try {
-            theManager.merge((Gegner) entity);
+            theManager.merge((Spieler) entity);
         }
         catch (EntityExistsException persistExceptionOne) {
             System.err.println("EntityExistsException: "
                     + persistExceptionOne.getMessage());
+            persistExceptionOne.printStackTrace();
             returnValue = false;
         }
         catch (TransactionRequiredException persistExceptionTwo) {
             System.err.println("TransactionRequiredException: "
                     + persistExceptionTwo.getMessage());
+            persistExceptionTwo.printStackTrace();
             returnValue = false;
         }
         catch (IllegalArgumentException persistExceptionThree) {
             System.err.println("IllegalArgumentException: "
                     + persistExceptionThree.getMessage());
+            persistExceptionThree.printStackTrace();
             returnValue = false;
         }
         catch (PersistenceException persistExceptionFinal) {
             System.err.println("PersistenceException: "
                     + persistExceptionFinal.getMessage());
+            persistExceptionFinal.printStackTrace();
             returnValue = false;
         }
         finally {
@@ -174,11 +190,13 @@ public class GegnerManipulator extends DBManipulator {
             catch (RollbackException commitExceptionOne) {
                 System.err.println("RollBackException: "
                         + commitExceptionOne.getMessage());
+                commitExceptionOne.printStackTrace();
                 return false;
             }
             catch (PersistenceException commitExceptionTwo) {
                 System.err.println("PersistenceException: "
                         + commitExceptionTwo.getMessage());
+                commitExceptionTwo.printStackTrace();
                 return false;
                 
             }
@@ -186,15 +204,17 @@ public class GegnerManipulator extends DBManipulator {
         return returnValue;
     }
     
-    public List<Gegner> getAll() {
-        
-        TypedQuery<Gegner> getAllRows;
+    
+    
+    public List<Spieler> getAll() {
+        TypedQuery<Spieler> getAllRows;
         try {
-            getAllRows = theManager.createQuery("FROM Gegner",
-                Gegner.class);
+            getAllRows = theManager.createQuery("FROM Spieler",
+                Spieler.class);
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {
             System.err.println("IllegalArgumentException: ");
+            createQueryExceptionOne.printStackTrace();
             return null;
         }
         try {
@@ -202,26 +222,32 @@ public class GegnerManipulator extends DBManipulator {
         }
         catch(IllegalStateException getResultListExceptionOne)  {
             System.err.println("IllegalStateException: ");
+            getResultListExceptionOne.printStackTrace();
             return null;
         }
         catch(QueryTimeoutException getResultListExceptionTwo)  {
             System.err.println("QueryTimeoutException: ");
+            getResultListExceptionTwo.printStackTrace();
             return null;
         }
         catch(TransactionRequiredException getResultListExceptionThree)  {
             System.err.println("TransactionRequiredException: ");
+            getResultListExceptionThree.printStackTrace();
             return null;
         }
         catch(PessimisticLockException getResultListExceptionFour)  {
             System.err.println("PessimisticLockException: ");
+            getResultListExceptionFour.printStackTrace();
             return null;
         }
         catch(LockTimeoutException getResultListExceptionFive)  {
             System.err.println("LockTimeoutException: ");
+            getResultListExceptionFive.printStackTrace();
             return null;
         }
         catch(PersistenceException getResultListExceptionSix)  {
             System.err.println("PersistenceException: ");
+            getResultListExceptionSix.printStackTrace();
             return null;
         }
     }

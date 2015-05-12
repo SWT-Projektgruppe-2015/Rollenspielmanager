@@ -1,4 +1,4 @@
-package manipulators;
+package controller.manipulators;
 
 import java.util.List;
 
@@ -9,26 +9,49 @@ import javax.persistence.QueryTimeoutException;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
-import controller.interfaces.DBManipulator;
-import model.Gruppe;
+import model.EinfacherGegenstand;
 import model.interfaces.DBObject;
+import controller.interfaces.DBManipulator;
 
-public class GruppenManipulator extends DBManipulator {
-    private static GruppenManipulator Singleton;    
-    
-    public static GruppenManipulator getInstance() {
-        if (Singleton == null) {
-            Singleton = new GruppenManipulator();
-        }
-        return Singleton;
+public class EinfacherGegenstandManipulator extends DBManipulator{
+    private static EinfacherGegenstandManipulator singleton;
+
+    @Override
+    protected void persistEntity(DBObject entity) {
+        theManager.persist((EinfacherGegenstand) entity);
     }
+
     
-    public List<Gruppe> getAll() {
+    
+    @Override
+    protected void removeEntity(DBObject entity) {
+        theManager.remove((EinfacherGegenstand) entity);
         
-        TypedQuery<Gruppe> getAllRows;
+    }
+
+    
+    
+    @Override
+    protected void mergeEntity(DBObject entity) {
+        theManager.merge((EinfacherGegenstand) entity);       
+    }
+
+    
+    
+    public static EinfacherGegenstandManipulator getInstance() {
+        if(singleton == null)
+            singleton = new EinfacherGegenstandManipulator();
+        
+        return singleton;
+    }
+
+
+
+    public List<EinfacherGegenstand> getAll() {
+        TypedQuery<EinfacherGegenstand> getAllRows;
         try {
-            getAllRows = theManager.createQuery("FROM Gruppe",
-                Gruppe.class);
+            getAllRows = theManager.createQuery("FROM EinfacherGegenstand",
+                EinfacherGegenstand.class);
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {
             System.err.println("IllegalArgumentException: ");
@@ -62,25 +85,5 @@ public class GruppenManipulator extends DBManipulator {
             return null;
         }
     }
-
-
-
-    @Override
-    protected void persistEntity(DBObject entity) {
-        theManager.persist((Gruppe) entity);
-    }
-
-
-
-    @Override
-    protected void removeEntity(DBObject entity) {
-        theManager.remove((Gruppe) entity);
-    }
-
-
-
-    @Override
-    protected void mergeEntity(DBObject entity) {
-        theManager.merge((Gruppe) entity);
-    }
+    
 }

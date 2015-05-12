@@ -7,7 +7,6 @@ import static org.junit.Assert.assertTrue;
 
 import javax.persistence.EntityManager;
 
-import manipulators.EinfacherGegenstandManipulator;
 import model.Ausruestung;
 import model.EinfacherGegenstand;
 
@@ -16,6 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import controller.EntityManagerFactoryProvider;
+import controller.manipulators.EinfacherGegenstandManipulator;
 
 public class EinfacherGegenstandManipulatorTest {
     private static EinfacherGegenstandManipulator gegenstandsManipulator;

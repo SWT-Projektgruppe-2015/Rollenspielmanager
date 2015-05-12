@@ -7,7 +7,6 @@ import static org.junit.Assert.assertSame;
 
 import javax.persistence.EntityManager;
 
-import manipulators.BeuteManipulator;
 import model.Beute;
 
 import org.junit.BeforeClass;
@@ -15,6 +14,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import controller.EntityManagerFactoryProvider;
+import controller.manipulators.BeuteManipulator;
 
 public class BeuteManipulatorTest {
     

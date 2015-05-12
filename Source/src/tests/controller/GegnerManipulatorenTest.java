@@ -4,12 +4,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import manipulators.GegnerManipulator;
 import model.Gegner;
 
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+
+import controller.manipulators.GegnerManipulator;
 
 public class GegnerManipulatorenTest {
     private static GegnerManipulator gegnerManipulator;

@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import manipulators.GruppenManipulator;
+import controller.manipulators.GruppenManipulator;
 import model.interfaces.DBObject;
 
 @Entity

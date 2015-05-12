@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
-import manipulators.AusruestungsManipulator;
+import controller.manipulators.AusruestungsManipulator;
 import model.interfaces.DBObject;
 
 @Entity

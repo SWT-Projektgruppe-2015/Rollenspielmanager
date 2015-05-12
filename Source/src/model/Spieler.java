@@ -16,7 +16,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 
-import manipulators.SpielerManipulator;
+import controller.manipulators.SpielerManipulator;
 import model.interfaces.DBObject;
 
 @Entity
