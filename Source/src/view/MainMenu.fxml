@@ -15,7 +15,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="500.0">
                <children>
-                  <Button mnemonicParsing="false" text="Händler" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="20.0">
+                  <Button mnemonicParsing="false" onAction="#onHaendlerClick" text="Händler" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="20.0">
                      <padding>
                         <Insets top="20.0" />
                      </padding>

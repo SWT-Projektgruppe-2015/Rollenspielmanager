@@ -88,6 +88,17 @@ public class Hauptprogramm extends Application {
     
     
     
+    public void openHaendler() {
+        try {
+            openNewWindow("../view/Haendler.fxml", "Händler");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
     private void openNewWindow(String resourceFile, String title)
             throws IOException {
         Parent page = getLoaderForXML(resourceFile).load();

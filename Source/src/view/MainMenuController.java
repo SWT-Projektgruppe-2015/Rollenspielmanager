@@ -36,4 +36,11 @@ public class MainMenuController {
     private void onCharakterManagerClick() {
         hauptProgramm_.openCharakterManager();
     }
+    
+    
+    
+    @FXML
+    private void onHaendlerClick() {
+        hauptProgramm_.openHaendler();
+    }
 }
