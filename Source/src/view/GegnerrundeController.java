@@ -2,6 +2,7 @@ package view;
 
 import java.util.List;
 
+import controller.Dice;
 import model.Gegner;
 import model.Gruppe;
 import model.Spieler;
@@ -55,8 +56,33 @@ public class GegnerrundeController {
     }        
     
     
-    
-    private void updateSchadenAmSpielerTable(Gegner newValue) {
-        // TODO Auto-generated method stub
+    /**
+     * Aktualisiert die "schadenAmSpielerTableView_" mit neu simuliertem
+     * Lebenspunkteverlust.
+     * @param selectedGegner
+     */
+    protected void updateSchadenAmSpielerTable(Gegner selectedGegner) {
+        // TODO: Färbung der Schadensfelder wird noch nicht gemacht.
+        if(selectedGegner == null) return;
+        for(SchadenAmSpieler schadenAmSpieler: schadenAmSpielerListe_){
+            Spieler spieler = schadenAmSpieler.getSpieler_();
+            int lebensVerlust = simuliereLebensverlustAmSpieler(selectedGegner, spieler);
+            schadenAmSpieler.setSchaden_(lebensVerlust);
+        }
+    }
+
+
+    /**
+     * simuliert einen Angriff des Gegners am Spieler.
+     * @param selectedGegner
+     * @param spieler
+     * @return verlorene Lebenspunkte von 'spieler' durch 'selectedGegner'
+     */
+    protected int simuliereLebensverlustAmSpieler(Gegner selectedGegner, Spieler spieler) {
+        int geschick = selectedGegner.getGeschick_();
+        int schaden = selectedGegner.getDamage();
+        int wuerfelErgebnis = Dice.rollGeschick(geschick);
+        int lebensVerlust = spieler.getLebensverlust(schaden, wuerfelErgebnis);
+        return lebensVerlust;
     }
 }
