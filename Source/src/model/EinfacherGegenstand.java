@@ -12,7 +12,7 @@ import model.interfaces.DBObject;
  * Einfaches Item für den Händler: Name, Beschreibung, Preis.
  */
 @Entity
-@Table(name = "EINFACHERGEGENSTAND")
+@Table(name="EINFACHERGEGENSTAND")
 public class EinfacherGegenstand implements DBObject {
     @Id
     @GeneratedValue
@@ -22,7 +22,7 @@ public class EinfacherGegenstand implements DBObject {
     private String name_;
     @Column(name = "BESCHREIBUNG", columnDefinition = "VARCHAR(400)")
     private String beschreibung_;
-    @Column(name = "KOSTEN", columnDefinition = "INTEGER DEFAULT '0' CHECK(COST >= 0)")
+    @Column(name = "KOSTEN", columnDefinition = "INTEGER DEFAULT '0' CHECK(KOSTEN >= 0)")
     private int kosten_;
     
     public EinfacherGegenstand() {
