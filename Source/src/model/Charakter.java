@@ -3,7 +3,12 @@ package model;
 public abstract class Charakter {
     public static final int MAX_KREIS = 4;
     public static final int MAX_LEVEL = 12;
-
+    
+    public static final int LOWERBOUND_DIREKT2 = 35;
+    public static final int LOWERBOUND_DIREKT = 25;
+    public static final int LOWERBOUND_HELM = 15;
+    public static final int LOWERBOUND_RUESTUNG = 4;
+    
     public abstract String getName_();
     abstract Ausruestung getAusruestung_();
     abstract void setAusruestung_(Ausruestung ausruestung);
@@ -85,5 +90,26 @@ public abstract class Charakter {
     
     public static boolean ausruestungIsValid(int newDefR, int newDefH, int newDefS) {
         return newDefR > 0 && newDefH > 0 && newDefS >= 0;
+    }
+    
+    
+    
+    public int getLebensverlust(int schaden, int wuerfelErgebnis) {
+        Ausruestung ausruestung = this.getAusruestung_();
+        schaden -= ausruestung.getDefS_();
+        if(wuerfelErgebnis < 4) {
+            return 0;
+        } 
+        else if(wuerfelErgebnis < 15) {
+            return schaden/ausruestung.getDefR_();
+        }
+        else if(wuerfelErgebnis < 25) {
+            return schaden/ausruestung.getDefH_();
+        }
+        else if(wuerfelErgebnis < 35) {
+            return schaden;
+        }
+        else
+            return (int) (schaden*1.25);
     }
 }
