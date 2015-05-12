@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 import javax.persistence.EntityManager;
 
 import model.Ausruestung;
-import model.SimpleSalesItem;
+import model.EinfacherGegenstand;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -19,7 +19,7 @@ import controller.SimpleSalesItemManipulator;
 
 public class SimpleSalesItemManipulatorTest {
     private static SimpleSalesItemManipulator simpleSalesItemManipulator;
-    private static SimpleSalesItem testItem;
+    private static EinfacherGegenstand testItem;
     private static EntityManager theManager;
     
     
@@ -62,7 +62,7 @@ public class SimpleSalesItemManipulatorTest {
     
     @Test
     public void testAdd() {
-        testItem = new SimpleSalesItem();
+        testItem = new EinfacherGegenstand();
         assertTrue(simpleSalesItemManipulator.add(testItem));
         simpleSalesItemManipulator.delete(testItem);
     }
@@ -79,7 +79,7 @@ public class SimpleSalesItemManipulatorTest {
     
     @Test
     public void testDelete() {
-        testItem = new SimpleSalesItem();
+        testItem = new EinfacherGegenstand();
         if(simpleSalesItemManipulator.add(testItem)) {
             assertTrue(simpleSalesItemManipulator.delete(testItem));
         }
@@ -89,7 +89,7 @@ public class SimpleSalesItemManipulatorTest {
     
     @Test
     public void twoItemDeleteAreSame() {
-        testItem = new SimpleSalesItem();
+        testItem = new EinfacherGegenstand();
         if(simpleSalesItemManipulator.add(testItem)) {
             simpleSalesItemManipulator.delete(testItem);
             assertFalse(simpleSalesItemManipulator.delete(testItem));
@@ -107,7 +107,7 @@ public class SimpleSalesItemManipulatorTest {
     
     @Test
     public void canSimpleSalesItem() {
-        testItem = new SimpleSalesItem();
+        testItem = new EinfacherGegenstand();
         if(simpleSalesItemManipulator.add(testItem)) {
             testItem.setCost_(100);
             assertTrue("Can't update", simpleSalesItemManipulator.update(testItem));

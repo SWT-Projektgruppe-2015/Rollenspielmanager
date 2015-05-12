@@ -9,7 +9,7 @@ import javax.persistence.QueryTimeoutException;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.TypedQuery;
 
-import model.SimpleSalesItem;
+import model.EinfacherGegenstand;
 import model.interfaces.DBObject;
 import controller.interfaces.DBManipulator;
 
@@ -18,14 +18,14 @@ public class SimpleSalesItemManipulator extends DBManipulator{
 
     @Override
     protected void persistEntity(DBObject entity) {
-        theManager.persist((SimpleSalesItem) entity);
+        theManager.persist((EinfacherGegenstand) entity);
     }
 
     
     
     @Override
     protected void removeEntity(DBObject entity) {
-        theManager.remove((SimpleSalesItem) entity);
+        theManager.remove((EinfacherGegenstand) entity);
         
     }
 
@@ -33,7 +33,7 @@ public class SimpleSalesItemManipulator extends DBManipulator{
     
     @Override
     protected void mergeEntity(DBObject entity) {
-        theManager.merge((SimpleSalesItem) entity);       
+        theManager.merge((EinfacherGegenstand) entity);       
     }
 
     
@@ -47,11 +47,11 @@ public class SimpleSalesItemManipulator extends DBManipulator{
 
 
 
-    public List<SimpleSalesItem> getAll() {
-        TypedQuery<SimpleSalesItem> getAllRows;
+    public List<EinfacherGegenstand> getAll() {
+        TypedQuery<EinfacherGegenstand> getAllRows;
         try {
             getAllRows = theManager.createQuery("FROM SimpleSalesItem",
-                SimpleSalesItem.class);
+                EinfacherGegenstand.class);
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {
             System.err.println("IllegalArgumentException: ");
