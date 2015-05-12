@@ -2,6 +2,8 @@ package model;
 
 import java.util.List;
 
+import javafx.beans.property.StringProperty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

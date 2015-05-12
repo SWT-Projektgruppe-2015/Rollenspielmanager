@@ -43,4 +43,10 @@ public class MainMenuController {
     private void onHaendlerClick() {
         hauptProgramm_.openHaendler();
     }
+    
+    
+    @FXML
+    private void onKampfClick() {
+        hauptProgramm_.openKampf();
+    }
 }

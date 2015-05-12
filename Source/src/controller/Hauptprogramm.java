@@ -128,4 +128,16 @@ public class Hauptprogramm extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+
+    public void openKampf() {
+        try {
+            openNewWindow("../view/TeilnehmerAuswahl.fxml", "Kampf");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
 }

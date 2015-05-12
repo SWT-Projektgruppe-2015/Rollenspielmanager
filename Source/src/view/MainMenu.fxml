@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="360.0" prefWidth="800.0" styleClass="ba" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenuController">
+<AnchorPane prefHeight="360.0" prefWidth="800.0" styleClass="ba" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainMenuController">
    <children>
       <SplitPane dividerPositions="0.6641604010025063" layoutX="258.0" layoutY="95.0" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -24,7 +24,7 @@
                         <String fx:value="button-haendler" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" text="Kampf" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                  <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Kampf" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
                      <font>
                         <Font name="DejaVu Sans Bold" size="23.0" />
                      </font>
