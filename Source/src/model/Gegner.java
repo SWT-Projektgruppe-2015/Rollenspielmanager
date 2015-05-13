@@ -52,7 +52,8 @@ public class Gegner extends Charakter implements DBObject {
     
     
     public Gegner() {
-        name_ = "Gegner Nr. 460";
+        name_ = "Default";
+        level_ = 0;
         kreis_ = 1;
         erfahrung_ = 1;
         staerke_ = 1;

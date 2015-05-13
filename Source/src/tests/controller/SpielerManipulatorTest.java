@@ -1,10 +1,5 @@
 package tests.controller;
 
-
-
-
-
-
 import javax.persistence.EntityManager;
 
 import model.Spieler;
@@ -24,7 +19,7 @@ import static org.junit.Assert.assertFalse;
 
 public class SpielerManipulatorTest {
     
-    private static SpielerManipulator testInstance;
+    private static SpielerManipulator spielerManipulator;
     private static Spieler testSpieler;
     private static EntityManager theManager;
     
@@ -32,7 +27,7 @@ public class SpielerManipulatorTest {
     
     @BeforeClass
     public static void setUpBeforeClass() {
-        testInstance = SpielerManipulator.getInstance();
+        spielerManipulator = SpielerManipulator.getInstance();
         testSpieler = new Spieler();
         theManager = EntityManagerFactoryProvider.getFactory()
                 .createEntityManager();
@@ -42,7 +37,7 @@ public class SpielerManipulatorTest {
     
     @Test
     public void CanMakeInstance() {
-        assertNotNull(testInstance);
+        assertNotNull(spielerManipulator);
     }
     
     
@@ -50,7 +45,7 @@ public class SpielerManipulatorTest {
     @Test
     public void twoInstancesAreSame() {
         SpielerManipulator testInstance2 = SpielerManipulator.getInstance();
-        assertSame(testInstance, testInstance2);
+        assertSame(spielerManipulator, testInstance2);
     }
     
     
@@ -58,7 +53,7 @@ public class SpielerManipulatorTest {
     @Test
     public void canAddSpieler() {
         testSpieler = new Spieler();
-        assertTrue("Couldn't add new Spieler.", testInstance.add(testSpieler));
+        assertTrue("Couldn't add new Spieler.", spielerManipulator.add(testSpieler));
     }
     
     
@@ -69,23 +64,23 @@ public class SpielerManipulatorTest {
     @Ignore
     @Test
     public void causeEntityExistsException() {
-        testInstance.add(testSpieler);
-        assertFalse("Can add same player twice.", testInstance.add(testSpieler));
+        spielerManipulator.add(testSpieler);
+        assertFalse("Can add same player twice.", spielerManipulator.add(testSpieler));
     }
     
     
     
     @Test
     public void cantAddNonExistantSpieler() {
-        assertFalse("Can add non existant Spieler", testInstance.add(null));
+        assertFalse("Can add non existant Spieler", spielerManipulator.add(null));
     }
     
     
     
     @Test
     public void canDeleteSpieler() {
-        if(testInstance.add(testSpieler))   {
-            assertTrue("Can't delete Spieler", testInstance.delete(testSpieler));
+        if(spielerManipulator.add(testSpieler))   {
+            assertTrue("Can't delete Spieler", spielerManipulator.delete(testSpieler));
         }
     }
     
@@ -98,23 +93,23 @@ public class SpielerManipulatorTest {
         Waffen testWaffe = new Waffen();
         spielerWithWaffe.addWaffe(testWaffe);
         
-        assertTrue(testInstance.delete(spielerWithWaffe));
+        assertTrue(spielerManipulator.delete(spielerWithWaffe));
     }
     
     @Test
     public void cantDeleteNonExistantSpieler() {
         assertFalse("Can delete non existant Spieler",
-                testInstance.delete(null));
+                spielerManipulator.delete(null));
     }
     
     
     
     @Test
     public void canUpdateSpieler() {
-        if (testInstance.add(testSpieler)) {
+        if (spielerManipulator.add(testSpieler)) {
             testSpieler.setName_("Spieler formerly known as Jane");
-            assertTrue(testInstance.update(testSpieler));
-            testInstance.delete(testSpieler);
+            assertTrue(spielerManipulator.update(testSpieler));
+            spielerManipulator.delete(testSpieler);
         }
     }
     
@@ -123,14 +118,14 @@ public class SpielerManipulatorTest {
     @Test
     public void cantUpdateNonExistantSpieler() {
         assertFalse("Can update non existant Spieler",
-                testInstance.update(null));
+                spielerManipulator.update(null));
     }
     
     
     
     @Test
     public void canGetSpielerList()     {
-        assertNotNull(testInstance.getAll());
+        assertNotNull(spielerManipulator.getAll());
     }
     
     
