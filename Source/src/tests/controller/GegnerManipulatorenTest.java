@@ -21,6 +21,8 @@ public class GegnerManipulatorenTest {
         gegnerManipulator = GegnerManipulator.getInstance();
     }
     
+    
+    //Ueberfluessig
     @Test
     public void CanMakeInstance() {
         assertNotNull(gegnerManipulator);
