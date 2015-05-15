@@ -1,6 +1,5 @@
 package view;
 
-import model.Gegner;
 import model.Gruppe;
 import model.Spieler;
 import controller.Hauptprogramm;

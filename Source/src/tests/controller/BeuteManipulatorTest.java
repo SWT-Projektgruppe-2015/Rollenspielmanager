@@ -7,7 +7,6 @@ import static org.junit.Assert.assertSame;
 
 import javax.persistence.EntityManager;
 
-import model.Ausruestung;
 import model.Beute;
 
 import org.junit.AfterClass;

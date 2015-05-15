@@ -52,7 +52,7 @@ public class Ausruestung implements DBObject {
         setDefR_(1);
         setDefS_(0);
     }
-
+    
     
     
     public int getDefR_() {
