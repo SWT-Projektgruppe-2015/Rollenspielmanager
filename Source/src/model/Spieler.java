@@ -54,9 +54,6 @@ public class Spieler extends Charakter implements DBObject {
         if (getAusruestung_() == null) {
             ausruestung_ = new Ausruestung();
         }
-        if(ausruestung_.getID_() == 0) {
-            ausruestung_.addToDB();
-        }
     }
     
     
