@@ -47,6 +47,6 @@ public class MainMenuController {
     
     @FXML
     private void onKampfClick() {
-        hauptProgramm_.openKampf();
+        hauptProgramm_.openTeilnehmerauswahl();
     }
 }

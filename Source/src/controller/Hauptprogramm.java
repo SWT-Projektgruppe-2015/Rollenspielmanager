@@ -134,7 +134,7 @@ public class Hauptprogramm extends Application {
 
 
 
-    public void openKampf() {
+    public void openTeilnehmerauswahl() {
         try {
             FXMLLoader loader = getLoaderForXML("../view/TeilnehmerAuswahl.fxml");
             Parent page = loader.load();
@@ -142,7 +142,7 @@ public class Hauptprogramm extends Application {
             controller.setHauptProgramm(this);
             
             kampfStage = new Stage();
-            kampfStage.setTitle("Kampf");
+            kampfStage.setTitle("Kampf - Teilnehmerauswahl");
             kampfStage.initModality(Modality.WINDOW_MODAL);
             kampfStage.initOwner(primaryStage);
             kampfStage.setScene(new Scene(page));
@@ -160,8 +160,8 @@ public class Hauptprogramm extends Application {
     public void startKampf() {
         try {
             Parent page = getLoaderForXML("../view/Kampfsimulator.fxml").load();
-            Scene scene = new Scene(page);
-            kampfStage.setScene(scene);
+            kampfStage.setTitle("Kampf");
+            kampfStage.setScene(new Scene(page));
             kampfStage.show();
         }
         catch (IOException e) {
