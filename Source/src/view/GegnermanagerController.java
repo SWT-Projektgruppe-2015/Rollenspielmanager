@@ -98,11 +98,18 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     @FXML
-    private void updateGegnerDetails(){
+    private void updateGegner() {
         Gegner selectedGegner = getSelectedGegner();
         if(selectedGegner == null)
             return;
         
+        updateGegnerDetails(selectedGegner);
+        updateGegnerAusruestung(selectedGegner);
+        
+        handleGegnerUpdate(selectedGegner);
+    }
+    
+    private void updateGegnerDetails(Gegner selectedGegner){        
         try {
             String newName = gegnerNameTextField_.getText();
             int newLevel = Integer.parseInt(gegnerLevelTextField_.getText());
@@ -118,7 +125,6 @@ public class GegnermanagerController extends CharakterTabController {
                 selectedGegner.setGeschick_(newGeschick);
                 selectedGegner.setStaerke_(newStaerke);
                 selectedGegner.setErfahrung_(newErfahrung);
-                this.handleGegnerUpdate(selectedGegner);
             }
         }
         catch (NumberFormatException e) {
@@ -128,12 +134,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     
-    @FXML
-    private void updateGegnerAusruestung() {
-        Gegner selectedGegner = getSelectedGegner();
-        if(selectedGegner == null)
-            return;
-        
+    private void updateGegnerAusruestung(Gegner selectedGegner) {        
         try {
             int newDefR = Integer.parseInt(gegnerDefRTextField_.getText());
             int newDefH = Integer.parseInt(gegnerDefHTextField_.getText());
@@ -145,7 +146,6 @@ public class GegnermanagerController extends CharakterTabController {
                 selectedGegner.setDefH(newDefH);
                 selectedGegner.setDefS(newDefS);
                 selectedGegner.setDamage(newDamage);
-                handleGegnerUpdate(selectedGegner);
             }
         }
         catch (NumberFormatException e) {
@@ -159,6 +159,7 @@ public class GegnermanagerController extends CharakterTabController {
     private void handleGegnerUpdate(Gegner changedGegner) {
         if (changedGegner == entryForNewGegner_)
             addNewGegner(changedGegner);
+        
         updateGegnerList(changedGegner);
     }
 

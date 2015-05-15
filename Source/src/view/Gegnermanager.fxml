@@ -35,19 +35,19 @@
 									</rowConstraints>
 									<children>
 										<Label text="Stufe" />
-										<TextField fx:id="gegnerLevelTextField_" onAction="#updateGegnerDetails" prefHeight="13.0" prefWidth="59.0" GridPane.columnIndex="1" />
-										<TextField fx:id="gegnerKreisTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+										<TextField fx:id="gegnerLevelTextField_" onAction="#updateGegner" prefHeight="13.0" prefWidth="59.0" GridPane.columnIndex="1" />
+										<TextField fx:id="gegnerKreisTextField_" onAction="#updateGegner" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 										<Label text="Kreis" GridPane.rowIndex="1" />
 										<Label text="Geschick" GridPane.rowIndex="2" />
 										<Label text="Stärke" GridPane.rowIndex="3" />
-										<TextField fx:id="geschickTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-										<TextField fx:id="staerkeTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-										<TextField fx:id="erfahrungsTextField_" onAction="#updateGegnerDetails" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+										<TextField fx:id="geschickTextField_" onAction="#updateGegner" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+										<TextField fx:id="staerkeTextField_" onAction="#updateGegner" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+										<TextField fx:id="erfahrungsTextField_" onAction="#updateGegner" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 										<Label text="Erfahrung" GridPane.rowIndex="4" />
 									</children>
 								</GridPane>
 								<Label layoutX="14.0" layoutY="14.0" text="Name" />
-								<TextField fx:id="gegnerNameTextField_" layoutX="88.0" layoutY="19.0" onAction="#updateGegnerDetails" />
+								<TextField fx:id="gegnerNameTextField_" layoutX="88.0" layoutY="19.0" onAction="#updateGegner" />
 								<Button layoutX="160.0" layoutY="155.0" mnemonicParsing="false" onAction="#deleteGegner" text="Gegner löschen" />
 							</children>
 						</AnchorPane>
@@ -59,14 +59,14 @@
 							<children>
 								<AnchorPane prefHeight="200.0" prefWidth="252.0">
 									<children>
-										<TextField fx:id="gegnerDefRTextField_" layoutX="69.0" layoutY="53.0" onAction="#updateGegnerAusruestung" prefHeight="25.0" prefWidth="40.0" />
-										<TextField fx:id="gegnerDefHTextField_" layoutX="69.0" layoutY="78.0" onAction="#updateGegnerAusruestung" prefHeight="25.0" prefWidth="40.0" />
-										<TextField fx:id="gegnerDefSTextField_" layoutX="69.0" layoutY="103.0" onAction="#updateGegnerAusruestung" prefHeight="25.0" prefWidth="40.0" />
+										<TextField fx:id="gegnerDefRTextField_" layoutX="69.0" layoutY="53.0" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" />
+										<TextField fx:id="gegnerDefHTextField_" layoutX="69.0" layoutY="78.0" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" />
+										<TextField fx:id="gegnerDefSTextField_" layoutX="69.0" layoutY="103.0" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" />
 										<Text layoutX="23.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefR:" />
 										<Text layoutX="23.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefH:" />
 										<Text layoutX="23.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DefS:" />
 										<Text layoutX="22.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Damage:" />
-										<TextField fx:id="gegnerDamageTextField_" layoutX="89.0" layoutY="140.0" onAction="#updateGegnerAusruestung" prefHeight="26.0" prefWidth="49.0" />
+										<TextField fx:id="gegnerDamageTextField_" layoutX="89.0" layoutY="140.0" onAction="#updateGegner" prefHeight="26.0" prefWidth="49.0" />
 									</children>
 								</AnchorPane>
 							</children>
