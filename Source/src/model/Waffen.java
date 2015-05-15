@@ -38,6 +38,14 @@ public class Waffen implements DBObject {
     
     
     
+    public Waffen(Ausruestung ausruestung) {
+        waffenName_ = "Default Gegner Waffe";
+        waffenSchaden_ = 0;    
+        ausruestung_ = ausruestung;
+    }
+
+
+
     private void updateInDB() {
         if(ID_ != 0)
             dbManipulator_.add(this);

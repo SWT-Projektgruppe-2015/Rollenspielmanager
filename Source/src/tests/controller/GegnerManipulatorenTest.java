@@ -66,7 +66,7 @@ public class GegnerManipulatorenTest {
     @Test
     public void canDeleteGegner() {
         testGegner = new Gegner();
-        assertTrue(gegnerManipulator.add(testGegner));
+        gegnerManipulator.add(testGegner);
         assertTrue("Can't delete Gegner", gegnerManipulator.delete(testGegner));
     }
     
@@ -75,6 +75,8 @@ public class GegnerManipulatorenTest {
         assertFalse("Can delete non existant Gegner",
                 gegnerManipulator.delete(null));
     }
+    
+    
     
     @Test
     public void canUpdateGegner() {

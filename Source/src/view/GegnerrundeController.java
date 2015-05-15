@@ -57,24 +57,37 @@ public class GegnerrundeController {
     }        
     
     
+    
+    @FXML
+    public void executeFightButton() {
+        Gegner selectedGegner = gegnerListView_.getSelectionModel().getSelectedItem();
+        updateSchadenAmSpielerTable(selectedGegner);
+    }
+    
+    
+    
     /**
      * Aktualisiert die "schadenAmSpielerTableView_" mit neu simuliertem
      * Lebenspunkteverlust.
      * @param selectedGegner
      */
     protected void updateSchadenAmSpielerTable(Gegner selectedGegner) {
-        // TODO: F�rbung der Schadensfelder wird noch nicht gemacht.
+        // TODO: Faerbung der Schadensfelder wird noch nicht gemacht.
         if(selectedGegner == null) return;
+        // TODO: Anzeigen bei deselektierung clearen.
         for(SchadenAmSpieler schadenAmSpieler: schadenAmSpielerListe_){
             Spieler spieler = schadenAmSpieler.getSpieler_();
             int lebensVerlust = simuliereLebensverlustAmSpieler(selectedGegner, spieler);
             schadenAmSpieler.setSchaden_(lebensVerlust);
         }
+        schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
+        spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
+        schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("schaden_"));
     }
 
 
     /**
-     * simuliert einen Angriff des Gegners am Spieler.
+     * simuliert einen Angriff des Gegners am Spieler durch einen Geschickwurf.
      * @param selectedGegner
      * @param spieler
      * @return verlorene Lebenspunkte von 'spieler' durch 'selectedGegner'

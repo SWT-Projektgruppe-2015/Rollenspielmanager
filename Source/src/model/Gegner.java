@@ -41,7 +41,7 @@ public class Gegner extends Charakter implements DBObject {
     private int geschick_;
     @Column(name = "LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
     private int lebenspunkte_;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Beute beuteTyp_;
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
@@ -79,17 +79,11 @@ public class Gegner extends Charakter implements DBObject {
         if (geschick_ == 0) {
             geschick_ = 1;
         }
-        if (getAusruestung_() == null) {
-            ausruestung_ = new Ausruestung();
-            ausruestung_.addToDB();
-            Waffen defaultWaffe = new Waffen();
-            defaultWaffe.setWaffenName_("Default Gegner Waffe");
-            defaultWaffe.setWaffenSchaden_(0);
-            defaultWaffe.setAusruestung_(ausruestung_);
+        if (ausruestung_ == null) {
+            ausruestung_ = new Ausruestung();           
         }
-        if (this.getBeute_() == null) {
+        if (getBeute_() == null) {
             beuteTyp_ = new Beute();
-            beuteTyp_.addToDB();
         }
     }
     
