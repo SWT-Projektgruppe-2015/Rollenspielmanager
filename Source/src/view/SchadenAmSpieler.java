@@ -31,13 +31,13 @@ public class SchadenAmSpieler {
     
     
     
-    public String getNamen_() {
+    public String getName_() {
         return name_.getValue();
     }
     
     
     
-    public void setNamen_(String namen_) {
+    public void setName_(String namen_) {
         this.name_.set(namen_);
     }
     
