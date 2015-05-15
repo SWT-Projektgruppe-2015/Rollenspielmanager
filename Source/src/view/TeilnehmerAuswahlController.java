@@ -47,12 +47,15 @@ public class TeilnehmerAuswahlController {
     private Hauptprogramm hauptProgramm_;
     
     @FXML
-    void initialize() {
+    void initialize() {        
         spielerNotInKampfList_ = new ArrayList<Spieler>();
         spielerNotInKampfList_.addAll(Spieler.getAll());
+        spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
+
         gegnerNotInKampfList_ = new ArrayList<Gegner>();
         gegnerNotInKampfList_.addAll(Gegner.getAllGegner());
-        spielerNotInKampfListView_.getItems().setAll(Spieler.getAll());
+        gegnerNotInKampfTableView_.getItems().setAll(gegnerNotInKampfList_);
+       
         gruppenComboBox_.getItems().setAll(Gruppe.getAll());
         gruppenComboBox_.getSelectionModel().selectedItemProperty()
                 .addListener(new ChangeListener<Gruppe>() {
@@ -64,7 +67,7 @@ public class TeilnehmerAuswahlController {
                     }
 
                 });
-        gegnerNotInKampfTableView_.getItems().setAll(Gegner.getAllGegner());
+       
         kreisColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer>("kreis_"));
         levelColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer> ("level_"));
         nameColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, String>("name_"));
