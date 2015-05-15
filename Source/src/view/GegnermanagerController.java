@@ -104,6 +104,11 @@ public class GegnermanagerController extends CharakterTabController {
             return;
         
         updateGegnerDetails(selectedGegner);
+        
+
+        if (selectedGegner == entryForNewGegner_)
+            addNewGegner(selectedGegner);
+        
         updateGegnerAusruestung(selectedGegner);
         
         handleGegnerUpdate(selectedGegner);
@@ -156,10 +161,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     
-    private void handleGegnerUpdate(Gegner changedGegner) {
-        if (changedGegner == entryForNewGegner_)
-            addNewGegner(changedGegner);
-        
+    private void handleGegnerUpdate(Gegner changedGegner) {        
         updateGegnerList(changedGegner);
     }
 

@@ -46,16 +46,13 @@ public class Spieler extends Charakter implements DBObject {
     @PrePersist
     public void onCreate() {
         if (getName_() == null) {
-            setName_("Jane Doe");
+            name_ = "Jane Doe";
         }
         if (getKreis_() == 0) {
-            setKreis_(1);
+            kreis_ = 1;
         }
         if (getAusruestung_() == null) {
             ausruestung_ = new Ausruestung();
-        }
-        if(ausruestung_.getID_() == 0) {
-            ausruestung_.addToDB();
         }
     }
     
