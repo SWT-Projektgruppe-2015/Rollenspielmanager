@@ -97,7 +97,7 @@ public abstract class Charakter {
     public int getLebensverlust(int schaden, int wuerfelErgebnis) {
         Ausruestung ausruestung = this.getAusruestung_();
         schaden -= ausruestung.getDefS_();
-        if(wuerfelErgebnis < 4) {
+        if(wuerfelErgebnis < 4 || schaden <= 0) {
             return 0;
         } 
         else if(wuerfelErgebnis < 15) {
@@ -110,6 +110,6 @@ public abstract class Charakter {
             return schaden;
         }
         else
-            return (int) (schaden*1.25);
+            return (int) (schaden*1.1);
     }
 }
