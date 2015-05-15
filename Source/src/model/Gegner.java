@@ -2,8 +2,6 @@ package model;
 
 import java.util.List;
 
-import javafx.beans.property.StringProperty;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -132,8 +130,10 @@ public class Gegner extends Charakter implements DBObject {
     
     
     public void setName_(String name_) {
-        this.name_ = name_;
-        updateInDB();
+        if(name_ != this.name_) {
+            this.name_ = name_;
+            updateInDB();
+        }
     }
 
     
@@ -145,8 +145,10 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public void setKreis_(int kreis_) {
-        this.kreis_ = kreis_;
-        updateInDB();
+        if(kreis_ != this.kreis_) {
+            this.kreis_ = kreis_;
+            updateInDB();
+        }
     }
 
     
@@ -158,8 +160,10 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public void setLevel_(int level_) {
-        this.level_ = level_;
-        updateInDB();
+        if(level_ != this.level_) {
+            this.level_ = level_;
+            updateInDB();
+        }
     }
 
     
@@ -171,8 +175,10 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public void setErfahrung_(int erfahrung_) {
-        this.erfahrung_ = erfahrung_;
-        updateInDB();
+        if(erfahrung_ != this.erfahrung_) {
+            this.erfahrung_ = erfahrung_;
+            updateInDB();
+        }
     }
 
     
@@ -184,8 +190,10 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public void setStaerke_(int staerke_) {
-        this.staerke_ = staerke_;
-        updateInDB();
+        if(staerke_ != this.staerke_) {
+            this.staerke_ = staerke_;
+            updateInDB();
+        }
     }
 
     
@@ -197,8 +205,10 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public void setGeschick_(int geschick_) {
-        this.geschick_ = geschick_;
-        updateInDB();
+        if(geschick_ != this.geschick_) {
+            this.geschick_ = geschick_;
+            updateInDB();
+        }
     }
 
     
@@ -210,8 +220,10 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public void setLebenspunkte_(int lebenspunkte_) {
-        this.lebenspunkte_ = lebenspunkte_;
-        updateInDB();
+        if (lebenspunkte_ != this.lebenspunkte_) {
+            this.lebenspunkte_ = lebenspunkte_;
+            updateInDB();
+        }
     }
 
     
@@ -244,10 +256,13 @@ public class Gegner extends Charakter implements DBObject {
 	
 	@Override
 	public void setAusruestung_(Ausruestung ausruestung) {
-	    boolean gegnerInDbButAusruestungIsNot = getID_() != 0 && ausruestung.getID_() == 0;
-        if(gegnerInDbButAusruestungIsNot)
-            ausruestung.addToDB();
-		ausruestung_ = ausruestung;
+	    if (ausruestung != ausruestung_) {
+            boolean gegnerInDbButAusruestungIsNot = getID_() != 0
+                    && ausruestung.getID_() == 0;
+            if (gegnerInDbButAusruestungIsNot)
+                ausruestung.addToDB();
+            ausruestung_ = ausruestung;
+        }
 	}
 
 

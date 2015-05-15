@@ -143,27 +143,18 @@ public class Spieler extends Charakter implements DBObject {
     }
     
     
-
-    /**
-     * @param gruppe
-     *            the membership_ to set
-     */
-    public void setMembership_(Set<Gruppe> gruppe) {
-        membership_ = gruppe;
-        updateInDB();
-    }
-    
-    
     
     /**
      * @param ausruestung_
      *            the ausruestung_ to set
      */
     public void setAusruestung_(Ausruestung ausruestung) {
-        boolean spielerInDbButAusruestungIsNot = getID_() != 0 && ausruestung.getID_() == 0;
-        if(spielerInDbButAusruestungIsNot)
-            ausruestung.addToDB();
-        ausruestung_ = ausruestung;
+        if(ausruestung != ausruestung_) {
+            boolean spielerInDbButAusruestungIsNot = getID_() != 0 && ausruestung.getID_() == 0;
+            if(spielerInDbButAusruestungIsNot)
+                ausruestung.addToDB();
+            ausruestung_ = ausruestung;
+        }
     }
     
     
@@ -173,8 +164,10 @@ public class Spieler extends Charakter implements DBObject {
      *            the level_ to set
      */
     public void setLevel_(int level_) {
-        this.level_ = level_;
-        updateInDB();
+        if(level_ != this.level_) {
+            this.level_ = level_;
+            updateInDB();
+        }
     }
     
     
@@ -184,8 +177,10 @@ public class Spieler extends Charakter implements DBObject {
      *            the kreis_ to set
      */
     public void setKreis_(int kreis_) {
-        this.kreis_ = kreis_;
-        updateInDB();
+        if(kreis_ != this.kreis_) {
+            this.kreis_ = kreis_;
+            updateInDB();
+        }
     }
     
     
@@ -195,8 +190,10 @@ public class Spieler extends Charakter implements DBObject {
      *            the name_ to set
      */
     public void setName_(String name_) {
-        this.name_ = name_;
-        updateInDB();
+        if(name_ != this.name_) {
+            this.name_ = name_;
+            updateInDB();
+        }
     }
     
     
