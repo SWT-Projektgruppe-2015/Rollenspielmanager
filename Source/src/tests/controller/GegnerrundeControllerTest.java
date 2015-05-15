@@ -46,7 +46,8 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
     @Test
     public void checkSimulatedLebensverlust() {
         for(int i = 0; i < 20; ++i){
-            int verlorenesLeben = simuliereLebensverlustAmSpieler(gegner_, spieler_);
+            int geschickWurf = 15;
+            int verlorenesLeben = simuliereLebensverlustAmSpieler(gegner_, spieler_, geschickWurf);
             assertTrue(verlorenesLeben == 0 || verlorenesLeben == 1 
                     || verlorenesLeben == 3 || verlorenesLeben == 75);
         }

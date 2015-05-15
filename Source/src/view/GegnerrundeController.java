@@ -3,17 +3,26 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+
 import controller.Dice;
 import model.Gegner;
 import model.Spieler;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
+import javafx.beans.value.ObservableObjectValue;
+import javafx.util.Callback;
+
 
 public class GegnerrundeController {
     
@@ -35,6 +44,9 @@ public class GegnerrundeController {
     @FXML
     private TableColumn<SchadenAmSpieler, Integer> schadenColumn_;
     
+    @FXML
+    private TableColumn<SchadenAmSpieler, Integer> trefferZoneColumn_;
+    
     public void initialize(List<Spieler> spielerListe, List<Gegner> gegnerListe) {
         gegnerListView_.getSelectionModel().selectedItemProperty()
         .addListener(new ChangeListener<Gegner>(){
@@ -53,8 +65,61 @@ public class GegnerrundeController {
         gegnerListView_.getItems().setAll(gegnerListe_);
         schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
-        schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("schaden_"));
-    }        
+        schadenColumn_.setCellValueFactory(
+//                new Callback<CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>>, ObservableValue<ObjectProperty<Angriff>>>() {
+//                    @Override public ObservableValue<ObjectProperty<Angriff>> call(CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>> c) {
+//                        return new SimpleObjectProperty(c.getValue().getTestBedName()));
+//                    }
+//                }
+                new PropertyValueFactory<SchadenAmSpieler, Integer>("schaden_")
+                );
+        
+        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("zone_"));
+//        trefferZoneColumn_.setCellValueFactory(cellData -> cellData.getValue().getZonenProperty_());
+//        trefferZoneColumn_.setCellFactory(column -> {
+//            return new TableCell<SchadenAmSpieler, Integer>() {
+//                @Override
+//                protected void updateItem(Integer item, boolean empty){
+//                    super.updateItem(item, empty);
+//                    if (item == null || empty) {
+//                        setText(null);
+//                        setStyle("   ");
+//                    } else {
+////                        setText(item);
+////                        setTextFill()
+//                        // Format date.
+////                        setText(myDateFormatter.format(item));
+//
+//                        // Style all dates in March with a different color.
+////                        if (item.getMonth() == Month.MARCH) {
+////                            setTextFill(Color.CHOCOLATE);
+//                            setStyle("-fx-background-color: yellow");
+////                        } else {
+////                            setTextFill(Color.BLACK);
+////                            setStyle("   ");
+////                        }
+//                    }
+//                }
+//            };
+//        });
+        
+//        trefferZoneColumn_.setCellFactory(new Callback<TableColumn<SchadenAmSpieler, Integer>, TableCell<SchadenAmSpieler, Integer>>() {
+//            @Override
+//            public TableCell<SchadenAmSpieler, Integer> call(TableColumn<SchadenAmSpieler, Integer> p) {
+//
+//
+//             return new TableCell<SchadenAmSpieler, Integer>() {
+//
+//            @Override
+//            public void updateItem(Integer item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (!isEmpty()) {
+//                    this.setStyle("-fx-background-color:red");
+//                    setText(item.toString());
+//                }
+//            }
+//        };
+    }
     
     
     
@@ -72,31 +137,42 @@ public class GegnerrundeController {
      * @param selectedGegner
      */
     protected void updateSchadenAmSpielerTable(Gegner selectedGegner) {
-        // TODO: Faerbung der Schadensfelder wird noch nicht gemacht.
+        // TODO: Faerbung der Schadensfelder wird noch nicht gemacht und Anzeigen bei deselektierung clearen.
         if(selectedGegner == null) return;
-        // TODO: Anzeigen bei deselektierung clearen.
         for(SchadenAmSpieler schadenAmSpieler: schadenAmSpielerListe_){
             Spieler spieler = schadenAmSpieler.getSpieler_();
-            int lebensVerlust = simuliereLebensverlustAmSpieler(selectedGegner, spieler);
+            int geschickWurf = simulateGeschickWurf(selectedGegner);
+            int lebensVerlust = simuliereLebensverlustAmSpieler(selectedGegner, spieler, geschickWurf);
             schadenAmSpieler.setSchaden_(lebensVerlust);
+            schadenAmSpieler.setZone_(geschickWurf);
         }
         schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
-        spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
-        schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("schaden_"));
     }
 
 
     /**
-     * simuliert einen Angriff des Gegners am Spieler durch einen Geschickwurf.
+     * simuliert den GeschickWurf des selectedGegners.
+     * @param selectedGegner
+     * @return
+     */
+    private int simulateGeschickWurf(Gegner selectedGegner) {
+        int geschick = selectedGegner.getGeschick_();
+        int wuerfelErgebnis = Dice.rollGeschick(geschick);
+        return wuerfelErgebnis;
+    }
+
+ 
+    
+    /**
+     * berechnet den Lebensverlust des Spielers durch den Schaden des Gegners, abhaengig vom geschickWurf
      * @param selectedGegner
      * @param spieler
+     * @param geschickWurf 
      * @return verlorene Lebenspunkte von 'spieler' durch 'selectedGegner'
      */
-    protected int simuliereLebensverlustAmSpieler(Gegner selectedGegner, Spieler spieler) {
-        int geschick = selectedGegner.getGeschick_();
+    protected int simuliereLebensverlustAmSpieler(Gegner selectedGegner, Spieler spieler, int geschickWurf) {
         int schaden = selectedGegner.getDamage();
-        int wuerfelErgebnis = Dice.rollGeschick(geschick);
-        int lebensVerlust = spieler.getLebensverlust(schaden, wuerfelErgebnis);
+        int lebensVerlust = spieler.getLebensverlust(schaden, geschickWurf);
         return lebensVerlust;
     }
 }
