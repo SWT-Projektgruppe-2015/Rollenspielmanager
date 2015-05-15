@@ -2,7 +2,9 @@ package view;
 
 import model.Gruppe;
 import model.Spieler;
+import controller.GruppenSubject;
 import controller.Hauptprogramm;
+import controller.interfaces.GruppenObserver;
 import controller.manipulators.GruppenManipulator;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,7 +14,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class MainMenuController {
+public class MainMenuController implements GruppenObserver{
     @FXML
     private ComboBox<Gruppe> gruppenDropDown_;
     @FXML
@@ -26,6 +28,16 @@ public class MainMenuController {
     
     private Hauptprogramm hauptProgramm_;
     
+    private GruppenSubject gruppenSubject_;
+    
+    
+    
+    public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
+        this.gruppenSubject_ = gruppenSubject_;
+    }
+
+
+
     public MainMenuController() {
     }
     
@@ -82,5 +94,14 @@ public class MainMenuController {
     @FXML
     private void onKampfClick() {
         hauptProgramm_.openTeilnehmerauswahl();
+    }
+
+
+
+    @Override
+    public void update() {
+        gruppenDropDown_.getItems().setAll(gruppenSubject_.getGruppen());
+        gruppenDropDown_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
+        
     }
 }

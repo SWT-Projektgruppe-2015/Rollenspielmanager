@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import controller.interfaces.DBManipulator;
 import model.Gruppe;
+import model.Spieler;
 import model.interfaces.DBObject;
 
 public class GruppenManipulator extends DBManipulator {
@@ -74,7 +75,11 @@ public class GruppenManipulator extends DBManipulator {
 
     @Override
     protected void removeEntity(DBObject entity) {
+        
         theManager.remove((Gruppe) entity);
+        for (Spieler spieler : ((Gruppe) entity).getMembers_()){
+            spieler.getMembership_().remove(entity);
+        }
     }
 
 

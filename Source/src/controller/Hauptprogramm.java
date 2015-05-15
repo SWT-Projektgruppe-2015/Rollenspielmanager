@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.util.List;
 
 import model.Gegner;
+import model.Gruppe;
 import model.Spieler;
+import view.CharaktermanagerController;
 import view.GegnerrundeController;
 import view.KampfsimulatorController;
 import view.MainMenuController;
@@ -30,9 +32,12 @@ public class Hauptprogramm extends Application {
     private Stage primaryStage;
     private BorderPane menuBar;
     private Stage kampfStage;
+    private GruppenSubject gruppenSubject_;
+    
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Rollenspielmanager");
+        gruppenSubject_ = new GruppenSubject();
         
         initializeMenuBar();
         
@@ -65,6 +70,7 @@ public class Hauptprogramm extends Application {
             menuBar.setCenter(mainMenu);
 
             MainMenuController controller = loader.getController();
+            controller.setGruppenSubject_(gruppenSubject_);
             controller.setHauptProgramm(this);
         }
         catch (IOException e) {
@@ -85,7 +91,18 @@ public class Hauptprogramm extends Application {
     
     public void openCharakterManager() {
         try {
-            openNewWindow("../view/Charaktermanager.fxml", "Charaktermanager");
+            FXMLLoader loader = getLoaderForXML("../view/Charaktermanager.fxml");
+            CharaktermanagerController controller = loader.getController();
+            controller.setGruppenSubject_(gruppenSubject_);
+            Parent page = loader.load();
+            Stage newStage = new Stage();
+            newStage.setTitle("Charaktermanager");
+            newStage.initModality(Modality.WINDOW_MODAL);
+            newStage.initOwner(primaryStage);
+            newStage.setScene(new Scene(page));
+            
+            newStage.showAndWait();
+            
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -144,6 +161,7 @@ public class Hauptprogramm extends Application {
             FXMLLoader loader = getLoaderForXML("../view/TeilnehmerAuswahl.fxml");
             Parent page = loader.load();
             TeilnehmerAuswahlController controller = loader.getController();
+            controller.setGruppenSubject_(gruppenSubject_);
             controller.setHauptProgramm(this);
             
             kampfStage = new Stage();
@@ -178,4 +196,5 @@ public class Hauptprogramm extends Application {
         }
         
     }
+    
 }

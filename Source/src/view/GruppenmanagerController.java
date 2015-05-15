@@ -3,6 +3,8 @@ package view;
 import java.util.Collection;
 import java.util.List;
 
+import controller.GruppenSubject;
+import controller.interfaces.GruppenObserver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -12,9 +14,11 @@ import javafx.scene.control.TextField;
 import model.Gruppe;
 import model.Spieler;
 
-public class GruppenmanagerController {
+public class GruppenmanagerController implements GruppenObserver{
     private List<Spieler> spielerList_;
     private List<Gruppe> gruppenList_;
+    
+    private GruppenSubject gruppenSubject_;
     
     @FXML
     private TextField newGruppenNameTextField_;
@@ -24,6 +28,14 @@ public class GruppenmanagerController {
     private ListView<Spieler> spielerNotInGruppeListView_; 
     @FXML
     private ListView<Spieler> spielerInGruppeListView_; 
+    
+    
+    
+    public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
+        this.gruppenSubject_ = gruppenSubject_;
+    }
+
+
     
     void initialize(List<Spieler> spielerList) {
         spielerList_ = spielerList;
@@ -110,6 +122,7 @@ public class GruppenmanagerController {
         gruppenList_.add(newGruppe);
         gruppenComboBox_.getItems().add(newGruppe);
         gruppenComboBox_.getSelectionModel().select(newGruppe);
+        gruppenSubject_.setGruppen(gruppenList_);
     }
     
     
@@ -123,6 +136,7 @@ public class GruppenmanagerController {
         selectedGruppe.setName_(newGruppenNameTextField_.getText());
         gruppenComboBox_.getItems().setAll(gruppenList_);
         gruppenComboBox_.getSelectionModel().select(selectedGruppe);
+        gruppenSubject_.setGruppen(gruppenList_);
     }
     
     
@@ -131,9 +145,12 @@ public class GruppenmanagerController {
     private void deleteGruppe() {
         Gruppe gruppeToDelete = getSelectedGruppe();
         if (gruppeToDelete != null) {
-            gruppenComboBox_.getItems().remove(gruppeToDelete);
-            gruppenList_.remove(gruppeToDelete);
             gruppeToDelete.deleteFromDB();
+            gruppenComboBox_.getItems().remove(gruppeToDelete);
+            gruppenComboBox_.getItems();
+            gruppenList_.remove(gruppeToDelete);
+            gruppenSubject_.setGruppen(gruppenList_);
+            
         }
     }
     
@@ -167,5 +184,14 @@ public class GruppenmanagerController {
             Gruppe selectedGruppe = getSelectedGruppe();
             selectedGruppe.removePlayer(chosenSpieler);
         }
+    }
+
+
+
+    @Override
+    public void update() {
+        gruppenComboBox_.getItems().setAll(gruppenSubject_.getGruppen());
+        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
+        
     }
 }

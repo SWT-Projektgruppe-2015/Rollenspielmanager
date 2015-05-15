@@ -3,7 +3,9 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.GruppenSubject;
 import controller.Hauptprogramm;
+import controller.interfaces.GruppenObserver;
 import model.Gegner;
 import model.Gruppe;
 import model.Spieler;
@@ -17,7 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class TeilnehmerAuswahlController {
+public class TeilnehmerAuswahlController implements GruppenObserver {
     
     
     @FXML
@@ -46,6 +48,16 @@ public class TeilnehmerAuswahlController {
     
     private Hauptprogramm hauptProgramm_;
     
+    private GruppenSubject gruppenSubject_;
+    
+    
+    
+    public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
+        this.gruppenSubject_ = gruppenSubject_;
+    }
+
+
+
     @FXML
     void initialize() {        
         spielerNotInKampfList_ = new ArrayList<Spieler>();
@@ -174,6 +186,15 @@ public class TeilnehmerAuswahlController {
     @FXML
     private void kampfButton() {
         hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), gegnerInKampfListView_.getItems());
+    }
+
+
+
+    @Override
+    public void update() {
+        gruppenComboBox_.getItems().setAll(gruppenSubject_.getGruppen());
+        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
+        
     }
     
 
