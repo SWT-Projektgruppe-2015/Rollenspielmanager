@@ -174,6 +174,8 @@ public class SpielermanagerController extends CharakterTabController{
                 .getLevel_()));
         spielerKreisLabel_
                 .setText(Integer.toString(selectedSpieler.getKreis_()));
+        
+        updateSpieler();
     }
 
     
@@ -190,30 +192,37 @@ public class SpielermanagerController extends CharakterTabController{
                 .getLevel_()));
         spielerKreisLabel_
                 .setText(Integer.toString(selectedSpieler.getKreis_()));
+        
+        updateSpieler();
     }
 
     
     
     @FXML
-    private void changeSpielerName() {
+    private void updateSpieler() {
         Spieler selectedSpieler = getSelectedSpieler();
         if (selectedSpieler == null)
             return;
-
-        String newName = spielerNameTextField_.getText();
-        selectedSpieler.setName_(newName);
-
+        
+        updateSpielerName(selectedSpieler);
+        updateWaffenDetails(selectedSpieler);
+        updateSpielerDef(selectedSpieler);
+        updateFaehigkeitName(selectedSpieler);
+        
         updateSpielerLists(selectedSpieler);
     }
+    
+    
+
+    private void updateSpielerName(Spieler selectedSpieler) {
+        String newName = spielerNameTextField_.getText();
+        if(!newName.isEmpty())
+            selectedSpieler.setName_(newName);
+    }
 
     
     
-    @FXML
-    private void changeDef() {
-        Spieler selectedSpieler = getSelectedSpieler();
-        if (selectedSpieler == null)
-            return;
-
+    private void updateSpielerDef(Spieler selectedSpieler) {
         try {
             int newDefR = Integer.parseInt(defRTextField_.getText());
             int newDefH = Integer.parseInt(defHTextField_.getText());
@@ -223,8 +232,6 @@ public class SpielermanagerController extends CharakterTabController{
                 selectedSpieler.setDefR(newDefR);
                 selectedSpieler.setDefH(newDefH);
                 selectedSpieler.setDefS(newDefS);
-
-                updateSpielerLists(selectedSpieler);
             }
         }
         catch (NumberFormatException e) {
@@ -232,6 +239,73 @@ public class SpielermanagerController extends CharakterTabController{
         }
     }
 
+    
+    
+    private void updateWaffenDetails(Spieler selectedSpieler) {
+        Waffen selectedWaffe = getSelectedWaffe();
+        if (selectedWaffe == null)
+            return;
+
+        boolean waffeChanged = false;
+        waffeChanged = updateWaffenName(selectedWaffe);
+        waffeChanged = updateWaffenDamage(selectedWaffe) || waffeChanged;
+
+        if (waffeChanged) {
+            if (selectedWaffe == entryForNewWaffe_) {
+                selectedSpieler.addWaffe(selectedWaffe);
+            }
+
+            updateWaffenList(selectedWaffe);
+        }
+    }
+
+    
+    
+    private boolean updateWaffenName(Waffen selectedWaffe) {
+        String newName = waffenNameTextField_.getText();
+        if (!newName.equals(selectedWaffe.getWaffenName_())) {
+            selectedWaffe.setWaffenName_(newName);
+            return true;
+        }
+
+        return false;
+    }
+
+    
+    
+    private boolean updateWaffenDamage(Waffen selectedWaffe) {
+        try {
+            int newDamage = Integer.parseInt(waffenDamageTextField_.getText());
+
+            if (newDamage >= 0
+                    && newDamage != selectedWaffe.getWaffenSchaden_()) {
+                selectedWaffe.setWaffenSchaden_(newDamage);
+                return true;
+            }
+        }
+        catch (NumberFormatException e) {
+        }
+        return false;
+    }
+
+    
+    
+
+    private void updateFaehigkeitName(Spieler selectedSpieler) {
+        Faehigkeiten selectedFaehigkeit = getSelectedFaehigkeit();
+        if (selectedFaehigkeit == null)
+            return;
+
+        String newName = faehigkeitenNameTextField_.getText();
+        selectedFaehigkeit.setName_(newName);
+
+        if (selectedFaehigkeit == entryForNewFaehigkeit_) {
+            selectedSpieler.addFaehigkeit(selectedFaehigkeit);
+        }
+
+        updateFaehigkeitenList(selectedFaehigkeit);
+    }
+    
     
     
     @FXML
@@ -250,73 +324,7 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    @FXML
-    private void changeWaffenDetails() {
-        Waffen selectedWaffe = getSelectedWaffe();
-        if (selectedWaffe == null)
-            return;
-
-        boolean waffeChanged = false;
-        waffeChanged = changeWaffenName(selectedWaffe);
-        waffeChanged = changeWaffenDamage(selectedWaffe) || waffeChanged;
-
-        if (waffeChanged) {
-            if (selectedWaffe == entryForNewWaffe_) {
-                Spieler selectedSpieler = getSelectedSpieler();
-                selectedSpieler.addWaffe(selectedWaffe);
-            }
-
-            updateWaffenList(selectedWaffe);
-        }
-    }
-
     
-    
-    private boolean changeWaffenName(Waffen selectedWaffe) {
-        String newName = waffenNameTextField_.getText();
-        if (!newName.equals(selectedWaffe.getWaffenName_())) {
-            selectedWaffe.setWaffenName_(newName);
-            return true;
-        }
-
-        return false;
-    }
-
-    
-    
-    private boolean changeWaffenDamage(Waffen selectedWaffe) {
-        try {
-            int newDamage = Integer.parseInt(waffenDamageTextField_.getText());
-
-            if (newDamage >= 0
-                    && newDamage != selectedWaffe.getWaffenSchaden_()) {
-                selectedWaffe.setWaffenSchaden_(newDamage);
-                return true;
-            }
-        }
-        catch (NumberFormatException e) {
-        }
-        return false;
-    }
-
-    
-    
-    @FXML
-    private void changeFaehigkeitName() {
-        Faehigkeiten selectedFaehigkeit = getSelectedFaehigkeit();
-        if (selectedFaehigkeit == null)
-            return;
-
-        String newName = faehigkeitenNameTextField_.getText();
-        selectedFaehigkeit.setName_(newName);
-
-        if (selectedFaehigkeit == entryForNewFaehigkeit_) {
-            Spieler selectedSpieler = getSelectedSpieler();
-            selectedSpieler.addFaehigkeit(selectedFaehigkeit);
-        }
-
-        updateFaehigkeitenList(selectedFaehigkeit);
-    }
 
     
     
