@@ -1,6 +1,8 @@
 package view;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.Spieler;
 
@@ -9,11 +11,10 @@ public class SchadenAmSpieler {
     private StringProperty name_;
     private IntegerProperty schaden_; 
     
-    
     SchadenAmSpieler(Spieler spieler) {
         spieler_ = spieler;
-        name_.set(spieler_.getName_());
-        schaden_.set(0);
+        name_ = new SimpleStringProperty(spieler_.getName_());
+        schaden_ = new SimpleIntegerProperty(0);
     }
     
     

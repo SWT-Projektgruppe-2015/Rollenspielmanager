@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.Hauptprogramm;
-import model.Charakter;
 import model.Gegner;
 import model.Gruppe;
 import model.Spieler;
@@ -171,7 +170,7 @@ public class TeilnehmerAuswahlController {
     
     @FXML
     private void kampfButton() {
-        hauptProgramm_.startKampf();
+        hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), gegnerInKampfListView_.getItems());
     }
     
 

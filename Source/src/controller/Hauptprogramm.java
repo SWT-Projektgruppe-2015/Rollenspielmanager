@@ -5,7 +5,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
+import model.Gegner;
+import model.Spieler;
+import view.GegnerrundeController;
+import view.KampfsimulatorController;
 import view.MainMenuController;
 import view.TeilnehmerAuswahlController;
 import javafx.fxml.FXMLLoader;
@@ -157,9 +162,13 @@ public class Hauptprogramm extends Application {
 
 
 
-    public void startKampf() {
+    public void startKampf(List<Spieler> spieler, List<Gegner> gegner) {
         try {
-            Parent page = getLoaderForXML("../view/Kampfsimulator.fxml").load();
+            FXMLLoader loader = getLoaderForXML("../view/Gegnerrunde.fxml");
+            Parent page = loader.load();
+            GegnerrundeController controller = loader.getController();
+            controller.initialize(spieler, gegner);
+            
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));
             kampfStage.show();

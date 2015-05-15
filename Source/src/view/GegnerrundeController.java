@@ -1,10 +1,10 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import controller.Dice;
 import model.Gegner;
-import model.Gruppe;
 import model.Spieler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -35,7 +35,7 @@ public class GegnerrundeController {
     @FXML
     private TableColumn<SchadenAmSpieler, Integer> schadenColumn_;
     
-    void initialize(List<Spieler> spielerListe, List<Gegner> gegnerListe) {
+    public void initialize(List<Spieler> spielerListe, List<Gegner> gegnerListe) {
         gegnerListView_.getSelectionModel().selectedItemProperty()
         .addListener(new ChangeListener<Gegner>(){
             @Override
@@ -46,6 +46,7 @@ public class GegnerrundeController {
           }
         });
         
+        schadenAmSpielerListe_ = new ArrayList<SchadenAmSpieler>();
         for(Spieler spieler: spielerListe)
             schadenAmSpielerListe_.add(new SchadenAmSpieler(spieler));
         gegnerListe_ = gegnerListe;
@@ -62,7 +63,7 @@ public class GegnerrundeController {
      * @param selectedGegner
      */
     protected void updateSchadenAmSpielerTable(Gegner selectedGegner) {
-        // TODO: Färbung der Schadensfelder wird noch nicht gemacht.
+        // TODO: Fï¿½rbung der Schadensfelder wird noch nicht gemacht.
         if(selectedGegner == null) return;
         for(SchadenAmSpieler schadenAmSpieler: schadenAmSpielerListe_){
             Spieler spieler = schadenAmSpieler.getSpieler_();

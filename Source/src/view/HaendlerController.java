@@ -2,9 +2,7 @@ package view;
 
 import java.util.List;
 
-import model.Charakter;
 import model.EinfacherGegenstand;
-import model.Spieler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
