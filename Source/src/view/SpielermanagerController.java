@@ -101,12 +101,6 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     private void updateSpielerLists(Spieler changedSpieler) {
-        if (changedSpieler == entryForNewSpieler_) {
-            spielerList_.add(changedSpieler);
-            changedSpieler.addToDB();
-            entryForNewSpieler_ = getEntryForNewSpieler();
-        }
-
         spielerListView_.getItems().setAll(spielerList_);
         spielerListView_.getItems().add(entryForNewSpieler_);
         spielerListView_.getSelectionModel().select(changedSpieler);
@@ -205,9 +199,17 @@ public class SpielermanagerController extends CharakterTabController{
             return;
         
         updateSpielerName(selectedSpieler);
-        updateWaffenDetails(selectedSpieler);
         updateSpielerDef(selectedSpieler);
-        updateFaehigkeitName(selectedSpieler);
+        
+        if (selectedSpieler == entryForNewSpieler_) {
+            spielerList_.add(selectedSpieler);
+            selectedSpieler.addToDB();
+            entryForNewSpieler_ = getEntryForNewSpieler();
+        }
+
+        //muss nach Speicherung des Spielers gemacht werden, damit Ausruestung in DB ist.
+        updateWaffenDetails(selectedSpieler);
+        updateFaehigkeitName(selectedSpieler);  
         
         updateSpielerLists(selectedSpieler);
     }
