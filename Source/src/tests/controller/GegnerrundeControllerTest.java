@@ -4,14 +4,11 @@ import static org.junit.Assert.*;
 import model.Charakter;
 import model.Gegner;
 import model.Spieler;
-import model.Ausruestung;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import controller.manipulators.SpielerManipulator;
 import view.GegnerrundeController;
 
 public class GegnerrundeControllerTest extends GegnerrundeController {
@@ -20,13 +17,13 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
     private Gegner gegner_;
     
     @Before 
-    void initializeInDB() {
+    public void initializeInDB() {
         spieler_ = createSpieler(20, 40, 60);
         gegner_ = createGegner(135);
     }
     
     @After
-    void deleteFromDB() {
+    public void deleteFromDB() {
         spieler_.deleteFromDB();
         gegner_.deleteFromDB();
     }
