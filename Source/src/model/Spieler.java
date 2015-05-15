@@ -34,7 +34,7 @@ public class Spieler extends Charakter implements DBObject {
     private int kreis_;
     @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
     private int level_;
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "AUSRUESTNGS_ID", unique = false, columnDefinition = "Integer NOT NULL default '1'")
     private Ausruestung ausruestung_;
     @ManyToMany(cascade = CascadeType.PERSIST)
