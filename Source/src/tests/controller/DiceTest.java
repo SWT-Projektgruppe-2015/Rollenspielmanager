@@ -265,10 +265,9 @@ public class DiceTest {
     
     @Test
     public void verifyIndependentRolls() {
-        Dice die = new Dice();
         for(int i = 0; i < 20; ++i){
-            int a[] = {die.RollW30() , die.RollW30() , die.RollW30()};
-            int b[] = {die.RollW30() , die.RollW30() , die.RollW30()};
+            int a[] = {Dice.RollW30() , Dice.RollW30() , Dice.RollW30()};
+            int b[] = {Dice.RollW30() , Dice.RollW30() , Dice.RollW30()};
             assertTrue(a!=b);
         }
     }
@@ -277,11 +276,10 @@ public class DiceTest {
     
     @Test
     public void verifySingleGeschick30Roll() {
-        Dice die = new Dice();
         int geschick = 30; 
         int upperBound = 18, lowerBound = -1;
         for(int i = 0; i < 100; ++i){
-            int ergebnis = die.rollGeschick(geschick);
+            int ergebnis = Dice.rollGeschick(geschick);
             assertTrue(ergebnis <= upperBound);
             assertTrue(ergebnis >= lowerBound);
         }
@@ -289,11 +287,10 @@ public class DiceTest {
     
     @Test
     public void verifySingleGeschick4Roll() {
-        Dice die = new Dice();
         int geschick = 4; 
         int upperBound = 5, lowerBound = 1;
         for(int i = 0; i < 100; ++i){
-            int ergebnis = die.rollGeschick(geschick);
+            int ergebnis = Dice.rollGeschick(geschick);
             assertTrue(ergebnis <= upperBound);
             assertTrue(ergebnis >= lowerBound);
         }
@@ -302,11 +299,10 @@ public class DiceTest {
     
     @Test
     public void verifySingleGeschick55Roll() {
-        Dice die = new Dice();
         int geschick = 67; 
         int upperBound = 35, lowerBound = 6;
         for(int i = 0; i < 100; ++i){
-            int ergebnis = die.rollGeschick(geschick);
+            int ergebnis = Dice.rollGeschick(geschick);
             assertTrue(ergebnis <= upperBound);
             assertTrue(ergebnis >= lowerBound);
         }
