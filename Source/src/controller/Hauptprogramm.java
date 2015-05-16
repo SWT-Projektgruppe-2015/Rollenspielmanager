@@ -96,7 +96,7 @@ public class Hauptprogramm extends Application {
             controller.setGruppenSubject_(gruppenSubject_);
             Stage newStage = new Stage();
             newStage.setTitle("Charaktermanager");
-            newStage.initModality(Modality.WINDOW_MODAL);
+            newStage.initModality(Modality.NONE);
             newStage.initOwner(primaryStage);
             newStage.setScene(new Scene(page));
             
@@ -128,7 +128,7 @@ public class Hauptprogramm extends Application {
         
         Stage newStage = new Stage();
         newStage.setTitle(title);
-        newStage.initModality(Modality.WINDOW_MODAL);
+        newStage.initModality(Modality.NONE);
         newStage.initOwner(primaryStage);
         newStage.setScene(new Scene(page));
         
@@ -166,7 +166,7 @@ public class Hauptprogramm extends Application {
             
             kampfStage = new Stage();
             kampfStage.setTitle("Kampf - Teilnehmerauswahl");
-            kampfStage.initModality(Modality.WINDOW_MODAL);
+            kampfStage.initModality(Modality.NONE);
             kampfStage.initOwner(primaryStage);
             kampfStage.setScene(new Scene(page));
             
