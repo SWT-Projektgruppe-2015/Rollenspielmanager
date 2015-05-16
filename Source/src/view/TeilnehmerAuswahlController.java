@@ -54,6 +54,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
         this.gruppenSubject_ = gruppenSubject_;
+        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
     }
 
 
@@ -89,9 +90,17 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     
     private void updateSpielerList(Gruppe newValue) {
-        spielerInKampfListView_.getItems().setAll(newValue.getMembers_());
-        spielerNotInKampfListView_.getItems().clear();
-        spielerNotInKampfList_.clear();
+        if(newValue == null) {
+            spielerInKampfListView_.getItems().clear();
+            spielerNotInKampfList_.clear();
+            spielerNotInKampfList_.addAll(Spieler.getAll());
+            spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
+        }
+        else {
+            spielerInKampfListView_.getItems().setAll(newValue.getMembers_());
+            spielerNotInKampfListView_.getItems().clear();
+            spielerNotInKampfList_.clear();
+        }
              
     }
     
@@ -193,7 +202,11 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @Override
     public void update() {
         gruppenComboBox_.getItems().setAll(gruppenSubject_.getGruppen());
-        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
+        
+        if(gruppenSubject_.getSelectedGruppe() == null)
+            gruppenComboBox_.setValue(null);
+        else
+            gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
         
     }
     

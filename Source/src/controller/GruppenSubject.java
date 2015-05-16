@@ -15,8 +15,8 @@ public class GruppenSubject {
     
     
     public GruppenSubject () {
-        gruppen_ = new ArrayList<Gruppe>();
-        selectedGruppe_ = new Gruppe();
+        gruppen_ = Gruppe.getAll();
+        selectedGruppe_ = gruppen_.isEmpty() ? new Gruppe() : gruppen_.get(0);
         gruppenObserver_ = new ArrayList<GruppenObserver>();
         
     }

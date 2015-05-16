@@ -33,6 +33,7 @@ public class GruppenmanagerController implements GruppenObserver{
     
     public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
         this.gruppenSubject_ = gruppenSubject_;
+        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
     }
 
 
@@ -148,6 +149,7 @@ public class GruppenmanagerController implements GruppenObserver{
             gruppeToDelete.deleteFromDB();
             gruppenComboBox_.getItems().remove(gruppeToDelete);
             gruppenComboBox_.getItems();
+            gruppenComboBox_.setValue(null);
             gruppenList_.remove(gruppeToDelete);
             gruppenSubject_.setGruppen(gruppenList_);
             

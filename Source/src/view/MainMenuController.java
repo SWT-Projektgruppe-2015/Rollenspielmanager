@@ -1,11 +1,14 @@
 package view;
 
+import java.util.List;
+
 import model.Gruppe;
 import model.Spieler;
 import controller.GruppenSubject;
 import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
 import controller.manipulators.GruppenManipulator;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -53,6 +56,10 @@ public class MainMenuController implements GruppenObserver{
                     ObservableValue<? extends Gruppe> observable,
                     Gruppe oldValue, Gruppe newValue) {
                 updateGruppenTableView(newValue);
+                Platform.runLater(new Runnable() {
+                    @Override public void run() {
+                        gruppenSubject_.setSelectedGruppe(newValue);
+                }});
             }
         });
         
@@ -64,7 +71,10 @@ public class MainMenuController implements GruppenObserver{
     
     
     private void updateGruppenTableView(Gruppe newValue) {
-        spielerInGruppe_.getItems().setAll(newValue.getAllSpieler());
+        if(newValue == null)
+            spielerInGruppe_.getItems().clear();
+        else
+            spielerInGruppe_.getItems().setAll(newValue.getAllSpieler());
     }
     
     
@@ -100,8 +110,14 @@ public class MainMenuController implements GruppenObserver{
 
     @Override
     public void update() {
-        gruppenDropDown_.getItems().setAll(gruppenSubject_.getGruppen());
-        gruppenDropDown_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
-        
+        Gruppe selectedGruppe = gruppenDropDown_.getSelectionModel().getSelectedItem();
+        List<Gruppe> currentGruppen = gruppenSubject_.getGruppen();
+        gruppenDropDown_.getItems().setAll(currentGruppen);
+        if(currentGruppen.contains(selectedGruppe)) {
+            gruppenDropDown_.getSelectionModel().select(selectedGruppe);
+        } else if (gruppenDropDown_.getValue() != null){
+            gruppenDropDown_.setValue(null);
+            gruppenSubject_.setSelectedGruppe(null);
+        }
     }
 }
