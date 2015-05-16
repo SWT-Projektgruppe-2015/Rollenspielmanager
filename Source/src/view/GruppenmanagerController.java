@@ -170,6 +170,7 @@ public class GruppenmanagerController implements GruppenObserver{
             spielerInGruppeListView_.getItems().add(chosenSpieler);
             spielerNotInGruppeListView_.getItems().remove(chosenSpieler);
             selectedGruppe.addSpieler(chosenSpieler);
+            gruppenSubject_.setGruppen(gruppenList_);
         }
     }
 
@@ -185,6 +186,7 @@ public class GruppenmanagerController implements GruppenObserver{
 
             Gruppe selectedGruppe = getSelectedGruppe();
             selectedGruppe.removePlayer(chosenSpieler);
+            gruppenSubject_.setGruppen(gruppenList_);
         }
     }
 
