@@ -16,8 +16,6 @@ public class CharaktermanagerController {
     @FXML
     private GegnermanagerController gegnerManagerController;
     
-    private GruppenSubject gruppenSubject_;
-
     
     public CharaktermanagerController() {
     }
@@ -28,7 +26,6 @@ public class CharaktermanagerController {
     private void initialize() {
         List<Spieler> spielerList = SpielerManipulator.getInstance().getAll();
         gruppenManagerController.initialize(spielerList);
-        gruppenManagerController.setGruppenSubject_(gruppenSubject_);
         spielerManagerController.initialize(spielerList, gruppenManagerController);
         gegnerManagerController.initialize();
     }
@@ -36,7 +33,8 @@ public class CharaktermanagerController {
 
 
     public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
-        this.gruppenSubject_ = gruppenSubject_;
+        gruppenManagerController.setGruppenSubject_(gruppenSubject_);
+        gruppenSubject_.addGruppenObserver(gruppenManagerController);
     }
 }
 

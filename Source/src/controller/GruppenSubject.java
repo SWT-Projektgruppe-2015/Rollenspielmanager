@@ -35,7 +35,7 @@ public class GruppenSubject {
     }
     
     
-    public void notifyObservers() {
+    private void notifyObservers() {
         for(GruppenObserver observer : gruppenObserver_){
             observer.update();
         }
@@ -57,11 +57,13 @@ public class GruppenSubject {
     
     public void setGruppen(List<Gruppe> gruppen_) {
         this.gruppen_ = gruppen_;
+        notifyObservers();
     }
 
 
 
     public void setSelectedGruppe(Gruppe selectedGruppe) {
         this.selectedGruppe_ = selectedGruppe;
+        notifyObservers();
     }
 }

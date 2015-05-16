@@ -8,11 +8,9 @@ import java.io.IOException;
 import java.util.List;
 
 import model.Gegner;
-import model.Gruppe;
 import model.Spieler;
 import view.CharaktermanagerController;
 import view.GegnerrundeController;
-import view.KampfsimulatorController;
 import view.MainMenuController;
 import view.TeilnehmerAuswahlController;
 import javafx.fxml.FXMLLoader;
@@ -71,6 +69,7 @@ public class Hauptprogramm extends Application {
 
             MainMenuController controller = loader.getController();
             controller.setGruppenSubject_(gruppenSubject_);
+            gruppenSubject_.addGruppenObserver(controller);
             controller.setHauptProgramm(this);
         }
         catch (IOException e) {
@@ -92,9 +91,9 @@ public class Hauptprogramm extends Application {
     public void openCharakterManager() {
         try {
             FXMLLoader loader = getLoaderForXML("../view/Charaktermanager.fxml");
+            Parent page = loader.load();
             CharaktermanagerController controller = loader.getController();
             controller.setGruppenSubject_(gruppenSubject_);
-            Parent page = loader.load();
             Stage newStage = new Stage();
             newStage.setTitle("Charaktermanager");
             newStage.initModality(Modality.WINDOW_MODAL);
@@ -162,6 +161,7 @@ public class Hauptprogramm extends Application {
             Parent page = loader.load();
             TeilnehmerAuswahlController controller = loader.getController();
             controller.setGruppenSubject_(gruppenSubject_);
+            gruppenSubject_.addGruppenObserver(controller);
             controller.setHauptProgramm(this);
             
             kampfStage = new Stage();
