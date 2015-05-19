@@ -2,6 +2,6 @@ package controller.interfaces;
 
 public interface GruppenObserver {
     
-    public void update();
-    
+    public void updateGruppenList();
+    public void updateSelectedGruppe();
 }

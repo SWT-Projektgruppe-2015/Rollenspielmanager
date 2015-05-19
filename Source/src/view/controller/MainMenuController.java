@@ -109,7 +109,7 @@ public class MainMenuController implements GruppenObserver{
 
 
     @Override
-    public void update() {
+    public void updateGruppenList() {
         Gruppe selectedGruppe = gruppenDropDown_.getSelectionModel().getSelectedItem();
         List<Gruppe> currentGruppen = gruppenSubject_.getGruppen();
         gruppenDropDown_.getItems().setAll(currentGruppen);
@@ -119,5 +119,13 @@ public class MainMenuController implements GruppenObserver{
             gruppenDropDown_.setValue(null);
             gruppenSubject_.setSelectedGruppe(null);
         }
+    }
+
+
+
+    @Override
+    public void updateSelectedGruppe() {
+        // TODO Auto-generated method stub
+        
     }
 }

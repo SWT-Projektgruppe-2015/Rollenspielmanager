@@ -189,13 +189,17 @@ public class GruppenmanagerController implements GruppenObserver{
             gruppenSubject_.setGruppen(gruppenList_);
         }
     }
+    
+
+
+    @Override
+    public void updateGruppenList() {       
+    }
 
 
 
     @Override
-    public void update() {
-        gruppenComboBox_.getItems().setAll(gruppenSubject_.getGruppen());
-        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
-        
+    public void updateSelectedGruppe() {
+        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());        
     }
 }

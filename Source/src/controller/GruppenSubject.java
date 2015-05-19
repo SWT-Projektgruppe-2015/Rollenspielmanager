@@ -35,9 +35,17 @@ public class GruppenSubject {
     }
     
     
-    private void notifyObservers() {
+    private void notifyObserversGruppenList() {
         for(GruppenObserver observer : gruppenObserver_){
-            observer.update();
+            observer.updateGruppenList();
+        }
+    }
+    
+    
+    
+    private void notifyObserversSelectedGruppe() {
+        for(GruppenObserver observer : gruppenObserver_){
+            observer.updateSelectedGruppe();
         }
     }
     
@@ -57,13 +65,13 @@ public class GruppenSubject {
     
     public void setGruppen(List<Gruppe> gruppen_) {
         this.gruppen_ = gruppen_;
-        notifyObservers();
+        notifyObserversGruppenList();
     }
 
 
 
     public void setSelectedGruppe(Gruppe selectedGruppe) {
         this.selectedGruppe_ = selectedGruppe;
-        notifyObservers();
+        notifyObserversSelectedGruppe();
     }
 }
