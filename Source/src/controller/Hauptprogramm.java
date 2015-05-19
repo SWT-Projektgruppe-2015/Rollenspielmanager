@@ -185,7 +185,7 @@ public class Hauptprogramm extends Application {
             FXMLLoader loader = getLoaderForXML("../view/Gegnerrunde.fxml");
             Parent page = loader.load();
             GegnerrundeController controller = loader.getController();
-            controller.initialize(spieler, gegner);
+            controller.initializeParameters(spieler, gegner);
             
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));
