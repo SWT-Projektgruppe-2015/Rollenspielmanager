@@ -58,25 +58,25 @@ public class Dice {
 
     
     
-    public static int RollW2() {
+    public static int RollW2()  {
         return rollDice(2);
     }
 
     
     
-    public static int RollW3() {
+    public static int RollW3()  {
         return rollDice(3);
     }
 
     
     
-    private static int rollDice(int faces) {
+    private static int rollDice(int faces)  {
         return random.nextInt(faces) + 1;
     }
 
     
     
-    public static int rollGeschick(int geschick) {
+    public static int rollGeschick(int geschick)    {
         int wuerfel = getWuerfel(geschick);
         int bonus = getBonus(geschick);
         return rollDice(wuerfel) + bonus;
@@ -84,7 +84,7 @@ public class Dice {
 
     
     
-    private static int getBonus(int geschick) throws IllegalArgumentException {
+    private static int getBonus(int geschick) throws IllegalArgumentException   {
         if(geschick <= 0)   {
             throw new IllegalArgumentException();
         }
