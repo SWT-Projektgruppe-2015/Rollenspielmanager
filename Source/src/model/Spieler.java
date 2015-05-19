@@ -313,4 +313,11 @@ public class Spieler extends Charakter implements DBObject {
         membership_.add(gruppe);
         updateInDB();
     }
+    
+
+    
+    public void removeFromGruppe(Gruppe gruppe) {
+        membership_.remove(gruppe);
+        updateInDB();
+    }
 }

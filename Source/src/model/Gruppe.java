@@ -68,10 +68,11 @@ public class Gruppe implements DBObject {
 
 
 
-    public void removePlayer(Charakter spieler) {
+    public void removePlayer(Spieler spieler) {
         if (members_ != null) {
             members_.remove(spieler);
         }
+        spieler.removeFromGruppe(this);
     }
 
 
