@@ -1,5 +1,5 @@
 .background {
-	-fx-background-color: grey;
+	-fx-background-color: ghostwhite;
 }
 
 .button-mainmenu {
@@ -51,4 +51,28 @@
 .button-wuerfel {
 	-fx-pref-width: 100px;
 	-fx-pref-height: 40px;
+}
+
+.button-gegnerRunde	{
+	-fx-background-color: ghostwhite;
+	-fx-background-repeat: no-repeat;
+    -fx-background-size: 100%;
+    -fx-text-fill: black;
+    -fx-font-family: DejaVu Sans;
+    -fx-font-style: bold;
+    -fx-font-size: 23px;
+}
+
+.button-gegnerRunde:hover {
+   -fx-text-fill: #339966;
+}
+
+.button-gegnerRunde:pressed {
+  -fx-text-fill: #339966;
+  -fx-border-color: #339966;
+}
+
+.button-angriff	{
+	-fx-background-image: url('../../img/schwert.png');
+	-fx-font-size: 23px;
 }
