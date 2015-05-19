@@ -18,12 +18,12 @@
 }
 
 .button-mainmenu:hover {
-   -fx-text-fill: red;
+   -fx-text-fill: #339966;
 }
 
 .button-mainmenu:pressed {
-  -fx-text-fill: red;
-  -fx-border-color: red;
+  -fx-text-fill: #339966;
+  -fx-border-color: #339966;
 }
 
 .button-kampf {	
