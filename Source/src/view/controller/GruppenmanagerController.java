@@ -5,6 +5,7 @@ import java.util.List;
 
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -57,10 +58,16 @@ public class GruppenmanagerController implements GruppenObserver{
     
     
     
-    void updateAllSpieler(List<Spieler> spielerList, Spieler changedSpieler) {
+    void updateSpieler(List<Spieler> spielerList, Spieler changedSpieler) {
         spielerList_ = spielerList;
-        spielerNotInGruppeListView_.getItems().setAll(spielerList_);
-        spielerNotInGruppeListView_.getSelectionModel().select(changedSpieler);
+
+        Gruppe selected = gruppenComboBox_.getSelectionModel().getSelectedItem();
+        if(spielerList_.contains(changedSpieler)) {
+            gruppenList_ = Gruppe.getAll();
+            gruppenSubject_.setGruppen(gruppenList_);
+        }
+        
+        updateGruppenListViews(selected);
     }
     
     

@@ -105,7 +105,7 @@ public class SpielermanagerController extends CharakterTabController{
         spielerListView_.getItems().add(entryForNewSpieler_);
         spielerListView_.getSelectionModel().select(changedSpieler);
 
-        gruppenManagerController.updateAllSpieler(spielerList_, changedSpieler);
+        gruppenManagerController.updateSpieler(spielerList_, changedSpieler);
     }
     
     
