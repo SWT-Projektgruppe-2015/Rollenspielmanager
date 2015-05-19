@@ -6,45 +6,58 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.Spieler;
 import javafx.beans.value.ObservableObjectValue;
 import javafx.beans.value.ObservableValue;
+
+import model.Spieler;
+
+
 
 public class SchadenAmSpieler {
     private Spieler spieler_;
     private StringProperty name_;
     private IntegerProperty schaden_;
     private IntegerProperty zone_;
-//    private ObjectProperty<Angriff> angriff_; 
+
+    
     
     public StringProperty getNameProperty() {
         return name_;
     }
     
+    
+    
     public IntegerProperty getSchadenProperty() {
         return schaden_;
     }
     
+    
+    
     public IntegerProperty getZoneProperty() {
         return zone_;
     }
+    
+    
     
     public Integer getZone_() {
         return zone_.getValue();
     }
 
 
+    
     public void setZone_(Integer zone) {
         zone_.setValue(zone);
     }
 
 
+    
     public SchadenAmSpieler(Spieler spieler) {
         spieler_ = spieler;
         setName_Property(new SimpleStringProperty(spieler_.getName_()));
         schaden_ = new SimpleIntegerProperty(0);
         zone_ = new SimpleIntegerProperty(1);
     }
+    
     
     
     public Spieler getSpieler_() {
@@ -88,6 +101,7 @@ public class SchadenAmSpieler {
     }
 
 
+    
     /**
      * @return the name_
      */
@@ -96,23 +110,11 @@ public class SchadenAmSpieler {
     }
 
 
+    
     /**
      * @param name_ the name_ to set
      */
     public void setName_Property(StringProperty name_) {
         this.name_ = name_;
     }
-    
-    
-    
-//    public ObservableValue<ObjectProperty<Angriff>> getAngriff_() {
-//        ObservableValue<ObjectProperty<Angriff>> tmp = new SimpleObjectProperty<ObjectProperty<Angriff>>();
-//        return tmp;
-//    }
-//    
-//    
-//    
-//    public Angriff getAngriffValue_() {
-//        return this.angriff_.getValue();
-//    }
 }
