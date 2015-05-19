@@ -1,5 +1,5 @@
 .background {
-	-fx-background-color: ghostwhite;
+	-fx-background-color: gainsboro;
 }
 
 .button-mainmenu {
@@ -54,7 +54,7 @@
 }
 
 .button-gegnerRunde	{
-	-fx-background-color: ghostwhite;
+	-fx-background-color: gainsboro;
 	-fx-background-repeat: no-repeat;
     -fx-background-size: 100%;
     -fx-text-fill: black;
