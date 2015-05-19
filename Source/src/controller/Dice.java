@@ -2,6 +2,8 @@ package controller;
 
 import java.util.Random;
 
+
+
 /**
  * Zuständig für das Simulieren von Würfelwürfen.
  * 
@@ -12,56 +14,76 @@ public class Dice {
     
     static private Random random = new Random();
 
+    
+    
     public static int RollW4() {
         return rollDice(4);
     }
 
+    
+    
     public static int RollW6() {
         return rollDice(6);
     }
 
+    
+    
     public static int RollW8() {
         return rollDice(8);
     }
 
+    
+    
     public static int RollW10() {
         return rollDice(10);
     }
 
+    
+    
     public static int RollW12() {
         return rollDice(12);
     }
 
+    
+    
     public static int RollW20() {
         return rollDice(20);
     }
 
+    
+    
     public static int RollW30() {
         return rollDice(30);
     }
 
+    
+    
     public static int RollW2() {
         return rollDice(2);
     }
 
+    
+    
     public static int RollW3() {
         return rollDice(3);
     }
 
+    
+    
     private static int rollDice(int faces) {
         return random.nextInt(faces) + 1;
     }
 
+    
+    
     public static int rollGeschick(int geschick) {
         int wuerfel = getWuerfel(geschick);
         int bonus = getBonus(geschick);
-        int ergebnis = rollDice(wuerfel) + bonus;
-        if(ergebnis < 0)    {
-            return 0;
-        }
-        return ergebnis;
+        return rollDice(wuerfel) + bonus;
     }
 
+    
+    
     private static int getBonus(int geschick) throws IllegalArgumentException {
         if(geschick <= 0)   {
             throw new IllegalArgumentException();
@@ -101,6 +123,8 @@ public class Dice {
         }
     }
 
+    
+    
     private static int getWuerfel(int geschick) throws IllegalArgumentException {
         if(geschick <= 0)   {
             throw new IllegalArgumentException();
