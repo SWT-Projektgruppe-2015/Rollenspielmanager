@@ -115,6 +115,7 @@ public class MainMenuController implements GruppenObserver{
         gruppenDropDown_.getItems().setAll(currentGruppen);
         if(currentGruppen.contains(selectedGruppe)) {
             gruppenDropDown_.getSelectionModel().select(selectedGruppe);
+            updateGruppenTableView(selectedGruppe);
         } else if (gruppenDropDown_.getValue() != null){
             gruppenDropDown_.setValue(null);
             gruppenSubject_.setSelectedGruppe(null);
