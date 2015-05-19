@@ -33,10 +33,13 @@ public class MainMenuController implements GruppenObserver{
     
     private GruppenSubject gruppenSubject_;
     
+    private ChangeListener<Gruppe> selectedGruppenObserver_;
+    
     
     
     public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
         this.gruppenSubject_ = gruppenSubject_;
+        this.gruppenSubject_.setSelectedGruppe(gruppenDropDown_.getSelectionModel().getSelectedItem());
     }
 
 
@@ -56,15 +59,25 @@ public class MainMenuController implements GruppenObserver{
                     ObservableValue<? extends Gruppe> observable,
                     Gruppe oldValue, Gruppe newValue) {
                 updateGruppenTableView(newValue);
-                Platform.runLater(new Runnable() {
-                    @Override public void run() {
-                        gruppenSubject_.setSelectedGruppe(newValue);
-                }});
             }
         });
         
+        selectedGruppenObserver_ = new ChangeListener<Gruppe>() {            
+            @Override
+            public void changed(ObservableValue<? extends Gruppe> observable,
+                    Gruppe oldValue, Gruppe newValue) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        gruppenSubject_.setSelectedGruppe(newValue);
+                    }
+                });
+            }
+        };
+        gruppenDropDown_.getSelectionModel().selectedItemProperty().addListener(selectedGruppenObserver_);
+        
         kreis_.setCellValueFactory(new PropertyValueFactory<Spieler, Integer>("kreis_"));
-        level_.setCellValueFactory(new PropertyValueFactory<Spieler, Integer> ("level_"));
+        level_.setCellValueFactory(new PropertyValueFactory<Spieler, Integer>("level_"));
         name_.setCellValueFactory(new PropertyValueFactory<Spieler, String>("name_"));
     }
 
@@ -110,6 +123,8 @@ public class MainMenuController implements GruppenObserver{
 
     @Override
     public void updateGruppenList() {
+        gruppenDropDown_.getSelectionModel().selectedItemProperty().removeListener(selectedGruppenObserver_);
+
         Gruppe selectedGruppe = gruppenDropDown_.getSelectionModel().getSelectedItem();
         List<Gruppe> currentGruppen = gruppenSubject_.getGruppen();
         gruppenDropDown_.getItems().setAll(currentGruppen);
@@ -120,6 +135,8 @@ public class MainMenuController implements GruppenObserver{
             gruppenDropDown_.setValue(null);
             gruppenSubject_.setSelectedGruppe(null);
         }
+        
+        gruppenDropDown_.getSelectionModel().selectedItemProperty().addListener(selectedGruppenObserver_);
     }
 
 

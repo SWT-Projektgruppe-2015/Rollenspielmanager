@@ -202,6 +202,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @Override
     public void updateGruppenList() {
         gruppenComboBox_.getItems().setAll(gruppenSubject_.getGruppen());
+        gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());
         updateSpielerList(gruppenComboBox_.getSelectionModel().getSelectedItem());
     }
 
