@@ -16,16 +16,23 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
     private Spieler spieler_;
     private Gegner gegner_;
     
-    @Before 
+    
+    @Before
+    @Test
     public void initializeInDB() {
         spieler_ = createSpieler(20, 40, 60);
         gegner_ = createGegner(135);
+        assertTrue(Spieler.getAll().contains(spieler_));
+        assertTrue(Gegner.getAllGegner().contains(gegner_));
     }
     
     @After
+    @Test
     public void deleteFromDB() {
         spieler_.deleteFromDB();
         gegner_.deleteFromDB();
+        assertFalse(Spieler.getAll().contains(spieler_));
+        assertFalse(Gegner.getAllGegner().contains(gegner_));
     }
 
     @Test
@@ -73,5 +80,4 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         defaultGegner.setGeschick_(64);
         return defaultGegner;
     }
-    
 }
