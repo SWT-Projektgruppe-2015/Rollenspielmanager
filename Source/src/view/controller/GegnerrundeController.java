@@ -1,11 +1,15 @@
-package view.controller;
+package view;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
 
 
-import view.SchadenAmSpieler;
+
+
+
 import controller.Dice;
 import model.Gegner;
 import model.Spieler;
@@ -21,6 +25,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 import javafx.beans.value.ObservableObjectValue;
+import javafx.collections.ObservableList;
 import javafx.util.Callback;
 
 
@@ -31,6 +36,8 @@ public class GegnerrundeController {
     
     private List<SchadenAmSpieler> schadenAmSpielerListe_;
     private List<Gegner> gegnerListe_;
+//    private ObservableList<Gegner> gegnerListe_;
+    
     @FXML
     private Button kampfButton;
     @FXML
@@ -40,27 +47,45 @@ public class GegnerrundeController {
     @FXML
     private TableColumn<SchadenAmSpieler, String> spielerNameColumn_;
     @FXML
-    private TableColumn<SchadenAmSpieler, Integer> schadenColumn_;
+    private TableColumn<SchadenAmSpieler, Number> schadenColumn_;
+    
     @FXML
-    private TableColumn<SchadenAmSpieler, Integer> trefferZoneColumn_;
+    private TableColumn<SchadenAmSpieler, Number> trefferZoneColumn_;
     
+    public GegnerrundeController() {
+        schadenAmSpielerListe_ = new ArrayList<SchadenAmSpieler>();
+    }
     
-    
-    public void initialize(List<Spieler> spielerListe, List<Gegner> gegnerListe)    {
+    @FXML
+    private void initialize() {
         gegnerListView_.getSelectionModel().selectedItemProperty()
-        .addListener(new ChangeListener<Gegner>()   {
-            @Override
-            public void changed(
+            .addListener(new ChangeListener<Gegner>(){
+                @Override
+              public void changed(
                       ObservableValue<? extends Gegner> observable,
                       Gegner oldValue, Gegner newValue) {
-                      updateSchadenAmSpielerTable(newValue);
-            }
-        });
+                  updateSchadenAmSpielerTable(newValue);
+              }
+            }); 
         
-        schadenAmSpielerListe_ = new ArrayList<SchadenAmSpieler>();
+//        spielerNameColumn_.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
+//        schadenColumn_.setCellValueFactory(cellData -> cellData.getValue().getSchadenProperty());
+//        trefferZoneColumn_.setCellValueFactory(cellData -> cellData.getValue().getZoneProperty());
+        
+        
+//        schadensAnzeigeTableView_.setItems(schadenAmSpielerListe_);
+        spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
+        schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
+        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("zone_"));
+        
+        
+    }
+    
+    public void initializeParameters(List<Spieler> spielerListe, List<Gegner> gegnerListe) {
         for(Spieler spieler: spielerListe)
             schadenAmSpielerListe_.add(new SchadenAmSpieler(spieler));
         gegnerListe_ = gegnerListe;
+//        gegnerListView_.setItems(gegnerListe_);
         gegnerListView_.getItems().setAll(gegnerListe_);
         schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));

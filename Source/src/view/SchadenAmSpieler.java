@@ -17,6 +17,18 @@ public class SchadenAmSpieler {
     private IntegerProperty zone_;
 //    private ObjectProperty<Angriff> angriff_; 
     
+    public StringProperty getNameProperty() {
+        return name_;
+    }
+    
+    public IntegerProperty getSchadenProperty() {
+        return schaden_;
+    }
+    
+    public IntegerProperty getZoneProperty() {
+        return zone_;
+    }
+    
     public Integer getZone_() {
         return zone_.getValue();
     }
