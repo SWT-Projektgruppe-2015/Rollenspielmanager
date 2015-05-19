@@ -87,7 +87,6 @@ public class GegnerrundeController {
         for(Spieler spieler: spielerListe)
             schadenAmSpielerListe_.add(new SchadenAmSpieler(spieler));
         gegnerListe_ = gegnerListe;
-//        gegnerListView_.setItems(gegnerListe_);
         gegnerListView_.getItems().setAll(gegnerListe_);
         schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
@@ -99,11 +98,11 @@ public class GegnerrundeController {
 //                    }
 //                }
                 
-//        spielerNameColumn_.setCellValueFactory(cellData -> cellData.getValue().getName_Property());
-       // trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("zone_"));
-//        trefferZoneColumn_.setCellValueFactory(cellData -> cellData.getValue().getZonenProperty_());
-//        trefferZoneColumn_.setCellFactory(column -> {
-//            return new TableCell<SchadenAmSpieler, Integer>() {
+//          spielerNameColumn_.setCellValueFactory(cellData -> cellData.getValue().getName_Property());
+//          trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("zone_"));
+//          trefferZoneColumn_.setCellValueFactory(cellData -> cellData.getValue().getZonenProperty_());
+//          trefferZoneColumn_.setCellFactory(column -> {
+//              return new TableCell<SchadenAmSpieler, Integer>() {
 //                @Override
 //                protected void updateItem(Integer item, boolean empty){
 //                    super.updateItem(item, empty);
