@@ -55,7 +55,11 @@ public class Dice {
     public static int rollGeschick(int geschick) {
         int wuerfel = getWuerfel(geschick);
         int bonus = getBonus(geschick);
-        return rollDice(wuerfel) + bonus;
+        int ergebnis = rollDice(wuerfel) + bonus;
+        if(ergebnis < 0)    {
+            return 0;
+        }
+        return ergebnis;
     }
 
     private static int getBonus(int geschick) throws IllegalArgumentException {
