@@ -9,10 +9,10 @@ import java.util.List;
 
 import model.Gegner;
 import model.Spieler;
-import view.CharaktermanagerController;
-import view.GegnerrundeController;
-import view.MainMenuController;
-import view.TeilnehmerAuswahlController;
+import view.controller.CharaktermanagerController;
+import view.controller.GegnerrundeController;
+import view.controller.MainMenuController;
+import view.controller.TeilnehmerAuswahlController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

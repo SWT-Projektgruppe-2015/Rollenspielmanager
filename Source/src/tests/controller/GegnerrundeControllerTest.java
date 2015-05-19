@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.GegnerrundeController;
+import view.controller.GegnerrundeController;
 
 public class GegnerrundeControllerTest extends GegnerrundeController {
     

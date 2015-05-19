@@ -23,13 +23,13 @@ public class SchadenAmSpieler {
 
 
     public void setZone_(Integer zone) {
-        this.zone_.setValue(zone);
+        zone_.setValue(zone);
     }
 
 
-    SchadenAmSpieler(Spieler spieler) {
+    public SchadenAmSpieler(Spieler spieler) {
         spieler_ = spieler;
-        name_ = new SimpleStringProperty(spieler_.getName_());
+        setName_Property(new SimpleStringProperty(spieler_.getName_()));
         schaden_ = new SimpleIntegerProperty(0);
         zone_ = new SimpleIntegerProperty(1);
     }
@@ -48,13 +48,13 @@ public class SchadenAmSpieler {
     
     
     public String getName_() {
-        return name_.getValue();
+        return getName_Property().getValue();
     }
     
     
     
     public void setName_(String name) {
-        this.name_.set(name);
+        this.getName_Property().set(name);
     }
     
     
@@ -72,7 +72,23 @@ public class SchadenAmSpieler {
     
     
     public IntegerProperty getZonenProperty_() {
-        return this.zone_;
+        return zone_;
+    }
+
+
+    /**
+     * @return the name_
+     */
+    public StringProperty getName_Property() {
+        return name_;
+    }
+
+
+    /**
+     * @param name_ the name_ to set
+     */
+    public void setName_Property(StringProperty name_) {
+        this.name_ = name_;
     }
     
     

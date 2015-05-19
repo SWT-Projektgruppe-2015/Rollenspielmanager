@@ -1,4 +1,4 @@
-package view;
+package view.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 
 
 
+
+import view.SchadenAmSpieler;
 import controller.Dice;
 import model.Gegner;
 import model.Spieler;
@@ -64,7 +66,7 @@ public class GegnerrundeController {
         gegnerListe_ = gegnerListe;
         gegnerListView_.getItems().setAll(gegnerListe_);
         schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
-        spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
+         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(
 //                new Callback<CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>>, ObservableValue<ObjectProperty<Angriff>>>() {
 //                    @Override public ObservableValue<ObjectProperty<Angriff>> call(CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>> c) {
@@ -73,8 +75,8 @@ public class GegnerrundeController {
 //                }
                 new PropertyValueFactory<SchadenAmSpieler, Integer>("schaden_")
                 );
-        
-        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("zone_"));
+//        spielerNameColumn_.setCellValueFactory(cellData -> cellData.getValue().getName_Property());
+       // trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("zone_"));
 //        trefferZoneColumn_.setCellValueFactory(cellData -> cellData.getValue().getZonenProperty_());
 //        trefferZoneColumn_.setCellFactory(column -> {
 //            return new TableCell<SchadenAmSpieler, Integer>() {

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="311.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="view.GruppenmanagerController">
+<AnchorPane prefHeight="311.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="view.controller.GruppenmanagerController">
 	<children>
     	<Text layoutX="100.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppenname:" />
         <TextField fx:id="newGruppenNameTextField_" layoutX="187.0" layoutY="14.0" onAction="#createGruppe" prefHeight="25.0" prefWidth="165.0" />
