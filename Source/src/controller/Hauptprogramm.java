@@ -16,6 +16,7 @@ import view.controller.TeilnehmerAuswahlController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -35,14 +36,15 @@ public class Hauptprogramm extends Application {
     final static String UMLAUT_CAPITAL_OE = "\u00d6"; 
     final static String SZ = "\u00df"; 
     
-    private Stage primaryStage;
+    private Stage primaryStage_;
     private BorderPane menuBar;
     private Stage kampfStage;
     private GruppenSubject gruppenSubject_;
     
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Rollenspielmanager");
+        this.primaryStage_ = primaryStage;
+        this.primaryStage_.getIcons().add(new Image("file:img/Logo3.png"));
+        this.primaryStage_.setTitle("DLVC Taverne");
         gruppenSubject_ = new GruppenSubject();
         
         initializeMenuBar();
@@ -58,8 +60,8 @@ public class Hauptprogramm extends Application {
             menuBar = (BorderPane) loader.load();
             
             Scene scene = new Scene(menuBar);
-            primaryStage.setScene(scene);
-            primaryStage.show();
+            primaryStage_.setScene(scene);
+            primaryStage_.show();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -105,8 +107,9 @@ public class Hauptprogramm extends Application {
             Stage newStage = new Stage();
             newStage.setTitle("Charaktermanager");
             newStage.initModality(Modality.NONE);
-            newStage.initOwner(primaryStage);
+            newStage.initOwner(primaryStage_);
             newStage.setScene(new Scene(page));
+            newStage.getIcons().add(new Image("file:img/Logo3.png"));
             
             newStage.showAndWait();
             
@@ -137,8 +140,9 @@ public class Hauptprogramm extends Application {
         Stage newStage = new Stage();
         newStage.setTitle(title);
         newStage.initModality(Modality.NONE);
-        newStage.initOwner(primaryStage);
+        newStage.initOwner(primaryStage_);
         newStage.setScene(new Scene(page));
+        newStage.getIcons().add(new Image("file:img/Logo3.png"));
         
         newStage.showAndWait();
         return loader;
@@ -152,7 +156,7 @@ public class Hauptprogramm extends Application {
     }
     
     public Stage getPrimaryStage() {
-        return primaryStage;
+        return primaryStage_;
     }
     
     
@@ -175,8 +179,9 @@ public class Hauptprogramm extends Application {
             kampfStage = new Stage();
             kampfStage.setTitle("Kampf - Teilnehmerauswahl");
             kampfStage.initModality(Modality.NONE);
-            kampfStage.initOwner(primaryStage);
+            kampfStage.initOwner(primaryStage_);
             kampfStage.setScene(new Scene(page));
+            kampfStage.getIcons().add(new Image("file:img/Logo3.png"));
             
             kampfStage.showAndWait();
         }
@@ -197,6 +202,7 @@ public class Hauptprogramm extends Application {
             
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));
+            kampfStage.getIcons().add(new Image("file:img/Logo3.png"));
             kampfStage.show();
         }
         catch (IOException e) {
