@@ -15,6 +15,12 @@
 
 
 
+.button-mainmenu:focused	{
+	-fx-border-color: #339966;
+}
+
+
+
 .button-mainmenu:hover	{
    -fx-text-fill: #339966;
 }
@@ -97,8 +103,9 @@
 
 
 
-.button-gegnerRunde:selected	{
+.button-gegnerRunde:focused	{
 	-fx-background-image: url('../../img/Schwerter/01.png');
+	
 }
 
 
