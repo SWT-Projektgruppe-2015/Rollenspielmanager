@@ -12,9 +12,8 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="200.0">
                <children>
-                  <ListView fx:id="gegenstandListView_" layoutX="39.0" layoutY="84.0" prefHeight="191.0" prefWidth="171.0" />
                   <TextField fx:id="searchTextField_" layoutX="39.0" layoutY="39.0" onAction="#search" onKeyReleased="#search" promptText="Suche..." />
-                  <TextArea fx:id="gegenstandBeschreibungTextField_" layoutX="450.0" layoutY="50.0" onInputMethodTextChanged="#changeGegenstand" prefHeight="184.0" prefWidth="200.0" wrapText="true" />
+                  <ListView fx:id="gegenstandListView_" layoutX="39.0" layoutY="84.0" prefHeight="191.0" prefWidth="171.0" />
                   <VBox layoutX="236.0" layoutY="39.0" prefHeight="200.0" prefWidth="199.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
@@ -24,6 +23,7 @@
                      </children>
                   </VBox>
                   <Text layoutX="450.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:" />
+                  <TextArea fx:id="gegenstandBeschreibungTextField_" layoutX="450.0" layoutY="50.0" onInputMethodTextChanged="#changeGegenstand" prefHeight="184.0" prefWidth="200.0" wrapText="true" />
                   <ButtonBar layoutX="450.0" layoutY="239.0" prefHeight="40.0" prefWidth="200.0">
                     <buttons>
                       <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save" />
