@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
@@ -7,19 +8,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="311.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="view.controller.GruppenmanagerController">
+<AnchorPane prefHeight="311.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GruppenmanagerController">
 	<children>
     	<Text layoutX="100.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gruppenname:" />
         <TextField fx:id="newGruppenNameTextField_" layoutX="187.0" layoutY="14.0" onAction="#createGruppe" prefHeight="25.0" prefWidth="165.0" />
+        <Button layoutX="390.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateGruppe" prefHeight="25.0" prefWidth="60.0" text="Update" />
+        <Button layoutX="450.0" layoutY="14.0" mnemonicParsing="false" onAction="#createGruppe" prefHeight="25.0" prefWidth="60.0" text="Neu" />
+        <ComboBox fx:id="gruppenComboBox_" layoutX="187.0" layoutY="40.0" prefHeight="25.0" prefWidth="190.0" promptText="wähle Gruppe aus..." AnchorPane.topAnchor="40.0" />
+        <Button layoutX="390.0" layoutY="40.0" mnemonicParsing="false" onAction="#deleteGruppe" text="Löschen" />
         <ListView fx:id="spielerNotInGruppeListView_" layoutX="100.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" />
         <ListView fx:id="spielerInGruppeListView_" layoutX="300.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" />
         <Button layoutX="275.0" layoutY="195.0" mnemonicParsing="false" onAction="#removeSpielerFromGruppe" text="&lt;" />
         <Button layoutX="301.0" layoutY="195.0" mnemonicParsing="false" onAction="#addSpielerToGruppe" text="&gt;" />
-        <ComboBox fx:id="gruppenComboBox_" layoutX="187.0" layoutY="40.0" prefHeight="25.0" prefWidth="190.0" promptText="wähle Gruppe aus..." />
         <Label layoutX="128.0" layoutY="87.0" text="Spielerliste" />
         <Label layoutX="326.0" layoutY="87.0" text="Abenteuergruppe" />
-        <Button layoutX="390.0" layoutY="14.0" mnemonicParsing="false" onAction="#updateGruppe" prefHeight="25.0" prefWidth="60.0" text="Update" />
-        <Button layoutX="390.0" layoutY="40.0" mnemonicParsing="false" onAction="#deleteGruppe" text="Löschen" />
-        <Button layoutX="450.0" layoutY="14.0" mnemonicParsing="false" onAction="#createGruppe" prefHeight="25.0" prefWidth="60.0" text="Neu" />
      </children>
 </AnchorPane>

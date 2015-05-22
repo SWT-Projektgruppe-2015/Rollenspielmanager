@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="303.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
+<AnchorPane prefHeight="303.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
 	<children>
 		<Label layoutX="31.0" layoutY="43.0" text="Spielerliste" />
 		<TextField fx:id="searchSpielerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchSpieler" onKeyReleased="#searchSpieler" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
@@ -22,11 +22,11 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
+								<TextField fx:id="spielerNameTextField_" layoutX="36.0" layoutY="31.0" onAction="#updateSpieler" />
 								<TextField fx:id="spielerLevelTextField_" editable="false" layoutX="36.0" layoutY="83.0" prefHeight="25.0" prefWidth="50.0" />
 								<Label layoutX="36.0" layoutY="66.0" text="Stufe" />
 								<Button layoutX="37.0" layoutY="108.0" mnemonicParsing="false" onAction="#decreaseLevel" text="-" />
 								<Button layoutX="60.0" layoutY="108.0" mnemonicParsing="false" onAction="#increaseLevel" text="+" />
-								<TextField fx:id="spielerNameTextField_" layoutX="36.0" layoutY="31.0" onAction="#updateSpieler" />
 								<Text layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielername" />
 								<Button layoutX="158.0" layoutY="158.0" mnemonicParsing="false" onAction="#deleteSpieler" text="Spieler löschen" />
 								<Label layoutX="104.0" layoutY="66.0" text="Kreis" />
@@ -40,6 +40,7 @@
 						<AnchorPane prefHeight="200.0" prefWidth="200.0">
 							<children>
 								<ListView fx:id="waffenListView_" editable="true" layoutX="8.0" layoutY="16.0" prefHeight="141.0" prefWidth="103.0" />
+								<Button layoutX="8.0" layoutY="157.0" mnemonicParsing="false" onAction="#deleteWaffe" text="-" />
 								<VBox layoutX="131.0" layoutY="4.0" prefHeight="196.0" prefWidth="84.0">
 									<children>
 										<Label text="Name" />
@@ -50,7 +51,6 @@
 										<TextField fx:id="waffenDamageTextField_" onAction="#updateSpieler" prefHeight="25.0" prefWidth="66.0" />
 									</children>
 								</VBox>
-								<Button layoutX="8.0" layoutY="157.0" mnemonicParsing="false" onAction="#deleteWaffe" text="-" />
 							</children>
 						</AnchorPane>
 					</content>
