@@ -15,16 +15,13 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="500.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onHaendlerClick" text="Händler" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="20.0">
-                     <padding>
-                        <Insets top="20.0" />
-                     </padding>
+                  <Button layoutX="95.0" layoutY="20.0" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="20.0">
                      <styleClass>
                         <String fx:value="button-mainmenu" />
-                        <String fx:value="button-haendler" />
+                        <String fx:value="button-gruppen" />
                      </styleClass>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Kampf" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+                  <Button layoutX="307.0" layoutY="20.0" mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Kampf" AnchorPane.leftAnchor="307.0" AnchorPane.topAnchor="20.0">
                      <font>
                         <Font name="DejaVu Sans Bold" size="23.0" />
                      </font>
@@ -33,31 +30,26 @@
                         <String fx:value="button-mainmenu" />
                      </styleClass>
                   </Button>
-                  <Button layoutX="357.0" layoutY="89.0" mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" text="Würfeln" AnchorPane.topAnchor="20.0">
+                  <Button layoutX="95.0" layoutY="190.0" mnemonicParsing="false" onAction="#onHaendlerClick" text="Händler" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="190.0">
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                     <styleClass>
+                        <String fx:value="button-mainmenu" />
+                        <String fx:value="button-haendler" />
+                     </styleClass>
+                  </Button>
+                  <Button layoutX="307.0" layoutY="190.0" mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" text="Würfeln" AnchorPane.topAnchor="190.0">
                      <styleClass>
                         <String fx:value="button-mainmenu" />
                         <String fx:value="button-wuerfeln" />
-                     </styleClass>
-                  </Button>
-                  <Button layoutX="64.0" layoutY="248.0" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="190.0">
-                     <styleClass>
-                        <String fx:value="button-mainmenu" />
-                        <String fx:value="button-gruppen" />
-                     </styleClass>
-                  </Button>
-                  <Button layoutX="224.0" layoutY="248.0" mnemonicParsing="false" text="Charaktergenerator" textOverrun="LEADING_ELLIPSIS" AnchorPane.leftAnchor="190.0" AnchorPane.topAnchor="190.0">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="button-mainmenu" />
-                        <String fx:value="button-charaktergenerator" />
                      </styleClass>
                   </Button>
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="300.0">
                <children>
+                  <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" promptText="Wähle Gruppe..." AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <TableView fx:id="spielerInGruppe_" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
                     <columns>
                       <TableColumn fx:id="name_" prefWidth="120.0" text="Name" />
@@ -68,7 +60,6 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" promptText="Wähle Gruppe..." AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </items>
