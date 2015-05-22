@@ -10,6 +10,7 @@ import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
 import model.Ausruestung;
+import model.Gruppe;
 import model.Spieler;
 import model.Waffen;
 import model.interfaces.DBObject;
@@ -91,6 +92,9 @@ public class SpielerManipulator extends DBManipulator {
             for(Waffen waffe : ((Spieler) entity).getWaffen()) {
                 theManager.remove(theManager.contains(waffe) ? waffe : (Waffen) theManager.merge(waffe));
             }
+        }
+        for (Gruppe gruppe : ((Spieler) entity).getMembership_()){
+            gruppe.getMembers_().remove(entity);
         }
         theManager.remove((Spieler) entity);
         if(besitz != null)
