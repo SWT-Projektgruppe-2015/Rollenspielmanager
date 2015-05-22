@@ -43,7 +43,7 @@ public class Hauptprogramm extends Application {
     
     public void start(Stage primaryStage) {
         this.primaryStage_ = primaryStage;
-        this.primaryStage_.getIcons().add(new Image("file:img/Logo3.png"));
+        this.primaryStage_.getIcons().add(new Image("file:img/Logo3_1.png"));
         this.primaryStage_.setTitle("DLVC Taverne");
         gruppenSubject_ = new GruppenSubject();
         
@@ -109,7 +109,7 @@ public class Hauptprogramm extends Application {
             newStage.initModality(Modality.NONE);
             newStage.initOwner(primaryStage_);
             newStage.setScene(new Scene(page));
-            newStage.getIcons().add(new Image("file:img/Logo3.png"));
+            newStage.getIcons().add(new Image("file:img/Logo3_1.png"));
             
             newStage.showAndWait();
             
@@ -142,7 +142,7 @@ public class Hauptprogramm extends Application {
         newStage.initModality(Modality.NONE);
         newStage.initOwner(primaryStage_);
         newStage.setScene(new Scene(page));
-        newStage.getIcons().add(new Image("file:img/Logo3.png"));
+        newStage.getIcons().add(new Image("file:img/Logo3_1.png"));
         
         newStage.showAndWait();
         return loader;
@@ -181,7 +181,7 @@ public class Hauptprogramm extends Application {
             kampfStage.initModality(Modality.NONE);
             kampfStage.initOwner(primaryStage_);
             kampfStage.setScene(new Scene(page));
-            kampfStage.getIcons().add(new Image("file:img/Logo3.png"));
+            kampfStage.getIcons().add(new Image("file:img/Logo3_1.png"));
             
             kampfStage.showAndWait();
         }
@@ -202,7 +202,7 @@ public class Hauptprogramm extends Application {
             
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));
-            kampfStage.getIcons().add(new Image("file:img/Logo3.png"));
+            kampfStage.getIcons().add(new Image("file:img/Logo3_1.png"));
             kampfStage.show();
         }
         catch (IOException e) {
