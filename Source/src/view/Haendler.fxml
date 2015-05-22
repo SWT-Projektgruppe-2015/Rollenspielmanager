@@ -14,7 +14,7 @@
                <children>
                   <ListView fx:id="gegenstandListView_" layoutX="39.0" layoutY="84.0" prefHeight="191.0" prefWidth="171.0" />
                   <TextField fx:id="searchTextField_" layoutX="39.0" layoutY="39.0" onAction="#search" onKeyReleased="#search" promptText="Suche..." />
-                  <TextArea fx:id="gegenstandBeschreibungTextField_" layoutX="450.0" layoutY="50.0" onInputMethodTextChanged="#changeGegenstand" prefHeight="184.0" prefWidth="200.0" />
+                  <TextArea fx:id="gegenstandBeschreibungTextField_" layoutX="450.0" layoutY="50.0" onInputMethodTextChanged="#changeGegenstand" prefHeight="184.0" prefWidth="200.0" wrapText="true" />
                   <VBox layoutX="236.0" layoutY="39.0" prefHeight="200.0" prefWidth="199.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
