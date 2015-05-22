@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="311.0" prefWidth="600.0" styleClass="background" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnerrundeController">
+<AnchorPane prefHeight="311.0" prefWidth="600.0" styleClass="background-gegnerrunde" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnerrundeController">
    <children>
       <ListView fx:id="gegnerListView_" layoutX="23.0" layoutY="48.0" prefHeight="299.0" prefWidth="190.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="48.0" />
       <Button layoutX="220.0" layoutY="141.0" maxHeight="51.0" maxWidth="123.0" minHeight="25.0" minWidth="90.0" mnemonicParsing="false" onAction="#executeFightButton" prefHeight="51.0" prefWidth="123.0" text="Angriff" textFill="#339966">

@@ -1,8 +1,7 @@
-.background {
-	-fx-background-color: gainsboro;
-}
 
-.button-mainmenu {
+
+
+.button-mainmenu	{
 	-fx-background-color: white;
 	-fx-background-repeat: no-repeat;
     -fx-background-size: 80%;
@@ -17,41 +16,65 @@
     -fx-font-size: 23px;
 }
 
-.button-mainmenu:hover {
+
+
+.button-mainmenu:hover	{
    -fx-text-fill: #339966;
 }
 
-.button-mainmenu:pressed {
+
+
+.button-mainmenu:pressed	{
   -fx-text-fill: #339966;
   -fx-border-color: #339966;
 }
 
-.button-kampf {	
+
+
+.button-kampf	{	
     -fx-background-image: url('../../img/kaempfer.jpg');   
 }
 
-.button-haendler {
+
+
+.button-haendler	{
 	-fx-background-image: url('../../img/schwerter.jpg');
 }
 
-.button-wuerfeln {
+
+
+.button-wuerfeln	{
 	-fx-background-image: url('../../img/wuerfel.jpg');
 }
 
-.button-gruppen {
+
+
+.button-gruppen	{
 	-fx-background-image: url('../../img/gruppe.jpg');
 	-fx-font-size: 14px;
 }
 
-.button-charaktergenerator {
+
+
+.button-charaktergenerator	{
 	-fx-background-image: url('../../img/kneipe.jpg');
 	-fx-font-size: 14px;
 }
 
-.button-wuerfel {
+
+
+.button-wuerfel	{
 	-fx-pref-width: 100px;
 	-fx-pref-height: 40px;
 }
+
+
+
+.background-gegnerrunde	{
+	-fx-background-color: gainsboro;
+}
+
+
 
 .button-gegnerRunde	{
 	-fx-background-color: gainsboro;
@@ -63,14 +86,21 @@
     -fx-font-size: 23px;
 }
 
-.button-gegnerRunde:hover {
-   -fx-text-fill: #339966;
+
+
+.button-gegnerRunde:hover	{
+	-fx-background-image: url('../../img/1.png');
+	-fx-text-fill: #339966;
 }
 
-.button-gegnerRunde:pressed {
+
+
+.button-gegnerRunde:pressed	{
   -fx-text-fill: #339966;
   -fx-border-color: #339966;
 }
+
+
 
 .button-angriff	{
 	-fx-background-image: url('../../img/schwert.png');
