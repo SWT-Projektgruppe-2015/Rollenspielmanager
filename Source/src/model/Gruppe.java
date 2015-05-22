@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -50,10 +51,6 @@ public class Gruppe implements DBObject {
     }
 
     public void addSpieler(Spieler spieler) {
-        if (members_ == null) {
-            members_ = new HashSet<Spieler>();
-        }
-        members_.add(spieler);
         spieler.addToGruppe(this);
     }
 
@@ -69,9 +66,6 @@ public class Gruppe implements DBObject {
 
 
     public void removePlayer(Spieler spieler) {
-        if (members_ != null) {
-            members_.remove(spieler);
-        }
         spieler.removeFromGruppe(this);
     }
 

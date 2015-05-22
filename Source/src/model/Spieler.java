@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -309,15 +310,19 @@ public class Spieler extends Charakter implements DBObject {
 
 
 
-    public void addToGruppe(Gruppe gruppe) {
+    void addToGruppe(Gruppe gruppe) {
+        if(membership_ == null)
+            membership_ = new HashSet<Gruppe>();
         membership_.add(gruppe);
+        gruppe.getMembers_().add(this);
         updateInDB();
     }
     
 
     
-    public void removeFromGruppe(Gruppe gruppe) {
+    void removeFromGruppe(Gruppe gruppe) {
         membership_.remove(gruppe);
+        gruppe.getMembers_().remove(this);
         updateInDB();
     }
 }

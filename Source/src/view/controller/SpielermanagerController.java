@@ -148,9 +148,9 @@ public class SpielermanagerController extends CharakterTabController{
         if (spielerToDelete != null) {
             spielerListView_.getItems().remove(spielerToDelete);
             spielerList_.remove(spielerToDelete);
-            gruppenManagerController.updateGruppenListViews(gruppenManagerController.getSelectedGruppe());
-
             spielerToDelete.deleteFromDB();
+           
+            gruppenManagerController.updateSpieler(spielerList_, spielerToDelete);
         }
     }
 
