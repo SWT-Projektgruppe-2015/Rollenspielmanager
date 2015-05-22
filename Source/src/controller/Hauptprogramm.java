@@ -79,7 +79,7 @@ public class Hauptprogramm extends Application {
     
     public void openWuerfelSimulator() {
         try {
-            openNewWindow("../view/Wuerfelsimulator.fxml", "WÃ¼rfelsimulator");
+            openNewWindow("../view/Wuerfelsimulator.fxml", "Würfelsimulator");
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -112,7 +112,7 @@ public class Hauptprogramm extends Application {
     
     public void openHaendler() {
         try {
-            openNewWindow("../view/Haendler.fxml", "HÃ¤ndler");
+            openNewWindow("../view/Haendler.fxml", "Händler");
         }
         catch (IOException e) {
             e.printStackTrace();
