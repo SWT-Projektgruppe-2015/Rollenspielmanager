@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.TeilnehmerAuswahlController">
+<AnchorPane prefHeight="600.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.TeilnehmerAuswahlController">
    <children>
       <GridPane layoutX="31.0" layoutY="29.0" prefHeight="73.0" prefWidth="550.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0">
         <columnConstraints>
@@ -66,8 +66,8 @@
          </children>
       </GridPane>
       <Button layoutX="505.0" layoutY="546.0" mnemonicParsing="false" onAction="#kampfButton" text="Kampf!" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0" />
-      <Text layoutX="300.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Teilnehmer:" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="30.0" />
-      <Text layoutX="90.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spieler" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
+      <Text layoutX="350.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kampfteilnehmer:" AnchorPane.rightAnchor="206.390625" AnchorPane.topAnchor="30.0" />
+      <Text layoutX="6.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielercharakter" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="60.0" />
       <Text layoutX="20.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gegner:" AnchorPane.leftAnchor="20.0" />
    </children>
 </AnchorPane>

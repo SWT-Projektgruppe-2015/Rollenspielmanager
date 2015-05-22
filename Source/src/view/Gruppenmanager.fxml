@@ -20,7 +20,7 @@
         <ListView fx:id="spielerInGruppeListView_" layoutX="300.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" />
         <Button layoutX="275.0" layoutY="195.0" mnemonicParsing="false" onAction="#removeSpielerFromGruppe" text="&lt;" />
         <Button layoutX="301.0" layoutY="195.0" mnemonicParsing="false" onAction="#addSpielerToGruppe" text="&gt;" />
-        <Label layoutX="128.0" layoutY="87.0" text="Spielerliste" />
+        <Label layoutX="100.0" layoutY="87.0" text="Spielercharakterliste" />
         <Label layoutX="326.0" layoutY="87.0" text="Abenteuergruppe" />
      </children>
 </AnchorPane>
