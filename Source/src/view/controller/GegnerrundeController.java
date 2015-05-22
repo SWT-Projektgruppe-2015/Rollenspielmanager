@@ -52,7 +52,7 @@ public class GegnerrundeController {
     private TableColumn<SchadenAmSpieler, Number> schadenColumn_;
     
     @FXML
-    private TableColumn<SchadenAmSpieler, Number> trefferZoneColumn_;
+    private TableColumn<SchadenAmSpieler, String> trefferZoneColumn_;
     
     public GegnerrundeController() {
         schadenAmSpielerListe_ = new ArrayList<SchadenAmSpieler>();
@@ -78,7 +78,7 @@ public class GegnerrundeController {
 //        schadensAnzeigeTableView_.setItems(schadenAmSpielerListe_);
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
-        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("zone_"));
+        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));
         
         
     }
@@ -91,7 +91,7 @@ public class GegnerrundeController {
         schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
-        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("zone_"));
+        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));
 //                new Callback<CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>>, ObservableValue<ObjectProperty<Angriff>>>() {
 //                    @Override public ObservableValue<ObjectProperty<Angriff>> call(CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>> c) {
 //                        return new SimpleObjectProperty(c.getValue().getTestBedName()));

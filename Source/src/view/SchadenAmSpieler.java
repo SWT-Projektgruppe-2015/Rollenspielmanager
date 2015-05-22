@@ -1,13 +1,13 @@
 package view;
 
 import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
+//import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
+//import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableObjectValue;
-import javafx.beans.value.ObservableValue;
+//import javafx.beans.value.ObservableObjectValue;
+//import javafx.beans.value.ObservableValue;
 
 import model.Spieler;
 
@@ -17,7 +17,7 @@ public class SchadenAmSpieler {
     private Spieler spieler_;
     private StringProperty name_;
     private IntegerProperty schaden_;
-    private IntegerProperty zone_;
+    private StringProperty zone_;
 
     
     
@@ -33,20 +33,33 @@ public class SchadenAmSpieler {
     
     
     
-    public IntegerProperty getZoneProperty() {
+    public StringProperty getZoneProperty() {
         return zone_;
     }
     
     
     
-    public Integer getZone_() {
+    public String getZone_() {
         return zone_.getValue();
     }
 
 
     
-    public void setZone_(Integer zone) {
-        zone_.setValue(zone);
+    public void setZone_(Integer wuerfelErgebnis) {
+        if(wuerfelErgebnis < 4) {
+            zone_.setValue("Daneben");
+        } 
+        else if(wuerfelErgebnis < 15) {
+            zone_.setValue("Ruestung");
+        }
+        else if(wuerfelErgebnis < 25) {
+            zone_.setValue("Helm");
+        }
+        else if(wuerfelErgebnis < 35) {
+            zone_.setValue("Direkt");
+        }
+        else
+            zone_.setValue("Kritisch!");
     }
 
 
@@ -55,7 +68,7 @@ public class SchadenAmSpieler {
         spieler_ = spieler;
         setName_Property(new SimpleStringProperty(spieler_.getName_()));
         schaden_ = new SimpleIntegerProperty(0);
-        zone_ = new SimpleIntegerProperty(1);
+        zone_ = new SimpleStringProperty("");
     }
     
     
@@ -96,7 +109,7 @@ public class SchadenAmSpieler {
     
     
     
-    public IntegerProperty getZonenProperty_() {
+    public StringProperty getZonenProperty_() {
         return zone_;
     }
 
