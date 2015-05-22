@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="303.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
 	<children>
-		<Label layoutX="31.0" layoutY="43.0" text="Spielerliste" />
+		<Label layoutX="7.0" layoutY="43.0" text="Spielercharakterliste" />
 		<TextField fx:id="searchSpielerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchSpieler" onKeyReleased="#searchSpieler" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
 		<ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
 			<content>
@@ -27,7 +27,7 @@
 								<Label layoutX="36.0" layoutY="66.0" text="Stufe" />
 								<Button layoutX="37.0" layoutY="108.0" mnemonicParsing="false" onAction="#decreaseLevel" text="-" />
 								<Button layoutX="60.0" layoutY="108.0" mnemonicParsing="false" onAction="#increaseLevel" text="+" />
-								<Text layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielername" />
+								<Text layoutX="36.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielercharakterename" />
 								<Button layoutX="158.0" layoutY="158.0" mnemonicParsing="false" onAction="#deleteSpieler" text="Spieler löschen" />
 								<Label layoutX="104.0" layoutY="66.0" text="Kreis" />
 								<Label fx:id="spielerKreisLabel_" layoutX="104.0" layoutY="88.0" />
