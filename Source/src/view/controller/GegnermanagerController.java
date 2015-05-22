@@ -57,7 +57,7 @@ public class GegnermanagerController extends CharakterTabController {
     
 
     private void initializeGegnerList() {
-        gegnerList_ = Gegner.getAllGegner();
+        gegnerList_ = Gegner.getAll();
         gegnerListView_.getItems().setAll(gegnerList_);
         entryForNewGegner_ = getEntryForNewGegner();
         gegnerListView_.getItems().add(entryForNewGegner_);

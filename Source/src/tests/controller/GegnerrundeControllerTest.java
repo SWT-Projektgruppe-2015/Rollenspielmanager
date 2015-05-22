@@ -22,7 +22,7 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         spieler_ = createSpieler(40, 20, 60);
         gegner_ = createGegner(135);
         assertTrue(Spieler.getAll().contains(spieler_));
-        assertTrue(Gegner.getAllGegner().contains(gegner_));
+        assertTrue(Gegner.getAll().contains(gegner_));
     }
     
     @After
@@ -30,7 +30,7 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         spieler_.deleteFromDB();
         gegner_.deleteFromDB();
         assertFalse(Spieler.getAll().contains(spieler_));
-        assertFalse(Gegner.getAllGegner().contains(gegner_));
+        assertFalse(Gegner.getAll().contains(gegner_));
     }
 
     @Test

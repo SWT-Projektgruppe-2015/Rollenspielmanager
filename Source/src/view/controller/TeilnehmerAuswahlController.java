@@ -66,7 +66,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
 
         gegnerNotInKampfList_ = new ArrayList<Gegner>();
-        gegnerNotInKampfList_.addAll(Gegner.getAllGegner());
+        gegnerNotInKampfList_.addAll(Gegner.getAll());
         gegnerNotInKampfTableView_.getItems().setAll(gegnerNotInKampfList_);
        
         gruppenComboBox_.getItems().setAll(Gruppe.getAll());
