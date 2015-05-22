@@ -98,7 +98,7 @@
 
 
 
-.button-angriff:pressed	{
+.button-gegnerRunde:pressed	{
 	-fx-background-image: url('../../img/Schwerter/3_r.png');
 }
 
