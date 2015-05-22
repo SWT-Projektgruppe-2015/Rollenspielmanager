@@ -91,15 +91,15 @@
 
 
 
-.button-angriff	{
-	-fx-background-image: url('../../img/Schwerter/00.png');
-	-fx-font-size: 18px;
+.button-gegnerRunde:pressed	{
+	-fx-background-image: url('../../img/Schwerter/3_r.png');
 }
 
 
 
-.button-gegnerRunde:pressed	{
-	-fx-background-image: url('../../img/Schwerter/3_r.png');
+.button-angriff	{
+	-fx-background-image: url('../../img/Schwerter/00.png');
+	-fx-font-size: 18px;
 }
 
 
