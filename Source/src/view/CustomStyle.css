@@ -91,8 +91,16 @@
 
 
 
-.button-gegnerRunde:hover	{
+.button-gegnerRunde:selected	{
 	-fx-background-image: url('../../img/Schwerter/01.png');
+	
+}
+
+
+
+.button-angriff	{
+	-fx-background-image: url('../../img/Schwerter/00.png');
+	-fx-font-size: 18px;
 }
 
 
@@ -103,14 +111,6 @@
 
 
 
-.button-gegnerRunde:focused	{
+.button-gegnerRunde:hover	{
 	-fx-background-image: url('../../img/Schwerter/01.png');
-	
-}
-
-
-
-.button-angriff	{
-	-fx-background-image: url('../../img/Schwerter/00.png');
-	-fx-font-size: 18px;
 }
