@@ -92,7 +92,13 @@
 
 
 .button-gegnerRunde:pressed	{
-	-fx-background-image: url('../../img/Schwerter/03.png');
+	-fx-background-image: url('../../img/Schwerter/3_r.png');
+}
+
+
+
+.button-gegnerRunde:selected	{
+	-fx-background-image: url('../../img/Schwerter/01.png');
 }
 
 
