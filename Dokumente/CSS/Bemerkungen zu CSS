@@ -1,0 +1,3 @@
+bold ist nicht fx-font-style, sondern fx-font-weight, siehe referenz seite:
+docs.oracle.com/cd/E17802_01/javafx/javafx/1.3/docs/api/javafx.scene/doc-files/cssref.html#typefont
+Es scheint das bei css die reihenfolge was ausmacht, also das weitest untere wird mit hoeherer prioritaet gemacht.
