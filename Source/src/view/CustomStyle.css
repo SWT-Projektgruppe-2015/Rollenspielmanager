@@ -2,7 +2,6 @@
 	-fx-background-color: white;
 	-fx-background-repeat: no-repeat;
     -fx-background-size: 80%;
-    -fx-background-position: 10% 10%;
     -fx-padding: 100 0 0 0;
     -fx-text-fill: black;
     -fx-pref-width: 150px;
@@ -34,25 +33,29 @@
 
 
 
-.button-kampf	{	
+.button-kampf	{
+	-fx-background-position: 10% 10%;	
     -fx-background-image: url('../../img/kaempfer.jpg');   
 }
 
 
 
 .button-haendler	{
+	-fx-background-position: 40% 30%;
 	-fx-background-image: url('../../img/schwerter.jpg');
 }
 
 
 
 .button-wuerfeln	{
+	-fx-background-position: 63% 35%;
 	-fx-background-image: url('../../img/wuerfel.jpg');
 }
 
 
 
 .button-gruppen	{
+	-fx-background-position: 60% 10%;
 	-fx-background-image: url('../../img/gruppe.jpg');
 	-fx-font-size: 14px;
 }
