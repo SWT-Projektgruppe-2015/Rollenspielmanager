@@ -24,5 +24,5 @@
 
 .button-angriff:pressed	{
 	-fx-underline: false;
-	-fx-background-image: url('../../img/Schwerter/3_r.png');
+	-fx-background-image: url('../../img/Schwerter/02.png');
 }
