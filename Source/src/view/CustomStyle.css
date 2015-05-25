@@ -9,7 +9,7 @@
     -fx-pref-height: 150px;
     
     -fx-font-family: DejaVu Sans;
-    -fx-font-style: bold;
+    -fx-font-weight: bold;
     -fx-font-size: 23px;
 }
 
@@ -85,7 +85,7 @@
     -fx-background-size: 100%;
     -fx-text-fill: black;
     -fx-font-family: DejaVu Sans;
-    -fx-font-style: bold;
+    -fx-font-weight: bold;
     -fx-font-size: 23px;
 }
 
