@@ -2,6 +2,8 @@
 	-fx-background-color: gainsboro;
 }
 
+
+
 .button-angriff	{
 	-fx-background-color: gainsboro;
 	-fx-background-repeat: no-repeat;
@@ -13,14 +15,20 @@
 	-fx-font-size: 18px;
 }
 
+
+
 .button-angriff:focused	{
 	-fx-underline: true;
 }
+
+
 
 .button-angriff:hover	{
 	-fx-underline: false;
 	-fx-background-image: url('../../img/Schwerter/01.png');
 }
+
+
 
 .button-angriff:pressed	{
 	-fx-underline: false;
