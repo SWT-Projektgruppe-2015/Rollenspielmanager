@@ -1,0 +1,28 @@
+.background-gegnerrunde	{
+	-fx-background-color: gainsboro;
+}
+
+.button-angriff	{
+	-fx-background-color: gainsboro;
+	-fx-background-repeat: no-repeat;
+    -fx-background-size: 100%;
+    -fx-text-fill: black;
+    -fx-font-family: DejaVu Sans;
+    -fx-font-weight: bold;
+	-fx-background-image: url('../../img/Schwerter/00.png');
+	-fx-font-size: 18px;
+}
+
+.button-angriff:focused	{
+	-fx-underline: true;
+}
+
+.button-angriff:hover	{
+	-fx-underline: false;
+	-fx-background-image: url('../../img/Schwerter/01.png');
+}
+
+.button-angriff:pressed	{
+	-fx-underline: false;
+	-fx-background-image: url('../../img/Schwerter/3_r.png');
+}
