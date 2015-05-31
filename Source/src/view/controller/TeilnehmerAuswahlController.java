@@ -139,7 +139,9 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
                 .getSelectedItem();
         if (chosenSpieler != null) {
             spielerNotInKampfList_.add(chosenSpieler);
+            spielerNotInKampfList_.sort(null);
             spielerNotInKampfListView_.getItems().add(chosenSpieler);
+            spielerNotInKampfListView_.getItems().sort(null);
             spielerInKampfListView_.getItems().remove(chosenSpieler);
 
         }
@@ -154,6 +156,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         if (chosenSpieler != null) {
             spielerNotInKampfList_.remove(chosenSpieler);
             spielerInKampfListView_.getItems().add(chosenSpieler);
+            spielerInKampfListView_.getItems().sort(null);
             spielerNotInKampfListView_.getItems().remove(chosenSpieler);
         }
     }
@@ -166,9 +169,10 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
                 .getSelectedItem();
         if (chosenGegner != null) {
             gegnerNotInKampfList_.add(chosenGegner);
+            gegnerNotInKampfList_.sort(null);
             gegnerNotInKampfTableView_.getItems().add(chosenGegner);
+            gegnerNotInKampfTableView_.getItems().sort(null);
             gegnerInKampfListView_.getItems().remove(chosenGegner);
-
         }
     }
     
@@ -181,6 +185,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         if (chosenGegner != null) {
             gegnerNotInKampfList_.remove(chosenGegner);
             gegnerInKampfListView_.getItems().add(chosenGegner);
+            gegnerInKampfListView_.getItems().sort(null);
             gegnerNotInKampfTableView_.getItems().remove(chosenGegner);
         }
     }

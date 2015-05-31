@@ -224,7 +224,10 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public static List<Gegner> getAll() {
-        return dbManipulator_.getAll();
+        List<Gegner> allGegner = dbManipulator_.getAll();
+        allGegner.sort(null);
+        
+        return allGegner;
     }
 
     

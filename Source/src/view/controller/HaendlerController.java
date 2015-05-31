@@ -31,8 +31,8 @@ public class HaendlerController {
         allGegenstaende_ = EinfacherGegenstand.getAll();
         entryForNewGegenstand_ = new EinfacherGegenstand();
         entryForNewGegenstand_.setName_("Neuer Gegenstand");
-        gegenstandListView_.getItems().setAll(allGegenstaende_);
-        gegenstandListView_.getItems().add(entryForNewGegenstand_);
+        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
+        gegenstandListView_.getItems().addAll(allGegenstaende_);
         
         gegenstandListView_.getSelectionModel().selectedItemProperty()
                 .addListener(new ChangeListener<EinfacherGegenstand>() {
@@ -93,8 +93,9 @@ public class HaendlerController {
             entryForNewGegenstand_.setName_("Neuer Gegenstand");
         }
 
-        gegenstandListView_.getItems().setAll(allGegenstaende_);
-        gegenstandListView_.getItems().add(entryForNewGegenstand_);
+        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
+        allGegenstaende_.sort(null);
+        gegenstandListView_.getItems().addAll(allGegenstaende_);
         gegenstandListView_.getSelectionModel().select(changedEinfacherGegenstand);
     }
 
@@ -117,14 +118,14 @@ public class HaendlerController {
         String search = searchTextField_.getText().toLowerCase();
         gegenstandListView_.getItems().clear();
 
+        if (search.isEmpty())
+            gegenstandListView_.getItems().add(entryForNewGegenstand_);
+        
         for (EinfacherGegenstand item : allGegenstaende_) {
             if (item.getName_().toLowerCase().contains(search)) {
                 gegenstandListView_.getItems().add(item);
             }
         }
-
-        if (search.isEmpty())
-            gegenstandListView_.getItems().add(entryForNewGegenstand_);
     }
     
     

@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import controller.manipulators.EinfacherGegenstandManipulator;
-import controller.manipulators.GruppenManipulator;
 import model.interfaces.DBObject;
 
 /**
@@ -17,7 +16,7 @@ import model.interfaces.DBObject;
  */
 @Entity
 @Table(name="EINFACHERGEGENSTAND")
-public class EinfacherGegenstand implements DBObject {
+public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegenstand> {
     private static EinfacherGegenstandManipulator dbManipulator_ = EinfacherGegenstandManipulator.getInstance();
 
     @Id
@@ -96,7 +95,9 @@ public class EinfacherGegenstand implements DBObject {
 
 
     public static List<EinfacherGegenstand> getAll() {
-        return dbManipulator_.getAll();
+        List<EinfacherGegenstand> allGegenstaende = dbManipulator_.getAll();
+        allGegenstaende.sort(null);
+        return allGegenstaende;
     }
 
 
@@ -109,5 +110,12 @@ public class EinfacherGegenstand implements DBObject {
 
     public void deleteFromDB() {
         dbManipulator_.delete(this);
+    }
+
+
+
+    @Override
+    public int compareTo(EinfacherGegenstand otherGegenstand) {
+        return getName_().compareTo(otherGegenstand.getName_());
     }
 }

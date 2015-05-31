@@ -28,9 +28,12 @@ public class SpielerTest {
         normalSpieler.setKreis_(1);
     }
     
+    
+    
     @After
     public void deleteFromDB() {
-        normalSpieler.deleteFromDB();
+        if(normalSpieler != null)
+            normalSpieler.deleteFromDB();
     }
     
     
@@ -214,6 +217,36 @@ public class SpielerTest {
         assertTrue(!spielerWithWaffe.getWaffen().contains(waffe));
         
         waffe.deleteFromDB();
+        spielerWithWaffe.deleteFromDB();
+    }
+    
+    
+    
+    @Test
+    public void waffenAreOrdered() {
+        Spieler spielerWithWaffe = new Spieler();
+        spielerWithWaffe.addToDB();
+        
+        Waffen firstWaffe = new Waffen();
+        firstWaffe.setWaffenName_("Dolch");
+        Waffen secondWaffe = new Waffen();
+        secondWaffe.setWaffenName_("Holzschwert");
+        Waffen thirdWaffe = new Waffen();
+        thirdWaffe.setWaffenName_("Speer");
+        
+        spielerWithWaffe.addWaffe(secondWaffe);
+        spielerWithWaffe.addWaffe(thirdWaffe);
+        spielerWithWaffe.addWaffe(firstWaffe);
+        
+        List<Waffen> waffen = spielerWithWaffe.getWaffen();
+        assertTrue(waffen.get(0) == firstWaffe);
+        assertTrue(waffen.get(1) == secondWaffe);
+        assertTrue(waffen.get(2) == thirdWaffe);
+        
+        firstWaffe.deleteFromDB();
+        secondWaffe.deleteFromDB();
+        thirdWaffe.deleteFromDB();
+        spielerWithWaffe.deleteFromDB();
     }
 
     @Ignore
@@ -240,7 +273,7 @@ public class SpielerTest {
     
     @Test
     public void allPlayersAreReturned() {
-        List<Spieler> allPlayers = Spieler.getAllPlayers();
+        List<Spieler> allPlayers = Spieler.getAll();
         for (Charakter player : allPlayers) {
             System.out.println(player.getName_());
         }
@@ -250,7 +283,7 @@ public class SpielerTest {
 
     @Test
     public void playersHaveDefR() {
-        List<Spieler> allPlayers = Spieler.getAllPlayers();
+        List<Spieler> allPlayers = Spieler.getAll();
         for (Charakter player : allPlayers) {
             assertNotNull(player.getDefR());
         }
@@ -260,17 +293,17 @@ public class SpielerTest {
     
     @Test
     public void playersHaveDefH() {
-        List<Spieler> allPlayers = Spieler.getAllPlayers();
+        List<Spieler> allPlayers = Spieler.getAll();
         for (Charakter player : allPlayers) {
             assertNotNull(player.getDefH());
         }
-    }
+    }    
     
     
     
     @Test
     public void playersHaveDefS() {
-        List<Spieler> allPlayers = Spieler.getAllPlayers();
+        List<Spieler> allPlayers = Spieler.getAll();
         for (Charakter player : allPlayers) {
             assertNotNull(player.getDefS());
         }

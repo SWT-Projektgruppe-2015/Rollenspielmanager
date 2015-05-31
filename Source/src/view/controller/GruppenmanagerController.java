@@ -5,7 +5,6 @@ import java.util.List;
 
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -82,7 +81,7 @@ public class GruppenmanagerController implements GruppenObserver{
             return;
         }
 
-        Collection<Spieler> spielerInGruppe = selectedGruppe.getAllSpieler();
+        Collection<Spieler> spielerInGruppe = selectedGruppe.getOrderedMemberList();
         spielerInGruppeListView_.getItems().setAll(spielerInGruppe);
 
         spielerNotInGruppeListView_.getItems().clear();
@@ -131,6 +130,7 @@ public class GruppenmanagerController implements GruppenObserver{
         newGruppe.setName_(newGruppenNameTextField_.getText());
         newGruppe.addToDB();
         gruppenList_.add(newGruppe);
+        gruppenList_.sort(null);
         gruppenComboBox_.getItems().add(newGruppe);
         gruppenComboBox_.getSelectionModel().select(newGruppe);
         gruppenSubject_.setGruppen(gruppenList_);
@@ -145,6 +145,7 @@ public class GruppenmanagerController implements GruppenObserver{
             return;
 
         selectedGruppe.setName_(newGruppenNameTextField_.getText());
+        gruppenList_.sort(null);
         gruppenComboBox_.getItems().setAll(gruppenList_);
         gruppenComboBox_.getSelectionModel().select(selectedGruppe);
         gruppenSubject_.setGruppen(gruppenList_);
@@ -178,6 +179,7 @@ public class GruppenmanagerController implements GruppenObserver{
                 .getSelectedItem();
         if (chosenSpieler != null) {
             spielerInGruppeListView_.getItems().add(chosenSpieler);
+            spielerInGruppeListView_.getItems().sort(null);
             spielerNotInGruppeListView_.getItems().remove(chosenSpieler);
             selectedGruppe.addSpieler(chosenSpieler);
             gruppenSubject_.setGruppen(gruppenList_);
@@ -192,6 +194,7 @@ public class GruppenmanagerController implements GruppenObserver{
                 .getSelectedItem();
         if (chosenSpieler != null) {
             spielerNotInGruppeListView_.getItems().add(chosenSpieler);
+            spielerNotInGruppeListView_.getItems().sort(null);
             spielerInGruppeListView_.getItems().remove(chosenSpieler);
 
             Gruppe selectedGruppe = getSelectedGruppe();

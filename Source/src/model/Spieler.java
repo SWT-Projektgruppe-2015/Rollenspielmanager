@@ -67,7 +67,10 @@ public class Spieler extends Charakter implements DBObject {
     
     
     public static List<Spieler> getAll() {
-        return spielerManipulator_.getAll();
+        List<Spieler> allSpieler = spielerManipulator_.getAll();
+        allSpieler.sort(null);
+        
+        return allSpieler;
     }
     
     
@@ -139,7 +142,7 @@ public class Spieler extends Charakter implements DBObject {
      * @return the membership_
      */
     public Set<Gruppe> getMembership_() {
-        return membership_;
+        return membership_ != null ? membership_ : new HashSet<Gruppe>();
     }
     
     
@@ -213,7 +216,9 @@ public class Spieler extends Charakter implements DBObject {
         if (ausruestung == null)
             return new ArrayList<Waffen>();
         
-        return getAusruestung_().getWaffen();
+        List<Waffen> allWaffen = getAusruestung_().getWaffen();
+        allWaffen.sort(null);
+        return allWaffen;
     }
 
     
@@ -224,12 +229,6 @@ public class Spieler extends Charakter implements DBObject {
             return new ArrayList<Faehigkeiten>();
         
         return getAusruestung_().getFaehigkeiten();
-    }
-
-
-    
-    public static List<Spieler> getAllPlayers() {
-        return spielerManipulator_.getAll();
     }
 
     

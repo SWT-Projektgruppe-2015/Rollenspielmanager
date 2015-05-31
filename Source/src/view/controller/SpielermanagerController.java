@@ -65,9 +65,9 @@ public class SpielermanagerController extends CharakterTabController{
     
     
     private void initializeSpielerList() {
-        spielerListView_.getItems().setAll(spielerList_);
         entryForNewSpieler_ = getEntryForNewSpieler();
-        spielerListView_.getItems().add(entryForNewSpieler_);
+        spielerListView_.getItems().setAll(entryForNewSpieler_);
+        spielerListView_.getItems().addAll(spielerList_);
 
         showSpielerDetails(null);
 
@@ -101,8 +101,9 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     private void updateSpielerLists(Spieler changedSpieler) {
-        spielerListView_.getItems().setAll(spielerList_);
-        spielerListView_.getItems().add(entryForNewSpieler_);
+        spielerListView_.getItems().setAll(entryForNewSpieler_);
+        spielerList_.sort(null);
+        spielerListView_.getItems().addAll(spielerList_);
         spielerListView_.getSelectionModel().select(changedSpieler);
 
         gruppenManagerController.updateSpieler(spielerList_, changedSpieler);

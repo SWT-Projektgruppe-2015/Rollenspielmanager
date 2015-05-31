@@ -87,7 +87,7 @@ public class MainMenuController implements GruppenObserver{
         if(newValue == null)
             spielerInGruppe_.getItems().clear();
         else
-            spielerInGruppe_.getItems().setAll(newValue.getAllSpieler());
+            spielerInGruppe_.getItems().setAll(newValue.getOrderedMemberList());
     }
     
     

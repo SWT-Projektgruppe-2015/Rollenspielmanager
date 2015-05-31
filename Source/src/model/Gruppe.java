@@ -1,12 +1,12 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
@@ -17,7 +17,7 @@ import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "GRUPPEN")
-public class Gruppe implements DBObject {
+public class Gruppe implements DBObject, Comparable<Gruppe> {
     private static GruppenManipulator dbManipulator_ = GruppenManipulator.getInstance();
 
     @Id
@@ -42,7 +42,10 @@ public class Gruppe implements DBObject {
     }
     
     public static List<Gruppe> getAll() {
-        return dbManipulator_.getAll();
+        List<Gruppe> allGruppen = dbManipulator_.getAll();
+        allGruppen.sort(null);
+        
+        return allGruppen;
     }
     
     @Override
@@ -53,16 +56,7 @@ public class Gruppe implements DBObject {
     public void addSpieler(Spieler spieler) {
         spieler.addToGruppe(this);
     }
-
-
-
-    public Set<Spieler> getAllSpieler() {
-        if (members_ == null) {
-            members_ = new HashSet<Spieler>();
-        }
-        return members_;
-    }
-
+    
 
 
     public void removePlayer(Spieler spieler) {
@@ -108,7 +102,19 @@ public class Gruppe implements DBObject {
 
 
     public Set<Spieler> getMembers_() {
+        if (members_ == null) {
+            members_ = new HashSet<Spieler>();
+        }
+        
         return members_;
+    }
+    
+    
+    
+    public List<Spieler> getOrderedMemberList() {
+        List<Spieler> members = new ArrayList<Spieler>(getMembers_());
+        members.sort(null);
+        return members;
     }
 
 
@@ -117,7 +123,17 @@ public class Gruppe implements DBObject {
         this.members_ = members_;
     }    
 
+    
+    
     public void addToDB() {
         dbManipulator_.add(this);
     }
+
+
+
+    @Override
+    public int compareTo(Gruppe otherGruppe) {
+        return getName().compareTo(otherGruppe.getName());
+    }
+    
 }

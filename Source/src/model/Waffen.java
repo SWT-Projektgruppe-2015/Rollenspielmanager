@@ -14,7 +14,7 @@ import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "WAFFEN")
-public class Waffen implements DBObject {
+public class Waffen implements DBObject, Comparable<Waffen> {
     private static WaffenManipulator dbManipulator_ = WaffenManipulator.getInstance();
 
     @Id
@@ -111,5 +111,11 @@ public class Waffen implements DBObject {
     
     public void addToDB() {
         dbManipulator_.add(this);
+    }
+
+
+
+    public int compareTo(Waffen secondWaffe) {
+        return getWaffenName_().compareTo(secondWaffe.getWaffenName_());
     }
 }

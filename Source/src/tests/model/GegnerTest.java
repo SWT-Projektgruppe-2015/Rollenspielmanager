@@ -60,4 +60,27 @@ public class GegnerTest {
         gegnerWithDamage.deleteFromDB();
     }
     
+    
+    
+    @Test
+    public void correctOrderWithSamePrefix() {
+        Gegner firstGegner = new Gegner();
+        firstGegner.setName_("Adam");
+        Gegner secondGegner = new Gegner();
+        secondGegner.setName_("Adam E.");
+        
+        assertTrue(firstGegner.compareTo(secondGegner) < 0);
+    }
+    
+    
+    
+    @Test
+    public void correctOrderWithDifferentPrefix() {
+        Gegner firstGegner = new Gegner();
+        firstGegner.setName_("Adam");
+        Gegner secondGegner = new Gegner();
+        secondGegner.setName_("Bert");
+        
+        assertTrue(firstGegner.compareTo(secondGegner) < 0);
+    }
 }

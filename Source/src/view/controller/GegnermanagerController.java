@@ -58,9 +58,9 @@ public class GegnermanagerController extends CharakterTabController {
 
     private void initializeGegnerList() {
         gegnerList_ = Gegner.getAll();
-        gegnerListView_.getItems().setAll(gegnerList_);
         entryForNewGegner_ = getEntryForNewGegner();
-        gegnerListView_.getItems().add(entryForNewGegner_);
+        gegnerListView_.getItems().setAll(entryForNewGegner_);
+        gegnerListView_.getItems().addAll(gegnerList_);
 
         showGegnerDetails(null);
 
@@ -103,8 +103,7 @@ public class GegnermanagerController extends CharakterTabController {
         if(selectedGegner == null)
             return;
         
-        updateGegnerDetails(selectedGegner);
-        
+        updateGegnerDetails(selectedGegner);   
 
         if (selectedGegner == entryForNewGegner_)
             addNewGegner(selectedGegner);
@@ -168,8 +167,9 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     private void updateGegnerList(Gegner changedGegner) {
-        gegnerListView_.getItems().setAll(gegnerList_);
-        gegnerListView_.getItems().add(entryForNewGegner_);
+        gegnerListView_.getItems().setAll(entryForNewGegner_);
+        gegnerList_.sort(null);
+        gegnerListView_.getItems().addAll(gegnerList_);
         gegnerListView_.getSelectionModel().select(changedGegner);
     }
 

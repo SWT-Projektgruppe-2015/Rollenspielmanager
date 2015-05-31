@@ -27,14 +27,14 @@ public abstract class CharakterTabController {
         String search = searchField.getText().toLowerCase();
         listviewToUpdate.getItems().clear();
 
+        if (search.isEmpty())
+            listviewToUpdate.getItems().add(defaultEntry);
+        
         for (T item : source) {
             if (item.getName_().toLowerCase().contains(search)) {
                 listviewToUpdate.getItems().add(item);
             }
         }
-
-        if (search.isEmpty())
-            listviewToUpdate.getItems().add(defaultEntry);
     }
     
     

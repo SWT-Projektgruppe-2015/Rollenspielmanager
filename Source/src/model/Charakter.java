@@ -1,8 +1,6 @@
 package model;
 
-import java.util.List;
-
-public abstract class Charakter {
+public abstract class Charakter implements Comparable<Charakter> {
     public static final int MAX_KREIS = 4;
     public static final int MAX_LEVEL = 12;
     
@@ -113,6 +111,12 @@ public abstract class Charakter {
         }
         else
             return (int) (schaden*1.1);
+    }
+    
+    
+    
+    public int compareTo(Charakter other) {
+        return getName_().compareTo(other.getName_());
     }
     
 }
