@@ -24,7 +24,7 @@ public class WaffenManipulator extends DBManipulator {
 
     @Override
     protected void removeEntity(DBObject entity) {
-        theManager.remove((Waffen) entity);
+        theManager.remove(theManager.contains(entity) ? entity : theManager.merge(entity));
     }
 
     @Override
