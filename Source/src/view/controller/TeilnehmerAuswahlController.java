@@ -97,7 +97,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
             spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
         }
         else {
-            spielerInKampfListView_.getItems().setAll(newValue.getMembers_());
+            spielerInKampfListView_.getItems().setAll(newValue.getOrderedMemberList());
             spielerNotInKampfListView_.getItems().clear();
             spielerNotInKampfList_.clear();
         }
