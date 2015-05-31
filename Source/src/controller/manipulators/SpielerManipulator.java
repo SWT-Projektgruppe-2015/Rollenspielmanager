@@ -92,9 +92,10 @@ public class SpielerManipulator extends DBManipulator {
             for(Waffen waffe : ((Spieler) entity).getWaffen()) {
                 theManager.remove(theManager.contains(waffe) ? waffe : (Waffen) theManager.merge(waffe));
             }
-        }
-        for (Gruppe gruppe : ((Spieler) entity).getMembership_()){
-            gruppe.getMembers_().remove(entity);
+
+            for (Gruppe gruppe : ((Spieler) entity).getMembership_()){
+                gruppe.getMembers_().remove(entity);
+            }
         }
         theManager.remove((Spieler) entity);
         if(besitz != null)
