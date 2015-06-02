@@ -11,13 +11,16 @@ import model.Gruppe;
 import model.Spieler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class TeilnehmerAuswahlController implements GruppenObserver {
     
@@ -25,9 +28,9 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
     private ListView<Spieler> spielerNotInKampfListView_; 
     @FXML
-    private ListView<Spieler> spielerInKampfListView_; 
+    private ListView<Spieler> spielerInKampfListView_;
     @FXML
-    private ListView<Gegner> gegnerInKampfListView_; 
+    private TableView<GegnerEinheitImKampf> gegnerInKampfTableView_; 
     @FXML
     private TableView<Gegner> gegnerNotInKampfTableView_; 
     @FXML
@@ -41,10 +44,15 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
     private TableColumn<Gegner, Integer> levelColumn_;
     @FXML
-    private TableColumn<Gegner, String> nameColumn_;
+    private TableColumn<Gegner, String> nameNotInKampfColumn_;
+    @FXML
+    private TableColumn<GegnerEinheitImKampf, String> numberOfColumn_;
+    @FXML
+    private TableColumn<GegnerEinheitImKampf, String> nameInKampfColumn_;
     
     private List<Spieler> spielerNotInKampfList_;
     private List<Gegner> gegnerNotInKampfList_;
+    private List<GegnerEinheitImKampf> gegnerEinheitImKampfList_;
     
     private Hauptprogramm hauptProgramm_;
     
@@ -68,6 +76,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         gegnerNotInKampfList_ = new ArrayList<Gegner>();
         gegnerNotInKampfList_.addAll(Gegner.getAll());
         gegnerNotInKampfTableView_.getItems().setAll(gegnerNotInKampfList_);
+        gegnerEinheitImKampfList_ = new ArrayList<GegnerEinheitImKampf>();
        
         gruppenComboBox_.getItems().setAll(Gruppe.getAll());
         gruppenComboBox_.getSelectionModel().selectedItemProperty()
@@ -83,8 +92,43 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
        
         kreisColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer>("kreis_"));
         levelColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer> ("level_"));
-        nameColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, String>("name_"));
+        nameNotInKampfColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, String>("name_"));
+        
+        nameInKampfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheitImKampf, String>("gegnerTypName_"));
+        numberOfColumn_.setCellFactory(TextFieldTableCell.forTableColumn());
+        numberOfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheitImKampf, String>("countOf_"));
+        numberOfColumn_.setOnEditCommit(
+                new EventHandler<CellEditEvent<GegnerEinheitImKampf, String>>() {
+                    @Override
+                    public void handle(CellEditEvent<GegnerEinheitImKampf, String> t) {
+                        GegnerEinheitImKampf changedEinheit =
+                        ((GegnerEinheitImKampf) t.getTableView().getItems().get(
+                            t.getTablePosition().getRow()));
+                        changeNumberOfEinheiten(changedEinheit, t.getNewValue());
+                    }
+                }
+            );
+    }
+    
 
+
+    private void changeNumberOfEinheiten(GegnerEinheitImKampf changedEinheit, String newValue) {
+        int newValueInt = 0;
+        try {
+            newValueInt = Integer.parseInt(newValue);
+        }
+        catch(NumberFormatException e) {
+            newValueInt = changedEinheit.getCountAsInteger();
+        }
+        
+        for(GegnerEinheitImKampf einheiten : this.gegnerEinheitImKampfList_) {
+            if(einheiten.getGegnerTypName_().equals(changedEinheit.getGegnerTypName_())) {
+                einheiten.setCountOf_(newValueInt);
+            }            
+        }
+        
+        gegnerInKampfTableView_.getItems().setAll(gegnerEinheitImKampfList_);
+        gegnerInKampfTableView_.getItems().sort(null);
     }
     
     
@@ -165,14 +209,10 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void removeGegnerFromKampf() {
-        Gegner chosenGegner = gegnerInKampfListView_.getSelectionModel()
-                .getSelectedItem();
+        Gegner chosenGegner = gegnerInKampfTableView_.getSelectionModel()
+                .getSelectedItem().getGegner();
         if (chosenGegner != null) {
-            gegnerNotInKampfList_.add(chosenGegner);
-            gegnerNotInKampfList_.sort(null);
-            gegnerNotInKampfTableView_.getItems().add(chosenGegner);
-            gegnerNotInKampfTableView_.getItems().sort(null);
-            gegnerInKampfListView_.getItems().remove(chosenGegner);
+            removeGegnerEinheit(chosenGegner);
         }
     }
     
@@ -183,11 +223,46 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         Gegner chosenGegner = gegnerNotInKampfTableView_.getSelectionModel()
                 .getSelectedItem();
         if (chosenGegner != null) {
-            gegnerNotInKampfList_.remove(chosenGegner);
-            gegnerInKampfListView_.getItems().add(chosenGegner);
-            gegnerInKampfListView_.getItems().sort(null);
-            gegnerNotInKampfTableView_.getItems().remove(chosenGegner);
+            addGegnerEinheit(chosenGegner);
         }
+    }
+    
+    
+    
+    private void addGegnerEinheit(Gegner gegnerTyp) {
+        boolean alreadyInList = false;
+        for(GegnerEinheitImKampf einheiten : gegnerEinheitImKampfList_) {
+            if(einheiten.getGegner().getName_().equals(gegnerTyp.getName_())) {
+                einheiten.setCountOf_(einheiten.getCountAsInteger() + 1);
+                alreadyInList = true;
+            }
+        }
+        
+        if(!alreadyInList) {
+            gegnerEinheitImKampfList_.add(new GegnerEinheitImKampf(gegnerTyp));
+            gegnerInKampfTableView_.getItems().add(new GegnerEinheitImKampf(gegnerTyp));
+        }
+       
+        gegnerInKampfTableView_.getItems().setAll(gegnerEinheitImKampfList_);
+        gegnerInKampfTableView_.getItems().sort(null);
+    }
+    
+    
+    
+    private void removeGegnerEinheit(Gegner gegnerTyp) {
+        for(GegnerEinheitImKampf einheiten : gegnerEinheitImKampfList_) {
+            if(einheiten.getGegner().getName_().equals(gegnerTyp.getName_())) {
+                if(einheiten.getCountAsInteger() == 1) {
+                    gegnerEinheitImKampfList_.remove(einheiten);
+                } else {
+                    einheiten.setCountOf_(einheiten.getCountAsInteger() - 1);
+                }
+                break;
+            }
+        }
+        
+        gegnerInKampfTableView_.getItems().setAll(gegnerEinheitImKampfList_);
+        gegnerInKampfTableView_.getItems().sort(null);
     }
     
     
@@ -199,7 +274,13 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void kampfButton() {
-        hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), gegnerInKampfListView_.getItems());
+        List<Gegner> gegnerList = new ArrayList<Gegner>();
+        for(GegnerEinheitImKampf einheiten : gegnerInKampfTableView_.getItems()) {
+            for(int i = 0; i<einheiten.getCountAsInteger(); i++) {
+                gegnerList.add(einheiten.getGegner());
+            }
+        }
+        hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), gegnerList);
     }
 
 
