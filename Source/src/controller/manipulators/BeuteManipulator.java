@@ -29,7 +29,7 @@ public class BeuteManipulator extends DBManipulator{
     private boolean replaceBeute(Beute defaultBeute, Beute deletedBeute) {
         Query getAllRows;
         try {
-            getAllRows = theManager.createQuery("UPDATE Gegner SET beuteTyp_ = "+ defaultBeute.ID_ 
+            getAllRows = theManager.createQuery("UPDATE GegnerTyp SET beuteTyp_ = "+ defaultBeute.ID_ 
                     + " WHERE beuteTyp_ = " + deletedBeute.ID_);
         }
         catch(IllegalArgumentException createQueryExceptionOne) {

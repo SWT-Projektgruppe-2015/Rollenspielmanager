@@ -6,7 +6,7 @@ import java.util.List;
 import controller.GruppenSubject;
 import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
-import model.Gegner;
+import model.GegnerTyp;
 import model.Gruppe;
 import model.Spieler;
 import javafx.beans.value.ChangeListener;
@@ -30,9 +30,9 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
     private ListView<Spieler> spielerInKampfListView_;
     @FXML
-    private TableView<GegnerEinheitImKampf> gegnerInKampfTableView_; 
+    private TableView<GegnerEinheitImKampf> gegnerInKampfTableView_;
     @FXML
-    private TableView<Gegner> gegnerNotInKampfTableView_; 
+    private TableView<GegnerTyp> gegnerNotInKampfTableView_; 
     @FXML
     private TextField searchSpielerTextField_;
     @FXML
@@ -40,18 +40,18 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
     private ComboBox<Gruppe> gruppenComboBox_;
     @FXML
-    private TableColumn<Gegner, Integer> kreisColumn_;
+    private TableColumn<GegnerTyp, Integer> kreisColumn_;
     @FXML
-    private TableColumn<Gegner, Integer> levelColumn_;
+    private TableColumn<GegnerTyp, Integer> levelColumn_;
     @FXML
-    private TableColumn<Gegner, String> nameNotInKampfColumn_;
+    private TableColumn<GegnerTyp, String> nameNotInKampfColumn_;
     @FXML
     private TableColumn<GegnerEinheitImKampf, String> numberOfColumn_;
     @FXML
     private TableColumn<GegnerEinheitImKampf, String> nameInKampfColumn_;
     
     private List<Spieler> spielerNotInKampfList_;
-    private List<Gegner> gegnerNotInKampfList_;
+    private List<GegnerTyp> gegnerNotInKampfList_;
     private List<GegnerEinheitImKampf> gegnerEinheitImKampfList_;
     
     private Hauptprogramm hauptProgramm_;
@@ -73,8 +73,8 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         spielerNotInKampfList_.addAll(Spieler.getAll());
         spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
 
-        gegnerNotInKampfList_ = new ArrayList<Gegner>();
-        gegnerNotInKampfList_.addAll(Gegner.getAll());
+        gegnerNotInKampfList_ = new ArrayList<GegnerTyp>();
+        gegnerNotInKampfList_.addAll(GegnerTyp.getAll());
         gegnerNotInKampfTableView_.getItems().setAll(gegnerNotInKampfList_);
         gegnerEinheitImKampfList_ = new ArrayList<GegnerEinheitImKampf>();
        
@@ -90,9 +90,9 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
 
                 });
        
-        kreisColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer>("kreis_"));
-        levelColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer> ("level_"));
-        nameNotInKampfColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, String>("name_"));
+        kreisColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer>("kreis_"));
+        levelColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer> ("level_"));
+        nameNotInKampfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, String>("name_"));
         
         nameInKampfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheitImKampf, String>("gegnerTypName_"));
         numberOfColumn_.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -110,8 +110,8 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
             );
     }
     
-
-
+    
+    
     private void changeNumberOfEinheiten(GegnerEinheitImKampf changedEinheit, String newValue) {
         int newValueInt = 0;
         try {
@@ -166,7 +166,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         String search = searchGegnerTextField_.getText().toLowerCase();
         gegnerNotInKampfTableView_.getItems().clear();
         
-        for (Gegner item : gegnerNotInKampfList_) {
+        for (GegnerTyp item : gegnerNotInKampfList_) {
             if ((item.getName_().toLowerCase().contains(search)) || (Integer.toString(item.getKreis_()).contains(search)) ||
                     (Integer.toString(item.getLevel_()).contains(search))) {
                 gegnerNotInKampfTableView_.getItems().add(item);
@@ -209,8 +209,8 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void removeGegnerFromKampf() {
-        Gegner chosenGegner = gegnerInKampfTableView_.getSelectionModel()
-                .getSelectedItem().getGegner();
+        GegnerTyp chosenGegner = gegnerInKampfTableView_.getSelectionModel()
+                .getSelectedItem().getGegnerTyp();
         if (chosenGegner != null) {
             removeGegnerEinheit(chosenGegner);
         }
@@ -220,7 +220,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void addGegnerToKampf() {
-        Gegner chosenGegner = gegnerNotInKampfTableView_.getSelectionModel()
+        GegnerTyp chosenGegner = gegnerNotInKampfTableView_.getSelectionModel()
                 .getSelectedItem();
         if (chosenGegner != null) {
             addGegnerEinheit(chosenGegner);
@@ -229,10 +229,10 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     
     
-    private void addGegnerEinheit(Gegner gegnerTyp) {
+    private void addGegnerEinheit(GegnerTyp gegnerTyp) {
         boolean alreadyInList = false;
         for(GegnerEinheitImKampf einheiten : gegnerEinheitImKampfList_) {
-            if(einheiten.getGegner().getName_().equals(gegnerTyp.getName_())) {
+            if(einheiten.getGegnerTyp().getName_().equals(gegnerTyp.getName_())) {
                 einheiten.setCountOf_(einheiten.getCountAsInteger() + 1);
                 alreadyInList = true;
             }
@@ -249,9 +249,9 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     
     
-    private void removeGegnerEinheit(Gegner gegnerTyp) {
+    private void removeGegnerEinheit(GegnerTyp gegnerTyp) {
         for(GegnerEinheitImKampf einheiten : gegnerEinheitImKampfList_) {
-            if(einheiten.getGegner().getName_().equals(gegnerTyp.getName_())) {
+            if(einheiten.getGegnerTyp().getName_().equals(gegnerTyp.getName_())) {
                 if(einheiten.getCountAsInteger() == 1) {
                     gegnerEinheitImKampfList_.remove(einheiten);
                 } else {
@@ -274,10 +274,10 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void kampfButton() {
-        List<Gegner> gegnerList = new ArrayList<Gegner>();
+        List<GegnerTyp> gegnerList = new ArrayList<GegnerTyp>();
         for(GegnerEinheitImKampf einheiten : gegnerInKampfTableView_.getItems()) {
             for(int i = 0; i<einheiten.getCountAsInteger(); i++) {
-                gegnerList.add(einheiten.getGegner());
+                gegnerList.add(einheiten.getGegnerTyp());
             }
         }
         hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), gegnerList);

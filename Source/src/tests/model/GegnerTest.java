@@ -1,18 +1,18 @@
 package tests.model;
 
 import static org.junit.Assert.*;
-import model.Gegner;
+import model.GegnerTyp;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 public class GegnerTest {
-    private Gegner normalerGegner;
+    private GegnerTyp normalerGegner;
     
     @Before
     public void initObjects() {
-        normalerGegner = new Gegner();
+        normalerGegner = new GegnerTyp();
         normalerGegner.addToDB();
     }
     
@@ -41,9 +41,9 @@ public class GegnerTest {
     
     @Test
     public void ensureDefaultWaffenDmg() {
-        normalerGegner = new Gegner();
+        normalerGegner = new GegnerTyp();
         normalerGegner.addToDB();
-        assertTrue(normalerGegner.getDamage() == 0);
+        assertTrue(normalerGegner.getSchaden_() == 0);
         normalerGegner.deleteFromDB();
     }
     
@@ -51,11 +51,11 @@ public class GegnerTest {
     
     @Test
     public void damageCanBeChanged() {
-        Gegner gegnerWithDamage = new Gegner();
+        GegnerTyp gegnerWithDamage = new GegnerTyp();
         gegnerWithDamage.addToDB();
         
-        gegnerWithDamage.setDamage(100);
-        assertTrue(gegnerWithDamage.getDamage() == 100);
+        gegnerWithDamage.setSchaden_(100);
+        assertTrue(gegnerWithDamage.getSchaden_() == 100);
         
         gegnerWithDamage.deleteFromDB();
     }
@@ -64,9 +64,9 @@ public class GegnerTest {
     
     @Test
     public void correctOrderWithSamePrefix() {
-        Gegner firstGegner = new Gegner();
+        GegnerTyp firstGegner = new GegnerTyp();
         firstGegner.setName_("Adam");
-        Gegner secondGegner = new Gegner();
+        GegnerTyp secondGegner = new GegnerTyp();
         secondGegner.setName_("Adam E.");
         
         assertTrue(firstGegner.compareTo(secondGegner) < 0);
@@ -76,9 +76,9 @@ public class GegnerTest {
     
     @Test
     public void correctOrderWithDifferentPrefix() {
-        Gegner firstGegner = new Gegner();
+        GegnerTyp firstGegner = new GegnerTyp();
         firstGegner.setName_("Adam");
-        Gegner secondGegner = new Gegner();
+        GegnerTyp secondGegner = new GegnerTyp();
         secondGegner.setName_("Bert");
         
         assertTrue(firstGegner.compareTo(secondGegner) < 0);
