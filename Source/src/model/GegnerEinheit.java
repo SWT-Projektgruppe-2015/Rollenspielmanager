@@ -30,6 +30,9 @@ public class GegnerEinheit extends Charakter {
         maxLebenspunkte_ = typ.getLebenspunkte_();
         lebenspunkte_ = maxLebenspunkte_;
         schaden_ = typ.getSchaden_();
+        ausruestung_ = typ.getAusruestung_();
+        beuteTyp_ = typ.getBeute_();
+        ID_ = ID;
     }
     
     
@@ -131,10 +134,34 @@ public class GegnerEinheit extends Charakter {
     
 
     public int getLebenspunkte_() {
-        return maxLebenspunkte_;
+        return lebenspunkte_;
     }
 
     
+
+    public int getMaxLebenspunkte_() {
+        return maxLebenspunkte_;
+    }
+
+
+
+    public void setMaxLebenspunkte_(int maxLebenspunkte_) {
+        this.maxLebenspunkte_ = maxLebenspunkte_;
+    }
+
+
+
+    public int getSchaden_() {
+        return schaden_;
+    }
+
+
+
+    public void setSchaden_(int schaden_) {
+        this.schaden_ = schaden_;
+    }
+
+
 
     public void setLebenspunkte_(int lebenspunkte_) {
         this.lebenspunkte_ = lebenspunkte_;
@@ -151,7 +178,7 @@ public class GegnerEinheit extends Charakter {
 
     
     
-    public int getDamage() {
+    public int getSchaden() {
         return this.schaden_;
     }
 
@@ -167,29 +194,6 @@ public class GegnerEinheit extends Charakter {
     }
 
 
-    
-    public static boolean detailsAreValid
-        (int level, int kreis, int geschick, int staerke, int erfahrung) {
-       
-        if(level > Charakter.MAX_LEVEL || level < 0)
-            return false;
-        
-        if(kreis > Charakter.MAX_KREIS || kreis < 0)
-            return false;
-        
-        if(geschick < 1)
-            return false;
-        
-        if(staerke < 1)
-            return false;
-        
-        if(erfahrung < 1)
-            return false;
-        
-        return true;
-    }
-    
-    
     
     public void setDamage(int schaden) {
         this.schaden_ = schaden;
