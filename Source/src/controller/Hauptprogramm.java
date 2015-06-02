@@ -89,7 +89,7 @@ public class Hauptprogramm extends Application {
     
     public void openWuerfelSimulator() {
         try {
-            openNewWindow("src/view/Wuerfelsimulator.fxml", "W" + UMLAUT_SMALL_UE + "rfelsimulator");
+            openNewWindow("/view/Wuerfelsimulator.fxml", "W" + UMLAUT_SMALL_UE + "rfelsimulator");
         }
         catch (IOException e) {
             e.printStackTrace();
