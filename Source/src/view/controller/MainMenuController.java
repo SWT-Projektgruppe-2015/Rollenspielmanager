@@ -7,7 +7,6 @@ import model.Spieler;
 import controller.GruppenSubject;
 import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
-import controller.manipulators.GruppenManipulator;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -51,7 +50,7 @@ public class MainMenuController implements GruppenObserver{
     
     @FXML
     private void initialize() {
-        gruppenDropDown_.getItems().setAll(GruppenManipulator.getInstance().getAll());
+        gruppenDropDown_.getItems().setAll(Gruppe.getAll());
         gruppenDropDown_.getSelectionModel().selectedItemProperty()
         .addListener(new ChangeListener<Gruppe>() {
             @Override

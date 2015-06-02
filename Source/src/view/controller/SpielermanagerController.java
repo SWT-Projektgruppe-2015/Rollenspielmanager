@@ -114,11 +114,13 @@ public class SpielermanagerController extends CharakterTabController{
     private void updateWaffenList(Waffen changedWaffe) {
         waffenListView_.getItems().remove(changedWaffe);
         waffenListView_.getItems().add(changedWaffe);
+        waffenListView_.getItems().sort(null);
 
         if (changedWaffe == entryForNewWaffe_) {
             entryForNewWaffe_ = getEntryForNewWaffe();
-            waffenListView_.getItems().add(entryForNewWaffe_);
+            waffenListView_.getItems().add(0, entryForNewWaffe_);
         }
+        waffenListView_.getSelectionModel().select(changedWaffe);
     }
 
     
@@ -357,16 +359,16 @@ public class SpielermanagerController extends CharakterTabController{
             spielerLevelTextField_.setText(Integer.toString(spieler.getLevel_()));
             spielerKreisLabel_.setText(Integer.toString(spieler.getKreis_()));
 
-            waffenListView_.getItems().setAll(spieler.getWaffen());
-            waffenListView_.getItems().add(entryForNewWaffe_);
+            waffenListView_.getItems().setAll(entryForNewWaffe_);
+            waffenListView_.getItems().addAll(spieler.getWaffen());
             waffenListView_.getSelectionModel().select(0);
 
             defRTextField_.setText(Integer.toString(spieler.getDefR()));
             defHTextField_.setText(Integer.toString(spieler.getDefH()));
             defSTextField_.setText(Integer.toString(spieler.getDefS()));
 
-            faehigkeitenListView_.getItems().setAll(spieler.getFaehigkeiten());
-            faehigkeitenListView_.getItems().add(entryForNewFaehigkeit_);
+            faehigkeitenListView_.getItems().setAll(entryForNewFaehigkeit_);
+            faehigkeitenListView_.getItems().addAll(spieler.getFaehigkeiten());
             faehigkeitenListView_.getSelectionModel().select(0);
         }
     }

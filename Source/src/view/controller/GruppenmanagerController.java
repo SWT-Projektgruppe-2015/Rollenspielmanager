@@ -132,6 +132,7 @@ public class GruppenmanagerController implements GruppenObserver{
         gruppenList_.add(newGruppe);
         gruppenList_.sort(null);
         gruppenComboBox_.getItems().add(newGruppe);
+        gruppenComboBox_.getItems().sort(null);
         gruppenComboBox_.getSelectionModel().select(newGruppe);
         gruppenSubject_.setGruppen(gruppenList_);
     }
