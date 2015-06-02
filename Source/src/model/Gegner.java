@@ -39,8 +39,8 @@ public class Gegner extends Charakter implements DBObject {
     private int staerke_;
     @Column(name = "GESCHICK", columnDefinition = "INTEGER NOT NULL default '1' check(GESCHICK >= 1)")
     private int geschick_;
-    @Column(name = "LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
-    private int lebenspunkte_;
+    @Column(name = "MAX_LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
+    private int maxLebenspunkte_;
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Beute beuteTyp_;
@@ -57,7 +57,7 @@ public class Gegner extends Charakter implements DBObject {
         erfahrung_ = 1;
         staerke_ = 1;
         geschick_ = 1;
-        lebenspunkte_ = 25;
+        maxLebenspunkte_ = 25;
     }
     
     
@@ -209,14 +209,14 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public int getLebenspunkte_() {
-        return lebenspunkte_;
+        return maxLebenspunkte_;
     }
 
     
 
     public void setLebenspunkte_(int lebenspunkte_) {
-        if (lebenspunkte_ != this.lebenspunkte_) {
-            this.lebenspunkte_ = lebenspunkte_;
+        if (lebenspunkte_ != this.maxLebenspunkte_) {
+            this.maxLebenspunkte_ = lebenspunkte_;
             updateInDB();
         }
     }
