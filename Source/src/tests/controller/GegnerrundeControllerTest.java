@@ -2,7 +2,7 @@ package tests.controller;
 
 import static org.junit.Assert.*;
 import model.Charakter;
-import model.Gegner;
+import model.GegnerTyp;
 import model.Spieler;
 
 import org.junit.After;
@@ -14,7 +14,7 @@ import view.controller.GegnerrundeController;
 public class GegnerrundeControllerTest extends GegnerrundeController {
     
     private Spieler spieler_;
-    private Gegner gegner_;
+    private GegnerTyp gegner_;
     
     
     @Before
@@ -22,7 +22,7 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         spieler_ = createSpieler(40, 20, 60);
         gegner_ = createGegner(135);
         assertTrue(Spieler.getAll().contains(spieler_));
-        assertTrue(Gegner.getAll().contains(gegner_));
+        assertTrue(GegnerTyp.getAll().contains(gegner_));
     }
     
     @After
@@ -30,7 +30,7 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         spieler_.deleteFromDB();
         gegner_.deleteFromDB();
         assertFalse(Spieler.getAll().contains(spieler_));
-        assertFalse(Gegner.getAll().contains(gegner_));
+        assertFalse(GegnerTyp.getAll().contains(gegner_));
     }
 
     @Test
@@ -70,8 +70,8 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         return defaultSpieler;
     }
     
-    public Gegner createGegner(int schaden) {
-        Gegner defaultGegner = new Gegner();
+    public GegnerTyp createGegner(int schaden) {
+        GegnerTyp defaultGegner = new GegnerTyp();
         defaultGegner.addToDB();
         defaultGegner.setName_("Default");
         defaultGegner.setDamage(schaden);

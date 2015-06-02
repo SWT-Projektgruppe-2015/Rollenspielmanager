@@ -39,7 +39,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     
     
     public Waffen(Ausruestung ausruestung) {
-        waffenName_ = "Default Gegner Waffe";
+        waffenName_ = "Default GegnerTyp Waffe";
         waffenSchaden_ = 0;    
         ausruestung_ = ausruestung;
     }

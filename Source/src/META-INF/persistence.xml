@@ -7,7 +7,7 @@
     <class>model.Spieler</class>
     <class>model.Waffen</class>
     <class>model.Faehigkeiten</class>
-    <class>model.Gegner</class>
+    <class>model.GegnerTyp</class>
     <class>model.Ausruestung</class>
     <class>model.Beute</class>
     <class>model.Gruppe</class>

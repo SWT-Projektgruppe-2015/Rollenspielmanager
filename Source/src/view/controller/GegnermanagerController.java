@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Charakter;
 import model.Faehigkeiten;
-import model.Gegner;
+import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -12,12 +12,12 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class GegnermanagerController extends CharakterTabController {
-    private List<Gegner> gegnerList_;
-    private Gegner entryForNewGegner_;
+    private List<GegnerTyp> gegnerList_;
+    private GegnerTyp entryForNewGegner_;
     private Faehigkeiten entryForNewFaehigkeit_;
     
     @FXML
-    private ListView<Gegner> gegnerListView_;
+    private ListView<GegnerTyp> gegnerListView_;
     @FXML
     private TextField searchGegnerTextField_;
 
@@ -57,7 +57,7 @@ public class GegnermanagerController extends CharakterTabController {
     
 
     private void initializeGegnerList() {
-        gegnerList_ = Gegner.getAll();
+        gegnerList_ = GegnerTyp.getAll();
         entryForNewGegner_ = getEntryForNewGegner();
         gegnerListView_.getItems().setAll(entryForNewGegner_);
         gegnerListView_.getItems().addAll(gegnerList_);
@@ -65,10 +65,10 @@ public class GegnermanagerController extends CharakterTabController {
         showGegnerDetails(null);
 
         gegnerListView_.getSelectionModel().selectedItemProperty()
-                .addListener(new ChangeListener<Gegner>() {
+                .addListener(new ChangeListener<GegnerTyp>() {
                     public void changed(
-                            ObservableValue<? extends Gegner> observable,
-                            Gegner oldValue, Gegner newValue) {
+                            ObservableValue<? extends GegnerTyp> observable,
+                            GegnerTyp oldValue, GegnerTyp newValue) {
                         showGegnerDetails(newValue);
                     }
                 });
@@ -86,7 +86,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     @FXML
     private void deleteGegner() {
-        Gegner selectedGegner = getSelectedGegner();
+        GegnerTyp selectedGegner = getSelectedGegner();
         if(selectedGegner == null || selectedGegner == entryForNewGegner_)
             return;
         
@@ -99,7 +99,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     @FXML
     private void updateGegner() {
-        Gegner selectedGegner = getSelectedGegner();
+        GegnerTyp selectedGegner = getSelectedGegner();
         if(selectedGegner == null)
             return;
         
@@ -113,7 +113,7 @@ public class GegnermanagerController extends CharakterTabController {
         handleGegnerUpdate(selectedGegner);
     }
     
-    private void updateGegnerDetails(Gegner selectedGegner){        
+    private void updateGegnerDetails(GegnerTyp selectedGegner){        
         try {
             String newName = gegnerNameTextField_.getText();
             int newLevel = Integer.parseInt(gegnerLevelTextField_.getText());
@@ -122,7 +122,7 @@ public class GegnermanagerController extends CharakterTabController {
             int newStaerke = Integer.parseInt(staerkeTextField_.getText());
             int newErfahrung = Integer.parseInt(erfahrungsTextField_.getText());
       
-            if(Gegner.detailsAreValid(newLevel, newKreis, newGeschick, newStaerke, newErfahrung)){
+            if(GegnerTyp.detailsAreValid(newLevel, newKreis, newGeschick, newStaerke, newErfahrung)){
                 selectedGegner.setName_(newName);
                 selectedGegner.setLevel_(newLevel);
                 selectedGegner.setKreis_(newKreis);
@@ -138,7 +138,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     
-    private void updateGegnerAusruestung(Gegner selectedGegner) {        
+    private void updateGegnerAusruestung(GegnerTyp selectedGegner) {        
         try {
             int newDefR = Integer.parseInt(gegnerDefRTextField_.getText());
             int newDefH = Integer.parseInt(gegnerDefHTextField_.getText());
@@ -160,13 +160,13 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     
-    private void handleGegnerUpdate(Gegner changedGegner) {        
+    private void handleGegnerUpdate(GegnerTyp changedGegner) {        
         updateGegnerList(changedGegner);
     }
 
     
     
-    private void updateGegnerList(Gegner changedGegner) {
+    private void updateGegnerList(GegnerTyp changedGegner) {
         gegnerListView_.getItems().setAll(entryForNewGegner_);
         gegnerList_.sort(null);
         gegnerListView_.getItems().addAll(gegnerList_);
@@ -175,7 +175,7 @@ public class GegnermanagerController extends CharakterTabController {
 
     
     
-    private void addNewGegner(Gegner changedGegner) {
+    private void addNewGegner(GegnerTyp changedGegner) {
         gegnerList_.add(changedGegner);
         changedGegner.addToDB();
         entryForNewGegner_ = getEntryForNewGegner();
@@ -183,23 +183,23 @@ public class GegnermanagerController extends CharakterTabController {
         
     
     
-    private void showGegnerDetails(Gegner gegner) {
-        if (gegner == null) {
+    private void showGegnerDetails(GegnerTyp gegnerTyp) {
+        if (gegnerTyp == null) {
             showEmptyGegnerDetails();
         }
         else {
-            gegnerNameTextField_.setText(gegner.getName_());
-            gegnerKreisTextField_.setText(Integer.toString(gegner.getKreis_()));
-            gegnerLevelTextField_.setText(Integer.toString(gegner.getLevel_()));
+            gegnerNameTextField_.setText(gegnerTyp.getName_());
+            gegnerKreisTextField_.setText(Integer.toString(gegnerTyp.getKreis_()));
+            gegnerLevelTextField_.setText(Integer.toString(gegnerTyp.getLevel_()));
 
-            staerkeTextField_.setText(Integer.toString(gegner.getStaerke_()));
-            geschickTextField_.setText(Integer.toString(gegner.getGeschick_()));
-            erfahrungsTextField_.setText(Integer.toString(gegner.getErfahrung_()));
+            staerkeTextField_.setText(Integer.toString(gegnerTyp.getStaerke_()));
+            geschickTextField_.setText(Integer.toString(gegnerTyp.getGeschick_()));
+            erfahrungsTextField_.setText(Integer.toString(gegnerTyp.getErfahrung_()));
             
-            gegnerDefRTextField_.setText(Integer.toString(gegner.getDefR()));
-            gegnerDefHTextField_.setText(Integer.toString(gegner.getDefH()));
-            gegnerDefSTextField_.setText(Integer.toString(gegner.getDefS()));
-            gegnerDamageTextField_.setText(Integer.toString(gegner.getDamage()));
+            gegnerDefRTextField_.setText(Integer.toString(gegnerTyp.getDefR()));
+            gegnerDefHTextField_.setText(Integer.toString(gegnerTyp.getDefH()));
+            gegnerDefSTextField_.setText(Integer.toString(gegnerTyp.getDefS()));
+            gegnerDamageTextField_.setText(Integer.toString(gegnerTyp.getDamage()));
         }
     }
     
@@ -224,16 +224,16 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     
-    private Gegner getEntryForNewGegner() {
-        Gegner entryForNewGegner = new Gegner();
-        entryForNewGegner.setName_("Neuer Gegner");
+    private GegnerTyp getEntryForNewGegner() {
+        GegnerTyp entryForNewGegner = new GegnerTyp();
+        entryForNewGegner.setName_("Neuer GegnerTyp");
 
         return entryForNewGegner;
     }
     
     
     
-    private Gegner getSelectedGegner() {
+    private GegnerTyp getSelectedGegner() {
         return getSelected(gegnerListView_);
     }
     

@@ -18,16 +18,16 @@ import controller.manipulators.WaffenManipulator;
 import model.interfaces.DBObject;
 
 @Entity
-@Table(name = "GEGNER")
+@Table(name = "GEGNER_TYP")
 
-public class Gegner extends Charakter implements DBObject {
+public class GegnerTyp extends Charakter implements DBObject {
     private static GegnerManipulator dbManipulator_ = GegnerManipulator.getInstance();
 
     @Id
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Gegner Nr. 420'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'GegnerTyp Nr. 420'")
     private String name_;
     @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS<=4)")
     private int kreis_;
@@ -50,7 +50,7 @@ public class Gegner extends Charakter implements DBObject {
 
     
     
-    public Gegner() {
+    public GegnerTyp() {
         name_ = "Default";
         level_ = 0;
         kreis_ = 1;
@@ -65,7 +65,7 @@ public class Gegner extends Charakter implements DBObject {
     @PrePersist
     public void onCreate() {
         if (name_ == null) {
-            name_ = "Gegner Nr. 460";
+            name_ = "GegnerTyp Nr. 460";
         }
         if (kreis_ == 0) {
             kreis_ = 1;
@@ -223,8 +223,8 @@ public class Gegner extends Charakter implements DBObject {
 
     
 
-    public static List<Gegner> getAll() {
-        List<Gegner> allGegner = dbManipulator_.getAll();
+    public static List<GegnerTyp> getAll() {
+        List<GegnerTyp> allGegner = dbManipulator_.getAll();
         allGegner.sort(null);
         
         return allGegner;
