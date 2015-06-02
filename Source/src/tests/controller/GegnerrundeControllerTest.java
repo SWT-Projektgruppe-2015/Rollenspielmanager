@@ -74,7 +74,7 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         GegnerTyp defaultGegner = new GegnerTyp();
         defaultGegner.addToDB();
         defaultGegner.setName_("Default");
-        defaultGegner.setDamage(schaden);
+        defaultGegner.setSchaden_(schaden);
         defaultGegner.setGeschick_(64);
         return defaultGegner;
     }

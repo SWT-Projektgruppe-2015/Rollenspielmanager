@@ -43,7 +43,7 @@ public class GegnerTest {
     public void ensureDefaultWaffenDmg() {
         normalerGegner = new GegnerTyp();
         normalerGegner.addToDB();
-        assertTrue(normalerGegner.getDamage() == 0);
+        assertTrue(normalerGegner.getSchaden_() == 0);
         normalerGegner.deleteFromDB();
     }
     
@@ -54,8 +54,8 @@ public class GegnerTest {
         GegnerTyp gegnerWithDamage = new GegnerTyp();
         gegnerWithDamage.addToDB();
         
-        gegnerWithDamage.setDamage(100);
-        assertTrue(gegnerWithDamage.getDamage() == 100);
+        gegnerWithDamage.setSchaden_(100);
+        assertTrue(gegnerWithDamage.getSchaden_() == 100);
         
         gegnerWithDamage.deleteFromDB();
     }

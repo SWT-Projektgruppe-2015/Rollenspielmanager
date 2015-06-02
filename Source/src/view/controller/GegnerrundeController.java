@@ -181,7 +181,7 @@ public class GegnerrundeController {
      * @return verlorene Lebenspunkte von 'spieler' durch 'selectedGegner'
      */
     protected int simuliereLebensverlustAmSpieler(GegnerTyp selectedGegner, Spieler spieler, int geschickWurf) {
-        int schaden = selectedGegner.getDamage();
+        int schaden = selectedGegner.getSchaden_();
         int lebensVerlust = spieler.getLebensverlust(schaden, geschickWurf);
         return lebensVerlust;
     }

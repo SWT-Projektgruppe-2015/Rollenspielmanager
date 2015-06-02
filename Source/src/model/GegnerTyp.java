@@ -33,6 +33,8 @@ public class GegnerTyp extends Charakter implements DBObject {
     private int kreis_;
     @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL<=12)")
     private int level_;
+    @Column(name = "SCHADEN", columnDefinition = "INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
+    private int schaden_;
     @Column(name = "ERFAHRUNG", columnDefinition = "INTEGER NOT NULL default '1' check(ERFAHRUNG >= 1)")
     private int erfahrung_;
     @Column(name = "STAERKE", columnDefinition = "INTEGER NOT NULL default '1' check(STAERKE >= 1)")
@@ -58,6 +60,7 @@ public class GegnerTyp extends Charakter implements DBObject {
         staerke_ = 1;
         geschick_ = 1;
         maxLebenspunkte_ = 25;
+        schaden_ = 0;
     }
     
     
@@ -78,6 +81,9 @@ public class GegnerTyp extends Charakter implements DBObject {
         }
         if (geschick_ == 0) {
             geschick_ = 1;
+        }
+        if (schaden_ < 0) {
+            schaden_ = 0;
         }
         if (ausruestung_ == null) {
             ausruestung_ = new Ausruestung();           
@@ -232,19 +238,21 @@ public class GegnerTyp extends Charakter implements DBObject {
 
     
 
-    public int getDamage() {
-        if(getAusruestung_() == null)
-            return 0;
-        
-        List<Waffen> waffen = WaffenManipulator.getInstance().getWaffenInAusruestung(getAusruestung_());
-        if(waffen.isEmpty())
-            return 0;
-        
-        return waffen.get(0).getWaffenSchaden_();
+    public int getSchaden_() {
+            return schaden_;
     }
 
     
 
+    public void setSchaden_(int newSchaden_) {
+        if (newSchaden_ != this.maxLebenspunkte_) {
+            this.schaden_ = newSchaden_;
+            updateInDB();
+        }
+    }
+    
+    
+    
 	@Override
 	public Ausruestung getAusruestung_() {
 		return ausruestung_;
@@ -296,20 +304,6 @@ public class GegnerTyp extends Charakter implements DBObject {
     
 
 
-    public void setDamage(int newDamage) {
-        if(getAusruestung_() == null)
-            return;
-        
-        List<Waffen> waffen = WaffenManipulator.getInstance().getWaffenInAusruestung(getAusruestung_());
-        if(waffen.isEmpty()) {
-            Waffen waffe = new Waffen();
-            getAusruestung_().addWaffe(waffe);
-            waffe.setWaffenSchaden_(newDamage);
-        }
-        else {
-            waffen.get(0).setWaffenSchaden_(newDamage); 
-        }
-    }
 
     
     

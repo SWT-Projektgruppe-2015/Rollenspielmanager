@@ -149,7 +149,7 @@ public class GegnermanagerController extends CharakterTabController {
                 selectedGegner.setDefR(newDefR);
                 selectedGegner.setDefH(newDefH);
                 selectedGegner.setDefS(newDefS);
-                selectedGegner.setDamage(newDamage);
+                selectedGegner.setSchaden_(newDamage);
             }
         }
         catch (NumberFormatException e) {
@@ -199,7 +199,7 @@ public class GegnermanagerController extends CharakterTabController {
             gegnerDefRTextField_.setText(Integer.toString(gegnerTyp.getDefR()));
             gegnerDefHTextField_.setText(Integer.toString(gegnerTyp.getDefH()));
             gegnerDefSTextField_.setText(Integer.toString(gegnerTyp.getDefS()));
-            gegnerDamageTextField_.setText(Integer.toString(gegnerTyp.getDamage()));
+            gegnerDamageTextField_.setText(Integer.toString(gegnerTyp.getSchaden_()));
         }
     }
     
