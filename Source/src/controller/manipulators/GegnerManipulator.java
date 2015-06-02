@@ -2,22 +2,16 @@ package controller.manipulators;
 
 import java.util.List;
 
-import javax.persistence.EntityExistsException;
-import javax.persistence.EntityManager;
 import javax.persistence.LockTimeoutException;
 import javax.persistence.PessimisticLockException;
 import javax.persistence.QueryTimeoutException;
 import javax.persistence.TransactionRequiredException;
 import javax.persistence.PersistenceException;
-import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
-import controller.EntityManagerFactoryProvider;
 import controller.interfaces.DBManipulator;
 import model.Ausruestung;
-import model.Beute;
 import model.Gegner;
-import model.Spieler;
 import model.Waffen;
 import model.interfaces.DBObject;
 
