@@ -43,7 +43,7 @@ public class Hauptprogramm extends Application {
     
     public void start(Stage primaryStage) {
         this.primaryStage_ = primaryStage;
-        this.primaryStage_.getIcons().add(new Image("file:img/Logo3_1.png"));
+        this.primaryStage_.getIcons().add(new Image("file:/img/Logo3_1.png"));
         this.primaryStage_.setTitle("DLVC Taverne");
         gruppenSubject_ = new GruppenSubject();
         
@@ -56,7 +56,7 @@ public class Hauptprogramm extends Application {
     
     public void initializeMenuBar() {
         try {
-            FXMLLoader loader = getLoaderForXML("../view/MenuBar.fxml");
+            FXMLLoader loader = getLoaderForXML("/view/MenuBar.fxml");
             menuBar = (BorderPane) loader.load();
             
             Scene scene = new Scene(menuBar);
@@ -72,7 +72,7 @@ public class Hauptprogramm extends Application {
     
     public void showMainMenu() {
         try {
-            FXMLLoader loader = getLoaderForXML("../view/MainMenu.fxml");
+            FXMLLoader loader = getLoaderForXML("/view/MainMenu.fxml");
             AnchorPane mainMenu = (AnchorPane) loader.load();
             
             menuBar.setCenter(mainMenu);
@@ -89,7 +89,7 @@ public class Hauptprogramm extends Application {
     
     public void openWuerfelSimulator() {
         try {
-            openNewWindow("../view/Wuerfelsimulator.fxml", "W" + UMLAUT_SMALL_UE + "rfelsimulator");
+            openNewWindow("src/view/Wuerfelsimulator.fxml", "W" + UMLAUT_SMALL_UE + "rfelsimulator");
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -100,7 +100,7 @@ public class Hauptprogramm extends Application {
     
     public void openCharakterManager() {
         try {
-            FXMLLoader loader = getLoaderForXML("../view/Charaktermanager.fxml");
+            FXMLLoader loader = getLoaderForXML("/view/Charaktermanager.fxml");
             Parent page = loader.load();
             CharaktermanagerController controller = loader.getController();
             controller.setGruppenSubject_(gruppenSubject_);
@@ -109,7 +109,7 @@ public class Hauptprogramm extends Application {
             newStage.initModality(Modality.NONE);
             newStage.initOwner(primaryStage_);
             newStage.setScene(new Scene(page));
-            newStage.getIcons().add(new Image("file:img/Logo3_1.png"));
+            newStage.getIcons().add(new Image("file:/img/Logo3_1.png"));
             
             newStage.showAndWait();
             
@@ -123,7 +123,7 @@ public class Hauptprogramm extends Application {
     
     public void openHaendler() {
         try {
-            openNewWindow("../view/Haendler.fxml", "H" + UMLAUT_SMALL_AE +"ndler");
+            openNewWindow("/view/Haendler.fxml", "H" + UMLAUT_SMALL_AE +"ndler");
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -142,7 +142,7 @@ public class Hauptprogramm extends Application {
         newStage.initModality(Modality.NONE);
         newStage.initOwner(primaryStage_);
         newStage.setScene(new Scene(page));
-        newStage.getIcons().add(new Image("file:img/Logo3_1.png"));
+        newStage.getIcons().add(new Image("file:/img/Logo3_1.png"));
         
         newStage.showAndWait();
         return loader;
@@ -169,7 +169,7 @@ public class Hauptprogramm extends Application {
 
     public void openTeilnehmerauswahl() {
         try {
-            FXMLLoader loader = getLoaderForXML("../view/TeilnehmerAuswahl.fxml");
+            FXMLLoader loader = getLoaderForXML("/view/TeilnehmerAuswahl.fxml");
             Parent page = loader.load();
             TeilnehmerAuswahlController controller = loader.getController();
             controller.setGruppenSubject_(gruppenSubject_);
@@ -181,7 +181,7 @@ public class Hauptprogramm extends Application {
             kampfStage.initModality(Modality.NONE);
             kampfStage.initOwner(primaryStage_);
             kampfStage.setScene(new Scene(page));
-            kampfStage.getIcons().add(new Image("file:img/Logo3_1.png"));
+            kampfStage.getIcons().add(new Image("file:/img/Logo3_1.png"));
             
             kampfStage.showAndWait();
         }
@@ -195,14 +195,14 @@ public class Hauptprogramm extends Application {
 
     public void startKampf(List<Spieler> spieler, List<Gegner> gegner) {
         try {
-            FXMLLoader loader = getLoaderForXML("../view/Gegnerrunde.fxml");
+            FXMLLoader loader = getLoaderForXML("/view/Gegnerrunde.fxml");
             Parent page = loader.load();
             GegnerrundeController controller = loader.getController();
             controller.initializeParameters(spieler, gegner);
             
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));
-            kampfStage.getIcons().add(new Image("file:img/Logo3_1.png"));
+            kampfStage.getIcons().add(new Image("file:/img/Logo3_1.png"));
             kampfStage.show();
         }
         catch (IOException e) {
