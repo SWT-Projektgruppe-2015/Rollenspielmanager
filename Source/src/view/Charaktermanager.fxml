@@ -17,7 +17,7 @@
          <content>
          	<fx:include fx:id="spielerManager" source="Spielermanager.fxml" />
          </content></Tab>
-      <Tab closable="false" text="Gegner">
+      <Tab closable="false" text="Nicht Spieler Charaktere">
          <content>
          	<fx:include fx:id="gegnerManager" source="Gegnermanager.fxml" />
          </content>

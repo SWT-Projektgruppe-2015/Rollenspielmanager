@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 
 import controller.interfaces.DBManipulator;
 import model.Ausruestung;
-import model.Gegner;
+import model.GegnerTyp;
 import model.Waffen;
 import model.interfaces.DBObject;
 
@@ -27,12 +27,12 @@ public class GegnerManipulator extends DBManipulator {
     
     
     
-    public List<Gegner> getAll() {
+    public List<GegnerTyp> getAll() {
         
-        TypedQuery<Gegner> getAllRows;
+        TypedQuery<GegnerTyp> getAllRows;
         try {
-            getAllRows = theManager.createQuery("FROM Gegner",
-                Gegner.class);
+            getAllRows = theManager.createQuery("FROM GegnerTyp",
+                GegnerTyp.class);
         }
         catch(IllegalArgumentException createQueryExceptionOne)   {
             System.err.println("IllegalArgumentException: ");
@@ -71,11 +71,11 @@ public class GegnerManipulator extends DBManipulator {
 
     @Override
     protected void persistEntity(DBObject entity) {
-        Ausruestung ausruestung = entity == null ? null : ((Gegner)entity).getAusruestung_();
+        Ausruestung ausruestung = entity == null ? null : ((GegnerTyp)entity).getAusruestung_();
         boolean needsDefaultWaffe = ausruestung == null || ausruestung.getWaffen().isEmpty();
-        theManager.persist((Gegner) entity);
+        theManager.persist((GegnerTyp) entity);
         if(needsDefaultWaffe) {
-            ausruestung = ((Gegner)entity).getAusruestung_();
+            ausruestung = ((GegnerTyp)entity).getAusruestung_();
             Waffen defaultWaffe = new Waffen(ausruestung);
             theManager.persist((Waffen) defaultWaffe);
         }
@@ -85,8 +85,8 @@ public class GegnerManipulator extends DBManipulator {
 
     @Override
     protected void removeEntity(DBObject entity) {
-        Ausruestung ausruestung = entity == null ? null : ((Gegner)entity).getAusruestung_();
-        theManager.remove((Gegner) entity);    
+        Ausruestung ausruestung = entity == null ? null : ((GegnerTyp)entity).getAusruestung_();
+        theManager.remove((GegnerTyp) entity);    
         if(entity != null) {
             Ausruestung besitz = theManager.find(Ausruestung.class,
                 ausruestung.getID_());
@@ -105,6 +105,6 @@ public class GegnerManipulator extends DBManipulator {
 
     @Override
     protected void mergeEntity(DBObject entity) {
-        theManager.merge((Gegner) entity);
+        theManager.merge((GegnerTyp) entity);
     }
 }

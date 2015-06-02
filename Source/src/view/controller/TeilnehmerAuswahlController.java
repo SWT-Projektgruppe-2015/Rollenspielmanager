@@ -6,7 +6,7 @@ import java.util.List;
 import controller.GruppenSubject;
 import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
-import model.Gegner;
+import model.GegnerTyp;
 import model.Gruppe;
 import model.Spieler;
 import javafx.beans.value.ChangeListener;
@@ -27,9 +27,9 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
     private ListView<Spieler> spielerInKampfListView_; 
     @FXML
-    private ListView<Gegner> gegnerInKampfListView_; 
+    private ListView<GegnerTyp> gegnerInKampfListView_; 
     @FXML
-    private TableView<Gegner> gegnerNotInKampfTableView_; 
+    private TableView<GegnerTyp> gegnerNotInKampfTableView_; 
     @FXML
     private TextField searchSpielerTextField_;
     @FXML
@@ -37,14 +37,14 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
     private ComboBox<Gruppe> gruppenComboBox_;
     @FXML
-    private TableColumn<Gegner, Integer> kreisColumn_;
+    private TableColumn<GegnerTyp, Integer> kreisColumn_;
     @FXML
-    private TableColumn<Gegner, Integer> levelColumn_;
+    private TableColumn<GegnerTyp, Integer> levelColumn_;
     @FXML
-    private TableColumn<Gegner, String> nameColumn_;
+    private TableColumn<GegnerTyp, String> nameColumn_;
     
     private List<Spieler> spielerNotInKampfList_;
-    private List<Gegner> gegnerNotInKampfList_;
+    private List<GegnerTyp> gegnerNotInKampfList_;
     
     private Hauptprogramm hauptProgramm_;
     
@@ -65,8 +65,8 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         spielerNotInKampfList_.addAll(Spieler.getAll());
         spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
 
-        gegnerNotInKampfList_ = new ArrayList<Gegner>();
-        gegnerNotInKampfList_.addAll(Gegner.getAll());
+        gegnerNotInKampfList_ = new ArrayList<GegnerTyp>();
+        gegnerNotInKampfList_.addAll(GegnerTyp.getAll());
         gegnerNotInKampfTableView_.getItems().setAll(gegnerNotInKampfList_);
        
         gruppenComboBox_.getItems().setAll(Gruppe.getAll());
@@ -81,9 +81,9 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
 
                 });
        
-        kreisColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer>("kreis_"));
-        levelColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, Integer> ("level_"));
-        nameColumn_.setCellValueFactory(new PropertyValueFactory<Gegner, String>("name_"));
+        kreisColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer>("kreis_"));
+        levelColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer> ("level_"));
+        nameColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, String>("name_"));
 
     }
     
@@ -122,7 +122,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         String search = searchGegnerTextField_.getText().toLowerCase();
         gegnerNotInKampfTableView_.getItems().clear();
         
-        for (Gegner item : gegnerNotInKampfList_) {
+        for (GegnerTyp item : gegnerNotInKampfList_) {
             if ((item.getName_().toLowerCase().contains(search)) || (Integer.toString(item.getKreis_()).contains(search)) ||
                     (Integer.toString(item.getLevel_()).contains(search))) {
                 gegnerNotInKampfTableView_.getItems().add(item);
@@ -165,7 +165,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void removeGegnerFromKampf() {
-        Gegner chosenGegner = gegnerInKampfListView_.getSelectionModel()
+        GegnerTyp chosenGegner = gegnerInKampfListView_.getSelectionModel()
                 .getSelectedItem();
         if (chosenGegner != null) {
             gegnerNotInKampfList_.add(chosenGegner);
@@ -180,7 +180,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void addGegnerToKampf() {
-        Gegner chosenGegner = gegnerNotInKampfTableView_.getSelectionModel()
+        GegnerTyp chosenGegner = gegnerNotInKampfTableView_.getSelectionModel()
                 .getSelectedItem();
         if (chosenGegner != null) {
             gegnerNotInKampfList_.remove(chosenGegner);

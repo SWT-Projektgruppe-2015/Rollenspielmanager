@@ -18,29 +18,31 @@ import controller.manipulators.WaffenManipulator;
 import model.interfaces.DBObject;
 
 @Entity
-@Table(name = "GEGNER")
+@Table(name = "GEGNER_TYP")
 
-public class Gegner extends Charakter implements DBObject {
+public class GegnerTyp extends Charakter implements DBObject {
     private static GegnerManipulator dbManipulator_ = GegnerManipulator.getInstance();
 
     @Id
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Gegner Nr. 420'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'GegnerTyp Nr. 420'")
     private String name_;
     @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS<=4)")
     private int kreis_;
     @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL<=12)")
     private int level_;
+    @Column(name = "SCHADEN", columnDefinition = "INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
+    private int schaden_;
     @Column(name = "ERFAHRUNG", columnDefinition = "INTEGER NOT NULL default '1' check(ERFAHRUNG >= 1)")
     private int erfahrung_;
     @Column(name = "STAERKE", columnDefinition = "INTEGER NOT NULL default '1' check(STAERKE >= 1)")
     private int staerke_;
     @Column(name = "GESCHICK", columnDefinition = "INTEGER NOT NULL default '1' check(GESCHICK >= 1)")
     private int geschick_;
-    @Column(name = "LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
-    private int lebenspunkte_;
+    @Column(name = "MAX_LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(MAX_LEBENSPUNKTE >= 0)")
+    private int maxLebenspunkte_;
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Beute beuteTyp_;
@@ -50,14 +52,15 @@ public class Gegner extends Charakter implements DBObject {
 
     
     
-    public Gegner() {
+    public GegnerTyp() {
         name_ = "Default";
         level_ = 0;
         kreis_ = 1;
         erfahrung_ = 1;
         staerke_ = 1;
         geschick_ = 1;
-        lebenspunkte_ = 25;
+        maxLebenspunkte_ = 25;
+        schaden_ = 0;
     }
     
     
@@ -65,7 +68,7 @@ public class Gegner extends Charakter implements DBObject {
     @PrePersist
     public void onCreate() {
         if (name_ == null) {
-            name_ = "Gegner Nr. 460";
+            name_ = "GegnerTyp Nr. 460";
         }
         if (kreis_ == 0) {
             kreis_ = 1;
@@ -78,6 +81,9 @@ public class Gegner extends Charakter implements DBObject {
         }
         if (geschick_ == 0) {
             geschick_ = 1;
+        }
+        if (schaden_ < 0) {
+            schaden_ = 0;
         }
         if (ausruestung_ == null) {
             ausruestung_ = new Ausruestung();           
@@ -209,22 +215,22 @@ public class Gegner extends Charakter implements DBObject {
     
 
     public int getLebenspunkte_() {
-        return lebenspunkte_;
+        return maxLebenspunkte_;
     }
 
     
 
     public void setLebenspunkte_(int lebenspunkte_) {
-        if (lebenspunkte_ != this.lebenspunkte_) {
-            this.lebenspunkte_ = lebenspunkte_;
+        if (lebenspunkte_ != this.maxLebenspunkte_) {
+            this.maxLebenspunkte_ = lebenspunkte_;
             updateInDB();
         }
     }
 
     
 
-    public static List<Gegner> getAll() {
-        List<Gegner> allGegner = dbManipulator_.getAll();
+    public static List<GegnerTyp> getAll() {
+        List<GegnerTyp> allGegner = dbManipulator_.getAll();
         allGegner.sort(null);
         
         return allGegner;
@@ -232,19 +238,21 @@ public class Gegner extends Charakter implements DBObject {
 
     
 
-    public int getDamage() {
-        if(getAusruestung_() == null)
-            return 0;
-        
-        List<Waffen> waffen = WaffenManipulator.getInstance().getWaffenInAusruestung(getAusruestung_());
-        if(waffen.isEmpty())
-            return 0;
-        
-        return waffen.get(0).getWaffenSchaden_();
+    public int getSchaden_() {
+            return schaden_;
     }
 
     
 
+    public void setSchaden_(int newSchaden_) {
+        if (newSchaden_ != this.maxLebenspunkte_) {
+            this.schaden_ = newSchaden_;
+            updateInDB();
+        }
+    }
+    
+    
+    
 	@Override
 	public Ausruestung getAusruestung_() {
 		return ausruestung_;
@@ -296,20 +304,6 @@ public class Gegner extends Charakter implements DBObject {
     
 
 
-    public void setDamage(int newDamage) {
-        if(getAusruestung_() == null)
-            return;
-        
-        List<Waffen> waffen = WaffenManipulator.getInstance().getWaffenInAusruestung(getAusruestung_());
-        if(waffen.isEmpty()) {
-            Waffen waffe = new Waffen();
-            getAusruestung_().addWaffe(waffe);
-            waffe.setWaffenSchaden_(newDamage);
-        }
-        else {
-            waffen.get(0).setWaffenSchaden_(newDamage); 
-        }
-    }
 
     
     

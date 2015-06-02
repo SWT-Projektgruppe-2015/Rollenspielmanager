@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
-import model.Gegner;
+import model.GegnerTyp;
 import model.Spieler;
 import view.controller.CharaktermanagerController;
 import view.controller.GegnerrundeController;
@@ -193,12 +193,12 @@ public class Hauptprogramm extends Application {
 
 
 
-    public void startKampf(List<Spieler> spieler, List<Gegner> gegner) {
+    public void startKampf(List<Spieler> spieler, List<GegnerTyp> gegnerTyp) {
         try {
             FXMLLoader loader = getLoaderForXML("/view/Gegnerrunde.fxml");
             Parent page = loader.load();
             GegnerrundeController controller = loader.getController();
-            controller.initializeParameters(spieler, gegner);
+            controller.initializeParameters(spieler, gegnerTyp);
             
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));
