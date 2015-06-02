@@ -2,8 +2,6 @@
 	-fx-background-color: gainsboro;
 }
 
-
-
 .button-angriff	{
 	-fx-background-color: gainsboro;
 	-fx-background-repeat: no-repeat;
@@ -24,13 +22,12 @@
 
 
 .button-angriff:hover	{
-	-fx-underline: false;
+	-fx-underline: true;
 	-fx-background-image: url('../../img/Schwerter/01.png');
 }
 
 
 
 .button-angriff:pressed	{
-	-fx-underline: false;
 	-fx-background-image: url('../../img/Schwerter/02.png');
 }

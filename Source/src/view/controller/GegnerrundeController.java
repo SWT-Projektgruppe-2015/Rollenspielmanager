@@ -45,6 +45,7 @@ public class GegnerrundeController {
     
     @FXML
     private void initialize() {
+        schadenColumn_.setStyle( "-fx-alignment: CENTER;");
         gegnerListView_.getSelectionModel().selectedItemProperty()
             .addListener(new ChangeListener<Gegner>(){
                 @Override
@@ -63,9 +64,7 @@ public class GegnerrundeController {
 //        schadensAnzeigeTableView_.setItems(schadenAmSpielerListe_);
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
-        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));
-        
-        
+        trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));  
     }
     
     public void initializeParameters(List<Spieler> spielerListe, List<Gegner> gegnerListe) {
