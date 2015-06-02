@@ -39,7 +39,7 @@ public class Gegner extends Charakter implements DBObject {
     private int staerke_;
     @Column(name = "GESCHICK", columnDefinition = "INTEGER NOT NULL default '1' check(GESCHICK >= 1)")
     private int geschick_;
-    @Column(name = "MAX_LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(LEBENSPUNKTE >= 0)")
+    @Column(name = "MAX_LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(MAX_LEBENSPUNKTE >= 0)")
     private int maxLebenspunkte_;
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
