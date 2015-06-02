@@ -9,7 +9,7 @@
     -fx-text-fill: black;
     -fx-font-family: DejaVu Sans;
     -fx-font-weight: bold;
-	-fx-background-image: url('../../img/Schwerter/00.png');
+	-fx-background-image: url('../img/Schwerter/00.png');
 	-fx-font-size: 18px;
 }
 
@@ -23,11 +23,11 @@
 
 .button-angriff:hover	{
 	-fx-underline: true;
-	-fx-background-image: url('../../img/Schwerter/01.png');
+	-fx-background-image: url('../img/Schwerter/01.png');
 }
 
 
 
 .button-angriff:pressed	{
-	-fx-background-image: url('../../img/Schwerter/02.png');
+	-fx-background-image: url('../img/Schwerter/02.png');
 }
