@@ -35,28 +35,28 @@
 
 .button-kampf	{
 	-fx-background-position: 10% 10%;	
-    -fx-background-image: url('../../img/kaempfer.jpg');   
+    -fx-background-image: url('/img/kaempfer.jpg');   
 }
 
 
 
 .button-haendler	{
 	-fx-background-position: 40% 30%;
-	-fx-background-image: url('../../img/schwerter.jpg');
+	-fx-background-image: url('/img/schwerter.jpg');
 }
 
 
 
 .button-wuerfeln	{
 	-fx-background-position: 63% 35%;
-	-fx-background-image: url('../../img/wuerfel.jpg');
+	-fx-background-image: url('/img/wuerfel.jpg');
 }
 
 
 
 .button-gruppen	{
 	-fx-background-position: 60% 10%;
-	-fx-background-image: url('../../img/gruppe.jpg');
+	-fx-background-image: url('/img/gruppe.jpg');
 	-fx-font-size: 14px;
 }
 
@@ -64,7 +64,7 @@
 
 /* 
 .button-charaktergenerator	{
-	-fx-background-image: url('../../img/kneipe.jpg');
+	-fx-background-image: url('/img/kneipe.jpg');
 	-fx-font-size: 14px;
 }
 */
