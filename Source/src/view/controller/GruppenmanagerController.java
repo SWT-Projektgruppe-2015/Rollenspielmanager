@@ -61,11 +61,17 @@ public class GruppenmanagerController implements GruppenObserver{
         spielerList_ = spielerList;
 
         Gruppe selected = gruppenComboBox_.getSelectionModel().getSelectedItem();
+        
+        if(selected == null) {
+            spielerNotInGruppeListView_.getItems().setAll(spielerList_);
+            return;
+        }
+        
         gruppenList_ = Gruppe.getAll();
         gruppenSubject_.setGruppen(gruppenList_);
         
         for(Gruppe gruppe : gruppenList_) {
-            if(selected != null && gruppe.getID_() == selected.getID_()) {
+            if(gruppe.getID_() == selected.getID_()) {
                 updateGruppenListViews(gruppe);
                 break;
             }
