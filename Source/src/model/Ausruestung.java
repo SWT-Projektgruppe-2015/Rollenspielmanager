@@ -60,8 +60,10 @@ public class Ausruestung implements DBObject {
     }
     
     public void setDefR_(int defR_) {
-        this.defR_ = defR_;
-        updateInDB();
+        if(this.defR_ != defR_) {
+            this.defR_ = defR_;
+            updateInDB();
+        }
     }
     
     public int getDefH_() {
@@ -69,8 +71,10 @@ public class Ausruestung implements DBObject {
     }
     
     public void setDefH_(int defH_) {
-        this.defH_ = defH_;
-        updateInDB();
+        if(this.defH_ != defH_) {
+            this.defH_ = defH_;
+            updateInDB();
+        }
     }
     
     public int getDefS_() {
@@ -78,8 +82,10 @@ public class Ausruestung implements DBObject {
     }
     
     public void setDefS_(int defS_) {
-        this.defS_ = defS_;
-        updateInDB();
+        if(this.defS_ != defS_) {
+            this.defS_ = defS_;
+            updateInDB();
+        }
     }
     
     public List<Waffen> getWaffen() {

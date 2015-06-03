@@ -100,11 +100,13 @@ public class SpielermanagerController extends CharakterTabController{
       
 
     
-    private void updateSpielerLists(Spieler changedSpieler) {
-        spielerListView_.getItems().setAll(entryForNewSpieler_);
-        spielerList_.sort(null);
-        spielerListView_.getItems().addAll(spielerList_);
-        spielerListView_.getSelectionModel().select(changedSpieler);
+    private void updateSpielerLists(Spieler changedSpieler, boolean listHasToBeReloaded) {
+        if(listHasToBeReloaded) {
+            spielerListView_.getItems().setAll(entryForNewSpieler_);
+            spielerList_.sort(null);
+            spielerListView_.getItems().addAll(spielerList_);
+            spielerListView_.getSelectionModel().select(changedSpieler);
+        }
 
         gruppenManagerController.updateSpieler(spielerList_, changedSpieler);
     }
@@ -118,8 +120,12 @@ public class SpielermanagerController extends CharakterTabController{
 
         if (changedWaffe == entryForNewWaffe_) {
             entryForNewWaffe_ = getEntryForNewWaffe();
-            waffenListView_.getItems().add(0, entryForNewWaffe_);
         }
+        else {
+            waffenListView_.getItems().remove(entryForNewWaffe_);
+        }
+        
+        waffenListView_.getItems().add(0, entryForNewWaffe_);
         waffenListView_.getSelectionModel().select(changedWaffe);
     }
 
@@ -201,10 +207,12 @@ public class SpielermanagerController extends CharakterTabController{
         if (selectedSpieler == null)
             return;
         
-        updateSpielerName(selectedSpieler);
+        boolean listHasToBeReloaded = updateSpielerName(selectedSpieler);
         updateSpielerDef(selectedSpieler);
         
         if (selectedSpieler == entryForNewSpieler_) {
+            listHasToBeReloaded = true;
+            
             spielerList_.add(selectedSpieler);
             selectedSpieler.addToDB();
             entryForNewSpieler_ = getEntryForNewSpieler();
@@ -214,15 +222,18 @@ public class SpielermanagerController extends CharakterTabController{
         updateWaffenDetails(selectedSpieler);
         updateFaehigkeitName(selectedSpieler);  
         
-        updateSpielerLists(selectedSpieler);
+        updateSpielerLists(selectedSpieler, listHasToBeReloaded);
     }
     
     
 
-    private void updateSpielerName(Spieler selectedSpieler) {
+    private boolean updateSpielerName(Spieler selectedSpieler) {
         String newName = spielerNameTextField_.getText();
-        if(!newName.isEmpty())
+        if(!newName.isEmpty() && !newName.equals(selectedSpieler.getName_())) {
             selectedSpieler.setName_(newName);
+            return true;
+        }
+        return false;
     }
 
     

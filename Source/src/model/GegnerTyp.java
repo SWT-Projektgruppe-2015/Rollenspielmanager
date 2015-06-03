@@ -130,7 +130,7 @@ public class GegnerTyp extends Charakter implements DBObject {
     
     
     public void setName_(String name_) {
-        if(name_ != this.name_) {
+        if(!name_.equals(this.name_)) {
             this.name_ = name_;
             updateInDB();
         }
@@ -261,7 +261,7 @@ public class GegnerTyp extends Charakter implements DBObject {
 	
 	@Override
 	public void setAusruestung_(Ausruestung ausruestung) {
-	    if (ausruestung != ausruestung_) {
+	    if (!ausruestung.equals(ausruestung_)) {
             boolean gegnerInDbButAusruestungIsNot = getID_() != 0
                     && ausruestung.getID_() == 0;
             if (gegnerInDbButAusruestungIsNot)
@@ -299,11 +299,6 @@ public class GegnerTyp extends Charakter implements DBObject {
     public void addToDB() {
         dbManipulator_.add(this);
     }
-
-    
-
-
-
     
     
 

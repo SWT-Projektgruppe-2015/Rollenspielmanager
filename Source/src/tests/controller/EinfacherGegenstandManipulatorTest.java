@@ -35,10 +35,11 @@ public class EinfacherGegenstandManipulatorTest {
     @AfterClass
     public static void cleanUp()    {
         Ausruestung cleanUpCrew = theManager.find(Ausruestung.class, testGegenstand.getID_());
-        theManager.getTransaction().begin();
-        if(cleanUpCrew != null)
+        if(cleanUpCrew != null) {
+            theManager.getTransaction().begin();
             theManager.remove(cleanUpCrew);
-        theManager.getTransaction().commit();
+            theManager.getTransaction().commit();
+        }
     }
     
     

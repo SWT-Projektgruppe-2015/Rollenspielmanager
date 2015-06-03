@@ -32,7 +32,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     private Ausruestung ausruestung_;
 
     public Waffen() {
-        setWaffenSchaden_(0);
+        waffenSchaden_ = 0;
         ausruestung_ = new Ausruestung();
     }
     
@@ -71,8 +71,10 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     }
 
     public void setEffektTyp_(int effektTyp_) {
-        this.effektTyp_ = effektTyp_;
-        updateInDB();
+        if(this.effektTyp_ != effektTyp_) {
+            this.effektTyp_ = effektTyp_;
+            updateInDB();
+        }
     }
 
     public String getWaffenName_() {
@@ -80,8 +82,10 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     }
 
     public void setWaffenName_(String waffenName_) {
-        this.waffenName_ = waffenName_;
-        updateInDB();
+        if(!waffenName_.equals(this.waffenName_)) {
+            this.waffenName_ = waffenName_;
+            updateInDB();
+        }
     }
 
     public int getWaffenSchaden_() {
@@ -89,8 +93,10 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     }
 
     public void setWaffenSchaden_(int waffenSchaden_) {
-        this.waffenSchaden_ = waffenSchaden_;
-        updateInDB();
+        if(this.waffenSchaden_ != waffenSchaden_) {
+            this.waffenSchaden_ = waffenSchaden_;
+            updateInDB();
+        }
     }
 
     public Ausruestung getAusruestung_() {
@@ -98,8 +104,10 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     }
 
     public void setAusruestung_(Ausruestung ausruestung_) {
-        this.ausruestung_ = ausruestung_;
-        updateInDB();
+        if(!ausruestung_.equals(this.ausruestung_)) {
+            this.ausruestung_ = ausruestung_;
+            updateInDB();
+        }
     }
 
     public void deleteFromDB() {

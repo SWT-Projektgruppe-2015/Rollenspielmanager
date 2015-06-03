@@ -152,7 +152,7 @@ public class Spieler extends Charakter implements DBObject {
      *            the ausruestung_ to set
      */
     public void setAusruestung_(Ausruestung ausruestung) {
-        if(ausruestung != ausruestung_) {
+        if(!ausruestung.equals(ausruestung_)) {
             boolean spielerInDbButAusruestungIsNot = getID_() != 0 && ausruestung.getID_() == 0;
             if(spielerInDbButAusruestungIsNot)
                 ausruestung.addToDB();
@@ -193,7 +193,7 @@ public class Spieler extends Charakter implements DBObject {
      *            the name_ to set
      */
     public void setName_(String name_) {
-        if(name_ != this.name_) {
+        if(!name_.equals(this.name_)) {
             this.name_ = name_;
             updateInDB();
         }
