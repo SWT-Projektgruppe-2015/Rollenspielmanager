@@ -2,6 +2,9 @@ package model;
 
 import java.util.List;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,15 +16,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import view.tabledata.SharedGegnerTableEntry;
 import controller.manipulators.GegnerManipulator;
 import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "GEGNER_TYP")
 
-public class GegnerTyp extends Charakter implements DBObject {
+public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableEntry {
     private static GegnerManipulator dbManipulator_ = GegnerManipulator.getInstance();
-
+    
     @Id
     @GeneratedValue
     @Column(name = "ID")
@@ -304,5 +308,26 @@ public class GegnerTyp extends Charakter implements DBObject {
 
     public void deleteFromDB() {
         dbManipulator_.delete(this);
+    }
+
+
+
+    @Override
+    public StringProperty nameProperty() {
+        return new SimpleStringProperty(name_);
+    }
+
+
+
+    @Override
+    public StringProperty dealtSchadenProperty() {
+        return new SimpleStringProperty("");
+    }
+
+
+
+    @Override
+    public StringProperty lebenspunkteProperty() {
+        return new SimpleStringProperty("");
     }
 }

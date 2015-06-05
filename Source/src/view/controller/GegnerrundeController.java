@@ -3,7 +3,7 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import view.SchadenAmSpieler;
+import view.tabledata.SchadenAmSpieler;
 import controller.Dice;
 import model.GegnerEinheit;
 import model.Spieler;

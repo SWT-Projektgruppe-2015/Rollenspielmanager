@@ -3,6 +3,7 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.tabledata.GegnerEinheitImKampf;
 import controller.GruppenSubject;
 import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;

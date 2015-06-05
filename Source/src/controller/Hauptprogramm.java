@@ -198,8 +198,8 @@ public class Hauptprogramm extends Application {
         try {
             FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
             Parent page = loader.load();
-            GegnerrundeController controller = ((KampfsimulatorController) loader.getController()).getGegnerrundeController();
-            controller.initializeParameters(spieler, gegnerEinheiten);
+            KampfsimulatorController controller = loader.getController();
+            controller.initializeAllTabs(spieler, gegnerEinheiten);
             
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));

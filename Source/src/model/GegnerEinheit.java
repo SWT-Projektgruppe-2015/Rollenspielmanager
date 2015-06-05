@@ -3,7 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GegnerEinheit extends Charakter {
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import view.tabledata.SharedGegnerTableEntry;
+
+public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
     private int ID_;
     private String name_;
     private int kreis_;
@@ -12,8 +16,9 @@ public class GegnerEinheit extends Charakter {
     private int staerke_;
     private int geschick_;
     private int maxLebenspunkte_;
-    private int lebenspunkte_;
+    private int currentLebenspunkte_;
     private int schaden_;
+    private int dealtSchaden_;
     private Beute beuteTyp_;
     private Ausruestung ausruestung_;
     private final GegnerTyp typ_;
@@ -28,7 +33,7 @@ public class GegnerEinheit extends Charakter {
         staerke_ = typ.getStaerke_();
         geschick_ = typ.getGeschick_();
         maxLebenspunkte_ = typ.getLebenspunkte_();
-        lebenspunkte_ = maxLebenspunkte_;
+        currentLebenspunkte_ = maxLebenspunkte_;
         schaden_ = typ.getSchaden_();
         ausruestung_ = typ.getAusruestung_();
         beuteTyp_ = typ.getBeute_();
@@ -133,8 +138,8 @@ public class GegnerEinheit extends Charakter {
 
     
 
-    public int getLebenspunkte_() {
-        return lebenspunkte_;
+    public int getCurrentLebenspunkte_() {
+        return currentLebenspunkte_;
     }
 
     
@@ -163,8 +168,8 @@ public class GegnerEinheit extends Charakter {
 
 
 
-    public void setLebenspunkte_(int lebenspunkte_) {
-        this.lebenspunkte_ = lebenspunkte_;
+    public void setCurrentLebenspunkte_(int lebenspunkte_) {
+        this.currentLebenspunkte_ = lebenspunkte_;
     }
 
     
@@ -201,6 +206,24 @@ public class GegnerEinheit extends Charakter {
     
     
     
+    public int getDealtSchaden_() {
+        return dealtSchaden_;
+    }
+
+
+
+    public void setDealtSchaden_(int dealtSchaden_) {
+        this.dealtSchaden_ = dealtSchaden_;
+    }
+
+
+
+    public GegnerTyp getTyp_() {
+        return typ_;
+    }
+
+
+
     public int compareTo(GegnerEinheit other) {
         if(this.ID_ == other.getID_())
             return super.compareTo(other);
@@ -209,4 +232,27 @@ public class GegnerEinheit extends Charakter {
         else
             return 1;
     }
+
+
+
+    @Override
+    public StringProperty nameProperty() {
+        return new SimpleStringProperty(name_);
+    }
+
+
+
+    @Override
+    public StringProperty dealtSchadenProperty() {
+        return new SimpleStringProperty(Integer.toString(dealtSchaden_));
+    }
+
+
+
+    @Override
+    public StringProperty lebenspunkteProperty() {
+        return new SimpleStringProperty(Integer.toString(currentLebenspunkte_)
+                + "/" + Integer.toString(maxLebenspunkte_));
+    }
+    
 }
