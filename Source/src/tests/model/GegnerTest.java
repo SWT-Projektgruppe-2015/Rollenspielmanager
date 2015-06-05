@@ -41,10 +41,7 @@ public class GegnerTest {
     
     @Test
     public void ensureDefaultWaffenDmg() {
-        normalerGegner = new GegnerTyp();
-        normalerGegner.addToDB();
         assertTrue(normalerGegner.getSchaden_() == 0);
-        normalerGegner.deleteFromDB();
     }
     
     

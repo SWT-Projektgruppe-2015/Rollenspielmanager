@@ -6,6 +6,7 @@ import java.util.List;
 import controller.GruppenSubject;
 import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
+import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Gruppe;
 import model.Spieler;
@@ -274,11 +275,10 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void kampfButton() {
-        List<GegnerTyp> gegnerList = new ArrayList<GegnerTyp>();
+        List<GegnerEinheit> gegnerList = new ArrayList<GegnerEinheit>();
         for(GegnerEinheitImKampf einheiten : gegnerInKampfTableView_.getItems()) {
-            for(int i = 0; i<einheiten.getCountAsInteger(); i++) {
-                gegnerList.add(einheiten.getGegnerTyp());
-            }
+            gegnerList.addAll(GegnerEinheit.createEinheiten(
+                    einheiten.getGegnerTyp(), einheiten.getCountAsInteger()));
         }
         hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), gegnerList);
     }

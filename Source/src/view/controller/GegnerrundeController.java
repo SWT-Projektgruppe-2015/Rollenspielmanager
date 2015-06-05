@@ -5,7 +5,7 @@ import java.util.List;
 
 import view.SchadenAmSpieler;
 import controller.Dice;
-import model.GegnerTyp;
+import model.GegnerEinheit;
 import model.Spieler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,12 +22,12 @@ public class GegnerrundeController {
     
     
     private List<SchadenAmSpieler> schadenAmSpielerListe_;
-    private List<GegnerTyp> gegnerListe_;
+    private List<GegnerEinheit> gegnerListe_;
     
     @FXML
     private Button kampfButton;
     @FXML
-    private ListView<GegnerTyp> gegnerListView_;
+    private ListView<GegnerEinheit> gegnerListView_;
     @FXML
     private TableView<SchadenAmSpieler> schadensAnzeigeTableView_;
     @FXML
@@ -46,11 +46,11 @@ public class GegnerrundeController {
     private void initialize() {
         schadenColumn_.setStyle( "-fx-alignment: CENTER;");
         gegnerListView_.getSelectionModel().selectedItemProperty()
-            .addListener(new ChangeListener<GegnerTyp>(){
+            .addListener(new ChangeListener<GegnerEinheit>(){
                 @Override
               public void changed(
-                      ObservableValue<? extends GegnerTyp> observable,
-                      GegnerTyp oldValue, GegnerTyp newValue) {
+                      ObservableValue<? extends GegnerEinheit> observable,
+                      GegnerEinheit oldValue, GegnerEinheit newValue) {
                   updateSchadenAmSpielerTable(newValue);
               }
             }); 
@@ -60,7 +60,7 @@ public class GegnerrundeController {
         trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));  
     }
     
-    public void initializeParameters(List<Spieler> spielerListe, List<GegnerTyp> gegnerListe) {
+    public void initializeParameters(List<Spieler> spielerListe, List<GegnerEinheit> gegnerListe) {
         for(Spieler spieler: spielerListe)
             schadenAmSpielerListe_.add(new SchadenAmSpieler(spieler));
         gegnerListe_ = gegnerListe;
@@ -75,7 +75,7 @@ public class GegnerrundeController {
     
     @FXML
     public void executeFightButton() {
-        GegnerTyp selectedGegner = gegnerListView_.getSelectionModel().getSelectedItem();
+        GegnerEinheit selectedGegner = gegnerListView_.getSelectionModel().getSelectedItem();
         updateSchadenAmSpielerTable(selectedGegner);
     }
     
@@ -86,7 +86,7 @@ public class GegnerrundeController {
      * Lebenspunkteverlust.
      * @param selectedGegner
      */
-    protected void updateSchadenAmSpielerTable(GegnerTyp selectedGegner) {
+    protected void updateSchadenAmSpielerTable(GegnerEinheit selectedGegner) {
         // TODO: Faerbung der Schadensfelder wird noch nicht gemacht und Anzeigen bei deselektierung clearen.
         if(selectedGegner == null) return;
         for(SchadenAmSpieler schadenAmSpieler: schadenAmSpielerListe_){
@@ -106,7 +106,7 @@ public class GegnerrundeController {
      * @param selectedGegner
      * @return
      */
-    private int simulateGeschickWurf(GegnerTyp selectedGegner) {
+    private int simulateGeschickWurf(GegnerEinheit selectedGegner) {
         int geschick = selectedGegner.getGeschick_();
         int wuerfelErgebnis = Dice.rollGeschick(geschick);
         return wuerfelErgebnis;
@@ -121,7 +121,7 @@ public class GegnerrundeController {
      * @param geschickWurf 
      * @return verlorene Lebenspunkte von 'spieler' durch 'selectedGegner'
      */
-    protected int simuliereLebensverlustAmSpieler(GegnerTyp selectedGegner, Spieler spieler, int geschickWurf) {
+    protected int simuliereLebensverlustAmSpieler(GegnerEinheit selectedGegner, Spieler spieler, int geschickWurf) {
         int schaden = selectedGegner.getSchaden_();
         int lebensVerlust = spieler.getLebensverlust(schaden, geschickWurf);
         return lebensVerlust;
