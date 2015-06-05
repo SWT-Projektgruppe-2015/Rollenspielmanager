@@ -9,10 +9,15 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.KampfsimulatorController">
   <tabs>
-    <Tab closable="false" text="Gegner Runde">
+    <Tab closable="false" text="Gegnerrunde">
          <content>
          	<fx:include fx:id="gegnerRunde" source="Gegnerrunde.fxml" />
          </content>
     </Tab>
+      <Tab text="Spielerrunde">
+        <content>
+          <fx:include fx:id="spielerRunde" source="Spielerrunde.fxml" />
+        </content>
+      </Tab>
   </tabs>
 </TabPane>
