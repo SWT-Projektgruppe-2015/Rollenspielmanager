@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.GruppenSubject;
-import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
 import model.GegnerEinheit;
 import model.GegnerTyp;
