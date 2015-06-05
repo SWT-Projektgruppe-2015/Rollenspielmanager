@@ -49,6 +49,25 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Beute beuteTyp_;
+    
+    
+    
+    public Beute getBeuteTyp_() {
+        return beuteTyp_;
+    }
+    
+    
+    
+    public void setBeuteTyp_(Beute beuteTyp_) {
+        if(beuteTyp_ == null) this.beuteTyp_ = new Beute();
+        else if(!beuteTyp_.equals(this.beuteTyp_)) {
+            this.beuteTyp_ = beuteTyp_;
+            updateInDB();
+        }
+    }
+
+
+
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Ausruestung ausruestung_;
@@ -64,15 +83,14 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
         geschick_ = 1;
         maxLebenspunkte_ = 25;
         schaden_ = 0;
+        ausruestung_ = new Ausruestung();
+        beuteTyp_ = new Beute();
     }
     
     
     
     @PrePersist
     public void onCreate() {
-        if (name_ == null) {
-            name_ = "GegnerTyp Nr. 460";
-        }
         if (kreis_ == 0) {
             kreis_ = 1;
         }
@@ -88,12 +106,15 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
         if (schaden_ < 0) {
             schaden_ = 0;
         }
-        if (ausruestung_ == null) {
-            ausruestung_ = new Ausruestung();           
-        }
-        if (getBeute_() == null) {
-            beuteTyp_ = new Beute();
-        }
+//        if (name_ == null) {
+//            name_ = "GegnerNotNull";
+//        }
+//        if (ausruestung_ == null) {
+//            ausruestung_ = new Ausruestung();           
+//        }
+//        if (getBeute_() == null) {
+//            beuteTyp_ = new Beute();
+//        }
     }
     
     
@@ -101,10 +122,6 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     private void updateInDB() {
         if(getID_() != 0)
             dbManipulator_.update(this);
-    }
-    
-    public Beute getBeute_() {
-        return beuteTyp_;
     }
 
     
@@ -134,7 +151,8 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     
     
     public void setName_(String name_) {
-        if(!name_.equals(this.name_)) {
+        if(name_ == null) this.name_ = "GegnerNotNull";
+        else if(!name_.equals(this.name_)) {
             this.name_ = name_;
             updateInDB();
         }
@@ -164,6 +182,7 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     
 
     public void setLevel_(int level_) {
+        if(level_ < 0) this.level_ = Math.abs(level_);
         if(level_ != this.level_) {
             this.level_ = level_;
             updateInDB();
@@ -179,6 +198,7 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     
 
     public void setErfahrung_(int erfahrung_) {
+        if(erfahrung_ <0) this.erfahrung_ = Math.abs(erfahrung_);
         if(erfahrung_ != this.erfahrung_) {
             this.erfahrung_ = erfahrung_;
             updateInDB();
@@ -209,6 +229,7 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     
 
     public void setGeschick_(int geschick_) {
+        if(geschick_ == 0) this.geschick_ = 1;
         if(geschick_ != this.geschick_) {
             this.geschick_ = geschick_;
             updateInDB();
@@ -217,13 +238,14 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
 
     
 
-    public int getLebenspunkte_() {
+    public int getMaxLebenspunkte_() {
         return maxLebenspunkte_;
     }
 
     
 
-    public void setLebenspunkte_(int lebenspunkte_) {
+    public void setMaxLebenspunkte_(int lebenspunkte_) {
+        if (lebenspunkte_ < 0) this.maxLebenspunkte_ = Math.abs(lebenspunkte_);
         if (lebenspunkte_ != this.maxLebenspunkte_) {
             this.maxLebenspunkte_ = lebenspunkte_;
             updateInDB();
@@ -265,7 +287,8 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
 	
 	@Override
 	public void setAusruestung_(Ausruestung ausruestung) {
-	    if (!ausruestung.equals(ausruestung_)) {
+	    if (ausruestung == null) return;
+	    else if (!ausruestung.equals(ausruestung_)) {
             boolean gegnerInDbButAusruestungIsNot = getID_() != 0
                     && ausruestung.getID_() == 0;
             if (gegnerInDbButAusruestungIsNot)
@@ -279,22 +302,24 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     public static boolean detailsAreValid
         (int level, int kreis, int geschick, int staerke, int erfahrung) {
        
+        boolean validation = true;
+        
         if(level > Charakter.MAX_LEVEL || level < 0)
-            return false;
+            validation = false;
         
         if(kreis > Charakter.MAX_KREIS || kreis < 0)
-            return false;
+            validation = false;
         
         if(geschick < 1)
-            return false;
+            validation = false;
         
         if(staerke < 1)
-            return false;
+            validation = false;
         
         if(erfahrung < 1)
-            return false;
+            validation = false;
         
-        return true;
+        return validation;
     }
 
     

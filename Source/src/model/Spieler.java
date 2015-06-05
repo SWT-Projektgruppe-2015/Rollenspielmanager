@@ -40,7 +40,16 @@ public class Spieler extends Charakter implements DBObject {
     private Ausruestung ausruestung_;
     @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "SPIELER_IN_GRUPPE", joinColumns = { @JoinColumn(name = "SPIELER_ID", referencedColumnName = "ID") }, inverseJoinColumns = { @JoinColumn(name = "GRUPPEN_ID", referencedColumnName = "ID") })
-    private Set<Gruppe> membership_;    
+    private Set<Gruppe> membership_;
+    
+    
+    
+    public Spieler() {
+        name_ = "Default";
+        level_ = 0;
+        kreis_ = 1;
+        ausruestung_ = new Ausruestung();
+    }
     
     
     
@@ -152,6 +161,7 @@ public class Spieler extends Charakter implements DBObject {
      *            the ausruestung_ to set
      */
     public void setAusruestung_(Ausruestung ausruestung) {
+        if (ausruestung == null) return;
         if(!ausruestung.equals(ausruestung_)) {
             boolean spielerInDbButAusruestungIsNot = getID_() != 0 && ausruestung.getID_() == 0;
             if(spielerInDbButAusruestungIsNot)
@@ -213,8 +223,6 @@ public class Spieler extends Charakter implements DBObject {
     
     public List<Waffen> getWaffen() {
         Ausruestung ausruestung = getAusruestung_();
-        if (ausruestung == null)
-            return new ArrayList<Waffen>();
         
         List<Waffen> allWaffen = getAusruestung_().getWaffen();
         allWaffen.sort(null);

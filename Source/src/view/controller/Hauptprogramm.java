@@ -1,4 +1,4 @@
-package controller;
+package view.controller;
 
 import javafx.application.Application;
 import javafx.stage.Modality;
@@ -7,13 +7,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+import controller.GruppenSubject;
 import model.GegnerEinheit;
 import model.Spieler;
-import view.controller.CharaktermanagerController;
-import view.controller.GegnerrundeController;
-import view.controller.MainMenuController;
-import view.controller.TeilnehmerAuswahlController;
-import view.controller.KampfsimulatorController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

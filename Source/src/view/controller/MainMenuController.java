@@ -5,7 +5,6 @@ import java.util.List;
 import model.Gruppe;
 import model.Spieler;
 import controller.GruppenSubject;
-import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;

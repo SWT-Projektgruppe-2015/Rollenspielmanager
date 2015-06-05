@@ -32,11 +32,11 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
         erfahrung_ = typ.getErfahrung_();
         staerke_ = typ.getStaerke_();
         geschick_ = typ.getGeschick_();
-        maxLebenspunkte_ = typ.getLebenspunkte_();
+        maxLebenspunkte_ = typ.getMaxLebenspunkte_();
         currentLebenspunkte_ = maxLebenspunkte_;
         schaden_ = typ.getSchaden_();
         ausruestung_ = typ.getAusruestung_();
-        beuteTyp_ = typ.getBeute_();
+        beuteTyp_ = typ.getBeuteTyp_();
         ID_ = ID;
     }
     

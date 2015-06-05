@@ -5,7 +5,6 @@ import java.util.List;
 
 import view.tabledata.GegnerEinheitImKampf;
 import controller.GruppenSubject;
-import controller.Hauptprogramm;
 import controller.interfaces.GruppenObserver;
 import model.GegnerEinheit;
 import model.GegnerTyp;
