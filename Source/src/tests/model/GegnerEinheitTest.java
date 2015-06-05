@@ -28,7 +28,7 @@ public class GegnerEinheitTest {
     
     @Test
     public void einheitIsNotNull() {
-        GegnerEinheit neueEinheit = new GegnerEinheit(normalerGegner,1);
+        GegnerEinheit neueEinheit = GegnerEinheit.createEinheiten(normalerGegner, 1).get(0);
         assertTrue(neueEinheit != null);
         assertTrue(neueEinheit.getID_() == 1);
     }
@@ -38,7 +38,7 @@ public class GegnerEinheitTest {
         List<GegnerEinheit> einheiten = GegnerEinheit.createEinheiten(normalerGegner, 6);
         assertTrue("size is not correct", einheiten.size() == 6);
         assertTrue("created einheit is null", einheiten.get(2) != null);
-        assertTrue("ID was not set correct", einheiten.get(5).getID_() == 5);
+        assertTrue("ID was not set correct", einheiten.get(5).getID_() == 6);
     }
     
     @Test

@@ -19,9 +19,9 @@ public class GegnerEinheit extends Charakter {
     private final GegnerTyp typ_;
     
     
-    public GegnerEinheit(GegnerTyp typ, int ID) {
+    private GegnerEinheit(GegnerTyp typ, int ID) {
         typ_ = typ;
-        name_ = typ.getName_();
+        name_ = typ.getName_() + " " + Integer.toString(ID);
         level_ = typ.getLevel_();
         kreis_ = typ.getKreis_();
         erfahrung_ = typ.getErfahrung_();
@@ -171,8 +171,8 @@ public class GegnerEinheit extends Charakter {
     
     public static final List<GegnerEinheit> createEinheiten(GegnerTyp typ, int anzahl) {
         List<GegnerEinheit> gegner = new ArrayList<GegnerEinheit>();
-        for(int i = 0; i < anzahl; ++i)
-            gegner.add(new GegnerEinheit(typ, i));
+        for(int id = 1; id <= anzahl; ++id)
+            gegner.add(new GegnerEinheit(typ, id));
         return gegner;
     }
 
