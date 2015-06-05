@@ -313,13 +313,16 @@ public class SpielermanagerController extends CharakterTabController{
             return;
 
         String newName = faehigkeitenNameTextField_.getText();
-        selectedFaehigkeit.setName_(newName);
-
-        if (selectedFaehigkeit == entryForNewFaehigkeit_) {
-            selectedSpieler.addFaehigkeit(selectedFaehigkeit);
+        
+        if(!newName.equals(selectedFaehigkeit.getName_())) {
+            selectedFaehigkeit.setName_(newName);
+    
+            if (selectedFaehigkeit == entryForNewFaehigkeit_) {
+                selectedSpieler.addFaehigkeit(selectedFaehigkeit);
+            }
+    
+            updateFaehigkeitenList(selectedFaehigkeit);
         }
-
-        updateFaehigkeitenList(selectedFaehigkeit);
     }
     
     
