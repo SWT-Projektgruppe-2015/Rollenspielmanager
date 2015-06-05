@@ -118,6 +118,17 @@ public class Hauptprogramm extends Application {
     
     
     
+    public void openWaffenwechsel() {
+        try {
+            openNewWindow("/view/Waffenwechsel.fxml", "Waffenwechsel");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
     public void openHaendler() {
         try {
             openNewWindow("/view/Haendler.fxml", "H" + UMLAUT_SMALL_AE +"ndler");
@@ -195,7 +206,7 @@ public class Hauptprogramm extends Application {
             FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
             Parent page = loader.load();
             KampfsimulatorController controller = loader.getController();
-            controller.initializeAllTabs(spieler, gegnerEinheiten);
+            controller.initializeAllTabs(this, spieler, gegnerEinheiten);
             
             kampfStage.setTitle("Kampf");
             kampfStage.setScene(new Scene(page));

@@ -7,14 +7,25 @@ import view.tabledata.SpielerMitWaffe;
 import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Spieler;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class SpielerrundeController {
     @FXML
@@ -32,8 +43,13 @@ public class SpielerrundeController {
     private TreeTableColumn<SharedGegnerTableEntry, String> gegnerDealtSchadenColumn_;
     @FXML
     private TreeTableColumn<SharedGegnerTableEntry, String> gegnerLebenspunkteColumn_;
+   
+    private Hauptprogramm main_;
     
-    public void initialize(List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
+    
+    
+    public void initialize(Hauptprogramm main, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
+        main_ = main;
         initializeSpielerTableView(allSpieler);      
         setCellValueFactoriesForSpieler();
         
@@ -41,12 +57,55 @@ public class SpielerrundeController {
         setCellValueFactoriesForGegner();        
     }
 
+    
+    
     private void initializeSpielerTableView(List<Spieler> allSpieler) {
+        waffenNameColumn_.setCellFactory(
+            new Callback<TableColumn<SpielerMitWaffe, String>, TableCell<SpielerMitWaffe, String>>() {
+                @Override
+                public TableCell<SpielerMitWaffe,String> call(TableColumn<SpielerMitWaffe,String> tableColumn)  {
+                    TableCell<SpielerMitWaffe,String> cell = new TableCell<SpielerMitWaffe, String>()   {
+                        @Override
+                        protected void updateItem(String item, boolean empty)   {
+                            super.updateItem(item, empty);
+                            setText(item);
+                            
+                            if(!empty)  {
+                                SpielerMitWaffe currentSpieler = getTableView().getItems().get(getTableRow().getIndex());
+                                setTooltip(new Tooltip("Schaden: " + Integer.toString(currentSpieler.getWaffe().getWaffenSchaden_())));
+                            }
+                        }
+                    };
+                    
+                    
+                    
+                    cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            if (event.getClickCount() > 1) {
+                                System.out.println("double clicked!");
+                                TableCell c = (TableCell) event.getSource();
+                                System.out.println("Cell text: " + c.getText());
+                                
+                                
+                                main_.openWaffenwechsel();
+                            }
+                        }
+                    });
+                    
+                    
+                    
+                    return cell;
+                }
+            }
+        );
         for(Spieler spieler : allSpieler) {
             spielerTableView_.getItems().add(new SpielerMitWaffe(spieler));
         }
     }
 
+    
+    
     private void initializeGegnerTreeTableView(List<GegnerEinheit> allGegner) {
         final TreeItem<SharedGegnerTableEntry> dummyRoot = new TreeItem<>(new GegnerTyp());
         dummyRoot.setExpanded(true);

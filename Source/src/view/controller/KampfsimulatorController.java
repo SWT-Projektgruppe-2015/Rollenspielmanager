@@ -15,9 +15,9 @@ public class KampfsimulatorController {
     private List<Spieler> allSpieler_;
     private List<GegnerEinheit> allGegner_;
     
-    public void initializeAllTabs(List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
+    public void initializeAllTabs(Hauptprogramm main, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
         gegnerRundeController.initializeParameters(allSpieler, allGegner);
-        spielerRundeController.initialize(allSpieler, allGegner);
+        spielerRundeController.initialize(main, allSpieler, allGegner);
         allSpieler_ = allSpieler;
         allGegner_ = allGegner;
     }
