@@ -5,7 +5,7 @@ import java.util.Random;
 
 
 /**
- * ZustÃ¤ndig fÃ¼r das Simulieren von WÃ¼rfelwÃ¼rfen.
+ * Zuständig für das Simulieren von Würfelwürfen.
  * 
  * @author Britta Heymann
  *

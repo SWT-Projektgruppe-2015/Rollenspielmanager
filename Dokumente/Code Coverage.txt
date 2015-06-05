@@ -1,0 +1,11 @@
+--Installation---
+Unter Eclipse:
+-> Help
+-> Eclipse Marketplace...
+-> search & install: EclEmma 
+
+--Configuration--
+http://www.eclemma.org/userdoc/preferences.html
+- window -> Preferences -> Java -> Code Coverage
+- Unter Coverage Runtime: Excludes: *write here the excluded classes*
+e.g. copy paste: [view.controller/GegnerrundeController:controller.interfaces/DBManipulator:controller/Hauptprogramm]
