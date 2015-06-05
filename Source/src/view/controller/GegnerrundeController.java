@@ -23,7 +23,6 @@ public class GegnerrundeController {
     
     private List<SchadenAmSpieler> schadenAmSpielerListe_;
     private List<GegnerTyp> gegnerListe_;
-//    private ObservableList<GegnerTyp> gegnerListe_;
     
     @FXML
     private Button kampfButton;
@@ -55,13 +54,7 @@ public class GegnerrundeController {
                   updateSchadenAmSpielerTable(newValue);
               }
             }); 
-        
-//        spielerNameColumn_.setCellValueFactory(cellData -> cellData.getValue().getNameProperty());
-//        schadenColumn_.setCellValueFactory(cellData -> cellData.getValue().getSchadenProperty());
-//        trefferZoneColumn_.setCellValueFactory(cellData -> cellData.getValue().getZoneProperty());
-        
-        
-//        schadensAnzeigeTableView_.setItems(schadenAmSpielerListe_);
+
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
         trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));  
@@ -76,58 +69,6 @@ public class GegnerrundeController {
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
         trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));
-//                new Callback<CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>>, ObservableValue<ObjectProperty<Angriff>>>() {
-//                    @Override public ObservableValue<ObjectProperty<Angriff>> call(CellDataFeatures<SchadenAmSpieler, ObjectProperty<Angriff>> c) {
-//                        return new SimpleObjectProperty(c.getValue().getTestBedName()));
-//                    }
-//                }
-                
-//          spielerNameColumn_.setCellValueFactory(cellData -> cellData.getValue().getName_Property());
-//          trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Integer>("zone_"));
-//          trefferZoneColumn_.setCellValueFactory(cellData -> cellData.getValue().getZonenProperty_());
-//          trefferZoneColumn_.setCellFactory(column -> {
-//              return new TableCell<SchadenAmSpieler, Integer>() {
-//                @Override
-//                protected void updateItem(Integer item, boolean empty){
-//                    super.updateItem(item, empty);
-//                    if (item == null || empty) {
-//                        setText(null);
-//                        setStyle("   ");
-//                    } else {
-////                        setText(item);
-////                        setTextFill()
-//                        // Format date.
-////                        setText(myDateFormatter.format(item));
-//
-//                        // Style all dates in March with a different color.
-////                        if (item.getMonth() == Month.MARCH) {
-////                            setTextFill(Color.CHOCOLATE);
-//                            setStyle("-fx-background-color: yellow");
-////                        } else {
-////                            setTextFill(Color.BLACK);
-////                            setStyle("   ");
-////                        }
-//                    }
-//                }
-//            };
-//        });
-        
-//        trefferZoneColumn_.setCellFactory(new Callback<TableColumn<SchadenAmSpieler, Integer>, TableCell<SchadenAmSpieler, Integer>>() {
-//            @Override
-//            public TableCell<SchadenAmSpieler, Integer> call(TableColumn<SchadenAmSpieler, Integer> p) {
-//
-//
-//             return new TableCell<SchadenAmSpieler, Integer>() {
-//
-//            @Override
-//            public void updateItem(Integer item, boolean empty) {
-//                super.updateItem(item, empty);
-//                if (!isEmpty()) {
-//                    this.setStyle("-fx-background-color:red");
-//                    setText(item.toString());
-//                }
-//            }
-//        };
     }
     
     
