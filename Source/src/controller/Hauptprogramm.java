@@ -13,6 +13,7 @@ import view.controller.CharaktermanagerController;
 import view.controller.GegnerrundeController;
 import view.controller.MainMenuController;
 import view.controller.TeilnehmerAuswahlController;
+import view.controller.KampfsimulatorController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -195,9 +196,9 @@ public class Hauptprogramm extends Application {
 
     public void startKampf(List<Spieler> spieler, List<GegnerEinheit> gegnerEinheiten) {
         try {
-            FXMLLoader loader = getLoaderForXML("/view/Gegnerrunde.fxml");
+            FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
             Parent page = loader.load();
-            GegnerrundeController controller = loader.getController();
+            GegnerrundeController controller = ((KampfsimulatorController) loader.getController()).getGegnerrundeController();
             controller.initializeParameters(spieler, gegnerEinheiten);
             
             kampfStage.setTitle("Kampf");
