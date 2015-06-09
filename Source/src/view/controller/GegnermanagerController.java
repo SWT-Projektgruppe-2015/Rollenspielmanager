@@ -33,6 +33,8 @@ public class GegnermanagerController extends CharakterTabController {
     private TextField staerkeTextField_;
     @FXML
     private TextField erfahrungsTextField_;
+    @FXML
+    private TextField lebenspunkteTextField_;
 
     @FXML
     private TextField gegnerDefRTextField_;
@@ -121,6 +123,7 @@ public class GegnermanagerController extends CharakterTabController {
             int newGeschick = Integer.parseInt(geschickTextField_.getText());
             int newStaerke = Integer.parseInt(staerkeTextField_.getText());
             int newErfahrung = Integer.parseInt(erfahrungsTextField_.getText());
+            int newLebenspunkte = Integer.parseInt(lebenspunkteTextField_.getText());
       
             if(GegnerTyp.detailsAreValid(newLevel, newKreis, newGeschick, newStaerke, newErfahrung)){
                 selectedGegner.setName_(newName);
@@ -129,6 +132,7 @@ public class GegnermanagerController extends CharakterTabController {
                 selectedGegner.setGeschick_(newGeschick);
                 selectedGegner.setStaerke_(newStaerke);
                 selectedGegner.setErfahrung_(newErfahrung);
+                selectedGegner.setMaxLebenspunkte_(newLebenspunkte);
             }
         }
         catch (NumberFormatException e) {
@@ -195,6 +199,7 @@ public class GegnermanagerController extends CharakterTabController {
             staerkeTextField_.setText(Integer.toString(gegnerTyp.getStaerke_()));
             geschickTextField_.setText(Integer.toString(gegnerTyp.getGeschick_()));
             erfahrungsTextField_.setText(Integer.toString(gegnerTyp.getErfahrung_()));
+            lebenspunkteTextField_.setText(Integer.toString(gegnerTyp.getMaxLebenspunkte_()));
             
             gegnerDefRTextField_.setText(Integer.toString(gegnerTyp.getDefR()));
             gegnerDefHTextField_.setText(Integer.toString(gegnerTyp.getDefH()));
@@ -212,6 +217,7 @@ public class GegnermanagerController extends CharakterTabController {
 
         staerkeTextField_.setText("");
         geschickTextField_.setText("");
+        lebenspunkteTextField_.setText("");
         
         gegnerDefRTextField_.setText("");
         gegnerDefHTextField_.setText("");
