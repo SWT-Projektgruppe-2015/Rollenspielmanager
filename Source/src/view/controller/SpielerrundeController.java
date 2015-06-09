@@ -3,7 +3,6 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import view.tabledata.GegnerEinheitImKampf;
 import view.tabledata.SharedGegnerTableEntry;
 import view.tabledata.SpielerMitWaffe;
 import model.Charakter;
@@ -19,12 +18,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -67,45 +63,51 @@ public class SpielerrundeController {
                 new EventHandler<TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String>>() {
                     @Override
                     public void handle(TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String> t) {
-                        TreeItem changedItem = gegnerTreeTableView_.getSelectionModel().getSelectedItem();
-                        SharedGegnerTableEntry changedGegner = gegnerTreeTableView_.getSelectionModel().getSelectedItem().getValue();
-                        if(changedItem == null)    {
-                            return;
-                        }
-                        boolean isGegnerTyp = changedGegner instanceof GegnerTyp;
-                        if(isGegnerTyp)    {
-//                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
-//                            t.getRowValue().getParent().getChildren().remove(changedItem);
-                            return;
-                        }
-                        String lebenspunkte = t.getNewValue();
-                        if(lebenspunkte == null)    {
-                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
-                            t.getRowValue().getParent().getChildren().remove(changedItem);
-                            return;
-                        }
-                        if(lebenspunkte.split("/").length != 2) {
-                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
-                            t.getRowValue().getParent().getChildren().remove(changedItem);
-                            return;
-                        }
-                        try {
-                            int currentLebenspunkte = Integer.parseInt(t.getNewValue().split("/")[0]);
-                            if(currentLebenspunkte < 0) {
-                                removeFromKampf();
-                            }
-                            ((GegnerEinheit)changedGegner).setCurrentLebenspunkte_(currentLebenspunkte);
-                        }
-                        catch (NumberFormatException e) {
-                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
-                            t.getRowValue().getParent().getChildren().remove(changedItem);
-                            return;
-                        }
-                        t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
-                        t.getRowValue().getParent().getChildren().remove(changedItem);
+                        changeLebenspunkte(t);
                     }
+
                 }
             );
+    }
+    
+    
+    private void changeLebenspunkte(
+            TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String> t) {
+        TreeItem<SharedGegnerTableEntry> changedItem = gegnerTreeTableView_.getSelectionModel().getSelectedItem();
+        SharedGegnerTableEntry changedGegner = gegnerTreeTableView_.getSelectionModel().getSelectedItem().getValue();
+        if(changedItem == null)    {
+            return;
+        }
+        boolean isGegnerTyp = changedGegner instanceof GegnerTyp;
+        if(isGegnerTyp)    {
+            return;
+        }
+        String lebenspunkte = t.getNewValue();
+        boolean hasCorrectFormat = lebenspunkte.split("/").length != 2;
+        if(lebenspunkte == null || hasCorrectFormat)    {
+            refresh(changedItem, changedGegner);
+            return;
+        }
+        try {
+            int currentLebenspunkte = Integer.parseInt(t.getNewValue().split("/")[0]);
+            if(currentLebenspunkte < 0) {
+                removeFromKampf();
+            }
+            ((GegnerEinheit)changedGegner).setCurrentLebenspunkte_(currentLebenspunkte);
+        }
+        catch (NumberFormatException e) {
+        }
+        finally {
+            refresh(changedItem, changedGegner);
+        }
+    }
+
+
+    private void refresh(
+            TreeItem<SharedGegnerTableEntry> changedItem,
+            SharedGegnerTableEntry changedGegner) {
+        changedItem.getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
+        changedItem.getParent().getChildren().remove(changedItem);
     }
     
     
@@ -149,7 +151,7 @@ public class SpielerrundeController {
                 SharedGegnerTableEntry entry = gegner.getValue();
                 GegnerEinheit einheit = (GegnerEinheit) entry;
                 einheit.setDealtSchaden_(schadenDealt(einheit, spielerMitWaffe.getWaffe(), wuerfelErgebnis, schadenModifier));
-                einheitenList.add(new TreeItem(einheit));
+                einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
             }
             
             gegnerTyp.getChildren().clear();
