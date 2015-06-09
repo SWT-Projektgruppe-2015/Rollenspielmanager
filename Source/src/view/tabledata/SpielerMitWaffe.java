@@ -48,6 +48,12 @@ public class SpielerMitWaffe implements Comparable<SpielerMitWaffe> {
     public Waffen getWaffe() {
         return currentWaffe_;
     }
+    
+    
+    
+    public boolean isArmed() {
+        return currentWaffe_.getID_() > 0;
+    }
 
     @Override
     public int compareTo(SpielerMitWaffe o) {

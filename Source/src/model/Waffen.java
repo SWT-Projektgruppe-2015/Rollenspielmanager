@@ -20,7 +20,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     @Id
     @GeneratedValue
     @Column(name = "ID")
-    public int ID_;
+    private int ID_;
     @Column(name = "EFFEKT_TYP")
     private int effektTyp_;
     @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Deus Ex Machina'")
@@ -47,7 +47,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
 
 
     private void updateInDB() {
-        if(ID_ != 0)
+        if(getID_() != 0)
             dbManipulator_.add(this);
     }
     
@@ -110,8 +110,15 @@ public class Waffen implements DBObject, Comparable<Waffen> {
         }
     }
 
+    
+    public int getID_() {
+        return ID_;
+    }
+
+
+
     public void deleteFromDB() {
-        if(ID_ != 0)
+        if(getID_() != 0)
             dbManipulator_.delete(this);
     }
     

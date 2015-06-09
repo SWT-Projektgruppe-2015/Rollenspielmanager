@@ -74,7 +74,10 @@ public class SpielerrundeController {
                             
                             if(!empty)  {
                                 SpielerMitWaffe currentSpieler = getTableView().getItems().get(getTableRow().getIndex());
-                                setTooltip(new Tooltip("Schaden: " + Integer.toString(currentSpieler.getWaffe().getWaffenSchaden_())));
+                                if(currentSpieler.isArmed())
+                                    setTooltip(new Tooltip("Schaden: " + Integer.toString(currentSpieler.getWaffe().getWaffenSchaden_())));
+                                else
+                                    setTooltip(new Tooltip("Spieler hat keine Waffe"));
                             }
                         }
                     };
@@ -86,7 +89,8 @@ public class SpielerrundeController {
                                 TableCell<SpielerMitWaffe,String> c = 
                                         (TableCell<SpielerMitWaffe, String>) event.getSource();
                                 SpielerMitWaffe currentSpieler = (SpielerMitWaffe) c.getTableView().getItems().get(c.getTableRow().getIndex());
-                                main_.openWaffenwechsel(controller, currentSpieler);
+                                if(currentSpieler.isArmed())
+                                    main_.openWaffenwechsel(controller, currentSpieler);
                             }
                         }
                     });
