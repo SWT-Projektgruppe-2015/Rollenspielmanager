@@ -83,23 +83,22 @@ public class SpielerrundeController {
             return;
         }
         String lebenspunkte = t.getNewValue();
-        boolean hasCorrectFormat = lebenspunkte.split("/").length != 2;
-        if(lebenspunkte == null || hasCorrectFormat)    {
+        boolean hasCorrectFormat = lebenspunkte.split("/").length == 2;
+        if(lebenspunkte == null || !hasCorrectFormat)    {
             refresh(changedItem, changedGegner);
             return;
         }
         try {
             int currentLebenspunkte = Integer.parseInt(t.getNewValue().split("/")[0]);
-            if(currentLebenspunkte < 0) {
+            if(currentLebenspunkte <= 0) {
                 removeFromKampf();
+                return;
             }
             ((GegnerEinheit)changedGegner).setCurrentLebenspunkte_(currentLebenspunkte);
         }
         catch (NumberFormatException e) {
         }
-        finally {
-            refresh(changedItem, changedGegner);
-        }
+        refresh(changedItem, changedGegner); 
     }
 
 
