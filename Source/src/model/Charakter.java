@@ -4,7 +4,7 @@ public abstract class Charakter implements Comparable<Charakter> {
     public static final int MAX_KREIS = 4;
     public static final int MAX_LEVEL = 12;
     
-    public static final int LOWERBOUND_DIREKT2 = 35;
+    public static final int LOWERBOUND_KRITISCH = 35;
     public static final int LOWERBOUND_DIREKT = 25;
     public static final int LOWERBOUND_HELM = 15;
     public static final int LOWERBOUND_RUESTUNG = 4;

@@ -1,31 +1,29 @@
 package view.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import view.tabledata.SchadenAmSpieler;
 import view.tabledata.SharedGegnerTableEntry;
 import view.tabledata.SpielerMitWaffe;
+import model.Charakter;
 import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Spieler;
 import model.Waffen;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class SpielerrundeController {
@@ -56,6 +54,58 @@ public class SpielerrundeController {
         
         initializeGegnerTreeTableView(allGegner);          
         setCellValueFactoriesForGegner();        
+    }
+    
+    
+    
+    @FXML
+    private void onHelmButtonClick() {
+        dealSchaden(Charakter.LOWERBOUND_HELM);
+    }
+
+    @FXML
+    private void onRuestungButtonClick() {
+        dealSchaden(Charakter.LOWERBOUND_RUESTUNG);
+    }
+    
+    @FXML
+    private void onDirektButtonClick() {
+        dealSchaden(Charakter.LOWERBOUND_DIREKT);
+    }
+    
+    @FXML
+    private void onKritischButtonClick() {
+        dealSchaden(Charakter.LOWERBOUND_KRITISCH);
+    }
+
+
+    private void dealSchaden(int wuerfelErgebnis) {
+        int selectedIndex = spielerTableView_.getSelectionModel().getSelectedIndex();
+        SpielerMitWaffe selectedSpieler = spielerTableView_.getItems().get(selectedIndex);
+        
+        updateSchadenAmGegnerTable(selectedSpieler, wuerfelErgebnis);
+    }
+    
+    
+    private void updateSchadenAmGegnerTable(SpielerMitWaffe spielerMitWaffe, int wuerfelwurf) {
+        for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
+            List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
+            for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
+                SharedGegnerTableEntry entry = gegner.getValue();
+                GegnerEinheit einheit = (GegnerEinheit) entry;
+                einheit.setDealtSchaden_(schadenDealt(einheit, spielerMitWaffe.getWaffe(), wuerfelwurf));
+                einheitenList.add(new TreeItem(einheit));
+            }
+            
+            gegnerTyp.getChildren().clear();
+            for(TreeItem<SharedGegnerTableEntry> item : einheitenList) {
+                gegnerTyp.getChildren().add(item);
+            }
+        }
+    }
+    
+    private int schadenDealt(GegnerEinheit gegner, Waffen waffe, int wuerfelErgebnis) {
+        return gegner.getLebensverlust(waffe.getWaffenSchaden_(), wuerfelErgebnis);
     }
 
     
@@ -113,7 +163,7 @@ public class SpielerrundeController {
         dummyRoot.setExpanded(true);
         gegnerTreeTableView_.setRoot(dummyRoot);
         gegnerTreeTableView_.showRootProperty().set(false);
-        
+
         if(!allGegner.isEmpty()) {
             addGegnerToTable(allGegner, dummyRoot);
         }
