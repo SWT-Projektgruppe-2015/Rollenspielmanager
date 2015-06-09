@@ -3,7 +3,7 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import view.tabledata.SchadenAmSpieler;
+import view.tabledata.GegnerEinheitImKampf;
 import view.tabledata.SharedGegnerTableEntry;
 import view.tabledata.SpielerMitWaffe;
 import model.Charakter;
@@ -16,12 +16,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
@@ -42,18 +46,66 @@ public class SpielerrundeController {
     private TreeTableColumn<SharedGegnerTableEntry, String> gegnerDealtSchadenColumn_;
     @FXML
     private TreeTableColumn<SharedGegnerTableEntry, String> gegnerLebenspunkteColumn_;
-   
+    @FXML
+    private TextField schadenModifierTextField_;
+    
+    
+    private List<GegnerEinheit> removedGegnerEinheiten_;
     private Hauptprogramm main_;
     
     
     
     public void initialize(Hauptprogramm main, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
         main_ = main;
+        removedGegnerEinheiten_ = new ArrayList<GegnerEinheit>();
         initializeSpielerTableView(allSpieler);      
         setCellValueFactoriesForSpieler();
-        
         initializeGegnerTreeTableView(allGegner);          
-        setCellValueFactoriesForGegner();        
+        setCellValueFactoriesForGegner();    
+        gegnerLebenspunkteColumn_.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
+        gegnerLebenspunkteColumn_.setOnEditCommit(
+                new EventHandler<TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String>>() {
+                    @Override
+                    public void handle(TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String> t) {
+                        TreeItem changedItem = gegnerTreeTableView_.getSelectionModel().getSelectedItem();
+                        SharedGegnerTableEntry changedGegner = gegnerTreeTableView_.getSelectionModel().getSelectedItem().getValue();
+                        if(changedItem == null)    {
+                            return;
+                        }
+                        boolean isGegnerTyp = changedGegner instanceof GegnerTyp;
+                        if(isGegnerTyp)    {
+//                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
+//                            t.getRowValue().getParent().getChildren().remove(changedItem);
+                            return;
+                        }
+                        String lebenspunkte = t.getNewValue();
+                        if(lebenspunkte == null)    {
+                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
+                            t.getRowValue().getParent().getChildren().remove(changedItem);
+                            return;
+                        }
+                        if(lebenspunkte.split("/").length != 2) {
+                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
+                            t.getRowValue().getParent().getChildren().remove(changedItem);
+                            return;
+                        }
+                        try {
+                            int currentLebenspunkte = Integer.parseInt(t.getNewValue().split("/")[0]);
+                            if(currentLebenspunkte < 0) {
+                                removeFromKampf();
+                            }
+                            ((GegnerEinheit)changedGegner).setCurrentLebenspunkte_(currentLebenspunkte);
+                        }
+                        catch (NumberFormatException e) {
+                            t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
+                            t.getRowValue().getParent().getChildren().remove(changedItem);
+                            return;
+                        }
+                        t.getRowValue().getParent().getChildren().add(new TreeItem<SharedGegnerTableEntry>(changedGegner));
+                        t.getRowValue().getParent().getChildren().remove(changedItem);
+                    }
+                }
+            );
     }
     
     
@@ -70,30 +122,33 @@ public class SpielerrundeController {
     
     @FXML
     private void onDirektButtonClick() {
-        dealSchaden(Charakter.LOWERBOUND_DIREKT);
-    }
-    
-    @FXML
-    private void onKritischButtonClick() {
-        dealSchaden(Charakter.LOWERBOUND_KRITISCH);
+        int schadenModifier = Integer.parseInt(schadenModifierTextField_.getText());
+        dealSchaden(Charakter.LOWERBOUND_DIREKT, schadenModifier);
+        schadenModifierTextField_.setText("0");
     }
 
 
     private void dealSchaden(int wuerfelErgebnis) {
+        dealSchaden(wuerfelErgebnis, 0);
+    }
+
+
+
+    private void dealSchaden(int wuerfelErgebnis, int schadenModifier) {
         int selectedIndex = spielerTableView_.getSelectionModel().getSelectedIndex();
         SpielerMitWaffe selectedSpieler = spielerTableView_.getItems().get(selectedIndex);
         
-        updateSchadenAmGegnerTable(selectedSpieler, wuerfelErgebnis);
+        updateSchadenAmGegnerTable(selectedSpieler, wuerfelErgebnis, schadenModifier);
     }
     
     
-    private void updateSchadenAmGegnerTable(SpielerMitWaffe spielerMitWaffe, int wuerfelwurf) {
+    private void updateSchadenAmGegnerTable(SpielerMitWaffe spielerMitWaffe, int wuerfelErgebnis, int schadenModifier) {
         for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
             List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
             for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
                 SharedGegnerTableEntry entry = gegner.getValue();
                 GegnerEinheit einheit = (GegnerEinheit) entry;
-                einheit.setDealtSchaden_(schadenDealt(einheit, spielerMitWaffe.getWaffe(), wuerfelwurf));
+                einheit.setDealtSchaden_(schadenDealt(einheit, spielerMitWaffe.getWaffe(), wuerfelErgebnis, schadenModifier));
                 einheitenList.add(new TreeItem(einheit));
             }
             
@@ -104,8 +159,8 @@ public class SpielerrundeController {
         }
     }
     
-    private int schadenDealt(GegnerEinheit gegner, Waffen waffe, int wuerfelErgebnis) {
-        return gegner.getLebensverlust(waffe.getWaffenSchaden_(), wuerfelErgebnis);
+    private int schadenDealt(GegnerEinheit gegner, Waffen waffe, int wuerfelErgebnis, int schadenModifier) {
+        return gegner.getLebensverlust(waffe.getWaffenSchaden_(), wuerfelErgebnis, schadenModifier);
     }
 
     
@@ -229,4 +284,34 @@ public class SpielerrundeController {
         }
     }
     
+    
+    @FXML
+    private void deleteFromKampf()  {
+        removeGegnerFromTable(false);
+    }
+    
+    
+    
+    @FXML
+    private void removeFromKampf()  {
+        removeGegnerFromTable(true);
+    }
+
+
+
+    private void removeGegnerFromTable(boolean stillLootable) {
+        TreeItem<SharedGegnerTableEntry> selectedItem = gegnerTreeTableView_.getSelectionModel().getSelectedItem();
+        if(selectedItem == null)    {
+            return;
+        }
+        boolean hasChildren = !selectedItem.isLeaf(); 
+        boolean isGegnerTyp = selectedItem.getValue() instanceof GegnerTyp;
+        if(isGegnerTyp && hasChildren)    {
+            return;
+        }
+        if(!isGegnerTyp && stillLootable)  {
+            removedGegnerEinheiten_.add((GegnerEinheit)selectedItem.getValue());
+        }
+        selectedItem.getParent().getChildren().remove(selectedItem);
+    }
 }
