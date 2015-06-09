@@ -8,7 +8,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.HaendlerController">
   <tabs>
-    <Tab text="Einfache Gegenstände">
+    <Tab closable="false" text="Einfache Gegenstände">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="200.0">
                <children>
@@ -16,7 +16,7 @@
                      <children>
                         <TextField prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." />
                         <Label text="Kategorien:" />
-                        <TreeView prefHeight="219.0" prefWidth="170.0" />
+                        <TreeView fx:id="gegenstandKategorieTreeView_" prefHeight="219.0" prefWidth="170.0" />
                      </children>
                   </VBox>
                   <VBox layoutX="234.0" layoutY="16.0" prefHeight="258.0" prefWidth="187.0">
@@ -30,12 +30,14 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
                         <TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" />
+                        <Label text="Kategorie:" />
+                        <TextField fx:id="gegenstandKategorieTextField_" onAction="#changeGegenstand" />
                         <HBox prefHeight="26.0" prefWidth="218.0">
                            <children>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preis:   " />
                               <TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="56.0" />
                               <Label text="   Traglast:   " />
-                              <TextField prefHeight="25.0" prefWidth="60.0" />
+                              <TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="60.0" />
                            </children>
                         </HBox>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:" />
@@ -51,7 +53,7 @@
                </children></AnchorPane>
       </content>
     </Tab>
-      <Tab text="Rüstung / Waffen">
+      <Tab closable="false" text="Rüstung / Waffen">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
@@ -72,21 +74,21 @@
                   <VBox layoutX="440.0" layoutY="29.0" prefHeight="244.0" prefWidth="214.0">
                      <children>
                         <Label text="Name:" />
-                        <TextField />
+                        <TextField fx:id="ausruestungNameTextField_" />
                         <HBox prefHeight="27.0" prefWidth="217.0">
                            <children>
                               <Label text="Preis:     " />
-                              <TextField prefHeight="25.0" prefWidth="36.0" />
+                              <TextField fx:id="ausruestungKostenTextField_" prefHeight="25.0" prefWidth="36.0" />
                               <Label text="  Traglast:   " />
-                              <TextField prefHeight="25.0" prefWidth="57.0" />
+                              <TextField fx:id="ausruestungTraglastTextField_" prefHeight="25.0" prefWidth="57.0" />
                            </children>
                         </HBox>
                         <HBox prefHeight="25.0" prefWidth="217.0">
                            <children>
                               <Label text="Stärke:   " />
-                              <TextField prefHeight="25.0" prefWidth="35.0" />
+                              <TextField fx:id="ausruestungStaerkeTextField_" prefHeight="25.0" prefWidth="35.0" />
                               <Label text="   Wert:       " />
-                              <TextField prefHeight="25.0" prefWidth="57.0" />
+                              <TextField fx:id="ausruestungWertTextField_" prefHeight="25.0" prefWidth="57.0" />
                            </children>
                         </HBox>
                         <Label text="Beschreibung:" />

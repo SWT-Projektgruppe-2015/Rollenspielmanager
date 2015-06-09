@@ -1,36 +1,94 @@
 package view.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import view.tabledata.SharedGegnerTableEntry;
 import model.EinfacherGegenstand;
+import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.layout.StackPane;
 
 public class HaendlerController {
     EinfacherGegenstand entryForNewGegenstand_;
     List<EinfacherGegenstand> allGegenstaende_;
+    List<String> allKategorien_;
     
     @FXML
     private TextField searchTextField_;
     @FXML
     private ListView<EinfacherGegenstand> gegenstandListView_;
+    @FXML
+    private TreeView<String> gegenstandKategorieTreeView_;
     
     @FXML
     private TextField gegenstandNameTextField_;
     @FXML
     private TextField gegenstandKostenTextField_;
     @FXML
+    private TextField gegenstandTraglastTextField_;   
+    @FXML
+    private TextField gegenstandKategorieTextField_;
+    @FXML
     private TextArea gegenstandBeschreibungTextField_;
+    
+    @FXML
+    private TextField ausruestungNameTextField_;
+    @FXML
+    private TextField ausruestungKostenTextField_;
+    @FXML
+    private TextField ausruestungTraglastTextField_;    
+    @FXML
+    private TextArea ausruestungBeschreibungTextField_;    
+    @FXML
+    private TextField ausruestungStaerkeTextField_;
+    @FXML
+    private TextField ausruestungWertTextField_;
+    
+    
     
     @FXML
     void initialize() {
         allGegenstaende_ = EinfacherGegenstand.getAll();
+        allKategorien_ = EinfacherGegenstand.getKategorien(allGegenstaende_);
         entryForNewGegenstand_ = new EinfacherGegenstand();
         entryForNewGegenstand_.setName_("Neuer Gegenstand");
+        
+        initializeKategorienTreeView();
+        initializeGegenstandListView();
+    }
+
+
+
+    private void initializeKategorienTreeView() {
+        TreeItem<String> rootItem = new TreeItem<String>("root");
+        rootItem.setExpanded(true);
+        gegenstandKategorieTreeView_.setRoot(rootItem);
+        gegenstandKategorieTreeView_.showRootProperty().set(false);
+        addRootCategories(allKategorien_);
+    }
+
+
+
+    private void addRootCategories(List<String> kategorien_) {
+        TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
+//        rootItem.getChildren().rem
+        for(String kategorie : kategorien_){
+            TreeItem<String> item = new TreeItem<String>(kategorie);
+            rootItem.getChildren().add(item);
+        }
+    }
+
+
+
+    private void initializeGegenstandListView() {
         gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
         gegenstandListView_.getItems().addAll(allGegenstaende_);
         
@@ -57,11 +115,15 @@ public class HaendlerController {
             String newName = gegenstandNameTextField_.getText();
             int newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
             String newBeschreibung = gegenstandBeschreibungTextField_.getText();
+            int newTraglast = Integer.parseInt(gegenstandTraglastTextField_.getText());
+            String newKategorie = gegenstandKategorieTextField_.getText();
 
             if (newKosten >= 0 && !newName.isEmpty()) {
                 selectedEinfacherGegenstand.setName_(newName);
                 selectedEinfacherGegenstand.setKosten_(newKosten);
                 selectedEinfacherGegenstand.setBeschreibung_(newBeschreibung);
+                selectedEinfacherGegenstand.setTraglast_(newTraglast);
+                selectedEinfacherGegenstand.setKategorie_(newKategorie);
 
                 updateGegenstandList(selectedEinfacherGegenstand);
             }
@@ -83,6 +145,7 @@ public class HaendlerController {
             gegenstandToDelete.deleteFromDB();
         }
     }
+    
     
     
     private void updateGegenstandList(EinfacherGegenstand changedEinfacherGegenstand) {
@@ -135,9 +198,11 @@ public class HaendlerController {
             showEmptyGegenstandDetails();
         }
         else {
-            gegenstandNameTextField_.setText(gegenstand == entryForNewGegenstand_ ? "" : gegenstand.getName_());
+            gegenstandNameTextField_.setText(gegenstand.getName_());
             gegenstandKostenTextField_.setText(Integer.toString(gegenstand.getKosten_()));
             gegenstandBeschreibungTextField_.setText(gegenstand.getBeschreibung_());
+            gegenstandTraglastTextField_.setText(Integer.toString(gegenstand.getTraglast_()));
+            gegenstandKategorieTextField_.setText(gegenstand.getKategorie_());
         }
     }
 
