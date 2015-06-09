@@ -29,10 +29,40 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
     private String beschreibung_;
     @Column(name = "KOSTEN", columnDefinition = "INTEGER DEFAULT '0' CHECK(KOSTEN >= 0)")
     private int kosten_;
+    @Column(name = "TRAGLAST", columnDefinition = "INTEGER DEFAULT '0' CHECK(KOSTEN >= 0)")
+    private int traglast_;
+    @Column(name = "STAREKE", columnDefinition = "INTEGER DEFAULT '0' CHECK(KOSTEN >= 0)")
+    private int staerke_;
+    @Column(name = "WERT", columnDefinition = "INTEGER DEFAULT '0' CHECK(KOSTEN >= 0)")
+    private int wert_;
+    @Column(name = "KATEGORIE", columnDefinition = "VARCHAR(400)")
+    private String kategorie_;
+    @Column(name = "VORKOMMEN", columnDefinition = "VARCHAR(400)")
+    private String vorkommen_;
     
+    
+    
+    public int getTraglast_() {
+        return traglast_;
+    }
+
+
+
+    public void setTraglast_(int traglast_) {
+        this.traglast_ = traglast_;
+    }
+
+
+
     public EinfacherGegenstand() {
         name_ = "Einfacher Gegenstand";
         kosten_ = 0;
+        traglast_ = 0;
+        beschreibung_ = "";
+        staerke_ = 0;
+        wert_ = 0;
+        kategorie_ = "ohne kategorie";
+        vorkommen_ = "";
     }
     
     
