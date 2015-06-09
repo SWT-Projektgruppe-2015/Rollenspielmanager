@@ -7,13 +7,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
+import view.tabledata.SpielerMitWaffe;
 import controller.GruppenSubject;
 import model.GegnerEinheit;
 import model.Spieler;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -35,7 +38,7 @@ public class Hauptprogramm extends Application {
     
     private Stage primaryStage_;
     private BorderPane menuBar;
-    private Stage kampfStage;
+    private Stage newStage;
     private GruppenSubject gruppenSubject_;
     
     public void start(Stage primaryStage) {
@@ -118,9 +121,23 @@ public class Hauptprogramm extends Application {
     
     
     
-    public void openWaffenwechsel() {
+    public void openWaffenwechsel(SpielerrundeController spielerRundeController, SpielerMitWaffe currentSpieler) {
         try {
-            openNewWindow("/view/Waffenwechsel.fxml", "Waffenwechsel");
+            FXMLLoader loader = getLoaderForXML("/view/Waffenwechsel.fxml");
+            Parent page = loader.load();
+            WaffenwechselController controller = loader.getController();
+            controller.initialize(spielerRundeController, currentSpieler);
+            
+            Stage newStage = new Stage();
+            newStage.setTitle("Kampf - Waffenwechsel");
+            newStage.initModality(Modality.NONE);
+            newStage.initOwner(primaryStage_);
+            newStage.setScene(new Scene(page));
+            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
+            
+            controller.setStage(newStage);
+            
+            newStage.showAndWait();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -184,14 +201,14 @@ public class Hauptprogramm extends Application {
             gruppenSubject_.addGruppenObserver(controller);
             controller.setHauptProgramm(this);
             
-            kampfStage = new Stage();
-            kampfStage.setTitle("Kampf - Teilnehmerauswahl");
-            kampfStage.initModality(Modality.NONE);
-            kampfStage.initOwner(primaryStage_);
-            kampfStage.setScene(new Scene(page));
-            kampfStage.getIcons().add(new Image("/img/Logo3_1.png"));
+            newStage = new Stage();
+            newStage.setTitle("Kampf - Teilnehmerauswahl");
+            newStage.initModality(Modality.NONE);
+            newStage.initOwner(primaryStage_);
+            newStage.setScene(new Scene(page));
+            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
             
-            kampfStage.showAndWait();
+            newStage.showAndWait();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -208,10 +225,10 @@ public class Hauptprogramm extends Application {
             KampfsimulatorController controller = loader.getController();
             controller.initializeAllTabs(this, spieler, gegnerEinheiten);
             
-            kampfStage.setTitle("Kampf");
-            kampfStage.setScene(new Scene(page));
-            kampfStage.getIcons().add(new Image("/img/Logo3_1.png"));
-            kampfStage.show();
+            newStage.setTitle("Kampf");
+            newStage.setScene(new Scene(page));
+            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
+            newStage.show();
         }
         catch (IOException e) {
             e.printStackTrace();

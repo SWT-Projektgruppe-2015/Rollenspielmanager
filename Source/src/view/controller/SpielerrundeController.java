@@ -7,6 +7,7 @@ import view.tabledata.SpielerMitWaffe;
 import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Spieler;
+import model.Waffen;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +61,7 @@ public class SpielerrundeController {
     
     
     private void initializeSpielerTableView(List<Spieler> allSpieler) {
+        SpielerrundeController controller = this;
         waffenNameColumn_.setCellFactory(
             new Callback<TableColumn<SpielerMitWaffe, String>, TableCell<SpielerMitWaffe, String>>() {
                 @Override
@@ -77,18 +79,14 @@ public class SpielerrundeController {
                         }
                     };
                     
-                    
-                    
                     cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                         @Override
                         public void handle(MouseEvent event) {
                             if (event.getClickCount() > 1) {
-                                System.out.println("double clicked!");
-                                TableCell c = (TableCell) event.getSource();
-                                System.out.println("Cell text: " + c.getText());
-                                
-                                
-                                main_.openWaffenwechsel();
+                                TableCell<SpielerMitWaffe,String> c = 
+                                        (TableCell<SpielerMitWaffe, String>) event.getSource();
+                                SpielerMitWaffe currentSpieler = (SpielerMitWaffe) c.getTableView().getItems().get(c.getTableRow().getIndex());
+                                main_.openWaffenwechsel(controller, currentSpieler);
                             }
                         }
                     });
@@ -160,6 +158,21 @@ public class SpielerrundeController {
 
     private void assignTreeTableColumnProperty(TreeTableColumn<SharedGegnerTableEntry, String> column, String propertyName) {
         column.setCellValueFactory(new TreeItemPropertyValueFactory<SharedGegnerTableEntry, String>(propertyName));
+    }
+
+
+
+    public void changeSpielerWaffe(Spieler spieler_, Waffen selectedWaffe) {
+        for(SpielerMitWaffe spielerMitWaffe : spielerTableView_.getItems()) {
+            if(spieler_.getID_() == spielerMitWaffe.getSpieler().getID_()) {
+                spielerTableView_.getItems().remove(spielerMitWaffe);
+                SpielerMitWaffe changedSpieler = new SpielerMitWaffe(spieler_, selectedWaffe);
+                spielerTableView_.getItems().add(changedSpieler);
+                spielerTableView_.getItems().sort(null);
+                spielerTableView_.getSelectionModel().select(changedSpieler);
+                break;
+            }
+        }
     }
     
 }
