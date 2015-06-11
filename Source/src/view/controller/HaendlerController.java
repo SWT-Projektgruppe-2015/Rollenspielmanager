@@ -73,13 +73,60 @@ public class HaendlerController {
         gegenstandKategorieTreeView_.setRoot(rootItem);
         gegenstandKategorieTreeView_.showRootProperty().set(false);
         addKategorieTreeViewItems(allKategorien_);
+        
+        gegenstandKategorieTreeView_.getSelectionModel().selectedItemProperty()
+        .addListener(new ChangeListener<TreeItem<String>>() {
+
+            @Override
+            public void changed(
+                    ObservableValue<? extends TreeItem<String>> observable,
+                    TreeItem<String> old_value, TreeItem<String> new_value) {
+                showKategorieItems(new_value);
+            }
+
+        });
+        
+//        gegenstandKategorieTreeView_.getSelectionModel().selectedItemProperty().addListener((new ChangeListener<String>() {
+//            @Override
+//            public void changed(
+//                    ObservableValue<? extends String> observable,
+//                    String oldValue, String newValue) {
+//                showKategorieItems(newValue);
+//            }
+//        });
+        
+        gegenstandListView_.getSelectionModel().selectedItemProperty()
+        .addListener(new ChangeListener<EinfacherGegenstand>() {
+            @Override
+            public void changed(
+                    ObservableValue<? extends EinfacherGegenstand> observable,
+                    EinfacherGegenstand oldValue, EinfacherGegenstand newValue) {
+                showGegenstandDetails(newValue);
+            }
+        });
+    }
+
+
+
+    private void initializeGegenstandListView() {
+        showGegenstaendeInListView(allGegenstaende_);
+        
+        gegenstandListView_.getSelectionModel().selectedItemProperty()
+                .addListener(new ChangeListener<EinfacherGegenstand>() {
+                    @Override
+                    public void changed(
+                            ObservableValue<? extends EinfacherGegenstand> observable,
+                            EinfacherGegenstand oldValue, EinfacherGegenstand newValue) {
+                        showGegenstandDetails(newValue);
+                    }
+                });
     }
 
 
 
     private void addKategorieTreeViewItems(List<String> kategorien_) {
         TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
-        for(String kategorie : kategorien_){
+        for(String kategorie : kategorien_) {
             updateTreeViewWithItem(rootItem, kategorie);
         }
     }
@@ -126,59 +173,79 @@ public class HaendlerController {
         }
         return false;
     }
-
-
-
-    private void initializeGegenstandListView() {
-        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
-        gegenstandListView_.getItems().addAll(allGegenstaende_);
-        
-        gegenstandListView_.getSelectionModel().selectedItemProperty()
-                .addListener(new ChangeListener<EinfacherGegenstand>() {
-                    @Override
-                    public void changed(
-                            ObservableValue<? extends EinfacherGegenstand> observable,
-                            EinfacherGegenstand oldValue, EinfacherGegenstand newValue) {
-                        showGegenstandDetails(newValue);
-                    }
-                });
-    }
     
     
     
     @FXML
     private void changeGegenstand() {
-        EinfacherGegenstand selectedEinfacherGegenstand = getSelectedEinfacherGegenstand();
-        if (selectedEinfacherGegenstand == null)
+        EinfacherGegenstand selectedGegenstand = getSelectedGegenstand();
+        if (selectedGegenstand == null)
             return;
 
         try {
-            String newName = gegenstandNameTextField_.getText();
-            int newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
-            String newBeschreibung = gegenstandBeschreibungTextField_.getText();
-            int newTraglast = Integer.parseInt(gegenstandTraglastTextField_.getText());
-            String newKategorie = gegenstandKategorieTextField_.getText();
-
-            if (newKosten >= 0 && !newName.isEmpty()) {
-                selectedEinfacherGegenstand.setName_(newName);
-                selectedEinfacherGegenstand.setKosten_(newKosten);
-                selectedEinfacherGegenstand.setBeschreibung_(newBeschreibung);
-                selectedEinfacherGegenstand.setTraglast_(newTraglast);
-                selectedEinfacherGegenstand.setKategorie_(newKategorie);
-
-                updateGegenstandList(selectedEinfacherGegenstand);
+            fillGegenstandWithValues(selectedGegenstand);
+            if (isValid(selectedGegenstand)) {
+                checkForNewGegenstand(selectedGegenstand);
+                updateGegenstandList(selectedGegenstand);
+                updateKategorieTreeView(selectedGegenstand);
             }
         }
         catch (NumberFormatException e) {
 
         }
     }
+
+
+
+    private void updateKategorieTreeView(EinfacherGegenstand selectedGegenstand) {
+        TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
+        String kategorie = selectedGegenstand.getKategorie_();
+        updateTreeViewWithItem(rootItem, kategorie);
+    }
+
+
+
+    private void checkForNewGegenstand(EinfacherGegenstand selectedGegenstand) {
+        if (selectedGegenstand == entryForNewGegenstand_) {
+            allGegenstaende_.add(selectedGegenstand);
+            selectedGegenstand.addToDB();
+            entryForNewGegenstand_ = new EinfacherGegenstand();
+            entryForNewGegenstand_.setName_("Neuer Gegenstand");
+        }
+    }
+
+
+
+    private void fillGegenstandWithValues(EinfacherGegenstand selectedGegenstand) {
+        String newName = gegenstandNameTextField_.getText();
+        int newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
+        String newBeschreibung = gegenstandBeschreibungTextField_.getText();
+        int newTraglast = Integer.parseInt(gegenstandTraglastTextField_.getText());
+        String newKategorie = gegenstandKategorieTextField_.getText();
+
+        if (!newName.isEmpty()) {
+            selectedGegenstand.setName_(newName);
+            selectedGegenstand.setKosten_(newKosten);
+            selectedGegenstand.setBeschreibung_(newBeschreibung);
+            selectedGegenstand.setTraglast_(newTraglast);
+            selectedGegenstand.setKategorie_(newKategorie);
+        }
+    }
     
     
     
+    private boolean isValid(EinfacherGegenstand selectedGegenstand) {
+        boolean isValid = true;
+        isValid = (selectedGegenstand.getKosten_() >= 0) && isValid;
+        isValid = (selectedGegenstand.getTraglast_() >= 0) && isValid;
+        return isValid;
+    }
+
+
+
     @FXML
     private void deleteGegenstand() {
-        EinfacherGegenstand gegenstandToDelete = getSelectedEinfacherGegenstand();
+        EinfacherGegenstand gegenstandToDelete = getSelectedGegenstand();
         if (gegenstandToDelete != null) {
             gegenstandListView_.getItems().remove(gegenstandToDelete);
             allGegenstaende_.remove(gegenstandToDelete);
@@ -190,13 +257,6 @@ public class HaendlerController {
     
     
     private void updateGegenstandList(EinfacherGegenstand changedGegenstand) {
-        if (changedGegenstand == entryForNewGegenstand_) {
-            allGegenstaende_.add(changedGegenstand);
-            changedGegenstand.addToDB();
-            entryForNewGegenstand_ = new EinfacherGegenstand();
-            entryForNewGegenstand_.setName_("Neuer Gegenstand");
-        }
-
         gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
         allGegenstaende_.sort(null);
         gegenstandListView_.getItems().addAll(allGegenstaende_);
@@ -205,7 +265,7 @@ public class HaendlerController {
 
 
 
-    private EinfacherGegenstand getSelectedEinfacherGegenstand() {
+    private EinfacherGegenstand getSelectedGegenstand() {
         int selectedIndex = gegenstandListView_.getSelectionModel().getSelectedIndex();
         if (selectedIndex < 0)
             return null;
@@ -234,6 +294,25 @@ public class HaendlerController {
     
     
     
+    private void showKategorieItems(TreeItem<String> new_value) {
+        String kategorie = new_value.getValue();
+        List<EinfacherGegenstand> newItems = new ArrayList<EinfacherGegenstand>();
+        for(EinfacherGegenstand item : allGegenstaende_) {
+            if(item.getKategorie_().contains(kategorie))
+                newItems.add(item);
+        }
+        showGegenstaendeInListView(newItems);
+    }
+    
+    
+    
+    private void showGegenstaendeInListView(List<EinfacherGegenstand> newItems) {
+        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
+        gegenstandListView_.getItems().addAll(newItems);
+    }
+
+
+
     private void showGegenstandDetails(EinfacherGegenstand gegenstand) {
         if(gegenstand == null) {
             showEmptyGegenstandDetails();
