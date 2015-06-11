@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,7 +14,7 @@ import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
 
 /**
- * Einfaches Item fÃ¼r den HÃ¤ndler: Name, Beschreibung, Preis.
+ * Einfaches Item für den Händler: Name, Beschreibung, Preis.
  */
 @Entity
 @Table(name="EINFACHERGEGENSTAND")
@@ -27,16 +29,103 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
     private String name_;
     @Column(name = "BESCHREIBUNG", columnDefinition = "VARCHAR(400)")
     private String beschreibung_;
+    @Column(name = "KATEGORIE", columnDefinition = "VARCHAR(400)")
+    private String kategorie_;
+
+
+
+    @Column(name = "VORKOMMEN", columnDefinition = "VARCHAR(400)")
+    private String vorkommen_;
+    
     @Column(name = "KOSTEN", columnDefinition = "INTEGER DEFAULT '0' CHECK(KOSTEN >= 0)")
     private int kosten_;
+    @Column(name = "TRAGLAST", columnDefinition = "INTEGER DEFAULT '0' CHECK(TRAGLAST >= 0)")
+    private int traglast_;
+    @Column(name = "STAERKE", columnDefinition = "INTEGER DEFAULT '0' CHECK(STAERKE >= 0)")
+    private int staerke_;
+    @Column(name = "WERT", columnDefinition = "VARCHAR(400)")
+    private String wert_;
+    
+    
     
     public EinfacherGegenstand() {
         name_ = "Einfacher Gegenstand";
         kosten_ = 0;
+        traglast_ = 0;
+        beschreibung_ = "";
+        staerke_ = 0;
+        wert_ = "0";
+        kategorie_ = "ohne kategorie";
+        vorkommen_ = "";
     }
     
     
     
+    public String getKategorie_() {
+        return kategorie_;
+    }
+
+
+
+    public void setKategorie_(String kategorie_) {
+        this.kategorie_ = kategorie_;
+        updateInDB();
+    }
+
+
+
+    public String getVorkommen_() {
+        return vorkommen_;
+    }
+
+
+
+    public void setVorkommen_(String vorkommen_) {
+        this.vorkommen_ = vorkommen_;
+        updateInDB();
+    }
+
+
+
+    public int getStaerke_() {
+        return staerke_;
+    }
+
+
+
+    public void setStaerke_(int staerke_) {
+        this.staerke_ = staerke_;
+        updateInDB();
+    }
+
+
+
+    public String getWert_() {
+        return wert_;
+    }
+
+
+
+    public void setWert_(String wert_) {
+        this.wert_ = wert_;
+        updateInDB();
+    }    
+    
+    
+    
+    public int getTraglast_() {
+        return traglast_;
+    }
+
+
+
+    public void setTraglast_(int traglast_) {
+        this.traglast_ = traglast_;
+        updateInDB();
+    }
+
+
+
     public String toString() {
         return getName_();
     }
@@ -94,14 +183,6 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
 
 
 
-    public static List<EinfacherGegenstand> getAll() {
-        List<EinfacherGegenstand> allGegenstaende = dbManipulator_.getAll();
-        allGegenstaende.sort(null);
-        return allGegenstaende;
-    }
-
-
-
     public void addToDB() {
         dbManipulator_.add(this);
     }
@@ -117,5 +198,33 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
     @Override
     public int compareTo(EinfacherGegenstand otherGegenstand) {
         return getName_().compareTo(otherGegenstand.getName_());
+    }
+    
+    
+    
+    public static List<EinfacherGegenstand> getAll() {
+        List<EinfacherGegenstand> allGegenstaende = dbManipulator_.getAll();
+        return allGegenstaende;
+    }
+
+    
+    
+    public static List<String> getKategorien(List<EinfacherGegenstand> gegenstaende) {
+        List<String> kategorien = new ArrayList<String>();
+        if(gegenstaende != null){
+            for(EinfacherGegenstand current : gegenstaende) {
+                String currentKategorie = current.getKategorie_();
+                if(!kategorien.contains(currentKategorie))
+                    kategorien.add(currentKategorie);
+            }
+        }
+        return kategorien;
+    }
+    
+    
+    
+    public static List<String> getSubKategories(String kategory) {
+        List<String> subKategories = Arrays.asList(kategory.split("\\."));
+        return subKategories;
     }
 }
