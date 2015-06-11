@@ -72,18 +72,59 @@ public class HaendlerController {
         rootItem.setExpanded(true);
         gegenstandKategorieTreeView_.setRoot(rootItem);
         gegenstandKategorieTreeView_.showRootProperty().set(false);
-        addRootCategories(allKategorien_);
+        addKategorieTreeViewItems(allKategorien_);
     }
 
 
 
-    private void addRootCategories(List<String> kategorien_) {
+    private void addKategorieTreeViewItems(List<String> kategorien_) {
         TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
         for(String kategorie : kategorien_){
             updateTreeViewWithItem(rootItem, kategorie);
-//            TreeItem<String> item = new TreeItem<String>(kategorie);
-//            rootItem.getChildren().add(item);
         }
+    }
+    
+    
+    
+    private void updateTreeViewWithItem(TreeItem<String> rootItem, String kategorie) {
+        List<String> subKategorien = EinfacherGegenstand.getSubKategories(kategorie);
+        updateRootElement(rootItem, subKategorien);
+    }
+
+
+
+    private void updateRootElement(final TreeItem<String> rootItem, List<String> subKategorien) {
+        String highestKategorie = subKategorien.get(0);
+        if(!ifRootContainsSubKategorie(rootItem, highestKategorie)){
+            TreeItem<String> item = new TreeItem<String>(highestKategorie);
+            rootItem.getChildren().add(item);
+        }
+        if(subKategorien.size() == 1)
+            return;
+        TreeItem<String> branch = getChildItem(rootItem, highestKategorie); // don't override rootItem
+        updateRootElement(branch, subKategorien.subList(1, subKategorien.size()));
+    }
+
+
+
+    private TreeItem<String> getChildItem(TreeItem<String> rootItem,
+            String itemName) {
+        for(TreeItem<String> child : rootItem.getChildren()){
+            if(child.getValue().contentEquals(itemName))
+                return child;
+        }
+        return null;
+    }
+
+
+
+    private boolean ifRootContainsSubKategorie(TreeItem<String> rootItem, String subKategorie) {
+        for(TreeItem<String> child : rootItem.getChildren()){
+            String childName = child.getValue();
+            if(childName.contentEquals(subKategorie))
+                return true;
+        }
+        return false;
     }
 
 
@@ -148,10 +189,10 @@ public class HaendlerController {
     
     
     
-    private void updateGegenstandList(EinfacherGegenstand changedEinfacherGegenstand) {
-        if (changedEinfacherGegenstand == entryForNewGegenstand_) {
-            allGegenstaende_.add(changedEinfacherGegenstand);
-            changedEinfacherGegenstand.addToDB();
+    private void updateGegenstandList(EinfacherGegenstand changedGegenstand) {
+        if (changedGegenstand == entryForNewGegenstand_) {
+            allGegenstaende_.add(changedGegenstand);
+            changedGegenstand.addToDB();
             entryForNewGegenstand_ = new EinfacherGegenstand();
             entryForNewGegenstand_.setName_("Neuer Gegenstand");
         }
@@ -159,7 +200,7 @@ public class HaendlerController {
         gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
         allGegenstaende_.sort(null);
         gegenstandListView_.getItems().addAll(allGegenstaende_);
-        gegenstandListView_.getSelectionModel().select(changedEinfacherGegenstand);
+        gegenstandListView_.getSelectionModel().select(changedGegenstand);
     }
 
 
@@ -212,32 +253,5 @@ public class HaendlerController {
         gegenstandNameTextField_.setText("");
         gegenstandKostenTextField_.setText("");
         gegenstandBeschreibungTextField_.setText("");
-    }
-    
-    
-    
-    private void updateTreeViewWithItem(TreeItem<String> rootItem, String kategorie) {
-        List<String> subKategorien = EinfacherGegenstand.getSubKategories(kategorie);
-        updateRootElement(rootItem, subKategorien);
-    }
-
-
-
-    private void updateRootElement(TreeItem<String> rootItem, List<String> subKategorien) {
-        String highesKategorie = subKategorien.get(0);
-        if(!ifRootContainsSubKategorie(rootItem, highesKategorie)){
-            TreeItem<String> item = new TreeItem<String>(highesKategorie);
-            rootItem.getChildren().add(item);
-        }
-        if(subKategorien.size() == 1)
-            return;
-        updateRootElement(rootItem, subKategorien.subList(1, subKategorien.size()));
-    }
-
-
-
-    private boolean ifRootContainsSubKategorie(TreeItem<String> rootItem,
-            String subKategorie) {
-        return rootItem.getChildren().contains(subKategorie);
     }
 }
