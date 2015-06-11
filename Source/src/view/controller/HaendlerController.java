@@ -79,10 +79,10 @@ public class HaendlerController {
 
     private void addRootCategories(List<String> kategorien_) {
         TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
-//        rootItem.getChildren().rem
         for(String kategorie : kategorien_){
-            TreeItem<String> item = new TreeItem<String>(kategorie);
-            rootItem.getChildren().add(item);
+            updateTreeViewWithItem(rootItem, kategorie);
+//            TreeItem<String> item = new TreeItem<String>(kategorie);
+//            rootItem.getChildren().add(item);
         }
     }
 
@@ -212,5 +212,32 @@ public class HaendlerController {
         gegenstandNameTextField_.setText("");
         gegenstandKostenTextField_.setText("");
         gegenstandBeschreibungTextField_.setText("");
+    }
+    
+    
+    
+    private void updateTreeViewWithItem(TreeItem<String> rootItem, String kategorie) {
+        List<String> subKategorien = EinfacherGegenstand.getSubKategories(kategorie);
+        updateRootElement(rootItem, subKategorien);
+    }
+
+
+
+    private void updateRootElement(TreeItem<String> rootItem, List<String> subKategorien) {
+        String highesKategorie = subKategorien.get(0);
+        if(!ifRootContainsSubKategorie(rootItem, highesKategorie)){
+            TreeItem<String> item = new TreeItem<String>(highesKategorie);
+            rootItem.getChildren().add(item);
+        }
+        if(subKategorien.size() == 1)
+            return;
+        updateRootElement(rootItem, subKategorien.subList(1, subKategorien.size()));
+    }
+
+
+
+    private boolean ifRootContainsSubKategorie(TreeItem<String> rootItem,
+            String subKategorie) {
+        return rootItem.getChildren().contains(subKategorie);
     }
 }
