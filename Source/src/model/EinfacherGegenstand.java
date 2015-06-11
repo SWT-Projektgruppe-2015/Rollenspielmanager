@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -40,10 +41,23 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
     private int kosten_;
     @Column(name = "TRAGLAST", columnDefinition = "INTEGER DEFAULT '0' CHECK(TRAGLAST >= 0)")
     private int traglast_;
-    @Column(name = "STAREKE", columnDefinition = "INTEGER DEFAULT '0' CHECK(STAREKE >= 0)")
+    @Column(name = "STAERKE", columnDefinition = "INTEGER DEFAULT '0' CHECK(STAERKE >= 0)")
     private int staerke_;
-    @Column(name = "WERT", columnDefinition = "INTEGER DEFAULT '0' CHECK(WERT >= 0)")
-    private int wert_;
+    @Column(name = "WERT", columnDefinition = "VARCHAR(400)")
+    private String wert_;
+    
+    
+    
+    public EinfacherGegenstand() {
+        name_ = "Einfacher Gegenstand";
+        kosten_ = 0;
+        traglast_ = 0;
+        beschreibung_ = "";
+        staerke_ = 0;
+        wert_ = "0";
+        kategorie_ = "ohne kategorie";
+        vorkommen_ = "";
+    }
     
     
     
@@ -86,13 +100,13 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
 
 
 
-    public int getWert_() {
+    public String getWert_() {
         return wert_;
     }
 
 
 
-    public void setWert_(int wert_) {
+    public void setWert_(String wert_) {
         this.wert_ = wert_;
         updateInDB();
     }    
@@ -112,19 +126,6 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
 
 
 
-    public EinfacherGegenstand() {
-        name_ = "Einfacher Gegenstand";
-        kosten_ = 0;
-        traglast_ = 0;
-        beschreibung_ = "";
-        staerke_ = 0;
-        wert_ = 0;
-        kategorie_ = "ohne kategorie";
-        vorkommen_ = "";
-    }
-    
-    
-    
     public String toString() {
         return getName_();
     }
@@ -182,6 +183,25 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
 
 
 
+    public void addToDB() {
+        dbManipulator_.add(this);
+    }
+
+
+
+    public void deleteFromDB() {
+        dbManipulator_.delete(this);
+    }
+
+
+
+    @Override
+    public int compareTo(EinfacherGegenstand otherGegenstand) {
+        return getName_().compareTo(otherGegenstand.getName_());
+    }
+    
+    
+    
     public static List<EinfacherGegenstand> getAll() {
         List<EinfacherGegenstand> allGegenstaende = dbManipulator_.getAll();
         return allGegenstaende;
@@ -200,23 +220,11 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
         }
         return kategorien;
     }
-
     
-
-    public void addToDB() {
-        dbManipulator_.add(this);
-    }
-
-
-
-    public void deleteFromDB() {
-        dbManipulator_.delete(this);
-    }
-
-
-
-    @Override
-    public int compareTo(EinfacherGegenstand otherGegenstand) {
-        return getName_().compareTo(otherGegenstand.getName_());
+    
+    
+    public static List<String> getSubKategories(String kategory) {
+        List<String> subKategories = Arrays.asList(kategory.split("\\."));
+        return subKategories;
     }
 }
