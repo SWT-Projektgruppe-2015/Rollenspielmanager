@@ -8,6 +8,7 @@ import java.util.List;
 
 import model.EinfacherGegenstand;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class EinfacherGegenstandTest {
@@ -34,7 +35,6 @@ public class EinfacherGegenstandTest {
     }
     
     
-    
     @Test
     public void writeIntoKategorien() {
         EinfacherGegenstand firstGegenstand = new EinfacherGegenstand();
@@ -52,17 +52,25 @@ public class EinfacherGegenstandTest {
     
     @Test
     public void getKategorienTest() {
-        List<EinfacherGegenstand> gegenstand = new ArrayList<EinfacherGegenstand>();
-        List<String> expected = Arrays.asList("A","B");
-        List<String> actual;
         EinfacherGegenstand gegenstandA = new EinfacherGegenstand();
         EinfacherGegenstand gegenstandB = new EinfacherGegenstand();
         gegenstandA.setKategorie_("A");
         gegenstandB.setKategorie_("B");
-        gegenstand.add(gegenstandA);
-        gegenstand.add(gegenstandB);
-        actual = EinfacherGegenstand.getKategorien(gegenstand);
+        
+        List<EinfacherGegenstand> gegenstand = Arrays.asList(gegenstandA,gegenstandB);
+        List<String> expected = Arrays.asList("A","B");
+        List<String> actual = EinfacherGegenstand.getKategorien(gegenstand);
         assertEquals(expected, actual);
         
+    }
+    
+    
+    
+    @Test
+    public void getSubKategoriesTest() {
+        String bsp = "Waffen.Schwert.Säbel.Koalabär";
+        List<String> actual = EinfacherGegenstand.getSubKategories(bsp);
+        List<String> expected = Arrays.asList("Waffen","Schwert","Säbel","Koalabär");
+        assertEquals(actual,expected);
     }
 }
