@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.Dice;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import view.tabledata.SharedGegnerTableEntry;
@@ -253,6 +254,26 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
     public StringProperty lebenspunkteProperty() {
         return new SimpleStringProperty(Integer.toString(currentLebenspunkte_)
                 + "/" + Integer.toString(maxLebenspunkte_));
+    }
+
+
+
+    public int simulateStaerkeProbe() {
+        return Dice.RollW12() + getStaerkeModifier();
+    }
+
+
+
+    public int getStaerkeModifier() {
+        if(staerke_ <= 12) {
+            return (staerke_ - 1) / 3 - 2;
+        }
+        else if(staerke_ <= 18) {
+            return (staerke_ - 1) / 3 - 3;
+        }
+        else {
+            return (staerke_ - 1) / 3 - 4;
+        }
     }
     
 }

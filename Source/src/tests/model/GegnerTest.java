@@ -157,5 +157,4 @@ public class GegnerTest {
     public void detailsAreValidTest() {
         assertTrue(!GegnerTyp.detailsAreValid(-1, 5, 0, 0, 0));
     }
-    
 }

@@ -41,8 +41,12 @@ public class SpielerrundeController {
     private TreeTableColumn<SharedGegnerTableEntry, String> gegnerDealtSchadenColumn_;
     @FXML
     private TreeTableColumn<SharedGegnerTableEntry, String> gegnerLebenspunkteColumn_;
+    
     @FXML
     private TextField schadenModifierTextField_;
+    
+    @FXML
+    private TextField staerkeWurfTextField_;
     
     
     private List<GegnerEinheit> removedGegnerEinheiten_;
@@ -364,5 +368,20 @@ public class SpielerrundeController {
         }
         
         return false;
+    }
+    
+    
+    
+    @FXML
+    private void onStaerkeWurfClick() {
+        TreeItem<SharedGegnerTableEntry> item = getSelectedGegnerItem();
+        if(isNullOrGegnerTyp(item)) {
+            return;
+        }
+        
+        GegnerEinheit gegner = (GegnerEinheit) item.getValue();
+        int staerkeProbe = gegner.simulateStaerkeProbe();
+        
+        staerkeWurfTextField_.setText(Integer.toString(staerkeProbe));
     }
 }
