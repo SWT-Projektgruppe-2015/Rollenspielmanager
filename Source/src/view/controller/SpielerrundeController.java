@@ -51,12 +51,15 @@ public class SpielerrundeController {
     
     private List<GegnerEinheit> removedGegnerEinheiten_;
     private Hauptprogramm main_;
+    private GegnerrundeController gegnerRundeController_;
     
     
     
-    public void initialize(Hauptprogramm main, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
+    public void initialize(Hauptprogramm main, GegnerrundeController gegnerRundeController, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
         main_ = main;
+        gegnerRundeController_ = gegnerRundeController;
         removedGegnerEinheiten_ = new ArrayList<GegnerEinheit>();
+        
         initializeSpielerTableView(allSpieler);      
         setCellValueFactoriesForSpieler();
         
@@ -329,6 +332,8 @@ public class SpielerrundeController {
             removedGegnerEinheiten_.add((GegnerEinheit)selectedItem.getValue());
         }
         selectedItem.getParent().getChildren().remove(selectedItem);
+        if(!isGegnerTyp)
+            gegnerRundeController_.removeGegner((GegnerEinheit) selectedItem.getValue());
     }
 
 

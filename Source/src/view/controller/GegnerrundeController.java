@@ -126,4 +126,11 @@ public class GegnerrundeController {
         int lebensVerlust = spieler.getLebensverlust(schaden, geschickWurf, 0);
         return lebensVerlust;
     }
+
+    
+    
+    public void removeGegner(GegnerEinheit gegner) {
+        gegnerListe_.remove(gegner);
+        gegnerListView_.getItems().remove(gegner);
+    }
 }
