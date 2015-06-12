@@ -3,6 +3,8 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.controlsfx.control.NotificationPane;
+
 import view.tabledata.GegnerEinheitImKampf;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
@@ -64,6 +66,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     private List<GegnerEinheitImKampf> gegnerEinheitImKampfList_;
     
     private Hauptprogramm hauptProgramm_;
+    private NotificationPane notificationPane_;
     
     private GruppenSubject gruppenSubject_;
     
@@ -256,6 +259,8 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         if (chosenGegner != null) {
             addGegnerEinheit(chosenGegner);
         }
+        
+        this.hauptProgramm_.createNotification(notificationPane_, "hallo welt!");
     }
     
     
@@ -330,6 +335,12 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
             gruppenComboBox_.setValue(null);
         else
             gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());        
+    }
+
+
+
+    public void setNotificationPane(NotificationPane notificationPane) {
+        notificationPane_ = notificationPane;
     }
     
 
