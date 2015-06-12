@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.tabledata.SharedGegnerTableEntry;
-import model.EinfacherGegenstand;
+import model.Gegenstand;
 import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,14 +17,14 @@ import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 
 public class HaendlerController {
-    EinfacherGegenstand entryForNewGegenstand_;
-    List<EinfacherGegenstand> allGegenstaende_;
+    Gegenstand entryForNewGegenstand_;
+    List<Gegenstand> allGegenstaende_;
     List<String> allKategorien_;
     
     @FXML
     private TextField searchTextField_;
     @FXML
-    private ListView<EinfacherGegenstand> gegenstandListView_;
+    private ListView<Gegenstand> gegenstandListView_;
     @FXML
     private TreeView<String> gegenstandKategorieTreeView_;
     
@@ -56,9 +56,9 @@ public class HaendlerController {
     
     @FXML
     void initialize() {
-        allGegenstaende_ = EinfacherGegenstand.getAll();
-        allKategorien_ = EinfacherGegenstand.getKategorien(allGegenstaende_);
-        entryForNewGegenstand_ = new EinfacherGegenstand();
+        allGegenstaende_ = Gegenstand.getAll();
+        allKategorien_ = Gegenstand.getKategorien(allGegenstaende_);
+        entryForNewGegenstand_ = new Gegenstand();
         entryForNewGegenstand_.setName_("Neuer Gegenstand");
         
         initializeKategorienTreeView();
@@ -96,11 +96,11 @@ public class HaendlerController {
 //        });
         
         gegenstandListView_.getSelectionModel().selectedItemProperty()
-        .addListener(new ChangeListener<EinfacherGegenstand>() {
+        .addListener(new ChangeListener<Gegenstand>() {
             @Override
             public void changed(
-                    ObservableValue<? extends EinfacherGegenstand> observable,
-                    EinfacherGegenstand oldValue, EinfacherGegenstand newValue) {
+                    ObservableValue<? extends Gegenstand> observable,
+                    Gegenstand oldValue, Gegenstand newValue) {
                 showGegenstandDetails(newValue);
             }
         });
@@ -112,11 +112,11 @@ public class HaendlerController {
         showGegenstaendeInListView(allGegenstaende_);
         
         gegenstandListView_.getSelectionModel().selectedItemProperty()
-                .addListener(new ChangeListener<EinfacherGegenstand>() {
+                .addListener(new ChangeListener<Gegenstand>() {
                     @Override
                     public void changed(
-                            ObservableValue<? extends EinfacherGegenstand> observable,
-                            EinfacherGegenstand oldValue, EinfacherGegenstand newValue) {
+                            ObservableValue<? extends Gegenstand> observable,
+                            Gegenstand oldValue, Gegenstand newValue) {
                         showGegenstandDetails(newValue);
                     }
                 });
@@ -134,7 +134,7 @@ public class HaendlerController {
     
     
     private void updateTreeViewWithItem(TreeItem<String> rootItem, String kategorie) {
-        List<String> subKategorien = EinfacherGegenstand.getSubKategories(kategorie);
+        List<String> subKategorien = Gegenstand.getSubKategories(kategorie);
         updateRootElement(rootItem, subKategorien);
     }
 
@@ -178,7 +178,7 @@ public class HaendlerController {
     
     @FXML
     private void changeGegenstand() {
-        EinfacherGegenstand selectedGegenstand = getSelectedGegenstand();
+        Gegenstand selectedGegenstand = getSelectedGegenstand();
         if (selectedGegenstand == null)
             return;
 
@@ -197,7 +197,7 @@ public class HaendlerController {
 
 
 
-    private void updateKategorieTreeView(EinfacherGegenstand selectedGegenstand) {
+    private void updateKategorieTreeView(Gegenstand selectedGegenstand) {
         TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
         String kategorie = selectedGegenstand.getKategorie_();
         updateTreeViewWithItem(rootItem, kategorie);
@@ -205,18 +205,18 @@ public class HaendlerController {
 
 
 
-    private void checkForNewGegenstand(EinfacherGegenstand selectedGegenstand) {
+    private void checkForNewGegenstand(Gegenstand selectedGegenstand) {
         if (selectedGegenstand == entryForNewGegenstand_) {
             allGegenstaende_.add(selectedGegenstand);
             selectedGegenstand.addToDB();
-            entryForNewGegenstand_ = new EinfacherGegenstand();
+            entryForNewGegenstand_ = new Gegenstand();
             entryForNewGegenstand_.setName_("Neuer Gegenstand");
         }
     }
 
 
 
-    private void fillGegenstandWithValues(EinfacherGegenstand selectedGegenstand) {
+    private void fillGegenstandWithValues(Gegenstand selectedGegenstand) {
         String newName = gegenstandNameTextField_.getText();
         int newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
         String newBeschreibung = gegenstandBeschreibungTextField_.getText();
@@ -234,7 +234,7 @@ public class HaendlerController {
     
     
     
-    private boolean isValid(EinfacherGegenstand selectedGegenstand) {
+    private boolean isValid(Gegenstand selectedGegenstand) {
         boolean isValid = true;
         isValid = (selectedGegenstand.getKosten_() >= 0) && isValid;
         isValid = (selectedGegenstand.getTraglast_() >= 0) && isValid;
@@ -245,7 +245,7 @@ public class HaendlerController {
 
     @FXML
     private void deleteGegenstand() {
-        EinfacherGegenstand gegenstandToDelete = getSelectedGegenstand();
+        Gegenstand gegenstandToDelete = getSelectedGegenstand();
         if (gegenstandToDelete != null) {
             gegenstandListView_.getItems().remove(gegenstandToDelete);
             allGegenstaende_.remove(gegenstandToDelete);
@@ -256,7 +256,7 @@ public class HaendlerController {
     
     
     
-    private void updateGegenstandList(EinfacherGegenstand changedGegenstand) {
+    private void updateGegenstandList(Gegenstand changedGegenstand) {
         gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
         allGegenstaende_.sort(null);
         gegenstandListView_.getItems().addAll(allGegenstaende_);
@@ -265,12 +265,12 @@ public class HaendlerController {
 
 
 
-    private EinfacherGegenstand getSelectedGegenstand() {
+    private Gegenstand getSelectedGegenstand() {
         int selectedIndex = gegenstandListView_.getSelectionModel().getSelectedIndex();
         if (selectedIndex < 0)
             return null;
 
-        EinfacherGegenstand selected = gegenstandListView_.getItems().get(selectedIndex);
+        Gegenstand selected = gegenstandListView_.getItems().get(selectedIndex);
 
         return selected;
     }
@@ -285,7 +285,7 @@ public class HaendlerController {
         if (search.isEmpty())
             gegenstandListView_.getItems().add(entryForNewGegenstand_);
         
-        for (EinfacherGegenstand item : allGegenstaende_) {
+        for (Gegenstand item : allGegenstaende_) {
             if (item.getName_().toLowerCase().contains(search)) {
                 gegenstandListView_.getItems().add(item);
             }
@@ -296,8 +296,8 @@ public class HaendlerController {
     
     private void showKategorieItems(TreeItem<String> new_value) {
         String kategorie = new_value.getValue();
-        List<EinfacherGegenstand> newItems = new ArrayList<EinfacherGegenstand>();
-        for(EinfacherGegenstand item : allGegenstaende_) {
+        List<Gegenstand> newItems = new ArrayList<Gegenstand>();
+        for(Gegenstand item : allGegenstaende_) {
             if(item.getKategorie_().contains(kategorie))
                 newItems.add(item);
         }
@@ -306,14 +306,14 @@ public class HaendlerController {
     
     
     
-    private void showGegenstaendeInListView(List<EinfacherGegenstand> newItems) {
+    private void showGegenstaendeInListView(List<Gegenstand> newItems) {
         gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
         gegenstandListView_.getItems().addAll(newItems);
     }
 
 
 
-    private void showGegenstandDetails(EinfacherGegenstand gegenstand) {
+    private void showGegenstandDetails(Gegenstand gegenstand) {
         if(gegenstand == null) {
             showEmptyGegenstandDetails();
         }

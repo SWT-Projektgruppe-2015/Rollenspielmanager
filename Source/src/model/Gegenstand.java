@@ -14,11 +14,11 @@ import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
 
 /**
- * Einfaches Item für den Händler: Name, Beschreibung, Preis.
+ * Einfaches Item fï¿½r den Hï¿½ndler: Name, Beschreibung, Preis.
  */
 @Entity
-@Table(name="EINFACHERGEGENSTAND")
-public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegenstand> {
+@Table(name="GEGENSTAND")
+public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     private static EinfacherGegenstandManipulator dbManipulator_ = EinfacherGegenstandManipulator.getInstance();
 
     @Id
@@ -48,7 +48,7 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
     
     
     
-    public EinfacherGegenstand() {
+    public Gegenstand() {
         name_ = "Einfacher Gegenstand";
         kosten_ = 0;
         traglast_ = 0;
@@ -196,23 +196,23 @@ public class EinfacherGegenstand implements DBObject, Comparable<EinfacherGegens
 
 
     @Override
-    public int compareTo(EinfacherGegenstand otherGegenstand) {
+    public int compareTo(Gegenstand otherGegenstand) {
         return getName_().compareTo(otherGegenstand.getName_());
     }
     
     
     
-    public static List<EinfacherGegenstand> getAll() {
-        List<EinfacherGegenstand> allGegenstaende = dbManipulator_.getAll();
+    public static List<Gegenstand> getAll() {
+        List<Gegenstand> allGegenstaende = dbManipulator_.getAll();
         return allGegenstaende;
     }
 
     
     
-    public static List<String> getKategorien(List<EinfacherGegenstand> gegenstaende) {
+    public static List<String> getKategorien(List<Gegenstand> gegenstaende) {
         List<String> kategorien = new ArrayList<String>();
         if(gegenstaende != null){
-            for(EinfacherGegenstand current : gegenstaende) {
+            for(Gegenstand current : gegenstaende) {
                 String currentKategorie = current.getKategorie_();
                 if(!kategorien.contains(currentKategorie))
                     kategorien.add(currentKategorie);
