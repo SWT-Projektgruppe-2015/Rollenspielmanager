@@ -33,6 +33,7 @@ public class WaffenwechselController {
                 schadenTextField_.setText(Integer.toString(newValue.getWaffenSchaden_()));
             }
         });
+        waffenListView_.getSelectionModel().select(spielerMitWaffe.getWaffe());
     }
     
     

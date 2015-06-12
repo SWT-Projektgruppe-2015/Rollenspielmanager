@@ -16,14 +16,12 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Callback;
 
 public class SpielerrundeController {
@@ -182,45 +180,16 @@ public class SpielerrundeController {
     
     private void initializeSpielerTableView(List<Spieler> allSpieler) {
         SpielerrundeController controller = this;
+        
         waffenNameColumn_.setCellFactory(
             new Callback<TableColumn<SpielerMitWaffe, String>, TableCell<SpielerMitWaffe, String>>() {
                 @Override
                 public TableCell<SpielerMitWaffe,String> call(TableColumn<SpielerMitWaffe,String> tableColumn)  {
-                    TableCell<SpielerMitWaffe,String> cell = new TableCell<SpielerMitWaffe, String>()   {
-                        @Override
-                        protected void updateItem(String item, boolean empty)   {
-                            super.updateItem(item, empty);
-                            setText(item);
-                            
-                            if(!empty)  {
-                                SpielerMitWaffe currentSpieler = getTableView().getItems().get(getTableRow().getIndex());
-                                if(currentSpieler.isArmed())
-                                    setTooltip(new Tooltip("Schaden: " + Integer.toString(currentSpieler.getWaffe().getWaffenSchaden_())));
-                                else
-                                    setTooltip(new Tooltip("Spieler hat keine Waffe"));
-                            }
-                        }
-                    };
-                    
-                    cell.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-                        @Override
-                        public void handle(MouseEvent event) {
-                            if (event.getClickCount() > 1) {
-                                TableCell<SpielerMitWaffe,String> c = 
-                                        (TableCell<SpielerMitWaffe, String>) event.getSource();
-                                SpielerMitWaffe currentSpieler = (SpielerMitWaffe) c.getTableView().getItems().get(c.getTableRow().getIndex());
-                                if(currentSpieler.isArmed())
-                                    main_.openWaffenwechsel(controller, currentSpieler);
-                            }
-                        }
-                    });
-                    
-                    
-                    
-                    return cell;
+                    return new KampfWaffenCell(main_, controller);
                 }
             }
         );
+        
         for(Spieler spieler : allSpieler) {
             spielerTableView_.getItems().add(new SpielerMitWaffe(spieler));
         }
