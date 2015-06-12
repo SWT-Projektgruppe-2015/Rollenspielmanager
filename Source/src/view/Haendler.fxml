@@ -234,7 +234,7 @@
                               </TextArea>
                               <ButtonBar prefHeight="45.0" prefWidth="185.0">
                                  <buttons>
-                                    <Button mnemonicParsing="false" onAction="#deleteGegenstand" text="Delete" />
+                                    <Button mnemonicParsing="false" onAction="#deleteAusruestung" text="Delete" />
                                     <Button mnemonicParsing="false" onAction="#changeAusruestung" text="Save" />
                                  </buttons>
                               </ButtonBar>
