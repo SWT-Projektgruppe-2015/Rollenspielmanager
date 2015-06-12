@@ -15,6 +15,12 @@
 
 
 
+.column-tableview	{
+	-fx-alignment: center; 
+}
+
+
+
 .button-angriff:focused	{
 	-fx-underline: true;
 }

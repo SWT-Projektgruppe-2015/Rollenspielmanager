@@ -1,5 +1,6 @@
 package view.tabledata;
 
+import view.controller.Hauptprogramm;
 import javafx.beans.property.IntegerProperty;
 //import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -14,6 +15,11 @@ import model.Spieler;
 
 
 public class SchadenAmSpieler {
+    public static final String DANEBEN = "Daneben";
+    public static final String RUESTUNG = "R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung";
+    public static final String HELM = "Helm";
+    public static final String DIREKT = "Direkt";
+    public static final String KRITISCH = "Kritisch!";
     private Spieler spieler_;
     private StringProperty name_;
     private IntegerProperty schaden_;
@@ -47,19 +53,19 @@ public class SchadenAmSpieler {
     
     public void setZone_(Integer wuerfelErgebnis) {
         if(wuerfelErgebnis < 4) {
-            zone_.setValue("Daneben");
+            zone_.setValue(DANEBEN);
         } 
         else if(wuerfelErgebnis < 15) {
-            zone_.setValue("Ruestung");
+            zone_.setValue(RUESTUNG);
         }
         else if(wuerfelErgebnis < 25) {
-            zone_.setValue("Helm");
+            zone_.setValue(HELM);
         }
         else if(wuerfelErgebnis < 35) {
-            zone_.setValue("Direkt");
+            zone_.setValue(DIREKT);
         }
         else
-            zone_.setValue("Kritisch!");
+            zone_.setValue(KRITISCH);
     }
 
 
