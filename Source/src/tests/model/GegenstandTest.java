@@ -11,7 +11,7 @@ import model.Gegenstand;
 import org.junit.Ignore;
 import org.junit.Test;
 
-public class EinfacherGegenstandTest {
+public class GegenstandTest {
     @Test
     public void correctOrderWithSamePrefix() {
         Gegenstand firstGegenstand = new Gegenstand();
@@ -27,7 +27,7 @@ public class EinfacherGegenstandTest {
     @Test
     public void correctOrderWithDifferentPrefix() {
         Gegenstand firstGegenstand = new Gegenstand();
-        firstGegenstand.setName_("Knï¿½ppel");
+        firstGegenstand.setName_("Knüppel");
         Gegenstand secondGegenstand = new Gegenstand();
         secondGegenstand.setName_("Schwert");
         
