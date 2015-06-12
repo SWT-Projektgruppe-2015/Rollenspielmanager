@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.tabledata.SharedGegnerTableEntry;
+import model.Ausruestung;
 import model.Gegenstand;
 import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
@@ -24,10 +25,11 @@ public class HaendlerController {
     @FXML
     private TextField searchTextField_;
     @FXML
+    private TextField gegenstandSearchTree_;
+    @FXML
     private ListView<Gegenstand> gegenstandListView_;
     @FXML
     private TreeView<String> gegenstandKategorieTreeView_;
-    
     @FXML
     private TextField gegenstandNameTextField_;
     @FXML
@@ -38,7 +40,6 @@ public class HaendlerController {
     private TextField gegenstandKategorieTextField_;
     @FXML
     private TextArea gegenstandBeschreibungTextField_;
-    
     @FXML
     private TextField ausruestungNameTextField_;
     @FXML
@@ -51,6 +52,17 @@ public class HaendlerController {
     private TextField ausruestungStaerkeTextField_;
     @FXML
     private TextField ausruestungWertTextField_;
+    @FXML
+    private TextField ausruestungKategorieTextField_;
+    @FXML
+    private TextField ausruestungTreeSearch_;
+    @FXML
+    private TreeView<String> ausruestungTreeView_;
+    @FXML
+    private TextField ausruestungListSearch_;
+    @FXML
+    private ListView<Ausruestung> ausruestungListView_;
+
     
     
     
@@ -61,13 +73,35 @@ public class HaendlerController {
         entryForNewGegenstand_ = new Gegenstand();
         entryForNewGegenstand_.setName_("Neuer Gegenstand");
         
-        initializeKategorienTreeView();
+        initializeGegenstandKategorienTreeView();
         initializeGegenstandListView();
+        initializeAusruestungTreeView();
+        initializeAusruestungListView();
+    }
+   
+
+            private void initializeAusruestungListView() {
+        // TODO Auto-generated method stub
+        
+    }
+
+
+            private void showEmptyAusruestungDetails() {
+                  ausruestungBeschreibungTextField_.setText("");
+                  ausruestungKostenTextField_.setText("");
+                  ausruestungNameTextField_.setText("");
+            }
+
+
+
+    private void initializeAusruestungTreeView() {
+        // TODO Auto-generated method stub
+        
     }
 
 
 
-    private void initializeKategorienTreeView() {
+    private void initializeGegenstandKategorienTreeView() {
         TreeItem<String> rootItem = new TreeItem<String>("root");
         rootItem.setExpanded(true);
         gegenstandKategorieTreeView_.setRoot(rootItem);
@@ -238,6 +272,16 @@ public class HaendlerController {
     
     
     
+    private void fillAusruestungWithValues(Ausruestung selectedAusruestung) {
+        String newName = ausruestungNameTextField_.getText();
+        int newKosten = Integer.parseInt(ausruestungKostenTextField_.getText());
+        String newBeschreibung = ausruestungBeschreibungTextField_.getText();
+        int newTraglast = Integer.parseInt(ausruestungTraglastTextField_.getText());
+        String newKategorie = ausruestungKategorieTextField_.getText();
+    }
+    
+    
+    
     private boolean isValid(Gegenstand selectedGegenstand) {
         boolean isValid = true;
         isValid = (selectedGegenstand.getKosten_() >= 0) && isValid;
@@ -294,6 +338,14 @@ public class HaendlerController {
                 gegenstandListView_.getItems().add(item);
             }
         }
+    }
+    
+    
+    
+    @FXML
+    private void searchTree() {
+        String searchTree = gegenstandSearchTree_.getText().toLowerCase();
+        gegenstandKategorieTreeView_.getChildrenUnmodifiable().clear();
     }
     
     
