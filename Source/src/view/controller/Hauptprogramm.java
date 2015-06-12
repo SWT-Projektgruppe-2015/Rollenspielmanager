@@ -37,80 +37,36 @@ public class Hauptprogramm extends Application {
     public final static String SZ = "\u00df"; 
     
     private Stage primaryStage_;
-    private BorderPane menuBar_;
-    private Stage newStage;
+    private Stage kampfStage_;
     private GruppenSubject gruppenSubject_;
-    private NotificationPane notificationPane_;
     
     public void start(Stage primaryStage) {
         this.primaryStage_ = primaryStage;
         this.primaryStage_.getIcons().add(new Image("/img/Logo3_1.png"));
         this.primaryStage_.setTitle("DLVC Taverne");
-        gruppenSubject_ = new GruppenSubject();
         
-        initializeMenuBar();
+        gruppenSubject_ = new GruppenSubject();
         
         showMainMenu();
     }
-    
-    
-    
-    public void initializeMenuBar() {
-        menuBar_ = new BorderPane();            
-        primaryStage_.setScene(new Scene(menuBar_));
-        primaryStage_.show();
-    }
 
 
 
-    private NotificationPane getNotificationPane(BorderPane border) {
-        NotificationPane notificationPane = new NotificationPane(border);
-        notificationPane.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
-        
-        return notificationPane;
-    }
-
-
-
-    private BorderPane loadBorderPane() throws IOException {
-        FXMLLoader loader = getLoaderForXML("/view/MenuBar.fxml");
-        return (BorderPane) loader.load();
-    }
-    
-    
-    
     public void showMainMenu() {
         try {
+            BorderPane menuBar = loadBorderPane();
             FXMLLoader loader = getLoaderForXML("/view/MainMenu.fxml");
             AnchorPane mainMenu = (AnchorPane) loader.load();
-            
-            menuBar_.setCenter(mainMenu);
 
             MainMenuController controller = loader.getController();
             controller.setGruppenSubject_(gruppenSubject_);
             gruppenSubject_.addGruppenObserver(controller);
             controller.setHauptProgramm(this);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    
-    
-    public void openWuerfelSimulator() {
-        try {
-            FXMLLoader loader = getLoaderForXML("/view/Wuerfelsimulator.fxml");
-            Parent page = loader.load();
             
-            Stage newStage = new Stage();
-            newStage.setTitle("W" + UMLAUT_SMALL_UE + "rfelsimulator");
-            newStage.initModality(Modality.NONE);
-            newStage.initOwner(primaryStage_);
-            newStage.setScene(new Scene(page));
-            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
+            menuBar.setCenter(mainMenu);
             
-            newStage.showAndWait();
+            primaryStage_.setScene(new Scene(menuBar));
+            primaryStage_.show();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -121,25 +77,18 @@ public class Hauptprogramm extends Application {
     
     public void openCharakterManager() {
         try {
-            BorderPane border = loadBorderPane();
-            NotificationPane notificationPane = getNotificationPane(border);
-            
+            BorderPane charakterManagerBorder = loadBorderPane();
+            NotificationPane notificationPane = getNotificationPane(charakterManagerBorder);           
             FXMLLoader loader = getLoaderForXML("/view/Charaktermanager.fxml");
             Parent page = loader.load();
-            CharaktermanagerController controller = loader.getController();
             
+            CharaktermanagerController controller = loader.getController();            
             controller.setGruppenSubject_(gruppenSubject_);
             controller.setNotificationPane(notificationPane);
             
-            border.setCenter(page);
+            charakterManagerBorder.setCenter(page);
             
-            newStage = new Stage();
-            newStage.setTitle("Charaktermanager");
-            newStage.initModality(Modality.NONE);
-            newStage.initOwner(primaryStage_);
-            newStage.setScene(new Scene(notificationPane));
-            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
-            
+            Stage newStage = createNamedStage("Charaktermanager", notificationPane);            
             newStage.showAndWait();
         }
         catch (IOException e) {
@@ -149,22 +98,62 @@ public class Hauptprogramm extends Application {
     
     
     
+    public void openTeilnehmerauswahl() {
+        try {
+            BorderPane border = loadBorderPane();
+            NotificationPane notificationPane = getNotificationPane(border);
+            FXMLLoader loader = getLoaderForXML("/view/TeilnehmerAuswahl.fxml");
+            Parent page = loader.load();
+            
+            TeilnehmerAuswahlController controller = loader.getController();
+            controller.setNotificationPane(notificationPane);
+            controller.setHauptProgramm(this);
+            controller.setGruppenSubject_(gruppenSubject_);
+            gruppenSubject_.addGruppenObserver(controller);
+            
+            border.setCenter(page);
+            
+            kampfStage_ = createNamedStage("Kampf - Teilnehmerauswahl", notificationPane);            
+            kampfStage_.showAndWait();
+            
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    
+    
+    public void startKampf(List<Spieler> spieler, List<GegnerEinheit> gegnerEinheiten) {
+        try {
+            FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
+            Parent page = loader.load();
+            
+            KampfsimulatorController controller = loader.getController();
+            controller.initializeAllTabs(this, spieler, gegnerEinheiten);
+            
+            kampfStage_.setTitle("Kampf");
+            kampfStage_.setScene(new Scene(page));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    
+    
     public void openWaffenwechsel(SpielerrundeController spielerRundeController, SpielerMitWaffe currentSpieler) {
         try {
             FXMLLoader loader = getLoaderForXML("/view/Waffenwechsel.fxml");
             Parent page = loader.load();
+            
             WaffenwechselController controller = loader.getController();
             controller.initialize(spielerRundeController, currentSpieler);
             
-            Stage newStage = new Stage();
-            newStage.setTitle("Kampf - Waffenwechsel");
-            newStage.initModality(Modality.NONE);
-            newStage.initOwner(primaryStage_);
-            newStage.setScene(new Scene(page));
-            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
-            
-            controller.setStage(newStage);
-            
+            Stage newStage = createNamedStage("Kampf - Waffenwechsel", page);            
+            controller.setStage(newStage);          
             newStage.showAndWait();
         }
         catch (IOException e) {
@@ -177,31 +166,52 @@ public class Hauptprogramm extends Application {
     public void openHaendler() {
         try {
             BorderPane border = loadBorderPane();
-            NotificationPane notificationPane = getNotificationPane(border);
-            
+            NotificationPane notificationPane = getNotificationPane(border);            
             FXMLLoader loader = getLoaderForXML("/view/Haendler.fxml");
             Parent page = loader.load();
-            HaendlerController controller = loader.getController();
             
+            HaendlerController controller = loader.getController();            
             controller.setNotificationPane(notificationPane);
             
             border.setCenter(page);
             
-            newStage = new Stage();
-            newStage.setTitle("H" + UMLAUT_SMALL_AE +"ndler");
-            newStage.initModality(Modality.NONE);
-            newStage.initOwner(primaryStage_);
-            newStage.setScene(new Scene(notificationPane));
-            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
-            
+            Stage newStage = this.createNamedStage("H" + UMLAUT_SMALL_AE +"ndler", notificationPane);            
             newStage.showAndWait();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
 
+    
+    
+    public void openWuerfelSimulator() {
+        try {
+            FXMLLoader loader = getLoaderForXML("/view/Wuerfelsimulator.fxml");
+            Parent page = loader.load();
+            
+            Stage newStage = this.createNamedStage("W" + UMLAUT_SMALL_UE + "rfelsimulator", page);
+            newStage.showAndWait();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+        
+
+    
+    private Stage createNamedStage(String name, Parent content) {
+        Stage newStage = new Stage();
+        newStage.setTitle(name);
+        newStage.initModality(Modality.NONE);
+        newStage.initOwner(primaryStage_);
+        newStage.setScene(new Scene(content));
+        newStage.getIcons().add(new Image("/img/Logo3_1.png"));
+        
+        return newStage;
+    }
+    
+    
     
     private FXMLLoader getLoaderForXML(String pathToXML) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -210,8 +220,19 @@ public class Hauptprogramm extends Application {
         return loader;
     }
     
-    public Stage getPrimaryStage() {
-        return primaryStage_;
+    
+    
+    private NotificationPane getNotificationPane(BorderPane border) {
+        NotificationPane notificationPane = new NotificationPane(border);
+        notificationPane.getStyleClass().add(NotificationPane.STYLE_CLASS_DARK);
+        
+        return notificationPane;
+    }
+    
+    
+    
+    private BorderPane loadBorderPane() throws IOException {
+        return new BorderPane();
     }
     
     
@@ -219,59 +240,4 @@ public class Hauptprogramm extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
-
-
-    public void openTeilnehmerauswahl() {
-        try {
-            BorderPane border = loadBorderPane();
-            NotificationPane notificationPane = getNotificationPane(border);
-            
-            FXMLLoader loader = getLoaderForXML("/view/TeilnehmerAuswahl.fxml");
-            Parent page = loader.load();
-            TeilnehmerAuswahlController controller = loader.getController();
-            
-            controller.setGruppenSubject_(gruppenSubject_);
-            controller.setNotificationPane(notificationPane);
-            gruppenSubject_.addGruppenObserver(controller);
-            controller.setHauptProgramm(this);
-            
-            border.setCenter(page);
-            
-            newStage = new Stage();
-            newStage.setTitle("Kampf - Teilnehmerauswahl");
-            newStage.initModality(Modality.NONE);
-            newStage.initOwner(primaryStage_);
-            newStage.setScene(new Scene(notificationPane));
-            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
-            
-            newStage.showAndWait();
-            
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-    }
-
-
-
-    public void startKampf(List<Spieler> spieler, List<GegnerEinheit> gegnerEinheiten) {
-        try {
-            FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
-            Parent page = loader.load();
-            KampfsimulatorController controller = loader.getController();
-            controller.initializeAllTabs(this, spieler, gegnerEinheiten);
-            
-            newStage.setTitle("Kampf");
-            newStage.setScene(new Scene(page));
-            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
-            newStage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-    }
-    
 }
