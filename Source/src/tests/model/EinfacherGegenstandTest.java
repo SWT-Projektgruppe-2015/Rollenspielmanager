@@ -2,13 +2,11 @@ package tests.model;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import model.Gegenstand;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class EinfacherGegenstandTest {

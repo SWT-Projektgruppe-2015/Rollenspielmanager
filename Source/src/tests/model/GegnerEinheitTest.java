@@ -11,8 +11,6 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import controller.Dice;
-
 public class GegnerEinheitTest {
     
     static GegnerTyp normalerGegner;

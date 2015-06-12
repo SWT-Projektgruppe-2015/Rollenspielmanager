@@ -222,8 +222,6 @@ public class Spieler extends Charakter implements DBObject {
     
     
     public List<Waffen> getWaffen() {
-        Ausruestung ausruestung = getAusruestung_();
-        
         List<Waffen> allWaffen = getAusruestung_().getWaffen();
         allWaffen.sort(null);
         return allWaffen;

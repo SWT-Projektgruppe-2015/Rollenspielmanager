@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.tabledata.SchadenAmSpieler;
-import view.tabledata.SpielerMitWaffe;
 import controller.Dice;
 import model.GegnerEinheit;
 import model.Spieler;
@@ -64,7 +63,6 @@ public class GegnerrundeController {
     }
     
     public void initializeParameters(List<Spieler> spielerListe, List<GegnerEinheit> gegnerListe) {
-        GegnerrundeController controller = this;
         for(Spieler spieler: spielerListe)
             schadenAmSpielerListe_.add(new SchadenAmSpieler(spieler));
         gegnerListe_ = gegnerListe;
@@ -99,7 +97,6 @@ public class GegnerrundeController {
      * @param selectedGegner
      */
     protected void updateSchadenAmSpielerTable(GegnerEinheit selectedGegner) {
-        // TODO: Faerbung der Schadensfelder wird noch nicht gemacht und Anzeigen bei deselektierung clearen.
         if(selectedGegner == null) return;
         for(SchadenAmSpieler schadenAmSpieler: schadenAmSpielerListe_){
             Spieler spieler = schadenAmSpieler.getSpieler_();
