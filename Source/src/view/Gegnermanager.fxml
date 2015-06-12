@@ -8,7 +8,16 @@
 
 <AnchorPane prefHeight="303.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
 	<children>
-		<Label layoutX="7.0" layoutY="44.0" text="NSC Typen" />
+      <HBox layoutY="-14.0" prefHeight="20.0" prefWidth="200.0" spacing="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <Label text="Kreis:" />
+            <CheckBox fx:id="kreis1CheckBox_" mnemonicParsing="false" onAction="#filterByKreis" selected="true" text="1" />
+            <CheckBox fx:id="kreis2CheckBox_" mnemonicParsing="false" onAction="#filterByKreis" selected="true" text="2" />
+            <CheckBox fx:id="kreis3CheckBox_" mnemonicParsing="false" onAction="#filterByKreis" selected="true" text="3" />
+            <CheckBox fx:id="kreis4CheckBox_" mnemonicParsing="false" onAction="#filterByKreis" selected="true" text="4" />
+         </children>
+      </HBox>
+		<Label layoutX="7.0" layoutY="44.0" text="NSC Typen" AnchorPane.topAnchor="20.0" />
 		<TextField fx:id="searchGegnerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchGegner" onKeyReleased="#searchGegner" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
 		<ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
 			<content>

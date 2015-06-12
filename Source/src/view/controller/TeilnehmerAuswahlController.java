@@ -121,7 +121,26 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void onKreisFilterClick() {
-        
+        List<Integer> kreiseToShow = new ArrayList();
+        if (kreis1CheckBox_.isSelected()) {
+            kreiseToShow.add(1);
+        }
+        if (kreis2CheckBox_.isSelected()) {
+            kreiseToShow.add(2);
+        }
+        if (kreis3CheckBox_.isSelected()) {
+            kreiseToShow.add(3);
+        }
+        if (kreis4CheckBox_.isSelected()) {
+            kreiseToShow.add(4);
+        }
+
+        gegnerNotInKampfTableView_.getItems().clear();        
+        for (GegnerTyp item : gegnerNotInKampfList_) {
+            if (kreiseToShow.contains(item.getKreis_())) {
+                gegnerNotInKampfTableView_.getItems().add(item);
+            }
+        }
     }
     
     private void changeNumberOfEinheiten(GegnerEinheitImKampf changedEinheit, String newValue) {

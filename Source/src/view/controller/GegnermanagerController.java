@@ -1,5 +1,6 @@
 package view.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.Charakter;
@@ -8,6 +9,7 @@ import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -15,6 +17,15 @@ public class GegnermanagerController extends CharakterTabController {
     private List<GegnerTyp> gegnerList_;
     private GegnerTyp entryForNewGegner_;
     private Faehigkeiten entryForNewFaehigkeit_;
+    
+    @FXML
+    private CheckBox kreis1CheckBox_;
+    @FXML
+    private CheckBox kreis2CheckBox_;
+    @FXML
+    private CheckBox kreis3CheckBox_;
+    @FXML
+    private CheckBox kreis4CheckBox_;
     
     @FXML
     private ListView<GegnerTyp> gegnerListView_;
@@ -76,6 +87,33 @@ public class GegnermanagerController extends CharakterTabController {
                 });
     }
 
+    
+    
+    @FXML
+    private void filterByKreis() {
+        List<Integer> kreiseToShow = new ArrayList();
+        if (kreis1CheckBox_.isSelected()) {
+            kreiseToShow.add(1);
+        }
+        if (kreis2CheckBox_.isSelected()) {
+            kreiseToShow.add(2);
+        }
+        if (kreis3CheckBox_.isSelected()) {
+            kreiseToShow.add(3);
+        }
+        if (kreis4CheckBox_.isSelected()) {
+            kreiseToShow.add(4);
+        }
+
+        gegnerListView_.getItems().clear();
+        gegnerListView_.getItems().setAll(entryForNewGegner_);
+        for (GegnerTyp item : gegnerList_) {
+            if (kreiseToShow.contains(item.getKreis_())) {
+                gegnerListView_.getItems().add(item);
+            }
+        }
+    }
+    
     
     
     @FXML
@@ -171,10 +209,11 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     private void updateGegnerList(GegnerTyp changedGegner) {
-        gegnerListView_.getItems().setAll(entryForNewGegner_);
         gegnerList_.sort(null);
-        gegnerListView_.getItems().addAll(gegnerList_);
-        gegnerListView_.getSelectionModel().select(changedGegner);
+        filterByKreis();
+        
+        if(gegnerListView_.getItems().contains(changedGegner))
+            gegnerListView_.getSelectionModel().select(changedGegner);
     }
 
     
