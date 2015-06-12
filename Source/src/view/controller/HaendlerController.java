@@ -241,16 +241,36 @@ public class HaendlerController {
     
     
     @FXML
-    private void changeGegenstand() {
-        Gegenstand selectedGegenstand = getSelectedGegenstand();
+    private void changeAusruestung() {
+        Gegenstand selectedGegenstand = getSelectedGegenstand(ausruestungListView_);
         if (selectedGegenstand == null)
             return;
+        try {
+            fillAusruestungWithValues(selectedGegenstand);
+            if (isValid(selectedGegenstand)) {
+                checkForNewGegenstand(selectedGegenstand);
+                updateGegenstandListView(selectedGegenstand, ausruestungListView_);
+                updateKategorieTreeView(selectedGegenstand);
+            }
+        }
+        catch (NumberFormatException e) {
 
+        }
+    }
+    
+    
+    
+    
+    @FXML
+    private void changeGegenstand() {
+        Gegenstand selectedGegenstand = getSelectedGegenstand(gegenstandListView_);
+        if (selectedGegenstand == null)
+            return;
         try {
             fillGegenstandWithValues(selectedGegenstand);
             if (isValid(selectedGegenstand)) {
                 checkForNewGegenstand(selectedGegenstand);
-                updateGegenstandList(selectedGegenstand);
+                updateGegenstandListView(selectedGegenstand, gegenstandListView_);
                 updateKategorieTreeView(selectedGegenstand);
             }
         }
@@ -280,6 +300,28 @@ public class HaendlerController {
 
 
 
+    private void fillAusruestungWithValues(Gegenstand selectedGegenstand) {
+        String newName = ausruestungNameTextField_.getText();
+        int newKosten = Integer.parseInt(ausruestungKostenTextField_.getText());
+        String newBeschreibung = ausruestungBeschreibungTextField_.getText();
+        int newTraglast = Integer.parseInt(ausruestungTraglastTextField_.getText());
+        String newKategorie = ausruestungKategorieTextField_.getText();
+        int newStaerke = Integer.parseInt(ausruestungStaerkeTextField_.getText());
+        String newWert = ausruestungWertTextField_.getText();
+
+        if (!newName.isEmpty()) {
+            selectedGegenstand.setName_(newName);
+            selectedGegenstand.setKosten_(newKosten);
+            selectedGegenstand.setBeschreibung_(newBeschreibung);
+            selectedGegenstand.setTraglast_(newTraglast);
+            selectedGegenstand.setKategorie_(newKategorie);
+            selectedGegenstand.setStaerke_(newStaerke);
+            selectedGegenstand.setWert_(newWert);
+        }
+    }
+    
+    
+    
     private void fillGegenstandWithValues(Gegenstand selectedGegenstand) {
         String newName = gegenstandNameTextField_.getText();
         int newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
@@ -298,16 +340,6 @@ public class HaendlerController {
     
     
     
-    private void fillAusruestungWithValues(Ausruestung selectedAusruestung) {
-        String newName = ausruestungNameTextField_.getText();
-        int newKosten = Integer.parseInt(ausruestungKostenTextField_.getText());
-        String newBeschreibung = ausruestungBeschreibungTextField_.getText();
-        int newTraglast = Integer.parseInt(ausruestungTraglastTextField_.getText());
-        String newKategorie = ausruestungKategorieTextField_.getText();
-    }
-    
-    
-    
     private boolean isValid(Gegenstand selectedGegenstand) {
         boolean isValid = true;
         isValid = (selectedGegenstand.getKosten_() >= 0) && isValid;
@@ -319,9 +351,13 @@ public class HaendlerController {
 
     @FXML
     private void deleteGegenstand() {
-        Gegenstand gegenstandToDelete = getSelectedGegenstand();
-        if (gegenstandToDelete != null) {
+        Gegenstand gegenstandToDelete = getSelectedGegenstand(gegenstandListView_);
+        if (gegenstandToDelete == null) {
+            gegenstandToDelete = getSelectedGegenstand(ausruestungListView_);
+        }
+        if (gegenstandToDelete != null || gegenstandToDelete != entryForNewGegenstand_) {
             gegenstandListView_.getItems().remove(gegenstandToDelete);
+            ausruestungListView_.getItems().remove(gegenstandToDelete);
             allGegenstaende_.remove(gegenstandToDelete);
 
             gegenstandToDelete.deleteFromDB();
@@ -330,22 +366,20 @@ public class HaendlerController {
     
     
     
-    private void updateGegenstandList(Gegenstand changedGegenstand) {
-        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
+    private void updateGegenstandListView(Gegenstand changedGegenstand, ListView<Gegenstand> listView) {
+        listView.getItems().setAll(entryForNewGegenstand_);
         allGegenstaende_.sort(null);
-        gegenstandListView_.getItems().addAll(allGegenstaende_);
+        listView.getItems().addAll(allGegenstaende_);
         gegenstandListView_.getSelectionModel().select(changedGegenstand);
     }
 
 
 
-    private Gegenstand getSelectedGegenstand() {
-        int selectedIndex = gegenstandListView_.getSelectionModel().getSelectedIndex();
+    private Gegenstand getSelectedGegenstand(ListView<Gegenstand> listView) {
+        int selectedIndex = listView.getSelectionModel().getSelectedIndex();
         if (selectedIndex < 0)
             return null;
-
-        Gegenstand selected = gegenstandListView_.getItems().get(selectedIndex);
-
+        Gegenstand selected = listView.getItems().get(selectedIndex);
         return selected;
     }
 
