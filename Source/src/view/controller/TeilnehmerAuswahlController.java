@@ -24,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-public class TeilnehmerAuswahlController extends NotificationController implements GruppenObserver {
+public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
     private CheckBox kreis1CheckBox_;
     @FXML
@@ -256,8 +256,6 @@ public class TeilnehmerAuswahlController extends NotificationController implemen
         if (chosenGegner != null) {
             addGegnerEinheit(chosenGegner);
         }
-        
-        this.createNotification("hallo Welt");
     }
     
     

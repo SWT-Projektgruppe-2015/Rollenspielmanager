@@ -100,20 +100,15 @@ public class Hauptprogramm extends Application {
     
     public void openTeilnehmerauswahl() {
         try {
-            BorderPane border = loadBorderPane();
-            NotificationPane notificationPane = getNotificationPane(border);
             FXMLLoader loader = getLoaderForXML("/view/TeilnehmerAuswahl.fxml");
             Parent page = loader.load();
             
             TeilnehmerAuswahlController controller = loader.getController();
-            controller.setNotificationPane(notificationPane);
             controller.setHauptProgramm(this);
             controller.setGruppenSubject_(gruppenSubject_);
             gruppenSubject_.addGruppenObserver(controller);
             
-            border.setCenter(page);
-            
-            kampfStage_ = createNamedStage("Kampf - Teilnehmerauswahl", notificationPane);            
+            kampfStage_ = createNamedStage("Kampf - Teilnehmerauswahl", page);            
             kampfStage_.showAndWait();
             
         }
@@ -127,14 +122,19 @@ public class Hauptprogramm extends Application {
     
     public void startKampf(List<Spieler> spieler, List<GegnerEinheit> gegnerEinheiten) {
         try {
+            BorderPane pane = loadBorderPane();
+            NotificationPane notificationPane = getNotificationPane(pane);
             FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
             Parent page = loader.load();
             
             KampfsimulatorController controller = loader.getController();
             controller.initializeAllTabs(this, spieler, gegnerEinheiten);
+            controller.setNotificationPane(notificationPane);
+           
+            pane.setCenter(page);
             
             kampfStage_.setTitle("Kampf");
-            kampfStage_.setScene(new Scene(page));
+            kampfStage_.setScene(new Scene(notificationPane));
         }
         catch (IOException e) {
             e.printStackTrace();
