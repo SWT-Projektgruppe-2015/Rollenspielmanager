@@ -49,7 +49,7 @@
                   <Label layoutX="82.0" layoutY="7.0" text="\%" />
                </children>
             </AnchorPane>
-            <Button mnemonicParsing="false" prefWidth="80.0" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onBlockClick" prefWidth="80.0" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
       <GridPane hgap="10.0" layoutX="447.0" layoutY="223.0" vgap="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">

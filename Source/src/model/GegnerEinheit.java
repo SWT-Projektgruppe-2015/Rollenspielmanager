@@ -275,5 +275,23 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
             return (staerke_ - 1) / 3 - 4;
         }
     }
+
+
+
+    public boolean blockIsSuccessful() {
+        int roll = Dice.RollW20();
+        int bound = getBoundForBlocking();
+        
+        if(roll > bound) 
+            return true;
+        
+        return false;
+    }
+
+
+
+    public int getBoundForBlocking() {
+        return 18 - (geschick_-1)/20;
+    }
     
 }

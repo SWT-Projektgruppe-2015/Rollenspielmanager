@@ -114,4 +114,67 @@ public class GegnerEinheitTest {
             assertTrue(ergebnis >= lowerBound);
         }
     }
+    
+    
+    
+    @Test
+    public void blockingBoundIsCorrect() {
+        GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
+        gegner.setGeschick_(5);
+        assertTrue(gegner.getBoundForBlocking() == 18);
+        gegner.setGeschick_(21);
+        assertTrue(gegner.getBoundForBlocking() == 17);
+        gegner.setGeschick_(41);
+        assertTrue(gegner.getBoundForBlocking() == 16);
+        gegner.setGeschick_(105);
+        assertTrue(gegner.getBoundForBlocking() == 13);
+    }
+    
+    
+    
+    @Test
+    public void weakBlockIsSuccessfulRightNumberOfTimes() {
+        GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
+        gegner.setGeschick_(5);
+        int numberOfSuccessfulBlocks = 0;
+        for(int i = 0; i<1000; i++) {
+            if(gegner.blockIsSuccessful())
+                numberOfSuccessfulBlocks++;
+        }
+        
+        assertTrue(numberOfSuccessfulBlocks > 80);
+        assertTrue(numberOfSuccessfulBlocks < 120);
+    }
+    
+    
+    
+    @Test
+    public void goodBlockIsSuccessfulRightNumberOfTimes() {
+        GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
+        gegner.setGeschick_(61);
+        int numberOfSuccessfulBlocks = 0;
+        for(int i = 0; i<1000; i++) {
+            if(gegner.blockIsSuccessful())
+                numberOfSuccessfulBlocks++;
+        }
+        
+        assertTrue(numberOfSuccessfulBlocks > 230);
+        assertTrue(numberOfSuccessfulBlocks < 270);
+    }
+    
+    
+    
+    @Test
+    public void almostPerfectBlockIsSuccessfulRightNumberOfTimes() {
+        GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
+        gegner.setGeschick_(341);
+        int numberOfSuccessfulBlocks = 0;
+        for(int i = 0; i<1000; i++) {
+            if(gegner.blockIsSuccessful())
+                numberOfSuccessfulBlocks++;
+        }
+        
+        assertTrue(numberOfSuccessfulBlocks > 920);
+        assertTrue(numberOfSuccessfulBlocks < 980);
+    }
 }

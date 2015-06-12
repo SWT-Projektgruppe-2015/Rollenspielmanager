@@ -173,6 +173,7 @@ public class SpielerrundeController {
     
     private void updateSchadenAmGegnerTable(SpielerMitWaffe spielerMitWaffe, int wuerfelErgebnis, int schadenModifier) {
         for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
+            //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
             List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
             for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
                 SharedGegnerTableEntry entry = gegner.getValue();
@@ -383,5 +384,29 @@ public class SpielerrundeController {
         int staerkeProbe = gegner.simulateStaerkeProbe();
         
         staerkeWurfTextField_.setText(Integer.toString(staerkeProbe));
+    }
+    
+    
+    
+    @FXML
+    private void onBlockClick() {
+        for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
+            //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
+            List<TreeItem<SharedGegnerTableEntry>> refreshList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
+            for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
+                SharedGegnerTableEntry entry = gegner.getValue();
+                GegnerEinheit einheit = (GegnerEinheit) entry;
+                
+                if(einheit.blockIsSuccessful()) {
+                    einheit.setDealtSchaden_(0);
+                    gegner.setValue(einheit);
+                    refreshList.add(gegner);
+                }
+            }
+            
+            for(TreeItem<SharedGegnerTableEntry> item : refreshList) {
+                refresh(item, item.getValue());
+            }
+        }
     }
 }
