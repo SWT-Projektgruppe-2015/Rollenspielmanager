@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.tabledata.SchadenAmSpieler;
+import view.tabledata.SpielerMitWaffe;
 import controller.Dice;
 import model.GegnerEinheit;
 import model.Spieler;
@@ -12,9 +13,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 
 public class GegnerrundeController {
@@ -61,6 +64,7 @@ public class GegnerrundeController {
     }
     
     public void initializeParameters(List<Spieler> spielerListe, List<GegnerEinheit> gegnerListe) {
+        GegnerrundeController controller = this;
         for(Spieler spieler: spielerListe)
             schadenAmSpielerListe_.add(new SchadenAmSpieler(spieler));
         gegnerListe_ = gegnerListe;
@@ -69,6 +73,14 @@ public class GegnerrundeController {
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
         trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));
+        trefferZoneColumn_.setCellFactory(
+                new Callback<TableColumn<SchadenAmSpieler, String>, TableCell<SchadenAmSpieler, String>>() {
+                    @Override
+                    public TableCell<SchadenAmSpieler,String> call(TableColumn<SchadenAmSpieler,String> tableColumn)  {
+                        return new TrefferzoneCell();
+                    }
+                }
+            );
     }
     
     

@@ -36,13 +36,13 @@ import javafx.scene.layout.BorderPane;
  */
 public class Hauptprogramm extends Application {
     
-    final static String UMLAUT_SMALL_AE = "\u00e4";
-    final static String UMLAUT_CAPITAL_AE = "\u00c4"; 
-    final static String UMLAUT_SMALL_UE = "\u00fc"; 
-    final static String UMLAUT_CAPITAL_UE = "\u00dc"; 
-    final static String UMLAUT_SMALL_OE = "\u00f6"; 
-    final static String UMLAUT_CAPITAL_OE = "\u00d6"; 
-    final static String SZ = "\u00df"; 
+    public final static String UMLAUT_SMALL_AE = "\u00e4";
+    public final static String UMLAUT_CAPITAL_AE = "\u00c4"; 
+    public final static String UMLAUT_SMALL_UE = "\u00fc"; 
+    public final static String UMLAUT_CAPITAL_UE = "\u00dc"; 
+    public final static String UMLAUT_SMALL_OE = "\u00f6"; 
+    public final static String UMLAUT_CAPITAL_OE = "\u00d6"; 
+    public final static String SZ = "\u00df"; 
     
     private Stage primaryStage_;
     private BorderPane menuBar_;
