@@ -14,6 +14,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -24,7 +25,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 public class TeilnehmerAuswahlController implements GruppenObserver {
-    
+    @FXML
+    private CheckBox kreis1CheckBox_;
+    @FXML
+    private CheckBox kreis2CheckBox_;
+    @FXML
+    private CheckBox kreis3CheckBox_;
+    @FXML
+    private CheckBox kreis4CheckBox_;
     
     @FXML
     private ListView<Spieler> spielerNotInKampfListView_; 
@@ -111,7 +119,10 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
             );
     }
     
-    
+    @FXML
+    private void onKreisFilterClick() {
+        
+    }
     
     private void changeNumberOfEinheiten(GegnerEinheitImKampf changedEinheit, String newValue) {
         int newValueInt = 0;
