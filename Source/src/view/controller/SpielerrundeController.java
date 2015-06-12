@@ -25,7 +25,7 @@ import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.util.Callback;
 
-public class SpielerrundeController {
+public class SpielerrundeController extends NotificationController {
     @FXML
     private TableView<SpielerMitWaffe> spielerTableView_;
     @FXML

@@ -3,24 +3,16 @@ package view.controller;
 import javafx.application.Application;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
-import javax.management.Notification;
 
 import org.controlsfx.control.NotificationPane;
 
-import sun.nio.ch.ThreadPool;
 import view.tabledata.SpielerMitWaffe;
 import controller.GruppenSubject;
 import model.GegnerEinheit;
 import model.Spieler;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -64,16 +56,9 @@ public class Hauptprogramm extends Application {
     
     
     public void initializeMenuBar() {
-        try {
-            menuBar_ = loadBorderPane();           
-            notificationPane_ = getNotificationPane(menuBar_);
-            
-            primaryStage_.setScene(new Scene(notificationPane_));
-            primaryStage_.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        menuBar_ = new BorderPane();            
+        primaryStage_.setScene(new Scene(menuBar_));
+        primaryStage_.show();
     }
 
 
@@ -111,15 +96,15 @@ public class Hauptprogramm extends Application {
         }
     }
     
+    
+    
     public void openWuerfelSimulator() {
-        /*try {
+        try {
             FXMLLoader loader = getLoaderForXML("/view/Wuerfelsimulator.fxml");
             Parent page = loader.load();
             
-            
-            
             Stage newStage = new Stage();
-            newStage.setTitle("W" + UMLAUT_SMALL_UE + "rfelsimulator"));
+            newStage.setTitle("W" + UMLAUT_SMALL_UE + "rfelsimulator");
             newStage.initModality(Modality.NONE);
             newStage.initOwner(primaryStage_);
             newStage.setScene(new Scene(page));
@@ -129,26 +114,33 @@ public class Hauptprogramm extends Application {
         }
         catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
     
     
     
     public void openCharakterManager() {
         try {
+            BorderPane border = loadBorderPane();
+            NotificationPane notificationPane = getNotificationPane(border);
+            
             FXMLLoader loader = getLoaderForXML("/view/Charaktermanager.fxml");
             Parent page = loader.load();
             CharaktermanagerController controller = loader.getController();
+            
             controller.setGruppenSubject_(gruppenSubject_);
-            Stage newStage = new Stage();
+            controller.setNotificationPane(notificationPane);
+            
+            border.setCenter(page);
+            
+            newStage = new Stage();
             newStage.setTitle("Charaktermanager");
             newStage.initModality(Modality.NONE);
             newStage.initOwner(primaryStage_);
-            newStage.setScene(new Scene(page));
+            newStage.setScene(new Scene(notificationPane));
             newStage.getIcons().add(new Image("/img/Logo3_1.png"));
             
             newStage.showAndWait();
-            
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -184,30 +176,32 @@ public class Hauptprogramm extends Application {
     
     public void openHaendler() {
         try {
-            openNewWindow("/view/Haendler.fxml", "H" + UMLAUT_SMALL_AE +"ndler");
+            BorderPane border = loadBorderPane();
+            NotificationPane notificationPane = getNotificationPane(border);
+            
+            FXMLLoader loader = getLoaderForXML("/view/Haendler.fxml");
+            Parent page = loader.load();
+            HaendlerController controller = loader.getController();
+            
+            controller.setNotificationPane(notificationPane);
+            
+            border.setCenter(page);
+            
+            newStage = new Stage();
+            newStage.setTitle("H" + UMLAUT_SMALL_AE +"ndler");
+            newStage.initModality(Modality.NONE);
+            newStage.initOwner(primaryStage_);
+            newStage.setScene(new Scene(notificationPane));
+            newStage.getIcons().add(new Image("/img/Logo3_1.png"));
+            
+            newStage.showAndWait();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
     
-    
-    
-    private FXMLLoader openNewWindow(String resourceFile, String title)
-            throws IOException {
-        FXMLLoader loader = getLoaderForXML(resourceFile);
-        Parent page = loader.load();
-        
-        Stage newStage = new Stage();
-        newStage.setTitle(title);
-        newStage.initModality(Modality.NONE);
-        newStage.initOwner(primaryStage_);
-        newStage.setScene(new Scene(page));
-        newStage.getIcons().add(new Image("/img/Logo3_1.png"));
-        
-        newStage.showAndWait();
-        return loader;
-    }
+
     
     private FXMLLoader getLoaderForXML(String pathToXML) throws IOException {
         FXMLLoader loader = new FXMLLoader();
@@ -230,12 +224,13 @@ public class Hauptprogramm extends Application {
 
     public void openTeilnehmerauswahl() {
         try {
-            BorderPane border = this.loadBorderPane();
-            NotificationPane notificationPane = this.getNotificationPane(border);
+            BorderPane border = loadBorderPane();
+            NotificationPane notificationPane = getNotificationPane(border);
             
             FXMLLoader loader = getLoaderForXML("/view/TeilnehmerAuswahl.fxml");
             Parent page = loader.load();
             TeilnehmerAuswahlController controller = loader.getController();
+            
             controller.setGruppenSubject_(gruppenSubject_);
             controller.setNotificationPane(notificationPane);
             gruppenSubject_.addGruppenObserver(controller);
@@ -277,26 +272,6 @@ public class Hauptprogramm extends Application {
             e.printStackTrace();
         }
         
-    }
-    
-    
-    
-    public void createNotification(NotificationPane notification, String text) {
-        notification.setText(text);        
-        notification.show();
-        
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.schedule(
-             new Runnable() { @Override public void run() { 
-                 notification.hide(); try {
-                    this.finalize();
-                }
-                catch (Throwable e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } } },
-             3, TimeUnit.SECONDS);
-        scheduler.shutdownNow();
     }
     
 }

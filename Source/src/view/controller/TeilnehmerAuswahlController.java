@@ -3,8 +3,6 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.controlsfx.control.NotificationPane;
-
 import view.tabledata.GegnerEinheitImKampf;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
@@ -26,7 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 
-public class TeilnehmerAuswahlController implements GruppenObserver {
+public class TeilnehmerAuswahlController extends NotificationController implements GruppenObserver {
     @FXML
     private CheckBox kreis1CheckBox_;
     @FXML
@@ -66,7 +64,6 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     private List<GegnerEinheitImKampf> gegnerEinheitImKampfList_;
     
     private Hauptprogramm hauptProgramm_;
-    private NotificationPane notificationPane_;
     
     private GruppenSubject gruppenSubject_;
     
@@ -124,7 +121,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void onKreisFilterClick() {
-        List<Integer> kreiseToShow = new ArrayList();
+        List<Integer> kreiseToShow = new ArrayList<Integer>();
         if (kreis1CheckBox_.isSelected()) {
             kreiseToShow.add(1);
         }
@@ -260,7 +257,7 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
             addGegnerEinheit(chosenGegner);
         }
         
-        this.hauptProgramm_.createNotification(notificationPane_, "hallo welt!");
+        this.createNotification("hallo Welt");
     }
     
     
@@ -335,13 +332,6 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
             gruppenComboBox_.setValue(null);
         else
             gruppenComboBox_.getSelectionModel().select(gruppenSubject_.getSelectedGruppe());        
-    }
-
-
-
-    public void setNotificationPane(NotificationPane notificationPane) {
-        notificationPane_ = notificationPane;
-    }
-    
+    }   
 
 }

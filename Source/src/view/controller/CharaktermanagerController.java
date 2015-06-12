@@ -2,11 +2,13 @@ package view.controller;
 
 import java.util.List;
 
+import org.controlsfx.control.NotificationPane;
+
 import controller.GruppenSubject;
 import model.Spieler;
 import javafx.fxml.FXML;
 
-public class CharaktermanagerController {
+public class CharaktermanagerController extends NotificationController {
 
     @FXML
     private GruppenmanagerController gruppenManagerController;
@@ -34,6 +36,16 @@ public class CharaktermanagerController {
     public void setGruppenSubject_(GruppenSubject gruppenSubject_) {
         gruppenManagerController.setGruppenSubject_(gruppenSubject_);
         gruppenSubject_.addGruppenObserver(gruppenManagerController);
+    }
+    
+    
+    
+    @Override
+    public void setNotificationPane(NotificationPane pane) {
+        super.setNotificationPane(pane);
+        gruppenManagerController.setNotificationPane(pane);
+        spielerManagerController.setNotificationPane(pane);
+        gegnerManagerController.setNotificationPane(pane);
     }
 }
 

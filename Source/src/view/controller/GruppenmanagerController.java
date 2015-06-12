@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import model.Gruppe;
 import model.Spieler;
 
-public class GruppenmanagerController implements GruppenObserver{
+public class GruppenmanagerController extends NotificationController implements GruppenObserver{
     private List<Spieler> spielerList_;
     private List<Gruppe> gruppenList_;
     

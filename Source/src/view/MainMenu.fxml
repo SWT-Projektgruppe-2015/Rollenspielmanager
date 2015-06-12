@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="360.0" prefWidth="800.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
    <children>
-      <SplitPane dividerPositions="0.6641604010025063" layoutX="258.0" layoutY="95.0" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.6641604010025063" layoutX="258.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="500.0">
+          <AnchorPane minHeight="350.0" minWidth="500.0" prefHeight="360.0" prefWidth="500.0">
                <children>
                   <Button layoutX="95.0" layoutY="20.0" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="20.0">
                      <styleClass>
@@ -47,7 +47,7 @@
                   </Button>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="360.0" prefWidth="300.0">
+          <AnchorPane minHeight="360.0" minWidth="300.0" prefHeight="360.0" prefWidth="300.0">
                <children>
                   <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" promptText="Wähle Gruppe..." AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <TableView fx:id="spielerInGruppe_" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">

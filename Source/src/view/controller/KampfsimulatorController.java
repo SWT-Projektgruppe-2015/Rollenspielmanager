@@ -2,11 +2,13 @@ package view.controller;
 
 import java.util.List;
 
+import org.controlsfx.control.NotificationPane;
+
 import model.GegnerEinheit;
 import model.Spieler;
 import javafx.fxml.FXML;
 
-public class KampfsimulatorController {
+public class KampfsimulatorController extends NotificationController {
     @FXML
     private GegnerrundeController gegnerRundeController;
     @FXML
@@ -20,5 +22,11 @@ public class KampfsimulatorController {
         spielerRundeController.initialize(main, gegnerRundeController, allSpieler, allGegner);
         allSpieler_ = allSpieler;
         allGegner_ = allGegner;
+    }
+    
+    @Override
+    public void setNotificationPane(NotificationPane pane) {
+        super.setNotificationPane(pane);
+        spielerRundeController.setNotificationPane(pane);
     }
 }

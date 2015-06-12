@@ -16,7 +16,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.StackPane;
 
-public class HaendlerController {
+public class HaendlerController extends NotificationController {
     Gegenstand entryForNewGegenstand_;
     List<Gegenstand> allGegenstaende_;
     List<String> allKategorien_;

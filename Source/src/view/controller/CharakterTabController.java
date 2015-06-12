@@ -9,7 +9,7 @@ import javafx.scene.control.TextField;
 import model.Charakter;
 import model.Faehigkeiten;
 
-public abstract class CharakterTabController {
+public abstract class CharakterTabController extends NotificationController {
     protected <T> T getSelected(ListView<T> listView) {
         int selectedIndex = listView.getSelectionModel().getSelectedIndex();
         if (selectedIndex < 0)
