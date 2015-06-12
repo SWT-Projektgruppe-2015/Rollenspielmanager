@@ -74,6 +74,27 @@ public class HaendlerController {
         gegenstandKategorieTreeView_.showRootProperty().set(false);
         addKategorieTreeViewItems(allKategorien_);
         
+        addListenerKategorieTreeView();
+        addListenerGegenstandListView();
+    }
+
+
+
+    private void addListenerGegenstandListView() {
+        gegenstandListView_.getSelectionModel().selectedItemProperty()
+        .addListener(new ChangeListener<Gegenstand>() {
+            @Override
+            public void changed(
+                    ObservableValue<? extends Gegenstand> observable,
+                    Gegenstand oldValue, Gegenstand newValue) {
+                showGegenstandDetails(newValue);
+            }
+        });
+    }
+
+
+
+    private void addListenerKategorieTreeView() {
         gegenstandKategorieTreeView_.getSelectionModel().selectedItemProperty()
         .addListener(new ChangeListener<TreeItem<String>>() {
 
@@ -84,25 +105,6 @@ public class HaendlerController {
                 showKategorieItems(new_value);
             }
 
-        });
-        
-//        gegenstandKategorieTreeView_.getSelectionModel().selectedItemProperty().addListener((new ChangeListener<String>() {
-//            @Override
-//            public void changed(
-//                    ObservableValue<? extends String> observable,
-//                    String oldValue, String newValue) {
-//                showKategorieItems(newValue);
-//            }
-//        });
-        
-        gegenstandListView_.getSelectionModel().selectedItemProperty()
-        .addListener(new ChangeListener<Gegenstand>() {
-            @Override
-            public void changed(
-                    ObservableValue<? extends Gegenstand> observable,
-                    Gegenstand oldValue, Gegenstand newValue) {
-                showGegenstandDetails(newValue);
-            }
         });
     }
 
@@ -146,9 +148,11 @@ public class HaendlerController {
             TreeItem<String> item = new TreeItem<String>(highestKategorie);
             rootItem.getChildren().add(item);
         }
-        if(subKategorien.size() == 1)
-            return;
         TreeItem<String> branch = getChildItem(rootItem, highestKategorie); // don't override rootItem
+        if(subKategorien.size() == 1){
+            showKategorieItems(branch);
+            return;
+        }
         updateRootElement(branch, subKategorien.subList(1, subKategorien.size()));
     }
 
@@ -302,10 +306,21 @@ public class HaendlerController {
                 newItems.add(item);
         }
         showGegenstaendeInListView(newItems);
+        clearGegenstandDetails();
     }
     
     
     
+    private void clearGegenstandDetails() {
+        this.gegenstandNameTextField_.clear();
+        this.gegenstandKategorieTextField_.clear();
+        this.gegenstandKostenTextField_.clear();
+        this.gegenstandTraglastTextField_.clear();
+        this.gegenstandBeschreibungTextField_.clear();
+    }
+
+
+
     private void showGegenstaendeInListView(List<Gegenstand> newItems) {
         gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
         gegenstandListView_.getItems().addAll(newItems);
