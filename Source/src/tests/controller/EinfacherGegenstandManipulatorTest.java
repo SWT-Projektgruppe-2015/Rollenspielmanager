@@ -8,7 +8,7 @@ import static org.junit.Assert.assertTrue;
 import javax.persistence.EntityManager;
 
 import model.Ausruestung;
-import model.EinfacherGegenstand;
+import model.Gegenstand;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -19,7 +19,7 @@ import controller.manipulators.EinfacherGegenstandManipulator;
 
 public class EinfacherGegenstandManipulatorTest {
     private static EinfacherGegenstandManipulator gegenstandsManipulator;
-    private static EinfacherGegenstand testGegenstand;
+    private static Gegenstand testGegenstand;
     private static EntityManager theManager;
     
     
@@ -63,7 +63,7 @@ public class EinfacherGegenstandManipulatorTest {
     
     @Test
     public void testAdd() {
-        testGegenstand = new EinfacherGegenstand();
+        testGegenstand = new Gegenstand();
         assertTrue(gegenstandsManipulator.add(testGegenstand));
         gegenstandsManipulator.delete(testGegenstand);
     }
@@ -80,7 +80,7 @@ public class EinfacherGegenstandManipulatorTest {
     
     @Test
     public void testDelete() {
-        testGegenstand = new EinfacherGegenstand();
+        testGegenstand = new Gegenstand();
         if(gegenstandsManipulator.add(testGegenstand)) {
             assertTrue(gegenstandsManipulator.delete(testGegenstand));
         }
@@ -90,7 +90,7 @@ public class EinfacherGegenstandManipulatorTest {
     
     @Test
     public void twoItemDeleteAreSame() {
-        testGegenstand = new EinfacherGegenstand();
+        testGegenstand = new Gegenstand();
         if(gegenstandsManipulator.add(testGegenstand)) {
             gegenstandsManipulator.delete(testGegenstand);
             assertFalse(gegenstandsManipulator.delete(testGegenstand));
@@ -108,7 +108,7 @@ public class EinfacherGegenstandManipulatorTest {
     
     @Test
     public void canSimpleSalesItem() {
-        testGegenstand = new EinfacherGegenstand();
+        testGegenstand = new Gegenstand();
         if(gegenstandsManipulator.add(testGegenstand)) {
             testGegenstand.setKosten_(100);
             assertTrue("Can't update", gegenstandsManipulator.update(testGegenstand));

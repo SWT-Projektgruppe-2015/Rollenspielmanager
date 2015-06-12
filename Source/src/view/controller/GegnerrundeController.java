@@ -123,7 +123,7 @@ public class GegnerrundeController {
      */
     protected int simuliereLebensverlustAmSpieler(GegnerEinheit selectedGegner, Spieler spieler, int geschickWurf) {
         int schaden = selectedGegner.getSchaden_();
-        int lebensVerlust = spieler.getLebensverlust(schaden, geschickWurf);
+        int lebensVerlust = spieler.getLebensverlust(schaden, geschickWurf, 0);
         return lebensVerlust;
     }
 }

@@ -115,7 +115,7 @@ public class Ausruestung implements DBObject {
     
     public void addWaffe(Waffen selectedWaffe) {       
         selectedWaffe.setAusruestung_(this);
-        boolean ausruestungInDbButWaffeIsNot = selectedWaffe.ID_ == 0 && getID_() != 0;
+        boolean ausruestungInDbButWaffeIsNot = selectedWaffe.getID_() == 0 && getID_() != 0;
         if(ausruestungInDbButWaffeIsNot) {
             selectedWaffe.addToDB();
         }
