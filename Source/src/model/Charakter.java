@@ -94,20 +94,20 @@ public abstract class Charakter implements Comparable<Charakter> {
     
     
     
-    public int getLebensverlust(int schaden, int wuerfelErgebnis) {
+    public int getLebensverlust(int schaden, int wuerfelErgebnis, int schadenModifier) {
         Ausruestung ausruestung = this.getAusruestung_();
         schaden -= ausruestung.getDefS_();
-        if(wuerfelErgebnis < 4 || schaden <= 0) {
+        if(wuerfelErgebnis < LOWERBOUND_RUESTUNG || schaden <= 0) {
             return 0;
         } 
-        else if(wuerfelErgebnis < 15) {
+        else if(wuerfelErgebnis < LOWERBOUND_HELM) {
             return schaden/ausruestung.getDefR_();
         }
-        else if(wuerfelErgebnis < 25) {
+        else if(wuerfelErgebnis < LOWERBOUND_DIREKT) {
             return schaden/ausruestung.getDefH_();
         }
-        else if(wuerfelErgebnis < 35) {
-            return schaden;
+        else if(wuerfelErgebnis < LOWERBOUND_KRITISCH) {
+            return (int)(schaden*(1+(double)schadenModifier/100));
         }
         else
             return (int) (schaden*1.1);

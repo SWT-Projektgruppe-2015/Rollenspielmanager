@@ -47,7 +47,7 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
     private void assertLebensverlust(Spieler spieler, int schaden,
             int wuerfelErgebnis, int erwarteterLebensverlust) {
         int lebensverlust;
-        lebensverlust = spieler.getLebensverlust(schaden, wuerfelErgebnis);
+        lebensverlust = spieler.getLebensverlust(schaden, wuerfelErgebnis, 0);
         assertTrue(lebensverlust == erwarteterLebensverlust);
     }
     

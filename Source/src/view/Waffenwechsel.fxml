@@ -16,6 +16,6 @@
             <TextField fx:id="schadenTextField_" editable="false" />
          </children>
       </VBox>
-      <Button layoutX="318.0" layoutY="254.0" mnemonicParsing="false" onAction="#changeWaffe" text="Wähle diese Waffe" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <Button defaultButton="true" layoutX="318.0" layoutY="254.0" mnemonicParsing="false" onAction="#changeWaffe" text="Wähle diese Waffe" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
    </children>
 </AnchorPane>
