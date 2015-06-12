@@ -8,30 +8,199 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.HaendlerController">
   <tabs>
-    <Tab text="Einfache Gegenstände">
+    <Tab closable="false" text="Einfache Gegenstände">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="searchTextField_" layoutX="39.0" layoutY="39.0" onAction="#search" onKeyReleased="#search" promptText="Suche..." />
-                  <ListView fx:id="gegenstandListView_" layoutX="39.0" layoutY="84.0" prefHeight="191.0" prefWidth="171.0" />
-                  <VBox layoutX="236.0" layoutY="39.0" prefHeight="200.0" prefWidth="199.0">
+                  <VBox layoutX="36.0" layoutY="18.0" prefHeight="254.0" prefWidth="176.0">
+                     <children>
+                        <TextField prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." />
+                        <Label text="Kategorien:" />
+                        <TreeView fx:id="gegenstandKategorieTreeView_" prefHeight="219.0" prefWidth="170.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="234.0" layoutY="16.0" prefHeight="258.0" prefWidth="187.0">
+                     <children>
+                        <TextField fx:id="searchTextField_" onAction="#search" onKeyReleased="#search" prefHeight="48.0" prefWidth="187.0" promptText="Suche..." />
+                        <Label text="Gegenstände:" />
+                        <ListView fx:id="gegenstandListView_" prefHeight="233.0" prefWidth="138.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="443.0" layoutY="18.0" prefHeight="258.0" prefWidth="232.0">
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
                         <TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" />
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preis:" />
-                        <TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" />
+                        <Label text="Kategorie:" />
+                        <TextField fx:id="gegenstandKategorieTextField_" onAction="#changeGegenstand" />
+                        <HBox prefHeight="26.0" prefWidth="218.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preis:   " />
+                              <TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="56.0" />
+                              <Label text="   Traglast:   " />
+                              <TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="60.0" />
+                           </children>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:" />
+                        <TextArea fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="158.0" prefWidth="232.0" wrapText="true" />
                      </children>
                   </VBox>
-                  <Text layoutX="450.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:" />
-                  <TextArea fx:id="gegenstandBeschreibungTextField_" layoutX="450.0" layoutY="50.0" onInputMethodTextChanged="#changeGegenstand" prefHeight="184.0" prefWidth="200.0" wrapText="true" />
-                  <ButtonBar layoutX="450.0" layoutY="239.0" prefHeight="40.0" prefWidth="200.0">
-                    <buttons>
-                      <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save" />
+                  <ButtonBar layoutX="476.0" layoutY="275.0" prefHeight="45.0" prefWidth="185.0">
+                     <buttons>
                         <Button mnemonicParsing="false" onAction="#deleteGegenstand" text="Delete" />
-                    </buttons>
+                      <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save" />
+                     </buttons>
                   </ButtonBar>
                </children></AnchorPane>
       </content>
     </Tab>
+      <Tab closable="false" text="Rüstung / Waffen">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="47.0" layoutY="22.0" prefHeight="250.0" prefWidth="178.0">
+                     <children>
+                        <TextField promptText="Suche ..." />
+                        <Label text="Kategorien:" />
+                        <TreeView prefHeight="206.0" prefWidth="163.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="240.0" layoutY="25.0" prefHeight="245.0" prefWidth="173.0">
+                     <children>
+                        <TextField promptText="Suche ..." />
+                        <Label text="Gegenstände:" />
+                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="440.0" layoutY="29.0" prefHeight="244.0" prefWidth="214.0">
+                     <children>
+                        <Label text="Name:" />
+                        <TextField fx:id="ausruestungNameTextField_" />
+                        <HBox prefHeight="27.0" prefWidth="217.0">
+                           <children>
+                              <Label text="Preis:     " />
+                              <TextField fx:id="ausruestungKostenTextField_" prefHeight="25.0" prefWidth="36.0" />
+                              <Label text="  Traglast:   " />
+                              <TextField fx:id="ausruestungTraglastTextField_" prefHeight="25.0" prefWidth="57.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="217.0">
+                           <children>
+                              <Label text="Stärke:   " />
+                              <TextField fx:id="ausruestungStaerkeTextField_" prefHeight="25.0" prefWidth="35.0" />
+                              <Label text="   Wert:       " />
+                              <TextField fx:id="ausruestungWertTextField_" prefHeight="25.0" prefWidth="57.0" />
+                           </children>
+                        </HBox>
+                        <Label text="Beschreibung:" />
+                        <TextArea prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
+  </tabs>
+</TabPane>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.HaendlerController">
+  <tabs>
+    <Tab closable="false" text="Einfache Gegenstände">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="140.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="36.0" layoutY="18.0" prefHeight="254.0" prefWidth="176.0">
+                     <children>
+                        <TextField prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." />
+                        <Label text="Kategorien:" />
+                        <TreeView fx:id="gegenstandKategorieTreeView_" prefHeight="219.0" prefWidth="170.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="234.0" layoutY="16.0" prefHeight="258.0" prefWidth="187.0">
+                     <children>
+                        <TextField fx:id="searchTextField_" onAction="#search" onKeyReleased="#search" prefHeight="48.0" prefWidth="187.0" promptText="Suche..." />
+                        <Label text="Gegenstände:" />
+                        <ListView fx:id="gegenstandListView_" prefHeight="233.0" prefWidth="138.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="443.0" layoutY="18.0" prefHeight="258.0" prefWidth="232.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
+                        <TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" />
+                        <Label text="Kategorie:" />
+                        <TextField fx:id="gegenstandKategorieTextField_" onAction="#changeGegenstand" />
+                        <HBox prefHeight="26.0" prefWidth="218.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preis:   " />
+                              <TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="56.0" />
+                              <Label text="   Traglast:   " />
+                              <TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="60.0" />
+                           </children>
+                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:" />
+                        <TextArea fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="158.0" prefWidth="232.0" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <ButtonBar layoutX="476.0" layoutY="275.0" prefHeight="45.0" prefWidth="185.0">
+                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#deleteGegenstand" text="Delete" />
+                      <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save" />
+                     </buttons>
+                  </ButtonBar>
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab closable="false" text="Rüstung / Waffen">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="47.0" layoutY="22.0" prefHeight="250.0" prefWidth="178.0">
+                     <children>
+                        <TextField promptText="Suche ..." />
+                        <Label text="Kategorien:" />
+                        <TreeView prefHeight="206.0" prefWidth="163.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="240.0" layoutY="25.0" prefHeight="245.0" prefWidth="173.0">
+                     <children>
+                        <TextField promptText="Suche ..." />
+                        <Label text="Gegenstände:" />
+                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+                  <VBox layoutX="440.0" layoutY="29.0" prefHeight="244.0" prefWidth="214.0">
+                     <children>
+                        <Label text="Name:" />
+                        <TextField fx:id="ausruestungNameTextField_" />
+                        <HBox prefHeight="27.0" prefWidth="217.0">
+                           <children>
+                              <Label text="Preis:     " />
+                              <TextField fx:id="ausruestungKostenTextField_" prefHeight="25.0" prefWidth="36.0" />
+                              <Label text="  Traglast:   " />
+                              <TextField fx:id="ausruestungTraglastTextField_" prefHeight="25.0" prefWidth="57.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="25.0" prefWidth="217.0">
+                           <children>
+                              <Label text="Stärke:   " />
+                              <TextField fx:id="ausruestungStaerkeTextField_" prefHeight="25.0" prefWidth="35.0" />
+                              <Label text="   Wert:       " />
+                              <TextField fx:id="ausruestungWertTextField_" prefHeight="25.0" prefWidth="57.0" />
+                           </children>
+                        </HBox>
+                        <Label text="Beschreibung:" />
+                        <TextArea prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
   </tabs>
 </TabPane>
