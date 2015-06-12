@@ -19,8 +19,9 @@ import model.interfaces.DBObject;
 
 /**
  * Die Default-Werte fuer Ausruestung, verwendet bei PrePersist Methoden, die
- * sicherstellen das ein Fremdschluessel vorhanden ist. DEFR = 1 DEFH = 1 DEFS =
- * 0
+ * sicherstellen das ein Fremdschluessel vorhanden ist. DEFR = 1; DEFH = 1; 
+ * DEFS = 0
+ * 
  * 
  */
 @Entity
