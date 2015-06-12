@@ -56,8 +56,15 @@ public class SpielerrundeController {
         removedGegnerEinheiten_ = new ArrayList<GegnerEinheit>();
         initializeSpielerTableView(allSpieler);      
         setCellValueFactoriesForSpieler();
+        
         initializeGegnerTreeTableView(allGegner);          
         setCellValueFactoriesForGegner();    
+        setEditActionForGegner();
+    }
+
+
+    
+    private void setEditActionForGegner() {
         gegnerLebenspunkteColumn_.setCellFactory(TextFieldTreeTableCell.forTreeTableColumn());
         gegnerLebenspunkteColumn_.setOnEditCommit(
                 new EventHandler<TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String>>() {
@@ -71,8 +78,7 @@ public class SpielerrundeController {
     }
     
     
-    private void changeLebenspunkte(
-            TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String> t) {
+    private void changeLebenspunkte(TreeTableColumn.CellEditEvent<SharedGegnerTableEntry, String> t) {
         TreeItem<SharedGegnerTableEntry> changedItem = gegnerTreeTableView_.getSelectionModel().getSelectedItem();
         SharedGegnerTableEntry changedGegner = gegnerTreeTableView_.getSelectionModel().getSelectedItem().getValue();
         if(changedItem == null)    {
@@ -116,10 +122,14 @@ public class SpielerrundeController {
         dealSchaden(Charakter.LOWERBOUND_HELM);
     }
 
+    
+    
     @FXML
     private void onRuestungButtonClick() {
         dealSchaden(Charakter.LOWERBOUND_RUESTUNG);
     }
+    
+    
     
     @FXML
     private void onDirektButtonClick() {
@@ -129,6 +139,7 @@ public class SpielerrundeController {
     }
 
 
+    
     private void dealSchaden(int wuerfelErgebnis) {
         dealSchaden(wuerfelErgebnis, 0);
     }
@@ -141,6 +152,7 @@ public class SpielerrundeController {
         
         updateSchadenAmGegnerTable(selectedSpieler, wuerfelErgebnis, schadenModifier);
     }
+    
     
     
     private void updateSchadenAmGegnerTable(SpielerMitWaffe spielerMitWaffe, int wuerfelErgebnis, int schadenModifier) {
@@ -159,6 +171,8 @@ public class SpielerrundeController {
             }
         }
     }
+    
+    
     
     private int schadenDealt(GegnerEinheit gegner, Waffen waffe, int wuerfelErgebnis, int schadenModifier) {
         return gegner.getLebensverlust(waffe.getWaffenSchaden_(), wuerfelErgebnis, schadenModifier);
@@ -225,6 +239,8 @@ public class SpielerrundeController {
         }
     }
 
+    
+    
     private void addGegnerToTable(List<GegnerEinheit> allGegner,
             final TreeItem<SharedGegnerTableEntry> dummyRoot) {
         
@@ -243,6 +259,8 @@ public class SpielerrundeController {
         }
     }
 
+    
+    
     private TreeItem<SharedGegnerTableEntry> createGegnerTypRoot(GegnerTyp currentTyp) {
         TreeItem<SharedGegnerTableEntry> typRoot;
         typRoot = new TreeItem<>(currentTyp);     
@@ -251,21 +269,29 @@ public class SpielerrundeController {
         return typRoot;
     }
 
+    
+    
     private void setCellValueFactoriesForSpieler() {
         assignTableColumnProperty(spielerNameColumn_, "spielerName_");
         assignTableColumnProperty(waffenNameColumn_, "waffenName_");
     }
 
+    
+    
     private void assignTableColumnProperty(TableColumn<SpielerMitWaffe, String> column, String propertyName) {
         column.setCellValueFactory(new PropertyValueFactory<SpielerMitWaffe, String>(propertyName));
     }
 
+    
+    
     private void setCellValueFactoriesForGegner() {
         assignTreeTableColumnProperty(gegnerNameColumn_, "name");
         assignTreeTableColumnProperty(gegnerDealtSchadenColumn_, "dealtSchaden");
         assignTreeTableColumnProperty(gegnerLebenspunkteColumn_, "lebenspunkte");
     }
 
+    
+    
     private void assignTreeTableColumnProperty(TreeTableColumn<SharedGegnerTableEntry, String> column, String propertyName) {
         column.setCellValueFactory(new TreeItemPropertyValueFactory<SharedGegnerTableEntry, String>(propertyName));
     }
@@ -284,6 +310,7 @@ public class SpielerrundeController {
             }
         }
     }
+    
     
     
     @FXML
