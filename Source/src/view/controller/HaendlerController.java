@@ -22,9 +22,13 @@ public class HaendlerController {
     List<String> ausruestungKategorien_;
     
     @FXML
-    private TextField searchTextField_;
+    private TextField searchGegenstandListTextField_;
     @FXML
-    private TextField gegenstandSearchTree_;
+    private TextField searchGegenstandTreeTextField_;
+    @FXML
+    private TextField searchAusruestungListTextField_;
+    @FXML
+    private TextField searchAusruestungTreeTextField_;    
     @FXML
     private ListView<Gegenstand> gegenstandListView_;
     @FXML
@@ -246,7 +250,7 @@ public class HaendlerController {
             TreeItem<String> item = new TreeItem<String>(highestKategorie);
             rootItem.getChildren().add(item);
         }
-        TreeItem<String> branch = getChildItem(rootItem, highestKategorie); // don't override rootItem
+        TreeItem<String> branch = getTreeItemByName(rootItem, highestKategorie); // don't override rootItem
         if(subKategorien.size() == 1){
             showGegenstandKategorieItems(branch);
             return;
@@ -262,7 +266,7 @@ public class HaendlerController {
             TreeItem<String> item = new TreeItem<String>(highestKategorie);
             rootItem.getChildren().add(item);
         }
-        TreeItem<String> branch = getChildItem(rootItem, highestKategorie); // don't override rootItem
+        TreeItem<String> branch = getTreeItemByName(rootItem, highestKategorie); // don't override rootItem
         if(subKategorien.size() == 1){
             showAusruestungKategorieItems(branch);
             return;
@@ -272,10 +276,9 @@ public class HaendlerController {
 
 
 
-    private TreeItem<String> getChildItem(TreeItem<String> rootItem,
-            String itemName) {
+    private TreeItem<String> getTreeItemByName(TreeItem<String> rootItem, String subKategorieName) {
         for(TreeItem<String> child : rootItem.getChildren()){
-            if(child.getValue().contentEquals(itemName))
+            if(child.getValue().contentEquals(subKategorieName))
                 return child;
         }
         return null;
@@ -341,10 +344,20 @@ public class HaendlerController {
             return;
         try {
             fillGegenstandWithValues(selectedGegenstand);
+            String fullKategorie = getFullKategorieFromSubKategorie(gegenstandKategorieTextField_.getText(), alleGegenstaende_);
+            if(fullKategorie != null)
+                selectedGegenstand.setKategorie_(fullKategorie);
             if (isValid(selectedGegenstand)) {
                 checkForNewGegenstand(selectedGegenstand, alleGegenstaende_);
                 updateListView(alleGegenstaende_, gegenstandListView_);
                 updateGegenstandKategorieTreeView(selectedGegenstand);
+                
+//                TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
+//                gegenstandListView_.getSelectionModel().select(selectedGegenstand);
+//                List<String> kategorie = Gegenstand.getSubKategories((selectedGegenstand.getKategorie_()));
+//                String lastKategorie = kategorie.get(kategorie.size()-1);
+//                TreeItem<String> selectedKategorie = getTreeItemByName(rootItem, lastKategorie);
+//                gegenstandKategorieTreeView_.getSelectionModel().select(selectedKategorie);
             }
         }
         catch (NumberFormatException e) {}
@@ -453,31 +466,11 @@ public class HaendlerController {
     }
     
     
-    
-//    private void updateGegenstandListView(Gegenstand changedGegenstand) {
-//        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
-//        alleGegenstaende_.sort(null);
-//        gegenstandListView_.getItems().addAll(alleGegenstaende_);
-//        gegenstandListView_.getSelectionModel().select(changedGegenstand);
-//    }
-    
-    
-    
-//    private void updateAusruestungListView(Gegenstand changedGegenstand) {
-//        ausruestungListView_.getItems().setAll(entryForNewGegenstand_);
-//        sortWithKosten(alleAusruestung_);
-//        ausruestungListView_.getItems().addAll(alleAusruestung_);
-//        ausruestungListView_.getSelectionModel().select(changedGegenstand);
-//    }
-    
-    
 
     private void updateListView(List<Gegenstand> newItems, ListView<Gegenstand> listView) {
         listView.getItems().setAll(entryForNewGegenstand_);
         sortWithKosten(newItems);
         listView.getItems().addAll(newItems);
-//        listView.getSelectionModel().select(entryForNewGegenstand_);
-//        showAusruestungDetails(entryForNewGegenstand_);
     }
 
 
@@ -493,8 +486,8 @@ public class HaendlerController {
 
 
     @FXML
-    private void search() {
-        String search = searchTextField_.getText().toLowerCase();
+    private void searchGegenstandListView() {
+        String search = searchGegenstandListTextField_.getText().toLowerCase();
         gegenstandListView_.getItems().clear();
 
         if (search.isEmpty())
@@ -510,9 +503,57 @@ public class HaendlerController {
     
     
     @FXML
-    private void searchTree() {
-        String searchTree = gegenstandSearchTree_.getText().toLowerCase();
-        gegenstandKategorieTreeView_.getChildrenUnmodifiable().clear();
+    private void searchAusruestungListView() {
+        String search = searchAusruestungListTextField_.getText().toLowerCase();
+        ausruestungListView_.getItems().clear();
+
+        if (search.isEmpty())
+            ausruestungListView_.getItems().add(entryForNewGegenstand_);
+        
+        for (Gegenstand item : alleAusruestung_) {
+            if (item.getName_().toLowerCase().contains(search)) {
+                ausruestungListView_.getItems().add(item);
+            }
+        }
+    }    
+    
+    
+    
+    @FXML
+    private void searchGegenstandTreeView() {
+        String search = searchGegenstandTreeTextField_.getText().toLowerCase();
+        List<String> matchingKategorien = filterKategorien(search, gegenstandKategorien_);
+        TreeItem<String> root = gegenstandKategorieTreeView_.getRoot();
+        root.getChildren().setAll();
+        for(String matchingKategorie : matchingKategorien)
+            updateGegenstandTreeViewWithItem(root, matchingKategorie);
+        gegenstandListView_.getItems().clear();
+    }
+
+
+    
+    @FXML
+    private void searchAusruestungTreeView() {
+        String search = searchAusruestungTreeTextField_.getText().toLowerCase();
+        List<String> matchingKategorien = filterKategorien(search, ausruestungKategorien_);
+        TreeItem<String> root = ausruestungTreeView_.getRoot();
+        root.getChildren().setAll();
+        for(String matchingKategorie : matchingKategorien)
+            updateAusruestungTreeViewWithItem(root, matchingKategorie);
+        ausruestungListView_.getItems().clear();
+    }
+    
+    
+    
+    private List<String> filterKategorien(String search, List<String> kategorien) {
+        if(search.contentEquals(""))
+            return kategorien;
+        List<String> result = new ArrayList<String>();
+        for(String kategorie : kategorien){
+            if(kategorie.toLowerCase().contains(search))
+                result.add(kategorie);
+        }
+        return result;
     }
     
     
@@ -537,11 +578,13 @@ public class HaendlerController {
     
     
     private void showGegenstandKategorieItems(TreeItem<String> new_value) {
-        String kategorie = new_value.getValue();
         List<Gegenstand> newItems = new ArrayList<Gegenstand>();
-        for(Gegenstand item : alleGegenstaende_) {
-            if(item.getKategorie_().contains(kategorie))
-                newItems.add(item);
+        if(new_value != null){
+            String kategorie = new_value.getValue();
+            for(Gegenstand item : alleGegenstaende_) {
+                if(item.getKategorie_().contains(kategorie))
+                    newItems.add(item);
+            }
         }
         updateListView(newItems, gegenstandListView_);
         clearGegenstandDetails();
@@ -596,17 +639,21 @@ public class HaendlerController {
     
 
 
-    private void showGegenstandDetails(Gegenstand gegenstand) {
-        if(gegenstand == null) {
+    private void showGegenstandDetails(Gegenstand newValue) {
+        if(newValue == null) {
             showEmptyGegenstandDetails();
         }
         else {
-            gegenstandNameTextField_.setText(gegenstand.getName_());
-            gegenstandKostenTextField_.setText(Integer.toString(gegenstand.getKosten_()));
-            gegenstandBeschreibungTextField_.setText(gegenstand.getBeschreibung_());
-            gegenstandTraglastTextField_.setText(Integer.toString(gegenstand.getTraglast_()));
-            gegenstandKategorieTextField_.setText(gegenstand.getKategorie_());
-            if(gegenstand == entryForNewGegenstand_){
+            gegenstandNameTextField_.setText(newValue.getName_());
+            gegenstandKostenTextField_.setText(Integer.toString(newValue.getKosten_()));
+            gegenstandBeschreibungTextField_.setText(newValue.getBeschreibung_());
+            gegenstandTraglastTextField_.setText(Integer.toString(newValue.getTraglast_()));
+            gegenstandKategorieTextField_.setText(newValue.getKategorie_());
+            
+            List<String> subKategorien = Gegenstand.getSubKategories(newValue.getKategorie_());
+            String lastKategorie = subKategorien.get(subKategorien.size()-1);
+            gegenstandKategorieTextField_.setText(lastKategorie);
+            if(newValue == entryForNewGegenstand_){
                 TreeItem<String> item = gegenstandKategorieTreeView_.getSelectionModel().getSelectedItem();
                 if(item != null){
                     String kategorie = item.getValue();
