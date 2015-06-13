@@ -25,7 +25,7 @@
                      <children>
                         <VBox prefHeight="254.0" prefWidth="176.0">
                            <children>
-                              <TextField fx:id="gegenstandSearchTree_" prefHeight="35.0" prefWidth="170.0" promptText="Suche ...">
+                              <TextField fx:id="searchGegenstandTreeTextField_" onAction="#searchGegenstandTreeView" onKeyReleased="#searchGegenstandTreeView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ...">
                                  <rotationAxis>
                                     <Point3D />
                                  </rotationAxis>
@@ -39,7 +39,7 @@
                         </VBox>
                         <VBox prefHeight="254.0" prefWidth="176.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="searchTextField_" onAction="#search" onKeyReleased="#search" prefHeight="35.0" prefWidth="170.0" promptText="Suche..." />
+                              <TextField fx:id="searchGegenstandListTextField_" onAction="#searchGegenstandListView" onKeyReleased="#searchGegenstandListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche..." />
                               <Label text="Gegenstände:" />
                               <ListView fx:id="gegenstandListView_" layoutX="36.0" layoutY="18.0" prefHeight="219.0" prefWidth="170.0" />
                            </children>
@@ -126,7 +126,7 @@
                      <children>
                         <VBox prefHeight="254.0" prefWidth="176.0">
                            <children>
-                              <TextField fx:id="ausruestungTreeSearch_" prefHeight="35.0" prefWidth="170.0" promptText="Suche ...">
+                              <TextField fx:id="searchAusruestungTreeTextField_" onAction="#searchAusruestungTreeView" onKeyReleased="#searchAusruestungTreeView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ...">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -140,7 +140,7 @@
                         </VBox>
                         <VBox prefHeight="245.0" prefWidth="176.0" GridPane.columnIndex="1">
                            <children>
-                              <TextField fx:id="ausruestungListSearch_" prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." />
+                              <TextField fx:id="searchAusruestungListTextField_" onAction="#searchAusruestungListView" onKeyReleased="#searchAusruestungListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." />
                               <Label text="Gegenstände:" />
                               <ListView fx:id="ausruestungListView_" prefHeight="258.0" prefWidth="225.0" />
                            </children>
