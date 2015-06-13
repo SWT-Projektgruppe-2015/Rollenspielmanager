@@ -85,7 +85,7 @@
                                        </HBox.margin></Label>
                                     <TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="60.0">
                                        <HBox.margin>
-                                          <Insets left="3.0" />
+                                          <Insets left="5.0" />
                                        </HBox.margin></TextField>
                                  </children>
                               </HBox>
@@ -192,10 +192,10 @@
                                     </TextField>
                                     <Label text="Traglast:">
                                        <HBox.margin>
-                                          <Insets bottom="5.0" left="17.0" top="5.0" />
+                                          <Insets bottom="5.0" left="1.0" top="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="ausruestungTraglastTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="55.0">
+                                    <TextField fx:id="ausruestungTraglastTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="72.0">
                                        <HBox.margin>
                                           <Insets left="5.0" top="2.0" />
                                        </HBox.margin>
@@ -211,7 +211,7 @@
                                     </Label>
                                     <TextField fx:id="ausruestungStaerkeTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="56.0">
                                        <HBox.margin>
-                                          <Insets left="1.0" top="7.0" />
+                                          <Insets left="1.0" top="4.0" />
                                        </HBox.margin>
                                     </TextField>
                                     <Label text="Wert:">
@@ -219,15 +219,15 @@
                                           <Insets left="15.0" top="7.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="ausruestungWertTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="57.0">
+                                    <TextField fx:id="ausruestungWertTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="73.0">
                                        <HBox.margin>
-                                          <Insets left="21.0" top="7.0" />
+                                          <Insets left="5.0" top="4.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
                               </HBox>
                               <Label text="Beschreibung:" />
-                              <TextArea fx:id="ausruestungBeschreibungTextField_" prefHeight="122.0" prefWidth="225.0">
+                              <TextArea fx:id="ausruestungBeschreibungTextField_" prefHeight="134.0" prefWidth="225.0">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
