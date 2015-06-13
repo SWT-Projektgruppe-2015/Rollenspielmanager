@@ -6,6 +6,8 @@ import model.Spieler;
 
 public class NotificationTexts {
 
+    public static final String REALLY_DELETE = "Ja";
+
     public static String textForNewGruppe(Gruppe gruppe) {
         return "Neue Gruppe '" + gruppe.getName() + "' angelegt.";
     }
@@ -24,6 +26,10 @@ public class NotificationTexts {
 
     public static String textForRemovingSpielerFromGruppe(Spieler spieler, Gruppe gruppe) {
         return "Spieler '" + spieler.getName_() + "' aus Gruppe '" + gruppe.getName() + "' entfernt.";
+    }
+
+    public static String confirmationTextGruppenDeletion(Gruppe gruppe) {
+        return "Soll Gruppe '" + gruppe.getName_() + "' wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE +"scht werden?";
     }
     
 }

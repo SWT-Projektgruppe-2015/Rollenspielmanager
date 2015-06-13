@@ -2,12 +2,19 @@ package view.controller;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
+
+import javax.swing.AbstractAction;
+
+import org.controlsfx.control.action.Action;
 
 import view.NotificationTexts;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -172,13 +179,20 @@ public class GruppenmanagerController extends NotificationController implements 
     private void deleteGruppe() {
         Gruppe gruppeToDelete = getSelectedGruppe();
         if (gruppeToDelete != null) {
-            gruppeToDelete.deleteFromDB();
-            gruppenComboBox_.getItems().remove(gruppeToDelete);
-            gruppenComboBox_.getItems();
-            gruppenComboBox_.setValue(null);
-            gruppenList_.remove(gruppeToDelete);
-            gruppenSubject_.setGruppen(gruppenList_);
-            createNotification(NotificationTexts.textForGruppenDeletion(gruppeToDelete));
+            Action deleteGruppe = new Action(new Consumer<ActionEvent>() {
+                @Override
+                public void accept(ActionEvent t) {
+                    gruppeToDelete.deleteFromDB();
+                    gruppenComboBox_.getItems().remove(gruppeToDelete);
+                    gruppenComboBox_.getItems();
+                    gruppenComboBox_.setValue(null);
+                    gruppenList_.remove(gruppeToDelete);
+                    gruppenSubject_.setGruppen(gruppenList_);
+                    createNotification(NotificationTexts.textForGruppenDeletion(gruppeToDelete));
+                }
+            });
+            
+            createConfirmMessage(NotificationTexts.confirmationTextGruppenDeletion(gruppeToDelete), NotificationTexts.REALLY_DELETE, deleteGruppe);
         }
     }
     
