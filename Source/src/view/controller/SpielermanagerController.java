@@ -1,9 +1,14 @@
 package view.controller;
 
 import java.util.List;
+import java.util.function.Consumer;
 
+import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -155,11 +160,20 @@ public class SpielermanagerController extends CharakterTabController{
     private void deleteSpieler() {
         Spieler spielerToDelete = getSelectedSpieler();
         if (spielerToDelete != null) {
-            spielerListView_.getItems().remove(spielerToDelete);
-            spielerList_.remove(spielerToDelete);
-            spielerToDelete.deleteFromDB();
-           
-            gruppenManagerController.updateSpieler(spielerList_, spielerToDelete);
+            Action deleteSpieler = new Action(new Consumer<ActionEvent>() {
+                @Override
+                public void accept(ActionEvent t) {
+                    spielerListView_.getItems().remove(spielerToDelete);
+                    spielerList_.remove(spielerToDelete);
+                    spielerToDelete.deleteFromDB();
+                   
+                    gruppenManagerController.updateSpieler(spielerList_, spielerToDelete);
+                    
+                    createNotification(NotificationTexts.textForCharakterDeletion(spielerToDelete));
+                }
+            });
+            
+            createReallyDeleteDialog(NotificationTexts.confirmationTextCharakterDeletion(spielerToDelete), deleteSpieler);
         }
     }
 

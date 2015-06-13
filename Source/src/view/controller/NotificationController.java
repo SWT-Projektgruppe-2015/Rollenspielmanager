@@ -1,11 +1,19 @@
 package view.controller;
 
+import java.awt.event.ActionEvent;
+import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+
 import org.controlsfx.control.NotificationPane;
 import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 
 public class NotificationController {
     private NotificationPane notification_;
@@ -27,11 +35,19 @@ public class NotificationController {
         scheduler.shutdown();
     }
     
-    protected void createConfirmMessage(String text, String confirmationButtonText, Action afterConfirmationAction) {
-        notification_.setText(text);
-        afterConfirmationAction.setText(confirmationButtonText);
-        notification_.getActions().add(afterConfirmationAction);
-        
-        notification_.show();
+    protected void createReallyDeleteDialog(String text, Action afterConfirmationAction) {
+        createConfirmationDialog(text, NotificationTexts.DELETE_INFORMATION, NotificationTexts.DELETE_TITLE, afterConfirmationAction);
+    }
+    
+    private void createConfirmationDialog(String text, String furtherDescription, String confirmTitle, Action afterConfirmationAction) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(confirmTitle);
+        alert.setHeaderText(text);
+        alert.setContentText(furtherDescription);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            afterConfirmationAction.handle(new javafx.event.ActionEvent());
+        }
     }
 }

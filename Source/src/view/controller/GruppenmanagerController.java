@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Consumer;
 
-import javax.swing.AbstractAction;
-
 import org.controlsfx.control.action.Action;
 
 import view.NotificationTexts;
@@ -14,7 +12,6 @@ import controller.interfaces.GruppenObserver;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -192,7 +189,7 @@ public class GruppenmanagerController extends NotificationController implements 
                 }
             });
             
-            createConfirmMessage(NotificationTexts.confirmationTextGruppenDeletion(gruppeToDelete), NotificationTexts.REALLY_DELETE, deleteGruppe);
+            createReallyDeleteDialog(NotificationTexts.confirmationTextGruppenDeletion(gruppeToDelete), deleteGruppe);
         }
     }
     
