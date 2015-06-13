@@ -137,7 +137,7 @@ public class HaendlerController {
 
 
     private void initializeAusruestungListView() {
-        showGegenstaendeInListView(alleAusruestung_, ausruestungListView_);
+        updateListView(alleAusruestung_, ausruestungListView_);
         addListenerAusruestungListView();        
     }
     
@@ -201,7 +201,7 @@ public class HaendlerController {
 
 
     private void initializeGegenstandListView() {
-        showGegenstaendeInListView(alleGegenstaende_, gegenstandListView_);
+        updateListView(alleGegenstaende_, gegenstandListView_);
         addListenerGegenstandListView();
     }
     
@@ -306,7 +306,8 @@ public class HaendlerController {
                 selectedGegenstand.setKategorie_(fullKategorie);
             if (isValid(selectedGegenstand)) {
                 checkForNewGegenstand(selectedGegenstand, alleAusruestung_);
-                updateAusruestungListView(selectedGegenstand);
+                updateListView(alleAusruestung_, ausruestungListView_);
+//                ausruestungListView_.getSelectionModel().select(selectedGegenstand);
                 updateAusruestungKategorieTreeView(selectedGegenstand);
             }
         }
@@ -342,7 +343,7 @@ public class HaendlerController {
             fillGegenstandWithValues(selectedGegenstand);
             if (isValid(selectedGegenstand)) {
                 checkForNewGegenstand(selectedGegenstand, alleGegenstaende_);
-                updateGegenstandListView(selectedGegenstand);
+                updateListView(alleGegenstaende_, gegenstandListView_);
                 updateGegenstandKategorieTreeView(selectedGegenstand);
             }
         }
@@ -453,20 +454,30 @@ public class HaendlerController {
     
     
     
-    private void updateGegenstandListView(Gegenstand changedGegenstand) {
-        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
-        alleGegenstaende_.sort(null);
-        gegenstandListView_.getItems().addAll(alleGegenstaende_);
-        gegenstandListView_.getSelectionModel().select(changedGegenstand);
-    }
+//    private void updateGegenstandListView(Gegenstand changedGegenstand) {
+//        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
+//        alleGegenstaende_.sort(null);
+//        gegenstandListView_.getItems().addAll(alleGegenstaende_);
+//        gegenstandListView_.getSelectionModel().select(changedGegenstand);
+//    }
     
     
     
-    private void updateAusruestungListView(Gegenstand changedGegenstand) {
-        ausruestungListView_.getItems().setAll(entryForNewGegenstand_);
-        sortWithKosten(alleAusruestung_);
-        ausruestungListView_.getItems().addAll(alleAusruestung_);
-        ausruestungListView_.getSelectionModel().select(changedGegenstand);
+//    private void updateAusruestungListView(Gegenstand changedGegenstand) {
+//        ausruestungListView_.getItems().setAll(entryForNewGegenstand_);
+//        sortWithKosten(alleAusruestung_);
+//        ausruestungListView_.getItems().addAll(alleAusruestung_);
+//        ausruestungListView_.getSelectionModel().select(changedGegenstand);
+//    }
+    
+    
+
+    private void updateListView(List<Gegenstand> newItems, ListView<Gegenstand> listView) {
+        listView.getItems().setAll(entryForNewGegenstand_);
+        sortWithKosten(newItems);
+        listView.getItems().addAll(newItems);
+//        listView.getSelectionModel().select(entryForNewGegenstand_);
+//        showAusruestungDetails(entryForNewGegenstand_);
     }
 
 
@@ -513,7 +524,7 @@ public class HaendlerController {
             if(filterCategory(kategorie, gegenstand))
                 filteredItems.add(gegenstand);
         }
-        showGegenstaendeInListView(filteredItems, ausruestungListView_);
+        updateListView(filteredItems, ausruestungListView_);
         clearAusruestungDetails();
     }
 
@@ -532,7 +543,7 @@ public class HaendlerController {
             if(item.getKategorie_().contains(kategorie))
                 newItems.add(item);
         }
-        showGegenstaendeInListView(newItems, gegenstandListView_);
+        updateListView(newItems, gegenstandListView_);
         clearGegenstandDetails();
     }
     
@@ -556,27 +567,23 @@ public class HaendlerController {
         this.gegenstandBeschreibungTextField_.clear();
     }
 
-
-
-    private void showGegenstaendeInListView(List<Gegenstand> newItems, ListView<Gegenstand> listView) {
-        listView.getItems().setAll(entryForNewGegenstand_);
-        listView.getItems().addAll(newItems);
-    }
-
     
     
     private void showAusruestungDetails(Gegenstand newValue) {
         if(newValue == null) {
-            showEmptyGegenstandDetails();
+            showEmptyAusruestungDetails();
         }
         else {
             ausruestungNameTextField_.setText(newValue.getName_());
             ausruestungKostenTextField_.setText(Integer.toString(newValue.getKosten_()));
             ausruestungBeschreibungTextField_.setText(newValue.getBeschreibung_());
             ausruestungTraglastTextField_.setText(Integer.toString(newValue.getTraglast_()));
-            ausruestungKategorieTextField_.setText(newValue.getKategorie_());
             ausruestungStaerkeTextField_.setText(Integer.toString(newValue.getStaerke_()));
             ausruestungWertTextField_.setText(newValue.getWert_());
+            
+            List<String> subKategorien = Gegenstand.getSubKategories(newValue.getKategorie_());
+            String lastKategorie = subKategorien.get(subKategorien.size()-1);
+            ausruestungKategorieTextField_.setText(lastKategorie);
             if(newValue == entryForNewGegenstand_){
                 TreeItem<String> item = ausruestungTreeView_.getSelectionModel().getSelectedItem();
                 if(item != null){
@@ -615,14 +622,27 @@ public class HaendlerController {
         gegenstandNameTextField_.setText("");
         gegenstandKostenTextField_.setText("");
         gegenstandBeschreibungTextField_.setText("");
+        gegenstandTraglastTextField_.setText("");
     }
+    
+    
+    
+    private void showEmptyAusruestungDetails() {
+        ausruestungNameTextField_.setText("");
+        ausruestungKostenTextField_.setText("");
+        ausruestungBeschreibungTextField_.setText("");
+        ausruestungTraglastTextField_.setText("");
+        ausruestungKategorieTextField_.setText("");
+        ausruestungWertTextField_.setText("");
+        ausruestungStaerkeTextField_.setText("");
+    }    
     
     
     
     private void sortWithKosten(List<Gegenstand> allItems_){
         for(int i = 0; i < allItems_.size(); ++i){
             for(int j = 0; j < allItems_.size(); ++j){
-                if(allItems_.get(i).getKosten_() > allItems_.get(j).getKosten_()){
+                if(allItems_.get(i).getKosten_() < allItems_.get(j).getKosten_()){
                     Collections.swap(allItems_, i, j);
                 }
             }
