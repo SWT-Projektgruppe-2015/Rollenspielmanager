@@ -22,9 +22,7 @@ public class NotificationTexts {
     public static final String GEGNER_TYP_CANNOT_BE_REMOVED = "Ein Gegnertyp mit k" + Hauptprogramm.UMLAUT_SMALL_AE + "mpfenden Einheiten muss in der Tabelle bleiben.";
     public static final String WRONG_LEBENSPUNKTE_FORMAT = "Lebenspunkte m" + Hauptprogramm.UMLAUT_SMALL_UE + "ssen im Format '{momentan} / {max}' angegeben werden.";
     
-    public static String textForNewGruppe(Gruppe gruppe) {
-        return "Neue Gruppe '" + gruppe.getName() + "' angelegt.";
-    }
+    
 
     public static String textForGruppenRenaming(String oldName, String newName) {
         return "Gruppe '" + oldName + "' in '" + newName + "' umbenannt."; 
@@ -44,14 +42,41 @@ public class NotificationTexts {
         return "Level für Charakter '" + spieler.getName_() + "' gespeichert.";
     }
 
-    public static String textForNewCharakter(Charakter charakter) {
-        return "Neuer Charakter '" + charakter.getName_() + "' angelegt.";
-    }
-
     public static String textForSpielerUpdate(Spieler spieler) {
         return "Daten f" + Hauptprogramm.UMLAUT_SMALL_UE + "r Spielercharakter '" + spieler.getName_() + "' gespeichert.";
     }
+    
+    
+    public static String textForNewGruppe(Gruppe gruppe) {
+        return "Neue Gruppe '" + gruppe.getName() + "' angelegt.";
+    }
 
+    public static String textForNewCharakter(Charakter charakter) {
+        return "Neuer Charakter '" + charakter.getName_() + "' angelegt.";
+    }
+    
+    public static String textForNewGegenstand(Gegenstand selectedGegenstand) {
+        return "Neuer Gegenstand '" + selectedGegenstand.getName_() + "' angelegt.";
+    } 
+    
+    
+    
+    private static String updateFailed(String toUpdate) {
+        return toUpdate + "' konnte nicht geupdated werden: \n" + INVALID_VALUES;
+    }
+    
+    public static String textForGegnerUpdateFailed(GegnerTyp selectedGegner) {
+        return updateFailed("Nichtspielercharakter '" + selectedGegner.getName_() + "'");
+    }
+
+    public static String textForAusruestungUpdateFailed(Charakter charakter) {
+        return updateFailed("Ausr" + Hauptprogramm.UMLAUT_SMALL_UE + "stung von '" + charakter.getName_() + "'");
+    }
+
+    public static String textForWaffenUpdateFailed(Waffen selectedWaffe) {
+        return updateFailed("Waffe '" + selectedWaffe.getWaffenName_() + "'");
+    }
+    
     
 
     private static String confirmationTextDeletion(String toDelete) {
@@ -80,7 +105,7 @@ public class NotificationTexts {
 
     
     
-    public static String textForDeletion(String deleted) {
+    private static String textForDeletion(String deleted) {
         return deleted + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
     }
 
@@ -128,20 +153,7 @@ public class NotificationTexts {
         return "Lebenspunkte von Gegner '" + gegner.getName_() + "' aktualisiert.";
     }
 
-    public static String textForGegnerUpdateFailed(GegnerTyp selectedGegner) {
-        return "Nichtspielercharakter '" + selectedGegner.getName_() + "' konnte nicht geupdated werden: \n" 
-                + "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
-    }
-
-    public static String textForAusruestungUpdateFailed(Charakter charakter) {
-        return "Ausr" + Hauptprogramm.UMLAUT_SMALL_UE + "stung von '" + charakter.getName_() + "' konnte nicht geupdated werden: \n" 
-                + INVALID_VALUES;
-    }
-
-    public static String textForWaffenUpdateFailed(Waffen selectedWaffe) {
-        return "Waffe '" + selectedWaffe.getWaffenName_() + "' konnte nicht geupdated werden: \n" 
-                + INVALID_VALUES;
-    }
+    
 
     
     
@@ -153,10 +165,5 @@ public class NotificationTexts {
             Gegenstand selectedGegenstand) {
         return "Gegenstand '" + selectedGegenstand.getName_() + "' konnte nicht geupdated werden: \n" 
                 + INVALID_VALUES;
-    }
-
-    
-    public static String textForNewGegenstand(Gegenstand selectedGegenstand) {
-        return "Neuer Gegenstand '" + selectedGegenstand.getName_() + "' angelegt.";
-    }    
+    }   
 }
