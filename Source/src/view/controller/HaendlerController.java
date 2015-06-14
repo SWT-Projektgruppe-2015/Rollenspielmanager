@@ -304,7 +304,7 @@ public class HaendlerController {
             return;
         try {
             fillAusruestungWithValues(selectedGegenstand);
-            String fullKategorie = getFullKategorieFromSubKategorie(ausruestungKategorieTextField_.getText(), alleAusruestung_);
+            String fullKategorie = getFullSubkategoriePath(ausruestungKategorieTextField_.getText(), alleAusruestung_);
             if(fullKategorie != null)
                 selectedGegenstand.setKategorie_(fullKategorie);
             if (isValid(selectedGegenstand)) {
@@ -319,7 +319,7 @@ public class HaendlerController {
     
     
     
-    private String getFullKategorieFromSubKategorie(String subKategorie, List<Gegenstand> alleGegenstaende) {
+    private String getFullSubkategoriePath(String subKategorie, List<Gegenstand> alleGegenstaende) {
         for(Gegenstand item : alleGegenstaende) {
             String kategorie = item.getKategorie_(); 
             if(kategorie.contains(subKategorie)){
@@ -344,20 +344,13 @@ public class HaendlerController {
             return;
         try {
             fillGegenstandWithValues(selectedGegenstand);
-            String fullKategorie = getFullKategorieFromSubKategorie(gegenstandKategorieTextField_.getText(), alleGegenstaende_);
+            String fullKategorie = getFullSubkategoriePath(gegenstandKategorieTextField_.getText(), alleGegenstaende_);
             if(fullKategorie != null)
                 selectedGegenstand.setKategorie_(fullKategorie);
             if (isValid(selectedGegenstand)) {
                 checkForNewGegenstand(selectedGegenstand, alleGegenstaende_);
                 updateListView(alleGegenstaende_, gegenstandListView_);
                 updateGegenstandKategorieTreeView(selectedGegenstand);
-                
-//                TreeItem<String> rootItem = gegenstandKategorieTreeView_.getRoot();
-//                gegenstandListView_.getSelectionModel().select(selectedGegenstand);
-//                List<String> kategorie = Gegenstand.getSubKategories((selectedGegenstand.getKategorie_()));
-//                String lastKategorie = kategorie.get(kategorie.size()-1);
-//                TreeItem<String> selectedKategorie = getTreeItemByName(rootItem, lastKategorie);
-//                gegenstandKategorieTreeView_.getSelectionModel().select(selectedKategorie);
             }
         }
         catch (NumberFormatException e) {}
@@ -522,7 +515,7 @@ public class HaendlerController {
     @FXML
     private void searchGegenstandTreeView() {
         String search = searchGegenstandTreeTextField_.getText().toLowerCase();
-        List<String> matchingKategorien = filterKategorien(search, gegenstandKategorien_);
+        List<String> matchingKategorien = getSearchMatchingKategorien(search, gegenstandKategorien_);
         TreeItem<String> root = gegenstandKategorieTreeView_.getRoot();
         root.getChildren().setAll();
         for(String matchingKategorie : matchingKategorien)
@@ -535,7 +528,7 @@ public class HaendlerController {
     @FXML
     private void searchAusruestungTreeView() {
         String search = searchAusruestungTreeTextField_.getText().toLowerCase();
-        List<String> matchingKategorien = filterKategorien(search, ausruestungKategorien_);
+        List<String> matchingKategorien = getSearchMatchingKategorien(search, ausruestungKategorien_);
         TreeItem<String> root = ausruestungTreeView_.getRoot();
         root.getChildren().setAll();
         for(String matchingKategorie : matchingKategorien)
@@ -545,7 +538,7 @@ public class HaendlerController {
     
     
     
-    private List<String> filterKategorien(String search, List<String> kategorien) {
+    private List<String> getSearchMatchingKategorien(String search, List<String> kategorien) {
         if(search.contentEquals(""))
             return kategorien;
         List<String> result = new ArrayList<String>();
@@ -562,7 +555,7 @@ public class HaendlerController {
         String kategorie = new_value.getValue();
         List<Gegenstand> filteredItems = new ArrayList<Gegenstand>();
         for(Gegenstand gegenstand : alleAusruestung_) {
-            if(filterCategory(kategorie, gegenstand))
+            if(isItemFromTypeKategorie(kategorie, gegenstand))
                 filteredItems.add(gegenstand);
         }
         updateListView(filteredItems, ausruestungListView_);
@@ -570,7 +563,7 @@ public class HaendlerController {
     }
 
 
-    private boolean filterCategory(String kategorie, Gegenstand item) {
+    private boolean isItemFromTypeKategorie(String kategorie, Gegenstand item) {
         boolean isContained = item.getKategorie_().contains(kategorie);
         return  isContained;
     }
