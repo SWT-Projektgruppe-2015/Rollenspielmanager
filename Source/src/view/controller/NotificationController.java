@@ -1,6 +1,5 @@
 package view.controller;
 
-import java.awt.event.ActionEvent;
 import java.util.Optional;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -39,12 +38,12 @@ public class NotificationController {
         createConfirmationDialog(text, NotificationTexts.DELETE_INFORMATION, NotificationTexts.DELETE_TITLE, afterConfirmationAction);
     }
     
-    private void createConfirmationDialog(String text, String furtherDescription, String confirmTitle, Action afterConfirmationAction) {
+    protected void createConfirmationDialog(String text, String furtherDescription, String confirmTitle, Action afterConfirmationAction) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle(confirmTitle);
         alert.setHeaderText(text);
         alert.setContentText(furtherDescription);
-
+        
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){
             afterConfirmationAction.handle(new javafx.event.ActionEvent());

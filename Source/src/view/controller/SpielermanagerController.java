@@ -224,7 +224,7 @@ public class SpielermanagerController extends CharakterTabController{
             return;
         
         boolean listHasToBeReloaded = updateSpielerName(selectedSpieler);
-        updateSpielerDef(selectedSpieler);
+        boolean defIsUpdated = updateSpielerDef(selectedSpieler);
         
         if (selectedSpieler == entryForNewSpieler_) {
             listHasToBeReloaded = true;
@@ -233,7 +233,7 @@ public class SpielermanagerController extends CharakterTabController{
             selectedSpieler.addToDB();
             entryForNewSpieler_ = getEntryForNewSpieler();
             createNotification(NotificationTexts.textForNewCharakter(selectedSpieler));
-        } else {
+        } else if (defIsUpdated) {
             createNotification(NotificationTexts.textForSpielerUpdate(selectedSpieler));
         }
 
@@ -258,7 +258,7 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    private void updateSpielerDef(Spieler selectedSpieler) {
+    private boolean updateSpielerDef(Spieler selectedSpieler) {
         try {
             int newDefR = Integer.parseInt(defRTextField_.getText());
             int newDefH = Integer.parseInt(defHTextField_.getText());
@@ -268,11 +268,15 @@ public class SpielermanagerController extends CharakterTabController{
                 selectedSpieler.setDefR(newDefR);
                 selectedSpieler.setDefH(newDefH);
                 selectedSpieler.setDefS(newDefS);
+                return true;
+            } else {
+                createNotification(NotificationTexts.textForAusruestungUpdateFailed(selectedSpieler));
             }
         }
         catch (NumberFormatException e) {
-
+            createNotification(NotificationTexts.textForAusruestungUpdateFailed(selectedSpieler));
         }
+        return false;
     }
 
     
@@ -317,9 +321,12 @@ public class SpielermanagerController extends CharakterTabController{
                     && newDamage != selectedWaffe.getWaffenSchaden_()) {
                 selectedWaffe.setWaffenSchaden_(newDamage);
                 return true;
+            } else if(newDamage < 0) {
+                createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
             }
         }
         catch (NumberFormatException e) {
+            createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
         }
         return false;
     }
