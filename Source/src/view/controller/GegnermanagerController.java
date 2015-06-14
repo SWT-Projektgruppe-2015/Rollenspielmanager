@@ -2,12 +2,17 @@ package view.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
+import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 import model.Charakter;
 import model.Faehigkeiten;
 import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
@@ -130,9 +135,16 @@ public class GegnermanagerController extends CharakterTabController {
         if(selectedGegner == null || selectedGegner == entryForNewGegner_)
             return;
         
-        selectedGegner.deleteFromDB();
-        gegnerList_.remove(selectedGegner);
-        gegnerListView_.getItems().remove(selectedGegner);
+        Action deleteGegner = new Action(new Consumer<ActionEvent>() {
+            @Override
+            public void accept(ActionEvent t) {
+                selectedGegner.deleteFromDB();
+                gegnerList_.remove(selectedGegner);
+                gegnerListView_.getItems().remove(selectedGegner);
+                createNotification(NotificationTexts.textForGegnerDeletion(selectedGegner));
+            }
+        });
+        createReallyDeleteDialog(NotificationTexts.confirmationTextGegnerDeletion(selectedGegner), deleteGegner);
     }
     
     
@@ -145,13 +157,19 @@ public class GegnermanagerController extends CharakterTabController {
         
         updateGegnerDetails(selectedGegner);   
 
-        if (selectedGegner == entryForNewGegner_)
+        if (selectedGegner == entryForNewGegner_) {
             addNewGegner(selectedGegner);
+            createNotification(NotificationTexts.textForNewCharakter(selectedGegner));
+        } else {
+            createNotification(NotificationTexts.textForGegnerUpdate(selectedGegner));
+        }
         
         updateGegnerAusruestung(selectedGegner);
         
         handleGegnerUpdate(selectedGegner);
     }
+    
+    
     
     private void updateGegnerDetails(GegnerTyp selectedGegner){        
         try {

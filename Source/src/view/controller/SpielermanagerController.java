@@ -186,6 +186,7 @@ public class SpielermanagerController extends CharakterTabController{
             return;
 
         selectedSpieler.increaseLevel();
+        createNotification(NotificationTexts.textForLevelChange(selectedSpieler));
 
         spielerLevelTextField_.setText(Integer.toString(selectedSpieler
                 .getLevel_()));
@@ -204,6 +205,7 @@ public class SpielermanagerController extends CharakterTabController{
             return;
 
         selectedSpieler.decreaseLevel();
+        createNotification(NotificationTexts.textForLevelChange(selectedSpieler));
 
         spielerLevelTextField_.setText(Integer.toString(selectedSpieler
                 .getLevel_()));
@@ -230,6 +232,9 @@ public class SpielermanagerController extends CharakterTabController{
             spielerList_.add(selectedSpieler);
             selectedSpieler.addToDB();
             entryForNewSpieler_ = getEntryForNewSpieler();
+            createNotification(NotificationTexts.textForNewCharakter(selectedSpieler));
+        } else {
+            createNotification(NotificationTexts.textForSpielerUpdate(selectedSpieler));
         }
 
         //muss nach Speicherung des Spielers gemacht werden, damit Ausruestung in DB ist.
@@ -243,7 +248,8 @@ public class SpielermanagerController extends CharakterTabController{
 
     private boolean updateSpielerName(Spieler selectedSpieler) {
         String newName = spielerNameTextField_.getText();
-        if(!newName.isEmpty() && !newName.equals(selectedSpieler.getName_())) {
+        String oldName = selectedSpieler.getName_();
+        if(!newName.isEmpty() && !newName.equals(oldName)) {
             selectedSpieler.setName_(newName);
             return true;
         }
@@ -351,8 +357,16 @@ public class SpielermanagerController extends CharakterTabController{
         if (selectedSpieler == null)
             return;
 
-        selectedSpieler.deleteWaffe(selectedWaffe);
-        waffenListView_.getItems().remove(selectedWaffe);
+        Action deleteWaffe = new Action(new Consumer<ActionEvent>() {
+            @Override
+            public void accept(ActionEvent t) {
+                selectedSpieler.deleteWaffe(selectedWaffe);
+                waffenListView_.getItems().remove(selectedWaffe);
+                createNotification(NotificationTexts.textForWaffenDeletion(selectedWaffe));
+            }
+        });
+        
+        createReallyDeleteDialog(NotificationTexts.confirmationTextWaffenDeletion(selectedWaffe), deleteWaffe);
     }
 
     
