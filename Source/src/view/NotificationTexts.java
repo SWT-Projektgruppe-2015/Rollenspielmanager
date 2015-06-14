@@ -13,6 +13,9 @@ public class NotificationTexts {
 
     public static final String DELETE_INFORMATION = "Diese Aktion ist unwiderruflich.";
     public static final String DELETE_TITLE = "Wirklich l" + Hauptprogramm.UMLAUT_SMALL_OE + "schen?";
+    
+    public static final String INVALID_VALUES = "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
+    
     public static final String CONFIRMATION_DELETE_GEGNER_FROM_KAMPF = "Soll der Gegner wirklich aus dem Kampf gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht werden?";
     public static final String DELETE_FROM_KAMPF_INFORMATION = "Der Gegner wird aus der Erfahrungspunkteberechnung entfernt.\n"
             + "Um ihn nur als kampfunf" + Hauptprogramm.UMLAUT_SMALL_AE + "hig zu kennzeichenen, w" + Hauptprogramm.UMLAUT_SMALL_AE + "hle 'Entfernen'.";
@@ -26,11 +29,7 @@ public class NotificationTexts {
     public static String textForGruppenRenaming(String oldName, String newName) {
         return "Gruppe '" + oldName + "' in '" + newName + "' umbenannt."; 
     }
-
-    public static String textForGruppenDeletion(Gruppe gruppe) {
-        return "Gruppe '" + gruppe.getName() + "' gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
-    }
-
+    
     public static String textForAddingSpielerToGruppe(Spieler spieler, Gruppe gruppe) {
         return "Charakter '" + spieler.getName_() + "' zur Gruppe '" + gruppe.getName() + "' hinzugef" + Hauptprogramm.UMLAUT_SMALL_UE + "gt.";
     }
@@ -39,19 +38,7 @@ public class NotificationTexts {
         return "Charakter '" + spieler.getName_() + "' aus Gruppe '" + gruppe.getName() + "' entfernt.";
     }
 
-    public static String confirmationTextGruppenDeletion(Gruppe gruppe) {
-        return "Soll Gruppe '" + gruppe.getName_() + "' wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE +"scht werden?";
-    }
-
-   
     
-    public static String confirmationTextCharakterDeletion(Spieler spieler) {
-        return "Soll Charakter '" + spieler.getName_() + "' wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht werden?";
-    }
-
-    public static String textForCharakterDeletion(Spieler spieler) {
-        return "Charakter '" + spieler.getName_() + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
-    }
 
     public static String textForLevelChange(Spieler spieler) {
         return "Level für Charakter '" + spieler.getName_() + "' gespeichert.";
@@ -65,24 +52,58 @@ public class NotificationTexts {
         return "Daten f" + Hauptprogramm.UMLAUT_SMALL_UE + "r Spielercharakter '" + spieler.getName_() + "' gespeichert.";
     }
 
-    public static String textForWaffenDeletion(Waffen selectedWaffe) {
-        return "Waffe '" + selectedWaffe.getWaffenName_() + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
+    
+
+    private static String confirmationTextDeletion(String toDelete) {
+        return "Soll " + toDelete + " wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht werden?";
+    }
+    
+    public static String confirmationTextGruppenDeletion(Gruppe gruppe) {
+        return confirmationTextDeletion("Gruppe '" + gruppe.getName_() +"'");
+    }
+    
+    public static String confirmationTextCharakterDeletion(Spieler spieler) {
+        return confirmationTextDeletion("Spielercharakter '" + spieler.getName_() + "'");
+    }
+    
+    public static String confirmationTextGegnerDeletion(GegnerTyp selectedGegner) {
+        return confirmationTextDeletion("Nichtspielercharakter '" + selectedGegner.getName_() + "'");
     }
 
     public static String confirmationTextWaffenDeletion(Waffen selectedWaffe) {
-        return "Soll Waffe '" + selectedWaffe.getWaffenName_() + "' wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht werden?";
+        return confirmationTextDeletion("Waffe '" + selectedWaffe.getWaffenName_() + "'");
+    }
+    
+    public static String confirmationTextGegenstandDeletion(Gegenstand gegenstand) {
+        return confirmationTextDeletion("Gegenstand '" + gegenstand.getName_() + "'");
     }
 
     
     
-    
-    public static String confirmationTextGegnerDeletion(GegnerTyp selectedGegner) {
-        return "Soll Gegner '" + selectedGegner.getName_() + "' wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht werden?";
+    public static String textForDeletion(String deleted) {
+        return deleted + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
     }
 
+    public static String textForGruppenDeletion(Gruppe gruppe) {
+        return textForDeletion("Gruppe '" + gruppe.getName() + "'");
+    }
+    
     public static String textForGegnerDeletion(GegnerTyp selectedGegner) {
-        return "Gegner '" + selectedGegner.getName_() + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
+        return textForDeletion("Gegner '" + selectedGegner.getName_() + "'");
     }
+    
+    public static String textForWaffenDeletion(Waffen selectedWaffe) {
+        return textForDeletion("Waffe '" + selectedWaffe.getWaffenName_() + "'");
+    }
+    
+    public static String textForGegenstandDeletion(Gegenstand gegenstand) {
+        return textForDeletion("Gegenstand '" + gegenstand.getName_() + "'");
+    }
+
+    public static String textForCharakterDeletion(Spieler spieler) {
+        return textForDeletion("Charakter '" + spieler.getName_() + "'");
+    }
+
 
     public static String textForGegnerUpdate(GegnerTyp selectedGegner) {
         return "Daten f" + Hauptprogramm.UMLAUT_SMALL_UE + "r Nichtspielercharakter '" + selectedGegner.getName_() + "' gespeichert.";
@@ -114,12 +135,12 @@ public class NotificationTexts {
 
     public static String textForAusruestungUpdateFailed(Charakter charakter) {
         return "Ausr" + Hauptprogramm.UMLAUT_SMALL_UE + "stung von '" + charakter.getName_() + "' konnte nicht geupdated werden: \n" 
-                + "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
+                + INVALID_VALUES;
     }
 
     public static String textForWaffenUpdateFailed(Waffen selectedWaffe) {
         return "Waffe '" + selectedWaffe.getWaffenName_() + "' konnte nicht geupdated werden: \n" 
-                + "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
+                + INVALID_VALUES;
     }
 
     
@@ -131,17 +152,10 @@ public class NotificationTexts {
     public static String textForFailedGegenstandUpdate(
             Gegenstand selectedGegenstand) {
         return "Gegenstand '" + selectedGegenstand.getName_() + "' konnte nicht geupdated werden: \n" 
-                + "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
+                + INVALID_VALUES;
     }
 
-    public static String textForGegenstandDeletion(Gegenstand gegenstand) {
-        return "Gegenstand '" + gegenstand.getName_() + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
-    }
-
-    public static String confirmationTextGegenstandDeletion(Gegenstand gegenstand) {
-        return "Soll Gegenstand '" + gegenstand.getName_() + "' wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht werden?";
-    }
-
+    
     public static String textForNewGegenstand(Gegenstand selectedGegenstand) {
         return "Neuer Gegenstand '" + selectedGegenstand.getName_() + "' angelegt.";
     }    
