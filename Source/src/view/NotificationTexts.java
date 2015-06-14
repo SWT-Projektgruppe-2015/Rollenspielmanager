@@ -122,6 +122,8 @@ public class NotificationTexts {
                 + "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
     }
 
+    
+    
     public static String textForGegenstandUpdate(Gegenstand selectedGegenstand) {
         return "Daten f" + Hauptprogramm.UMLAUT_SMALL_UE + "r Gegenstand '" + selectedGegenstand.getName_() + "' gespeichert.";
     }
