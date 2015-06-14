@@ -2,6 +2,7 @@ package view;
 
 import view.controller.Hauptprogramm;
 import model.Charakter;
+import model.Gegenstand;
 import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Gruppe;
@@ -119,5 +120,27 @@ public class NotificationTexts {
     public static String textForWaffenUpdateFailed(Waffen selectedWaffe) {
         return "Waffe '" + selectedWaffe.getWaffenName_() + "' konnte nicht geupdated werden: \n" 
                 + "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
+    }
+
+    public static String textForGegenstandUpdate(Gegenstand selectedGegenstand) {
+        return "Daten f" + Hauptprogramm.UMLAUT_SMALL_UE + "r Gegenstand '" + selectedGegenstand.getName_() + "' gespeichert.";
+    }
+
+    public static String textForFailedGegenstandUpdate(
+            Gegenstand selectedGegenstand) {
+        return "Gegenstand '" + selectedGegenstand.getName_() + "' konnte nicht geupdated werden: \n" 
+                + "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
+    }
+
+    public static String textForGegenstandDeletion(Gegenstand gegenstand) {
+        return "Gegenstand '" + gegenstand.getName_() + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
+    }
+
+    public static String confirmationTextGegenstandDeletion(Gegenstand gegenstand) {
+        return "Soll Gegenstand '" + gegenstand.getName_() + "' wirklich gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht werden?";
+    }
+
+    public static String textForNewGegenstand(Gegenstand selectedGegenstand) {
+        return "Neuer Gegenstand '" + selectedGegenstand.getName_() + "' angelegt.";
     }    
 }

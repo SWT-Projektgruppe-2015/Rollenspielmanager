@@ -2,10 +2,15 @@ package view.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
+import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 import model.Gegenstand;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -182,14 +187,17 @@ public class HaendlerController extends NotificationController {
         try {
             fillGegenstandWithValues(selectedGegenstand);
             if (isValid(selectedGegenstand)) {
-                checkForNewGegenstand(selectedGegenstand);
+                boolean isNew = checkForNewGegenstand(selectedGegenstand);
                 updateGegenstandList(selectedGegenstand);
                 updateKategorieTreeView(selectedGegenstand);
+                createNotification(isNew ?  NotificationTexts.textForNewGegenstand(selectedGegenstand) : NotificationTexts.textForGegenstandUpdate(selectedGegenstand));
+                return;
             }
         }
         catch (NumberFormatException e) {
 
         }
+        createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
     }
 
 
@@ -202,13 +210,15 @@ public class HaendlerController extends NotificationController {
 
 
 
-    private void checkForNewGegenstand(Gegenstand selectedGegenstand) {
+    private boolean checkForNewGegenstand(Gegenstand selectedGegenstand) {
         if (selectedGegenstand == entryForNewGegenstand_) {
             allGegenstaende_.add(selectedGegenstand);
             selectedGegenstand.addToDB();
             entryForNewGegenstand_ = new Gegenstand();
             entryForNewGegenstand_.setName_("Neuer Gegenstand");
+            return true;
         }
+        return false;
     }
 
 
@@ -243,11 +253,20 @@ public class HaendlerController extends NotificationController {
     @FXML
     private void deleteGegenstand() {
         Gegenstand gegenstandToDelete = getSelectedGegenstand();
+        
         if (gegenstandToDelete != null) {
-            gegenstandListView_.getItems().remove(gegenstandToDelete);
-            allGegenstaende_.remove(gegenstandToDelete);
-
-            gegenstandToDelete.deleteFromDB();
+            Action deleteGegenstand = new Action(new Consumer<ActionEvent>() {
+                @Override
+                public void accept(ActionEvent t) {
+                    gegenstandListView_.getItems().remove(gegenstandToDelete);
+                    allGegenstaende_.remove(gegenstandToDelete);
+        
+                    gegenstandToDelete.deleteFromDB();
+                    createNotification(NotificationTexts.textForGegenstandDeletion(gegenstandToDelete));
+                }
+            });
+            
+            createReallyDeleteDialog(NotificationTexts.confirmationTextGegenstandDeletion(gegenstandToDelete), deleteGegenstand);
         }
     }
     
