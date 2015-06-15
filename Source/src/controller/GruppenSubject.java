@@ -6,6 +6,10 @@ import java.util.List;
 import controller.interfaces.GruppenObserver;
 import model.Gruppe;
 
+/**
+ * @author Andreas
+ *
+ */
 public class GruppenSubject {
     
     private List<Gruppe> gruppen_;
@@ -26,6 +30,17 @@ public class GruppenSubject {
     public void addGruppenObserver (GruppenObserver observer){
         gruppenObserver_.add(observer);
         
+    }
+    
+    
+    
+    /**
+     * Testmethode um zu ueberpruefen ob ein Observer in der Observerliste enthalten ist.
+     * @param observer
+     * @return
+     */
+    public boolean containsGruppenObserver(GruppenObserver observer)   {
+        return gruppenObserver_.contains(observer);
     }
     
     
