@@ -385,9 +385,7 @@ public class HaendlerController extends NotificationController {
             selectedGegenstand.addToDB();
             entryForNewGegenstand_ = new Gegenstand();
             entryForNewGegenstand_.setName_("Neuer Gegenstand");
-            return true;
         }
-        return false;
     }
 
 
