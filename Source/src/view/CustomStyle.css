@@ -2,19 +2,21 @@
 	-fx-background-color: white;
 	-fx-background-repeat: no-repeat;
     -fx-background-size: 80%;
+    -fx-background-radius: 100;
     -fx-padding: 100 0 0 0;
     -fx-text-fill: black;
-    -fx-pref-width: 150px;
-    -fx-pref-height: 150px;
+    -fx-pref-width: 170px;
+    -fx-pref-height: 170px;
     
     -fx-font-family: DejaVu Sans;
     -fx-font-weight: bold;
-    -fx-font-size: 23px;
+    -fx-font-size: 20px;
 }
 
 
 
 .button-mainmenu:focused	{
+	-fx-border-radius:100em;
 	-fx-border-color: #339966;
 }
 
@@ -55,9 +57,9 @@
 
 
 .button-gruppen	{
-	-fx-background-position: 60% 10%;
-	-fx-background-image: url('/img/gruppe.jpg');
-	-fx-font-size: 14px;
+	-fx-background-position: 50% 10%;
+	-fx-background-image: url('/img/Hauptmenu_rund/gruppe_rund_v1.png');
+	-fx-font-size: 13px;
 }
 
 
