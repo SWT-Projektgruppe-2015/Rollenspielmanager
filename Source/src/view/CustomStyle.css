@@ -36,22 +36,22 @@
 
 
 .button-kampf	{
-	-fx-background-position: 10% 10%;	
-    -fx-background-image: url('/img/kaempfer.jpg');   
+	-fx-background-position: 30% 10%;
+    -fx-background-image: url('/img/Hauptmenu_rund/kaempfer_rund_v1.png');   
 }
 
 
 
 .button-haendler	{
 	-fx-background-position: 40% 30%;
-	-fx-background-image: url('/img/schwerter.jpg');
+	-fx-background-image: url('/img/Hauptmenu_rund/schwerter_rund_v1.png');
 }
 
 
 
 .button-wuerfeln	{
-	-fx-background-position: 63% 35%;
-	-fx-background-image: url('/img/wuerfel.jpg');
+	-fx-background-position: 49% 35%;
+	-fx-background-image: url('/img/Hauptmenu_rund/wuerfel_rund_v1.png');
 }
 
 
