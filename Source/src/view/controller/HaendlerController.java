@@ -22,9 +22,13 @@ public class HaendlerController extends NotificationController {
     List<String> ausruestungKategorien_;
     
     @FXML
-    private TextField searchTextField_;
+    private TextField searchGegenstandListTextField_;
     @FXML
-    private TextField gegenstandSearchTree_;
+    private TextField searchGegenstandTreeTextField_;
+    @FXML
+    private TextField searchAusruestungListTextField_;
+    @FXML
+    private TextField searchAusruestungTreeTextField_;    
     @FXML
     private ListView<Gegenstand> gegenstandListView_;
     @FXML
@@ -137,7 +141,7 @@ public class HaendlerController extends NotificationController {
 
 
     private void initializeAusruestungListView() {
-        showGegenstaendeInListView(alleAusruestung_, ausruestungListView_);
+        updateListView(alleAusruestung_, ausruestungListView_);
         addListenerAusruestungListView();        
     }
     
@@ -201,7 +205,7 @@ public class HaendlerController extends NotificationController {
 
 
     private void initializeGegenstandListView() {
-        showGegenstaendeInListView(alleGegenstaende_, gegenstandListView_);
+        updateListView(alleGegenstaende_, gegenstandListView_);
         addListenerGegenstandListView();
     }
     
@@ -246,7 +250,7 @@ public class HaendlerController extends NotificationController {
             TreeItem<String> item = new TreeItem<String>(highestKategorie);
             rootItem.getChildren().add(item);
         }
-        TreeItem<String> branch = getChildItem(rootItem, highestKategorie); // don't override rootItem
+        TreeItem<String> branch = getTreeItemByName(rootItem, highestKategorie); // don't override rootItem
         if(subKategorien.size() == 1){
             showGegenstandKategorieItems(branch);
             return;
@@ -262,7 +266,7 @@ public class HaendlerController extends NotificationController {
             TreeItem<String> item = new TreeItem<String>(highestKategorie);
             rootItem.getChildren().add(item);
         }
-        TreeItem<String> branch = getChildItem(rootItem, highestKategorie); // don't override rootItem
+        TreeItem<String> branch = getTreeItemByName(rootItem, highestKategorie); // don't override rootItem
         if(subKategorien.size() == 1){
             showAusruestungKategorieItems(branch);
             return;
@@ -272,10 +276,9 @@ public class HaendlerController extends NotificationController {
 
 
 
-    private TreeItem<String> getChildItem(TreeItem<String> rootItem,
-            String itemName) {
+    private TreeItem<String> getTreeItemByName(TreeItem<String> rootItem, String subKategorieName) {
         for(TreeItem<String> child : rootItem.getChildren()){
-            if(child.getValue().contentEquals(itemName))
+            if(child.getValue().contentEquals(subKategorieName))
                 return child;
         }
         return null;
@@ -301,12 +304,13 @@ public class HaendlerController extends NotificationController {
             return;
         try {
             fillAusruestungWithValues(selectedGegenstand);
-            String fullKategorie = getFullKategorieFromSubKategorie(ausruestungKategorieTextField_.getText(), alleAusruestung_);
+            String fullKategorie = getFullSubkategoriePath(ausruestungKategorieTextField_.getText(), alleAusruestung_);
             if(fullKategorie != null)
                 selectedGegenstand.setKategorie_(fullKategorie);
             if (isValid(selectedGegenstand)) {
                 checkForNewGegenstand(selectedGegenstand, alleAusruestung_);
-                updateAusruestungListView(selectedGegenstand);
+                updateListView(alleAusruestung_, ausruestungListView_);
+//                ausruestungListView_.getSelectionModel().select(selectedGegenstand);
                 updateAusruestungKategorieTreeView(selectedGegenstand);
             }
         }
@@ -315,7 +319,7 @@ public class HaendlerController extends NotificationController {
     
     
     
-    private String getFullKategorieFromSubKategorie(String subKategorie, List<Gegenstand> alleGegenstaende) {
+    private String getFullSubkategoriePath(String subKategorie, List<Gegenstand> alleGegenstaende) {
         for(Gegenstand item : alleGegenstaende) {
             String kategorie = item.getKategorie_(); 
             if(kategorie.contains(subKategorie)){
@@ -340,9 +344,12 @@ public class HaendlerController extends NotificationController {
             return;
         try {
             fillGegenstandWithValues(selectedGegenstand);
+            String fullKategorie = getFullSubkategoriePath(gegenstandKategorieTextField_.getText(), alleGegenstaende_);
+            if(fullKategorie != null)
+                selectedGegenstand.setKategorie_(fullKategorie);
             if (isValid(selectedGegenstand)) {
                 checkForNewGegenstand(selectedGegenstand, alleGegenstaende_);
-                updateGegenstandListView(selectedGegenstand);
+                updateListView(alleGegenstaende_, gegenstandListView_);
                 updateGegenstandKategorieTreeView(selectedGegenstand);
             }
         }
@@ -452,21 +459,11 @@ public class HaendlerController extends NotificationController {
     }
     
     
-    
-    private void updateGegenstandListView(Gegenstand changedGegenstand) {
-        gegenstandListView_.getItems().setAll(entryForNewGegenstand_);
-        alleGegenstaende_.sort(null);
-        gegenstandListView_.getItems().addAll(alleGegenstaende_);
-        gegenstandListView_.getSelectionModel().select(changedGegenstand);
-    }
-    
-    
-    
-    private void updateAusruestungListView(Gegenstand changedGegenstand) {
-        ausruestungListView_.getItems().setAll(entryForNewGegenstand_);
-        sortWithKosten(alleAusruestung_);
-        ausruestungListView_.getItems().addAll(alleAusruestung_);
-        ausruestungListView_.getSelectionModel().select(changedGegenstand);
+
+    private void updateListView(List<Gegenstand> newItems, ListView<Gegenstand> listView) {
+        listView.getItems().setAll(entryForNewGegenstand_);
+        sortWithKosten(newItems);
+        listView.getItems().addAll(newItems);
     }
 
 
@@ -482,8 +479,8 @@ public class HaendlerController extends NotificationController {
 
 
     @FXML
-    private void search() {
-        String search = searchTextField_.getText().toLowerCase();
+    private void searchGegenstandListView() {
+        String search = searchGegenstandListTextField_.getText().toLowerCase();
         gegenstandListView_.getItems().clear();
 
         if (search.isEmpty())
@@ -499,9 +496,57 @@ public class HaendlerController extends NotificationController {
     
     
     @FXML
-    private void searchTree() {
-        String searchTree = gegenstandSearchTree_.getText().toLowerCase();
-        gegenstandKategorieTreeView_.getChildrenUnmodifiable().clear();
+    private void searchAusruestungListView() {
+        String search = searchAusruestungListTextField_.getText().toLowerCase();
+        ausruestungListView_.getItems().clear();
+
+        if (search.isEmpty())
+            ausruestungListView_.getItems().add(entryForNewGegenstand_);
+        
+        for (Gegenstand item : alleAusruestung_) {
+            if (item.getName_().toLowerCase().contains(search)) {
+                ausruestungListView_.getItems().add(item);
+            }
+        }
+    }    
+    
+    
+    
+    @FXML
+    private void searchGegenstandTreeView() {
+        String search = searchGegenstandTreeTextField_.getText().toLowerCase();
+        List<String> matchingKategorien = getSearchMatchingKategorien(search, gegenstandKategorien_);
+        TreeItem<String> root = gegenstandKategorieTreeView_.getRoot();
+        root.getChildren().setAll();
+        for(String matchingKategorie : matchingKategorien)
+            updateGegenstandTreeViewWithItem(root, matchingKategorie);
+        gegenstandListView_.getItems().clear();
+    }
+
+
+    
+    @FXML
+    private void searchAusruestungTreeView() {
+        String search = searchAusruestungTreeTextField_.getText().toLowerCase();
+        List<String> matchingKategorien = getSearchMatchingKategorien(search, ausruestungKategorien_);
+        TreeItem<String> root = ausruestungTreeView_.getRoot();
+        root.getChildren().setAll();
+        for(String matchingKategorie : matchingKategorien)
+            updateAusruestungTreeViewWithItem(root, matchingKategorie);
+        ausruestungListView_.getItems().clear();
+    }
+    
+    
+    
+    private List<String> getSearchMatchingKategorien(String search, List<String> kategorien) {
+        if(search.contentEquals(""))
+            return kategorien;
+        List<String> result = new ArrayList<String>();
+        for(String kategorie : kategorien){
+            if(kategorie.toLowerCase().contains(search))
+                result.add(kategorie);
+        }
+        return result;
     }
     
     
@@ -510,15 +555,15 @@ public class HaendlerController extends NotificationController {
         String kategorie = new_value.getValue();
         List<Gegenstand> filteredItems = new ArrayList<Gegenstand>();
         for(Gegenstand gegenstand : alleAusruestung_) {
-            if(filterCategory(kategorie, gegenstand))
+            if(isItemFromTypeKategorie(kategorie, gegenstand))
                 filteredItems.add(gegenstand);
         }
-        showGegenstaendeInListView(filteredItems, ausruestungListView_);
+        updateListView(filteredItems, ausruestungListView_);
         clearAusruestungDetails();
     }
 
 
-    private boolean filterCategory(String kategorie, Gegenstand item) {
+    private boolean isItemFromTypeKategorie(String kategorie, Gegenstand item) {
         boolean isContained = item.getKategorie_().contains(kategorie);
         return  isContained;
     }
@@ -526,13 +571,15 @@ public class HaendlerController extends NotificationController {
     
     
     private void showGegenstandKategorieItems(TreeItem<String> new_value) {
-        String kategorie = new_value.getValue();
         List<Gegenstand> newItems = new ArrayList<Gegenstand>();
-        for(Gegenstand item : alleGegenstaende_) {
-            if(item.getKategorie_().contains(kategorie))
-                newItems.add(item);
+        if(new_value != null){
+            String kategorie = new_value.getValue();
+            for(Gegenstand item : alleGegenstaende_) {
+                if(item.getKategorie_().contains(kategorie))
+                    newItems.add(item);
+            }
         }
-        showGegenstaendeInListView(newItems, gegenstandListView_);
+        updateListView(newItems, gegenstandListView_);
         clearGegenstandDetails();
     }
     
@@ -556,27 +603,23 @@ public class HaendlerController extends NotificationController {
         this.gegenstandBeschreibungTextField_.clear();
     }
 
-
-
-    private void showGegenstaendeInListView(List<Gegenstand> newItems, ListView<Gegenstand> listView) {
-        listView.getItems().setAll(entryForNewGegenstand_);
-        listView.getItems().addAll(newItems);
-    }
-
     
     
     private void showAusruestungDetails(Gegenstand newValue) {
         if(newValue == null) {
-            showEmptyGegenstandDetails();
+            showEmptyAusruestungDetails();
         }
         else {
             ausruestungNameTextField_.setText(newValue.getName_());
             ausruestungKostenTextField_.setText(Integer.toString(newValue.getKosten_()));
             ausruestungBeschreibungTextField_.setText(newValue.getBeschreibung_());
             ausruestungTraglastTextField_.setText(Integer.toString(newValue.getTraglast_()));
-            ausruestungKategorieTextField_.setText(newValue.getKategorie_());
             ausruestungStaerkeTextField_.setText(Integer.toString(newValue.getStaerke_()));
             ausruestungWertTextField_.setText(newValue.getWert_());
+            
+            List<String> subKategorien = Gegenstand.getSubKategories(newValue.getKategorie_());
+            String lastKategorie = subKategorien.get(subKategorien.size()-1);
+            ausruestungKategorieTextField_.setText(lastKategorie);
             if(newValue == entryForNewGegenstand_){
                 TreeItem<String> item = ausruestungTreeView_.getSelectionModel().getSelectedItem();
                 if(item != null){
@@ -589,17 +632,21 @@ public class HaendlerController extends NotificationController {
     
 
 
-    private void showGegenstandDetails(Gegenstand gegenstand) {
-        if(gegenstand == null) {
+    private void showGegenstandDetails(Gegenstand newValue) {
+        if(newValue == null) {
             showEmptyGegenstandDetails();
         }
         else {
-            gegenstandNameTextField_.setText(gegenstand.getName_());
-            gegenstandKostenTextField_.setText(Integer.toString(gegenstand.getKosten_()));
-            gegenstandBeschreibungTextField_.setText(gegenstand.getBeschreibung_());
-            gegenstandTraglastTextField_.setText(Integer.toString(gegenstand.getTraglast_()));
-            gegenstandKategorieTextField_.setText(gegenstand.getKategorie_());
-            if(gegenstand == entryForNewGegenstand_){
+            gegenstandNameTextField_.setText(newValue.getName_());
+            gegenstandKostenTextField_.setText(Integer.toString(newValue.getKosten_()));
+            gegenstandBeschreibungTextField_.setText(newValue.getBeschreibung_());
+            gegenstandTraglastTextField_.setText(Integer.toString(newValue.getTraglast_()));
+            gegenstandKategorieTextField_.setText(newValue.getKategorie_());
+            
+            List<String> subKategorien = Gegenstand.getSubKategories(newValue.getKategorie_());
+            String lastKategorie = subKategorien.get(subKategorien.size()-1);
+            gegenstandKategorieTextField_.setText(lastKategorie);
+            if(newValue == entryForNewGegenstand_){
                 TreeItem<String> item = gegenstandKategorieTreeView_.getSelectionModel().getSelectedItem();
                 if(item != null){
                     String kategorie = item.getValue();
@@ -615,14 +662,27 @@ public class HaendlerController extends NotificationController {
         gegenstandNameTextField_.setText("");
         gegenstandKostenTextField_.setText("");
         gegenstandBeschreibungTextField_.setText("");
+        gegenstandTraglastTextField_.setText("");
     }
+    
+    
+    
+    private void showEmptyAusruestungDetails() {
+        ausruestungNameTextField_.setText("");
+        ausruestungKostenTextField_.setText("");
+        ausruestungBeschreibungTextField_.setText("");
+        ausruestungTraglastTextField_.setText("");
+        ausruestungKategorieTextField_.setText("");
+        ausruestungWertTextField_.setText("");
+        ausruestungStaerkeTextField_.setText("");
+    }    
     
     
     
     private void sortWithKosten(List<Gegenstand> allItems_){
         for(int i = 0; i < allItems_.size(); ++i){
             for(int j = 0; j < allItems_.size(); ++j){
-                if(allItems_.get(i).getKosten_() > allItems_.get(j).getKosten_()){
+                if(allItems_.get(i).getKosten_() < allItems_.get(j).getKosten_()){
                     Collections.swap(allItems_, i, j);
                 }
             }
