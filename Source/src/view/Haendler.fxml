@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.HaendlerController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="461.0" prefWidth="757.0" styleClass="font-papyrus" stylesheets="@CustomStyle.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.HaendlerController">
   <tabs>
     <Tab closable="false" text="Einfache Gegenstände">
       <content>
@@ -31,7 +31,7 @@
                                  </rotationAxis>
                               </TextField>
                               <Label text="Kategorien:" />
-                              <TreeView fx:id="gegenstandKategorieTreeView_" prefHeight="219.0" prefWidth="170.0" />
+                              <TreeView fx:id="gegenstandKategorieTreeView_" prefHeight="296.0" prefWidth="245.0" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
@@ -41,7 +41,7 @@
                            <children>
                               <TextField fx:id="searchGegenstandListTextField_" onAction="#searchGegenstandListView" onKeyReleased="#searchGegenstandListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche..." />
                               <Label text="Gegenstände:" />
-                              <ListView fx:id="gegenstandListView_" layoutX="36.0" layoutY="18.0" prefHeight="219.0" prefWidth="170.0" />
+                              <ListView fx:id="gegenstandListView_" layoutX="36.0" layoutY="18.0" prefHeight="296.0" prefWidth="244.0" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
@@ -51,8 +51,11 @@
                            <children>
                               <HBox prefHeight="29.0" prefWidth="231.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
-                                    <TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="158.0">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin></Text>
+                                    <TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" prefHeight="38.0" prefWidth="179.0">
                                        <HBox.margin>
                                           <Insets left="24.0" />
                                        </HBox.margin>
@@ -64,33 +67,51 @@
                               </HBox>
                               <HBox prefHeight="31.0" prefWidth="231.0">
                                  <children>
-                                    <Label text="Kategorie:" />
-                                    <TextField fx:id="gegenstandKategorieTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="159.0">
+                                    <Label text="Kategorie:">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin></Label>
+                                    <TextField fx:id="gegenstandKategorieTextField_" onAction="#changeGegenstand" prefHeight="38.0" prefWidth="168.0">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
                               </HBox>
                               <HBox prefHeight="26.0" prefWidth="218.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preis: " />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Preis: ">
+                                       <HBox.margin>
+                                          <Insets top="10.0" />
+                                       </HBox.margin></Text>
                                     <TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="56.0">
                                        <HBox.margin>
                                           <Insets left="3.0" />
                                        </HBox.margin></TextField>
                                     <Label text="Traglast:">
                                        <HBox.margin>
-                                          <Insets left="15.0" />
+                                          <Insets left="8.0" top="4.0" />
                                        </HBox.margin></Label>
-                                    <TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="25.0" prefWidth="60.0">
+                                    <TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="38.0" prefWidth="69.0">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin></TextField>
                                  </children>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
                               </HBox>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:" />
-                              <TextArea fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="169.0" prefWidth="225.0" wrapText="true" />
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:">
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin></Text>
+                              <TextArea fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="208.0" prefWidth="244.0" wrapText="true" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
@@ -101,10 +122,14 @@
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </padding>
                   </GridPane>
-                  <ButtonBar layoutX="476.0" layoutY="275.0" prefHeight="45.0" prefWidth="185.0">
+                  <ButtonBar layoutX="476.0" layoutY="275.0" prefHeight="45.0" prefWidth="185.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
                      <buttons>
                         <Button mnemonicParsing="false" onAction="#deleteGegenstand" text="Delete" />
-                      <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save" />
+                      <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
                      </buttons>
                   </ButtonBar>
                </children></AnchorPane>
@@ -132,7 +157,7 @@
                                  </VBox.margin>
                               </TextField>
                               <Label text="Kategorien:" />
-                              <TreeView fx:id="ausruestungTreeView_" prefHeight="258.0" prefWidth="226.0" />
+                              <TreeView fx:id="ausruestungTreeView_" prefHeight="296.0" prefWidth="226.0" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
@@ -142,7 +167,7 @@
                            <children>
                               <TextField fx:id="searchAusruestungListTextField_" onAction="#searchAusruestungListView" onKeyReleased="#searchAusruestungListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." />
                               <Label text="Gegenstände:" />
-                              <ListView fx:id="ausruestungListView_" prefHeight="258.0" prefWidth="225.0" />
+                              <ListView fx:id="ausruestungListView_" prefHeight="296.0" prefWidth="225.0" />
                            </children>
                            <GridPane.margin>
                               <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
@@ -152,8 +177,11 @@
                            <children>
                               <HBox prefHeight="28.0" prefWidth="230.0">
                                  <children>
-                                    <Label text="Name:" />
-                                    <TextField fx:id="ausruestungNameTextField_" onAction="#changeAusruestung" prefHeight="23.0" prefWidth="159.0">
+                                    <Label text="Name:">
+                                       <HBox.margin>
+                                          <Insets top="5.0" />
+                                       </HBox.margin></Label>
+                                    <TextField fx:id="ausruestungNameTextField_" onAction="#changeAusruestung" prefHeight="38.0" prefWidth="179.0">
                                        <HBox.margin>
                                           <Insets left="24.0" />
                                        </HBox.margin>
@@ -170,13 +198,16 @@
                                  <children>
                                     <Label text="Kategorie:">
                                        <HBox.margin>
-                                          <Insets />
+                                          <Insets top="5.0" />
                                        </HBox.margin></Label>
-                                    <TextField fx:id="ausruestungKategorieTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="159.0">
+                                    <TextField fx:id="ausruestungKategorieTextField_" onAction="#changeAusruestung" prefHeight="38.0" prefWidth="168.0">
                                        <HBox.margin>
                                           <Insets left="5.0" />
                                        </HBox.margin></TextField>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
                               </HBox>
                               <HBox prefHeight="27.0" prefWidth="217.0">
                                  <children>
@@ -187,47 +218,53 @@
                                     </Label>
                                     <TextField fx:id="ausruestungKostenTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="55.0">
                                        <HBox.margin>
-                                          <Insets left="12.0" top="2.0" />
+                                          <Insets left="12.0" />
                                        </HBox.margin>
                                     </TextField>
                                     <Label text="Traglast:">
                                        <HBox.margin>
-                                          <Insets bottom="5.0" left="1.0" top="5.0" />
+                                          <Insets left="5.0" top="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="ausruestungTraglastTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="72.0">
+                                    <TextField fx:id="ausruestungTraglastTextField_" onAction="#changeAusruestung" prefHeight="38.0" prefWidth="68.0">
                                        <HBox.margin>
-                                          <Insets left="5.0" top="2.0" />
+                                          <Insets left="5.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
                               </HBox>
                               <HBox prefHeight="25.0" prefWidth="217.0">
                                  <children>
                                     <Label text="Stärke: ">
                                        <HBox.margin>
-                                          <Insets top="7.0" />
+                                          <Insets top="5.0" />
                                        </HBox.margin>
                                     </Label>
                                     <TextField fx:id="ausruestungStaerkeTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="56.0">
                                        <HBox.margin>
-                                          <Insets left="1.0" top="4.0" />
+                                          <Insets left="1.0" />
                                        </HBox.margin>
                                     </TextField>
                                     <Label text="Wert:">
                                        <HBox.margin>
-                                          <Insets left="15.0" top="7.0" />
+                                          <Insets left="15.0" top="5.0" />
                                        </HBox.margin>
                                     </Label>
-                                    <TextField fx:id="ausruestungWertTextField_" onAction="#changeAusruestung" prefHeight="25.0" prefWidth="73.0">
+                                    <TextField fx:id="ausruestungWertTextField_" onAction="#changeAusruestung" prefHeight="38.0" prefWidth="78.0">
                                        <HBox.margin>
-                                          <Insets left="5.0" top="4.0" />
+                                          <Insets left="5.0" />
                                        </HBox.margin>
                                     </TextField>
                                  </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
                               </HBox>
                               <Label text="Beschreibung:" />
-                              <TextArea fx:id="ausruestungBeschreibungTextField_" prefHeight="134.0" prefWidth="225.0">
+                              <TextArea fx:id="ausruestungBeschreibungTextField_" prefHeight="166.0" prefWidth="244.0">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -237,6 +274,9 @@
                                     <Button mnemonicParsing="false" onAction="#deleteAusruestung" text="Delete" />
                                     <Button mnemonicParsing="false" onAction="#changeAusruestung" text="Save" />
                                  </buttons>
+                                 <VBox.margin>
+                                    <Insets right="4.0" top="5.0" />
+                                 </VBox.margin>
                               </ButtonBar>
                            </children>
                            <GridPane.margin>
