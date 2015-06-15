@@ -5,7 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MenuBarController">
+   <bottom>
+      <MenuBar nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Hilfe">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onAboutWindowClick" text="Zu diesem Fenster" />
+              <MenuItem mnemonicParsing="false" onAction="#onAboutUsClick" text="Über dieses Produkt" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </bottom>
 </BorderPane>

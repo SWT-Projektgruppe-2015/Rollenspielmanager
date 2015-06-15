@@ -1,9 +1,14 @@
 package view.controller;
 
 import java.util.List;
+import java.util.function.Consumer;
 
+import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -155,11 +160,20 @@ public class SpielermanagerController extends CharakterTabController{
     private void deleteSpieler() {
         Spieler spielerToDelete = getSelectedSpieler();
         if (spielerToDelete != null) {
-            spielerListView_.getItems().remove(spielerToDelete);
-            spielerList_.remove(spielerToDelete);
-            spielerToDelete.deleteFromDB();
-           
-            gruppenManagerController.updateSpieler(spielerList_, spielerToDelete);
+            Action deleteSpieler = new Action(new Consumer<ActionEvent>() {
+                @Override
+                public void accept(ActionEvent t) {
+                    spielerListView_.getItems().remove(spielerToDelete);
+                    spielerList_.remove(spielerToDelete);
+                    spielerToDelete.deleteFromDB();
+                   
+                    gruppenManagerController.updateSpieler(spielerList_, spielerToDelete);
+                    
+                    createNotification(NotificationTexts.textForCharakterDeletion(spielerToDelete));
+                }
+            });
+            
+            createReallyDeleteDialog(NotificationTexts.confirmationTextCharakterDeletion(spielerToDelete), deleteSpieler);
         }
     }
 
@@ -172,6 +186,7 @@ public class SpielermanagerController extends CharakterTabController{
             return;
 
         selectedSpieler.increaseLevel();
+        createNotification(NotificationTexts.textForLevelChange(selectedSpieler));
 
         spielerLevelTextField_.setText(Integer.toString(selectedSpieler
                 .getLevel_()));
@@ -190,6 +205,7 @@ public class SpielermanagerController extends CharakterTabController{
             return;
 
         selectedSpieler.decreaseLevel();
+        createNotification(NotificationTexts.textForLevelChange(selectedSpieler));
 
         spielerLevelTextField_.setText(Integer.toString(selectedSpieler
                 .getLevel_()));
@@ -208,7 +224,7 @@ public class SpielermanagerController extends CharakterTabController{
             return;
         
         boolean listHasToBeReloaded = updateSpielerName(selectedSpieler);
-        updateSpielerDef(selectedSpieler);
+        boolean defIsUpdated = updateSpielerDef(selectedSpieler);
         
         if (selectedSpieler == entryForNewSpieler_) {
             listHasToBeReloaded = true;
@@ -216,6 +232,9 @@ public class SpielermanagerController extends CharakterTabController{
             spielerList_.add(selectedSpieler);
             selectedSpieler.addToDB();
             entryForNewSpieler_ = getEntryForNewSpieler();
+            createNotification(NotificationTexts.textForNewCharakter(selectedSpieler));
+        } else if (defIsUpdated) {
+            createNotification(NotificationTexts.textForSpielerUpdate(selectedSpieler));
         }
 
         //muss nach Speicherung des Spielers gemacht werden, damit Ausruestung in DB ist.
@@ -229,7 +248,8 @@ public class SpielermanagerController extends CharakterTabController{
 
     private boolean updateSpielerName(Spieler selectedSpieler) {
         String newName = spielerNameTextField_.getText();
-        if(!newName.isEmpty() && !newName.equals(selectedSpieler.getName_())) {
+        String oldName = selectedSpieler.getName_();
+        if(!newName.isEmpty() && !newName.equals(oldName)) {
             selectedSpieler.setName_(newName);
             return true;
         }
@@ -238,7 +258,7 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    private void updateSpielerDef(Spieler selectedSpieler) {
+    private boolean updateSpielerDef(Spieler selectedSpieler) {
         try {
             int newDefR = Integer.parseInt(defRTextField_.getText());
             int newDefH = Integer.parseInt(defHTextField_.getText());
@@ -248,11 +268,15 @@ public class SpielermanagerController extends CharakterTabController{
                 selectedSpieler.setDefR(newDefR);
                 selectedSpieler.setDefH(newDefH);
                 selectedSpieler.setDefS(newDefS);
+                return true;
+            } else {
+                createNotification(NotificationTexts.textForAusruestungUpdateFailed(selectedSpieler));
             }
         }
         catch (NumberFormatException e) {
-
+            createNotification(NotificationTexts.textForAusruestungUpdateFailed(selectedSpieler));
         }
+        return false;
     }
 
     
@@ -297,9 +321,12 @@ public class SpielermanagerController extends CharakterTabController{
                     && newDamage != selectedWaffe.getWaffenSchaden_()) {
                 selectedWaffe.setWaffenSchaden_(newDamage);
                 return true;
+            } else if(newDamage < 0) {
+                createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
             }
         }
         catch (NumberFormatException e) {
+            createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
         }
         return false;
     }
@@ -337,8 +364,16 @@ public class SpielermanagerController extends CharakterTabController{
         if (selectedSpieler == null)
             return;
 
-        selectedSpieler.deleteWaffe(selectedWaffe);
-        waffenListView_.getItems().remove(selectedWaffe);
+        Action deleteWaffe = new Action(new Consumer<ActionEvent>() {
+            @Override
+            public void accept(ActionEvent t) {
+                selectedSpieler.deleteWaffe(selectedWaffe);
+                waffenListView_.getItems().remove(selectedWaffe);
+                createNotification(NotificationTexts.textForWaffenDeletion(selectedWaffe));
+            }
+        });
+        
+        createReallyDeleteDialog(NotificationTexts.confirmationTextWaffenDeletion(selectedWaffe), deleteWaffe);
     }
 
     

@@ -3,10 +3,15 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
+import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 import model.Gegenstand;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -380,7 +385,9 @@ public class HaendlerController extends NotificationController {
             selectedGegenstand.addToDB();
             entryForNewGegenstand_ = new Gegenstand();
             entryForNewGegenstand_.setName_("Neuer Gegenstand");
+            return true;
         }
+        return false;
     }
 
 

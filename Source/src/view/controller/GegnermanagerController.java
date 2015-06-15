@@ -2,12 +2,17 @@ package view.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
+import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 import model.Charakter;
 import model.Faehigkeiten;
 import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ListView;
@@ -130,9 +135,16 @@ public class GegnermanagerController extends CharakterTabController {
         if(selectedGegner == null || selectedGegner == entryForNewGegner_)
             return;
         
-        selectedGegner.deleteFromDB();
-        gegnerList_.remove(selectedGegner);
-        gegnerListView_.getItems().remove(selectedGegner);
+        Action deleteGegner = new Action(new Consumer<ActionEvent>() {
+            @Override
+            public void accept(ActionEvent t) {
+                selectedGegner.deleteFromDB();
+                gegnerList_.remove(selectedGegner);
+                gegnerListView_.getItems().remove(selectedGegner);
+                createNotification(NotificationTexts.textForGegnerDeletion(selectedGegner));
+            }
+        });
+        createReallyDeleteDialog(NotificationTexts.confirmationTextGegnerDeletion(selectedGegner), deleteGegner);
     }
     
     
@@ -143,17 +155,30 @@ public class GegnermanagerController extends CharakterTabController {
         if(selectedGegner == null)
             return;
         
-        updateGegnerDetails(selectedGegner);   
-
-        if (selectedGegner == entryForNewGegner_)
+        boolean updated = updateGegnerDetails(selectedGegner);
+        
+        if(!updated) {
+            createNotification(NotificationTexts.textForGegnerUpdateFailed(selectedGegner));
+        } else if (selectedGegner == entryForNewGegner_) {
             addNewGegner(selectedGegner);
+            createNotification(NotificationTexts.textForNewCharakter(selectedGegner));
+        } else {
+            createNotification(NotificationTexts.textForGegnerUpdate(selectedGegner));
+        }
         
-        updateGegnerAusruestung(selectedGegner);
+        boolean ausruestungUpdated = updateGegnerAusruestung(selectedGegner);
+        if(!ausruestungUpdated) {
+            createNotification(NotificationTexts.textForAusruestungUpdateFailed(selectedGegner));
+        }
         
-        handleGegnerUpdate(selectedGegner);
+        if(ausruestungUpdated || updated) {
+            handleGegnerUpdate(selectedGegner);
+        }
     }
     
-    private void updateGegnerDetails(GegnerTyp selectedGegner){        
+    
+    
+    private boolean updateGegnerDetails(GegnerTyp selectedGegner){        
         try {
             String newName = gegnerNameTextField_.getText();
             int newLevel = Integer.parseInt(gegnerLevelTextField_.getText());
@@ -171,16 +196,18 @@ public class GegnermanagerController extends CharakterTabController {
                 selectedGegner.setStaerke_(newStaerke);
                 selectedGegner.setErfahrung_(newErfahrung);
                 selectedGegner.setMaxLebenspunkte_(newLebenspunkte);
+                return true;
             }
         }
         catch (NumberFormatException e) {
             
         }
+        return false;
     }
     
     
     
-    private void updateGegnerAusruestung(GegnerTyp selectedGegner) {        
+    private boolean updateGegnerAusruestung(GegnerTyp selectedGegner) {        
         try {
             int newDefR = Integer.parseInt(gegnerDefRTextField_.getText());
             int newDefH = Integer.parseInt(gegnerDefHTextField_.getText());
@@ -192,12 +219,13 @@ public class GegnermanagerController extends CharakterTabController {
                 selectedGegner.setDefH(newDefH);
                 selectedGegner.setDefS(newDefS);
                 selectedGegner.setSchaden_(newDamage);
+                return true;
             }
         }
         catch (NumberFormatException e) {
             
         }
-
+        return false;
     }
     
     

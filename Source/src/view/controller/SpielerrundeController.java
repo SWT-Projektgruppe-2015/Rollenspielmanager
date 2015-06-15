@@ -3,7 +3,11 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
+import org.controlsfx.control.action.Action;
+
+import view.NotificationTexts;
 import view.tabledata.SharedGegnerTableEntry;
 import view.tabledata.SpielerMitWaffe;
 import model.Charakter;
@@ -11,6 +15,7 @@ import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Spieler;
 import model.Waffen;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
@@ -98,17 +103,20 @@ public class SpielerrundeController extends NotificationController {
         boolean hasCorrectFormat = lebenspunkte.split("/").length == 2;
         if(lebenspunkte == null || !hasCorrectFormat)    {
             refresh(changedItem, changedGegner);
+            createNotification(NotificationTexts.WRONG_LEBENSPUNKTE_FORMAT);
             return;
         }
         try {
             int currentLebenspunkte = Integer.parseInt(t.getNewValue().split("/")[0]);
             if(currentLebenspunkte <= 0) {
                 removeFromKampf();
+                createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte((GegnerEinheit) changedGegner));
                 return;
             }
             ((GegnerEinheit)changedGegner).setCurrentLebenspunkte_(currentLebenspunkte);
         }
         catch (NumberFormatException e) {
+            createNotification(NotificationTexts.WRONG_LEBENSPUNKTE_FORMAT);
         }
         refresh(changedItem, changedGegner); 
     }
@@ -306,34 +314,62 @@ public class SpielerrundeController extends NotificationController {
     
     @FXML
     private void deleteFromKampf()  {
-        removeGegnerFromTable(false);
+        TreeItem<SharedGegnerTableEntry> selectedItem = getSelectedGegnerItem();
+        if(selectedItem == null)    {
+            return;
+        }
+        
+        Action deleteGegnerFromKampf = new Action(new Consumer<ActionEvent>() {
+            @Override
+            public void accept(ActionEvent t) {
+                String deletedName = removeGegnerFromTable(false);
+                if(deletedName != null && !deletedName.isEmpty()) {
+                    createNotification(NotificationTexts.textForDeletingGegnerFromKampf(deletedName));
+                }
+            }
+        });
+        
+        if(selectedItem.getValue() instanceof GegnerEinheit) {
+            createConfirmationDialog(NotificationTexts.CONFIRMATION_DELETE_GEGNER_FROM_KAMPF, 
+                    NotificationTexts.DELETE_FROM_KAMPF_INFORMATION, NotificationTexts.DELETE_TITLE, 
+                    deleteGegnerFromKampf);
+        } else {
+            deleteGegnerFromKampf.handle(new javafx.event.ActionEvent());
+        }
     }
     
     
     
     @FXML
     private void removeFromKampf()  {
-        removeGegnerFromTable(true);
+        String removedName = removeGegnerFromTable(true);
+        if(removedName != null && !removedName.isEmpty()) {
+            createNotification(NotificationTexts.textForRemovingGegnerFromKampf(removedName));
+        }
     }
 
 
 
-    private void removeGegnerFromTable(boolean stillLootable) {
+    private String removeGegnerFromTable(boolean stillLootable) {
         TreeItem<SharedGegnerTableEntry> selectedItem = getSelectedGegnerItem();
         if(selectedItem == null)    {
-            return;
+            return "";
         }
         boolean hasChildren = !selectedItem.isLeaf(); 
         boolean isGegnerTyp = selectedItem.getValue() instanceof GegnerTyp;
         if(isGegnerTyp && hasChildren)    {
-            return;
+            createNotification(NotificationTexts.GEGNER_TYP_CANNOT_BE_REMOVED);
+            return "";
         }
         if(!isGegnerTyp && stillLootable)  {
             removedGegnerEinheiten_.add((GegnerEinheit)selectedItem.getValue());
         }
         selectedItem.getParent().getChildren().remove(selectedItem);
-        if(!isGegnerTyp)
+        if(!isGegnerTyp) {
             gegnerRundeController_.removeGegner((GegnerEinheit) selectedItem.getValue());
+        }
+        
+        return selectedItem.getValue().nameProperty().get();
     }
 
 
@@ -357,8 +393,10 @@ public class SpielerrundeController extends NotificationController {
         
         if(gegner.getCurrentLebenspunkte_() <= 0) {
             removeGegnerFromTable(true);
+            createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(gegner));
         } else {
             refresh(selectedItem, gegner);
+            createNotification(NotificationTexts.textForSchadenDealt(gegner));
         }
     }
 

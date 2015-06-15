@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.controlsfx.control.NotificationPane;
 
+import view.AboutTexts;
 import view.tabledata.SpielerMitWaffe;
 import controller.GruppenSubject;
 import model.GegnerEinheit;
@@ -16,6 +17,8 @@ import model.Spieler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -54,7 +57,7 @@ public class Hauptprogramm extends Application {
 
     public void showMainMenu() {
         try {
-            BorderPane menuBar = loadBorderPane();
+            BorderPane menuBar = loadBorderPane(AboutTexts.ABOUT_MAIN_MENU);
             FXMLLoader loader = getLoaderForXML("/view/MainMenu.fxml");
             AnchorPane mainMenu = (AnchorPane) loader.load();
 
@@ -77,7 +80,7 @@ public class Hauptprogramm extends Application {
     
     public void openCharakterManager() {
         try {
-            BorderPane charakterManagerBorder = loadBorderPane();
+            BorderPane charakterManagerBorder = loadBorderPane(AboutTexts.ABOUT_CHARAKTER_MANAGER);
             NotificationPane notificationPane = getNotificationPane(charakterManagerBorder);           
             FXMLLoader loader = getLoaderForXML("/view/Charaktermanager.fxml");
             Parent page = loader.load();
@@ -122,7 +125,7 @@ public class Hauptprogramm extends Application {
     
     public void startKampf(List<Spieler> spieler, List<GegnerEinheit> gegnerEinheiten) {
         try {
-            BorderPane pane = loadBorderPane();
+            BorderPane pane = loadBorderPane(AboutTexts.ABOUT_KAMPF);
             NotificationPane notificationPane = getNotificationPane(pane);
             FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
             Parent page = loader.load();
@@ -165,7 +168,7 @@ public class Hauptprogramm extends Application {
     
     public void openHaendler() {
         try {
-            BorderPane border = loadBorderPane();
+            BorderPane border = loadBorderPane(AboutTexts.ABOUT_HAENDLER);
             NotificationPane notificationPane = getNotificationPane(border);            
             FXMLLoader loader = getLoaderForXML("/view/Haendler.fxml");
             Parent page = loader.load();
@@ -231,8 +234,14 @@ public class Hauptprogramm extends Application {
     
     
     
-    private BorderPane loadBorderPane() throws IOException {
-        return new BorderPane();
+    private BorderPane loadBorderPane(String aboutWindow) throws IOException {
+        FXMLLoader loader = getLoaderForXML("/view/MenuBar.fxml");
+        BorderPane pane = loader.load();
+        
+        MenuBarController controller = loader.getController();
+        controller.setAboutWindow(aboutWindow);
+        
+        return pane;
     }
     
     
