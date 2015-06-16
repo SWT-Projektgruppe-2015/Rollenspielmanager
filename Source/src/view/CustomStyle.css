@@ -18,6 +18,18 @@
 
 
 
+.font-papyrus	{
+	-fx-font-family: Papyrus;
+}
+
+
+
+.font-system	{
+	-fx-font-family: System;
+}
+
+
+
 .font-papyrus-14	{
     -fx-font-size: 14px;
 	-fx-font-family: Papyrus;
@@ -33,16 +45,12 @@
 
 
 
-.font-papyrus	{
+.font-papyrus-16	{
 	-fx-font-family: Papyrus;
+	-fx-font-size: 16px;
 }
 
 
-
-*.tab-name	{
-	-fx-alignment: top center;
-	-fx-padding: 0,0,5,0;
-}
 
 
 
