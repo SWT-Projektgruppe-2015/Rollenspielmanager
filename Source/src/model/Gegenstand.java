@@ -55,7 +55,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         beschreibung_ = "";
         staerke_ = 0;
         wert_ = "0";
-        kategorie_ = "ohne kategorie";
+        kategorie_ = "Ohne Kategorie";
         vorkommen_ = "";
     }
     
