@@ -18,6 +18,7 @@ import model.Waffen;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -53,6 +54,11 @@ public class SpielerrundeController extends NotificationController {
     @FXML
     private TextField staerkeWurfTextField_;
     
+    @FXML
+    private Label expSum_;
+    
+    private int expSumBacking_;
+    
     
     private List<GegnerEinheit> removedGegnerEinheiten_;
     private Hauptprogramm main_;
@@ -71,6 +77,18 @@ public class SpielerrundeController extends NotificationController {
         initializeGegnerTreeTableView(allGegner);          
         setCellValueFactoriesForGegner();    
         setEditActionForGegner();
+        
+        expSumBacking_ = 0;
+        for(GegnerEinheit counted : allGegner)  {
+            expSumBacking_+=counted.getErfahrung_();
+        }
+        refreshExpSumLabel();
+    }
+
+
+
+    private void refreshExpSumLabel() {
+        expSum_.setText(Integer.toString((Integer)expSumBacking_));
     }
 
 
@@ -363,6 +381,10 @@ public class SpielerrundeController extends NotificationController {
         }
         if(!isGegnerTyp && stillLootable)  {
             removedGegnerEinheiten_.add((GegnerEinheit)selectedItem.getValue());
+        }
+        if(!isGegnerTyp && !stillLootable)  {
+            expSumBacking_-= ((GegnerEinheit) selectedItem.getValue()).getErfahrung_();
+            refreshExpSumLabel();
         }
         selectedItem.getParent().getChildren().remove(selectedItem);
         if(!isGegnerTyp) {

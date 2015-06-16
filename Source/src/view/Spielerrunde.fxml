@@ -37,6 +37,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Button mnemonicParsing="false" onAction="#onHelmButtonClick" prefWidth="80.0" text="Helm" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
@@ -50,6 +51,16 @@
                </children>
             </AnchorPane>
             <Button mnemonicParsing="false" onAction="#onBlockClick" prefWidth="80.0" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="font-papyrus-14" stylesheets="@CustomStyle.css" GridPane.rowIndex="5">
+               <children>
+                  <Label layoutX="8.0" layoutY="8.0" text="Exp.:" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <tooltip>
+                        <Tooltip text="Summe der Erfahrungspunkte, &#10;über alle Gegner." />
+                     </tooltip>
+                  </Label>
+                  <Label fx:id="expSum_" layoutX="59.0" layoutY="8.0" />
+               </children>
+            </AnchorPane>
          </children>
       </GridPane>
       <GridPane hgap="10.0" layoutX="447.0" layoutY="223.0" vgap="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="20.0">
