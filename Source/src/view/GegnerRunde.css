@@ -7,10 +7,16 @@
 	-fx-background-repeat: no-repeat;
     -fx-background-size: 100%;
     -fx-text-fill: black;
-    -fx-font-family: DejaVu Sans;
-    -fx-font-weight: bold;
+    -fx-font-family: Papyrus;
 	-fx-background-image: url('../img/Schwerter/00.png');
 	-fx-font-size: 18px;
+}
+
+
+
+
+.font-papyrus	{
+	-fx-font-family: Papyrus;
 }
 
 

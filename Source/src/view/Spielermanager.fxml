@@ -25,7 +25,7 @@
 							<children>
 								<TextField fx:id="spielerNameTextField_" layoutX="33.0" layoutY="31.0" onAction="#updateSpieler" AnchorPane.leftAnchor="33.0" />
 								<TextField fx:id="spielerLevelTextField_" editable="false" layoutX="33.0" layoutY="97.0" prefHeight="25.0" prefWidth="50.0" />
-								<Label layoutX="33.0" layoutY="66.0" styleClass="font-papyrus-16" stylesheets="@../../../../../Desktop/Rollenspielmanager/Source/src/view/CustomStyle.css" text="Stufe" AnchorPane.leftAnchor="33.0">
+								<Label layoutX="33.0" layoutY="66.0" styleClass="font-papyrus-16" stylesheets="@CustomStyle.css" text="Stufe" AnchorPane.leftAnchor="33.0">
                            <font>
                               <Font name="Papyrus" size="15.0" />
                            </font></Label>
@@ -34,7 +34,7 @@
                               <Font name="Papyrus" size="15.0" />
                            </font></Text>
 								<Button layoutX="130.0" layoutY="160.0" mnemonicParsing="false" onAction="#deleteSpieler" text="Löschen" AnchorPane.bottomAnchor="38.0" AnchorPane.rightAnchor="38.0" />
-								<Label layoutX="104.0" layoutY="66.0" styleClass="font-papyrus-16" stylesheets="@/CustomStyle.css" text="Kreis">
+								<Label layoutX="104.0" layoutY="66.0" styleClass="font-papyrus-16" stylesheets="@CustomStyle.css" text="Kreis">
                            <font>
                               <Font name="Papyrus" size="15.0" />
                            </font></Label>
