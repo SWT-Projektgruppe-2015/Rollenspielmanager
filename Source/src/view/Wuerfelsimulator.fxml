@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="500.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.WuerfelsimulatorController">
+<AnchorPane prefHeight="500.0" prefWidth="500.0" styleClass="font-papyrus-14" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.WuerfelsimulatorController">
    <children>
       <GridPane alignment="CENTER_LEFT" prefHeight="260.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="80.0">
         <columnConstraints>
@@ -41,17 +41,17 @@
             <Insets />
          </opaqueInsets>
       </GridPane>
-      <Label layoutX="85.0" layoutY="380.0" text="Ergebnis:">
+      <Label layoutX="85.0" layoutY="380.0" styleClass="font-papyrus-22" text="Ergebnis:">
          <font>
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="rollResult_" layoutX="250.0" layoutY="380.0">
+      <Label fx:id="rollResult_" layoutX="250.0" layoutY="380.0" styleClass="font-papyrus-22">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Label layoutX="49.0" layoutY="35.0" text="Klicke, um zu Würfeln!" textAlignment="CENTER">
+      <Label layoutX="49.0" layoutY="35.0" styleClass="font-papyrus-22" text="Klicke, um zu Würfeln!" textAlignment="CENTER">
          <font>
             <Font name="System Italic" size="22.0" />
          </font>

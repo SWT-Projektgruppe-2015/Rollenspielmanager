@@ -18,10 +18,20 @@
 
 
 
-.font-papyrus	{
-    -fx-font-size: 15px;
+.font-papyrus-14	{
+    -fx-font-size: 14px;
 	-fx-font-family: Papyrus;
 }
+
+
+
+
+.font-papyrus-22	{
+    -fx-font-size: 22px;
+	-fx-font-family: Papyrus;
+}
+
+
 
 
 .button-mainmenu:focused	{
@@ -60,7 +70,7 @@
 
 
 .button-wuerfeln	{
-	-fx-background-position: 49% 35%;
+	-fx-background-position: 49% 40%;
 	-fx-background-image: url('/img/Hauptmenu_rund/wuerfel_rund_v1.png');
 }
 
@@ -86,4 +96,5 @@
 .button-wuerfel	{
 	-fx-pref-width: 100px;
 	-fx-pref-height: 40px;
+	-fx-font-size: 16px;
 }

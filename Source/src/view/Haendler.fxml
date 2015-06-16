@@ -125,7 +125,7 @@
                   <ButtonBar layoutX="476.0" layoutY="275.0" prefHeight="45.0" prefWidth="185.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">
                      <buttons>
                         <Button mnemonicParsing="false" onAction="#deleteGegenstand" text="Delete" />
-                      <Button mnemonicParsing="false" onAction="#changeGegenstand" text="Save">
+                      <Button mnemonicParsing="false" onAction="#changeGegenstand" styleClass="font-papyrus" text="Save">
                            <font>
                               <Font size="15.0" />
                            </font>
