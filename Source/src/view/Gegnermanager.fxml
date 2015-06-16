@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="303.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
+<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="font-papyrus" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
 	<children>
-      <HBox layoutY="-14.0" prefHeight="20.0" prefWidth="200.0" spacing="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="40.0">
+      <HBox layoutY="-14.0" prefHeight="20.0" prefWidth="200.0" spacing="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="25.0">
          <children>
             <Label text="Kreis:" />
             <CheckBox fx:id="kreis1CheckBox_" mnemonicParsing="false" onAction="#filterByKreis" selected="true" text="1" />
@@ -17,16 +18,16 @@
             <CheckBox fx:id="kreis4CheckBox_" mnemonicParsing="false" onAction="#filterByKreis" selected="true" text="4" />
          </children>
       </HBox>
-		<Label layoutX="7.0" layoutY="44.0" text="NSC Typen" AnchorPane.topAnchor="20.0" />
-		<TextField fx:id="searchGegnerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchGegner" onKeyReleased="#searchGegner" prefHeight="25.0" prefWidth="200.0" promptText="suche...." />
+		<Label layoutX="7.0" layoutY="44.0" text="NSC Typen" AnchorPane.topAnchor="5.0" />
+		<TextField fx:id="searchGegnerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchGegner" onKeyReleased="#searchGegner" prefHeight="25.0" prefWidth="200.0" promptText="Suche...." AnchorPane.topAnchor="50.0" />
 		<ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
 			<content>
 				<ListView fx:id="gegnerListView_" prefHeight="200.0" prefWidth="211.0" />
 			</content>
 		</ScrollPane>
-		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="228.0" prefWidth="288.0" tabClosingPolicy="UNAVAILABLE">
+		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="238.0" prefWidth="288.0" stylesheets="@CustomStyle.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="50.0">
 			<tabs>
-				<Tab text="Details">
+				<Tab styleClass="tab-name" text="Details">
 					<content>
             						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             							<children>
@@ -107,6 +108,10 @@
 					</content>
 				</Tab>
 			</tabs>
+         <styleClass>
+            <String fx:value="font-papyrus" />
+            <String fx:value="tab-name" />
+         </styleClass>
 		</TabPane>
 	</children>
 </AnchorPane>

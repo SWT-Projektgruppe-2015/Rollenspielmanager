@@ -33,6 +33,19 @@
 
 
 
+.font-papyrus	{
+	-fx-font-family: Papyrus;
+}
+
+
+
+*.tab-name	{
+	-fx-alignment: top center;
+	-fx-padding: 0,0,5,0;
+}
+
+
+
 
 .button-mainmenu:focused	{
 	-fx-border-radius:100em;
