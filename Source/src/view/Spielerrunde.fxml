@@ -75,7 +75,7 @@
          <children>
             <Button mnemonicParsing="false" onAction="#removeFromKampf" prefHeight="30.0" prefWidth="90.0" text="Entfernen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
           <Button mnemonicParsing="false" onAction="#deleteFromKampf" prefHeight="30.0" prefWidth="90.0" text="Löschen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <TextField fx:id="staerkeWurfTextField_" editable="false" maxWidth="90.0" prefWidth="90.0" GridPane.halignment="RIGHT" />
+            <TextField fx:id="staerkeWurfTextField_" alignment="CENTER" editable="false" maxWidth="90.0" prefWidth="90.0" text="999" GridPane.halignment="RIGHT" />
             <Button mnemonicParsing="false" onAction="#onStaerkeWurfClick" prefHeight="30.0" prefWidth="90.0" text="Stärkewurf" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
