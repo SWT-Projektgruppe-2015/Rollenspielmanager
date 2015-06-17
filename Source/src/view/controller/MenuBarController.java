@@ -18,7 +18,7 @@ public class MenuBarController {
         alert.setHeaderText(null);
         alert.setContentText(aboutThisWindow_);
         alert.setResizable(true);
-        alert.getDialogPane().setPrefSize(alert.getDialogPane().getPrefWidth(), aboutThisWindow_.length() / 2 + 100);
+        alert.getDialogPane().setPrefSize(600, aboutThisWindow_.length() / 3 + 100);
 
         alert.showAndWait();
     }
