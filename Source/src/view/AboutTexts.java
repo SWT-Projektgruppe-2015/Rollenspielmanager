@@ -2,12 +2,13 @@ package view;
 
 import view.controller.Hauptprogramm;
 
-public class AboutTexts {
-
-    public static final String ABOUT_HAENDLER = "Text über den Händler";
-    
-    public static final String ABOUT_MAIN_MENU = "Das Hauptmen" + Hauptprogramm.UMLAUT_SMALL_UE + "\n\n"
-            + "Das Hauptmen" + Hauptprogramm.UMLAUT_SMALL_UE + " gibt einen " + Hauptprogramm.UMLAUT_CAPITAL_UE + "berblick " 
+/*
+ * Texte fuer alle Hilfefenster, die mithilfe der MenuBar geoeffnet werden koennen.
+ */
+public class AboutTexts {    
+    public static final String MAIN_MENU_TITLE =  "Das Hauptmen" + Hauptprogramm.UMLAUT_SMALL_UE;
+    public static final String ABOUT_MAIN_MENU = 
+            "Das Hauptmen" + Hauptprogramm.UMLAUT_SMALL_UE + " gibt einen " + Hauptprogramm.UMLAUT_CAPITAL_UE + "berblick " 
             + Hauptprogramm.UMLAUT_SMALL_UE + "ber die Funktionalit" + Hauptprogramm.UMLAUT_SMALL_AE + "ten des Programms.\n"
             + "Zudem ist an der rechten Seite ein Kurz" + Hauptprogramm.UMLAUT_SMALL_UE + "berblick "
             + Hauptprogramm.UMLAUT_SMALL_UE + "ber die aktuelle Abenteuergruppe, "
@@ -22,8 +23,9 @@ public class AboutTexts {
             + "* W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfeln: W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelw" + Hauptprogramm.UMLAUT_SMALL_UE + "rfe"
                     + " k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen simuliert werden.";
     
-    public static final String ABOUT_CHARAKTER_MANAGER = "Der Charaktermanager \n\n"
-            + "Fenster zum Verwalten von Gruppen, Spielercharakteren und Nichtspieler-Charakter-Typen.\n"
+    public static final String CHARAKTER_MANAGER_TITLE = "Der Charaktermanager";
+    public static final String ABOUT_CHARAKTER_MANAGER = 
+            "Fenster zum Verwalten von Gruppen, Spielercharakteren und Nichtspieler-Charakter-Typen.\n"
             + "Die verschiedenen Tabs und ihre Bedienung:\n\n"
             + "Gruppen: Verwaltung von Gruppen.\n"
             + "1) Zur Erstellung einer neuen Gruppe tippe einen Namen in das Textfeld und dr" + Hauptprogramm.UMLAUT_SMALL_UE + "cke Enter. "
@@ -52,6 +54,29 @@ public class AboutTexts {
                     + "Wenn " + Hauptprogramm.UMLAUT_SMALL_UE + "berhalb der Charakterliste einige Checkboxen nicht markiert sind, "
                     + "werden Nichtspieler-Charakter-Typen dieses Kreises nicht angezeigt.";
     
-    public static final String ABOUT_KAMPF = "Text über Kampf";
+    public static final String KAMPF_TITLE = "Der Kampf";
+    public static final String ABOUT_KAMPF = "Der Kampf gliedert sich in die beiden Bereiche 'Gegnerrunde' und 'Spielerrunde'.\n\n"
+            + "In der Gegnerrunde greifen die Nichtspielercharaktere an. Durch neues Ausw" + Hauptprogramm.UMLAUT_SMALL_AE + "hlen des Gegners "
+                    + "oder durch Klicken des 'Angriff' Buttons werden die W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfe des selektierten Gegners simuliert "
+                    + "und der Schaden am Spieler abh" + Hauptprogramm.UMLAUT_SMALL_AE + "ngig von denen im Charaktermanager spezifizierten Werten "
+                    + "berechnet und angezeigt.\n\n"
+            + "In der Spielerrunde greifen die Spieler selbst an. Es kann gew" + Hauptprogramm.UMLAUT_SMALL_AE + "hlt werden, welche Waffe der Spieler nutzt, "
+                    + "indem die entsprechende Zelle in der Tabelle doppelt angeklickt wird.\n"
+                    + "Wenn auf einen der Trefferzonen-Buttons geklickt wird, wird der Schaden berechnet, "
+                    + "den der selektierte Spieler an jedem einzelnen Gegner bei dieser Zone erzeugen w" + Hauptprogramm.UMLAUT_SMALL_UE + "rde. "
+                    + "Bei direkten Treffern kann zus" + Hauptprogramm.UMLAUT_SMALL_AE + "tzlich ein Bonusprozentsatz angegeben werden.\n"
+                    + "Durch Klick auf den Button 'Blocken' wird f" + Hauptprogramm.UMLAUT_SMALL_UE + "r jeden Gegner eine Probe ausgef" + Hauptprogramm.UMLAUT_SMALL_UE + "hrt "
+                    + "und der Schaden bei Bestehen dieser Probe auf 0 gesetzt.\n"
+                    + "Mit dem Button 'Schaden' werden die angegebenen Schadenspunkte dem selektierten Gegner von seinen Lebenspunkten abgezogen. "
+                    + "Lebenspunkte k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen aber auch direkt editiert werden, "
+                            + "indem die entsprechende Zelle in der Tabelle angeklickt wird.\n"
+                    + "Mit den Buttons 'Entfernen' bzw. 'L" + Hauptprogramm.UMLAUT_SMALL_OE + "schen' kann der selektierte Gegner aus der Tabelle entfernt werden. "
+                            + "Gel" + Hauptprogramm.UMLAUT_SMALL_OE + "schte Gegner geben keine Erfahrungspunkte am Ende des Kampfes, entfernte schon."
+                    + "\n\n"
+            + "Wenn ein Gegner selektiert ist, kann durch einen Klick auf den Button 'St" + Hauptprogramm.UMLAUT_SMALL_AE + "rkewurf' "
+                    + "zudem ein St" + Hauptprogramm.UMLAUT_SMALL_AE + "rkewurf des entsprechenden Gegners simuliert werden.";
+
+    public static final String HAENDLER_TITLE = "Der H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler";
+    public static final String ABOUT_HAENDLER = "Text über den Händler";
     
 }
