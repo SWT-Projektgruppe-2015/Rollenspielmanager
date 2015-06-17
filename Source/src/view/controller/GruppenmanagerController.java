@@ -3,7 +3,7 @@ package view.controller;
 import java.util.Collection;
 import java.util.List;
 
-import view.NotificationTexts;
+//import view.NotificationTexts;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
 import javafx.beans.value.ChangeListener;
@@ -138,7 +138,7 @@ public class GruppenmanagerController extends NotificationController implements 
         newGruppe.addToDB();
         gruppenList_.add(newGruppe);
         gruppenList_.sort(null);
-        createNotification(NotificationTexts.textForNewGruppe(newGruppe));
+        //createNotification(NotificationTexts.textForNewGruppe(newGruppe));
         
         gruppenComboBox_.getItems().add(newGruppe);
         gruppenComboBox_.getItems().sort(null);
@@ -162,7 +162,7 @@ public class GruppenmanagerController extends NotificationController implements 
             gruppenComboBox_.getItems().setAll(gruppenList_);
             gruppenComboBox_.getSelectionModel().select(selectedGruppe);
             gruppenSubject_.setGruppen(gruppenList_);
-            createNotification(NotificationTexts.textForGruppenRenaming(oldName, newName));
+            //createNotification(NotificationTexts.textForGruppenRenaming(oldName, newName));
         }
     }
     
@@ -178,7 +178,7 @@ public class GruppenmanagerController extends NotificationController implements 
             gruppenComboBox_.setValue(null);
             gruppenList_.remove(gruppeToDelete);
             gruppenSubject_.setGruppen(gruppenList_);
-            createNotification(NotificationTexts.textForGruppenDeletion(gruppeToDelete));
+            //createNotification(NotificationTexts.textForGruppenDeletion(gruppeToDelete));
         }
     }
     
@@ -198,7 +198,7 @@ public class GruppenmanagerController extends NotificationController implements 
             spielerNotInGruppeListView_.getItems().remove(chosenSpieler);
             selectedGruppe.addSpieler(chosenSpieler);
             gruppenSubject_.setGruppen(gruppenList_);
-            createNotification(NotificationTexts.textForAddingSpielerToGruppe(chosenSpieler, selectedGruppe));
+            //createNotification(NotificationTexts.textForAddingSpielerToGruppe(chosenSpieler, selectedGruppe));
         }
     }
 
@@ -216,7 +216,7 @@ public class GruppenmanagerController extends NotificationController implements 
             Gruppe selectedGruppe = getSelectedGruppe();
             selectedGruppe.removePlayer(chosenSpieler);
             gruppenSubject_.setGruppen(gruppenList_);
-            createNotification(NotificationTexts.textForRemovingSpielerFromGruppe(chosenSpieler, selectedGruppe));
+            //createNotification(NotificationTexts.textForRemovingSpielerFromGruppe(chosenSpieler, selectedGruppe));
         }
     }
     
