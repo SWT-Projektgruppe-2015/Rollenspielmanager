@@ -17,6 +17,8 @@ public class MenuBarController {
         alert.setTitle("Hilfe zum aktuellen Fenster");
         alert.setHeaderText(null);
         alert.setContentText(aboutThisWindow_);
+        alert.setResizable(true);
+        alert.getDialogPane().setPrefSize(alert.getDialogPane().getPrefWidth(), aboutThisWindow_.length() / 2 + 100);
 
         alert.showAndWait();
     }
