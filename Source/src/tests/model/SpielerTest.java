@@ -1,5 +1,6 @@
 package tests.model;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -163,6 +164,30 @@ public class SpielerTest {
 
         normalSpieler.setDefS(-200);
         assertTrue(normalSpieler.getDefS() == defSBefore);
+    }
+    
+    
+    
+    @Test
+    public void zeroDefIsInvalid() {
+        assertFalse(Charakter.ausruestungIsValid(0, 2, 5));
+        assertFalse(Charakter.ausruestungIsValid(3, 0, 2));
+    }
+    
+    
+    @Test
+    public void defValidatorValidatesValidDef() {
+        assertTrue(Charakter.ausruestungIsValid(2, 3, 0));
+        assertTrue(Charakter.ausruestungIsValid(2, 3, 5));
+    }
+    
+    
+    
+    @Test
+    public void negativeDefHIsInvalid() {
+        assertFalse(Charakter.ausruestungIsValid(2, 3, -2));
+        assertFalse(Charakter.ausruestungIsValid(-1, 2, 5));
+        assertFalse(Charakter.ausruestungIsValid(3, -10, 2));
     }
 
 
