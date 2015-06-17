@@ -57,7 +57,7 @@ public class Hauptprogramm extends Application {
 
     public void showMainMenu() {
         try {
-            BorderPane menuBar = loadBorderPane(AboutTexts.ABOUT_MAIN_MENU);
+            BorderPane menuBar = loadBorderPane(AboutTexts.MAIN_MENU_TITLE, AboutTexts.ABOUT_MAIN_MENU);
             FXMLLoader loader = getLoaderForXML("/view/MainMenu.fxml");
             AnchorPane mainMenu = (AnchorPane) loader.load();
 
@@ -80,7 +80,7 @@ public class Hauptprogramm extends Application {
     
     public void openCharakterManager() {
         try {
-            BorderPane charakterManagerBorder = loadBorderPane(AboutTexts.ABOUT_CHARAKTER_MANAGER);
+            BorderPane charakterManagerBorder = loadBorderPane(AboutTexts.CHARAKTER_MANAGER_TITLE, AboutTexts.ABOUT_CHARAKTER_MANAGER);
             NotificationPane notificationPane = getNotificationPane(charakterManagerBorder);           
             FXMLLoader loader = getLoaderForXML("/view/Charaktermanager.fxml");
             Parent page = loader.load();
@@ -125,7 +125,7 @@ public class Hauptprogramm extends Application {
     
     public void startKampf(List<Spieler> spieler, List<GegnerEinheit> gegnerEinheiten) {
         try {
-            BorderPane pane = loadBorderPane(AboutTexts.ABOUT_KAMPF);
+            BorderPane pane = loadBorderPane(AboutTexts.KAMPF_TITLE, AboutTexts.ABOUT_KAMPF);
             NotificationPane notificationPane = getNotificationPane(pane);
             FXMLLoader loader = getLoaderForXML("/view/Kampfsimulator.fxml");
             Parent page = loader.load();
@@ -168,7 +168,7 @@ public class Hauptprogramm extends Application {
     
     public void openHaendler() {
         try {
-            BorderPane border = loadBorderPane(AboutTexts.ABOUT_HAENDLER);
+            BorderPane border = loadBorderPane(AboutTexts.HAENDLER_TITLE, AboutTexts.ABOUT_HAENDLER);
             NotificationPane notificationPane = getNotificationPane(border);            
             FXMLLoader loader = getLoaderForXML("/view/Haendler.fxml");
             Parent page = loader.load();
@@ -234,12 +234,12 @@ public class Hauptprogramm extends Application {
     
     
     
-    private BorderPane loadBorderPane(String aboutWindow) throws IOException {
+    private BorderPane loadBorderPane(String windowTitle, String aboutWindow) throws IOException {
         FXMLLoader loader = getLoaderForXML("/view/MenuBar.fxml");
         BorderPane pane = loader.load();
         
         MenuBarController controller = loader.getController();
-        controller.setAboutWindow(aboutWindow);
+        controller.setAboutWindow(windowTitle, aboutWindow);
         
         return pane;
     }
