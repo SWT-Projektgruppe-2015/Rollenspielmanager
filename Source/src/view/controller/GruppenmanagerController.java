@@ -125,7 +125,7 @@ public class GruppenmanagerController extends NotificationController implements 
             newGruppenNameTextField_.setText("");
         }
         else {
-            newGruppenNameTextField_.setText(gruppe.getName());
+            newGruppenNameTextField_.setText(gruppe.getName_());
         }
     }
 

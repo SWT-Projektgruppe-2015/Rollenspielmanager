@@ -16,11 +16,4 @@ public class EntityManagerFactoryProvider {
         }
         return factory;
     }
-
-    /**
-     * @param factory the factory to set
-     */
-    public static void setFactory(EntityManagerFactory factory) {
-        EntityManagerFactoryProvider.factory = factory;
-    }
 }

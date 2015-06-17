@@ -175,4 +175,14 @@ public class GegnerEinheitTest {
         assertTrue(numberOfSuccessfulBlocks > 920);
         assertTrue(numberOfSuccessfulBlocks < 980);
     }
+    
+    
+    
+    @Test
+    public void lebensPunktePropertyIsCorrect() {
+        GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
+        gegner.setCurrentLebenspunkte_(3);
+        
+        assertTrue(gegner.lebenspunkteProperty().get().equals("3/25"));
+    }
 }
