@@ -29,11 +29,11 @@ public class NotificationTexts {
     }
     
     public static String textForAddingSpielerToGruppe(Spieler spieler, Gruppe gruppe) {
-        return "Charakter '" + spieler.getName_() + "' zur Gruppe '" + gruppe.getName() + "' hinzugef" + Hauptprogramm.UMLAUT_SMALL_UE + "gt.";
+        return "Charakter '" + spieler.getName_() + "' zur Gruppe '" + gruppe.getName_() + "' hinzugef" + Hauptprogramm.UMLAUT_SMALL_UE + "gt.";
     }
 
     public static String textForRemovingSpielerFromGruppe(Spieler spieler, Gruppe gruppe) {
-        return "Charakter '" + spieler.getName_() + "' aus Gruppe '" + gruppe.getName() + "' entfernt.";
+        return "Charakter '" + spieler.getName_() + "' aus Gruppe '" + gruppe.getName_() + "' entfernt.";
     }
 
     
@@ -48,7 +48,7 @@ public class NotificationTexts {
     
     
     public static String textForNewGruppe(Gruppe gruppe) {
-        return "Neue Gruppe '" + gruppe.getName() + "' angelegt.";
+        return "Neue Gruppe '" + gruppe.getName_() + "' angelegt.";
     }
 
     public static String textForNewCharakter(Charakter charakter) {
@@ -110,7 +110,7 @@ public class NotificationTexts {
     }
 
     public static String textForGruppenDeletion(Gruppe gruppe) {
-        return textForDeletion("Gruppe '" + gruppe.getName() + "'");
+        return textForDeletion("Gruppe '" + gruppe.getName_() + "'");
     }
     
     public static String textForGegnerDeletion(GegnerTyp selectedGegner) {

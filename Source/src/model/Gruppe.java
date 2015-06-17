@@ -62,12 +62,6 @@ public class Gruppe implements DBObject, Comparable<Gruppe> {
     public void removePlayer(Spieler spieler) {
         spieler.removeFromGruppe(this);
     }
-
-
-
-    public String getName() {
-        return name_;
-    }
     
     
 
@@ -133,7 +127,7 @@ public class Gruppe implements DBObject, Comparable<Gruppe> {
 
     @Override
     public int compareTo(Gruppe otherGruppe) {
-        return getName().compareTo(otherGruppe.getName());
+        return getName_().compareTo(otherGruppe.getName_());
     }
     
 }

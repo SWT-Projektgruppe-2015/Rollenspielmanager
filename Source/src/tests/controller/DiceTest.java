@@ -274,32 +274,161 @@ public class DiceTest {
     
     
     @Test
-    public void verifySingleGeschick30Roll() {
-        int geschick = 30; 
-        int upperBound = 18, lowerBound = -1;
-        for(int i = 0; i < 100; ++i){
-            int ergebnis = Dice.rollGeschick(geschick);
-            assertTrue(ergebnis <= upperBound);
-            assertTrue(ergebnis >= lowerBound);
+    public void negativeGeschickRollThrowsError() {
+        boolean exceptionThrown = false;
+        try {
+            Dice.rollGeschick(-1);
         }
+        catch (IllegalArgumentException e) {
+            exceptionThrown = true;
+        }
+        
+        assertTrue(exceptionThrown);
+    }
+    
+    
+    
+    @Test
+    public void zeroGeschickRollThrowsError() {
+        boolean exceptionThrown = false;
+        try {
+            Dice.rollGeschick(0);
+        }
+        catch (IllegalArgumentException e) {
+            exceptionThrown = true;
+        }
+        
+        assertTrue(exceptionThrown);
+    }
+    
+    @Test
+    public void verifySingleGeschick1Roll() {
+        int geschick = 1; 
+        int upperBound = 4, lowerBound = 1;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
     }
     
     @Test
     public void verifySingleGeschick4Roll() {
         int geschick = 4; 
-        int upperBound = 5, lowerBound = 1;
-        for(int i = 0; i < 100; ++i){
-            int ergebnis = Dice.rollGeschick(geschick);
-            assertTrue(ergebnis <= upperBound);
-            assertTrue(ergebnis >= lowerBound);
-        }
+        int upperBound = 5, lowerBound = 2;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
     }
+    
+    @Test
+    public void verifySingleGeschick8Roll() {
+        int geschick = 8; 
+        int upperBound = 6, lowerBound = 3;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    @Test
+    public void verifySingleGeschick10Roll() {
+        int geschick = 10; 
+        int upperBound = 7, lowerBound = 2;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    @Test
+    public void verifySingleGeschick14Roll() {
+        int geschick = 14; 
+        int upperBound = 8, lowerBound = 3;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick18Roll() {
+        int geschick = 18; 
+        int upperBound = 9, lowerBound = 2;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick19Roll() {
+        int geschick = 19; 
+        int upperBound = 10, lowerBound = 3;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick24Roll() {
+        int geschick = 24; 
+        int upperBound = 13, lowerBound = 2;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick27Roll() {
+        int geschick = 27; 
+        int upperBound = 14, lowerBound = 3;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick30Roll() {
+        int geschick = 30; 
+        int upperBound = 18, lowerBound = -1;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick31Roll() {
+        int geschick = 31; 
+        int upperBound = 19, lowerBound = 0;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick34Roll() {
+        int geschick = 34; 
+        int upperBound = 21, lowerBound = 2;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick39Roll() {
+        int geschick = 39; 
+        int upperBound = 22, lowerBound = 3;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+    
+    
+    @Test
+    public void verifySingleGeschick42Roll() {
+        int geschick = 42; 
+        int upperBound = 23, lowerBound = 4;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
     
     
     @Test
     public void verifySingleGeschick55Roll() {
         int geschick = 67; 
         int upperBound = 35, lowerBound = 6;
+        verifiyBoundsForGeschickRoll(geschick, upperBound, lowerBound);
+    }
+    
+
+
+    private void verifiyBoundsForGeschickRoll(int geschick, int upperBound, int lowerBound) {
         for(int i = 0; i < 100; ++i){
             int ergebnis = Dice.rollGeschick(geschick);
             assertTrue(ergebnis <= upperBound);

@@ -39,9 +39,17 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
     @Test
     public void checkLebensPunkteVerlust() {
         int schaden = 135;
+        assertLebensverlust(spieler_, schaden, 0, 0);
         assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_RUESTUNG, 1);
         assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_HELM, 3);
         assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_DIREKT, 75);
+        assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_KRITISCH, 82);
+        schaden = -2;
+        assertLebensverlust(spieler_, schaden, 0, 0);
+        assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_RUESTUNG, 0);
+        assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_HELM, 0);
+        assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_DIREKT, 0);
+        assertLebensverlust(spieler_, schaden, Charakter.LOWERBOUND_KRITISCH, 0);
     }
 
     private void assertLebensverlust(Spieler spieler, int schaden,
