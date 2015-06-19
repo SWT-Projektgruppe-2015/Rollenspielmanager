@@ -2,6 +2,7 @@ package tests.model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -59,7 +60,6 @@ public class GegenstandTest {
         List<String> expected = Arrays.asList("A","B");
         List<String> actual = Gegenstand.getKategorien(gegenstand);
         assertEquals(expected, actual);
-        
     }
     
     
@@ -70,5 +70,73 @@ public class GegenstandTest {
         List<String> actual = Gegenstand.getSubKategories(bsp);
         List<String> expected = Arrays.asList("Waffen","Schwert","S�bel","Koalab�r");
         assertEquals(actual,expected);
+    }
+    
+    
+    
+    @Test
+    public void settersTest() {
+        Gegenstand gegenstandA = new Gegenstand();
+        setDefaultGegenstand(gegenstandA);
+        assertTrue(verifyDefaultGegenstand(gegenstandA));
+    }
+    
+    
+    
+    @Test
+    public void ausruestungIsValidTest() {
+        Gegenstand gegenstandA = new Gegenstand();
+        assertTrue(gegenstandA.isValid());
+        gegenstandA.setKosten_(-1);
+        assertTrue(!gegenstandA.isValid());
+    }
+    
+    
+    
+    @Test
+    public void getFullSubkategoriePathTest() {
+        List<Gegenstand> items = getSomeGegenstaende(3);
+        items.get(0).setKategorie_("A");
+        items.get(1).setKategorie_("A.B");
+        items.get(2).setKategorie_("A.B.C");
+        String path = Gegenstand.getFullSubkategoriePath("B", items);
+        assertEquals(path,"A.B");
+        path = Gegenstand.getFullSubkategoriePath("D", items);
+        assertEquals(path, null);
+    }
+
+
+
+    private List<Gegenstand> getSomeGegenstaende(int amount) {
+        List<Gegenstand> items = new ArrayList<Gegenstand>();
+        for(int i = 0; i < amount; ++i) {
+            items.add(new Gegenstand());
+        }
+        return items;
+    }
+
+
+
+    private boolean verifyDefaultGegenstand(Gegenstand gegenstandA) {
+        boolean verifyDefault = gegenstandA.getName_() == "A"
+                && gegenstandA.getStaerke_() == 30 
+                && gegenstandA.getBeschreibung_() == "super"
+                && gegenstandA.getKosten_() == 10
+                && gegenstandA.getTraglast_() == 10
+                && gegenstandA.getWert_() == "100 + W6";
+        return verifyDefault;
+    }
+
+
+
+    private void setDefaultGegenstand(Gegenstand gegenstandA) {
+        gegenstandA.addToDB();
+        gegenstandA.setName_("A");
+        gegenstandA.setStaerke_(30);
+        gegenstandA.setBeschreibung_("super");
+        gegenstandA.setKosten_(10);
+        gegenstandA.setTraglast_(10);
+        gegenstandA.setWert_("100 + W6");
+        gegenstandA.setKategorie_("neue Kategorie");
     }
 }

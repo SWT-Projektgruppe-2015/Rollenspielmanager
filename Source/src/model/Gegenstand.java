@@ -75,16 +75,16 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
 
 
 
-    public String getVorkommen_() {
-        return vorkommen_;
-    }
-
-
-
-    public void setVorkommen_(String vorkommen_) {
-        this.vorkommen_ = vorkommen_;
-        updateInDB();
-    }
+//    public String getVorkommen_() {
+//        return vorkommen_;
+//    }
+//
+//
+//
+//    public void setVorkommen_(String vorkommen_) {
+//        this.vorkommen_ = vorkommen_;
+//        updateInDB();
+//    }
 
 
 
@@ -225,7 +225,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     public static List<String> getSubKategories(String kategory) {
-        List<String> subKategories = Arrays.asList(kategory.split("\\."));
+        List<String> subKategories = Arrays.asList(kategory.split("/"));
         return subKategories;
     }
     
@@ -241,7 +241,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
                     result += subList.get(i);
                     if(subList.get(i).contentEquals(subKategorie))
                         return result;
-                    result += ".";
+                    result += "/";
                 }
             }
         }
