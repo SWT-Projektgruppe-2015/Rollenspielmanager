@@ -23,19 +23,55 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW4ButtonClick" styleClass="button-wuerfel" text="W4" GridPane.rowIndex="2">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW4ButtonClick" text="W4" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW6ButtonClick" styleClass="button-wuerfel" text="W6" GridPane.rowIndex="3" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW8ButtonClick" styleClass="button-wuerfel" text="W8" GridPane.rowIndex="4" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW10ButtonClick" styleClass="button-wuerfel" text="W10" GridPane.columnIndex="1" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW12ButtonClick" styleClass="button-wuerfel" text="W12" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW20ButtonClick" styleClass="button-wuerfel" text="W20" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW30ButtonClick" styleClass="button-wuerfel" text="W30" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW2ButtonClick" styleClass="button-wuerfel" text="W2" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW3ButtonClick" styleClass="button-wuerfel" text="W3" GridPane.rowIndex="1" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW6ButtonClick" text="W6" GridPane.rowIndex="3">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW8ButtonClick" text="W8" GridPane.rowIndex="4">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW10ButtonClick" text="W10" GridPane.columnIndex="1">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW12ButtonClick" text="W12" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW20ButtonClick" text="W20" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW30ButtonClick" text="W30" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW2ButtonClick" text="W2">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#onW3ButtonClick" text="W3" GridPane.rowIndex="1">
+               <styleClass>
+                  <String fx:value="button-wuerfel" />
+                  <String fx:value="button-bevel-gray" />
+               </styleClass></Button>
          </children>
          <opaqueInsets>
             <Insets />

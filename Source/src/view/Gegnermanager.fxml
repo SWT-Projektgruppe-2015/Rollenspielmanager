@@ -60,7 +60,7 @@
                               <TextField fx:id="lebenspunkteTextField_" onAction="#updateGegner" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             									</children>
             								</GridPane>
-            								<Button layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteGegner" text="NSC löschen" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0" />
+            								<Button layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteGegner" styleClass="button-bevel-gray" text="NSC löschen" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0" />
             							</children>
             						</AnchorPane>
 					</content>
@@ -106,7 +106,7 @@
 								<AnchorPane layoutX="7.0" prefHeight="200.0" prefWidth="280.0">
 									<children>
 										<ListView fx:id="gegnerFaehigkeitenListView_" editable="true" layoutY="21.0" prefHeight="130.0" prefWidth="106.0" />
-										<Button layoutY="161.0" mnemonicParsing="false" text="-" />
+										<Button layoutY="161.0" mnemonicParsing="false" styleClass="button-bevel-gray" text="-" />
 										<VBox layoutX="130.0" layoutY="24.0" prefHeight="200.0" prefWidth="100.0">
 											<children>
 												<Label text="Name" />

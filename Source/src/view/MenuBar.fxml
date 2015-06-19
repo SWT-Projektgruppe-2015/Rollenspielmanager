@@ -7,7 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MenuBarController">
    <bottom>
-      <MenuBar nodeOrientation="RIGHT_TO_LEFT" BorderPane.alignment="CENTER">
+      <MenuBar nodeOrientation="RIGHT_TO_LEFT" styleClass="button-bevel-gray" stylesheets="@CustomStyle.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Hilfe">
             <items>
