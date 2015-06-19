@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="303.0" prefWidth="600.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
+<AnchorPane prefHeight="303.0" prefWidth="600.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
 	<children>
       <HBox layoutY="-14.0" prefHeight="20.0" prefWidth="200.0" spacing="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="25.0">
          <children>
@@ -20,11 +20,8 @@
       </HBox>
 		<Label layoutX="7.0" layoutY="44.0" text="NSC Typen" AnchorPane.topAnchor="5.0" />
 		<TextField fx:id="searchGegnerTextField_" layoutX="7.0" layoutY="60.0" onAction="#searchGegner" onKeyReleased="#searchGegner" prefHeight="25.0" prefWidth="200.0" promptText="Suche...." AnchorPane.topAnchor="50.0" />
-		<ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0">
-			<content>
-				<ListView fx:id="gegnerListView_" prefHeight="200.0" prefWidth="211.0" />
-			</content>
-		</ScrollPane>
+				<ListView fx:id="gegnerListView_" layoutX="3.0" layoutY="81.0" prefHeight="200.0" prefWidth="211.0" />
+      <ScrollBar layoutX="7.0" layoutY="267.0" prefHeight="14.0" prefWidth="200.0" />
 		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="238.0" prefWidth="288.0" stylesheets="@CustomStyle.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.topAnchor="50.0">
 			<tabs>
 				<Tab text="Details">
