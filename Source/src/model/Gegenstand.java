@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -227,4 +228,76 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         List<String> subKategories = Arrays.asList(kategory.split("\\."));
         return subKategories;
     }
+    
+    
+    
+    public static String getFullSubkategoriePath(String subKategorie, List<Gegenstand> alleGegenstaende) {
+        for(Gegenstand item : alleGegenstaende) {
+            String kategorie = item.getKategorie_(); 
+            if(kategorie.contains(subKategorie)){
+                List<String> subList = Gegenstand.getSubKategories(kategorie);
+                String result = "";
+                for(int i = 0; i < subList.size(); ++i){
+                    result += subList.get(i);
+                    if(subList.get(i).contentEquals(subKategorie))
+                        return result;
+                    result += ".";
+                }
+            }
+        }
+        return null;
+    }
+    
+    
+    
+    public boolean isValid() {
+        boolean isValid = true;
+        isValid = (getKosten_() >= 0) && isValid;
+        isValid = (getTraglast_() >= 0) && isValid;
+        return isValid;
+    }
+    
+    
+    public boolean isAusruestung() {
+        return Gegenstand.isAusruestung(getKategorie_());
+    }
+    
+    
+    
+    // Erhöht readability ungemein
+    public boolean isContainedInKategorie(String subKategorie) {
+        return getKategorie_().contains(subKategorie);
+    }
+    
+    
+    
+    public static boolean isAusruestung(String kategorie) {
+        return kategorie.contains("Waffe") || kategorie.contains("Rüstung");
+    }
+    
+    
+    
+    public static List<String> getSearchMatchingKategorien(String search, List<String> kategorien) {
+        if(search.contentEquals(""))
+            return kategorien;
+        List<String> result = new ArrayList<String>();
+        for(String kategorie : kategorien){
+            if(kategorie.toLowerCase().contains(search))
+                result.add(kategorie);
+        }
+        return result;
+    }
+    
+    
+    
+    // Bubblesort
+    public static void sortByKosten(List<Gegenstand> allItems_){
+        for(int i = 0; i < allItems_.size(); ++i){
+            for(int j = 0; j < allItems_.size(); ++j){
+                if(allItems_.get(i).getKosten_() < allItems_.get(j).getKosten_()){
+                    Collections.swap(allItems_, i, j);
+                }
+            }
+        }
+    }    
 }
