@@ -10,13 +10,17 @@
 
 <AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="font-papyrus" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
 	<children>
-		<Label layoutX="7.0" layoutY="26.0" text="Spielercharakterliste" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="26.0">
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-		<TextField fx:id="searchSpielerTextField_" layoutX="7.0" layoutY="52.0" onAction="#searchSpieler" onKeyReleased="#searchSpieler" prefHeight="25.0" prefWidth="200.0" promptText="Suche ..." AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="52.0" />
-				<ListView fx:id="spielerListView_" layoutX="2.0" layoutY="89.0" prefHeight="200.0" prefWidth="211.0" />
-      <ScrollBar layoutX="7.0" layoutY="274.0" prefHeight="14.0" prefWidth="200.0" />
+      <VBox layoutX="7.0" layoutY="27.0" prefHeight="262.0" prefWidth="206.0" spacing="3.0">
+         <children>
+      		<Label text="Spielercharakterliste">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+      		<TextField fx:id="searchSpielerTextField_" onAction="#searchSpieler" onKeyReleased="#searchSpieler" prefHeight="25.0" prefWidth="200.0" promptText="Suche ..." />
+      				<ListView fx:id="spielerListView_" prefHeight="211.0" prefWidth="206.0" />
+         </children>
+      </VBox>
 		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="228.0" prefWidth="323.0" tabClosingPolicy="UNAVAILABLE">
 			<tabs>
 				<Tab text="Details">
