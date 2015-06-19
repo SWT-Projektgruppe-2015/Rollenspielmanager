@@ -53,8 +53,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-      								<Button mnemonicParsing="false" onAction="#decreaseLevel" prefHeight="30.0" prefWidth="30.0" styleClass="button-bevel-gray" stylesheets="@CustomStyle.css" text="-" />
-      								<Button mnemonicParsing="false" onAction="#increaseLevel" prefHeight="30.0" prefWidth="30.0" styleClass="button-bevel-gray" stylesheets="@CustomStyle.css" text="+" GridPane.columnIndex="1" />
+      								<Button mnemonicParsing="false" onAction="#decreaseLevel" prefHeight="30.0" prefWidth="30.0" styleClass="combobox-bevel-gray" stylesheets="@CustomStyle.css" text="-" />
+      								<Button mnemonicParsing="false" onAction="#increaseLevel" prefHeight="30.0" prefWidth="30.0" styleClass="combobox-bevel-gray" stylesheets="@CustomStyle.css" text="+" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
 							</children>
@@ -72,7 +72,7 @@
 										<Label text="Name" />
 										<TextField fx:id="waffenNameTextField_" onAction="#updateSpieler" />
 										<Label text="Effekt" />
-										<ComboBox prefHeight="25.0" prefWidth="123.0" styleClass="button-bevel-gray" />
+										<ComboBox prefHeight="25.0" prefWidth="123.0" styleClass="combobox-bevel-gray" />
 										<Label text="Damage" />
 										<TextField fx:id="waffenDamageTextField_" onAction="#updateSpieler" prefHeight="25.0" prefWidth="66.0" />
 									</children>
@@ -110,7 +110,7 @@
 										<Label text="Name" />
 										<TextField fx:id="faehigkeitenNameTextField_" onAction="#updateSpieler" />
 										<Label text="Effekttyp" />
-										<ComboBox prefHeight="25.0" prefWidth="113.0" styleClass="button-bevel-gray" />
+										<ComboBox prefHeight="25.0" prefWidth="113.0" styleClass="combobox-bevel-gray" />
 									</children>
 								</VBox>
 							</children>

@@ -112,7 +112,7 @@
 												<Label text="Name" />
 												<TextField fx:id="gegnerFaehigkeitenNameTextField_" />
 												<Label text="Effekttyp" />
-												<ComboBox prefHeight="25.0" prefWidth="113.0" />
+												<ComboBox prefHeight="25.0" prefWidth="113.0" styleClass="combobox-bevel-gray" />
 											</children>
 										</VBox>
 									</children>
