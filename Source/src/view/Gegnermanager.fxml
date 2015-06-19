@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="font-papyrus" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
+<AnchorPane prefHeight="303.0" prefWidth="600.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
 	<children>
       <HBox layoutY="-14.0" prefHeight="20.0" prefWidth="200.0" spacing="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="25.0">
          <children>
@@ -60,7 +60,7 @@
                               <TextField fx:id="lebenspunkteTextField_" onAction="#updateGegner" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             									</children>
             								</GridPane>
-            								<Button layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteGegner" text="NSC löschen" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="5.0" />
+            								<Button layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteGegner" text="NSC löschen" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="7.0" />
             							</children>
             						</AnchorPane>
 					</content>
@@ -69,9 +69,9 @@
 					<content>
 						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
 							<children>
-								<AnchorPane prefHeight="200.0" prefWidth="252.0" styleClass="font-papyrus" stylesheets="@CustomStyle.css">
+								<AnchorPane prefHeight="200.0" prefWidth="252.0" stylesheets="@CustomStyle.css">
 									<children>
-                              <GridPane prefHeight="110.0" prefWidth="117.0" vgap="10.0" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="20.0">
+                              <GridPane layoutX="8.0" prefHeight="148.0" prefWidth="129.0" vgap="10.0" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="115.0" AnchorPane.topAnchor="20.0">
                                 <columnConstraints>
                                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
                                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="5.0" />
@@ -80,18 +80,19 @@
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                 </rowConstraints>
                                  <children>
-      										<TextField fx:id="gegnerDefRTextField_" onAction="#updateGegner" prefHeight="34.0" prefWidth="79.0" GridPane.columnIndex="1" />
+      										<TextField fx:id="gegnerDefRTextField_" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" />
       										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="DefR:" />
       										<TextField fx:id="gegnerDefHTextField_" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="DefH:" GridPane.rowIndex="1" />
       										<TextField fx:id="gegnerDefSTextField_" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="DefS:" GridPane.rowIndex="2" />
+      										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Damage:" GridPane.rowIndex="3" />
+      										<TextField fx:id="gegnerDamageTextField_" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
-										<Text layoutX="22.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Damage:" />
-										<TextField fx:id="gegnerDamageTextField_" layoutX="89.0" layoutY="140.0" onAction="#updateGegner" prefHeight="26.0" prefWidth="49.0" />
 									</children>
 								</AnchorPane>
 							</children>
