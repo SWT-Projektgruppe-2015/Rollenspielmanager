@@ -5,12 +5,13 @@ import javafx.scene.paint.Color;
 import view.tabledata.SchadenAmSpieler;
 
 public class TrefferzoneCell extends TableCell<SchadenAmSpieler, String> {
-    protected void updateItem(String zone, boolean empty)   {
-        super.updateItem(zone, empty);
-        setText(zone);
-        if(zone == null || zone.isEmpty())  {
+    protected void updateItem(String zoneWithWuerfelErgebnis, boolean empty)   {
+        super.updateItem(zoneWithWuerfelErgebnis, empty);
+        setText(zoneWithWuerfelErgebnis);
+        if(zoneWithWuerfelErgebnis == null || zoneWithWuerfelErgebnis.isEmpty())  {
             return;
         }
+        String zone = zoneWithWuerfelErgebnis.split("\n")[0];
         switch(zone)    {
             case SchadenAmSpieler.DANEBEN:  {
                 setTextFill(Color.BLACK);

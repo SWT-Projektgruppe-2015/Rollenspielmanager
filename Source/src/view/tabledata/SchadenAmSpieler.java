@@ -64,10 +64,18 @@ public class SchadenAmSpieler {
         else if(wuerfelErgebnis < 35) {
             zone_.setValue(DIREKT);
         }
-        else
+        else {
             zone_.setValue(KRITISCH);
+        }
+        
+        zone_.setValue(zone_.getValue() + wuerfelErgebnisText(wuerfelErgebnis));
     }
 
+    
+    
+    private String wuerfelErgebnisText(int wuerfelErgebnis) {
+        return "\n(Wurf: " + wuerfelErgebnis + ")";
+    }
 
     
     public SchadenAmSpieler(Spieler spieler) {
