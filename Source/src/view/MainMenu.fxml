@@ -11,11 +11,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
    <children>
-      <SplitPane dividerPositions="0.6641604010025063" layoutX="258.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <SplitPane dividerPositions="0.6641604010025063" focusTraversable="false" layoutX="258.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
           <AnchorPane minHeight="350.0" minWidth="500.0" prefHeight="360.0" prefWidth="500.0">
                <children>
-                  <GridPane alignment="CENTER" focusTraversable="true" prefHeight="358.0" prefWidth="526.0" vgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+                  <GridPane alignment="CENTER" prefHeight="358.0" prefWidth="526.0" vgap="5.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -67,8 +67,8 @@
             </AnchorPane>
           <AnchorPane minHeight="360.0" minWidth="300.0" prefHeight="360.0" prefWidth="300.0">
                <children>
-                  <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" promptText="Wähle Gruppe..." styleClass="combobox-bevel-gray" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="0.0" />
-                  <TableView fx:id="spielerInGruppe_" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+                  <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" promptText="Wähle Gruppe..." styleClass="combobox-bevel-gray" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
+                  <TableView fx:id="spielerInGruppe_" focusTraversable="false" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" styleClass="tableview-mainmenu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
                     <columns>
                       <TableColumn fx:id="name_" prefWidth="120.0" text="Name" />
                       <TableColumn fx:id="kreis_" prefWidth="55.0" text="Kreis" />

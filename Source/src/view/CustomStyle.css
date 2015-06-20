@@ -80,48 +80,20 @@
 }
 
 
-
-/*.font-papyrus	{
-	-fx-font-family: Papyrus;
-}*/
-
-
-
-/*.font-system	{
-	-fx-font-family: System;
-} */
+.tableview-mainmenu	{
+	
+}
 
 
 
-/*.font-papyrus-14	{
-    -fx-font-size: 14px;
-	-fx-font-family: Papyrus;
-} */
-
-
-
-
-/*.font-papyrus-22	{
-    -fx-font-size: 22px;
-	-fx-font-family: Papyrus;
-} */
-
-
-
-/*.font-papyrus-16	{
-	-fx-font-family: Papyrus;
-	-fx-font-size: 16px;
-	-fx-border-color: #339966;
-}*/
-
-
-
+.tableview-mainmenu:focused	{
+}
 
 
 
 .button-mainmenu:focused	{
 	-fx-border-radius:100em;
-	-fx-border-color: #339966;
+	-fx-effect: dropshadow( three-pass-box , #669933 , 15, 0.0 , 0 , 1 );
 }
 
 
@@ -141,7 +113,7 @@
 
 .button-kampf	{
 	-fx-font-size: 30px;
-	-fx-padding: 110 0 0 10;
+	-fx-padding: 110 0 0 0;
 	-fx-background-position: 30% 10%;
     -fx-background-image: url('/img/Hauptmenu_rund/kaempfer_rund_v1.png');   
 }
