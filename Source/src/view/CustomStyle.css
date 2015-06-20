@@ -30,8 +30,14 @@
 
 
 
-.listview-referse-scroll	{
-	
+.listview-referse-scroll	{	
+}
+
+
+
+.combobox-bevel-gray:focused	{
+	-fx-border-radius:8,7,6;
+	-fx-border-color: #339966;
 }
 
 
@@ -49,6 +55,13 @@
 
 
 
+.button-bevel-gray:focused	{
+	-fx-border-radius:10,10,10;
+	-fx-border-color: #339966;
+}
+
+
+
 .button-green	{
     -fx-background-color:
         linear-gradient(#f0ff35, #669933),
@@ -57,6 +70,13 @@
     -fx-background-insets: 0, 1;
     -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
     -fx-text-fill: #395306;
+}
+
+
+
+.button-green:focused	{
+	-fx-border-radius:6,5;
+	-fx-effect: dropshadow( three-pass-box , #669933 , 25, 0.0 , 0 , 1 );
 }
 
 
