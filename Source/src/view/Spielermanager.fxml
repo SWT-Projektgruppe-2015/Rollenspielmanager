@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="font-papyrus" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
+<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="font-papyrus" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
 	<children>
 		<Label layoutX="7.0" layoutY="26.0" text="Spielercharakterliste" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="26.0" />
 		<TextField fx:id="searchSpielerTextField_" layoutX="7.0" layoutY="52.0" onAction="#searchSpieler" onKeyReleased="#searchSpieler" prefHeight="25.0" prefWidth="200.0" promptText="Suche ..." AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="52.0" />
-		<ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="86.0">
+		<ScrollPane layoutX="7.0" layoutY="86.0" prefHeight="200.0" prefWidth="200.0" vbarPolicy="NEVER" AnchorPane.leftAnchor="7.0" AnchorPane.topAnchor="86.0">
 			<content>
-				<ListView fx:id="spielerListView_" prefHeight="200.0" prefWidth="211.0" />
+				<ListView fx:id="spielerListView_" prefHeight="200.0" prefWidth="198.0" />
 			</content>
 		</ScrollPane>
 		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="228.0" prefWidth="323.0" tabClosingPolicy="UNAVAILABLE">
