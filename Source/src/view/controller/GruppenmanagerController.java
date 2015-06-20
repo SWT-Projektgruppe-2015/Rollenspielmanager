@@ -137,6 +137,11 @@ public class GruppenmanagerController extends NotificationController implements 
     
     @FXML
     private void createGruppe() {
+        if(newGruppenNameTextField_.getText().isEmpty()) {
+            createNotification(NotificationTexts.NAME_IS_EMPTY);
+            return;
+        }
+        
         Gruppe newGruppe = new Gruppe();
         newGruppe.setName_(newGruppenNameTextField_.getText());
         newGruppe.addToDB();

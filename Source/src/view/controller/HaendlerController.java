@@ -115,7 +115,7 @@ public class HaendlerController extends NotificationController {
         return relevantItems;
     }
     private boolean ifGegenstandIsAusruestung(Gegenstand item) {
-        return item.getKategorie_().contains("Waffe") || item.getKategorie_().contains("Rüstung");
+        return item.getKategorie_().contains("Waffe") || item.getKategorie_().contains("R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung");
     }
 
 
@@ -219,7 +219,7 @@ public class HaendlerController extends NotificationController {
     private void addAusruestungKategorieTreeViewItems(List<String> kategorien_) {
         TreeItem<String> rootItem = ausruestungTreeView_.getRoot();
         for(String kategorie : kategorien_) {
-            if(kategorie.contains("Waffe") || kategorie.contains("Rüstung"))
+            if(kategorie.contains("Waffe") || kategorie.contains("Rï¿½stung"))
                 updateAusruestungTreeViewWithItem(rootItem, kategorie);
         }
     }
@@ -407,6 +407,8 @@ public class HaendlerController extends NotificationController {
             selectedGegenstand.setKategorie_(newKategorie);
             selectedGegenstand.setStaerke_(newStaerke);
             selectedGegenstand.setWert_(newWert);
+        } else {
+            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
         }
     }
     
@@ -425,6 +427,8 @@ public class HaendlerController extends NotificationController {
             selectedGegenstand.setBeschreibung_(newBeschreibung);
             selectedGegenstand.setTraglast_(newTraglast);
             selectedGegenstand.setKategorie_(newKategorie);
+        } else {
+            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
         }
     }
     
@@ -434,6 +438,7 @@ public class HaendlerController extends NotificationController {
         boolean isValid = true;
         isValid = (selectedGegenstand.getKosten_() >= 0) && isValid;
         isValid = (selectedGegenstand.getTraglast_() >= 0) && isValid;
+        isValid = (!selectedGegenstand.getName_().equals("Neuer Gegenstand")) && isValid;
         return isValid;
     }
 

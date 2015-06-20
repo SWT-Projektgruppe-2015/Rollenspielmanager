@@ -18,6 +18,7 @@ public class NotificationTexts {
     public static final String DELETE_TITLE = "Wirklich l" + Hauptprogramm.UMLAUT_SMALL_OE + "schen?";
 
     public static final String INVALID_VALUES = "Einige Werte sind ung" + Hauptprogramm.UMLAUT_SMALL_UE + "ltig.";
+    public static final String NAME_IS_EMPTY = "Nicht gespeichert - Bitte gib einen Namen ein!";
     
     public static String textForNewGruppe(Gruppe gruppe) {
         return "Neue Gruppe '" + gruppe.getName_() + "' angelegt.";

@@ -223,6 +223,11 @@ public class SpielermanagerController extends CharakterTabController{
         if (selectedSpieler == null)
             return;
         
+        if (spielerNameTextField_.getText().isEmpty()) {
+            createNotification(NotificationTexts.NAME_IS_EMPTY);
+            return;
+        }
+        
         boolean listHasToBeReloaded = updateSpielerName(selectedSpieler);
         boolean defIsUpdated = updateSpielerDef(selectedSpieler);
         
