@@ -6,15 +6,18 @@ import java.util.function.Consumer;
 
 import org.controlsfx.control.action.Action;
 
+import controller.Dice;
 import view.NotificationTexts;
 import model.Charakter;
 import model.Faehigkeiten;
+import model.GegnerEinheit;
 import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
@@ -46,7 +49,15 @@ public class GegnermanagerController extends CharakterTabController {
     @FXML
     private TextField geschickTextField_;
     @FXML
+    private Label diceForGeschickLabel_;
+    @FXML
+    private Label bonusForGeschickLabel_;
+    @FXML
     private TextField staerkeTextField_;
+    @FXML
+    private Label diceForStaerkeLabel_;
+    @FXML
+    private Label bonusForStaerkeLabel_;
     @FXML
     private TextField erfahrungsTextField_;
     @FXML
@@ -263,8 +274,20 @@ public class GegnermanagerController extends CharakterTabController {
             gegnerKreisTextField_.setText(Integer.toString(gegnerTyp.getKreis_()));
             gegnerLevelTextField_.setText(Integer.toString(gegnerTyp.getLevel_()));
 
-            staerkeTextField_.setText(Integer.toString(gegnerTyp.getStaerke_()));
-            geschickTextField_.setText(Integer.toString(gegnerTyp.getGeschick_()));
+            int staerke = gegnerTyp.getStaerke_();
+            staerkeTextField_.setText(Integer.toString(staerke));
+            diceForStaerkeLabel_.setText("W12");
+            int staerkeBonus = GegnerEinheit.getStaerkeModifier(staerke);
+            String staerkeBonusPrefix = staerkeBonus > 0 ? "+" : "";
+            bonusForStaerkeLabel_.setText(staerkeBonus == 0 ? "" : staerkeBonusPrefix + Integer.toString(staerkeBonus));
+            
+            int geschick = gegnerTyp.getGeschick_();
+            geschickTextField_.setText(Integer.toString(geschick));
+            diceForGeschickLabel_.setText("W" + Integer.toString(Dice.getWuerfel(geschick)));
+            int geschickBonus = Dice.getBonus(geschick);
+            String geschickBonusPrefix = geschickBonus > 0 ? "+" : "";
+            bonusForGeschickLabel_.setText(geschickBonus == 0 ? "" : geschickBonusPrefix + Integer.toString(geschickBonus));
+            
             erfahrungsTextField_.setText(Integer.toString(gegnerTyp.getErfahrung_()));
             lebenspunkteTextField_.setText(Integer.toString(gegnerTyp.getMaxLebenspunkte_()));
             
@@ -283,7 +306,11 @@ public class GegnermanagerController extends CharakterTabController {
         gegnerLevelTextField_.setText("");
 
         staerkeTextField_.setText("");
+        diceForStaerkeLabel_.setText("");
+        bonusForStaerkeLabel_.setText("");
         geschickTextField_.setText("");
+        diceForGeschickLabel_.setText("");
+        bonusForGeschickLabel_.setText("");
         lebenspunkteTextField_.setText("");
         
         gegnerDefRTextField_.setText("");

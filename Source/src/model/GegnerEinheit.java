@@ -259,20 +259,20 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
 
     public int simulateStaerkeProbe() {
-        return Dice.RollW12() + getStaerkeModifier();
+        return Dice.RollW12() + getStaerkeModifier(staerke_);
     }
 
 
 
-    public int getStaerkeModifier() {
-        if(staerke_ <= 12) {
-            return (staerke_ - 1) / 3 - 2;
+    public static int getStaerkeModifier(int staerke) {
+        if(staerke <= 12) {
+            return (staerke - 1) / 3 - 2;
         }
-        else if(staerke_ <= 18) {
-            return (staerke_ - 1) / 3 - 3;
+        else if(staerke <= 18) {
+            return (staerke - 1) / 3 - 3;
         }
         else {
-            return (staerke_ - 1) / 3 - 4;
+            return (staerke - 1) / 3 - 4;
         }
     }
 
