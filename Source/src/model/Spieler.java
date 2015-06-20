@@ -31,11 +31,11 @@ public class Spieler extends Charakter implements DBObject {
     private int ID_;
     @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Jane Doe'")
     private String name_;
-    @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS <= 4)")
+    @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '" + MIN_KREIS + "' check(KREIS >= " + MIN_KREIS + " and KREIS <= " + MAX_KREIS + ")")
     private int kreis_;
-    @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL <= 12)")
+    @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '"+ MIN_LEVEL + "' check(LEVEL >= " + MIN_LEVEL + " and LEVEL <=" + MAX_LEVEL +")")
     private int level_;
-    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST) 
     @JoinColumn(name = "AUSRUESTNGS_ID", unique = false, columnDefinition = "Integer NOT NULL default '1'")
     private Ausruestung ausruestung_;
     @ManyToMany(cascade = CascadeType.PERSIST)
@@ -46,8 +46,8 @@ public class Spieler extends Charakter implements DBObject {
     
     public Spieler() {
         name_ = "Default";
-        level_ = 0;
-        kreis_ = 1;
+        level_ = MIN_LEVEL;
+        kreis_ = MIN_KREIS;
         ausruestung_ = new Ausruestung();
     }
     
@@ -256,7 +256,7 @@ public class Spieler extends Charakter implements DBObject {
         boolean spielerHasMaximumKreis = getKreis_() == MAX_KREIS;
 
         if (!spielerHasMaximumKreis) {
-            setLevel_(1);
+            setLevel_(MIN_LEVEL);
             setKreis_(getKreis_() + 1);
         }
     }
@@ -264,7 +264,7 @@ public class Spieler extends Charakter implements DBObject {
     
 
     public void decreaseLevel() {
-        boolean spielerHasMinimumLevelInKreis = getLevel_() == 1;
+        boolean spielerHasMinimumLevelInKreis = getLevel_() == MIN_LEVEL;
 
         if (!spielerHasMinimumLevelInKreis) {
             setLevel_(getLevel_() - 1);
@@ -277,7 +277,7 @@ public class Spieler extends Charakter implements DBObject {
     
 
     private void decreaseKreis() {
-        boolean spielerHasMinimumKreis = getKreis_() == 1;
+        boolean spielerHasMinimumKreis = getKreis_() == MIN_KREIS;
 
         if (!spielerHasMinimumKreis) {
             setLevel_(MAX_LEVEL);

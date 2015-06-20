@@ -1,8 +1,10 @@
 package model;
 
 public abstract class Charakter implements Comparable<Charakter> {
+    public static final int MIN_KREIS = 1;
     public static final int MAX_KREIS = 4;
-    public static final int MAX_LEVEL = 12;
+    public static final int MIN_LEVEL = 0;
+    public static final int MAX_LEVEL = 11;
     
     public static final int LOWERBOUND_KRITISCH = 35;
     public static final int LOWERBOUND_DIREKT = 25;
