@@ -258,11 +258,6 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     }
     
     
-    public boolean isAusruestung() {
-        return Gegenstand.isAusruestung(getKategorie_());
-    }
-    
-    
     
     // Erhöht readability ungemein
     public boolean isContainedInKategorie(String subKategorie) {
@@ -275,9 +270,16 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         return kategorie.contains("Waffe") || kategorie.contains("Rüstung");
     }
     
+
+    
+    public boolean isAusruestung() {
+        return Gegenstand.isAusruestung(getKategorie_());
+    }
+    
     
     
     public static List<String> getSearchMatchingKategorien(String search, List<String> kategorien) {
+        search = search.toLowerCase();
         if(search.contentEquals(""))
             return kategorien;
         List<String> result = new ArrayList<String>();

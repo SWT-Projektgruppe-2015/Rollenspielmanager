@@ -37,7 +37,7 @@ public class GegenstandTest {
     @Test
     public void writeIntoKategorien() {
         Gegenstand firstGegenstand = new Gegenstand();
-        firstGegenstand.setName_("Knï¿½ppel");
+        firstGegenstand.setName_("Knüppel");
         firstGegenstand.setKategorie_("Hiebwaffe");
         firstGegenstand.addToDB();
         
@@ -66,11 +66,54 @@ public class GegenstandTest {
     
     @Test
     public void getSubKategoriesTest() {
-        String bsp = "Waffen.Schwert.Sï¿½bel.Koalabï¿½r";
+        String bsp = "Waffe/Schwert/Säbel/Koalabär";
         List<String> actual = Gegenstand.getSubKategories(bsp);
-        List<String> expected = Arrays.asList("Waffen","Schwert","Sï¿½bel","Koalabï¿½r");
+        List<String> expected = Arrays.asList("Waffe","Schwert","Säbel","Koalabär");
         assertEquals(actual,expected);
     }
+    
+    
+    
+     @Test
+     public void isAusreustungTest() {
+         Gegenstand gegenstandA = new Gegenstand();
+         gegenstandA.setKategorie_("Waffe/Schwert/Säbel/Koalabär");
+         assertTrue(gegenstandA.isAusruestung());
+         gegenstandA.setKategorie_("Rüstung/Superhemd/Koalabär");
+         assertTrue(gegenstandA.isContainedInKategorie("Superhemd"));
+         assertTrue(gegenstandA.isAusruestung());
+     }
+     
+     
+     
+     @Test
+     public void getSearchMatchingKategorienTest() {
+         List<String> kategorien = new ArrayList<String>();
+         kategorien.add("Waffe/Langschwert/Säbel/Koalabär");
+         kategorien.add("Waffe/SuperDuper");
+         kategorien.add("Nichts");
+         List<String> actual = Gegenstand.getSearchMatchingKategorien("Schwert", kategorien);
+         List<String> expected = new ArrayList<String>();
+         expected.add("Waffe/Langschwert/Säbel/Koalabär");
+         System.out.println(actual.get(0));
+         assertEquals(actual, expected);
+         actual = Gegenstand.getSearchMatchingKategorien("", kategorien);
+         assertEquals(actual, kategorien);
+     }
+     
+     
+     
+     @Test
+     public void sortByKostenTest() {
+         List<Gegenstand> items = getSomeGegenstaende(3);
+         items.get(0).setKosten_(6);
+         items.get(1).setKosten_(7);
+         items.get(2).setKosten_(5);
+         Gegenstand.sortByKosten(items);
+         assertEquals(items.get(0).getKosten_(), 5);
+         assertEquals(items.get(1).getKosten_(), 6);
+         assertEquals(items.get(2).getKosten_(), 7);
+     }
     
     
     
@@ -97,10 +140,10 @@ public class GegenstandTest {
     public void getFullSubkategoriePathTest() {
         List<Gegenstand> items = getSomeGegenstaende(3);
         items.get(0).setKategorie_("A");
-        items.get(1).setKategorie_("A.B");
-        items.get(2).setKategorie_("A.B.C");
+        items.get(1).setKategorie_("A/B");
+        items.get(2).setKategorie_("A/B/C");
         String path = Gegenstand.getFullSubkategoriePath("B", items);
-        assertEquals(path,"A.B");
+        assertEquals(path,"A/B");
         path = Gegenstand.getFullSubkategoriePath("D", items);
         assertEquals(path, null);
     }
