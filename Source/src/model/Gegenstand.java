@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import controller.Dice;
 import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
 
@@ -72,19 +73,6 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         this.kategorie_ = kategorie_;
         updateInDB();
     }
-
-
-
-//    public String getVorkommen_() {
-//        return vorkommen_;
-//    }
-//
-//
-//
-//    public void setVorkommen_(String vorkommen_) {
-//        this.vorkommen_ = vorkommen_;
-//        updateInDB();
-//    }
 
 
 
@@ -203,9 +191,56 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
+    public boolean isValid() {
+        boolean isValid = true;
+        isValid = (getKosten_() >= 0) && isValid;
+        isValid = (getTraglast_() >= 0) && isValid;
+        return isValid;
+    }
+    
+    
+    
     public static List<Gegenstand> getAll() {
         List<Gegenstand> allGegenstaende = dbManipulator_.getAll();
         return allGegenstaende;
+    }    
+    
+    
+    
+    // ToDo: Nicht getestet!!!
+    public static List<Gegenstand> getBeuteInventar(int gesamtwert, int streuung){
+        List<Gegenstand> allGegenstaende = Gegenstand.getAll();
+        List<Gegenstand> machting = new ArrayList<Gegenstand>();
+        int range = allGegenstaende.size();
+        while(gesamtwert > 0) {
+            int sample = Dice.rollDice(range-1);
+            Gegenstand chosen = allGegenstaende.get(sample);
+            if(chosen.getKosten_() <= gesamtwert){
+                gesamtwert -= chosen.getKosten_();
+                machting.add(chosen);
+            }
+        }
+        return machting;
+    }
+    
+    
+    
+    // Bubblesort
+    public static void sortByKosten(List<Gegenstand> allItems_){
+        for(int i = 0; i < allItems_.size(); ++i){
+            for(int j = 0; j < allItems_.size(); ++j){
+                if(allItems_.get(i).getKosten_() < allItems_.get(j).getKosten_()){
+                    Collections.swap(allItems_, i, j);
+                }
+            }
+        }
+    }    
+    
+    
+    
+    // Erhöht readability ungemein
+    public boolean isContainedInKategorie(String subKategorie) {
+        return getKategorie_().contains(subKategorie);
     }
 
     
@@ -250,22 +285,6 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
-    public boolean isValid() {
-        boolean isValid = true;
-        isValid = (getKosten_() >= 0) && isValid;
-        isValid = (getTraglast_() >= 0) && isValid;
-        return isValid;
-    }
-    
-    
-    
-    // Erhöht readability ungemein
-    public boolean isContainedInKategorie(String subKategorie) {
-        return getKategorie_().contains(subKategorie);
-    }
-    
-    
-    
     public static boolean isAusruestung(String kategorie) {
         return kategorie.contains("Waffe") || kategorie.contains("Rüstung");
     }
@@ -289,17 +308,4 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         }
         return result;
     }
-    
-    
-    
-    // Bubblesort
-    public static void sortByKosten(List<Gegenstand> allItems_){
-        for(int i = 0; i < allItems_.size(); ++i){
-            for(int j = 0; j < allItems_.size(); ++j){
-                if(allItems_.get(i).getKosten_() < allItems_.get(j).getKosten_()){
-                    Collections.swap(allItems_, i, j);
-                }
-            }
-        }
-    }    
 }
