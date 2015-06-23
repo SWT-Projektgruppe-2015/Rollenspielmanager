@@ -14,10 +14,15 @@
          	<fx:include fx:id="gegnerRunde" source="Gegnerrunde.fxml" />
          </content>
     </Tab>
-      <Tab text="Spielerrunde">
-        <content>
-          <fx:include fx:id="spielerRunde" source="Spielerrunde.fxml" />
-        </content>
-      </Tab>
+    <Tab text="Spielerrunde">
+      <content>
+        <fx:include fx:id="spielerRunde" source="Spielerrunde.fxml" />
+      </content>
+    </Tab>
+    <Tab text="Kampfende">
+      <content>
+        <fx:include fx:id="kampfEnde" source="Kampfende.fxml" />
+      </content>
+    </Tab>    
   </tabs>
 </TabPane>
