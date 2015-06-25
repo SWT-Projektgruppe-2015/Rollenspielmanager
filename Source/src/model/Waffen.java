@@ -54,7 +54,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     private int waffenSchaden_;
     @Column(name = "EFFEKT_TYP")
     private EffektTyp effektTyp_;
-    @Column(name = "EFFEKT_WERT", columnDefinition = "INTEGER check (EFFEKT_WERT >= 0)")
+    @Column(name = "EFFEKT_WERT", columnDefinition = "INTEGER NOT NULL default 0 check (EFFEKT_WERT >= 0)")
     private int effektWert_;
     @ManyToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
@@ -62,6 +62,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
 
     public Waffen() {
         waffenSchaden_ = 0;
+        effektWert_ = 0;
         ausruestung_ = new Ausruestung();
     }
     
@@ -69,7 +70,8 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     
     public Waffen(Ausruestung ausruestung) {
         waffenName_ = "Default GegnerTyp Waffe";
-        waffenSchaden_ = 0;    
+        waffenSchaden_ = 0; 
+        effektWert_ = 0;
         ausruestung_ = ausruestung;
     }
 
@@ -119,7 +121,10 @@ public class Waffen implements DBObject, Comparable<Waffen> {
 
 
     public void setEffektWert_(int effektWert_) {
-        this.effektWert_ = effektWert_;
+        if(this.effektWert_ != effektWert_) {
+            this.effektWert_ = effektWert_;
+            updateInDB();
+        }
     }
 
 

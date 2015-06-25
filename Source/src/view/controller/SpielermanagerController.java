@@ -48,6 +48,8 @@ public class SpielermanagerController extends CharakterTabController{
     private TextField waffenDamageTextField_;
     @FXML
     private ComboBox<Waffen.EffektTyp> waffenEffektComboBox_;
+    @FXML
+    private TextField waffenEffektTextField_;
 
     @FXML
     private TextField defRTextField_;
@@ -297,6 +299,8 @@ public class SpielermanagerController extends CharakterTabController{
         boolean waffeChanged = false;
         waffeChanged = updateWaffenName(selectedWaffe);
         waffeChanged = updateWaffenDamage(selectedWaffe) || waffeChanged;
+        waffeChanged = updateWaffenEffektTyp(selectedWaffe) || waffeChanged;
+        waffeChanged = updateWaffenEffektWert(selectedWaffe)  || waffeChanged;
 
         if (waffeChanged) {
             if (selectedWaffe == entryForNewWaffe_) {
@@ -309,6 +313,37 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
+    private boolean updateWaffenEffektWert(Waffen selectedWaffe) {
+        try {
+            int newEffektWert = Integer.parseInt(waffenEffektTextField_.getText());
+
+            if (newEffektWert >= 0 && newEffektWert != selectedWaffe.getEffektWert_() && selectedWaffe.getEffektTyp_() != null) {
+                selectedWaffe.setEffektWert_(newEffektWert);
+                return true;
+            } else if(newEffektWert < 0) {
+                createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
+            }
+        }
+        catch (NumberFormatException e) {
+            createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
+        }
+        return false;
+    }
+
+
+
+    private boolean updateWaffenEffektTyp(Waffen selectedWaffe) {
+        Waffen.EffektTyp effektTyp = waffenEffektComboBox_.getValue();
+        if(effektTyp != null && !effektTyp.equals(selectedWaffe.getEffektTyp_())) {
+            selectedWaffe.setEffektTyp_(effektTyp);
+            return true;
+        }
+        
+        return false;
+    }
+
+
+
     private boolean updateWaffenName(Waffen selectedWaffe) {
         String newName = waffenNameTextField_.getText();
         if (!newName.equals(selectedWaffe.getWaffenName_())) {
@@ -458,6 +493,7 @@ public class SpielermanagerController extends CharakterTabController{
             waffenDamageTextField_.setText(Integer.toString(waffen
                     .getWaffenSchaden_()));
             waffenEffektComboBox_.getSelectionModel().select(waffen.getEffektTyp_());
+            waffenEffektTextField_.setText(Integer.toString(waffen.getEffektWert_()));
         }
     }
 
@@ -467,6 +503,7 @@ public class SpielermanagerController extends CharakterTabController{
         waffenNameTextField_.setText("");
         waffenDamageTextField_.setText("");
         waffenEffektComboBox_.getSelectionModel().select(null);
+        waffenEffektTextField_.setText("");
     }
     
     
