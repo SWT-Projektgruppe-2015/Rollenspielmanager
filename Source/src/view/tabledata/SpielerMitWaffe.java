@@ -17,7 +17,7 @@ public class SpielerMitWaffe implements Comparable<SpielerMitWaffe> {
         spieler_ = spieler;
         spielerName_.set(spieler.getName_());
         List<Waffen> spielerWaffen = spieler.getWaffen();
-        if(!spielerWaffen.isEmpty()) {
+        if(spielerWaffen != null && !spielerWaffen.isEmpty()) {
             setWaffe(spielerWaffen.get(0));
         }
     }
