@@ -101,7 +101,7 @@ public class NotificationTexts {
     
     
     private static String textForDeletion(String deleted) {
-        return deleted + "' wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
+        return deleted + " wurde gel" + Hauptprogramm.UMLAUT_SMALL_OE + "scht.";
     }
 
     public static String textForGruppenDeletion(Gruppe gruppe) {

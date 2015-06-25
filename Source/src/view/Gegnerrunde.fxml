@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane minWidth="666.0" prefHeight="311.0" styleClass="background-gegnerrunde" stylesheets="@GegnerRunde.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnerrundeController">
+<AnchorPane minWidth="666.0" prefHeight="311.0" styleClass="background-gegnerrunde" stylesheets="@GegnerRunde.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnerrundeController">
    <children>
       <ListView fx:id="gegnerListView_" layoutX="23.0" layoutY="48.0" prefHeight="299.0" prefWidth="190.0" styleClass="font-papyrus" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="48.0" />
       <Button layoutX="220.0" layoutY="144.0" maxHeight="67.0" maxWidth="123.0" minHeight="25.0" minWidth="90.0" mnemonicParsing="false" onAction="#executeFightButton" prefHeight="67.0" prefWidth="123.0" styleClass="button-angriff" text="Angriff" textFill="#339966">
@@ -25,17 +25,9 @@
       </Button>
       <TableView fx:id="schadensAnzeigeTableView_" layoutX="355.0" layoutY="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="20.0">
         <columns>
-          <TableColumn fx:id="spielerNameColumn_" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" styleClass="font-papyrus" text="Spieler" />
-          <TableColumn fx:id="schadenColumn_" maxWidth="85.0" minWidth="85.0" prefWidth="85.0" text="Schaden">
-               <styleClass>
-                  <String fx:value="column-tableview" />
-                  <String fx:value="font-papyrus" />
-               </styleClass></TableColumn>
-            <TableColumn fx:id="trefferZoneColumn_" maxWidth="90.0" minWidth="70.0" prefWidth="70.0" text="Zone">
-               <styleClass>
-                  <String fx:value="column-tableview" />
-                  <String fx:value="font-papyrus" />
-               </styleClass></TableColumn>
+          <TableColumn fx:id="spielerNameColumn_" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Spieler" />
+          <TableColumn fx:id="schadenColumn_" maxWidth="85.0" minWidth="85.0" prefWidth="85.0" styleClass="column-tableview" text="Schaden" />
+            <TableColumn fx:id="trefferZoneColumn_" maxWidth="90.0" minWidth="70.0" prefWidth="70.0" styleClass="column-tableview" text="Zone" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -43,7 +35,7 @@
       </TableView>
       <Label layoutX="20.0" layoutY="20.0" text="Gegner:">
          <font>
-            <Font name="Papyrus" size="12.0" />
+            <Font size="14.0" />
          </font></Label>
    </children>
 </AnchorPane>

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import controller.Dice;
 import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
 
@@ -69,19 +71,6 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
 
     public void setKategorie_(String kategorie_) {
         this.kategorie_ = kategorie_;
-        updateInDB();
-    }
-
-
-
-    public String getVorkommen_() {
-        return vorkommen_;
-    }
-
-
-
-    public void setVorkommen_(String vorkommen_) {
-        this.vorkommen_ = vorkommen_;
         updateInDB();
     }
 
@@ -202,9 +191,57 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
+    public boolean isValid() {
+        boolean isValid = true;
+        isValid = (getKosten_() >= 0) && isValid;
+        isValid = (getTraglast_() >= 0) && isValid;
+        isValid = (!getName_().equals("Neuer Gegenstand")) && isValid;
+        return isValid;
+    }
+    
+    
+    
     public static List<Gegenstand> getAll() {
         List<Gegenstand> allGegenstaende = dbManipulator_.getAll();
         return allGegenstaende;
+    }    
+    
+    
+    
+    // ToDo: Nicht getestet!!!
+    public static List<Gegenstand> getBeuteInventar(int gesamtwert, int streuung){
+        List<Gegenstand> allGegenstaende = Gegenstand.getAll();
+        List<Gegenstand> machting = new ArrayList<Gegenstand>();
+        int range = allGegenstaende.size();
+        while(gesamtwert > 0) {
+            int sample = Dice.rollDice(range-1);
+            Gegenstand chosen = allGegenstaende.get(sample);
+            if(chosen.getKosten_() <= gesamtwert){
+                gesamtwert -= chosen.getKosten_();
+                machting.add(chosen);
+            }
+        }
+        return machting;
+    }
+    
+    
+    
+    // Bubblesort
+    public static void sortByKosten(List<Gegenstand> allItems_){
+        for(int i = 0; i < allItems_.size(); ++i){
+            for(int j = 0; j < allItems_.size(); ++j){
+                if(allItems_.get(i).getKosten_() < allItems_.get(j).getKosten_()){
+                    Collections.swap(allItems_, i, j);
+                }
+            }
+        }
+    }    
+    
+    
+    
+    // Erh�ht readability ungemein
+    public boolean isContainedInKategorie(String subKategorie) {
+        return getKategorie_().contains(subKategorie);
     }
 
     
@@ -224,7 +261,52 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     public static List<String> getSubKategories(String kategory) {
-        List<String> subKategories = Arrays.asList(kategory.split("\\."));
+        List<String> subKategories = Arrays.asList(kategory.split("/"));
         return subKategories;
+    }
+    
+    
+    
+    public static String getFullSubkategoriePath(String subKategorie, List<Gegenstand> alleGegenstaende) {
+        for(Gegenstand item : alleGegenstaende) {
+            String kategorie = item.getKategorie_(); 
+            if(kategorie.contains(subKategorie)){
+                List<String> subList = Gegenstand.getSubKategories(kategorie);
+                String result = "";
+                for(int i = 0; i < subList.size(); ++i){
+                    result += subList.get(i);
+                    if(subList.get(i).contentEquals(subKategorie))
+                        return result;
+                    result += "/";
+                }
+            }
+        }
+        return null;
+    }
+    
+    
+    
+    public static boolean isAusruestung(String kategorie) {
+        return kategorie.contains("Waffe") || kategorie.contains("R�stung");
+    }
+    
+
+    
+    public boolean isAusruestung() {
+        return Gegenstand.isAusruestung(getKategorie_());
+    }
+    
+    
+    
+    public static List<String> getSearchMatchingKategorien(String search, List<String> kategorien) {
+        search = search.toLowerCase();
+        if(search.contentEquals(""))
+            return kategorien;
+        List<String> result = new ArrayList<String>();
+        for(String kategorie : kategorien){
+            if(kategorie.toLowerCase().contains(search))
+                result.add(kategorie);
+        }
+        return result;
     }
 }

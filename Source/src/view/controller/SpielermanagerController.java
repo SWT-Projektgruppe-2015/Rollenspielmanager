@@ -73,7 +73,6 @@ public class SpielermanagerController extends CharakterTabController{
         entryForNewSpieler_ = getEntryForNewSpieler();
         spielerListView_.getItems().setAll(entryForNewSpieler_);
         spielerListView_.getItems().addAll(spielerList_);
-
         showSpielerDetails(null);
 
         spielerListView_.getSelectionModel().selectedItemProperty()
