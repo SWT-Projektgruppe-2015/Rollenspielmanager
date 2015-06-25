@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import controller.manipulators.RuestungseffektManipulator;
-import controller.manipulators.WaffenManipulator;
 import view.controller.Hauptprogramm;
 import model.interfaces.DBObject;
 
