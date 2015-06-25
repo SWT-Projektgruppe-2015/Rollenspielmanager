@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
    <children>
       <SplitPane dividerPositions="0.6641604010025063" focusTraversable="false" layoutX="258.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -25,13 +25,13 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <styleClass>
                               <String fx:value="button-mainmenu" />
                               <String fx:value="button-gruppen" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Kampf" GridPane.columnIndex="1">
+                        <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Kampf" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="DejaVu Sans Bold" size="23.0" />
                            </font>
@@ -40,7 +40,7 @@
                               <String fx:value="button-mainmenu" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onHaendlerClick" text="Händler" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" onAction="#onHaendlerClick" text="Händler" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <padding>
                               <Insets top="20.0" />
                            </padding>
@@ -49,7 +49,7 @@
                               <String fx:value="button-haendler" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" prefWidth="85.0" text="Würfeln" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" prefWidth="85.0" text="Würfeln" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <styleClass>
                               <String fx:value="button-mainmenu" />
                               <String fx:value="button-wuerfeln" />
@@ -59,9 +59,6 @@
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
                   </GridPane>
                </children>
             </AnchorPane>
