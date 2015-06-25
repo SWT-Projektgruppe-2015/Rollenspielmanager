@@ -10,6 +10,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -45,6 +46,8 @@ public class SpielermanagerController extends CharakterTabController{
     private TextField waffenNameTextField_;
     @FXML
     private TextField waffenDamageTextField_;
+    @FXML
+    private ComboBox<Waffen.EffektTyp> waffenEffektComboBox_;
 
     @FXML
     private TextField defRTextField_;
@@ -89,7 +92,8 @@ public class SpielermanagerController extends CharakterTabController{
     
     private void initializeWaffenList() {
         entryForNewWaffe_ = getEntryForNewWaffe();
-
+        waffenEffektComboBox_.getItems().setAll(Waffen.EffektTyp.values());
+        
         showWaffenDetails(null);
 
         waffenListView_.getSelectionModel().selectedItemProperty()
@@ -453,6 +457,7 @@ public class SpielermanagerController extends CharakterTabController{
             waffenNameTextField_.setText(waffen.getWaffenName_());
             waffenDamageTextField_.setText(Integer.toString(waffen
                     .getWaffenSchaden_()));
+            waffenEffektComboBox_.getSelectionModel().select(waffen.getEffektTyp_());
         }
     }
 
@@ -461,6 +466,7 @@ public class SpielermanagerController extends CharakterTabController{
     private void showEmptyWaffenDetails() {
         waffenNameTextField_.setText("");
         waffenDamageTextField_.setText("");
+        waffenEffektComboBox_.getSelectionModel().select(null);
     }
     
     
