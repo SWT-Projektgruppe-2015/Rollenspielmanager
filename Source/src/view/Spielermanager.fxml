@@ -18,7 +18,7 @@
 				<ListView fx:id="spielerListView_" prefHeight="200.0" prefWidth="198.0" />
 			</content>
 		</ScrollPane>
-		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="228.0" prefWidth="323.0" tabClosingPolicy="UNAVAILABLE">
+		<TabPane layoutX="237.0" layoutY="60.0" prefHeight="238.0" prefWidth="350.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="50.0">
 			<tabs>
 				<Tab text="Details">
 					<content>

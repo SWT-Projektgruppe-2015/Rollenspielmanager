@@ -53,9 +53,9 @@ public class GegnerEinheitTest {
     public void correctStaerkeModifierUntil12() {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
         gegner.setStaerke_(1);
-        assertTrue(gegner.getStaerkeModifier() == -2);
+        assertTrue(GegnerEinheit.getStaerkeModifier(gegner.getStaerke_()) == -2);
         gegner.setStaerke_(12);
-        assertTrue(gegner.getStaerkeModifier() == 1);
+        assertTrue(GegnerEinheit.getStaerkeModifier(gegner.getStaerke_()) == 1);
     }
     
     
@@ -64,9 +64,9 @@ public class GegnerEinheitTest {
     public void correctStaerkeModifierBetween13And18() {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
         gegner.setStaerke_(13);
-        assertTrue(gegner.getStaerkeModifier() == 1);
+        assertTrue(GegnerEinheit.getStaerkeModifier(gegner.getStaerke_()) == 1);
         gegner.setStaerke_(18);
-        assertTrue(gegner.getStaerkeModifier() == 2);
+        assertTrue(GegnerEinheit.getStaerkeModifier(gegner.getStaerke_()) == 2);
     }
 
     
@@ -75,9 +75,9 @@ public class GegnerEinheitTest {
     public void correctStaerkeModifierFrom19() {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
         gegner.setStaerke_(19);
-        assertTrue(gegner.getStaerkeModifier() == 2);
+        assertTrue(GegnerEinheit.getStaerkeModifier(gegner.getStaerke_()) == 2);
         gegner.setStaerke_(70);
-        assertTrue(gegner.getStaerkeModifier() == 19);
+        assertTrue(GegnerEinheit.getStaerkeModifier(gegner.getStaerke_()) == 19);
     }
     
     

@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -227,15 +228,12 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
-    // Bubblesort
-    public static void sortByKosten(List<Gegenstand> allItems_){
-        for(int i = 0; i < allItems_.size(); ++i){
-            for(int j = 0; j < allItems_.size(); ++j){
-                if(allItems_.get(i).getKosten_() < allItems_.get(j).getKosten_()){
-                    Collections.swap(allItems_, i, j);
-                }
-            }
-        }
+    public static void sortByKosten(List<Gegenstand> allItems_) {
+        allItems_.sort(new Comparator<Gegenstand>(){
+            public int compare(Gegenstand o1, Gegenstand o2) {
+                return Integer.compare(o1.getKosten_(), o2.getKosten_());
+            } 
+        });
     }    
     
     

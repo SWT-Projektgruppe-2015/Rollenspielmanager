@@ -117,7 +117,7 @@ public class HaendlerController extends NotificationController {
         return relevantItems;
     }
     
-
+    
 
     private void initializeGegenstandKategorienTreeView() {
         TreeItem<String> rootItem = new TreeItem<String>("root");

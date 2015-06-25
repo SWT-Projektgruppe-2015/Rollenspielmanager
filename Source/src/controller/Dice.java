@@ -5,7 +5,7 @@ import java.util.Random;
 
 
 /**
- * Zuständig für das Simulieren von Würfelwürfen.
+ * Zustaendig fuer das Simulieren von Wuerfelwuerfen.
  * 
  * @author Britta Heymann
  *
@@ -84,7 +84,7 @@ public class Dice {
 
     
     
-    private static int getBonus(int geschick) throws IllegalArgumentException   {
+    public static int getBonus(int geschick) throws IllegalArgumentException   {
         if(geschick <= 0)   {
             throw new IllegalArgumentException();
         }
@@ -125,7 +125,7 @@ public class Dice {
 
     
     
-    private static int getWuerfel(int geschick) throws IllegalArgumentException {
+    public static int getWuerfel(int geschick) throws IllegalArgumentException {
         if(geschick <= 0)   {
             throw new IllegalArgumentException();
         }
