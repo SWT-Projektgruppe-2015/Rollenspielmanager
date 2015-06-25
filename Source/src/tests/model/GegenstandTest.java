@@ -2,6 +2,7 @@ package tests.model;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class GegenstandTest {
     @Test
     public void writeIntoKategorien() {
         Gegenstand firstGegenstand = new Gegenstand();
-        firstGegenstand.setName_("Knï¿½ppel");
+        firstGegenstand.setName_("Knüppel");
         firstGegenstand.setKategorie_("Hiebwaffe");
         firstGegenstand.addToDB();
         
@@ -59,16 +60,126 @@ public class GegenstandTest {
         List<String> expected = Arrays.asList("A","B");
         List<String> actual = Gegenstand.getKategorien(gegenstand);
         assertEquals(expected, actual);
-        
     }
     
     
     
     @Test
     public void getSubKategoriesTest() {
-        String bsp = "Waffen.Schwert.Sï¿½bel.Koalabï¿½r";
+        String bsp = "Waffe/Schwert/Säbel/Koalabär";
         List<String> actual = Gegenstand.getSubKategories(bsp);
-        List<String> expected = Arrays.asList("Waffen","Schwert","Sï¿½bel","Koalabï¿½r");
+        List<String> expected = Arrays.asList("Waffe","Schwert","Säbel","Koalabär");
         assertEquals(actual,expected);
+    }
+    
+    
+    
+     @Test
+     public void isAusreustungTest() {
+         Gegenstand gegenstandA = new Gegenstand();
+         gegenstandA.setKategorie_("Waffe/Schwert/Säbel/Koalabär");
+         assertTrue(gegenstandA.isAusruestung());
+         gegenstandA.setKategorie_("Rüstung/Superhemd/Koalabär");
+         assertTrue(gegenstandA.isContainedInKategorie("Superhemd"));
+         assertTrue(gegenstandA.isAusruestung());
+     }
+     
+     
+     
+     @Test
+     public void getSearchMatchingKategorienTest() {
+         List<String> kategorien = new ArrayList<String>();
+         kategorien.add("Waffe/Langschwert/Säbel/Koalabär");
+         kategorien.add("Waffe/SuperDuper");
+         kategorien.add("Nichts");
+         List<String> actual = Gegenstand.getSearchMatchingKategorien("Schwert", kategorien);
+         List<String> expected = new ArrayList<String>();
+         expected.add("Waffe/Langschwert/Säbel/Koalabär");
+         System.out.println(actual.get(0));
+         assertEquals(actual, expected);
+         actual = Gegenstand.getSearchMatchingKategorien("", kategorien);
+         assertEquals(actual, kategorien);
+     }
+     
+     
+     
+     @Test
+     public void sortByKostenTest() {
+         List<Gegenstand> items = getSomeGegenstaende(3);
+         items.get(0).setKosten_(6);
+         items.get(1).setKosten_(7);
+         items.get(2).setKosten_(5);
+         Gegenstand.sortByKosten(items);
+         assertEquals(items.get(0).getKosten_(), 5);
+         assertEquals(items.get(1).getKosten_(), 6);
+         assertEquals(items.get(2).getKosten_(), 7);
+     }
+    
+    
+    
+    @Test
+    public void settersTest() {
+        Gegenstand gegenstandA = new Gegenstand();
+        setDefaultGegenstand(gegenstandA);
+        assertTrue(verifyDefaultGegenstand(gegenstandA));
+    }
+    
+    
+    
+    @Test
+    public void ausruestungIsValidTest() {
+        Gegenstand gegenstandA = new Gegenstand();
+        assertTrue(gegenstandA.isValid());
+        gegenstandA.setKosten_(-1);
+        assertTrue(!gegenstandA.isValid());
+    }
+    
+    
+    
+    @Test
+    public void getFullSubkategoriePathTest() {
+        List<Gegenstand> items = getSomeGegenstaende(3);
+        items.get(0).setKategorie_("A");
+        items.get(1).setKategorie_("A/B");
+        items.get(2).setKategorie_("A/B/C");
+        String path = Gegenstand.getFullSubkategoriePath("B", items);
+        assertEquals(path,"A/B");
+        path = Gegenstand.getFullSubkategoriePath("D", items);
+        assertEquals(path, null);
+    }
+
+
+
+    private List<Gegenstand> getSomeGegenstaende(int amount) {
+        List<Gegenstand> items = new ArrayList<Gegenstand>();
+        for(int i = 0; i < amount; ++i) {
+            items.add(new Gegenstand());
+        }
+        return items;
+    }
+
+
+
+    private boolean verifyDefaultGegenstand(Gegenstand gegenstandA) {
+        boolean verifyDefault = gegenstandA.getName_() == "A"
+                && gegenstandA.getStaerke_() == 30 
+                && gegenstandA.getBeschreibung_() == "super"
+                && gegenstandA.getKosten_() == 10
+                && gegenstandA.getTraglast_() == 10
+                && gegenstandA.getWert_() == "100 + W6";
+        return verifyDefault;
+    }
+
+
+
+    private void setDefaultGegenstand(Gegenstand gegenstandA) {
+        gegenstandA.addToDB();
+        gegenstandA.setName_("A");
+        gegenstandA.setStaerke_(30);
+        gegenstandA.setBeschreibung_("super");
+        gegenstandA.setKosten_(10);
+        gegenstandA.setTraglast_(10);
+        gegenstandA.setWert_("100 + W6");
+        gegenstandA.setKategorie_("neue Kategorie");
     }
 }

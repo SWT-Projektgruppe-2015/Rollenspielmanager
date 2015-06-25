@@ -1,0 +1,30 @@
+Waffen:	
+	Ruestungsunabhaenginger Schaden:
+		direkter Schaden manuell Schaden angeben an einer Einheit;
+		Persistent Speichern von:
+			Effekt typ ist RUA-DMG
+	Statuswert (Geschick, Staerke) veraendern +-:
+		Alle Gegner die den Spieler angreifen haben diesen Effekt, nur in 		Verbindung mit dem Spieler, also wirkt es nur wenn der gegner mit dme 		spieler interagiert.
+		Gegner gegen Spieler Geschick fuer Treffer
+		Spieler gegen Gegner Staerkewurf
+		Persistent Speichern von:
+			Effekt typ ist MALUS-STAERKE und MALUS-GESCHICK
+			Wert des Malus
+	Schaden an alle Gegner jede Runde:
+		Schadenswert eingeben und entweder rua und an Ruestung
+		Persistent Speichern von:
+			Effekt typ ist AOE-DMG-RUA oder AOE-DMG-RUE
+			
+
+Ruestung:
+	Exp +%
+		Persistent Speichern von:
+			Effekt typ ist EXP-BOOST
+			Prozentwert
+	Statuswert (Geschick, Staerke) veraendern +-:
+		Alle Gegner die den Spieler angreifen haben diesen Effekt, nur in 		Verbindung mit dem Spieler, also wirkt es nur wenn der gegner mit dme 		spieler interagiert.
+		Gegner gegen Spieler Geschick fuer Treffer
+		Spieler gegen Gegner Staerkewurf
+		Persistent Speichern von:
+			Effekt typ ist Malus Staerke und Malus Geschick
+			Wert des Malus
