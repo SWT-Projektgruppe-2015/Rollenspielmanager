@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import view.controller.Hauptprogramm;
 import controller.Dice;
 import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
@@ -195,6 +196,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         boolean isValid = true;
         isValid = (getKosten_() >= 0) && isValid;
         isValid = (getTraglast_() >= 0) && isValid;
+        isValid = (!getName_().equals("Neuer Gegenstand")) && isValid;
         return isValid;
     }
     
@@ -238,7 +240,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
-    // Erhöht readability ungemein
+    // Erhï¿½ht readability ungemein
     public boolean isContainedInKategorie(String subKategorie) {
         return getKategorie_().contains(subKategorie);
     }
@@ -286,7 +288,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     public static boolean isAusruestung(String kategorie) {
-        return kategorie.contains("Waffe") || kategorie.contains("Rüstung");
+        return kategorie.contains("Waffe") || kategorie.contains("R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung");
     }
     
 

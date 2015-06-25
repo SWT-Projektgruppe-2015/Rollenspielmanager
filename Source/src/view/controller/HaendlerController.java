@@ -1,7 +1,6 @@
 package view.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -104,6 +103,9 @@ public class HaendlerController extends NotificationController {
         }
         return relevantItems;
     }
+    
+    
+    
     private List<Gegenstand> getAllGegenstaende() {
         List<Gegenstand> allItems = Gegenstand.getAll();
         List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
@@ -114,7 +116,6 @@ public class HaendlerController extends NotificationController {
         }
         return relevantItems;
     }
-
 
 
     private void initializeGegenstandKategorienTreeView() {
@@ -384,6 +385,8 @@ public class HaendlerController extends NotificationController {
             selectedGegenstand.setKategorie_(newKategorie);
             selectedGegenstand.setStaerke_(newStaerke);
             selectedGegenstand.setWert_(newWert);
+        } else {
+            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
         }
     }
     
@@ -402,6 +405,8 @@ public class HaendlerController extends NotificationController {
             selectedGegenstand.setBeschreibung_(newBeschreibung);
             selectedGegenstand.setTraglast_(newTraglast);
             selectedGegenstand.setKategorie_(newKategorie);
+        } else {
+            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
         }
     }
     
@@ -409,25 +414,35 @@ public class HaendlerController extends NotificationController {
     
     @FXML
     private void deleteGegenstand() {
-        Gegenstand itemToDelete = getSelectedGegenstand(gegenstandListView_);
-        if (itemToDelete != null && itemToDelete != entryForNewGegenstand_) {
-            gegenstandListView_.getItems().remove(itemToDelete);
-            alleGegenstaende_.remove(itemToDelete);
-
-            itemToDelete.deleteFromDB();
-        }
+        deleteItem(gegenstandListView_, alleGegenstaende_);
     }
     
     
     
     @FXML
     private void deleteAusruestung() {
-        Gegenstand itemToDelete = getSelectedGegenstand(ausruestungListView_);
+        deleteItem(ausruestungListView_, alleAusruestung_);
+    }
+    
+    
+    
+    private void deleteItem(ListView<Gegenstand> listView, List<Gegenstand> list) {
+        Gegenstand itemToDelete = getSelectedGegenstand(listView);
+        
         if (itemToDelete != null && itemToDelete != entryForNewGegenstand_) {
-            ausruestungListView_.getItems().remove(itemToDelete);
-            alleAusruestung_.remove(itemToDelete);
-
-            itemToDelete.deleteFromDB();
+            Action deleteItem = new Action(new Consumer<ActionEvent>() {
+                @Override
+                public void accept(ActionEvent t) {
+                    listView.getItems().remove(itemToDelete);
+                    list.remove(itemToDelete);
+    
+                    itemToDelete.deleteFromDB();
+                    
+                    createNotification(NotificationTexts.textForGegenstandDeletion(itemToDelete));
+                }
+            });
+            
+            createReallyDeleteDialog(NotificationTexts.confirmationTextGegenstandDeletion(itemToDelete), deleteItem);
         }
     }
     
@@ -629,5 +644,5 @@ public class HaendlerController extends NotificationController {
         ausruestungKategorieTextField_.setText("");
         ausruestungWertTextField_.setText("");
         ausruestungStaerkeTextField_.setText("");
-    }    
+    }
 }

@@ -188,7 +188,7 @@ public class GegnermanagerController extends CharakterTabController {
             int newErfahrung = Integer.parseInt(erfahrungsTextField_.getText());
             int newLebenspunkte = Integer.parseInt(lebenspunkteTextField_.getText());
       
-            if(GegnerTyp.detailsAreValid(newLevel, newKreis, newGeschick, newStaerke, newErfahrung)){
+            if(GegnerTyp.detailsAreValid(newLevel, newKreis, newGeschick, newStaerke, newErfahrung) && !newName.isEmpty()){
                 selectedGegner.setName_(newName);
                 selectedGegner.setLevel_(newLevel);
                 selectedGegner.setKreis_(newKreis);
