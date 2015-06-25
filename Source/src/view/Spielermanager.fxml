@@ -63,12 +63,12 @@
 							<children>
 								<ListView fx:id="waffenListView_" editable="true" layoutX="8.0" layoutY="16.0" prefHeight="141.0" prefWidth="103.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0" />
 								<Button layoutX="8.0" layoutY="157.0" mnemonicParsing="false" onAction="#deleteWaffe" styleClass="button-bevel-gray" text="Waffe löschen" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="160.0" />
-								<VBox layoutX="131.0" layoutY="4.0" maxWidth="400.0" prefHeight="196.0" prefWidth="84.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="20.0">
+								<VBox layoutX="131.0" layoutY="4.0" prefHeight="196.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="20.0">
 									<children>
 										<Label text="Name" />
 										<TextField fx:id="waffenNameTextField_" onAction="#updateSpieler" />
 										<Label text="Effekt" />
-										<ComboBox prefHeight="25.0" prefWidth="123.0" styleClass="combobox-bevel-gray" />
+										<ComboBox prefHeight="25.0" prefWidth="200.0" styleClass="combobox-bevel-gray" />
 										<Label text="Damage" />
 										<TextField fx:id="waffenDamageTextField_" onAction="#updateSpieler" prefHeight="25.0" prefWidth="66.0" />
 									</children>
