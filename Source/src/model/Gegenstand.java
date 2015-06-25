@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import view.controller.Hauptprogramm;
-import controller.Dice;
 import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
 
@@ -206,24 +204,6 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     public static List<Gegenstand> getAll() {
         List<Gegenstand> allGegenstaende = dbManipulator_.getAll();
         return allGegenstaende;
-    }    
-    
-    
-    
-    // ToDo: Nicht getestet!!!
-    public static List<Gegenstand> getBeuteInventar(int gesamtwert, int streuung){
-        List<Gegenstand> allGegenstaende = Gegenstand.getAll();
-        List<Gegenstand> machting = new ArrayList<Gegenstand>();
-        int range = allGegenstaende.size();
-        while(gesamtwert > 0) {
-            int sample = Dice.rollDice(range-1);
-            Gegenstand chosen = allGegenstaende.get(sample);
-            if(chosen.getKosten_() <= gesamtwert){
-                gesamtwert -= chosen.getKosten_();
-                machting.add(chosen);
-            }
-        }
-        return machting;
     }
     
     
@@ -242,7 +222,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     public boolean isContainedInKategorie(String subKategorie) {
         return getKategorie_().contains(subKategorie);
     }
-
+    
     
     
     public static List<String> getKategorien(List<Gegenstand> gegenstaende) {
