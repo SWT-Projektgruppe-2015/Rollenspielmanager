@@ -70,7 +70,7 @@ public class Dice {
 
     
     
-    private static int rollDice(int faces)  {
+    public static int rollDice(int faces)  {
         return random.nextInt(faces) + 1;
     }
 
