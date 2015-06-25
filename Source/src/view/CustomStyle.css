@@ -17,46 +17,83 @@
 
 
 
-.font-papyrus	{
-	-fx-font-family: Papyrus;
+.combobox-bevel-gray	{
+    -fx-background-color: 
+	    linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 
 
-.font-system	{
-	-fx-font-family: System;
+.listview-referse-scroll	{	
 }
 
 
 
-.font-papyrus-14	{
-    -fx-font-size: 14px;
-	-fx-font-family: Papyrus;
+.combobox-bevel-gray:focused	{
+	-fx-border-radius:8,7,6;
+	-fx-border-color: #339966;
 }
 
 
 
-
-.font-papyrus-22	{
-    -fx-font-size: 22px;
-	-fx-font-family: Papyrus;
+.button-bevel-gray	{
+    -fx-background-color: 
+	    linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+    -fx-background-radius: 10,10,10;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 
 
-.font-papyrus-16	{
-	-fx-font-family: Papyrus;
-	-fx-font-size: 16px;
+.button-bevel-gray:focused	{
+	-fx-border-radius:10,10,10;
+	-fx-border-color: #339966;
 }
 
 
 
+.button-green	{
+    -fx-background-color:
+        linear-gradient(#f0ff35, #669933),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #395306;
+}
+
+
+
+.button-green:focused	{
+	-fx-border-radius:6,5;
+	-fx-effect: dropshadow( three-pass-box , #669933 , 25, 0.0 , 0 , 1 );
+}
+
+
+.tableview-mainmenu	{
+	
+}
+
+
+
+.tableview-mainmenu:focused	{
+}
 
 
 
 .button-mainmenu:focused	{
 	-fx-border-radius:100em;
-	-fx-border-color: #339966;
+	-fx-effect: dropshadow( three-pass-box , #669933 , 15, 0.0 , 0 , 1 );
 }
 
 
@@ -76,7 +113,7 @@
 
 .button-kampf	{
 	-fx-font-size: 30px;
-	-fx-padding: 110 0 0 10;
+	-fx-padding: 110 0 0 0;
 	-fx-background-position: 30% 10%;
     -fx-background-image: url('/img/Hauptmenu_rund/kaempfer_rund_v1.png');   
 }

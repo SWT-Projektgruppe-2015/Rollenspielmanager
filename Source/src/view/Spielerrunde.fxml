@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="0.0" minWidth="666.0" prefHeight="311.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
+<AnchorPane minHeight="0.0" minWidth="666.0" prefHeight="311.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
    <children>
       <TreeTableView fx:id="gegnerTreeTableView_" editable="true" layoutX="478.0" layoutY="47.0" prefHeight="200.0" prefWidth="300.0" showRoot="false" AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
@@ -40,9 +40,9 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#onHelmButtonClick" prefWidth="80.0" text="Helm" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#onRuestungButtonClick" prefWidth="80.0" text="Rüstung" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#onDirektButtonClick" prefWidth="80.0" text="Direkt" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onHelmButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Helm" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onRuestungButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Rüstung" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onDirektButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Direkt" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <AnchorPane prefHeight="200.0" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <children>
                   <Label layoutX="9.0" layoutY="7.0" text="+" />
@@ -50,10 +50,10 @@
                   <Label layoutX="82.0" layoutY="7.0" text="\%" />
                </children>
             </AnchorPane>
-            <Button mnemonicParsing="false" onAction="#onBlockClick" prefWidth="80.0" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onBlockClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="font-papyrus-14" stylesheets="@CustomStyle.css" GridPane.rowIndex="5">
                <children>
-                  <Label layoutX="8.0" layoutY="8.0" text="Exp.:" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <Label layoutX="14.0" layoutY="5.0" text="Exp.:" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="5.0">
                      <tooltip>
                         <Tooltip text="Summe der Erfahrungspunkte, &#10;über alle Gegner." />
                      </tooltip>
@@ -73,12 +73,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#removeFromKampf" prefHeight="30.0" prefWidth="90.0" text="Entfernen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
-          <Button mnemonicParsing="false" onAction="#deleteFromKampf" prefHeight="30.0" prefWidth="90.0" text="Löschen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#removeFromKampf" prefHeight="30.0" prefWidth="90.0" styleClass="button-bevel-gray" text="Entfernen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="CENTER" />
+          <Button mnemonicParsing="false" onAction="#deleteFromKampf" prefHeight="30.0" prefWidth="90.0" styleClass="button-bevel-gray" text="Löschen" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <TextField fx:id="staerkeWurfTextField_" alignment="CENTER" editable="false" maxWidth="90.0" prefWidth="90.0" GridPane.halignment="RIGHT" />
-            <Button mnemonicParsing="false" onAction="#onStaerkeWurfClick" prefHeight="30.0" prefWidth="90.0" text="Stärkewurf" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onStaerkeWurfClick" prefHeight="30.0" prefWidth="90.0" styleClass="button-bevel-gray" text="Stärkewurf" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <Button defaultButton="true" layoutX="352.0" layoutY="233.0" mnemonicParsing="false" onAction="#onSchadenClick" prefHeight="70.0" prefWidth="80.0" text="Schaden!" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="240.0" />
+      <Button defaultButton="true" layoutX="352.0" layoutY="233.0" mnemonicParsing="false" onAction="#onSchadenClick" prefHeight="70.0" prefWidth="80.0" styleClass="button-green" text="Schaden!" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="240.0" />
    </children>
 </AnchorPane>
