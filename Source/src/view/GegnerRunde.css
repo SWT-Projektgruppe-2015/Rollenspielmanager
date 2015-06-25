@@ -22,7 +22,8 @@
 
 
 .column-tableview	{
-	-fx-alignment: center; 
+	-fx-alignment: center;
+	-fx-text-alignment: center;
 }
 
 

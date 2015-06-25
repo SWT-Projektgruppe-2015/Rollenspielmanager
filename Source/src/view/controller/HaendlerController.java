@@ -116,6 +116,7 @@ public class HaendlerController extends NotificationController {
         }
         return relevantItems;
     }
+    
 
 
     private void initializeGegenstandKategorienTreeView() {
