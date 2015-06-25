@@ -54,7 +54,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     private int waffenSchaden_;
     @Column(name = "EFFEKT_TYP")
     private EffektTyp effektTyp_;
-    @Column(name = "EFFEKT_WERT")
+    @Column(name = "EFFEKT_WERT", columnDefinition = "INTEGER check (EFFEKT_WERT >= 0)")
     private int effektWert_;
     @ManyToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")

@@ -14,6 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.TypedQuery;
 
 import controller.manipulators.AusruestungsManipulator;
+import controller.manipulators.RuestungseffektManipulator;
 import controller.manipulators.WaffenManipulator;
 import model.interfaces.DBObject;
 
@@ -92,6 +93,14 @@ public class Ausruestung implements DBObject {
     public List<Waffen> getWaffen() {
         return WaffenManipulator.getInstance().getWaffenInAusruestung(this);
     }
+    
+    
+    
+    public List<Ruestungseffekt> getRuestungsEffekte() {
+        return RuestungseffektManipulator.getInstance().getRuestungsEffekteForAusruestung(this);
+    }
+    
+    
     
     @PrePersist
     public void onCreate() {
