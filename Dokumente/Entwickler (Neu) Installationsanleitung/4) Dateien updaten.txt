@@ -1,0 +1,8 @@
+1) Für die Notifications sollte man noch folgende jar updaten bzw in den Build Path einfügen und evtl. die alte ersetzten:
+https://www.versioneye.com/java/org.javassist:javassist/3.18.1-GA
+ganz unten:
+javassist-3.18.1-GA.jar oder höher.
+
+2) Um einen release Build zu machen braucht muss man folgende Datei erneuern:
+"controlsfx-8.40.9.jar"
+Diese sollte im Source Ordner rumliegen.
