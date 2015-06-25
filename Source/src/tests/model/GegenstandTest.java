@@ -10,6 +10,8 @@ import model.Gegenstand;
 
 import org.junit.Test;
 
+import view.controller.Hauptprogramm;
+
 public class GegenstandTest {
     @Test
     public void correctOrderWithSamePrefix() {
@@ -26,7 +28,7 @@ public class GegenstandTest {
     @Test
     public void correctOrderWithDifferentPrefix() {
         Gegenstand firstGegenstand = new Gegenstand();
-        firstGegenstand.setName_("Knüppel");
+        firstGegenstand.setName_("Kn" + Hauptprogramm.UMLAUT_SMALL_UE + "ppel");
         Gegenstand secondGegenstand = new Gegenstand();
         secondGegenstand.setName_("Schwert");
         
@@ -37,7 +39,7 @@ public class GegenstandTest {
     @Test
     public void writeIntoKategorien() {
         Gegenstand firstGegenstand = new Gegenstand();
-        firstGegenstand.setName_("Knüppel");
+        firstGegenstand.setName_("Kn" + Hauptprogramm.UMLAUT_SMALL_UE + "ppel");
         firstGegenstand.setKategorie_("Hiebwaffe");
         firstGegenstand.addToDB();
         
@@ -66,9 +68,9 @@ public class GegenstandTest {
     
     @Test
     public void getSubKategoriesTest() {
-        String bsp = "Waffe/Schwert/Säbel/Koalabär";
+        String bsp = "Waffe/Schwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r";
         List<String> actual = Gegenstand.getSubKategories(bsp);
-        List<String> expected = Arrays.asList("Waffe","Schwert","Säbel","Koalabär");
+        List<String> expected = Arrays.asList("Waffe","Schwert","S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel","Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
         assertEquals(actual,expected);
     }
     
@@ -77,9 +79,9 @@ public class GegenstandTest {
      @Test
      public void isAusreustungTest() {
          Gegenstand gegenstandA = new Gegenstand();
-         gegenstandA.setKategorie_("Waffe/Schwert/Säbel/Koalabär");
+         gegenstandA.setKategorie_("Waffe/Schwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
          assertTrue(gegenstandA.isAusruestung());
-         gegenstandA.setKategorie_("Rüstung/Superhemd/Koalabär");
+         gegenstandA.setKategorie_("R"+ Hauptprogramm.UMLAUT_SMALL_UE + "stung/Superhemd/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
          assertTrue(gegenstandA.isContainedInKategorie("Superhemd"));
          assertTrue(gegenstandA.isAusruestung());
      }
@@ -89,12 +91,12 @@ public class GegenstandTest {
      @Test
      public void getSearchMatchingKategorienTest() {
          List<String> kategorien = new ArrayList<String>();
-         kategorien.add("Waffe/Langschwert/Säbel/Koalabär");
+         kategorien.add("Waffe/Langschwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
          kategorien.add("Waffe/SuperDuper");
          kategorien.add("Nichts");
          List<String> actual = Gegenstand.getSearchMatchingKategorien("Schwert", kategorien);
          List<String> expected = new ArrayList<String>();
-         expected.add("Waffe/Langschwert/Säbel/Koalabär");
+         expected.add("Waffe/Langschwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab"+ Hauptprogramm.UMLAUT_SMALL_AE + "r");
          System.out.println(actual.get(0));
          assertEquals(actual, expected);
          actual = Gegenstand.getSearchMatchingKategorien("", kategorien);
