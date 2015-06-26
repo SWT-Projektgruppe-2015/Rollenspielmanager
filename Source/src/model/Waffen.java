@@ -9,30 +9,60 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import view.controller.Hauptprogramm;
 import controller.manipulators.WaffenManipulator;
 import model.interfaces.DBObject;
 
 @Entity
 @Table(name = "WAFFEN")
 public class Waffen implements DBObject, Comparable<Waffen> {
+    public enum EffektTyp {
+        RUA_SCHADEN,
+        MALUS_STAERKE,
+        MALUS_GESCHICK,
+        AOE_SCHADEN_RUA,
+        AOE_SCHADEN_RUE;
+        
+        @Override
+        public String toString() {
+            switch(this) {
+                case RUA_SCHADEN:
+                    return "R" + Hauptprogramm.UMLAUT_SMALL_UE + "stungsunabh" + Hauptprogramm.UMLAUT_SMALL_AE + "ngig";
+                case MALUS_STAERKE:
+                    return "St" + Hauptprogramm.UMLAUT_SMALL_AE + "rkemalus";
+                case MALUS_GESCHICK:
+                    return "Geschickmalus";
+                case AOE_SCHADEN_RUA:
+                    return "Schadet allen Gegner r" + Hauptprogramm.UMLAUT_SMALL_UE + "stungsunabh" + Hauptprogramm.UMLAUT_SMALL_AE + "ngig";
+                case AOE_SCHADEN_RUE:
+                    return "Schadet allen Gegnern";
+                default:
+                    return "";
+            }
+        }
+    };
+    
     private static WaffenManipulator dbManipulator_ = WaffenManipulator.getInstance();
 
     @Id
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "EFFEKT_TYP")
-    private int effektTyp_;
     @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Deus Ex Machina'")
     private String waffenName_;
     @Column(name = "SCHADEN", columnDefinition = "INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
     private int waffenSchaden_;
+    @Column(name = "EFFEKT_TYP")
+    private EffektTyp effektTyp_;
+    @Column(name = "EFFEKT_WERT", columnDefinition = "INTEGER NOT NULL default 0 check (EFFEKT_WERT >= 0)")
+    private int effektWert_;
     @ManyToOne(optional = false)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Ausruestung ausruestung_;
 
     public Waffen() {
         waffenSchaden_ = 0;
+        effektWert_ = 0;
         ausruestung_ = new Ausruestung();
     }
     
@@ -40,7 +70,8 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     
     public Waffen(Ausruestung ausruestung) {
         waffenName_ = "Default GegnerTyp Waffe";
-        waffenSchaden_ = 0;    
+        waffenSchaden_ = 0; 
+        effektWert_ = 0;
         ausruestung_ = ausruestung;
     }
 
@@ -66,16 +97,37 @@ public class Waffen implements DBObject, Comparable<Waffen> {
         }
     }
 
-    public int getEffektTyp_() {
+    
+    
+    public EffektTyp getEffektTyp_() {
         return effektTyp_;
     }
 
-    public void setEffektTyp_(int effektTyp_) {
+    
+    
+    public void setEffektTyp_(EffektTyp effektTyp_) {
         if(this.effektTyp_ != effektTyp_) {
             this.effektTyp_ = effektTyp_;
             updateInDB();
         }
     }
+    
+    
+    
+    public int getEffektWert_() {
+        return effektWert_;
+    }
+
+
+
+    public void setEffektWert_(int effektWert_) {
+        if(this.effektWert_ != effektWert_) {
+            this.effektWert_ = effektWert_;
+            updateInDB();
+        }
+    }
+
+
 
     public String getWaffenName_() {
         return waffenName_;
