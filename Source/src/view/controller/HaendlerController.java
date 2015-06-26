@@ -74,8 +74,8 @@ public class HaendlerController extends NotificationController {
     
     @FXML
     void initialize() {
-        alleGegenstaende_ = getAllGegenstaende();
-        alleAusruestung_ = getAllAusruestung();
+        alleGegenstaende_ = Gegenstand.getAllInventar();
+        alleAusruestung_ = Gegenstand.getAllAusruestung();
         gegenstandKategorien_ = Gegenstand.getKategorien(alleGegenstaende_);
         ausruestungKategorien_ = Gegenstand.getKategorien(alleAusruestung_);
         entryForNewGegenstand_ = new Gegenstand();
@@ -91,34 +91,9 @@ public class HaendlerController extends NotificationController {
 //          ====================================================
 //          =======  Inventar  =================================
 //          ====================================================
-
-    
-    private List<Gegenstand> getAllAusruestung() {
-        List<Gegenstand> allItems = Gegenstand.getAll();
-        List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
-        for(Gegenstand item : allItems) {
-            if(item.isAusruestung()){
-                relevantItems.add(item);
-            }
-        }
-        return relevantItems;
-    }
     
     
     
-    private List<Gegenstand> getAllGegenstaende() {
-        List<Gegenstand> allItems = Gegenstand.getAll();
-        List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
-        for(Gegenstand item : allItems) {
-            if(!item.isAusruestung()){
-                relevantItems.add(item);
-            }
-        }
-        return relevantItems;
-    }
-    
-    
-
     private void initializeGegenstandKategorienTreeView() {
         TreeItem<String> rootItem = new TreeItem<String>("root");
         rootItem.setExpanded(true);

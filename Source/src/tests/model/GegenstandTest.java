@@ -149,6 +149,17 @@ public class GegenstandTest {
         path = Gegenstand.getFullSubkategoriePath("D", items);
         assertEquals(path, null);
     }
+    
+    
+    
+//    @Test
+//    public void getAllAusruestungTest() {
+//        List<Gegenstand> testItems = getSomeGegenstaende(2);
+//        testItems.get(0).setKategorie_("Waffe/Schwert");
+//        testItems.get(1).setKategorie_("R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung/Helm");
+//        List<Gegenstand> items = Gegenstand.getAllInventar();
+//        assertTrue(items.contains(testItems.get(0)));
+//    }
 
 
 
