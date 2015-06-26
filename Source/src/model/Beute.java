@@ -31,6 +31,9 @@ public abstract class Beute {
 //    }
     
     protected static Gegenstand getItemWithApproximateValue(int value, List<Gegenstand> sortedList) {
+        if(sortedList.isEmpty())
+            return null;
+        
         for(int i = 0; i<sortedList.size(); i++) {
             Gegenstand item = sortedList.get(i);
             if(item.computeValue() >= value) {
