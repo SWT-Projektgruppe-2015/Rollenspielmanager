@@ -68,9 +68,9 @@ public class GegenstandTest {
     
     @Test
     public void getSubKategoriesTest() {
-        String bsp = "Waffe/Schwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r";
+        String bsp = Gegenstand.WAFFE + "/Schwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r";
         List<String> actual = Gegenstand.getSubKategories(bsp);
-        List<String> expected = Arrays.asList("Waffe","Schwert","S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel","Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
+        List<String> expected = Arrays.asList(Gegenstand.WAFFE,"Schwert","S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel","Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
         assertEquals(actual,expected);
     }
     
@@ -79,9 +79,9 @@ public class GegenstandTest {
      @Test
      public void isAusreustungTest() {
          Gegenstand gegenstandA = new Gegenstand();
-         gegenstandA.setKategorie_("Waffe/Schwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
+         gegenstandA.setKategorie_(Gegenstand.WAFFE + "/Schwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
          assertTrue(gegenstandA.isAusruestung());
-         gegenstandA.setKategorie_("R"+ Hauptprogramm.UMLAUT_SMALL_UE + "stung/Superhemd/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
+         gegenstandA.setKategorie_(Gegenstand.RUESTUNG + "/Superhemd/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
          assertTrue(gegenstandA.isContainedInKategorie("Superhemd"));
          assertTrue(gegenstandA.isAusruestung());
      }
@@ -91,12 +91,12 @@ public class GegenstandTest {
      @Test
      public void getSearchMatchingKategorienTest() {
          List<String> kategorien = new ArrayList<String>();
-         kategorien.add("Waffe/Langschwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
-         kategorien.add("Waffe/SuperDuper");
+         kategorien.add(Gegenstand.WAFFE+"/Langschwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab" + Hauptprogramm.UMLAUT_SMALL_AE + "r");
+         kategorien.add(Gegenstand.WAFFE+"/SuperDuper");
          kategorien.add("Nichts");
          List<String> actual = Gegenstand.getSearchMatchingKategorien("Schwert", kategorien);
          List<String> expected = new ArrayList<String>();
-         expected.add("Waffe/Langschwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab"+ Hauptprogramm.UMLAUT_SMALL_AE + "r");
+         expected.add(Gegenstand.WAFFE + "/Langschwert/S"+ Hauptprogramm.UMLAUT_SMALL_AE + "bel/Koalab"+ Hauptprogramm.UMLAUT_SMALL_AE + "r");
          System.out.println(actual.get(0));
          assertEquals(actual, expected);
          actual = Gegenstand.getSearchMatchingKategorien("", kategorien);

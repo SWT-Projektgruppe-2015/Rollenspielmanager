@@ -79,7 +79,7 @@ public class HaendlerController extends NotificationController {
         gegenstandKategorien_ = Gegenstand.getKategorien(alleGegenstaende_);
         ausruestungKategorien_ = Gegenstand.getKategorien(alleAusruestung_);
         entryForNewGegenstand_ = new Gegenstand();
-        entryForNewGegenstand_.setName_("Neuer Gegenstand");
+        entryForNewGegenstand_.setName_(Gegenstand.GEGENSTAND_NEU);
         
         initializeGegenstandKategorienTreeView();
         initializeGegenstandListView();
@@ -338,7 +338,7 @@ public class HaendlerController extends NotificationController {
             allItems.add(selectedGegenstand);
             selectedGegenstand.addToDB();
             entryForNewGegenstand_ = new Gegenstand();
-            entryForNewGegenstand_.setName_("Neuer Gegenstand");
+            entryForNewGegenstand_.setName_(Gegenstand.GEGENSTAND_NEU);
         }
     }
 

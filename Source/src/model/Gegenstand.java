@@ -17,7 +17,7 @@ import model.interfaces.DBObject;
 
 
 /**
- * Einfaches Item f�r den H�ndler: Name, Beschreibung, Preis.
+ * Einfaches Item fuer den Haendler: Name, Beschreibung, Preis.
  */
 @Entity
 @Table(name="GEGENSTAND")
@@ -25,6 +25,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     public static final String RUESTUNG = "R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung"; 
     public static final String WAFFE = "Waffe";
+    public static final String GEGENSTAND_NEU = "Neuer Gegenstand";
     
     private static EinfacherGegenstandManipulator dbManipulator_ = EinfacherGegenstandManipulator.getInstance();
 
@@ -200,7 +201,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         boolean isValid = true;
         isValid = (getKosten_() >= 0) && isValid;
         isValid = (getTraglast_() >= 0) && isValid;
-        isValid = (!getName_().equals("Neuer Gegenstand")) && isValid;
+        isValid = (!getName_().equals(GEGENSTAND_NEU)) && isValid;
         return isValid;
     }
     
@@ -297,7 +298,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     public static boolean isAusruestung(String kategorie) {
-        return kategorie.contains("Waffe") || kategorie.contains("R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung");
+        return kategorie.contains(WAFFE) || kategorie.contains(RUESTUNG);
     }
     
 
