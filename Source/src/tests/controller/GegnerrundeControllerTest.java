@@ -5,6 +5,7 @@ import model.Charakter;
 import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Spieler;
+import model.Waffen;
 
 import org.junit.After;
 import org.junit.Before;
@@ -67,6 +68,26 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
             assertTrue(verlorenesLeben == 0 || verlorenesLeben == 1 
                     || verlorenesLeben == 3 || verlorenesLeben == 75);
         }
+    }
+    
+    
+    
+    @Test
+    public void lowerGeschickWurfWithMalus() {
+        Waffen waffeWithGeschickMalus = new Waffen();
+        waffeWithGeschickMalus.setEffektTyp_(Waffen.EffektTyp.MALUS_GESCHICK);
+        waffeWithGeschickMalus.setEffektWert_(100);
+        spieler_.addWaffe(waffeWithGeschickMalus);
+        
+        GegnerrundeController controller = new GegnerrundeController();
+        gegnerTyp_.setGeschick_(100);
+        GegnerEinheit geschickterGegner = GegnerEinheit.createEinheiten(gegnerTyp_, 1).get(0);
+        for(int i = 0; i<100; i++) {
+            int wurf = controller.simulateGeschickWurf(geschickterGegner, spieler_);
+            assertTrue(wurf > 0 && wurf < 5);
+        }
+        
+        spieler_.deleteWaffe(waffeWithGeschickMalus);
     }
     
     

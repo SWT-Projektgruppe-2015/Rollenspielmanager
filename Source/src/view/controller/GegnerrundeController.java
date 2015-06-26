@@ -100,7 +100,7 @@ public class GegnerrundeController {
         if(selectedGegner == null) return;
         for(SchadenAmSpieler schadenAmSpieler: schadenAmSpielerListe_){
             Spieler spieler = schadenAmSpieler.getSpieler_();
-            int geschickWurf = simulateGeschickWurf(selectedGegner);
+            int geschickWurf = simulateGeschickWurf(selectedGegner, spieler);
             int lebensVerlust = simuliereLebensverlustAmSpieler(selectedGegner, spieler, geschickWurf);
             schadenAmSpieler.setSchaden_(lebensVerlust);
             schadenAmSpieler.setZone_(geschickWurf);
@@ -115,9 +115,9 @@ public class GegnerrundeController {
      * @param selectedGegner
      * @return
      */
-    private int simulateGeschickWurf(GegnerEinheit selectedGegner) {
-        int geschick = selectedGegner.getGeschick_();
-        int wuerfelErgebnis = Dice.rollGeschick(geschick);
+    public int simulateGeschickWurf(GegnerEinheit selectedGegner, Spieler spieler) {
+        int geschick = selectedGegner.getGeschick_() - spieler.getTotalGeschickMalus();
+        int wuerfelErgebnis = Dice.rollGeschick(Math.max(geschick, 1));
         return wuerfelErgebnis;
     }
 
