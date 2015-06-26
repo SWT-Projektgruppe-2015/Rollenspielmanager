@@ -118,7 +118,7 @@
                   </Label>
                   <TextField prefHeight="25.0" prefWidth="74.0" text="0" GridPane.columnIndex="1" />
                   <TextField prefHeight="25.0" prefWidth="74.0" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label text="Streuung" GridPane.rowIndex="1">
+                  <Label text="Streuung (%)" GridPane.rowIndex="1">
                      <padding>
                         <Insets right="10.0" />
                      </padding>
