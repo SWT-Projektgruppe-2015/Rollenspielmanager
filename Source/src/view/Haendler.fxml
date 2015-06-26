@@ -126,12 +126,12 @@
                               <TextArea fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="226.0" prefWidth="244.0" wrapText="true" VBox.vgrow="ALWAYS" />
                               <ButtonBar prefHeight="45.0" prefWidth="185.0">
                                  <buttons>
-                                    <Button mnemonicParsing="false" onAction="#deleteGegenstand" styleClass="button-bevel-gray" text="Delete">
+                                    <Button mnemonicParsing="false" onAction="#deleteGegenstand" styleClass="button-bevel-gray" text="Löschen">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
                                     </Button>
-                                  <Button mnemonicParsing="false" onAction="#changeGegenstand" styleClass="button-bevel-gray" text="Save">
+                                  <Button mnemonicParsing="false" onAction="#changeGegenstand" styleClass="button-bevel-gray" text="Speichern">
                                        <font>
                                           <Font size="15.0" />
                                        </font>
@@ -305,11 +305,11 @@
                               </TextArea>
                               <ButtonBar prefHeight="45.0" prefWidth="185.0">
                                  <buttons>
-                                    <Button mnemonicParsing="false" onAction="#deleteAusruestung" styleClass="button-bevel-gray" text="Delete">
+                                    <Button mnemonicParsing="false" onAction="#deleteAusruestung" styleClass="button-bevel-gray" text="Löschen">
                                        <font>
                                           <Font size="15.0" />
                                        </font></Button>
-                                    <Button mnemonicParsing="false" onAction="#changeAusruestung" styleClass="button-bevel-gray" text="Save">
+                                    <Button mnemonicParsing="false" onAction="#changeAusruestung" styleClass="button-bevel-gray" text="Speichern">
                                        <font>
                                           <Font size="15.0" />
                                        </font></Button>
