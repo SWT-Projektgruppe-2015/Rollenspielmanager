@@ -149,12 +149,6 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
 
 
-    public int getSchaden_() {
-        return schaden_;
-    }
-
-
-
     public void setSchaden_(int schaden_) {
         this.schaden_ = schaden_;
     }
@@ -176,7 +170,7 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
     
     
-    public int getSchaden() {
+    public int getSchaden_() {
         return this.schaden_;
     }
 

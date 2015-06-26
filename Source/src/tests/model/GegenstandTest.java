@@ -179,6 +179,20 @@ public class GegenstandTest {
         assertTrue(items.contains(testItems.get(1)));
         deleteItemsFromDB(testItems);
     }
+    
+    
+    
+    @Test
+    public void getAllWaffenTest() {
+        List<Gegenstand> testItems = getSomeGegenstaende(2);
+        testItems.get(0).setKategorie_(Gegenstand.RUESTUNG + "/Poekelfleisch");
+        testItems.get(1).setKategorie_(Gegenstand.WAFFE + "/Schwert");
+        
+        List<Gegenstand> items = Gegenstand.getAllWaffen();
+        assertTrue(!items.contains(testItems.get(0)));
+        assertTrue(items.contains(testItems.get(1)));
+        deleteItemsFromDB(testItems);
+    }
 
     
     

@@ -220,6 +220,25 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
+    public static List<Gegenstand> getAllWaffen() {
+        List<Gegenstand> allItems = Gegenstand.getAll();
+        List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
+        for(Gegenstand item : allItems) {
+            if(item.isWaffe()){
+                relevantItems.add(item);
+            }
+        }
+        return relevantItems;
+    }
+    
+    
+    
+    private boolean isWaffe() {
+        return kategorie_.contains(WAFFE);
+    }
+
+
+
     public static List<Gegenstand> getAllInventar() {
         List<Gegenstand> allItems = Gegenstand.getAll();
         List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
@@ -325,7 +344,17 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
 
     public int computeValue() {
         String[] values = getWert_().split("\\+");
-        int baseValue = Integer.parseInt(values[0].trim());
+        int baseValue = Integer.parseInt(values[0].trim() );
         return baseValue;
     }
+
+
+
+    public static void sortByValue(List<Gegenstand> allItems_) {
+        allItems_.sort(new Comparator<Gegenstand>(){
+            public int compare(Gegenstand o1, Gegenstand o2) {
+                return Integer.compare(o1.computeValue(), o2.computeValue());
+            } 
+        });
+    } 
 }
