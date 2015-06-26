@@ -115,6 +115,7 @@ public class GegenstandTest {
          assertEquals(items.get(0).getKosten_(), 5);
          assertEquals(items.get(1).getKosten_(), 6);
          assertEquals(items.get(2).getKosten_(), 7);
+         deleteItemsFromDB(items);
      }
     
     
@@ -148,25 +149,57 @@ public class GegenstandTest {
         assertEquals(path,"A/B");
         path = Gegenstand.getFullSubkategoriePath("D", items);
         assertEquals(path, null);
+        deleteItemsFromDB(items);
     }
     
     
     
-//    @Test
-//    public void getAllAusruestungTest() {
-//        List<Gegenstand> testItems = getSomeGegenstaende(2);
-//        testItems.get(0).setKategorie_("Waffe/Schwert");
-//        testItems.get(1).setKategorie_("R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung/Helm");
-//        List<Gegenstand> items = Gegenstand.getAllInventar();
-//        assertTrue(items.contains(testItems.get(0)));
-//    }
+    @Test
+    public void getAllInventarTest() {
+        List<Gegenstand> testItems = getSomeGegenstaende(2);
+        testItems.get(0).setKategorie_( "Poekelfleisch");
+        testItems.get(1).setKategorie_(Gegenstand.RUESTUNG + "/Helm");
+        
+        List<Gegenstand> items = Gegenstand.getAllInventar();
+        assertTrue(items.contains(testItems.get(0)));
+        assertTrue(!items.contains(testItems.get(1)));
+        deleteItemsFromDB(testItems);
+    }
+    
+    
+    
+    @Test
+    public void getAllAusruestungTest() {
+        List<Gegenstand> testItems = getSomeGegenstaende(2);
+        testItems.get(0).setKategorie_( "Poekelfleisch");
+        testItems.get(1).setKategorie_(Gegenstand.RUESTUNG + "/Helm");
+        
+        List<Gegenstand> items = Gegenstand.getAllAusruestung();
+        assertTrue(!items.contains(testItems.get(0)));
+        assertTrue(items.contains(testItems.get(1)));
+        deleteItemsFromDB(testItems);
+    }
 
+    
+    
+    @Test
+    public void valueIsExtractedCorrectly() {
+        Gegenstand item = new Gegenstand();
+        item.setWert_("100+W2");
+        assertTrue(item.computeValue() == 100);
+        item.setWert_("200 + W 1");
+        assertTrue(item.computeValue() == 200);
+    }
 
 
     private List<Gegenstand> getSomeGegenstaende(int amount) {
         List<Gegenstand> items = new ArrayList<Gegenstand>();
         for(int i = 0; i < amount; ++i) {
-            items.add(new Gegenstand());
+            Gegenstand item = new Gegenstand();
+            items.add(item);
+            item.addToDB();
+            item.setKosten_(i);
+            item.setName_(String.valueOf(i));
         }
         return items;
     }
@@ -194,5 +227,10 @@ public class GegenstandTest {
         gegenstandA.setTraglast_(10);
         gegenstandA.setWert_("100 + W6");
         gegenstandA.setKategorie_("neue Kategorie");
+    }
+    
+    private void deleteItemsFromDB(List<Gegenstand> items) {
+        for(Gegenstand item : items)
+            item.deleteFromDB();
     }
 }

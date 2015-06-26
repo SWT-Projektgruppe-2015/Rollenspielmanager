@@ -320,4 +320,12 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         }
         return result;
     }
+
+
+
+    public int computeValue() {
+        String[] values = getWert_().split("\\+");
+        int baseValue = Integer.parseInt(values[0].trim());
+        return baseValue;
+    }
 }
