@@ -13,6 +13,8 @@ public class KampfsimulatorController extends NotificationController {
     private GegnerrundeController gegnerRundeController;
     @FXML
     private SpielerrundeController spielerRundeController;
+    @FXML
+    private KampfendeController kampfendeController;    
     
     private List<Spieler> allSpieler_;
     private List<GegnerEinheit> allGegner_;
@@ -20,6 +22,7 @@ public class KampfsimulatorController extends NotificationController {
     public void initializeAllTabs(Hauptprogramm main, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
         gegnerRundeController.initializeParameters(allSpieler, allGegner);
         spielerRundeController.initialize(main, gegnerRundeController, allSpieler, allGegner);
+        kampfendeController.initialize(allSpieler);
         allSpieler_ = allSpieler;
         allGegner_ = allGegner;
     }
