@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Charakter;
 import model.Faehigkeiten;
+import model.Ruestungseffekt;
 import model.Spieler;
 import model.Waffen;
 
@@ -24,7 +25,7 @@ public class SpielermanagerController extends CharakterTabController{
 
     private Spieler entryForNewSpieler_;
     private Waffen entryForNewWaffe_;
-    private Faehigkeiten entryForNewFaehigkeit_;
+    private Ruestungseffekt entryForNewFaehigkeit_;
 
     private GruppenmanagerController gruppenManagerController;
     
@@ -59,9 +60,12 @@ public class SpielermanagerController extends CharakterTabController{
     private TextField defSTextField_;
 
     @FXML
-    private ListView<Faehigkeiten> faehigkeitenListView_;
+    private ListView<Ruestungseffekt> ruestungseffektListView_;
     @FXML
-    private TextField faehigkeitenNameTextField_;
+    private TextField ruestungsEffektTextField_;
+    @FXML
+    private ComboBox<Ruestungseffekt> ruestungseffektComboBox_;
+    
     
     void initialize(List<Spieler> spielerList, GruppenmanagerController gruppenController) {
         spielerList_ = spielerList;
@@ -69,7 +73,7 @@ public class SpielermanagerController extends CharakterTabController{
         
         initializeSpielerList();
         initializeWaffenList();
-        initializeFaehigkeitenList(faehigkeitenListView_);
+        initializeRuestungseffektList(ruestungseffektListView_);
     }
     
     
@@ -141,13 +145,13 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    private void updateFaehigkeitenList(Faehigkeiten changedFaehigkeit) {
-        faehigkeitenListView_.getItems().remove(changedFaehigkeit);
-        faehigkeitenListView_.getItems().add(changedFaehigkeit);
+    private void updateRuestungseffektList(Ruestungseffekt changedEffekt) {
+        ruestungseffektListView_.getItems().remove(changedEffekt);
+        ruestungseffektListView_.getItems().add(changedEffekt);
 
-        if (changedFaehigkeit == entryForNewFaehigkeit_) {
-            entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
-            faehigkeitenListView_.getItems().add(entryForNewFaehigkeit_);
+        if (changedEffekt == entryForNewFaehigkeit_) {
+//            entryForNewFaehigkeit_ = getEntryForNewEffekt();
+            ruestungseffektListView_.getItems().add(entryForNewFaehigkeit_);
         }
     }
 
@@ -249,7 +253,7 @@ public class SpielermanagerController extends CharakterTabController{
 
         //muss nach Speicherung des Spielers gemacht werden, damit Ausruestung in DB ist.
         updateWaffenDetails(selectedSpieler);
-        updateFaehigkeitName(selectedSpieler);  
+//        updateFaehigkeitName(selectedSpieler);  
         
         updateSpielerLists(selectedSpieler, listHasToBeReloaded);
     }
@@ -377,23 +381,23 @@ public class SpielermanagerController extends CharakterTabController{
     
     
 
-    private void updateFaehigkeitName(Spieler selectedSpieler) {
-        Faehigkeiten selectedFaehigkeit = getSelectedFaehigkeit();
-        if (selectedFaehigkeit == null)
-            return;
-
-        String newName = faehigkeitenNameTextField_.getText();
-        
-        if(!newName.equals(selectedFaehigkeit.getName_())) {
-            selectedFaehigkeit.setName_(newName);
-    
-            if (selectedFaehigkeit == entryForNewFaehigkeit_) {
-                selectedSpieler.addFaehigkeit(selectedFaehigkeit);
-            }
-    
-            updateFaehigkeitenList(selectedFaehigkeit);
-        }
-    }
+//    private void updateFaehigkeitName(Spieler selectedSpieler) {
+//        Faehigkeiten selectedFaehigkeit = getSelectedRuestungsEffekt();
+//        if (selectedFaehigkeit == null)
+//            return;
+//
+//        String newName = faehigkeitenNameTextField_.getText();
+//        
+//        if(!newName.equals(selectedFaehigkeit.getName_())) {
+//            selectedFaehigkeit.setName_(newName);
+//    
+//            if (selectedFaehigkeit == entryForNewFaehigkeit_) {
+//                selectedSpieler.addFaehigkeit(selectedFaehigkeit);
+//            }
+//    
+//            updateRuestungseffektList(selectedFaehigkeit);
+//        }
+//    }
     
     
     
@@ -425,20 +429,20 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    @FXML
-    private void deleteFaehigkeit() {
-        Faehigkeiten selectedFaehigkeit = getSelectedFaehigkeit();
-        if (selectedFaehigkeit == null
-                || selectedFaehigkeit == entryForNewFaehigkeit_)
-            return;
-
-        Spieler selectedSpieler = getSelectedSpieler();
-        if (selectedSpieler == null)
-            return;
-
-        selectedSpieler.deleteFaehigkeit(selectedFaehigkeit);
-        faehigkeitenListView_.getItems().remove(selectedFaehigkeit);
-    }
+//    @FXML
+//    private void deleteFaehigkeit() {
+//        Faehigkeiten selectedFaehigkeit = getSelectedRuestungsEffekt();
+//        if (selectedFaehigkeit == null
+//                || selectedFaehigkeit == entryForNewFaehigkeit_)
+//            return;
+//
+//        Spieler selectedSpieler = getSelectedSpieler();
+//        if (selectedSpieler == null)
+//            return;
+//
+//        selectedSpieler.deleteFaehigkeit(selectedFaehigkeit);
+//        ruestungseffektListView_.getItems().remove(selectedFaehigkeit);
+//    }
    
         
     
@@ -459,9 +463,9 @@ public class SpielermanagerController extends CharakterTabController{
             defHTextField_.setText(Integer.toString(spieler.getDefH()));
             defSTextField_.setText(Integer.toString(spieler.getDefS()));
 
-            faehigkeitenListView_.getItems().setAll(entryForNewFaehigkeit_);
-            faehigkeitenListView_.getItems().addAll(spieler.getFaehigkeiten());
-            faehigkeitenListView_.getSelectionModel().select(0);
+            ruestungseffektListView_.getItems().setAll(entryForNewFaehigkeit_);
+//            ruestungseffektListView_.getItems().addAll(spieler.getFaehigkeiten());
+            ruestungseffektListView_.getSelectionModel().select(0);
         }
     }
     
@@ -479,7 +483,7 @@ public class SpielermanagerController extends CharakterTabController{
         defSTextField_.setText("");
         waffenDamageTextField_.setText("");
 
-        faehigkeitenListView_.getItems().clear();
+        ruestungseffektListView_.getItems().clear();
     }
     
         
@@ -538,22 +542,23 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    private Faehigkeiten getSelectedFaehigkeit() {
-        return getSelected(faehigkeitenListView_);
+    private Ruestungseffekt getSelectedRuestungseffekt() {
+        return getSelected(ruestungseffektListView_);
     }
 
     
     
     @Override
-    protected TextField getFaehigkeitenNameTextField() {
-        return faehigkeitenNameTextField_;
+    protected TextField getRuestungseffektNameTextField() {
+//        return ruestungseffektTextField_;
+        return null;
     }
 
 
 
     @Override
     protected void createEntryForNewFaehigkeit() {
-        entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
+//        entryForNewFaehigkeit_ = getEntryForNewEffekt();
     }
     
 }

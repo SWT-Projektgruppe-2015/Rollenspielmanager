@@ -8,6 +8,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Charakter;
 import model.Faehigkeiten;
+import model.Ruestungseffekt;
 
 public abstract class CharakterTabController extends NotificationController {
     protected <T> T getSelected(ListView<T> listView) {
@@ -39,17 +40,17 @@ public abstract class CharakterTabController extends NotificationController {
     
     
     
-    protected void initializeFaehigkeitenList(ListView<Faehigkeiten> view) {
+    protected void initializeRuestungseffektList(ListView<Ruestungseffekt> view) {
         createEntryForNewFaehigkeit();
 
-        showFaehigkeitenDetails(null);
+        showRuestungseffektDetails(null);
 
         view.getSelectionModel().selectedItemProperty()
-                .addListener(new ChangeListener<Faehigkeiten>() {
+                .addListener(new ChangeListener<Ruestungseffekt>() {
                     public void changed(
-                            ObservableValue<? extends Faehigkeiten> observable,
-                            Faehigkeiten oldValue, Faehigkeiten newValue) {
-                        showFaehigkeitenDetails(newValue);
+                            ObservableValue<? extends Ruestungseffekt> observable,
+                            Ruestungseffekt oldValue, Ruestungseffekt newValue) {
+                        showRuestungseffektDetails(newValue);
                     }
                 });
     }
@@ -60,31 +61,31 @@ public abstract class CharakterTabController extends NotificationController {
     
     
     
-    protected Faehigkeiten getEntryForNewFaehigkeit() {
-        Faehigkeiten entryForNewFaehigkeit = new Faehigkeiten();
-        entryForNewFaehigkeit.setName_("Neue Fähigkeit");
+    protected Ruestungseffekt getEntryForNewEffekt() {
+        Ruestungseffekt entryForNewEffekt = new Ruestungseffekt();
+//        entryForNewEffekt.setName_("Neuer Effekt");
 
-        return entryForNewFaehigkeit;
+        return entryForNewEffekt;
     }
     
     
     
-    protected void showFaehigkeitenDetails(Faehigkeiten faehigkeit) {
-        if (faehigkeit == null) {
-            showEmptyFaehigkeitenDetails();
+    protected void showRuestungseffektDetails(Ruestungseffekt effekt) {
+        if (effekt == null) {
+            showEmptyRuestungseffektDetails();
         }
         else {
-            getFaehigkeitenNameTextField().setText(faehigkeit.getName_());
+            getRuestungseffektNameTextField().setText(effekt.getEffektTyp_().toString());
         }
     }
 
     
     
-    protected void showEmptyFaehigkeitenDetails() {
-        getFaehigkeitenNameTextField().setText("");
+    protected void showEmptyRuestungseffektDetails() {
+        getRuestungseffektNameTextField().setText("");
     }
     
     
    
-    protected abstract TextField getFaehigkeitenNameTextField();
+    protected abstract TextField getRuestungseffektNameTextField();
 }

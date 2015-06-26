@@ -80,7 +80,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     void initialize() {
         initializeGegnerList();
-        initializeFaehigkeitenList(gegnerFaehigkeitenListView_);
+//        initializeRuestungseffektList(gegnerFaehigkeitenListView_);
     }
     
     
@@ -340,7 +340,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     
     @Override
-    protected TextField getFaehigkeitenNameTextField() {
+    protected TextField getRuestungseffektNameTextField() {
         return gegnerFaehigkeitenNameTextField_;
     }
 
@@ -348,7 +348,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     @Override
     protected void createEntryForNewFaehigkeit() {
-        entryForNewFaehigkeit_ = getEntryForNewFaehigkeit();
+//        entryForNewFaehigkeit_ = getEntryForNewEffekt();
     }
     
 }
