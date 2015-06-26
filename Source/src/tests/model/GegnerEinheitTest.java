@@ -119,13 +119,13 @@ public class GegnerEinheitTest {
     public void blockingBoundIsCorrect() {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
         gegner.setGeschick_(5);
-        assertTrue(gegner.getBoundForBlocking() == 18);
+        assertTrue(gegner.getBoundForBlocking(0) == 18);
         gegner.setGeschick_(21);
-        assertTrue(gegner.getBoundForBlocking() == 17);
+        assertTrue(gegner.getBoundForBlocking(0) == 17);
         gegner.setGeschick_(41);
-        assertTrue(gegner.getBoundForBlocking() == 16);
+        assertTrue(gegner.getBoundForBlocking(0) == 16);
         gegner.setGeschick_(105);
-        assertTrue(gegner.getBoundForBlocking() == 13);
+        assertTrue(gegner.getBoundForBlocking(0) == 13);
     }
     
     
@@ -136,7 +136,7 @@ public class GegnerEinheitTest {
         gegner.setGeschick_(5);
         int numberOfSuccessfulBlocks = 0;
         for(int i = 0; i<1000; i++) {
-            if(gegner.blockIsSuccessful())
+            if(gegner.blockIsSuccessful(0))
                 numberOfSuccessfulBlocks++;
         }
         
@@ -152,7 +152,7 @@ public class GegnerEinheitTest {
         gegner.setGeschick_(61);
         int numberOfSuccessfulBlocks = 0;
         for(int i = 0; i<1000; i++) {
-            if(gegner.blockIsSuccessful())
+            if(gegner.blockIsSuccessful(0))
                 numberOfSuccessfulBlocks++;
         }
         
@@ -168,7 +168,7 @@ public class GegnerEinheitTest {
         gegner.setGeschick_(341);
         int numberOfSuccessfulBlocks = 0;
         for(int i = 0; i<1000; i++) {
-            if(gegner.blockIsSuccessful())
+            if(gegner.blockIsSuccessful(0))
                 numberOfSuccessfulBlocks++;
         }
         

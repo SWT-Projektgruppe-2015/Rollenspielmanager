@@ -265,9 +265,9 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
 
 
-    public boolean blockIsSuccessful() {
+    public boolean blockIsSuccessful(int geschickMalus) {
         int roll = Dice.RollW20();
-        int bound = getBoundForBlocking();
+        int bound = getBoundForBlocking(geschickMalus);
         
         if(roll > bound) 
             return true;
@@ -277,8 +277,12 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
 
 
-    public int getBoundForBlocking() {
-        return 18 - (geschick_-1)/20;
+    public int getBoundForBlocking(int geschickMalus) {
+        int modifiedGeschick = geschick_-(1+geschickMalus);
+        if(modifiedGeschick < 0)   {
+            modifiedGeschick = 0;
+        }
+        return 18 - modifiedGeschick/20;
     }
     
 }

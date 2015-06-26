@@ -72,6 +72,7 @@ public class SpielerrundeController extends NotificationController {
         main_ = main;
         gegnerRundeController_ = gegnerRundeController;
         removedGegnerEinheiten_ = new ArrayList<GegnerEinheit>();
+        gegnerRundeController.setSpielerRundeController(this);
         
         initializeSpielerTableView(allSpieler);      
         setCellValueFactoriesForSpieler();
@@ -92,7 +93,18 @@ public class SpielerrundeController extends NotificationController {
     private void refreshExpSumLabel() {
         expSum_.setText(Integer.toString((Integer)expSumBacking_));
     }
-
+    
+    
+    
+    public Waffen getCurrentWaffeFromSpieler(Spieler spieler)   {
+        for(SpielerMitWaffe currentspieler : spielerTableView_.getItems())  {
+            if(currentspieler.getSpieler().compareTo(spieler) == 0) {
+                return currentspieler.getWaffe();
+            }
+        }
+        return null;
+    }
+    
 
     
     private void setEditActionForGegner() {
@@ -472,8 +484,7 @@ public class SpielerrundeController extends NotificationController {
                         for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
                             SharedGegnerTableEntry entry = gegner.getValue();
                             GegnerEinheit einheit = (GegnerEinheit) entry;
-                            int modifiedSchaden = einheit.getLebensverlust(aoESchaden, Charakter.LOWERBOUND_RUESTUNG, 0);
-                            einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-modifiedSchaden);
+                            applySchaden(aoESchaden, einheit);
                             einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
                             if(einheit.getCurrentLebenspunkte_() <= 0) {
                                 removeGegnerFromTable(true);
@@ -520,6 +531,13 @@ public class SpielerrundeController extends NotificationController {
 
 
 
+    private void applySchaden(int aoESchaden, GegnerEinheit einheit) {
+        int modifiedSchaden = einheit.getLebensverlust(aoESchaden, Charakter.LOWERBOUND_RUESTUNG, 0);
+        einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-modifiedSchaden);
+    }
+
+
+
     private boolean isNullOrGegnerTyp(TreeItem<SharedGegnerTableEntry> selectedItem) {
         if(selectedItem == null)    {
             return true;
@@ -539,7 +557,7 @@ public class SpielerrundeController extends NotificationController {
         SpielerMitWaffe selectedSpieler = getSelectedSpielerMitWaffe();
         int staerkeMalus = 0;
         if(selectedSpieler != null){
-            staerkeMalus = selectedSpieler.getSpieler().getTotalStaerkeMalus();
+            staerkeMalus = selectedSpieler.getSpieler().getTotalStaerkeMalus(selectedSpieler.getWaffe());
         }
         TreeItem<SharedGegnerTableEntry> item = getSelectedGegnerItem();
         if(isNullOrGegnerTyp(item)) {
@@ -563,7 +581,9 @@ public class SpielerrundeController extends NotificationController {
                 SharedGegnerTableEntry entry = gegner.getValue();
                 GegnerEinheit einheit = (GegnerEinheit) entry;
                 
-                if(einheit.blockIsSuccessful()) {
+                SpielerMitWaffe selectedSpielerMitWaffe = getSelectedSpielerMitWaffe();
+                Waffen waffe = selectedSpielerMitWaffe.getWaffe();
+                if(einheit.blockIsSuccessful(selectedSpielerMitWaffe.getSpieler().getTotalGeschickMalus(waffe))) {
                     einheit.setDealtSchaden_(0);
                     gegner.setValue(einheit);
                     refreshList.add(gegner);

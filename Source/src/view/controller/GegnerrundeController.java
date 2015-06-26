@@ -7,6 +7,7 @@ import view.tabledata.SchadenAmSpieler;
 import controller.Dice;
 import model.GegnerEinheit;
 import model.Spieler;
+import model.Waffen;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -39,6 +40,8 @@ public class GegnerrundeController {
     
     @FXML
     private TableColumn<SchadenAmSpieler, String> trefferZoneColumn_;
+    
+    private SpielerrundeController spielerrundeController_;
     
     public GegnerrundeController() {
         schadenAmSpielerListe_ = new ArrayList<SchadenAmSpieler>();
@@ -116,7 +119,8 @@ public class GegnerrundeController {
      * @return
      */
     public int simulateGeschickWurf(GegnerEinheit selectedGegner, Spieler spieler) {
-        int geschick = selectedGegner.getGeschick_() - spieler.getTotalGeschickMalus();
+        Waffen waffe = spielerrundeController_.getCurrentWaffeFromSpieler(spieler);
+        int geschick = selectedGegner.getGeschick_() - spieler.getTotalGeschickMalus(waffe);
         int wuerfelErgebnis = Dice.rollGeschick(Math.max(geschick, 1));
         return wuerfelErgebnis;
     }
@@ -141,5 +145,11 @@ public class GegnerrundeController {
     public void removeGegner(GegnerEinheit gegner) {
         gegnerListe_.remove(gegner);
         gegnerListView_.getItems().remove(gegner);
+    }
+
+    public void setSpielerRundeController(
+            SpielerrundeController spielerrundeController) {
+        spielerrundeController_ = spielerrundeController;
+        
     }
 }
