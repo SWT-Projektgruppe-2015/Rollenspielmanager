@@ -244,13 +244,14 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
 
 
-    public int simulateStaerkeProbe() {
-        return Dice.RollW12() + getStaerkeModifier(staerke_);
+    public int simulateStaerkeProbe(int summe) {
+        return Dice.RollW12() + getStaerkeModifier(staerke_-summe);
     }
 
 
 
     public static int getStaerkeModifier(int staerke) {
+        staerke = Math.max(staerke, 1); 
         if(staerke <= 12) {
             return (staerke - 1) / 3 - 2;
         }

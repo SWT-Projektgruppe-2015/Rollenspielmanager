@@ -55,10 +55,12 @@ public class SpielerrundeController extends NotificationController {
     private TextField staerkeWurfTextField_;
     
     @FXML
+    private TextField addedSchadenTextField_;
+    
+    @FXML
     private Label expSum_;
     
     private int expSumBacking_;
-    
     
     private List<GegnerEinheit> removedGegnerEinheiten_;
     private Hauptprogramm main_;
@@ -402,16 +404,33 @@ public class SpielerrundeController extends NotificationController {
     
     
     
+    private SpielerMitWaffe getSelectedSpielerMitWaffe() {
+        return spielerTableView_.getSelectionModel().getSelectedItem();
+    }
+    
+    
+    
     @FXML
     private void onSchadenClick() {
+        SpielerMitWaffe selectedSpieler = getSelectedSpielerMitWaffe();
+        int ruaSchaden = 0;
+        if(selectedSpieler != null) {
+            Waffen waffe = selectedSpieler.getWaffe();
+            if(waffe.isRUA())   {
+                ruaSchaden  = getAddedSchaden();
+            }
+        }
         TreeItem<SharedGegnerTableEntry> selectedItem = getSelectedGegnerItem();
         if(isNullOrGegnerTyp(selectedItem)) {
             return;
         }
         
         GegnerEinheit gegner = (GegnerEinheit) selectedItem.getValue();
-        gegner.setCurrentLebenspunkte_(gegner.getCurrentLebenspunkte_() - gegner.getDealtSchaden_());
+        int sumOfDealtSchaden = gegner.getDealtSchaden_() + ruaSchaden;
+        gegner.setCurrentLebenspunkte_(gegner.getCurrentLebenspunkte_() - sumOfDealtSchaden);
         gegner.setDealtSchaden_(0);
+        addedSchadenTextField_.setText("0");
+        
         
         if(gegner.getCurrentLebenspunkte_() <= 0) {
             removeGegnerFromTable(true);
@@ -420,6 +439,83 @@ public class SpielerrundeController extends NotificationController {
             refresh(selectedItem, gegner);
             createNotification(NotificationTexts.textForSchadenDealt(gegner));
         }
+    }
+    
+    
+    
+    private Integer getAddedSchaden() {
+        try {
+            return Integer.parseInt(addedSchadenTextField_.getText());
+        }
+        catch (NumberFormatException e) {
+            createNotification(NotificationTexts.textForWrongInputIntoAdditionalDamage);
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    
+    
+    
+    @FXML
+    private void onAoESchadenClick() {
+        SpielerMitWaffe selectedSpieler = getSelectedSpielerMitWaffe();
+        int aoESchaden = 0;
+        if(selectedSpieler != null) {
+            Waffen waffe = selectedSpieler.getWaffe();
+            aoESchaden  = getAddedSchaden();
+            switch(waffe.getEffektTyp_())   {
+                case AOE_SCHADEN_RUE:   {
+                    for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
+                        //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
+                        List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
+                        for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
+                            SharedGegnerTableEntry entry = gegner.getValue();
+                            GegnerEinheit einheit = (GegnerEinheit) entry;
+                            int modifiedSchaden = einheit.getLebensverlust(aoESchaden, Charakter.LOWERBOUND_RUESTUNG, 0);
+                            einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-modifiedSchaden);
+                            einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
+                            if(einheit.getCurrentLebenspunkte_() <= 0) {
+                                removeGegnerFromTable(true);
+                                createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
+                            }
+                        }
+                        
+                        gegnerTyp.getChildren().clear();
+                        for(TreeItem<SharedGegnerTableEntry> item : einheitenList) {
+                            gegnerTyp.getChildren().add(item);
+                        }
+                    }
+                    break;
+                }
+                case AOE_SCHADEN_RUA:    {
+                    for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
+                        //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
+                        List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
+                        for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
+                            SharedGegnerTableEntry entry = gegner.getValue();
+                            GegnerEinheit einheit = (GegnerEinheit) entry;
+                            einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-aoESchaden);
+                            einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
+                            if(einheit.getCurrentLebenspunkte_() <= 0) {
+                                removeGegnerFromTable(true);
+                                createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
+                            }
+                        }
+                        
+                        gegnerTyp.getChildren().clear();
+                        for(TreeItem<SharedGegnerTableEntry> item : einheitenList) {
+                            gegnerTyp.getChildren().add(item);
+                        }
+                    }
+                    break;
+                }
+                default:    {
+                    
+                }
+            }
+        }
+        addedSchadenTextField_.setText("0");
     }
 
 
@@ -440,13 +536,18 @@ public class SpielerrundeController extends NotificationController {
     
     @FXML
     private void onStaerkeWurfClick() {
+        SpielerMitWaffe selectedSpieler = getSelectedSpielerMitWaffe();
+        int staerkeMalus = 0;
+        if(selectedSpieler != null){
+            staerkeMalus = selectedSpieler.getSpieler().getTotalStaerkeMalus();
+        }
         TreeItem<SharedGegnerTableEntry> item = getSelectedGegnerItem();
         if(isNullOrGegnerTyp(item)) {
             return;
         }
         
         GegnerEinheit gegner = (GegnerEinheit) item.getValue();
-        int staerkeProbe = gegner.simulateStaerkeProbe();
+        int staerkeProbe = gegner.simulateStaerkeProbe(staerkeMalus);
         
         staerkeWurfTextField_.setText(Integer.toString(staerkeProbe));
     }

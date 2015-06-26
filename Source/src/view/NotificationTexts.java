@@ -155,6 +155,7 @@ public class NotificationTexts {
     }
 
     public static final String WRONG_LEBENSPUNKTE_FORMAT = "Lebenspunkte m" + Hauptprogramm.UMLAUT_SMALL_UE + "ssen im Format '{momentan} / {max}' angegeben werden.";
+    public static final String textForWrongInputIntoAdditionalDamage = "Geben Sie bei dem Schadentextfeld bitte nur Zahlen ein!";
     
     public static String textForGegnerRemovedDueToLebenspunkte(
             GegnerEinheit changedGegner) {

@@ -185,4 +185,13 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     public int compareTo(Waffen secondWaffe) {
         return getWaffenName_().compareTo(secondWaffe.getWaffenName_());
     }
+
+
+
+    public boolean isRUA() {
+        if(effektTyp_ == EffektTyp.RUA_SCHADEN) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -107,7 +107,7 @@ public class GegnerEinheitTest {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
         gegner.setStaerke_(staerke);
         for(int i = 0; i < 100; ++i){
-            int ergebnis = gegner.simulateStaerkeProbe();
+            int ergebnis = gegner.simulateStaerkeProbe(0);
             assertTrue(ergebnis <= upperBound);
             assertTrue(ergebnis >= lowerBound);
         }
