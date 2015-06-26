@@ -76,7 +76,7 @@ public class Dice {
         else
             return 0;
     }
-
+    
     
     
     public static int rollGeschick(int geschick)    {
