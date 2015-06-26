@@ -15,12 +15,17 @@ import view.controller.Hauptprogramm;
 import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
 
+
 /**
  * Einfaches Item f�r den H�ndler: Name, Beschreibung, Preis.
  */
 @Entity
 @Table(name="GEGENSTAND")
 public class Gegenstand implements DBObject, Comparable<Gegenstand> {
+    
+    public static final String RUESTUNG = "R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung"; 
+    public static final String WAFFE = "Waffe";
+    
     private static EinfacherGegenstandManipulator dbManipulator_ = EinfacherGegenstandManipulator.getInstance();
 
     @Id
@@ -201,6 +206,32 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
+    public static List<Gegenstand> getAllAusruestung() {
+        List<Gegenstand> allItems = Gegenstand.getAll();
+        List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
+        for(Gegenstand item : allItems) {
+            if(item.isAusruestung()){
+                relevantItems.add(item);
+            }
+        }
+        return relevantItems;
+    }
+    
+    
+    
+    public static List<Gegenstand> getAllInventar() {
+        List<Gegenstand> allItems = Gegenstand.getAll();
+        List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
+        for(Gegenstand item : allItems) {
+            if(!item.isAusruestung()){
+                relevantItems.add(item);
+            }
+        }
+        return relevantItems;
+    }
+    
+    
+    
     public static List<Gegenstand> getAll() {
         List<Gegenstand> allGegenstaende = dbManipulator_.getAll();
         return allGegenstaende;
@@ -218,7 +249,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
-    // Erh�ht readability ungemein
+    // Erhoeht readability ungemein
     public boolean isContainedInKategorie(String subKategorie) {
         return getKategorie_().contains(subKategorie);
     }
