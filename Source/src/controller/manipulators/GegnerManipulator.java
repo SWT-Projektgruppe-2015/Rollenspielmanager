@@ -2,10 +2,6 @@ package controller.manipulators;
 
 import java.util.List;
 
-import javax.persistence.LockTimeoutException;
-import javax.persistence.PessimisticLockException;
-import javax.persistence.QueryTimeoutException;
-import javax.persistence.TransactionRequiredException;
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
