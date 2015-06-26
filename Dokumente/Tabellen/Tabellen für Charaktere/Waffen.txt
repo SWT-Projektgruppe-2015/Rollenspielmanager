@@ -1,6 +1,0 @@
-Waffen
------------------------
-Waffenname (PK)
-Spielername (FK)
-Schaden
-Besonderes (z.B. RUA)

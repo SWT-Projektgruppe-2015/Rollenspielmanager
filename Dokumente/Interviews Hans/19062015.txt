@@ -1,0 +1,19 @@
+- Trefferzone Würfelergebnis beim Kampf anzeigen
+
+- Unter Kampfteilnehmer-View: 
+  Wenn man Gegenrtyp ausgewählt hat und mehrmals auf Buttons drückt, wird ein Exception geben.
+
+- MessageBox beim Spielerrunde Gegnerlöschen:
+ das Wort "entfernen" sollte zu "löschen"  geändert werden!
+
+- In der Spielerrunde bei nicht selekterte Spieler löst der Trefferzon-Button ein Exception aus. 
+
+- Gegnerrunde Farbe zurücksetzen.
+
+- reicht es, wenn eine Waffe nur  ein Effekt zugewiesen wird? ja!
+
+  
+
+  
+
+

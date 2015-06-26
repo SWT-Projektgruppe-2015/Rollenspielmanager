@@ -71,7 +71,10 @@ public class Dice {
     
     
     public static int rollDice(int faces)  {
-        return random.nextInt(faces) + 1;
+        if(faces > 0)
+            return random.nextInt(faces) + 1;
+        else
+            return 0;
     }
 
     
