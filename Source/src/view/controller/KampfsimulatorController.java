@@ -6,6 +6,7 @@ import org.controlsfx.control.NotificationPane;
 
 import model.GegnerEinheit;
 import model.Spieler;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 
 public class KampfsimulatorController extends NotificationController {
@@ -14,17 +15,13 @@ public class KampfsimulatorController extends NotificationController {
     @FXML
     private SpielerrundeController spielerRundeController;
     @FXML
-    private KampfendeController kampfendeController;    
+    private KampfendeController kampfEndeController;    
     
-    private List<Spieler> allSpieler_;
-    private List<GegnerEinheit> allGegner_;
     
-    public void initializeAllTabs(Hauptprogramm main, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
+    public void initializeAllTabs(Hauptprogramm main, List<Spieler> allSpieler, ObservableList<GegnerEinheit> allGegner) {
         gegnerRundeController.initializeParameters(allSpieler, allGegner);
         spielerRundeController.initialize(main, gegnerRundeController, allSpieler, allGegner);
-        kampfendeController.initialize(allSpieler);
-        allSpieler_ = allSpieler;
-        allGegner_ = allGegner;
+        kampfEndeController.initialize(allSpieler, allGegner);
     }
     
     @Override

@@ -3,10 +3,12 @@ package view.controller;
 import java.util.List;
 
 import view.tabledata.ExpCategory;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import model.Gegenstand;
 import model.GegnerEinheit;
 import model.Spieler;
@@ -46,8 +48,8 @@ public class KampfendeController {
     private TextField ausruestungStreuungTextField_;
     
     
-    public void initialize(List<Spieler> allSpieler) {
-        
+    public void initialize(List<Spieler> allSpieler, ObservableList<GegnerEinheit> allParticipatingGegner) {
+        gegnerTableView_.setItems(allParticipatingGegner);
+        gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
     }
-    
 }

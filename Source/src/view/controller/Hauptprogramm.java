@@ -1,6 +1,7 @@
 package view.controller;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -121,7 +122,7 @@ public class Hauptprogramm extends Application {
     
     
     
-    public void startKampf(List<Spieler> spieler, List<GegnerEinheit> gegnerEinheiten) {
+    public void startKampf(List<Spieler> spieler, ObservableList<GegnerEinheit> gegnerEinheiten) {
         try {
             BorderPane pane = loadBorderPane(AboutTexts.KAMPF_TITLE, AboutTexts.ABOUT_KAMPF);
             NotificationPane notificationPane = getNotificationPane(pane);

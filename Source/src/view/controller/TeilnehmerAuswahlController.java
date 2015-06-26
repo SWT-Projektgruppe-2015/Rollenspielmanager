@@ -12,6 +12,7 @@ import model.Gruppe;
 import model.Spieler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -305,12 +306,12 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void kampfButton() {
-        List<GegnerEinheit> gegnerList = new ArrayList<GegnerEinheit>();
+        List<GegnerEinheit> gegnerList = new ArrayList<GegnerEinheit>(); 
         for(GegnerEinheitImKampf einheiten : gegnerInKampfTableView_.getItems()) {
             gegnerList.addAll(GegnerEinheit.createEinheiten(
                     einheiten.getGegnerTyp(), einheiten.getCountAsInteger()));
         }
-        hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), gegnerList);
+        hauptProgramm_.startKampf(spielerInKampfListView_.getItems(), FXCollections.observableList(gegnerList));
     }
 
 
