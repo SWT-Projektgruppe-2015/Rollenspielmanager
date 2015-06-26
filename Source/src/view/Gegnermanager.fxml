@@ -105,24 +105,6 @@
 						</AnchorPane>
 					</content>
 				</Tab>
-				<Tab text="Fähigkeiten">
-					<content>
-						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-							<children>
-										<ListView fx:id="gegnerFaehigkeitenListView_" editable="true" prefHeight="130.0" prefWidth="106.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="20.0" />
-										<Button mnemonicParsing="false" styleClass="button-bevel-gray" text="Fähigkeit löschen" AnchorPane.leftAnchor="180.0" AnchorPane.topAnchor="140.0" />
-										<VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="130.0" AnchorPane.topAnchor="20.0">
-											<children>
-												<Label text="Name" />
-												<TextField fx:id="gegnerFaehigkeitenNameTextField_" />
-												<Label text="Effekttyp" />
-												<ComboBox prefHeight="25.0" prefWidth="113.0" styleClass="combobox-bevel-gray" />
-											</children>
-										</VBox>
-							</children>
-						</AnchorPane>
-					</content>
-				</Tab>
 			</tabs>
          <opaqueInsets>
             <Insets />
