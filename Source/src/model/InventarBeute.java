@@ -1,28 +1,29 @@
-package controller;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Gegenstand;
+import controller.Dice;
 
-public class Beute {
-    
+public class InventarBeute extends Beute {
     private int geldWert_;
     private int inventarWert_;
-    
     private List<Gegenstand> inventar_;
     
-    public Beute() {
+    public InventarBeute() {
         geldWert_ = 0;
         inventarWert_ = 0;
         inventar_ = new ArrayList<Gegenstand>();
     }
     
-    public Beute(int gesamtWert, int streuung) {
-        gesamtWert += Dice.rollDice(2*streuung) - streuung;
+    
+    
+    public InventarBeute(int gesamtWert, int streuung) {
+        gesamtWert = (int)generateGaussianValue(gesamtWert, streuung);
         inventar_ = new ArrayList<Gegenstand>();
         splitGesamtWert(gesamtWert);
     }
+    
     
     
     public void splitGesamtWert(int gesamtWert) {
@@ -36,48 +37,31 @@ public class Beute {
         List<Gegenstand> sortedList = Gegenstand.getAll();
         Gegenstand.sortByKosten(sortedList);
         
-        int resumingValue = inventarWert_;
-        while(resumingValue > 0) {
-            Gegenstand chosen = Beute.getRandomItemWithMaxValue(resumingValue, sortedList);
-            resumingValue = updateResumingValue(resumingValue, chosen);
+        int remainingValue = inventarWert_;
+        while(remainingValue > 0) {
+            Gegenstand chosen = Beute.getRandomItemWithMaxValue(remainingValue, sortedList);
+            remainingValue = updateResumingValue(remainingValue, chosen);
         }
     }
     
     
     
-    protected static Gegenstand getRandomItemWithMaxValue(int maxValue, List<Gegenstand> sortedList) {
-        int range = sortedList.size();
-        while(range > 0) {
-            int sample = Dice.rollDice(range) - 1;
-            Gegenstand chosen = sortedList.get(sample);
-            if(chosen.getKosten_() <= maxValue)
-                return chosen;
-            range = sample;
-        }
-        return null;
-    }
-
-    
-
-    private int updateResumingValue(int resumingValue, Gegenstand chosen) { 
+    private int updateResumingValue(int remainingValue, Gegenstand chosen) { 
         if(chosen == null) {  // TODO: should be tested as well
-            geldWert_ += resumingValue;
-            inventarWert_ -= resumingValue;
+            geldWert_ += remainingValue;
+            inventarWert_ -= remainingValue;
         }
         else {  // TODO: What to do with value 0 stuff?
             if(chosen.getKosten_() == 0){
-                resumingValue -= 1;
+                remainingValue -= 1;
                 geldWert_ += 1;
                 inventarWert_ -= 1;
             }
-            resumingValue -= chosen.getKosten_();
+            remainingValue -= chosen.getKosten_();
             inventar_.add(chosen);
         }
-        return resumingValue;
+        return remainingValue;
     }
-    
-    
-    
     
     
     public int getGeldWert() {

@@ -1,21 +1,19 @@
-package tests.controller;
+package tests.model;
 
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Beute;
 import model.Gegenstand;
+import model.InventarBeute;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import controller.Beute;
-
-public class BeuteGeneratorTest extends Beute{
+public class InventarBeuteTest extends Beute{
     List<Gegenstand> sortedItems;
     
     @Before
@@ -46,7 +44,7 @@ public class BeuteGeneratorTest extends Beute{
     @Test
     public void getInventarBeuteTest() {
         int gesamtwert = 10000, streuung = 50, inventarWert = 0;
-        Beute beute = new Beute(gesamtwert,streuung);
+        InventarBeute beute = new InventarBeute(gesamtwert,streuung);
         beute.generateInventarBeute();
         for(Gegenstand item : beute.getInventarBeute()) {
             inventarWert += item.getKosten_();
@@ -60,7 +58,7 @@ public class BeuteGeneratorTest extends Beute{
     
     @Test
     public void splitGesamtWertTest() {
-        Beute beute = new Beute();
+        InventarBeute beute = new InventarBeute();
         int sum = 0;
         for(int i = 0; i < 100; ++i) {
             beute.splitGesamtWert(100);
