@@ -46,28 +46,6 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     private int geschick_;
     @Column(name = "MAX_LEBENSPUNKTE", columnDefinition = "INTEGER NOT NULL default '1' CHECK(MAX_LEBENSPUNKTE >= 0)")
     private int maxLebenspunkte_;
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "BEUTETYP_ID", columnDefinition = "INTEGER NOT NULL default '1'")
-    private Beute beuteTyp_;
-    
-    
-    
-    public Beute getBeuteTyp_() {
-        return beuteTyp_;
-    }
-    
-    
-    
-    public void setBeuteTyp_(Beute beuteTyp_) {
-        if(beuteTyp_ == null) this.beuteTyp_ = new Beute();
-        else if(!beuteTyp_.equals(this.beuteTyp_)) {
-            this.beuteTyp_ = beuteTyp_;
-            updateInDB();
-        }
-    }
-
-
-
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Ausruestung ausruestung_;
@@ -84,7 +62,6 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
         maxLebenspunkte_ = 25;
         schaden_ = 0;
         ausruestung_ = new Ausruestung();
-        beuteTyp_ = new Beute();
     }
     
     

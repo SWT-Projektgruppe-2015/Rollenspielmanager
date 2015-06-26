@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import model.Beute;
 import model.GegnerTyp;
 import model.Ausruestung;
 
@@ -109,16 +108,6 @@ public class GegnerTest {
         secondGegner.setName_("Bert");
         
         assertTrue(firstGegner.compareTo(secondGegner) < 0);
-    }
-    
-    @Test
-    public void getAndSetBeuteTyp() {
-        assertNotNull(this.normalerGegner.getBeuteTyp_());
-        this.normalerGegner.setBeuteTyp_(null);
-        assertNotNull(this.normalerGegner.getBeuteTyp_());
-        this.normalerGegner.setBeuteTyp_(this.normalerGegner.getBeuteTyp_());
-        this.normalerGegner.setBeuteTyp_(new Beute());
-        assertNotNull(this.normalerGegner.getBeuteTyp_());
     }
     
     // Line coverage for not important setters and getters.

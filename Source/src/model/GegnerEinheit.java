@@ -20,7 +20,6 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
     private int currentLebenspunkte_;
     private int schaden_;
     private int dealtSchaden_;
-    private Beute beuteTyp_;
     private Ausruestung ausruestung_;
     private final GegnerTyp typ_;
     
@@ -37,7 +36,6 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
         currentLebenspunkte_ = maxLebenspunkte_;
         schaden_ = typ.getSchaden_();
         ausruestung_ = typ.getAusruestung_();
-        beuteTyp_ = typ.getBeuteTyp_();
         ID_ = ID;
     }
     
@@ -51,12 +49,6 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
     public void setID_(int iD_) {
         ID_ = iD_;
-    }
-
-
-    
-    public Beute getBeute_() {
-        return beuteTyp_;
     }
 
     
