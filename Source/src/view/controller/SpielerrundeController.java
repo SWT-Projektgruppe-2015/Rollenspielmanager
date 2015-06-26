@@ -57,11 +57,6 @@ public class SpielerrundeController extends NotificationController {
     @FXML
     private TextField addedSchadenTextField_;
     
-    @FXML
-    private Label expSum_;
-    
-    private int expSumBacking_;
-    
     private List<GegnerEinheit> removedGegnerEinheiten_;
     private Hauptprogramm main_;
     private GegnerrundeController gegnerRundeController_;
@@ -81,17 +76,7 @@ public class SpielerrundeController extends NotificationController {
         setCellValueFactoriesForGegner();    
         setEditActionForGegner();
         
-        expSumBacking_ = 0;
-        for(GegnerEinheit counted : allGegner)  {
-            expSumBacking_+=counted.getErfahrung_();
-        }
-        refreshExpSumLabel();
-    }
-
-
-
-    private void refreshExpSumLabel() {
-        expSum_.setText(Integer.toString((Integer)expSumBacking_));
+        
     }
     
     
@@ -354,7 +339,7 @@ public class SpielerrundeController extends NotificationController {
         Action deleteGegnerFromKampf = new Action(new Consumer<ActionEvent>() {
             @Override
             public void accept(ActionEvent t) {
-                String deletedName = removeGegnerFromTable(false);
+                String deletedName = removeGegnerFromTable(false, null);
                 if(deletedName != null && !deletedName.isEmpty()) {
                     createNotification(NotificationTexts.textForDeletingGegnerFromKampf(deletedName));
                 }
@@ -374,7 +359,7 @@ public class SpielerrundeController extends NotificationController {
     
     @FXML
     private void removeFromKampf()  {
-        String removedName = removeGegnerFromTable(true);
+        String removedName = removeGegnerFromTable(true, null);
         if(removedName != null && !removedName.isEmpty()) {
             createNotification(NotificationTexts.textForRemovingGegnerFromKampf(removedName));
         }
@@ -382,8 +367,13 @@ public class SpielerrundeController extends NotificationController {
 
 
 
-    private String removeGegnerFromTable(boolean stillLootable) {
-        TreeItem<SharedGegnerTableEntry> selectedItem = getSelectedGegnerItem();
+    private String removeGegnerFromTable(boolean stillLootable, TreeItem<SharedGegnerTableEntry> gegnerToBeRemoved) {
+        TreeItem<SharedGegnerTableEntry> selectedItem;
+        if(gegnerToBeRemoved == null)   {
+            selectedItem = getSelectedGegnerItem();
+        }else   {
+            selectedItem = gegnerToBeRemoved;
+        }
         if(selectedItem == null)    {
             return "";
         }
@@ -397,8 +387,6 @@ public class SpielerrundeController extends NotificationController {
             removedGegnerEinheiten_.add((GegnerEinheit)selectedItem.getValue());
         }
         if(!isGegnerTyp && !stillLootable)  {
-            expSumBacking_-= ((GegnerEinheit) selectedItem.getValue()).getErfahrung_();
-            refreshExpSumLabel();
         }
         selectedItem.getParent().getChildren().remove(selectedItem);
         if(!isGegnerTyp) {
@@ -445,7 +433,7 @@ public class SpielerrundeController extends NotificationController {
         
         
         if(gegner.getCurrentLebenspunkte_() <= 0) {
-            removeGegnerFromTable(true);
+            removeGegnerFromTable(true, null);
             createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(gegner));
         } else {
             refresh(selectedItem, gegner);
@@ -485,10 +473,11 @@ public class SpielerrundeController extends NotificationController {
                             SharedGegnerTableEntry entry = gegner.getValue();
                             GegnerEinheit einheit = (GegnerEinheit) entry;
                             applySchaden(aoESchaden, einheit);
-                            einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
                             if(einheit.getCurrentLebenspunkte_() <= 0) {
-                                removeGegnerFromTable(true);
+                                removeGegnerFromTable(true, gegner);
                                 createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
+                            }else   {
+                                einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
                             }
                         }
                         
@@ -507,10 +496,11 @@ public class SpielerrundeController extends NotificationController {
                             SharedGegnerTableEntry entry = gegner.getValue();
                             GegnerEinheit einheit = (GegnerEinheit) entry;
                             einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-aoESchaden);
-                            einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
                             if(einheit.getCurrentLebenspunkte_() <= 0) {
-                                removeGegnerFromTable(true);
+                                removeGegnerFromTable(true, gegner);
                                 createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
+                            }else   {
+                                einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
                             }
                         }
                         
