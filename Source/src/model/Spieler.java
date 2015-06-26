@@ -227,6 +227,13 @@ public class Spieler extends Charakter implements DBObject {
             allWaffen.sort(null);
         return allWaffen;
     }
+    
+    
+    
+    public List<Ruestungseffekt> getEffekte() {
+        List<Ruestungseffekt> allEffekte = getAusruestung_().getRuestungsEffekte();
+        return allEffekte;
+    }
 
     
     
@@ -330,5 +337,31 @@ public class Spieler extends Charakter implements DBObject {
         membership_.remove(gruppe);
         gruppe.getMembers_().remove(this);
         updateInDB();
+    }
+
+
+
+    public int getTotalStaerkeMalus() {
+        int totalMalus = 0;
+        for(Waffen waffe : getWaffen()) {
+            if(waffe.getEffektTyp_() == Waffen.EffektTyp.MALUS_STAERKE) {
+                totalMalus += waffe.getEffektWert_();
+            }
+        }
+       
+        for(Ruestungseffekt effekt : getEffekte()) {
+            if(effekt.getEffektTyp_() == Ruestungseffekt.EffektTyp.MALUS_STAERKE) {
+                totalMalus += effekt.getEffektWert_();
+            }
+        }
+        
+        return totalMalus;
+    }
+
+
+
+    public void addRuestungsEffekt(Ruestungseffekt effekt) {
+        Ausruestung ausruestung = getAusruestungForModification();
+        ausruestung.addEffekt(effekt);
     }
 }

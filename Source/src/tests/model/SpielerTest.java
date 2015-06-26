@@ -8,6 +8,7 @@ import java.util.List;
 
 import model.Charakter;
 import model.Faehigkeiten;
+import model.Ruestungseffekt;
 import model.Spieler;
 import model.Waffen;
 
@@ -332,5 +333,36 @@ public class SpielerTest {
         for (Charakter player : allPlayers) {
             assertNotNull(player.getDefS());
         }
+    }
+    
+    
+    
+    @Test
+    public void getTotalStaerkeMalusWorks() {
+        Spieler testSpieler = new Spieler();
+        testSpieler.addToDB();
+        
+        Waffen waffe1 = new Waffen();
+        waffe1.setEffektTyp_(Waffen.EffektTyp.MALUS_STAERKE);
+        waffe1.setEffektWert_(23);
+        testSpieler.addWaffe(waffe1);
+        
+        Waffen waffe2 = new Waffen();
+        waffe2.setEffektTyp_(Waffen.EffektTyp.MALUS_STAERKE);
+        waffe2.setEffektWert_(3);
+        testSpieler.addWaffe(waffe2);
+        
+        
+        Ruestungseffekt effekt = new Ruestungseffekt();
+        effekt.setEffektTyp_(Ruestungseffekt.EffektTyp.MALUS_STAERKE);
+        effekt.setEffektWert_(4);
+        testSpieler.addRuestungsEffekt(effekt);
+        
+        assertTrue(testSpieler.getTotalStaerkeMalus() == 30);
+        
+        waffe1.deleteFromDB();
+        waffe2.deleteFromDB();
+        effekt.deleteFromDB();
+        testSpieler.deleteFromDB();
     }
 }

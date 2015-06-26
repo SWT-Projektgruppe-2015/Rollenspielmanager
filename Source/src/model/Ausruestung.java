@@ -164,4 +164,12 @@ public class Ausruestung implements DBObject {
     public void deleteFromDB() {
         dbManipulator_.delete(this);
     }
+
+    public void addEffekt(Ruestungseffekt effekt) {       
+        effekt.setAusruestung_(this);
+        boolean ausruestungInDbButEffektIsNot = effekt.getID_() == 0 && getID_() != 0;
+        if(ausruestungInDbButEffektIsNot) {
+            effekt.addToDB();
+        }
+    }
 }

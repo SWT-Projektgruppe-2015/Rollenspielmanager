@@ -117,4 +117,9 @@ public class Ruestungseffekt implements DBObject {
         if(ID_ != 0)
             dbManipulator_.add(this);
     }
+
+
+    public int getID_() {
+        return ID_;
+    }
 }
