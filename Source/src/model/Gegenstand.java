@@ -25,7 +25,12 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     public static final String RUESTUNG = "R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung"; 
     public static final String WAFFE = "Waffe";
+    public static final String HANDSCHUH = "Handschuh";
+    public static final String SCHUH = "Schuh";
+    public static final String GUERTEL = "G" + Hauptprogramm.UMLAUT_CAPITAL_UE + "rtel";
+    public static final String HARNISCH = "Harnisch";
     public static final String GEGENSTAND_NEU = "Neuer Gegenstand";
+    public static final String HELM = "Helm";
     
     private static EinfacherGegenstandManipulator dbManipulator_ = EinfacherGegenstandManipulator.getInstance();
 
@@ -236,9 +241,23 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     private boolean isWaffe() {
         return kategorie_.contains(WAFFE);
     }
+    
+    
+    
+    public static List<Gegenstand> getAll(String kategorie) {
+        List<Gegenstand> allItems = Gegenstand.getAll();
+        List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();
+        for(Gegenstand item : allItems) {
+            if(item.getKategorie_().contains(kategorie)){
+                relevantItems.add(item);
+            }
+        }
+        return relevantItems;
+    }
 
-
-
+    
+    
+    
     public static List<Gegenstand> getAllInventar() {
         List<Gegenstand> allItems = Gegenstand.getAll();
         List<Gegenstand> relevantItems = new ArrayList<Gegenstand>();

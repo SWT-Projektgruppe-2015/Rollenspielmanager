@@ -193,6 +193,20 @@ public class GegenstandTest {
         assertTrue(items.contains(testItems.get(1)));
         deleteItemsFromDB(testItems);
     }
+    
+    
+    
+    @Test
+    public void getAllForKategorieTest() {
+        List<Gegenstand> testItems = getSomeGegenstaende(2);
+        testItems.get(0).setKategorie_("A/C/D/E");
+        testItems.get(1).setKategorie_("B");
+        
+        List<Gegenstand> items = Gegenstand.getAll("C");
+        assertTrue(items.contains(testItems.get(0)));
+        assertTrue(!items.contains(testItems.get(1)));
+        deleteItemsFromDB(testItems);
+    }
 
     
     
