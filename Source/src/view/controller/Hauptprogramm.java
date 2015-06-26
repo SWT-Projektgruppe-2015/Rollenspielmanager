@@ -188,10 +188,13 @@ public class Hauptprogramm extends Application {
     
     public void openWuerfelSimulator() {
         try {
+            BorderPane border = loadBorderPane(AboutTexts.WUERFELSIMULATOR_TITLE, AboutTexts.ABOUT_WUERFELSIMULATOR);
             FXMLLoader loader = getLoaderForXML("/view/Wuerfelsimulator.fxml");
             Parent page = loader.load();
             
-            Stage newStage = this.createNamedStage("W" + UMLAUT_SMALL_UE + "rfelsimulator", page);
+            border.setCenter(page);
+            
+            Stage newStage = this.createNamedStage("W" + UMLAUT_SMALL_UE + "rfelsimulator", border);
             newStage.showAndWait();
         }
         catch (IOException e) {

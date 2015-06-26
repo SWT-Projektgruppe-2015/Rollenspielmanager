@@ -94,5 +94,10 @@ public class AboutTexts {
                     + "aber selektiere den zu ver" + Hauptprogramm.UMLAUT_SMALL_AE + "ndernden Gegenstand.\n"
             + "Um einen Gegenstand zu l" + Hauptprogramm.UMLAUT_SMALL_OE + "schen, selektiere ihn und dr" + Hauptprogramm.UMLAUT_SMALL_UE + "cke "
                     + "'L" + Hauptprogramm.UMLAUT_SMALL_OE + "schen'.";
+   
+    public static final String WUERFELSIMULATOR_TITLE = "Der W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelsimulator";
+    public static final String ABOUT_WUERFELSIMULATOR = "Mit dem W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelsimulator "
+            + "k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen beliebige W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfel geworfen werden. "
+            + "Ein Klick auf den entsprechenden Button erzeugt das Ergebnis.";
     
 }
