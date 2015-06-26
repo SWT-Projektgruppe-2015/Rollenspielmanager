@@ -365,4 +365,35 @@ public class SpielerTest {
         effekt.deleteFromDB();
         testSpieler.deleteFromDB();
     }
+    
+    
+    
+    @Test
+    public void getTotalGeschickMalusWorks() {
+        Spieler testSpieler = new Spieler();
+        testSpieler.addToDB();
+        
+        Waffen waffe1 = new Waffen();
+        waffe1.setEffektTyp_(Waffen.EffektTyp.MALUS_STAERKE);
+        waffe1.setEffektWert_(23);
+        testSpieler.addWaffe(waffe1);
+        
+        Waffen waffe2 = new Waffen();
+        waffe2.setEffektTyp_(Waffen.EffektTyp.MALUS_GESCHICK);
+        waffe2.setEffektWert_(3);
+        testSpieler.addWaffe(waffe2);
+        
+        
+        Ruestungseffekt effekt = new Ruestungseffekt();
+        effekt.setEffektTyp_(Ruestungseffekt.EffektTyp.MALUS_GESCHICK);
+        effekt.setEffektWert_(4);
+        testSpieler.addRuestungsEffekt(effekt);
+        
+        assertTrue(testSpieler.getTotalGeschickMalus() == 7);
+        
+        waffe1.deleteFromDB();
+        waffe2.deleteFromDB();
+        effekt.deleteFromDB();
+        testSpieler.deleteFromDB();
+    }
 }

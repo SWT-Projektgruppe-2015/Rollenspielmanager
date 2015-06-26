@@ -359,6 +359,24 @@ public class Spieler extends Charakter implements DBObject {
     }
 
 
+    
+    public int getTotalGeschickMalus() {
+        int totalMalus = 0;
+        for(Waffen waffe : getWaffen()) {
+            if(waffe.getEffektTyp_() == Waffen.EffektTyp.MALUS_GESCHICK) {
+                totalMalus += waffe.getEffektWert_();
+            }
+        }
+       
+        for(Ruestungseffekt effekt : getEffekte()) {
+            if(effekt.getEffektTyp_() == Ruestungseffekt.EffektTyp.MALUS_GESCHICK) {
+                totalMalus += effekt.getEffektWert_();
+            }
+        }
+        
+        return totalMalus;
+    }
+    
 
     public void addRuestungsEffekt(Ruestungseffekt effekt) {
         Ausruestung ausruestung = getAusruestungForModification();
