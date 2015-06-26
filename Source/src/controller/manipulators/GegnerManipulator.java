@@ -41,28 +41,8 @@ public class GegnerManipulator extends DBManipulator {
         try {
             return getAllRows.getResultList();
         }
-        catch(IllegalStateException getResultListExceptionOne)  {
-            System.err.println("IllegalStateException: ");
-            return null;
-        }
-        catch(QueryTimeoutException getResultListExceptionTwo)  {
-            System.err.println("QueryTimeoutException: ");
-            return null;
-        }
-        catch(TransactionRequiredException getResultListExceptionThree)  {
-            System.err.println("TransactionRequiredException: ");
-            return null;
-        }
-        catch(PessimisticLockException getResultListExceptionFour)  {
-            System.err.println("PessimisticLockException: ");
-            return null;
-        }
-        catch(LockTimeoutException getResultListExceptionFive)  {
-            System.err.println("LockTimeoutException: ");
-            return null;
-        }
-        catch(PersistenceException getResultListExceptionSix)  {
-            System.err.println("PersistenceException: ");
+        catch(IllegalStateException| PersistenceException AnyException)  {
+            AnyException.printStackTrace();
             return null;
         }
     }
