@@ -377,4 +377,15 @@ public class Spieler extends Charakter implements DBObject {
         Ausruestung ausruestung = getAusruestungForModification();
         ausruestung.addEffekt(effekt);
     }
+
+
+
+    public double getExpFactor() {
+        for(Ruestungseffekt effekt : getEffekte()) {
+            if(effekt.getEffektTyp_() == Ruestungseffekt.EffektTyp.EXP_BOOST) {
+                return 1. + effekt.getEffektWert_()/100.;
+            }
+        }
+        return 1;
+    }
 }

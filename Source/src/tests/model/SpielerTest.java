@@ -1,5 +1,6 @@
 package tests.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -393,6 +394,24 @@ public class SpielerTest {
         
         waffe1.deleteFromDB();
         waffe2.deleteFromDB();
+        effekt.deleteFromDB();
+        testSpieler.deleteFromDB();
+    }
+    
+    
+    
+    @Test
+    public void getExpFactorTest() {
+        Spieler testSpieler = new Spieler();
+        testSpieler.addToDB();
+        
+        Ruestungseffekt effekt = new Ruestungseffekt();
+        effekt.setEffektTyp_(Ruestungseffekt.EffektTyp.EXP_BOOST);
+        effekt.setEffektWert_(4);
+
+        assertEquals(testSpieler.getExpFactor(), 1., 0.00001);
+        testSpieler.addRuestungsEffekt(effekt);
+        assertEquals(testSpieler.getExpFactor(), 1.04, 0.00001);
         effekt.deleteFromDB();
         testSpieler.deleteFromDB();
     }
