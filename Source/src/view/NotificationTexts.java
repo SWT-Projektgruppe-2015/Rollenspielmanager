@@ -72,6 +72,9 @@ public class NotificationTexts {
         return updateFailed("Gegenstand '" + selectedGegenstand.getName_() + "'");
     }
     
+    public static String textForBeuteGeneratingFailed() {
+        return "Beute konnte nicht generiert werden: \n" + INVALID_VALUES;
+    }   
     
 
     private static String confirmationTextDeletion(String toDelete) {
@@ -165,5 +168,16 @@ public class NotificationTexts {
 
     public static String textForSchadenDealt(GegnerEinheit gegner) {
         return "Lebenspunkte von Gegner '" + gegner.getName_() + "' aktualisiert.";
-    }   
+    }
+
+    public static String textForBeuteGenerator(int inventarWert,
+            int inventarStreuung, int ausruestungsMalus, int ausruestungStreuung) {
+        return "Beute wird generiert mit den folgenden Werten: \n"
+                + "Inventar pro Gegner hat im Erwartungswert Gesamtwert von " + inventarWert + ", \n "
+                        + "weicht i.d.R. ab bis " + inventarStreuung + "; \n"
+                + "Ausruestung pro Gegner bekommt im Erwartungswert einen Malus von " + ausruestungsMalus + "%, \n"
+                        + "Prozentsatz weicht ab bis " 
+                        + (ausruestungStreuung + ausruestungsMalus) + "% bzw. " + (ausruestungsMalus-ausruestungStreuung) + "%.";
+    }
+
 }

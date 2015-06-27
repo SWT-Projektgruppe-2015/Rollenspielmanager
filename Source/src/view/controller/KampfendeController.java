@@ -3,6 +3,7 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.NotificationTexts;
 import view.tabledata.ExpCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -12,11 +13,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.AusruestungBeute;
 import model.Gegenstand;
 import model.GegnerEinheit;
+import model.InventarBeute;
 import model.Spieler;
 
-public class KampfendeController {
+public class KampfendeController extends NotificationController {
     @FXML
     private TableView<GegnerEinheit> gegnerTableView_;
     @FXML
@@ -53,14 +56,74 @@ public class KampfendeController {
     
     private ObservableList<ExpCategory> expCategoriesList_;
     private ObservableList<GegnerEinheit> participatingGegner_;
-    
+    private ObservableList<Gegenstand> beuteList_;
     
     public void initialize(List<Spieler> allSpieler, ObservableList<GegnerEinheit> allParticipatingGegner) {
         participatingGegner_ = allParticipatingGegner;
+        beuteList_ = FXCollections.observableList(new ArrayList<Gegenstand>());
         
         initializeGegnerTable(); 
         initializeExpTable(allSpieler);
+        initializeBeuteTable();
     }
+
+    
+    
+    private void initializeBeuteTable() {
+        beuteTableView_.setItems(beuteList_);
+        beuteColumn_.setCellValueFactory(new PropertyValueFactory<Gegenstand, String>("name_"));
+        traglastColumn_.setCellValueFactory(new PropertyValueFactory<Gegenstand, Integer>("traglast_"));
+    }
+
+
+
+    @FXML
+    public void onGeneriereBeuteClick() {
+        String inventarWertString = inventarWertTextField_.getText();
+        String inventarStreuungString = inventarStreuungTextField_.getText();
+        String ausruestungsMalusString = ausruestungMalusTextField_.getText();
+        String ausruestungStreuungString = ausruestungStreuungTextField_.getText();
+        
+        int inventarWert, inventarStreuung;
+        int ausruestungsMalus, ausruestungStreuung;
+        try {
+            inventarWert = Integer.parseUnsignedInt(inventarWertString);
+            inventarStreuung = Integer.parseUnsignedInt(inventarStreuungString);
+            ausruestungsMalus = Integer.parseInt(ausruestungsMalusString);
+            ausruestungStreuung = Integer.parseUnsignedInt(ausruestungStreuungString);
+        }
+        catch (NumberFormatException e) {
+            createNotification(NotificationTexts.textForBeuteGeneratingFailed());
+            return;
+        }
+        
+        createNotification(NotificationTexts.textForBeuteGenerator(inventarWert, inventarStreuung, ausruestungsMalus, ausruestungStreuung));
+        beuteList_.clear();
+        for(GegnerEinheit gegner : participatingGegner_) {
+            generateInventarBeuteFromGegner(inventarWert, inventarStreuung);
+            generateAusruestungsBeuteFromGegner(gegner, ausruestungsMalus, ausruestungStreuung);
+        }
+    }
+
+
+
+    private void generateInventarBeuteFromGegner(int inventarWert, int inventarStreuung) {
+        InventarBeute inventar = new InventarBeute(inventarWert, inventarStreuung);
+        inventar.generateInventarBeute();
+        if(inventar.getInventarBeute() != null)
+            beuteList_.addAll(inventar.getInventarBeute());
+    }
+    
+
+    
+    private void generateAusruestungsBeuteFromGegner(GegnerEinheit gegner,
+            int ausruestungsMalus, int ausruestungStreuung) {
+        AusruestungBeute ausruestung = new AusruestungBeute(ausruestungsMalus, ausruestungStreuung);
+        Gegenstand ausruestungsTeil = ausruestung.generateAusruestungBeute(gegner);
+        if(ausruestungsTeil != null)
+            beuteList_.add(ausruestungsTeil);
+    }
+
 
 
     private void initializeGegnerTable() {
@@ -68,6 +131,7 @@ public class KampfendeController {
         gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
     }
 
+    
 
     private void initializeExpTable(List<Spieler> allSpieler) {
         spielereinflussColumn_.setCellValueFactory(new PropertyValueFactory<ExpCategory, String>("name_"));

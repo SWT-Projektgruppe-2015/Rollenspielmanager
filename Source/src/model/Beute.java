@@ -19,17 +19,6 @@ public abstract class Beute {
     
     
     
-    // 0.5 Harnisch + 1/3 * 0.5 ...
-//    public void generateAusruestungBeute() { // TODO: NOT FINISHED
-//        List<Gegenstand> sortedList = Gegenstand.getAll();
-//        Gegenstand.sortByKosten(sortedList);
-//        
-//        while(resumingValue > 0) {
-//            Gegenstand chosen = Beute.getRandomItemWithMaxValue(resumingValue, sortedList);
-//            resumingValue = updateResumingValue(resumingValue, chosen);
-//        }
-//    }
-    
     protected static Gegenstand getItemWithApproximateValue(int value, List<Gegenstand> sortedList) {
         if(sortedList.isEmpty())
             return null;

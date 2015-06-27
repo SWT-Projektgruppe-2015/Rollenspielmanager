@@ -31,5 +31,6 @@ public class KampfsimulatorController extends NotificationController {
     public void setNotificationPane(NotificationPane pane) {
         super.setNotificationPane(pane);
         spielerRundeController.setNotificationPane(pane);
+        kampfEndeController.setNotificationPane(pane);
     }
 }
