@@ -51,28 +51,37 @@ public class KampfendeController {
     private TextField ausruestungStreuungTextField_;
     
     
-    ObservableList<ExpCategory> expCategoriesList_;
+    private ObservableList<ExpCategory> expCategoriesList_;
+    private ObservableList<GegnerEinheit> participatingGegner_;
     
     
     public void initialize(List<Spieler> allSpieler, ObservableList<GegnerEinheit> allParticipatingGegner) {
-        allParticipatingGegner.addListener(new ListChangeListener<GegnerEinheit>() {
+        participatingGegner_ = allParticipatingGegner;
+        
+        gegnerTableView_.setItems(allParticipatingGegner);
+        gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
+        
+        initializeExpTable(allSpieler);
+    }
+
+
+    private void initializeExpTable(List<Spieler> allSpieler) {
+        spielereinflussColumn_.setCellValueFactory(new PropertyValueFactory<ExpCategory, String>("name_"));
+        expColumn_.setCellValueFactory(new PropertyValueFactory<ExpCategory, Integer>("exp_"));
+        
+        int totalExp = getTotalExp(participatingGegner_);
+        List<ExpCategory> expCategories = extractExpCategories(allSpieler, totalExp);        
+        expCategoriesList_ = FXCollections.observableList(expCategories);
+        expTableView_.setItems(expCategoriesList_);
+        
+        participatingGegner_.addListener(new ListChangeListener<GegnerEinheit>() {
             @Override
             public void onChanged(ListChangeListener.Change<? extends GegnerEinheit> change) {
-                int totalExp = getTotalExp(allParticipatingGegner);
+                int totalExp = getTotalExp(participatingGegner_);
                 List<ExpCategory> expCategories = extractExpCategories(allSpieler, totalExp);
                 expCategoriesList_.setAll(expCategories);
             }
         });
-        gegnerTableView_.setItems(allParticipatingGegner);
-        gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
-        
-        int totalExp = getTotalExp(allParticipatingGegner);
-        List<ExpCategory> expCategories = extractExpCategories(allSpieler, totalExp);
-        
-        expCategoriesList_ = FXCollections.observableList(expCategories);
-        expTableView_.setItems(expCategoriesList_);
-        spielereinflussColumn_.setCellValueFactory(new PropertyValueFactory<ExpCategory, String>("name_"));
-        expColumn_.setCellValueFactory(new PropertyValueFactory<ExpCategory, Integer>("exp_"));
     }
 
 
