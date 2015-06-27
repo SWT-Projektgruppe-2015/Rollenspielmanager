@@ -58,10 +58,14 @@ public class KampfendeController {
     public void initialize(List<Spieler> allSpieler, ObservableList<GegnerEinheit> allParticipatingGegner) {
         participatingGegner_ = allParticipatingGegner;
         
-        gegnerTableView_.setItems(allParticipatingGegner);
-        gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
-        
+        initializeGegnerTable(); 
         initializeExpTable(allSpieler);
+    }
+
+
+    private void initializeGegnerTable() {
+        gegnerTableView_.setItems(participatingGegner_);
+        gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
     }
 
 
