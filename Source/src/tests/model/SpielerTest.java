@@ -61,7 +61,7 @@ public class SpielerTest {
         
         spielerOnMaxLevel.increaseLevel();
         assertTrue(spielerOnMaxLevel.getKreis_() == kreisBefore + 1);
-        assertTrue(spielerOnMaxLevel.getLevel_() == 1);
+        assertTrue(spielerOnMaxLevel.getLevel_() == Charakter.MIN_LEVEL);
     }
     
     
@@ -197,11 +197,11 @@ public class SpielerTest {
     @Test
     public void levelDecreaseOnMinLevelAndKreis() {
         Spieler spielerOnMinLevelAndKreis = createSpielerOnMinLevel();
-        spielerOnMinLevelAndKreis.setKreis_(1);
+        spielerOnMinLevelAndKreis.setKreis_(Charakter.MIN_KREIS);
 
         spielerOnMinLevelAndKreis.decreaseLevel();
-        assertTrue(spielerOnMinLevelAndKreis.getKreis_() == 1);
-        assertTrue(spielerOnMinLevelAndKreis.getLevel_() == 1);
+        assertTrue(spielerOnMinLevelAndKreis.getKreis_() == Charakter.MIN_KREIS);
+        assertTrue(spielerOnMinLevelAndKreis.getLevel_() == Charakter.MIN_LEVEL);
     }
     
     
@@ -209,7 +209,7 @@ public class SpielerTest {
     private Spieler createSpielerOnMinLevel() {
         Spieler spielerOnMinLevel = new Spieler();
         spielerOnMinLevel.setKreis_(2);
-        spielerOnMinLevel.setLevel_(1);
+        spielerOnMinLevel.setLevel_(Charakter.MIN_LEVEL);
         
         return spielerOnMinLevel;
     }

@@ -32,9 +32,9 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     private int ID_;
     @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'GegnerTyp Nr. 420'")
     private String name_;
-    @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '1' check(KREIS >= 1 and KREIS<=4)")
+    @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '" + MIN_KREIS + "' check(KREIS >=" + MIN_KREIS + "and KREIS<=" + MAX_KREIS + ")")
     private int kreis_;
-    @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '0' check(LEVEL >= 0 and LEVEL<=12)")
+    @Column(name = "LEVEL", columnDefinition = "INTEGER NOT NULL default '" + MIN_LEVEL + "' check(LEVEL >=" + MIN_LEVEL + "and LEVEL<=" + MAX_LEVEL + ")")
     private int level_;
     @Column(name = "SCHADEN", columnDefinition = "INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
     private int schaden_;
@@ -54,8 +54,8 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     
     public GegnerTyp() {
         name_ = "Default";
-        level_ = 0;
-        kreis_ = 1;
+        level_ = MIN_LEVEL;
+        kreis_ = MIN_KREIS;
         erfahrung_ = 1;
         staerke_ = 1;
         geschick_ = 1;
@@ -69,7 +69,7 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
     @PrePersist
     public void onCreate() {
         if (kreis_ == 0) {
-            kreis_ = 1;
+            kreis_ = MIN_KREIS;
         }
         if (erfahrung_ == 0) {
             erfahrung_ = 1;
@@ -83,15 +83,6 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
         if (schaden_ < 0) {
             schaden_ = 0;
         }
-//        if (name_ == null) {
-//            name_ = "GegnerNotNull";
-//        }
-//        if (ausruestung_ == null) {
-//            ausruestung_ = new Ausruestung();           
-//        }
-//        if (getBeute_() == null) {
-//            beuteTyp_ = new Beute();
-//        }
     }
     
     
@@ -281,10 +272,10 @@ public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableE
        
         boolean validation = true;
         
-        if(level > Charakter.MAX_LEVEL || level < 0)
+        if(level > MAX_LEVEL || level < MIN_LEVEL)
             validation = false;
         
-        if(kreis > Charakter.MAX_KREIS || kreis < 0)
+        if(kreis > MAX_KREIS || kreis < MIN_KREIS)
             validation = false;
         
         if(geschick < 1)
