@@ -33,6 +33,10 @@ public class NotificationTexts {
     } 
     
 
+    public static String textForNewKategorie(String highestKategorie) {
+        return "Neue Kategorie '" + highestKategorie + "' angelegt.";
+    }
+
     
     private static String update(String updated) {
         return "Daten f" + Hauptprogramm.UMLAUT_SMALL_UE + "r " + updated + " gespeichert.";
@@ -179,5 +183,4 @@ public class NotificationTexts {
                         + "Prozentsatz weicht ab bis " 
                         + (ausruestungStreuung + ausruestungsMalus) + "% bzw. " + (ausruestungsMalus-ausruestungStreuung) + "%.";
     }
-
 }

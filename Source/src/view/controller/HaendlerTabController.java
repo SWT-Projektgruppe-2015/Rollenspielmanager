@@ -53,7 +53,7 @@ public abstract class HaendlerTabController extends NotificationController {
             public void changed(
                     ObservableValue<? extends TreeItem<String>> observable,
                     TreeItem<String> old_value, TreeItem<String> new_value) {
-                showKategorieItems(new_value, getListView(), getSource());
+                showKategorieItems(new_value);
             }
         });
     }
@@ -67,7 +67,7 @@ public abstract class HaendlerTabController extends NotificationController {
 
     
     
-    protected void updateListView(List<Gegenstand> newItems) {
+    private void updateListView(List<Gegenstand> newItems) {
         getListView().getItems().setAll(entryForNewGegenstand_);
         Gegenstand.sortByKosten(newItems);
         getListView().getItems().addAll(newItems);
@@ -104,7 +104,8 @@ public abstract class HaendlerTabController extends NotificationController {
         }
         TreeItem<String> branch = getTreeItemByName(rootItem, highestKategorie); // don't override rootItem
         if(subKategorien.size() == 1){
-            showKategorieItems(branch, getListView(), getSource());
+            showKategorieItems(branch);
+            getTreeView().getSelectionModel().select(branch);
             return;
         }
         updateRoot(branch, subKategorien.subList(1, subKategorien.size()));
@@ -146,9 +147,13 @@ public abstract class HaendlerTabController extends NotificationController {
                 checkForNewGegenstand(selectedGegenstand, getSource());
                 updateListView(getSource());
                 updateKategorieTreeView(selectedGegenstand);
+            } else {
+                createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
             }
         }
-        catch (NumberFormatException e) {}
+        catch (NumberFormatException e) {
+            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));            
+        }
     }
 
     
@@ -173,8 +178,11 @@ public abstract class HaendlerTabController extends NotificationController {
         if (selectedGegenstand == entryForNewGegenstand_) {
             allItems.add(selectedGegenstand);
             selectedGegenstand.addToDB();
+            createNotification(NotificationTexts.textForNewGegenstand(selectedGegenstand));
             entryForNewGegenstand_ = new Gegenstand();
             entryForNewGegenstand_.setName_(Gegenstand.GEGENSTAND_NEU);
+        } else {
+            createNotification(NotificationTexts.textForGegenstandUpdate(selectedGegenstand));
         }
     }
 
@@ -189,7 +197,6 @@ public abstract class HaendlerTabController extends NotificationController {
                 public void accept(ActionEvent t) {
                     listView.getItems().remove(itemToDelete);
                     list.remove(itemToDelete);
-    
                     itemToDelete.deleteFromDB();
                     
                     createNotification(NotificationTexts.textForGegenstandDeletion(itemToDelete));
@@ -240,7 +247,7 @@ public abstract class HaendlerTabController extends NotificationController {
     
     
     
-    protected void showKategorieItems(TreeItem<String> new_value, ListView<Gegenstand> listView, List<Gegenstand> source) {
+    protected void showKategorieItems(TreeItem<String> new_value) {
         List<Gegenstand> filteredItems = new ArrayList<Gegenstand>();
         if(new_value == null) {
             updateListView(filteredItems);
@@ -248,7 +255,7 @@ public abstract class HaendlerTabController extends NotificationController {
             return;
         }
         String kategorie = new_value.getValue();
-        for(Gegenstand gegenstand : source) {
+        for(Gegenstand gegenstand : getSource()) {
             if(gegenstand.isContainedInKategorie(kategorie) || kategorie.equals(ALLE_KATEGORIEN))
                 filteredItems.add(gegenstand);
         }
