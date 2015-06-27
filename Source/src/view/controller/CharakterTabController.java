@@ -82,7 +82,7 @@ public abstract class CharakterTabController extends NotificationController {
     
     
     protected void showEmptyRuestungseffektDetails() {
-        getRuestungseffektNameTextField().setText("");
+        //getRuestungseffektNameTextField().setText("");
     }
     
     
