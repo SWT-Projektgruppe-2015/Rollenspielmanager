@@ -24,12 +24,12 @@ public class ExpCategory {
         }
     }
 
-    public StringProperty getName_() {
-        return name_;
+    public String getName_() {
+        return name_.get();
     }
     
-    public IntegerProperty getExp_() {
-        return exp_;
+    public Integer getExp_() {
+        return exp_.get();
     }
     
 }

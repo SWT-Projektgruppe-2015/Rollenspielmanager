@@ -15,10 +15,10 @@ import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Spieler;
 import model.Waffen;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -57,22 +57,22 @@ public class SpielerrundeController extends NotificationController {
     @FXML
     private TextField addedSchadenTextField_;
     
-    private List<GegnerEinheit> removedGegnerEinheiten_;
     private Hauptprogramm main_;
-    private GegnerrundeController gegnerRundeController_;
+    private ObservableList<GegnerEinheit> allExpYieldingGegner_;
+    private ObservableList<GegnerEinheit> allActiveGegner_;
     
     
     
-    public void initialize(Hauptprogramm main, GegnerrundeController gegnerRundeController, List<Spieler> allSpieler, List<GegnerEinheit> allGegner) {
+    public void initialize(Hauptprogramm main, List<Spieler> allSpieler, 
+            ObservableList<GegnerEinheit> allActiveGegner, ObservableList<GegnerEinheit> allExpYieldingGegner) {
         main_ = main;
-        gegnerRundeController_ = gegnerRundeController;
-        removedGegnerEinheiten_ = new ArrayList<GegnerEinheit>();
-        gegnerRundeController.setSpielerRundeController(this);
+        allExpYieldingGegner_ = allExpYieldingGegner;
+        allActiveGegner_ = allActiveGegner;
         
         initializeSpielerTableView(allSpieler);      
         setCellValueFactoriesForSpieler();
         
-        initializeGegnerTreeTableView(allGegner);          
+        initializeGegnerTreeTableView(allActiveGegner);          
         setCellValueFactoriesForGegner();    
         setEditActionForGegner();
         
@@ -244,7 +244,7 @@ public class SpielerrundeController extends NotificationController {
 
     
     
-    private void initializeGegnerTreeTableView(List<GegnerEinheit> allGegner) {
+    private void initializeGegnerTreeTableView(ObservableList<GegnerEinheit> allGegner) {
         final TreeItem<SharedGegnerTableEntry> dummyRoot = new TreeItem<>(new GegnerTyp());
         dummyRoot.setExpanded(true);
         gegnerTreeTableView_.setRoot(dummyRoot);
@@ -257,7 +257,7 @@ public class SpielerrundeController extends NotificationController {
 
     
     
-    private void addGegnerToTable(List<GegnerEinheit> allGegner,
+    private void addGegnerToTable(ObservableList<GegnerEinheit> allGegner,
             final TreeItem<SharedGegnerTableEntry> dummyRoot) {
         
         GegnerTyp currentTyp = null;        
@@ -383,14 +383,12 @@ public class SpielerrundeController extends NotificationController {
             createNotification(NotificationTexts.GEGNER_TYP_CANNOT_BE_REMOVED);
             return "";
         }
-        if(!isGegnerTyp && stillLootable)  {
-            removedGegnerEinheiten_.add((GegnerEinheit)selectedItem.getValue());
-        }
         if(!isGegnerTyp && !stillLootable)  {
+            allExpYieldingGegner_.remove((GegnerEinheit)selectedItem.getValue());
         }
         selectedItem.getParent().getChildren().remove(selectedItem);
         if(!isGegnerTyp) {
-            gegnerRundeController_.removeGegner((GegnerEinheit) selectedItem.getValue());
+            allActiveGegner_.remove((GegnerEinheit) selectedItem.getValue());
         }
         
         return selectedItem.getValue().nameProperty().get();

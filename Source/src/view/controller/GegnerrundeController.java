@@ -10,6 +10,7 @@ import model.Spieler;
 import model.Waffen;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -25,7 +26,6 @@ public class GegnerrundeController {
     
     
     private List<SchadenAmSpieler> schadenAmSpielerListe_;
-    private List<GegnerEinheit> gegnerListe_;
     
     @FXML
     private Button kampfButton;
@@ -65,11 +65,13 @@ public class GegnerrundeController {
         trefferZoneColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("zone_"));  
     }
     
-    public void initializeParameters(List<Spieler> spielerListe, List<GegnerEinheit> gegnerListe) {
-        for(Spieler spieler: spielerListe)
+    public void initializeParameters(List<Spieler> spielerListe, ObservableList<GegnerEinheit> gegnerListe, SpielerrundeController controller) {
+        spielerrundeController_ = controller;
+        
+        for(Spieler spieler: spielerListe) {
             schadenAmSpielerListe_.add(new SchadenAmSpieler(spieler));
-        gegnerListe_ = gegnerListe;
-        gegnerListView_.getItems().setAll(gegnerListe_);
+        }
+        gegnerListView_.setItems(gegnerListe);
         schadensAnzeigeTableView_.getItems().setAll(schadenAmSpielerListe_);
         spielerNameColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, String>("name_"));
         schadenColumn_.setCellValueFactory(new PropertyValueFactory<SchadenAmSpieler, Number>("schaden_"));
@@ -139,13 +141,8 @@ public class GegnerrundeController {
         int lebensVerlust = spieler.getLebensverlust(schaden, geschickWurf, 0);
         return lebensVerlust;
     }
-
     
     
-    public void removeGegner(GegnerEinheit gegner) {
-        gegnerListe_.remove(gegner);
-        gegnerListView_.getItems().remove(gegner);
-    }
 
     public void setSpielerRundeController(
             SpielerrundeController spielerrundeController) {

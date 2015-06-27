@@ -114,7 +114,7 @@ public class AusruestungBeuteTest extends AusruestungBeute {
         GegnerEinheit einheit = GegnerEinheit.createEinheiten(typ_, 1).get(0);
         int helmCount = 0;
         int waffenCount = 0;
-        int tries = 400;
+        int tries = 1000;
         for(int i = 0; i<tries; i++) {
             Gegenstand beute = generateAusruestungBeute(einheit);
             if(beute.isContainedInKategorie(Gegenstand.WAFFE)) {

@@ -55,9 +55,9 @@ public class KampfendeController {
     
     
     public void initialize(List<Spieler> allSpieler, ObservableList<GegnerEinheit> allParticipatingGegner) {
-        allParticipatingGegner.addListener(new ListChangeListener() {
+        allParticipatingGegner.addListener(new ListChangeListener<GegnerEinheit>() {
             @Override
-            public void onChanged(ListChangeListener.Change change) {
+            public void onChanged(ListChangeListener.Change<? extends GegnerEinheit> change) {
                 int totalExp = getTotalExp(allParticipatingGegner);
                 List<ExpCategory> expCategories = extractExpCategories(allSpieler, totalExp);
                 expCategoriesList_.setAll(expCategories);
