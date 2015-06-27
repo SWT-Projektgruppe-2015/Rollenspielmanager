@@ -5,6 +5,8 @@ import java.util.List;
 
 import view.NotificationTexts;
 import view.tabledata.ExpCategory;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -66,16 +68,8 @@ public class KampfendeController extends NotificationController {
         initializeExpTable(allSpieler);
         initializeBeuteTable();
     }
-
     
     
-    private void initializeBeuteTable() {
-        beuteTableView_.setItems(beuteList_);
-        beuteColumn_.setCellValueFactory(new PropertyValueFactory<Gegenstand, String>("name_"));
-        traglastColumn_.setCellValueFactory(new PropertyValueFactory<Gegenstand, Integer>("traglast_"));
-    }
-
-
 
     @FXML
     public void onGeneriereBeuteClick() {
@@ -152,7 +146,38 @@ public class KampfendeController extends NotificationController {
         });
     }
 
+    
+    
+    private void initializeBeuteTable() {
+        beuteTableView_.setItems(beuteList_);
+        beuteColumn_.setCellValueFactory(new PropertyValueFactory<Gegenstand, String>("name_"));
+        traglastColumn_.setCellValueFactory(new PropertyValueFactory<Gegenstand, Integer>("traglast_"));
+        
+        beuteTableView_.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Gegenstand>() {
+                    @Override
+                    public void changed(
+                            ObservableValue<? extends Gegenstand> observable,
+                            Gegenstand oldValue, Gegenstand newValue) {
+                        showGegenstandDetails(newValue);
+                    }
+                });
+    }
 
+    
+    
+    private void showGegenstandDetails(Gegenstand beute) {
+        if(beute == null) {
+            beuteWertTextField_.clear();
+            beuteKategorieTextField_.clear();
+        } else {
+            beuteWertTextField_.setText(beute.getWert_());
+            beuteKategorieTextField_.setText(beute.getKategorie_());
+        }
+    }
+
+    
+    
     private int getTotalExp(ObservableList<GegnerEinheit> allParticipatingGegner) {
         int sum = 0;
         for(GegnerEinheit einheit : allParticipatingGegner) {
