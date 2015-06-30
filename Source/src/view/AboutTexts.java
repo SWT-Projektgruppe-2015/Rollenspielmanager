@@ -55,11 +55,13 @@ public class AboutTexts {
                     + "werden Nichtspieler-Charakter-Typen dieses Kreises nicht angezeigt.";
     
     public static final String KAMPF_TITLE = "Der Kampf";
-    public static final String ABOUT_KAMPF = "Der Kampf gliedert sich in die beiden Bereiche 'Gegnerrunde' und 'Spielerrunde'.\n\n"
+    public static final String ABOUT_KAMPF = "Der Kampf gliedert sich in die drei Bereiche 'Gegnerrunde', 'Spielerrunde' und 'Kampfende'.\n\n"
+            + "----------Die Gegnerrunde----------\n\n"
             + "In der Gegnerrunde greifen die Nichtspielercharaktere an. Durch neues Ausw" + Hauptprogramm.UMLAUT_SMALL_AE + "hlen des Gegners "
                     + "oder durch Klicken des 'Angriff' Buttons werden die W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfe des selektierten Gegners simuliert "
                     + "und der Schaden am Spieler abh" + Hauptprogramm.UMLAUT_SMALL_AE + "ngig von denen im Charaktermanager spezifizierten Werten "
                     + "berechnet und angezeigt.\n\n"
+            + "----------Die Spielerrunde----------\n\n"
             + "In der Spielerrunde greifen die Spieler selbst an. Es kann gew" + Hauptprogramm.UMLAUT_SMALL_AE + "hlt werden, welche Waffe der Spieler nutzt, "
                     + "indem die entsprechende Zelle in der Tabelle doppelt angeklickt wird.\n"
                     + "Wenn auf einen der Trefferzonen-Buttons geklickt wird, wird der Schaden berechnet, "
@@ -74,7 +76,29 @@ public class AboutTexts {
                             + "Gel" + Hauptprogramm.UMLAUT_SMALL_OE + "schte Gegner geben keine Erfahrungspunkte am Ende des Kampfes, entfernte schon."
                     + "\n\n"
             + "Wenn ein Gegner selektiert ist, kann durch einen Klick auf den Button 'St" + Hauptprogramm.UMLAUT_SMALL_AE + "rkewurf' "
-                    + "zudem ein St" + Hauptprogramm.UMLAUT_SMALL_AE + "rkewurf des entsprechenden Gegners simuliert werden.";
+                    + "zudem ein St" + Hauptprogramm.UMLAUT_SMALL_AE + "rkewurf des entsprechenden Gegners simuliert werden."
+                    + "\n\n"
+            + "----------Das Kampfende----------\n\n"
+            + "Das Kampfende ist f" + Hauptprogramm.UMLAUT_SMALL_UE + "r die Berechnung der Erfahrungspunkte und das Generieren der m" 
+                + Hauptprogramm.UMLAUT_SMALL_OE + "glichen Beute zust" + Hauptprogramm.UMLAUT_SMALL_AE + "ndig.\n"
+            + "In der Gegnerliste sind alle Gegner aufgef" + Hauptprogramm.UMLAUT_SMALL_UE + "hrt, die nicht aus dem Kampf gel" 
+                + Hauptprogramm.UMLAUT_SMALL_OE + "scht wurden. Gegner, die get" 
+                + Hauptprogramm.UMLAUT_SMALL_OE + "tet oder entfernt wurden, sind gelb markiert. "
+            + "Daneben sind die Erfahrungspunkte aufgelistet. Durch bestimmte Effekte kann es Spieler geben, die eine erh" 
+                + Hauptprogramm.UMLAUT_SMALL_OE + "hte Anzahl erhalten. Diese sind gesonders aufgef" + Hauptprogramm.UMLAUT_SMALL_UE + "hrt. \n \n"
+            + "Die rechte Seite des Fensters zeigt die Beute des gerade selektierten Gegners an. Sie ist zun" 
+                + Hauptprogramm.UMLAUT_SMALL_AE + "chst leer, da die Beute erst generiert werden muss. "
+            + "Dies erfolgt mithilfe des unteren Bereichs. Jeder Gegner kann Inventar und R" 
+                + Hauptprogramm.UMLAUT_SMALL_UE + "stung/Waffen fallen lassen. "
+            + "Wie gut diese Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde sind, kann mithilfe der Textboxen festgelegt werden: \n"
+            + "Die obere spezifiziert jeweils den Wert. Im Fall des Inventars funktioniert das direkt, "
+            + "im Fall der R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung wird spezifiziert, wie viel schlechter sie sein soll als die tats" 
+                + Hauptprogramm.UMLAUT_SMALL_AE + "chliche R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung des Gegners. "
+            + "Die untere Textbox erlaubt es, dass dieser Wert nicht immer exakt getroffen wird, sondern eine Schwankung vorliegt. "
+            + "Sie spezifiziert die erwartete Gr" + Hauptprogramm.UMLAUT_SMALL_OE + "ße dieser Schwankung.\n\n"
+            + "Welche Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde als R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung gelten, wird im H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler festgelegt. "
+            + "Es sind die Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde der Kategorien 'Waffe', 'Harnisch', 'Helm', 'Handschuh' und 'Schuh'. "
+            + "Wenn einige dieser Kategorien nicht existieren, ist es m" + Hauptprogramm.UMLAUT_SMALL_OE + "glich, dass keine Ausr" + Hauptprogramm.UMLAUT_SMALL_UE + "stungsbeute generiert wird.";
 
     public static final String HAENDLER_TITLE = "Der H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler";
     public static final String ABOUT_HAENDLER = "Mit dem H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen "
