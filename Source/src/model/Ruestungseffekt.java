@@ -57,6 +57,17 @@ public class Ruestungseffekt implements DBObject {
     
     
     
+    public Ruestungseffekt(Ausruestung ausruestung) {
+        if (ausruestung != null) {
+            ausruestung_ = ausruestung;
+        }
+        else    {
+            ausruestung = new Ausruestung(); 
+        }
+    }
+    
+    
+    
     public EffektTyp getEffektTyp_() {
         return effektTyp_;
     }
