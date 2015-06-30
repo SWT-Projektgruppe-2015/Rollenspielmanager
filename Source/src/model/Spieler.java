@@ -49,11 +49,16 @@ public class Spieler extends Charakter implements DBObject {
         level_ = MIN_LEVEL;
         kreis_ = MIN_KREIS;
         ausruestung_ = new Ausruestung();
-        Ruestungseffekt geschickMalus = new Ruestungseffekt();
-        Ruestungseffekt staerkeMalus = new Ruestungseffekt();
-        Ruestungseffekt expBoost = new Ruestungseffekt();
+    }
+
+
+
+    private void setUpRuestungseffekte() {
+        Ruestungseffekt geschickMalus = new Ruestungseffekt(ausruestung_);
+        Ruestungseffekt staerkeMalus = new Ruestungseffekt(ausruestung_);
+        Ruestungseffekt expBoost = new Ruestungseffekt(ausruestung_);
         
-        setAusruestungForEffects(geschickMalus, staerkeMalus, expBoost);
+        addEffectsToDB(geschickMalus, staerkeMalus, expBoost);
         
         setEffecTypeForEffects(geschickMalus, staerkeMalus, expBoost);
         
@@ -80,11 +85,11 @@ public class Spieler extends Charakter implements DBObject {
 
 
 
-    private void setAusruestungForEffects(Ruestungseffekt geschickMalus,
+    private void addEffectsToDB(Ruestungseffekt geschickMalus,
             Ruestungseffekt staerkeMalus, Ruestungseffekt expBoost) {
-        geschickMalus.setAusruestung_(ausruestung_);
-        staerkeMalus.setAusruestung_(ausruestung_);
-        expBoost.setAusruestung_(ausruestung_);
+        geschickMalus.addToDB();
+        staerkeMalus.addToDB();
+        expBoost.addToDB();
     }
     
     
@@ -128,6 +133,7 @@ public class Spieler extends Charakter implements DBObject {
     
     public void addToDB() {
         spielerManipulator_.add(this);
+        setUpRuestungseffekte();
     }
 
 
