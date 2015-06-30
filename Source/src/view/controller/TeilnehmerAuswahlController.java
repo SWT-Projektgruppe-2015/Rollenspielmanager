@@ -86,14 +86,6 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         spielerNotInKampfList_ = new ArrayList<Spieler>();
         spielerNotInKampfList_.addAll(Spieler.getAll());
         spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
-//        spielerNotInKampfListView_.setCellFactory(new Callback<ListView<Spieler>,ListCell<Spieler>>()   {
-//
-//            @Override
-//            public ListCell<Spieler> call(ListView<Spieler> param) {
-//                return;
-//            }
-//            
-//        });
         
 
         gegnerNotInKampfList_ = new ArrayList<GegnerTyp>();
@@ -114,11 +106,11 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
                 });
        
         kreisColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer>("kreis_"));
-        kreisColumn_.setStyle("-fx-alignment: CENTER-RIGHT;");
+        kreisColumn_.setStyle("-fx-alignment: CENTER-RIGHT; -fx-font-weight: NORMAL;");
         levelColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer> ("level_"));
-        levelColumn_.setStyle("-fx-alignment: CENTER-RIGHT;");
+        levelColumn_.setStyle("-fx-alignment: CENTER-RIGHT; -fx-font-weight: NORMAL;");
         nameNotInKampfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, String>("name_"));
-        nameNotInKampfColumn_.setStyle("-fx-alignment: CENTER-RIGHT;");
+        nameNotInKampfColumn_.setStyle("-fx-alignment: CENTER-RIGHT; -fx-font-weight: NORMAL;");
         
         nameInKampfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheitImKampf, String>("gegnerTypName_"));
         numberOfColumn_.setCellFactory(TextFieldTableCell.forTableColumn());

@@ -110,9 +110,9 @@
 
 
 #right-table-teilnehmer-auswahl.table-view {
-	-fx-background-color: #FCFBF4;
+	/*-fx-background-color: #FCFBF4;
 	-fx-border-color: #704214;
-	-fx-border-radius: 2%;
+	-fx-border-radius: 2%;*/
 }	
 	
 	
@@ -143,9 +143,9 @@
 
 
 #left-table-teilnehmer-auswahl.table-view {
-	-fx-background-color: #FCFBF4;
+	/*-fx-background-color: #FCFBF4;
 	-fx-border-color: #704214;
-	-fx-border-radius: 2%;
+	-fx-border-radius: 2%;*/
 }
 
 
