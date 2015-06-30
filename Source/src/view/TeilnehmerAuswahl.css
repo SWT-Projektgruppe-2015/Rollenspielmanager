@@ -102,6 +102,13 @@
 
 
 
+#left-listview.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-alignment:center-right;
+}
+
+
+
+
 #right-table-teilnehmer-auswahl.table-view {
 	-fx-background-color: #FCFBF4;
 	-fx-border-color: #704214;
