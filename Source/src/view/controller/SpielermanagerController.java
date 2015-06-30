@@ -5,8 +5,6 @@ import java.util.function.Consumer;
 
 import org.controlsfx.control.action.Action;
 
-import com.sun.corba.se.spi.extension.ZeroPortPolicy;
-
 import view.NotificationTexts;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -17,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Charakter;
-import model.Faehigkeiten;
 import model.Ruestungseffekt;
 import model.Spieler;
 import model.Waffen;
@@ -27,8 +24,7 @@ public class SpielermanagerController extends CharakterTabController{
 
     private Spieler entryForNewSpieler_;
     private Waffen entryForNewWaffe_;
-    private Ruestungseffekt entryForNewEffekt_;
-
+    
     private GruppenmanagerController gruppenManagerController;
     
     @FXML
@@ -67,13 +63,6 @@ public class SpielermanagerController extends CharakterTabController{
     private TextField staerkeMalusTextField_;
     @FXML
     private TextField expBoostTextField_;
-    
-    @FXML
-    private Label geschickMalusLabel_;
-    @FXML
-    private Label staerkeMalusLabel_;
-    @FXML
-    private Label expBoostLabel_;
     
     
     void initialize(List<Spieler> spielerList, GruppenmanagerController gruppenController) {
@@ -124,7 +113,6 @@ public class SpielermanagerController extends CharakterTabController{
     
     
     protected void initializeRuestungseffekts() {
-        initializeEffektLabels();
         initializeEffektTextFields();
     }
 
@@ -140,14 +128,6 @@ public class SpielermanagerController extends CharakterTabController{
 
     private void setIntTextField(int value, TextField textField) {
         textField.setText(Integer.toString(value));
-    }
-
-
-
-    private void initializeEffektLabels() {
-        geschickMalusLabel_.setText(Ruestungseffekt.EffektTyp.MALUS_GESCHICK.toString());
-        staerkeMalusLabel_.setText(Ruestungseffekt.EffektTyp.MALUS_STAERKE.toString());
-        expBoostLabel_.setText(Ruestungseffekt.EffektTyp.EXP_BOOST.toString());
     }
 
       
@@ -311,16 +291,19 @@ public class SpielermanagerController extends CharakterTabController{
                     case MALUS_GESCHICK: {
                         getIntFromTextField(changedEffekt,
                                 geschickMalusTextField_);
+                        updateRuestungseffekt(changedEffekt);
                         break;
                     }
                     case MALUS_STAERKE: {
                         getIntFromTextField(changedEffekt,
                                 staerkeMalusTextField_);
+                        updateRuestungseffekt(changedEffekt);
                         break;
                     }
                     case EXP_BOOST: {
                         getIntFromTextField(changedEffekt,
                                 expBoostTextField_);
+                        updateRuestungseffekt(changedEffekt);
                         break;
                     }
                 }
@@ -501,6 +484,26 @@ public class SpielermanagerController extends CharakterTabController{
             defRTextField_.setText(Integer.toString(spieler.getDefR()));
             defHTextField_.setText(Integer.toString(spieler.getDefH()));
             defSTextField_.setText(Integer.toString(spieler.getDefS()));
+            
+            for (Ruestungseffekt selectedEffekt : spieler.getEffekte()) {
+                switch (selectedEffekt.getEffektTyp_()) {
+                    case MALUS_GESCHICK: {
+                        setIntTextField(selectedEffekt.getEffektWert_(),
+                                geschickMalusTextField_);
+                        break;
+                    }
+                    case MALUS_STAERKE: {
+                        setIntTextField(selectedEffekt.getEffektWert_(),
+                                staerkeMalusTextField_);
+                        break;
+                    }
+                    case EXP_BOOST: {
+                        setIntTextField(selectedEffekt.getEffektWert_(),
+                                expBoostTextField_);
+                        break;
+                    }
+                }
+            }
         }
     }
     
