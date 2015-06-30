@@ -77,23 +77,17 @@ public class AboutTexts {
                     + "zudem ein St" + Hauptprogramm.UMLAUT_SMALL_AE + "rkewurf des entsprechenden Gegners simuliert werden.";
 
     public static final String HAENDLER_TITLE = "Der H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler";
-    public static final String ABOUT_HAENDLER = "Mit dem H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen "
-            + "Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde verwaltet und gesucht werden. "
-            + "Es wird grob unterschieden zwischen 'Einfachen Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nden' "
-                    + "und 'R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung / Waffen'. "
-                    + "Letztere haben zus" + Hauptprogramm.UMLAUT_SMALL_AE + "tzlich zu Name, Kategorie, Traglast, Preis und Beschreibung "
-                    + "auch eine St" + Hauptprogramm.UMLAUT_SMALL_AE + "rke und einen Wert. \n\n"
-            + "Kategorien k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen beliebig angelegt werden. "
-            + "Sie sind dazu da, die Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde grob zu ordnen: "
-                    + "Es werden immer nur Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde einer Kategorie angezeigt. "
-                    + "Zus" + Hauptprogramm.UMLAUT_SMALL_AE + "tzlich kann nach Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nden gesucht werden."
-            + "\n\n"
-            + "Um einen neuen Gegenstand anzulegen, w" + Hauptprogramm.UMLAUT_SMALL_AE + "hle 'Neuer Gegenstand' aus der Liste, "
-                    + "modifiziere die Angaben und best" + Hauptprogramm.UMLAUT_SMALL_AE + "tige durch den Button 'Speichern'.\n"
-            + "Um einen bestehenden Gegenstand zu ver" + Hauptprogramm.UMLAUT_SMALL_AE + "ndern, verfahre " + Hauptprogramm.UMLAUT_SMALL_AE + "hnlich, "
-                    + "aber selektiere den zu ver" + Hauptprogramm.UMLAUT_SMALL_AE + "ndernden Gegenstand.\n"
-            + "Um einen Gegenstand zu l" + Hauptprogramm.UMLAUT_SMALL_OE + "schen, selektiere ihn und dr" + Hauptprogramm.UMLAUT_SMALL_UE + "cke "
-                    + "'L" + Hauptprogramm.UMLAUT_SMALL_OE + "schen'.";
+    public static final String ABOUT_HAENDLER = ""
+            + "----------- Kategorien -----------\n"
+            + "\n_NEU ERSTELLEN_:   Dazu muss ein neuer Gegenstand mit dieser Kategorie erstellt werden. Subkategorien werden mit '/' getrennt. Z.b. Kategorie: Lebensmittel/Getränke/Bier"
+            + "\n_AUSWAHL_:   Das Auswählen einer (Sub)Kategorie lässt alle Gegenstände dieser (Sub)Kategorie in der Gegenständeliste erscheinen."
+            + "\n\n----------- Gegenstände -----------\n"
+            + "\n_NEU ERSTELLEN_:   Wähle dazu den Eintrag 'Neuer Gegenstand' in der Gegenstände Liste aus und bearbeite dann die rechten Textfelder. Speichern durch Taste 'ENTER' oder Button 'Speichern'."
+            + "\n_ZU SUBKATEGORIE HINZUFÜGEN_:   Wenn Subkategorie schon vorhanden dann reicht es als Kategorie nur die Subkategorie zu spezifizieren. Wenn eine neue Subkategorie erstellt werden soll dann siehe 'Kategorien - NEU ERSTELLEN'"
+            + "\n_AUSWAHL_:   Das Auswählen eines Gegenstandes füllt die rechten Textfelder mit seinen Eigenschaften."
+            + "\n\n----------- ACHTUNG -----------\n"
+            + "Der Beutegenerator im Kampfende Tab teilt seine Beute auf 'Waffe, Helm, Harnisch, Handschuh, Schuh'. Stellen Sie bitte sicher dass diese Kategorien existieren, da sonst zu wenig Beute verteilt wird."            
+            + "";
    
     public static final String WUERFELSIMULATOR_TITLE = "Der W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelsimulator";
     public static final String ABOUT_WUERFELSIMULATOR = "Mit dem W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelsimulator "
