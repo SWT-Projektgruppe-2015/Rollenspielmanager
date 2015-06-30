@@ -155,7 +155,8 @@ public class Hauptprogramm extends Application {
             controller.initialize(spielerRundeController, currentSpieler);
             
             Stage newStage = createNamedStage("Kampf - Waffenwechsel", page);            
-            controller.setStage(newStage);          
+            controller.setStage(newStage);
+            newStage.setResizable(false);
             newStage.showAndWait();
         }
         catch (IOException e) {
