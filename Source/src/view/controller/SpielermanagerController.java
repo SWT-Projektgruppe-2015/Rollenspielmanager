@@ -5,6 +5,8 @@ import java.util.function.Consumer;
 
 import org.controlsfx.control.action.Action;
 
+import com.sun.corba.se.spi.extension.ZeroPortPolicy;
+
 import view.NotificationTexts;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,7 +27,7 @@ public class SpielermanagerController extends CharakterTabController{
 
     private Spieler entryForNewSpieler_;
     private Waffen entryForNewWaffe_;
-    private Ruestungseffekt entryForNewFaehigkeit_;
+    private Ruestungseffekt entryForNewEffekt_;
 
     private GruppenmanagerController gruppenManagerController;
     
@@ -60,11 +62,18 @@ public class SpielermanagerController extends CharakterTabController{
     private TextField defSTextField_;
 
     @FXML
-    private ListView<Ruestungseffekt> ruestungseffektListView_;
+    private TextField geschickMalusTextField_;
     @FXML
-    private TextField ruestungsEffektTextField_;
+    private TextField staerkeMalusTextField_;
     @FXML
-    private ComboBox<Ruestungseffekt> ruestungseffektComboBox_;
+    private TextField expBoostTextField_;
+    
+    @FXML
+    private Label geschickMalusLabel_;
+    @FXML
+    private Label staerkeMalusLabel_;
+    @FXML
+    private Label expBoostLabel_;
     
     
     void initialize(List<Spieler> spielerList, GruppenmanagerController gruppenController) {
@@ -73,7 +82,7 @@ public class SpielermanagerController extends CharakterTabController{
         
         initializeSpielerList();
         initializeWaffenList();
-        initializeRuestungseffektList(ruestungseffektListView_);
+        initializeRuestungseffekts();
     }
     
     
@@ -110,10 +119,39 @@ public class SpielermanagerController extends CharakterTabController{
                 showWaffenDetails(newValue);
             }
         });
+    }    
+    
+    
+    
+    protected void initializeRuestungseffekts() {
+        initializeEffektLabels();
+        initializeEffektTextFields();
     }
+
+
+
+    private void initializeEffektTextFields() {
+        setIntTextField(0, geschickMalusTextField_);
+        setIntTextField(0, staerkeMalusTextField_);
+        setIntTextField(0, expBoostTextField_);
+    }
+
+
+
+    private void setIntTextField(int value, TextField textField) {
+        textField.setText(Integer.toString(value));
+    }
+
+
+
+    private void initializeEffektLabels() {
+        geschickMalusLabel_.setText(Ruestungseffekt.EffektTyp.MALUS_GESCHICK.toString());
+        staerkeMalusLabel_.setText(Ruestungseffekt.EffektTyp.MALUS_STAERKE.toString());
+        expBoostLabel_.setText(Ruestungseffekt.EffektTyp.EXP_BOOST.toString());
+    }
+
       
 
-    
     private void updateSpielerLists(Spieler changedSpieler, boolean listHasToBeReloaded) {
         if(listHasToBeReloaded) {
             spielerListView_.getItems().setAll(entryForNewSpieler_);
@@ -145,13 +183,20 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-    private void updateRuestungseffektList(Ruestungseffekt changedEffekt) {
-        ruestungseffektListView_.getItems().remove(changedEffekt);
-        ruestungseffektListView_.getItems().add(changedEffekt);
-
-        if (changedEffekt == entryForNewFaehigkeit_) {
-//            entryForNewFaehigkeit_ = getEntryForNewEffekt();
-            ruestungseffektListView_.getItems().add(entryForNewFaehigkeit_);
+    private void updateRuestungseffekt(Ruestungseffekt changedEffekt) {
+        switch(changedEffekt.getEffektTyp_())    {
+            case MALUS_GESCHICK: {
+                setIntTextField(changedEffekt.getEffektWert_(), geschickMalusTextField_);
+                break;
+            }
+            case MALUS_STAERKE: {
+                setIntTextField(changedEffekt.getEffektWert_(), staerkeMalusTextField_);
+                break;
+            }
+            case EXP_BOOST: {
+                setIntTextField(changedEffekt.getEffektWert_(), expBoostTextField_);
+                break;
+            }
         }
     }
 
@@ -253,12 +298,48 @@ public class SpielermanagerController extends CharakterTabController{
 
         //muss nach Speicherung des Spielers gemacht werden, damit Ausruestung in DB ist.
         updateWaffenDetails(selectedSpieler);
-//        updateFaehigkeitName(selectedSpieler);  
-        
+        updateRuestungsEffekteDetails(selectedSpieler);
         updateSpielerLists(selectedSpieler, listHasToBeReloaded);
     }
     
     
+
+    private void updateRuestungsEffekteDetails(Spieler selectedSpieler) {
+        for (Ruestungseffekt changedEffekt : selectedSpieler.getEffekte()) {
+            try {
+                switch (changedEffekt.getEffektTyp_()) {
+                    case MALUS_GESCHICK: {
+                        getIntFromTextField(changedEffekt,
+                                geschickMalusTextField_);
+                        break;
+                    }
+                    case MALUS_STAERKE: {
+                        getIntFromTextField(changedEffekt,
+                                staerkeMalusTextField_);
+                        break;
+                    }
+                    case EXP_BOOST: {
+                        getIntFromTextField(changedEffekt,
+                                expBoostTextField_);
+                        break;
+                    }
+                }
+            }
+            catch (NumberFormatException e) {
+                e.printStackTrace();
+                createNotification(NotificationTexts.textForAusruestungUpdateFailed(selectedSpieler));
+            }
+        }
+    }
+
+
+
+    private void getIntFromTextField(Ruestungseffekt changedEffekt,
+            TextField textField) throws NumberFormatException {
+            changedEffekt.setEffektWert_(Integer.parseInt(textField.getText()));
+    }
+
+
 
     private boolean updateSpielerName(Spieler selectedSpieler) {
         String newName = spielerNameTextField_.getText();
@@ -380,27 +461,6 @@ public class SpielermanagerController extends CharakterTabController{
 
     
     
-
-//    private void updateFaehigkeitName(Spieler selectedSpieler) {
-//        Faehigkeiten selectedFaehigkeit = getSelectedRuestungsEffekt();
-//        if (selectedFaehigkeit == null)
-//            return;
-//
-//        String newName = faehigkeitenNameTextField_.getText();
-//        
-//        if(!newName.equals(selectedFaehigkeit.getName_())) {
-//            selectedFaehigkeit.setName_(newName);
-//    
-//            if (selectedFaehigkeit == entryForNewFaehigkeit_) {
-//                selectedSpieler.addFaehigkeit(selectedFaehigkeit);
-//            }
-//    
-//            updateRuestungseffektList(selectedFaehigkeit);
-//        }
-//    }
-    
-    
-    
     @FXML
     private void deleteWaffe() {
         Waffen selectedWaffe = getSelectedWaffe();
@@ -422,27 +482,6 @@ public class SpielermanagerController extends CharakterTabController{
         
         createReallyDeleteDialog(NotificationTexts.confirmationTextWaffenDeletion(selectedWaffe), deleteWaffe);
     }
-
-    
-    
-    
-
-    
-    
-//    @FXML
-//    private void deleteFaehigkeit() {
-//        Faehigkeiten selectedFaehigkeit = getSelectedRuestungsEffekt();
-//        if (selectedFaehigkeit == null
-//                || selectedFaehigkeit == entryForNewFaehigkeit_)
-//            return;
-//
-//        Spieler selectedSpieler = getSelectedSpieler();
-//        if (selectedSpieler == null)
-//            return;
-//
-//        selectedSpieler.deleteFaehigkeit(selectedFaehigkeit);
-//        ruestungseffektListView_.getItems().remove(selectedFaehigkeit);
-//    }
    
         
     
@@ -462,10 +501,6 @@ public class SpielermanagerController extends CharakterTabController{
             defRTextField_.setText(Integer.toString(spieler.getDefR()));
             defHTextField_.setText(Integer.toString(spieler.getDefH()));
             defSTextField_.setText(Integer.toString(spieler.getDefS()));
-
-            ruestungseffektListView_.getItems().setAll(entryForNewFaehigkeit_);
-//            ruestungseffektListView_.getItems().addAll(spieler.getFaehigkeiten());
-            ruestungseffektListView_.getSelectionModel().select(0);
         }
     }
     
@@ -481,9 +516,8 @@ public class SpielermanagerController extends CharakterTabController{
         defRTextField_.setText("");
         defHTextField_.setText("");
         defSTextField_.setText("");
+        initializeEffektTextFields();
         waffenDamageTextField_.setText("");
-
-        ruestungseffektListView_.getItems().clear();
     }
     
         
@@ -539,26 +573,4 @@ public class SpielermanagerController extends CharakterTabController{
     private Waffen getSelectedWaffe() {
         return getSelected(waffenListView_);
     }
-
-    
-    
-    private Ruestungseffekt getSelectedRuestungseffekt() {
-        return getSelected(ruestungseffektListView_);
-    }
-
-    
-    
-    @Override
-    protected TextField getRuestungseffektNameTextField() {
-//        return ruestungseffektTextField_;
-        return null;
-    }
-
-
-
-    @Override
-    protected void createEntryForNewFaehigkeit() {
-//        entryForNewFaehigkeit_ = getEntryForNewEffekt();
-    }
-    
 }

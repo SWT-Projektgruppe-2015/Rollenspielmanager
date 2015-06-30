@@ -57,7 +57,7 @@ public class NotificationTexts {
     
     
     private static String updateFailed(String toUpdate) {
-        return toUpdate + "' konnte nicht geupdated werden: \n" + INVALID_VALUES;
+        return toUpdate + "' konnte nicht " + Hauptprogramm.UMLAUT_SMALL_UE + "berarbeitet werden: \n" + INVALID_VALUES;
     }
     
     public static String textForGegnerUpdateFailed(GegnerTyp selectedGegner) {

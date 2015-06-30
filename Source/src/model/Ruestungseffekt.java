@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,7 +42,7 @@ public class Ruestungseffekt implements DBObject {
     @GeneratedValue
     @Column(name = "ID")
     public int ID_;
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false,  cascade = CascadeType.PERSIST)
     @JoinColumn(name = "AUSRUESTNGS_ID", columnDefinition = "INTEGER NOT NULL default '1'")
     private Ausruestung ausruestung_; 
     @Column(name = "EFFEKT_TYP")
@@ -53,6 +54,7 @@ public class Ruestungseffekt implements DBObject {
     public Ruestungseffekt() {
         ausruestung_ = new Ausruestung();
     }
+    
     
     
     public EffektTyp getEffektTyp_() {

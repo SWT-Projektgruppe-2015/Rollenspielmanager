@@ -15,6 +15,8 @@ import model.AusruestungBeute;
 import model.Gegenstand;
 import model.GegnerEinheit;
 import model.GegnerTyp;
+import model.Spieler;
+import model.Waffen;
 
 public class AusruestungBeuteTest extends AusruestungBeute {
     private List<Gegenstand> sortedItems;
@@ -162,6 +164,7 @@ public class AusruestungBeuteTest extends AusruestungBeute {
 //      fillDBWith(Gegenstand.RUESTUNG + "/" + Gegenstand.SCHUH);
 //      fillDBWith(Gegenstand.RUESTUNG + "/" + Gegenstand.GUERTEL);
 //      fillDBWithGegnertyp();
+//      fillDBWithSpieler();
 //  }
   
   
@@ -189,6 +192,22 @@ public class AusruestungBeuteTest extends AusruestungBeute {
           tmp.setErfahrung_(1100);
           tmp.setGeschick_(20 + Dice.rollDice(40));
           tmp.setStaerke_(20 + Dice.rollDice(40));
+          tmp.addToDB();
+      }
+  }
+  
+  
+  private void fillDBWithSpieler() {
+      for(int i = 0 ; i < 3; ++i) {
+          Spieler tmp = new Spieler();
+          tmp.setName_("Spieler Nr." + Dice.rollDice(100));
+          tmp.setDefH(30);
+          tmp.setDefR(60);
+          tmp.setDefS(40);
+          Waffen waffe = new Waffen();
+          waffe.setWaffenName_("Waffe Nr. " + Dice.rollDice(100));
+          waffe.setWaffenSchaden_(250);
+          tmp.getAusruestung_().addWaffe(waffe);
           tmp.addToDB();
       }
   }

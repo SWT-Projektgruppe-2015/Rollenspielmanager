@@ -101,23 +101,17 @@ public class AboutTexts {
             + "Wenn einige dieser Kategorien nicht existieren, ist es m" + Hauptprogramm.UMLAUT_SMALL_OE + "glich, dass keine Ausr" + Hauptprogramm.UMLAUT_SMALL_UE + "stungsbeute generiert wird.";
 
     public static final String HAENDLER_TITLE = "Der H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler";
-    public static final String ABOUT_HAENDLER = "Mit dem H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen "
-            + "Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde verwaltet und gesucht werden. "
-            + "Es wird grob unterschieden zwischen 'Einfachen Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nden' "
-                    + "und 'R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung / Waffen'. "
-                    + "Letztere haben zus" + Hauptprogramm.UMLAUT_SMALL_AE + "tzlich zu Name, Kategorie, Traglast, Preis und Beschreibung "
-                    + "auch eine St" + Hauptprogramm.UMLAUT_SMALL_AE + "rke und einen Wert. \n\n"
-            + "Kategorien k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen beliebig angelegt werden. "
-            + "Sie sind dazu da, die Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde grob zu ordnen: "
-                    + "Es werden immer nur Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde einer Kategorie angezeigt. "
-                    + "Zus" + Hauptprogramm.UMLAUT_SMALL_AE + "tzlich kann nach Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nden gesucht werden."
-            + "\n\n"
-            + "Um einen neuen Gegenstand anzulegen, w" + Hauptprogramm.UMLAUT_SMALL_AE + "hle 'Neuer Gegenstand' aus der Liste, "
-                    + "modifiziere die Angaben und best" + Hauptprogramm.UMLAUT_SMALL_AE + "tige durch den Button 'Speichern'.\n"
-            + "Um einen bestehenden Gegenstand zu ver" + Hauptprogramm.UMLAUT_SMALL_AE + "ndern, verfahre " + Hauptprogramm.UMLAUT_SMALL_AE + "hnlich, "
-                    + "aber selektiere den zu ver" + Hauptprogramm.UMLAUT_SMALL_AE + "ndernden Gegenstand.\n"
-            + "Um einen Gegenstand zu l" + Hauptprogramm.UMLAUT_SMALL_OE + "schen, selektiere ihn und dr" + Hauptprogramm.UMLAUT_SMALL_UE + "cke "
-                    + "'L" + Hauptprogramm.UMLAUT_SMALL_OE + "schen'.";
+    public static final String ABOUT_HAENDLER = ""
+            + "----------- Kategorien -----------\n"
+            + "\nNEU ERSTELLEN:   Dazu muss ein neuer Gegenstand mit dieser Kategorie erstellt werden. Subkategorien werden mit '/' getrennt. Z.b. Kategorie: Lebensmittel/Getr" + Hauptprogramm.UMLAUT_SMALL_AE + "nke/Bier"
+            + "\nAUSWAHL:   Das Ausw" + Hauptprogramm.UMLAUT_SMALL_AE + "hlen einer (Sub)Kategorie l" + Hauptprogramm.UMLAUT_SMALL_AE + "sst alle Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde dieser (Sub)Kategorie in der Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "ndeliste erscheinen."
+            + "\n\n----------- Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde -----------\n"
+            + "\nNEU ERSTELLEN:   W" + Hauptprogramm.UMLAUT_SMALL_AE + "hle dazu den Eintrag 'Neuer Gegenstand' in der Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde Liste aus" + Hauptprogramm.UMLAUT_SMALL_AE + "und bearbeite dann die rechten Textfelder. Speichern durch Taste 'ENTER' oder Button 'Speichern'."
+            + "\nZU SUBKATEGORIE HINZUF" + Hauptprogramm.UMLAUT_CAPITAL_UE + "GEN:   Wenn Subkategorie schon vorhanden dann reicht es als Kategorie nur die Subkategorie zu spezifizieren. Wenn eine neue Subkategorie erstellt werden soll dann siehe 'Kategorien - NEU ERSTELLEN'"
+            + "\nAUSWAHL:   Das Ausw" + Hauptprogramm.UMLAUT_SMALL_AE + "hlen eines Gegenstandes f" + Hauptprogramm.UMLAUT_SMALL_UE + "llt die rechten Textfelder mit seinen Eigenschaften."
+            + "\n\n----------- ACHTUNG -----------\n"
+            + "Der Beutegenerator im Kampfende Tab teilt seine Beute auf 'Waffe, Helm, Harnisch, Handschuh, Schuh'. Stellen Sie bitte sicher dass diese Kategorien existieren, da sonst zu wenig Beute verteilt wird."            
+            + "";
    
     public static final String WUERFELSIMULATOR_TITLE = "Der W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelsimulator";
     public static final String ABOUT_WUERFELSIMULATOR = "Mit dem W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelsimulator "
