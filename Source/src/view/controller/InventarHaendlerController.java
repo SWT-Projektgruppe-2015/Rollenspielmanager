@@ -87,7 +87,7 @@ public class InventarHaendlerController extends HaendlerTabController {
         int newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
         String newBeschreibung = gegenstandBeschreibungTextField_.getText();
         int newTraglast = Integer.parseInt(gegenstandTraglastTextField_.getText());
-        String newKategorie = gegenstandKategorieTextField_.getText();
+        String newKategorie = getFullKategorie();
 
         if (!newName.isEmpty()) {
             selectedGegenstand.setName_(newName);

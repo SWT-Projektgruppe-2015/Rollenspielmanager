@@ -90,7 +90,7 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
         String newBeschreibung = ausruestungBeschreibungTextField_.getText();
         int newTraglast = Integer.parseInt(ausruestungTraglastTextField_
                 .getText());
-        String newKategorie = ausruestungKategorieTextField_.getText();
+        String newKategorie = getFullKategorie();
         int newStaerke = Integer.parseInt(ausruestungStaerkeTextField_
                 .getText());
         String newWert = ausruestungWertTextField_.getText();

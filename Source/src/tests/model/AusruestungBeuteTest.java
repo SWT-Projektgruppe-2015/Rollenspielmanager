@@ -33,18 +33,6 @@ public class AusruestungBeuteTest extends AusruestungBeute {
         generateItems(Gegenstand.HELM);
         createDefensiveGegnerTyp();
     }
-
-    private void generateItems(String kategorie) {
-        for(int i = 0; i < amount; ++i) {
-            Gegenstand item = new Gegenstand();
-            item.setName_(String.valueOf(i) + kategorie);
-            item.setKosten_(i);
-            item.setWert_(Integer.toString(i*10)+"+W9");
-            item.setKategorie_(kategorie);
-            item.addToDB();
-            sortedItems.add(item);
-        }
-    }
     
     
     
@@ -161,4 +149,61 @@ public class AusruestungBeuteTest extends AusruestungBeute {
     }
     
     
+    
+//  @Test // Dont delete this! It fills your DB if its empty.
+//  public void fillDB() {
+//      fillDBWith("Lebensmittel/Brot");
+//      fillDBWith("Diverses/Seil");
+//      fillDBWith("Diverses/Fackel");
+//      fillDBWith(Gegenstand.WAFFE + "/" + "Schwert");
+//      fillDBWith(Gegenstand.WAFFE + "/" + "Axt");
+//      fillDBWith(Gegenstand.RUESTUNG + "/" + Gegenstand.HARNISCH);
+//      fillDBWith(Gegenstand.RUESTUNG + "/" + Gegenstand.HANDSCHUH);
+//      fillDBWith(Gegenstand.RUESTUNG + "/" + Gegenstand.SCHUH);
+//      fillDBWith(Gegenstand.RUESTUNG + "/" + Gegenstand.GUERTEL);
+//      fillDBWithGegnertyp();
+//  }
+  
+  
+  public void fillDBWith(String kategorie) {
+      List<String> tmp = Gegenstand.getSubKategories(kategorie);
+      for(int i = 0; i < amount; ++i) {
+          Gegenstand item = new Gegenstand();
+          item.setName_(tmp.get(tmp.size()-1) + " " + String.valueOf(i));
+          item.setKosten_(i);
+          item.setWert_(Integer.toString(i*10)+"+W9");
+          item.setKategorie_(kategorie);
+          item.addToDB();
+      }
+  }
+  
+  
+  private void fillDBWithGegnertyp() {
+      for(int i = 0 ; i < 5; ++i) {
+          GegnerTyp tmp = new GegnerTyp();
+          tmp.setName_("Gegner Nr." + Dice.rollDice(100));
+          tmp.setDefH(30);
+          tmp.setDefR(60);
+          tmp.setDefS(40);
+          tmp.setSchaden_(250);
+          tmp.setErfahrung_(1100);
+          tmp.setGeschick_(20 + Dice.rollDice(40));
+          tmp.setStaerke_(20 + Dice.rollDice(40));
+          tmp.addToDB();
+      }
+  }
+  
+  
+
+  private void generateItems(String kategorie) {
+      for(int i = 0; i < amount; ++i) {
+          Gegenstand item = new Gegenstand();
+          item.setName_(String.valueOf(i) + kategorie);
+          item.setKosten_(i);
+          item.setWert_(Integer.toString(i*10)+"+W9");
+          item.setKategorie_(kategorie);
+          item.addToDB();
+          sortedItems.add(item);
+      }
+  }
 }
