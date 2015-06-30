@@ -62,21 +62,25 @@
                   </GridPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="360.0" minWidth="300.0" prefHeight="360.0" prefWidth="300.0">
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="89.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="320.0" minHeight="10.0" prefHeight="316.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <ComboBox fx:id="gruppenDropDown_" layoutX="14.0" layoutY="1.0" prefHeight="32.0" prefWidth="150.0" promptText="Wähle Gruppe..." styleClass="combobox-bevel-gray" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0" />
-                  <TableView fx:id="spielerInGruppe_" focusTraversable="false" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" styleClass="tableview-mainmenu" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
+                  <ComboBox fx:id="gruppenDropDown_" prefHeight="32.0" prefWidth="277.0" promptText="Wähle Gruppe..." styleClass="combobox-bevel-gray" />
+                  <TableView fx:id="spielerInGruppe_" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" styleClass="tableview-mainmenu" GridPane.rowIndex="1">
                     <columns>
-                      <TableColumn fx:id="name_" prefWidth="120.0" text="Name" />
-                      <TableColumn fx:id="kreis_" prefWidth="55.0" text="Kreis" />
-                        <TableColumn fx:id="level_" prefWidth="36.0" text="Lvl" />
+                      <TableColumn fx:id="name_" prefWidth="172.0" text="Name" />
+                      <TableColumn fx:id="kreis_" prefWidth="45.0" text="Kreis" />
+                        <TableColumn fx:id="level_" prefWidth="47.0" text="Level" />
                     </columns>
-                     <columnResizePolicy>
-                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                     </columnResizePolicy>
                   </TableView>
                </children>
-            </AnchorPane>
+            </GridPane>
         </items>
       </SplitPane>
    </children>
