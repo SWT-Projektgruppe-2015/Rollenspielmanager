@@ -174,13 +174,11 @@ public class NotificationTexts {
         return "Lebenspunkte von Gegner '" + gegner.getName_() + "' aktualisiert.";
     }
 
-    public static String textForBeuteGenerator(int inventarWert,
-            int inventarStreuung, int ausruestungsMalus, int ausruestungStreuung) {
-        return "Beute wird generiert mit den folgenden Werten: \n"
-                + "Inventar pro Gegner hat im Erwartungswert Gesamtwert von " + inventarWert + ", \n "
-                        + "weicht i.d.R. ab bis " + inventarStreuung + "; \n"
-                + "Ausruestung pro Gegner bekommt im Erwartungswert einen Malus von " + ausruestungsMalus + "%, \n"
-                        + "Prozentsatz weicht ab bis " 
-                        + (ausruestungStreuung + ausruestungsMalus) + "% bzw. " + (ausruestungsMalus-ausruestungStreuung) + "%.";
+    public static String textForBeuteGenerator(GegnerEinheit gegner) {
+        return "Beute wird generiert f" + Hauptprogramm.UMLAUT_SMALL_UE + "r: " + gegner.getName_() + ".";
+    }
+    
+    public static String textForGenerateBeuteWithoutSelectedGegner() {
+        return "Es wurde kein Gegner ausgew" + Hauptprogramm.UMLAUT_SMALL_AE + "hlt.";
     }
 }

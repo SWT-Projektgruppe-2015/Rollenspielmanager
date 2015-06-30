@@ -34,7 +34,7 @@ public class InventarBeute extends Beute {
     
     
     public void generateInventarBeute() {
-        List<Gegenstand> sortedList = Gegenstand.getAll();
+        List<Gegenstand> sortedList = Gegenstand.getAllInventar();
         Gegenstand.sortByKosten(sortedList);
         
         int remainingValue = inventarWert_;
@@ -50,6 +50,7 @@ public class InventarBeute extends Beute {
         if(chosen == null) {  // TODO: should be tested as well
             geldWert_ += remainingValue;
             inventarWert_ -= remainingValue;
+            remainingValue = 0;
         }
         else {  // TODO: What to do with value 0 stuff?
             if(chosen.getKosten_() == 0){

@@ -28,6 +28,12 @@ public class AusruestungBeute extends Beute {
     
     
     
+    public Gegenstand getAusruestungBeute() {
+        return ruestungsTeil_;
+    }
+    
+    
+    
     public Gegenstand generateAusruestungBeute(GegnerEinheit gegner) {
         if(ruestungIsDropped()) {
             if(helmIsDropped())

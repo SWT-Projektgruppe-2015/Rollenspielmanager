@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import controller.Dice;
 import model.AusruestungBeute;
 import model.Gegenstand;
 import model.GegnerEinheit;
@@ -36,7 +37,7 @@ public class AusruestungBeuteTest extends AusruestungBeute {
     private void generateItems(String kategorie) {
         for(int i = 0; i < amount; ++i) {
             Gegenstand item = new Gegenstand();
-            item.setName_(String.valueOf(i));
+            item.setName_(String.valueOf(i) + kategorie);
             item.setKosten_(i);
             item.setWert_(Integer.toString(i*10)+"+W9");
             item.setKategorie_(kategorie);
@@ -141,16 +142,17 @@ public class AusruestungBeuteTest extends AusruestungBeute {
     
     
     private void generateRuestungsItems() {
-        generateItems(Gegenstand.RUESTUNG + "\\" + Gegenstand.HARNISCH);
-        generateItems(Gegenstand.RUESTUNG + "\\" + Gegenstand.HANDSCHUH);
-        generateItems(Gegenstand.RUESTUNG + "\\" + Gegenstand.SCHUH);
-        generateItems(Gegenstand.RUESTUNG + "\\" + Gegenstand.GUERTEL);
+        generateItems(Gegenstand.RUESTUNG + "/" + Gegenstand.HARNISCH);
+        generateItems(Gegenstand.RUESTUNG + "/" + Gegenstand.HANDSCHUH);
+        generateItems(Gegenstand.RUESTUNG + "/" + Gegenstand.SCHUH);
+        generateItems(Gegenstand.RUESTUNG + "/" + Gegenstand.GUERTEL);
     }
     
     
     
     private void createDefensiveGegnerTyp() {
         typ_ = new GegnerTyp();
+        typ_.setName_("Gegner Nr." + Dice.rollDice(100));
         typ_.setDefH(50);
         typ_.setDefR(200);
         typ_.setDefS(20);

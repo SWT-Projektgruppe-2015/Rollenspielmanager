@@ -1,7 +1,9 @@
 package view.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import view.NotificationTexts;
 import view.tabledata.ExpCategory;
@@ -54,7 +56,12 @@ public class KampfendeController extends NotificationController {
     private TextField ausruestungMalusTextField_;
     @FXML
     private TextField ausruestungStreuungTextField_;
+    @FXML
+    private TextField geldTextField_;
     
+    
+    private Map<GegnerEinheit, InventarBeute> inventarBeute_;
+    private Map<GegnerEinheit, AusruestungBeute> ausruestungBeute_;
     
     private ObservableList<ExpCategory> expCategoriesList_;
     private ObservableList<GegnerEinheit> participatingGegner_;
@@ -64,6 +71,8 @@ public class KampfendeController extends NotificationController {
         participatingGegner_ = allParticipatingGegner;
         beuteList_ = FXCollections.observableList(new ArrayList<Gegenstand>());
         
+        inventarBeute_ = new HashMap<GegnerEinheit, InventarBeute>();
+        ausruestungBeute_ = new HashMap<GegnerEinheit, AusruestungBeute>();
         initializeGegnerTable(); 
         initializeExpTable(allSpieler);
         initializeBeuteTable();
@@ -73,6 +82,11 @@ public class KampfendeController extends NotificationController {
 
     @FXML
     public void onGeneriereBeuteClick() {
+        GegnerEinheit selectedGegner = gegnerTableView_.getSelectionModel().getSelectedItem();
+        if(selectedGegner == null) {
+            createNotification(NotificationTexts.textForGenerateBeuteWithoutSelectedGegner());
+            return;
+        }
         String inventarWertString = inventarWertTextField_.getText();
         String inventarStreuungString = inventarStreuungTextField_.getText();
         String ausruestungsMalusString = ausruestungMalusTextField_.getText();
@@ -91,31 +105,34 @@ public class KampfendeController extends NotificationController {
             return;
         }
         
-        createNotification(NotificationTexts.textForBeuteGenerator(inventarWert, inventarStreuung, ausruestungsMalus, ausruestungStreuung));
+        createNotification(NotificationTexts.textForBeuteGenerator(selectedGegner));
         beuteList_.clear();
-        for(GegnerEinheit gegner : participatingGegner_) {
-            generateInventarBeuteFromGegner(inventarWert, inventarStreuung);
-            generateAusruestungsBeuteFromGegner(gegner, ausruestungsMalus, ausruestungStreuung);
-        }
+        generateInventarBeuteFromGegner(selectedGegner, inventarWert, inventarStreuung);
+        generateAusruestungsBeuteFromGegner(selectedGegner, ausruestungsMalus, ausruestungStreuung);
     }
 
 
 
-    private void generateInventarBeuteFromGegner(int inventarWert, int inventarStreuung) {
-        InventarBeute inventar = new InventarBeute(inventarWert, inventarStreuung);
-        inventar.generateInventarBeute();
-        if(inventar.getInventarBeute() != null)
-            beuteList_.addAll(inventar.getInventarBeute());
+    private void generateInventarBeuteFromGegner(GegnerEinheit gegner, int inventarWert, int inventarStreuung) {
+        InventarBeute inventarBeute = new InventarBeute(inventarWert, inventarStreuung);
+        inventarBeute.generateInventarBeute();
+        if(inventarBeute.getInventarBeute() != null) {
+            beuteList_.addAll(inventarBeute.getInventarBeute());
+            inventarBeute_.put(gegner, inventarBeute);
+        }
+        geldTextField_.setText(Integer.toString(inventarBeute.getGeldWert()));
     }
     
 
     
     private void generateAusruestungsBeuteFromGegner(GegnerEinheit gegner,
             int ausruestungsMalus, int ausruestungStreuung) {
-        AusruestungBeute ausruestung = new AusruestungBeute(ausruestungsMalus, ausruestungStreuung);
-        Gegenstand ausruestungsTeil = ausruestung.generateAusruestungBeute(gegner);
-        if(ausruestungsTeil != null)
+        AusruestungBeute ausruestungBeute = new AusruestungBeute(ausruestungsMalus, ausruestungStreuung);
+        Gegenstand ausruestungsTeil = ausruestungBeute.generateAusruestungBeute(gegner);
+        if(ausruestungsTeil != null){
             beuteList_.add(ausruestungsTeil);
+            ausruestungBeute_.put(gegner, ausruestungBeute);
+        }
     }
 
 
@@ -123,6 +140,37 @@ public class KampfendeController extends NotificationController {
     private void initializeGegnerTable() {
         gegnerTableView_.setItems(participatingGegner_);
         gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
+        addListenerToGegnerTableView();
+    }
+    
+    
+    
+    private void addListenerToGegnerTableView() {
+        gegnerTableView_.getSelectionModel().selectedItemProperty()
+        .addListener(new ChangeListener<GegnerEinheit>() {
+
+            @Override
+            public void changed(ObservableValue<? extends GegnerEinheit> arg0,
+                    GegnerEinheit oldVal, GegnerEinheit newVal) {
+                updateBeute(newVal);
+            }
+        });
+    }
+    
+    
+    
+    private void updateBeute(GegnerEinheit newVal) {
+        beuteList_.clear();
+        geldTextField_.clear();
+        InventarBeute inventar = inventarBeute_.get(newVal);
+        AusruestungBeute ausruestung = ausruestungBeute_.get(newVal);
+        if(inventar != null) {
+            if(inventar.getInventarBeute() != null)
+                beuteList_.addAll(inventar.getInventarBeute());
+            geldTextField_.setText(Integer.toString(inventar.getGeldWert()));
+        }
+        if(ausruestung != null && ausruestung.getAusruestungBeute() != null)
+            beuteList_.addAll(ausruestung.getAusruestungBeute());
     }
 
     
