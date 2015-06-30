@@ -336,19 +336,4 @@ public class GegnermanagerController extends CharakterTabController {
     private GegnerTyp getSelectedGegner() {
         return getSelected(gegnerListView_);
     }
-    
-    
-    
-    @Override
-    protected TextField getRuestungseffektNameTextField() {
-        return gegnerFaehigkeitenNameTextField_;
-    }
-
-    
-    
-    @Override
-    protected void createEntryForNewFaehigkeit() {
-//        entryForNewFaehigkeit_ = getEntryForNewEffekt();
-    }
-    
 }
