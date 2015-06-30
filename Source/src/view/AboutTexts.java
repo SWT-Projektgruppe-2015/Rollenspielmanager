@@ -79,12 +79,12 @@ public class AboutTexts {
     public static final String HAENDLER_TITLE = "Der H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler";
     public static final String ABOUT_HAENDLER = ""
             + "----------- Kategorien -----------\n"
-            + "\n_NEU ERSTELLEN_:   Dazu muss ein neuer Gegenstand mit dieser Kategorie erstellt werden. Subkategorien werden mit '/' getrennt. Z.b. Kategorie: Lebensmittel/Getränke/Bier"
-            + "\n_AUSWAHL_:   Das Auswählen einer (Sub)Kategorie lässt alle Gegenstände dieser (Sub)Kategorie in der Gegenständeliste erscheinen."
-            + "\n\n----------- Gegenstände -----------\n"
-            + "\n_NEU ERSTELLEN_:   Wähle dazu den Eintrag 'Neuer Gegenstand' in der Gegenstände Liste aus und bearbeite dann die rechten Textfelder. Speichern durch Taste 'ENTER' oder Button 'Speichern'."
-            + "\n_ZU SUBKATEGORIE HINZUFÜGEN_:   Wenn Subkategorie schon vorhanden dann reicht es als Kategorie nur die Subkategorie zu spezifizieren. Wenn eine neue Subkategorie erstellt werden soll dann siehe 'Kategorien - NEU ERSTELLEN'"
-            + "\n_AUSWAHL_:   Das Auswählen eines Gegenstandes füllt die rechten Textfelder mit seinen Eigenschaften."
+            + "\nNEU ERSTELLEN:   Dazu muss ein neuer Gegenstand mit dieser Kategorie erstellt werden. Subkategorien werden mit '/' getrennt. Z.b. Kategorie: Lebensmittel/Getr" + Hauptprogramm.UMLAUT_SMALL_AE + "nke/Bier"
+            + "\nAUSWAHL:   Das Ausw" + Hauptprogramm.UMLAUT_SMALL_AE + "hlen einer (Sub)Kategorie l" + Hauptprogramm.UMLAUT_SMALL_AE + "sst alle Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde dieser (Sub)Kategorie in der Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "ndeliste erscheinen."
+            + "\n\n----------- Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde -----------\n"
+            + "\nNEU ERSTELLEN:   W" + Hauptprogramm.UMLAUT_SMALL_AE + "hle dazu den Eintrag 'Neuer Gegenstand' in der Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde Liste aus" + Hauptprogramm.UMLAUT_SMALL_AE + "und bearbeite dann die rechten Textfelder. Speichern durch Taste 'ENTER' oder Button 'Speichern'."
+            + "\nZU SUBKATEGORIE HINZUF" + Hauptprogramm.UMLAUT_CAPITAL_UE + "GEN:   Wenn Subkategorie schon vorhanden dann reicht es als Kategorie nur die Subkategorie zu spezifizieren. Wenn eine neue Subkategorie erstellt werden soll dann siehe 'Kategorien - NEU ERSTELLEN'"
+            + "\nAUSWAHL:   Das Ausw" + Hauptprogramm.UMLAUT_SMALL_AE + "hlen eines Gegenstandes f" + Hauptprogramm.UMLAUT_SMALL_UE + "llt die rechten Textfelder mit seinen Eigenschaften."
             + "\n\n----------- ACHTUNG -----------\n"
             + "Der Beutegenerator im Kampfende Tab teilt seine Beute auf 'Waffe, Helm, Harnisch, Handschuh, Schuh'. Stellen Sie bitte sicher dass diese Kategorien existieren, da sonst zu wenig Beute verteilt wird."            
             + "";
