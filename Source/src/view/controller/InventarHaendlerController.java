@@ -43,6 +43,8 @@ public class InventarHaendlerController extends HaendlerTabController {
         
         initializeGegenstandKategorienTreeView();
         initializeListView();
+        if(gegenstandKategorieTreeView_.getRoot().getChildren() != null)
+            gegenstandKategorieTreeView_.getSelectionModel().select(0);
     }
     
     

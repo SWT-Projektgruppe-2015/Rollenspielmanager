@@ -58,8 +58,9 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
         rootItem.setExpanded(true);
         ausruestungTreeView_.setRoot(rootItem);
         addKategorieTreeViewItems(ausruestungKategorien_);
-        
         addListenerToTreeView(ausruestungTreeView_);
+        if(ausruestungTreeView_.getRoot().getChildren() != null)
+            ausruestungTreeView_.getSelectionModel().select(0);
     }
     
     
