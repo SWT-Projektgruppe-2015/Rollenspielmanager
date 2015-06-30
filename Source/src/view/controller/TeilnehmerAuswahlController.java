@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.tabledata.GegnerEinheitImKampf;
+import view.tabledata.SpielerMitWaffe;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
 import model.GegnerEinheit;
@@ -17,13 +18,16 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.Callback;
 
 public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML
@@ -82,6 +86,15 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
         spielerNotInKampfList_ = new ArrayList<Spieler>();
         spielerNotInKampfList_.addAll(Spieler.getAll());
         spielerNotInKampfListView_.getItems().setAll(spielerNotInKampfList_);
+//        spielerNotInKampfListView_.setCellFactory(new Callback<ListView<Spieler>,ListCell<Spieler>>()   {
+//
+//            @Override
+//            public ListCell<Spieler> call(ListView<Spieler> param) {
+//                return;
+//            }
+//            
+//        });
+        
 
         gegnerNotInKampfList_ = new ArrayList<GegnerTyp>();
         gegnerNotInKampfList_.addAll(GegnerTyp.getAll());
@@ -101,8 +114,11 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
                 });
        
         kreisColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer>("kreis_"));
+        kreisColumn_.setStyle("-fx-alignment: CENTER-RIGHT;");
         levelColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, Integer> ("level_"));
+        levelColumn_.setStyle("-fx-alignment: CENTER-RIGHT;");
         nameNotInKampfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerTyp, String>("name_"));
+        nameNotInKampfColumn_.setStyle("-fx-alignment: CENTER-RIGHT;");
         
         nameInKampfColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheitImKampf, String>("gegnerTypName_"));
         numberOfColumn_.setCellFactory(TextFieldTableCell.forTableColumn());
