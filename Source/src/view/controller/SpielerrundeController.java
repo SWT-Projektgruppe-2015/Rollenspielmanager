@@ -359,6 +359,15 @@ public class SpielerrundeController extends NotificationController {
     
     @FXML
     private void removeFromKampf()  {
+        TreeItem<SharedGegnerTableEntry> selectedItem = getSelectedGegnerItem();
+        if(selectedItem == null)
+            return;
+        
+        SharedGegnerTableEntry gegner = selectedItem.getValue();
+        if(gegner instanceof GegnerEinheit) {
+            ((GegnerEinheit) gegner).setCurrentLebenspunkte_(0);
+        }
+        
         String removedName = removeGegnerFromTable(true, null);
         if(removedName != null && !removedName.isEmpty()) {
             createNotification(NotificationTexts.textForRemovingGegnerFromKampf(removedName));
@@ -383,12 +392,18 @@ public class SpielerrundeController extends NotificationController {
             createNotification(NotificationTexts.GEGNER_TYP_CANNOT_BE_REMOVED);
             return "";
         }
-        if(!isGegnerTyp && !stillLootable)  {
-            allExpYieldingGegner_.remove((GegnerEinheit)selectedItem.getValue());
-        }
         selectedItem.getParent().getChildren().remove(selectedItem);
         if(!isGegnerTyp) {
-            allActiveGegner_.remove((GegnerEinheit) selectedItem.getValue());
+            GegnerEinheit selectedGegner = (GegnerEinheit)selectedItem.getValue();
+            allActiveGegner_.remove(selectedGegner);
+            
+            if(stillLootable) {
+                //force reload
+                allExpYieldingGegner_.remove(selectedGegner);
+                allExpYieldingGegner_.add(selectedGegner);
+            } else {
+                allExpYieldingGegner_.remove(selectedGegner);
+            }
         }
         
         return selectedItem.getValue().nameProperty().get();

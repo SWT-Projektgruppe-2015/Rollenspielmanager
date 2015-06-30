@@ -23,8 +23,6 @@ import javafx.util.Callback;
 
 public class GegnerrundeController {
     
-    
-    
     private List<SchadenAmSpieler> schadenAmSpielerListe_;
     
     @FXML

@@ -24,7 +24,7 @@
                      <children>
                         <TableView fx:id="gegnerTableView_" prefHeight="182.0" prefWidth="157.0">
                           <columns>
-                            <TableColumn fx:id="gegnerColumn_" prefWidth="156.0" text="Gegner" />
+                            <TableColumn fx:id="gegnerColumn_" prefWidth="156.0" sortable="false" text="Gegner" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

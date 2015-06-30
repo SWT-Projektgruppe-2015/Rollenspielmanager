@@ -7,16 +7,19 @@ import java.util.Map;
 
 import view.NotificationTexts;
 import view.tabledata.ExpCategory;
+import view.tabledata.SchadenAmSpieler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import model.AusruestungBeute;
 import model.Gegenstand;
 import model.GegnerEinheit;
@@ -140,6 +143,15 @@ public class KampfendeController extends NotificationController {
     private void initializeGegnerTable() {
         gegnerTableView_.setItems(participatingGegner_);
         gegnerColumn_.setCellValueFactory(new PropertyValueFactory<GegnerEinheit, String>("name_"));
+        gegnerColumn_.setCellFactory(
+                new Callback<TableColumn<GegnerEinheit, String>, TableCell<GegnerEinheit, String>>() {
+                    @Override
+                    public TableCell<GegnerEinheit, String> call(TableColumn<GegnerEinheit, String> tableColumn)  {
+                        return new GegnerStateCell();
+                    }
+                }
+            );
+        gegnerTableView_.getSelectionModel().setCellSelectionEnabled(true);
         addListenerToGegnerTableView();
     }
     
