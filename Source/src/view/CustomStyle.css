@@ -30,11 +30,6 @@
 
 
 
-.listview-referse-scroll	{	
-}
-
-
-
 .combobox-bevel-gray:focused	{
 	-fx-border-radius:8,7,6;
 	-fx-border-color: #339966;
@@ -58,6 +53,64 @@
 .button-bevel-gray:focused	{
 	-fx-border-radius:10,10,10;
 	-fx-border-color: #339966;
+}
+
+
+
+#helm-button	{
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#ffc700 10%, gold 30%, #ffef97 60%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
+
+
+
+#ruestung-button	{
+	-fx-text-fill: white;
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#0e9954 10%, #339966 30%, #6bb48f 60%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
+
+
+
+#direkt-button	{
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#ef6e00 10%, darkorange 30%, #ffba66 60%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
+
+
+
+#block-button	{
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    transparent linear-gradient(#ef6e00 10%, darkorange 30%, #ffba66 60%), 
+	    radial-gradient(center -50% 50%, radius 270%,white 10%, #baff40 30%,#9bf300 40%, #80c800 60%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
+
+
+
+#aoe-button	{
+	-fx-background-color:
+	    linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold;
+    -fx-effect: dropshadow( gaussian , #ffc700, 15, 0.0 , 0 , 1);
 }
 
 

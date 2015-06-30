@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
@@ -41,9 +42,9 @@
             <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#onHelmButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Helm" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#onRuestungButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Rüstung" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#onDirektButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Direkt" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button id="helm-button" mnemonicParsing="false" onAction="#onHelmButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Helm" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Button id="ruestung-button" mnemonicParsing="false" onAction="#onRuestungButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Rüstung" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button id="direkt-button" mnemonicParsing="false" onAction="#onDirektButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Direkt" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
             <AnchorPane maxWidth="-Infinity" prefHeight="20.0" prefWidth="100.0" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
                <children>
                   <Label layoutX="9.0" layoutY="7.0" text="+" AnchorPane.bottomAnchor="21.0" />
@@ -51,8 +52,8 @@
                   <Label layoutX="82.0" layoutY="7.0" text="\%" AnchorPane.bottomAnchor="20.0" />
                </children>
             </AnchorPane>
-            <Button mnemonicParsing="false" onAction="#onBlockClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#onAoESchadenClick" prefWidth="80.0" styleClass="button-bevel-gray" stylesheets="@CustomStyle.css" text="AoE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
+            <Button id="block-button" mnemonicParsing="false" onAction="#onBlockClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+            <Button id="aoe-button" mnemonicParsing="false" onAction="#onAoESchadenClick" prefWidth="80.0" styleClass="button-bevel-gray" stylesheets="@CustomStyle.css" text="AoE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
                <tooltip>
                   <Tooltip text="Area of Effect:&#10;Schaden gegen&#10;alle Gegner." textAlignment="CENTER" />
                </tooltip>
