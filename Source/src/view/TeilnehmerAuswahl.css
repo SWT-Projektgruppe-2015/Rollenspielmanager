@@ -1,0 +1,181 @@
+/*704214 is the hex value of Sepia.*/
+/*FCFBF4 is the hex value of Background-beige.*/
+/*669933 is the hex value of Hans-green.*/
+
+
+
+.background-color	{
+	-fx-background-color: #FCFBF4;
+}
+
+
+
+.textfield-background	{
+	-fx-background-color: #ffffff;
+	-fx-border-color: #704214;
+	-fx-prompt-text-fill: rgb(107,107,107);
+	-fx-border-radius: 2%;
+}
+
+
+
+.combobox-bevel-gray	{
+    -fx-background-color: 
+	    linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+
+
+.combobox-bevel-gray:focused	{
+	-fx-background-color:
+	    linear-gradient(#94B870, #3D5C1F),
+	    linear-gradient(#94B870 0%, #669933 20%, #3D5C1F 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+}
+
+
+
+.button-bevel-gray	{
+    -fx-background-color: 
+	    linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+    -fx-background-radius: 10,10,10;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+
+
+.button-bevel-gray:focused	{
+	-fx-background-color:
+	    linear-gradient(#94B870, #3D5C1F),
+	    linear-gradient(#94B870 0%, #669933 20%, #3D5C1F 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+}
+
+
+
+.button-green	{
+    -fx-background-color:
+        linear-gradient(#f0ff35, #669933),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( gaussian, rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-text-fill: #395306;
+}
+
+
+
+.button-green:focused	{
+	-fx-border-radius:6,5;
+	-fx-effect: dropshadow(gaussian, #669933 , 25, 0.0 , 0 , 1 );
+}
+
+
+
+.listview-text	{
+	-fx-alignment: left;
+}
+
+
+
+.listview-background	{
+	-fx-background-color: #FCFBF4;
+	-fx-border-color: #704214;
+	-fx-border-radius: 2%;
+}
+
+
+
+.listview-background:focused	{
+	-fx-border-color: #669933;
+}
+
+
+
+#left-listview.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-alignment:center-right;
+}
+
+
+
+
+#right-table-teilnehmer-auswahl.table-view {
+	-fx-background-color: #FCFBF4;
+	-fx-border-color: #704214;
+	-fx-border-radius: 2%;
+}	
+	
+	
+#right-table-teilnehmer-auswahl.table-view .column-header-background {
+	-fx-background-color: #fcfbf4;
+	-fx-background-radius: 5px 5px 0px 0px;
+}
+
+
+
+#right-table-teilnehmer-auswahl.table-view .filler	{
+	-fx-background-color: #fcfbf4;
+	-fx-background-radius: 5px 5px 0px 0px;
+}
+
+
+
+#kreis-column	{
+	-fx-background-radius: 5px 0px 0px 0px;
+}
+
+
+
+#name-column	{
+	-fx-background-radius: 0px 5px 0px 0px;
+}
+
+
+
+#left-table-teilnehmer-auswahl.table-view {
+	-fx-background-color: #FCFBF4;
+	-fx-border-color: #704214;
+	-fx-border-radius: 2%;
+}
+
+
+
+#left-table-teilnehmer-auswahl.table-view .column-header-background {
+	-fx-background-color: #fcfbf4;
+	-fx-background-radius: 5px 5px 0px 0px;
+}
+
+
+
+#left-table-teilnehmer-auswahl.table-view .filler	{
+	-fx-background-color: #fcfbf4;
+	-fx-background-radius: 5px 5px 0px 0px;
+}
+
+
+
+#gegnertyp-column	{
+	-fx-background-radius: 5px 0px 0px 0px;
+}
+
+
+
+#anzahl-column	{
+	-fx-background-radius: 0px 5px 0px 0px;
+}
+
+
+
+#left-listview.list-view > .virtual-flow	{
+	
+}

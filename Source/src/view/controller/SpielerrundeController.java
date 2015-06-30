@@ -464,6 +464,7 @@ public class SpielerrundeController extends NotificationController {
             aoESchaden  = getAddedSchaden();
             switch(waffe.getEffektTyp_())   {
                 case AOE_SCHADEN_RUE:   {
+                    
                     for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
                         //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
                         List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
@@ -472,7 +473,6 @@ public class SpielerrundeController extends NotificationController {
                             GegnerEinheit einheit = (GegnerEinheit) entry;
                             applySchaden(aoESchaden, einheit);
                             if(einheit.getCurrentLebenspunkte_() <= 0) {
-                                removeGegnerFromTable(true, gegner);
                                 createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
                             }else   {
                                 einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
@@ -495,7 +495,6 @@ public class SpielerrundeController extends NotificationController {
                             GegnerEinheit einheit = (GegnerEinheit) entry;
                             einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-aoESchaden);
                             if(einheit.getCurrentLebenspunkte_() <= 0) {
-                                removeGegnerFromTable(true, gegner);
                                 createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
                             }else   {
                                 einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
