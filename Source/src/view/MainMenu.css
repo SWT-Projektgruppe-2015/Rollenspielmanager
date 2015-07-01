@@ -102,7 +102,9 @@
                derive(#704214,20%) 10%, 
                derive(#704214,-10%) 80%) 100%
     );
-}
+    -fx-background-image:url('/img/vine_8.png');
+    -fx-background-repeat: no-repeat round;
+    }
 
 
 
