@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -9,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="hauptmenu-anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="800.0" styleClass="background-color" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
+<AnchorPane id="hauptmenu-anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="800.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
    <children>
       <SplitPane id="hauptmenu-splitpane" dividerPositions="0.6641604010025063" focusTraversable="false" layoutX="258.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" styleClass="background-color" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -90,4 +91,8 @@
       <Rectangle fill="DODGERBLUE" height="3.0" layoutX="526.0" layoutY="454.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-exterioir-left" width="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="454.0" />
       <Rectangle fill="DODGERBLUE" height="2.0" layoutX="526.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-exterioir-left" width="1.0" AnchorPane.bottomAnchor="454.0" AnchorPane.topAnchor="0.0" />
    </children>
+   <stylesheets>
+      <URL value="@CustomStyle.css" />
+      <URL value="@MainMenu.css" />
+   </stylesheets>
 </AnchorPane>

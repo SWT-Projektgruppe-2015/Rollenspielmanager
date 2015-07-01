@@ -34,7 +34,7 @@
 
 .button-mainmenu:pressed	{
 	-fx-text-fill:#339966;
-	-fx-effect: dropshadow( gaussian , #669933 , 25, 0.0 , 0 , -5 );
+	-fx-effect: dropshadow( gaussian , #669933 , 15, 0.0 , 0 , -5 );
 	-fx-border-radius: 110%;
 	-fx-border-color: linear-gradient( derive(#669933, -10%) 0%, derive(#669933, 100%)  50%, derive(#669933, -10%));
 	-fx-border-width: 2px;
