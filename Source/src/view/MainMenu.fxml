@@ -59,9 +59,6 @@
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
-                     <padding>
-                        <Insets left="60.0" />
-                     </padding>
                   </GridPane>
                </children>
             </AnchorPane>
@@ -70,12 +67,12 @@
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="89.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
-                  <RowConstraints maxHeight="320.0" minHeight="10.0" prefHeight="316.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="420.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <ComboBox fx:id="gruppenDropDown_" prefHeight="32.0" prefWidth="277.0" promptText="Wähle Gruppe..." styleClass="combobox-bevel-gray" />
-                  <TableView fx:id="spielerInGruppe_" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" styleClass="tableview-mainmenu" GridPane.rowIndex="1">
+                  <TableView fx:id="spielerInGruppe_" focusTraversable="false" prefHeight="347.0" prefWidth="263.0" styleClass="tableview-mainmenu" GridPane.rowIndex="1">
                     <columns>
                       <TableColumn fx:id="name_" prefWidth="172.0" text="Name" />
                       <TableColumn fx:id="kreis_" prefWidth="45.0" text="Kreis" />
@@ -86,5 +83,11 @@
             </GridPane>
         </items>
       </SplitPane>
+      <Rectangle fill="DODGERBLUE" height="3.0" layoutX="527.0" layoutY="454.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-interior" width="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="454.0" />
+      <Rectangle fill="DODGERBLUE" height="2.0" layoutX="527.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-interior" width="8.0" AnchorPane.bottomAnchor="452.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle fill="DODGERBLUE" height="2.0" layoutX="535.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-exterioir-right" width="1.0" AnchorPane.bottomAnchor="454.0" AnchorPane.topAnchor="0.0" />
+      <Rectangle fill="DODGERBLUE" height="3.0" layoutX="535.0" layoutY="454.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-exterioir-right" width="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="454.0" />
+      <Rectangle fill="DODGERBLUE" height="3.0" layoutX="526.0" layoutY="454.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-exterioir-left" width="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="454.0" />
+      <Rectangle fill="DODGERBLUE" height="2.0" layoutX="526.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-exterioir-left" width="1.0" AnchorPane.bottomAnchor="454.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
