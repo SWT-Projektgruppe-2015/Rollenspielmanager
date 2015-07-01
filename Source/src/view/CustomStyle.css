@@ -1,3 +1,9 @@
+.background-color	{
+	-fx-background-color: #FCFBF4;
+}
+
+
+
 .button-mainmenu	{
 	-fx-background-color: white;
 	-fx-background-repeat: no-repeat;
@@ -13,6 +19,7 @@
     -fx-font-family: DejaVu Sans;
     -fx-font-weight: bold;
     -fx-font-size: 28px;
+	-fx-effect: dropshadow(gaussian , #669933 , 15, 0.0 , 0 , 0 );
 }
 
 
@@ -25,7 +32,7 @@
     -fx-background-radius: 8,7,6;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 
@@ -45,7 +52,7 @@
     -fx-background-radius: 10,10,10;
     -fx-background-insets: 0,1,2;
     -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
 }
 
 
@@ -115,13 +122,23 @@
 
 
 
+.menubar-bevel-gray	{
+    -fx-background-color:
+	    linear-gradient(#bbbbbb 0%, #f9f9f9 50%);
+    -fx-background-insets: 1;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+
+
+
 .button-green	{
     -fx-background-color:
         linear-gradient(#f0ff35, #669933),
         radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
     -fx-background-radius: 6, 5;
     -fx-background-insets: 0, 1;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+    -fx-effect: dropshadow( gaussian, rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
     -fx-text-fill: #395306;
 }
 
@@ -129,17 +146,40 @@
 
 .button-green:focused	{
 	-fx-border-radius:6,5;
-	-fx-effect: dropshadow( three-pass-box , #669933 , 25, 0.0 , 0 , 1 );
+	-fx-effect: dropshadow(gaussian, #669933 , 25, 0.0 , 0 , 1 );
 }
 
 
 .tableview-mainmenu	{
-	
+	-fx-background-color: #FCFBF4;
 }
 
 
 
 .tableview-mainmenu:focused	{
+}
+
+
+
+.listview-background	{
+	-fx-background-color: #FCFBF4;
+	-fx-border-color: darkgrey;
+	-fx-border-radius: 2%;
+}
+
+
+
+.listview-background:focused	{
+	-fx-border-color: #669933;
+}
+
+
+
+.textfield-background	{
+	-fx-background-color: #FCFBF4;
+	-fx-border-color: darkgrey;
+	-fx-prompt-text-fill: rgb(107,107,107);
+	-fx-border-radius: 2%;
 }
 
 
@@ -152,7 +192,14 @@
 
 
 .button-mainmenu:hover	{
-   -fx-text-fill: #339966;
+	-fx-text-fill: #339966;
+}
+
+
+
+.button-mainmenu:focused	{
+	-fx-border-radius:100em;
+	-fx-effect: dropshadow( gaussian , #669933 , 35, 0.0 , 0 , 1 );
 }
 
 
@@ -210,6 +257,25 @@
 	-fx-pref-width: 100px;
 	-fx-pref-height: 40px;
 	-fx-font-size: 16px;
+}
+
+
+
+#hauptmenu-splitpane.split-pane .split-pane-divider	{
+   	-fx-border-color: transparent ladder(
+        #704214,
+        black 20%,
+        derive(#704214,-30%) 30%) transparent #7E552B;
+	-fx-background-color: linear-gradient(
+        to right,
+        ladder(#704214, 
+               derive(#704214,80%) 60%, 
+               white 82%) 0%,
+        ladder(#704214, 
+               derive(#704214,20%) 10%, 
+               derive(#704214,-10%) 80%) 100%
+    );
+	
 }
 
 

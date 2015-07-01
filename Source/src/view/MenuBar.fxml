@@ -7,7 +7,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MenuBarController">
    <bottom>
-      <MenuBar nodeOrientation="RIGHT_TO_LEFT" styleClass="combobox-bevel-gray" stylesheets="@CustomStyle.css" BorderPane.alignment="CENTER">
+      <MenuBar nodeOrientation="RIGHT_TO_LEFT" stylesheets="@CustomStyle.css" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Hilfe">
             <items>
@@ -16,6 +16,10 @@
             </items>
           </Menu>
         </menus>
+         <styleClass>
+            <String fx:value="background-color" />
+            <String fx:value="menubar-bevel-gray" />
+         </styleClass>
       </MenuBar>
    </bottom>
 </BorderPane>
