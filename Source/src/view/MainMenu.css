@@ -1,0 +1,136 @@
+.button-mainmenu	{
+	-fx-background-color: white;
+	-fx-background-repeat: no-repeat;
+    -fx-background-size: 80%;
+    -fx-background-radius: 100;
+    
+    -fx-padding: 110 0 0 0;
+    
+    -fx-text-fill: black;
+    -fx-pref-width: 170px;
+    -fx-pref-height: 170px;
+    
+    -fx-font-family: DejaVu Sans;
+    -fx-font-weight: bold;
+    -fx-font-size: 28px;
+	-fx-effect: dropshadow(gaussian , #669933 , 15, 0.0 , 0 , 0 );
+	-fx-border-radius:100%;
+}
+
+
+
+.button-mainmenu:hover	{
+	-fx-text-fill: #339966;
+}
+
+
+
+.button-mainmenu:focused	{
+	-fx-effect: dropshadow( gaussian , #669933 , 35, 0.0 , 0 , 0 );
+}
+
+/*linear-gradient(derive(#339966, -60%) 0%, derive(#339966, 50%)  55%, 
+		derive(#339966, 100%)  60%, derive(#339966, 50%)  65%, derive(#339966, -60%)); */
+
+.button-mainmenu:pressed	{
+	-fx-text-fill:#339966;
+	-fx-effect: dropshadow( gaussian , #669933 , 25, 0.0 , 0 , -5 );
+	-fx-border-radius: 110%;
+	-fx-border-color: linear-gradient( derive(#669933, -10%) 0%, derive(#669933, 100%)  50%, derive(#669933, -10%));
+	-fx-border-width: 2px;
+	-fx-border-style: solid;
+}
+
+
+
+.button-kampf	{
+	-fx-font-size: 30px;
+	-fx-padding: 110 0 0 0;
+	-fx-background-position: 30% 10%;
+    -fx-background-image: url('/img/Hauptmenu_rund/kaempfer_rund_v1.png');   
+}
+
+
+
+.button-haendler	{
+	-fx-background-position: 40% 30%;
+	-fx-background-image: url('/img/Hauptmenu_rund/schwerter_rund_v1.png');
+}
+
+
+
+.button-wuerfeln	{
+	-fx-background-position: 49% 40%;
+	-fx-background-image: url('/img/Hauptmenu_rund/wuerfel_rund_v1.png');
+}
+
+
+
+.button-gruppen	{
+	-fx-padding: 98 0 0 0;
+	-fx-background-position: 50% 30%;
+    -fx-background-size: 60%;
+	-fx-background-image: url('/img/gruppe.jpg');
+	-fx-font-size: 14px;
+}
+
+
+
+.tableview-mainmenu	{
+	-fx-background-color: #FCFBF4;
+}
+
+
+
+.tableview-mainmenu:focused	{
+	
+}
+
+
+
+#hauptmenu-splitpane.split-pane .split-pane-divider	{
+   	-fx-border-color: transparent ladder(
+        #704214,
+        black 20%,
+        derive(#704214,-30%) 30%) transparent #7E552B;
+	-fx-background-color: linear-gradient(
+        to right,
+        ladder(#704214, 
+               derive(#704214,80%) 60%, 
+               white 82%) 0%,
+        ladder(#704214, 
+               derive(#704214,20%) 10%, 
+               derive(#704214,-10%) 80%) 100%
+    );
+}
+
+
+
+.rectangle-mainmenu-interior	{
+	-fx-fill: linear-gradient(
+        to right,
+        ladder(#704214, 
+               derive(#704214,80%) 60%, 
+               white 82%) 0%,
+        ladder(#704214, 
+               derive(#704214,20%) 10%, 
+               derive(#704214,-10%) 80%) 100%
+    );
+}
+
+
+
+.rectangle-mainmenu-exterioir-right	{
+	-fx-fill: ladder(
+        #704214,
+        black 20%,
+        derive(#704214,-30%) 30%) transparent #7E552B;
+}
+
+
+
+.rectangle-mainmenu-exterioir-left	{
+	-fx-fill: #7E552B;
+}
+
+
