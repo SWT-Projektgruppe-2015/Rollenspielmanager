@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="750.0" stylesheets="@TeilnehmerAuswahl.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.TeilnehmerAuswahlController">
+<AnchorPane prefHeight="600.0" prefWidth="750.0" stylesheets="@stylesheets/TeilnehmerAuswahl.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.TeilnehmerAuswahlController">
    <children>
       <VBox layoutX="35.0" layoutY="300.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="310.0">
          <children>
@@ -79,7 +79,7 @@
             </VBox>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TableView id="right-table-teilnehmer-auswahl" fx:id="gegnerInKampfTableView_" editable="true" layoutX="15.0" layoutY="10.0" prefHeight="220.0" prefWidth="250.0" stylesheets="@TeilnehmerAuswahl.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView id="right-table-teilnehmer-auswahl" fx:id="gegnerInKampfTableView_" editable="true" layoutX="15.0" layoutY="10.0" prefHeight="220.0" prefWidth="250.0" stylesheets="@stylesheets/TeilnehmerAuswahl.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn id="gegnertyp-column" fx:id="nameInKampfColumn_" prefWidth="167.0" text="Gegnertyp" />
                       <TableColumn id="anzahl-column" fx:id="numberOfColumn_" editable="true" prefWidth="81.0" text="Anzahl" />

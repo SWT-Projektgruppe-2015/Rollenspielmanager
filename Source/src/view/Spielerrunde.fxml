@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="0.0" minWidth="676.0" prefHeight="400.0" stylesheets="@CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
+<AnchorPane minHeight="0.0" minWidth="676.0" prefHeight="400.0" stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
    <children>
       <TreeTableView fx:id="gegnerTreeTableView_" editable="true" layoutX="478.0" layoutY="47.0" prefHeight="200.0" prefWidth="300.0" showRoot="false" AnchorPane.bottomAnchor="90.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
@@ -28,7 +28,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <GridPane layoutX="187.0" layoutY="5.0" prefHeight="370.0" prefWidth="111.0" stylesheets="@CustomStyle.css" vgap="10.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="20.0">
+      <GridPane layoutX="187.0" layoutY="5.0" prefHeight="370.0" prefWidth="111.0" stylesheets="@stylesheets/CustomStyle.css" vgap="10.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="335.0" AnchorPane.topAnchor="20.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -53,7 +53,7 @@
                </children>
             </AnchorPane>
             <Button id="block-button" mnemonicParsing="false" onAction="#onBlockClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Blocken" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <Button id="aoe-button" mnemonicParsing="false" onAction="#onAoESchadenClick" prefWidth="80.0" styleClass="button-bevel-gray" stylesheets="@CustomStyle.css" text="AoE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
+            <Button id="aoe-button" mnemonicParsing="false" onAction="#onAoESchadenClick" prefWidth="80.0" styleClass="button-bevel-gray" stylesheets="@stylesheets/CustomStyle.css" text="AoE" GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="TOP">
                <tooltip>
                   <Tooltip text="Area of Effect:&#10;Schaden gegen&#10;alle Gegner." textAlignment="CENTER" />
                </tooltip>

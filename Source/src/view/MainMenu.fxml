@@ -92,7 +92,7 @@
       <Rectangle fill="DODGERBLUE" height="2.0" layoutX="526.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-mainmenu-exterioir-left" width="1.0" AnchorPane.bottomAnchor="454.0" AnchorPane.topAnchor="0.0" />
    </children>
    <stylesheets>
-      <URL value="@CustomStyle.css" />
-      <URL value="@MainMenu.css" />
+      <URL value="@stylesheets/CustomStyle.css" />
+      <URL value="@stylesheets/MainMenu.css" />
    </stylesheets>
 </AnchorPane>

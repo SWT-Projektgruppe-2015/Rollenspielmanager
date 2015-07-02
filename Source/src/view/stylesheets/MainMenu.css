@@ -29,8 +29,7 @@
 	-fx-effect: dropshadow( gaussian , #669933 , 35, 0.0 , 0 , 0 );
 }
 
-/*linear-gradient(derive(#339966, -60%) 0%, derive(#339966, 50%)  55%, 
-		derive(#339966, 100%)  60%, derive(#339966, 50%)  65%, derive(#339966, -60%)); */
+
 
 .button-mainmenu:pressed	{
 	-fx-text-fill:#339966;
