@@ -156,7 +156,69 @@
     -fx-background-color: 
     	darkgrey, 
     	derive(#fcfbf4, -4%), 
-    	linear-gradient(to bottom,derive(#fcfbf4,34%) 0%,derive(#fcfbf4,-18%) 100%);
+    	linear-gradient(to top,derive(#fcfbf4,34%) 0%,derive(#fcfbf4,-18%) 100%);
+}
+
+
+
+.tab-pane > .tab-header-area > .headers-region > .tab:hover {
+	/*-fx-background-color: 
+    	#669933, 
+    	derive(#fcfbf4, -4%), 
+    	linear-gradient(to bottom,derive(#fcfbf4,34%) 0%,derive(#fcfbf4,-18%) 100%);*/
+}
+
+
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected	{
+	/*-fx-background-color: #669933, derive(#669933, 30%);*/
+    -fx-background-insets: 0 1 0 0, 1 2 0 1;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0;
+}
+
+
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-style: segments(0.166667em, 0.166667em);
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+}
+
+
+
+.tab-pane.floating > .tab-header-area > .tab-header-background {
+    -fx-background-color: null;
+}
+
+
+
+.tab-pane.floating > .tab-header-area {
+    -fx-background-color: null;
+}
+
+
+
+.tab-pane.floating > .tab-content-area {
+    -fx-background-color: darkgrey, #fcfbf4;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 5, 4;
+    -fx-padding: 2;
+}
+
+
+
+.tab-pane.floating > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: darkgrey, derive(#fcfbf4, -4%), linear-gradient(to bottom,derive(#fcfbf4,34%) 0%,derive(#fcfbf4,-18%) 100%);
+    -fx-background-insets: 0 1 1 0, 1 2 1 1, 2 3 1 2;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+}
+
+
+
+.tab-pane.floating  > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: darkgrey, #fcfbf4;
+    -fx-background-insets: 0 1 -1 0, 1 2 -1 1;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0;
 }
 
 
