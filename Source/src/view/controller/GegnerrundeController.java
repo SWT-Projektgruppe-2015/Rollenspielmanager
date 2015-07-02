@@ -48,6 +48,7 @@ public class GegnerrundeController {
     @FXML
     private void initialize() {
         schadenColumn_.setStyle( "-fx-alignment: CENTER;");
+        spielerNameColumn_.setStyle( "-fx-alignment: CENTER-LEFT;");
         gegnerListView_.getSelectionModel().selectedItemProperty()
             .addListener(new ChangeListener<GegnerEinheit>(){
                 @Override

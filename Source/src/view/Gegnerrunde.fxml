@@ -37,8 +37,8 @@
       <TableView fx:id="schadensAnzeigeTableView_" fixedCellSize="40.0" layoutX="355.0" layoutY="20.0" styleClass="tableview-background" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="20.0">
         <columns>
           <TableColumn fx:id="spielerNameColumn_" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" text="Spieler" />
-          <TableColumn fx:id="schadenColumn_" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" styleClass="column-tableview" text="Schaden" />
-            <TableColumn fx:id="trefferZoneColumn_" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" styleClass="column-tableview" text="Zone" />
+          <TableColumn fx:id="schadenColumn_" maxWidth="75.0" minWidth="75.0" prefWidth="75.0" text="Schaden" />
+            <TableColumn fx:id="trefferZoneColumn_" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="Zone" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
