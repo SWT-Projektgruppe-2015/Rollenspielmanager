@@ -1,9 +1,9 @@
 .background-gegnerrunde	{
-	-fx-background-color: gainsboro;
+	-fx-background-color: #fcfbf4;
 }
 
 .button-angriff	{
-	-fx-background-color: gainsboro;
+	-fx-background-color: #fcfbf4;
 	-fx-background-repeat: no-repeat;
     -fx-background-size: 100%;
     -fx-text-fill: black;
@@ -11,13 +11,6 @@
 	-fx-background-image: url('/img/Schwerter/00.png');
 	-fx-font-size: 18px;
 }
-
-
-
-
-/*.font-papyrus	{
-	-fx-font-family: Papyrus;
-} */
 
 
 
