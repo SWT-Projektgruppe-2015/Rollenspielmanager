@@ -26,7 +26,7 @@
 							<children>
 								<TextField fx:id="spielerNameTextField_" layoutX="33.0" layoutY="31.0" onAction="#updateSpieler" styleClass="textfield-background" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="31.0" />
 								<TextField fx:id="spielerLevelTextField_" editable="false" layoutX="33.0" layoutY="97.0" prefHeight="26.0" prefWidth="60.0" styleClass="textfield-background" />
-								<Label layoutX="33.0" layoutY="75.0" stylesheets="stylesheets/@CustomStyle.css" text="Stufe" AnchorPane.leftAnchor="33.0">
+								<Label layoutX="33.0" layoutY="75.0" stylesheets="@stylesheets/CustomStyle.css" text="Stufe" AnchorPane.leftAnchor="33.0">
                            <font>
                               <Font size="14.0" />
                            </font></Label>
