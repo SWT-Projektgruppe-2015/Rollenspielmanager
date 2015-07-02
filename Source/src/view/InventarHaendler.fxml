@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="757.0" stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.InventarHaendlerController">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="461.0" prefWidth="757.0" styleClass="background-color" stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.InventarHaendlerController">
 	<children>
 		<GridPane layoutY="11.0" prefHeight="321.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<columnConstraints>
@@ -21,7 +21,7 @@
 			<children>
 				<VBox prefHeight="254.0" prefWidth="176.0" GridPane.vgrow="ALWAYS">
 					<children>
-						<TextField fx:id="searchGegenstandTreeTextField_" onAction="#searchGegenstandTreeView" onKeyReleased="#searchGegenstandTreeView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ...">
+						<TextField fx:id="searchGegenstandTreeTextField_" onAction="#searchGegenstandTreeView" onKeyReleased="#searchGegenstandTreeView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." styleClass="textfield-background">
 							<rotationAxis>
 								<Point3D />
 							</rotationAxis>
@@ -31,7 +31,7 @@
 								<Insets bottom="2.0" top="2.0" />
 							</padding>
 						</Label>
-						<TreeView fx:id="gegenstandKategorieTreeView_" prefHeight="292.0" prefWidth="245.0" VBox.vgrow="ALWAYS">
+						<TreeView id="custom-treeview" fx:id="gegenstandKategorieTreeView_" prefHeight="292.0" prefWidth="245.0" stylesheets="@stylesheets/CustomStyle.css" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets bottom="70.0" />
 							</VBox.margin>
@@ -43,13 +43,13 @@
 				</VBox>
 				<VBox prefHeight="254.0" prefWidth="176.0" GridPane.columnIndex="1">
 					<children>
-						<TextField fx:id="searchGegenstandListTextField_" onAction="#searchGegenstandListView" onKeyReleased="#searchGegenstandListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche..." />
+						<TextField fx:id="searchGegenstandListTextField_" onAction="#searchGegenstandListView" onKeyReleased="#searchGegenstandListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche..." styleClass="textfield-background" />
 						<Label text="Gegenstände:">
 							<padding>
 								<Insets bottom="2.0" top="2.0" />
 							</padding>
 						</Label>
-						<ListView fx:id="gegenstandListView_" layoutX="36.0" layoutY="18.0" prefHeight="292.0" prefWidth="244.0" VBox.vgrow="ALWAYS">
+						<ListView id="custom-treeview" fx:id="gegenstandListView_" layoutX="36.0" layoutY="18.0" prefHeight="292.0" prefWidth="244.0" stylesheets="@stylesheets/CustomStyle.css" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets bottom="70.0" />
 							</VBox.margin>
@@ -72,9 +72,9 @@
                      </rowConstraints>
                      <children>
                         <Label text="Name:" />
-								<TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="184.0" GridPane.columnIndex="1" />
+								<TextField fx:id="gegenstandNameTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="184.0" styleClass="textfield-background" GridPane.columnIndex="1" />
 								<Label text="Kategorie:" GridPane.rowIndex="1" />
-								<TextField fx:id="gegenstandKategorieTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+								<TextField fx:id="gegenstandKategorieTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="174.0" styleClass="textfield-background" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
                   <GridPane hgap="5.0" vgap="3.0">
@@ -83,18 +83,18 @@
                      </VBox.margin>
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="45.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="80.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="60.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="60.0" />
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label text="Preis:" />
-								<TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="56.0" GridPane.columnIndex="1" />
+								<TextField fx:id="gegenstandKostenTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="56.0" styleClass="textfield-background" GridPane.columnIndex="1" />
 								<Label text="Traglast:" GridPane.columnIndex="2" />
-								<TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="77.0" GridPane.columnIndex="3" />
+								<TextField fx:id="gegenstandTraglastTextField_" onAction="#changeGegenstand" prefHeight="27.0" prefWidth="77.0" styleClass="textfield-background" GridPane.columnIndex="3" />
                      </children>
                   </GridPane>
 						<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Beschreibung:">
@@ -102,7 +102,7 @@
 								<Insets bottom="5.0" top="5.0" />
 							</VBox.margin>
 						</Text>
-						<TextArea fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="226.0" prefWidth="244.0" wrapText="true" VBox.vgrow="ALWAYS" />
+						<TextArea id="custom-text-area" fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="226.0" prefWidth="244.0" stylesheets="@stylesheets/CustomStyle.css" wrapText="true" VBox.vgrow="ALWAYS" />
 						<ButtonBar prefHeight="45.0" prefWidth="185.0">
 							<buttons>
 								<Button mnemonicParsing="false" onAction="#deleteGegenstand" styleClass="button-bevel-gray" text="Löschen">

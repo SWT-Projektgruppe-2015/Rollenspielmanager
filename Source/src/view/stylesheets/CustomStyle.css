@@ -74,7 +74,7 @@
 
 
 .listview-background	{
-	-fx-background-color: #FCFBF4;
+	-fx-background-color: derive(#fcfbf4,30%);
 	-fx-border-color: darkgrey;
 }
 
@@ -87,7 +87,7 @@
 
 
 .tableview-background	{
-	-fx-background-color: #FCFBF4;
+	-fx-background-color: derive(#fcfbf4,30%);
 	-fx-border-color: darkgrey;
 }
 
@@ -109,7 +109,7 @@
         derive(#fcfbf4,100%) 97%,
         derive(#fcfbf4,-10%) 97.5%), 
     	ladder(#fcfbf4, black 10%,derive(#fcfbf4, -15%) 30%), 
-    	#fcfbf4;
+    	derive(#fcfbf4,30%);
     -fx-background-insets: 0, 1, 2;
     -fx-background-radius: 3, 2, 2;
     -fx-padding: 0.25em 0.416667em  0.333333em 0.416667em; /* 3 5 4 5 */
@@ -118,7 +118,7 @@
 
 
 
-.text-field-background:focused {
+.textfield-background:focused {
     -fx-background-color: #669933, ladder(#fcfbf4, black 10%,derive(#fcfbf4, -15%) 30%), #fcfbf4;
     -fx-background-insets: -0.4, 1, 2;
     -fx-background-radius: 3.4, 2, 2;
@@ -195,4 +195,73 @@
 		           derive(#704214,20%) 10%, 
 		           derive(#704214,-10%) 80%) 100%
 		);
+}
+
+
+
+#custom-text-area.text-area {
+	-fx-border-color: darkgrey;
+    -fx-background-color: derive(#fcfbf4,30%);
+    -fx-prompt-text-fill: derive(#fcfbf4,-30%);
+}
+
+
+
+#custom-text-area.text-area > .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+
+
+#custom-text-area.text-area .content {
+    -fx-padding: 3 5 3 5; 
+    -fx-cursor: text;
+}
+
+
+
+#custom-text-area.text-area:focused {
+	-fx-border-color: #669933;
+    -fx-background-color: derive(#fcfbf4,30%);
+    -fx-prompt-text-fill: transparent;
+}
+
+
+
+#custom-text-area.text-area:disabled {
+    -fx-opacity: 0.0;
+}
+
+
+
+#custom-treeview.tree-view {
+    -fx-background-color: darkgrey, derive(#fcfbf4,30%);
+    -fx-background-insets: 0, 1;
+    -fx-padding: 1;
+}
+
+#custom-treeview.tree-view:focused {
+    -fx-background-color: #669933, darkgrey, derive(#fcfbf4,30%);
+    -fx-background-insets: -1.4, 0, 1;
+    -fx-background-radius: 1.4, 0, 0;
+    -fx-padding: 1; 
+}
+
+#custom-treeview.tree-view > .virtual-flow > .scroll-bar:vertical{
+    -fx-background-insets: 0, 0 0 0 1;
+    -fx-padding: -1 -1 -1 0;
+}
+
+#custom-treeview.tree-view > .virtual-flow > .scroll-bar:horizontal{
+    -fx-background-insets: 0, 1 0 0 0;
+    -fx-padding: 0 -1 -1 -1;
+}
+
+#custom-treeview.tree-view:disabled {
+    -fx-opacity: 0.0;
+}
+
+#custom-treeview.tree-view > .virtual-flow > .corner {
+    -fx-background-color: darkgrey, derive(#fcfbf4,30%);
+    -fx-background-insets: 0, 1 0 0 1;
 }
