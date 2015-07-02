@@ -31,7 +31,7 @@
 								<Insets bottom="2.0" top="2.0" />
 							</padding>
 						</Label>
-						<TreeView id="custom-tree-view" fx:id="ausruestungTreeView_" prefHeight="292.0" prefWidth="245.0" VBox.vgrow="ALWAYS">
+						<TreeView id="custom-treeview" fx:id="ausruestungTreeView_" prefHeight="292.0" prefWidth="245.0" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets bottom="70.0" />
 							</VBox.margin>
@@ -111,7 +111,7 @@
 								<Insets bottom="5.0" top="5.0" />
 							</VBox.margin>
 						</Label>
-						<TextArea id="custom-text-area" fx:id="ausruestungBeschreibungTextField_" prefHeight="197.0" prefWidth="244.0" styleClass="text-area" stylesheets="@stylesheets/CustomStyle.css" VBox.vgrow="ALWAYS">
+						<TextArea id="custom-text-area" fx:id="ausruestungBeschreibungTextField_" prefHeight="197.0" prefWidth="244.0" styleClass="text-area" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets />
 							</VBox.margin>
@@ -123,7 +123,7 @@
 										<Font size="15.0" />
 									</font>
 								</Button>
-								<Button mnemonicParsing="false" onAction="#changeAusruestung" styleClass="button-bevel-gray" text="Speichern">
+								<Button mnemonicParsing="false" onAction="#changeAusruestung" prefHeight="29.0" prefWidth="107.0" styleClass="button-bevel-gray" text="Speichern">
 									<font>
 										<Font size="15.0" />
 									</font>

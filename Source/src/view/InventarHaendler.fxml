@@ -32,7 +32,7 @@
 								<Insets bottom="2.0" top="2.0" />
 							</padding>
 						</Label>
-						<TreeView id="custom-treeview" fx:id="gegenstandKategorieTreeView_" prefHeight="292.0" prefWidth="245.0" stylesheets="@stylesheets/CustomStyle.css" VBox.vgrow="ALWAYS">
+						<TreeView id="custom-treeview" fx:id="gegenstandKategorieTreeView_" prefHeight="292.0" prefWidth="245.0" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets bottom="70.0" />
 							</VBox.margin>
@@ -50,7 +50,7 @@
 								<Insets bottom="2.0" top="2.0" />
 							</padding>
 						</Label>
-						<ListView fx:id="gegenstandListView_" layoutX="36.0" layoutY="18.0" prefHeight="292.0" prefWidth="244.0" styleClass="listview-background" stylesheets="@stylesheets/CustomStyle.css" VBox.vgrow="ALWAYS">
+						<ListView fx:id="gegenstandListView_" layoutX="36.0" layoutY="18.0" prefHeight="292.0" prefWidth="244.0" styleClass="listview-background" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets bottom="70.0" />
 							</VBox.margin>
@@ -103,7 +103,7 @@
 								<Insets bottom="5.0" top="5.0" />
 							</VBox.margin>
 						</Text>
-						<TextArea id="custom-text-area" fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="226.0" prefWidth="244.0" style=": ;" stylesheets="@stylesheets/CustomStyle.css" wrapText="true" VBox.vgrow="ALWAYS">
+						<TextArea id="custom-text-area" fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="226.0" prefWidth="244.0" style=": ;" wrapText="true" VBox.vgrow="ALWAYS">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor></TextArea>
