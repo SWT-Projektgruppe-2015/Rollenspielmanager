@@ -16,6 +16,12 @@
 
 
 
+#right-listview.list-view > .virtual-flow > .clipped-container > .sheet > .list-cell {
+    -fx-padding:0.0px 0.0px 0.0px 40.0px;
+}
+
+
+
 
 #right-table-teilnehmer-auswahl.table-view {
 	/*-fx-background-color: #FCFBF4;
@@ -74,7 +80,9 @@
 
 #gegnertyp-column	{
 	-fx-background-radius: 5px 0px 0px 0px;
+	-fx-alignment: center;
 }
+
 
 
 
