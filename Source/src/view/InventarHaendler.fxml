@@ -114,7 +114,7 @@
 										<Font size="15.0" />
 									</font>
 								</Button>
-								<Button mnemonicParsing="false" onAction="#changeGegenstand" styleClass="button-bevel-gray" text="Speichern">
+								<Button mnemonicParsing="false" onAction="#changeGegenstand" prefWidth="107.0" styleClass="button-bevel-gray" text="Speichern">
 									<font>
 										<Font size="15.0" />
 									</font>

@@ -21,17 +21,17 @@
 			<children>
 				<VBox prefHeight="254.0" prefWidth="176.0">
 					<children>
-						<TextField fx:id="searchAusruestungTreeTextField_" onAction="#searchAusruestungTreeView" onKeyReleased="#searchAusruestungTreeView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ...">
+      						<TextField fx:id="searchAusruestungTreeTextField_" onAction="#searchAusruestungTreeView" onKeyReleased="#searchAusruestungTreeView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." styleClass="textfield-background">
 							<VBox.margin>
 								<Insets />
 							</VBox.margin>
-						</TextField>
+      						</TextField>
 						<Label text="Kategorien:">
 							<padding>
 								<Insets bottom="2.0" top="2.0" />
 							</padding>
 						</Label>
-						<TreeView fx:id="ausruestungTreeView_" prefHeight="292.0" prefWidth="245.0" VBox.vgrow="ALWAYS">
+						<TreeView id="custom-tree-view" fx:id="ausruestungTreeView_" prefHeight="292.0" prefWidth="245.0" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets bottom="70.0" />
 							</VBox.margin>
@@ -43,13 +43,13 @@
 				</VBox>
 				<VBox prefHeight="245.0" prefWidth="176.0" GridPane.columnIndex="1">
 					<children>
-						<TextField fx:id="searchAusruestungListTextField_" onAction="#searchAusruestungListView" onKeyReleased="#searchAusruestungListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." />
+						<TextField fx:id="searchAusruestungListTextField_" onAction="#searchAusruestungListView" onKeyReleased="#searchAusruestungListView" prefHeight="35.0" prefWidth="170.0" promptText="Suche ..." styleClass="textfield-background" />
 						<Label text="Gegenstände:">
 							<padding>
 								<Insets bottom="2.0" top="2.0" />
 							</padding>
 						</Label>
-						<ListView fx:id="ausruestungListView_" prefHeight="292.0" prefWidth="244.0" VBox.vgrow="ALWAYS">
+						<ListView fx:id="ausruestungListView_" prefHeight="292.0" prefWidth="244.0" styleClass="listview-background" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets bottom="70.0" />
 							</VBox.margin>
@@ -72,12 +72,12 @@
                      </rowConstraints>
                      <children>
 								<Label text="Name:" />
-								<TextField fx:id="ausruestungNameTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="145.0" GridPane.columnIndex="1">
+								<TextField fx:id="ausruestungNameTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="145.0" styleClass="textfield-background" GridPane.columnIndex="1">
 									<opaqueInsets>
 										<Insets />
 									</opaqueInsets>
 								</TextField>
-								<TextField fx:id="ausruestungKategorieTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="170.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+								<TextField fx:id="ausruestungKategorieTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="170.0" styleClass="textfield-background" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 								<Label text="Kategorie:" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
@@ -94,13 +94,13 @@
                      </rowConstraints>
                      <children>
 								<Label prefHeight="17.0" prefWidth="68.0" text="Preis:" />
-								<TextField fx:id="ausruestungKostenTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="55.0" GridPane.columnIndex="1" />
+								<TextField fx:id="ausruestungKostenTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="55.0" styleClass="textfield-background" GridPane.columnIndex="1" />
 								<Label text="Traglast:" GridPane.columnIndex="2" />
-								<TextField fx:id="ausruestungTraglastTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="68.0" GridPane.columnIndex="3" />
+								<TextField fx:id="ausruestungTraglastTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="68.0" styleClass="textfield-background" GridPane.columnIndex="3" />
 								<Label text="Stärke: " GridPane.columnIndex="2" GridPane.rowIndex="1" />
-								<TextField fx:id="ausruestungStaerkeTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="58.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+								<TextField fx:id="ausruestungStaerkeTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="58.0" styleClass="textfield-background" GridPane.columnIndex="3" GridPane.rowIndex="1" />
 								<Label text="Wert:" GridPane.rowIndex="1" />
-								<TextField fx:id="ausruestungWertTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="70.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+								<TextField fx:id="ausruestungWertTextField_" onAction="#changeAusruestung" prefHeight="27.0" prefWidth="70.0" styleClass="textfield-background" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />
@@ -111,7 +111,7 @@
 								<Insets bottom="5.0" top="5.0" />
 							</VBox.margin>
 						</Label>
-						<TextArea fx:id="ausruestungBeschreibungTextField_" prefHeight="197.0" prefWidth="244.0" VBox.vgrow="ALWAYS">
+						<TextArea id="custom-text-area" fx:id="ausruestungBeschreibungTextField_" prefHeight="197.0" prefWidth="244.0" styleClass="text-area" stylesheets="@stylesheets/CustomStyle.css" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets />
 							</VBox.margin>
