@@ -115,6 +115,13 @@
 
 
 
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color:  #fcfbf4;
+    -fx-effect: innershadow(two-pass-box , rgba(0,0,0,0.6) , 4, 0.0 , 0 , 0);
+}
+
+
+
 .dead-gegner-cell {
 	-fx-background-color: yellow;
 }
