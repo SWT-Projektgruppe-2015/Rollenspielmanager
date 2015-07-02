@@ -4,7 +4,6 @@
 
 
 
-
 .combobox-bevel-gray	{
     -fx-background-color: 
 	    linear-gradient(#f6f6f6, #d9d9d9),
@@ -77,7 +76,6 @@
 .listview-background	{
 	-fx-background-color: #FCFBF4;
 	-fx-border-color: darkgrey;
-	-fx-border-radius: 2%;
 }
 
 
@@ -88,11 +86,23 @@
 
 
 
+.tableview-background	{
+	-fx-background-color: #FCFBF4;
+	-fx-border-color: darkgrey;
+}
+
+
+
+.tableview-background:focused	{
+	-fx-border-color: #669933;
+}
+
+
+
 .textfield-background	{
 	-fx-background-color: #FCFBF4;
 	-fx-border-color: darkgrey;
 	-fx-prompt-text-fill: rgb(107,107,107);
-	-fx-border-radius: 2%;
 }
 
 

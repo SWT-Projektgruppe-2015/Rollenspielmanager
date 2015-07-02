@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
@@ -8,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="750.0" stylesheets="@stylesheets/TeilnehmerAuswahl.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.TeilnehmerAuswahlController">
+<AnchorPane prefHeight="600.0" prefWidth="750.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.TeilnehmerAuswahlController">
    <children>
       <VBox layoutX="35.0" layoutY="300.0" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="310.0">
          <children>
@@ -32,10 +33,10 @@
             <VBox prefWidth="100.0">
                <children>
                   <ComboBox fx:id="gruppenComboBox_" prefHeight="26.0" prefWidth="300.0" promptText="Gruppe auswählen" styleClass="combobox-bevel-gray" />
-                  <TextField fx:id="searchSpielerTextField_" onAction="#searchSpieler" onKeyReleased="#searchSpieler" promptText="Suche..." />
+                  <TextField fx:id="searchSpielerTextField_" onAction="#searchSpieler" onKeyReleased="#searchSpieler" promptText="Suche..." styleClass="textfield-background" />
                   <AnchorPane>
                      <children>
-                        <ListView id="left-listview" fx:id="spielerNotInKampfListView_" nodeOrientation="RIGHT_TO_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <ListView id="left-listview" fx:id="spielerNotInKampfListView_" nodeOrientation="RIGHT_TO_LEFT" styleClass="listview-background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                         <Button mnemonicParsing="false" onAction="#removeSpielerFromKampf" prefHeight="25.0" prefWidth="35.0" styleClass="button-bevel-gray" text="&lt;" AnchorPane.bottomAnchor="70.0" AnchorPane.rightAnchor="1.0">
                            <padding>
                               <Insets bottom="3.0" right="1.0" />
@@ -47,7 +48,7 @@
             </VBox>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <ListView fx:id="spielerInKampfListView_" prefHeight="220.0" prefWidth="251.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="spielerInKampfListView_" prefHeight="220.0" prefWidth="251.0" styleClass="listview-background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   <Button layoutY="125.0" mnemonicParsing="false" onAction="#addSpielerToKampf" prefHeight="25.0" prefWidth="35.0" styleClass="button-bevel-gray" text="&gt;" AnchorPane.bottomAnchor="70.0" AnchorPane.leftAnchor="1.0">
                      <padding>
                         <Insets bottom="3.0" left="1.0" />
@@ -56,10 +57,10 @@
             </AnchorPane>
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="searchGegnerTextField_" onAction="#searchGegner" onKeyReleased="#searchGegner" promptText="Suche..." />
+                  <TextField fx:id="searchGegnerTextField_" onAction="#searchGegner" onKeyReleased="#searchGegner" promptText="Suche..." styleClass="textfield-background" />
                   <AnchorPane>
                      <children>
-                        <TableView id="left-table-teilnehmer-auswahl" fx:id="gegnerNotInKampfTableView_" layoutX="-1.0" layoutY="1.0" nodeOrientation="RIGHT_TO_LEFT" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="1.0">
+                        <TableView id="left-table-teilnehmer-auswahl" fx:id="gegnerNotInKampfTableView_" layoutX="-1.0" layoutY="1.0" nodeOrientation="RIGHT_TO_LEFT" styleClass="tableview-background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
                             <TableColumn id="name-column" fx:id="nameNotInKampfColumn_" minWidth="-1.0" prefWidth="-1.0" text="Name" />
                               <TableColumn fx:id="levelColumn_" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="Level" />
@@ -79,7 +80,7 @@
             </VBox>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TableView id="right-table-teilnehmer-auswahl" fx:id="gegnerInKampfTableView_" editable="true" layoutX="15.0" layoutY="10.0" prefHeight="220.0" prefWidth="250.0" stylesheets="@stylesheets/TeilnehmerAuswahl.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView id="right-table-teilnehmer-auswahl" fx:id="gegnerInKampfTableView_" editable="true" layoutX="15.0" layoutY="10.0" prefHeight="220.0" prefWidth="250.0" styleClass="tableview-background" stylesheets="@stylesheets/TeilnehmerAuswahl.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn id="gegnertyp-column" fx:id="nameInKampfColumn_" prefWidth="167.0" text="Gegnertyp" />
                       <TableColumn id="anzahl-column" fx:id="numberOfColumn_" editable="true" prefWidth="81.0" text="Anzahl" />
@@ -104,4 +105,8 @@
       <Text layoutX="20.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spielercharakter:" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
       <Text layoutX="38.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gegner:" AnchorPane.leftAnchor="20.0" />
    </children>
+   <stylesheets>
+      <URL value="@stylesheets/TeilnehmerAuswahl.css" />
+      <URL value="@stylesheets/CustomStyle.css" />
+   </stylesheets>
 </AnchorPane>
