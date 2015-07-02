@@ -1,0 +1,35 @@
+#kampfende-splitpane.split-pane:horizontal .split-pane-divider	{
+   	-fx-border-color: 
+   		transparent 
+   		ladder(#704214,black 20%,derive(#704214,-30%) 30%) 
+   		transparent 
+   		#7E552B;
+	-fx-background-color: linear-gradient(
+			to right, 
+			ladder(#704214, derive(#704214,80%) 60%, white 82%) 0%,
+        	ladder(#704214, derive(#704214,20%) 10%, derive(#704214,-10%) 80%) 100%
+    );
+    -fx-background-image:url('/img/vine_8.png');
+    -fx-background-repeat: no-repeat round;
+}
+
+
+
+#kampfende-splitpane.split-pane:vertical .split-pane-divider	{
+	-fx-border-color: 
+   		#7E552B 
+   		transparent 
+   		ladder(#704214,black 20%,derive(#704214,-30%) 30%)  
+   		transparent;
+	-fx-background-color: transparent, 
+		linear-gradient(
+		    to bottom,
+		    ladder(#704214, 
+		           derive(#704214,80%) 60%, 
+		           white 82%) 0%,
+		    ladder(#704214, 
+		           derive(#704214,20%) 10%, 
+		           derive(#704214,-10%) 80%) 100%
+		);
+	-fx-background-insets: 0, 1 0 1 0;
+}

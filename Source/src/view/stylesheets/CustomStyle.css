@@ -100,9 +100,29 @@
 
 
 .textfield-background	{
-	-fx-background-color: #FCFBF4;
 	-fx-border-color: darkgrey;
 	-fx-prompt-text-fill: rgb(107,107,107);
+	-fx-background-color: ladder(#fcfbf4,transparent 0%,
+        derive(#fcfbf4,40%)   5%,
+        derive(#fcfbf4,60%)  70%,
+        derive(#fcfbf4,100%) 85%,
+        derive(#fcfbf4,100%) 97%,
+        derive(#fcfbf4,-10%) 97.5%), 
+    	ladder(#fcfbf4, black 10%,derive(#fcfbf4, -15%) 30%), 
+    	#fcfbf4;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 3, 2, 2;
+    -fx-padding: 0.25em 0.416667em  0.333333em 0.416667em; /* 3 5 4 5 */
+    -fx-cursor: text;
+}
+
+
+
+.text-field-background:focused {
+    -fx-background-color: #669933, ladder(#fcfbf4, black 10%,derive(#fcfbf4, -15%) 30%), #fcfbf4;
+    -fx-background-insets: -0.4, 1, 2;
+    -fx-background-radius: 3.4, 2, 2;
+    -fx-prompt-text-fill: transparent;
 }
 
 
@@ -131,4 +151,48 @@
 .dead-gegner-cell:filled:selected:focused, .dead-gegner-cell:filled:selected, .dead-gegner-cell:selected  {
 	-fx-background-color: orange;
 	-fx-text-fill: black;
+}
+
+
+
+.rectangle-interior	{
+	-fx-fill: linear-gradient(
+        to right,
+        ladder(#704214, 
+               derive(#704214,80%) 60%, 
+               white 82%) 0%,
+        ladder(#704214, 
+               derive(#704214,20%) 10%, 
+               derive(#704214,-10%) 80%) 100%
+    );
+}
+
+
+
+.rectangle-exterioir-right	{
+	-fx-fill: ladder(
+        #704214,
+        black 20%,
+        derive(#704214,-30%) 30%) transparent #7E552B;
+}
+
+
+
+.rectangle-exterioir-left	{
+	-fx-fill: #7E552B;
+}
+
+
+
+.rectangle-interior-vertical	{
+	 -fx-fill: 
+		linear-gradient(
+		    to bottom,
+		    ladder(#704214, 
+		           derive(#704214,80%) 60%, 
+		           white 82%) 0%,
+		    ladder(#704214, 
+		           derive(#704214,20%) 10%, 
+		           derive(#704214,-10%) 80%) 100%
+		);
 }
