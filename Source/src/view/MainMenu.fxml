@@ -32,7 +32,7 @@
                               <String fx:value="button-gruppen" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Kampf" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Anakok&#10;die Kriegerin " textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="DejaVu Sans Bold" size="23.0" />
                            </font>

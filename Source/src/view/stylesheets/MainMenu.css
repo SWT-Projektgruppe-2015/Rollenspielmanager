@@ -43,10 +43,11 @@
 
 
 .button-kampf	{
-	-fx-font-size: 30px;
-	-fx-padding: 110 0 0 0;
-	-fx-background-position: 30% 10%;
-    -fx-background-image: url('/img/Hauptmenu_rund/kaempfer_rund_v1.png');   
+	-fx-font-size: 1.15em;
+	-fx-padding: 79.0px 0.0px 0.0px 0.0px; 
+	-fx-background-position: 50% 0%;
+    -fx-background-size: 95%;
+    -fx-background-image: url('/img/Kriegerin_2.png');   
 }
 
 
