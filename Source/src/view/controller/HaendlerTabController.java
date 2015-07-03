@@ -144,6 +144,7 @@ public abstract class HaendlerTabController extends NotificationController {
             checkForNewGegenstand(selectedGegenstand, getSource());
             updateListView(getSource());
             updateKategorieTreeView(selectedGegenstand);
+            getListView().getSelectionModel().select(selectedGegenstand);
         } else {
             createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
         }
