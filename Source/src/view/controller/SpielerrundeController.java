@@ -167,14 +167,18 @@ public class SpielerrundeController extends NotificationController {
     
     @FXML
     private void onHelmButtonClick() {
-        dealSchaden(Charakter.LOWERBOUND_HELM);
+        int schadenModifier = Integer.parseInt(schadenModifierTextField_.getText());
+        dealSchaden(Charakter.LOWERBOUND_HELM, schadenModifier);
+        schadenModifierTextField_.setText("0");
     }
 
     
     
     @FXML
     private void onRuestungButtonClick() {
-        dealSchaden(Charakter.LOWERBOUND_RUESTUNG);
+        int schadenModifier = Integer.parseInt(schadenModifierTextField_.getText());
+        dealSchaden(Charakter.LOWERBOUND_RUESTUNG, schadenModifier);
+        schadenModifierTextField_.setText("0");
     }
     
     
