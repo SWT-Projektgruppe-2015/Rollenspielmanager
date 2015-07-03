@@ -582,7 +582,6 @@ public class SpielerrundeController extends NotificationController {
     @FXML
     private void onBlockClick() {
         for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
-            //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
             List<TreeItem<SharedGegnerTableEntry>> refreshList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
             for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
                 SharedGegnerTableEntry entry = gegner.getValue();
@@ -597,9 +596,8 @@ public class SpielerrundeController extends NotificationController {
                 }
             }
             
-            for(TreeItem<SharedGegnerTableEntry> item : refreshList) {
+            for(TreeItem<SharedGegnerTableEntry> item : refreshList)
                 refresh(item, item.getValue());
-            }
         }
     }
 }

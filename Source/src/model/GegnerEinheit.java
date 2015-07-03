@@ -266,6 +266,8 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
 
 
     public boolean blockIsSuccessful(int geschickMalus) {
+        if(this.getDefS() <= 0) return false;
+        
         int roll = Dice.RollW20();
         int bound = getBoundForBlocking(geschickMalus);
         
