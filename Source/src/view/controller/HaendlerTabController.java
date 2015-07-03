@@ -225,6 +225,8 @@ public abstract class HaendlerTabController extends NotificationController {
                 getListView().getItems().add(item);
             }
         }
+        
+        getTreeView().getSelectionModel().select(0);
     }    
     
     
