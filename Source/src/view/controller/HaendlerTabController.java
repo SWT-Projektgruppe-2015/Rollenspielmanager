@@ -138,21 +138,14 @@ public abstract class HaendlerTabController extends NotificationController {
         Gegenstand selectedGegenstand = getSelectedGegenstand(getListView());
         if (selectedGegenstand == null)
             return;
-        try {
-            fillWithValues(selectedGegenstand);
-            String fullKategorie = getFullKategorie();
-            if(fullKategorie != null)
-                selectedGegenstand.setKategorie_(fullKategorie);
-            if (selectedGegenstand.isValid()) {
-                checkForNewGegenstand(selectedGegenstand, getSource());
-                updateListView(getSource());
-                updateKategorieTreeView(selectedGegenstand);
-            } else {
-                createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
-            }
-        }
-        catch (NumberFormatException e) {
-            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));            
+        
+        boolean isValid = fillWithValues(selectedGegenstand);
+        if (isValid) {
+            checkForNewGegenstand(selectedGegenstand, getSource());
+            updateListView(getSource());
+            updateKategorieTreeView(selectedGegenstand);
+        } else {
+            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
         }
     }
 
@@ -162,7 +155,7 @@ public abstract class HaendlerTabController extends NotificationController {
     
     
     
-    protected abstract void fillWithValues(Gegenstand selectedGegenstand);
+    protected abstract boolean fillWithValues(Gegenstand selectedGegenstand);
 
     
 

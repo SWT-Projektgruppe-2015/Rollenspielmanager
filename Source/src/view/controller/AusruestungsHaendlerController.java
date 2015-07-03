@@ -2,7 +2,6 @@ package view.controller;
 
 import java.util.List;
 
-import view.NotificationTexts;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -59,8 +58,7 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
         ausruestungTreeView_.setRoot(rootItem);
         addKategorieTreeViewItems(ausruestungKategorien_);
         addListenerToTreeView(ausruestungTreeView_);
-        if(ausruestungTreeView_.getRoot().getChildren() != null)
-            ausruestungTreeView_.getSelectionModel().select(0);
+        ausruestungTreeView_.getSelectionModel().select(0);
     }
     
     
@@ -84,18 +82,25 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
     
     
     @Override
-    protected void fillWithValues(Gegenstand selectedGegenstand) {
+    protected boolean fillWithValues(Gegenstand selectedGegenstand) {
         String newName = ausruestungNameTextField_.getText();
-        int newKosten = Integer.parseInt(ausruestungKostenTextField_.getText());
         String newBeschreibung = ausruestungBeschreibungTextField_.getText();
-        int newTraglast = Integer.parseInt(ausruestungTraglastTextField_
-                .getText());
         String newKategorie = getFullKategorie();
-        int newStaerke = Integer.parseInt(ausruestungStaerkeTextField_
-                .getText());
         String newWert = ausruestungWertTextField_.getText();
         
-        if (!newName.isEmpty()) {
+        int newKosten, newTraglast, newStaerke;
+        try {
+            newKosten = Integer.parseInt(ausruestungKostenTextField_.getText());
+            newTraglast = Integer.parseInt(ausruestungTraglastTextField_
+                    .getText());
+            newStaerke = Integer.parseInt(ausruestungStaerkeTextField_
+                    .getText());
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
+        
+        if (!newName.isEmpty() && Gegenstand.isValid(newKosten, newTraglast, newName)) {
             selectedGegenstand.setName_(newName);
             selectedGegenstand.setKosten_(newKosten);
             selectedGegenstand.setBeschreibung_(newBeschreibung);
@@ -103,10 +108,10 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
             selectedGegenstand.setKategorie_(newKategorie);
             selectedGegenstand.setStaerke_(newStaerke);
             selectedGegenstand.setWert_(newWert);
+            return true;
         }
         else {
-            createNotification(NotificationTexts
-                    .textForFailedGegenstandUpdate(selectedGegenstand));
+            return false;
         }
     }
     
@@ -166,8 +171,7 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
             String lastKategorie = subKategorien.get(subKategorien.size() - 1);
             ausruestungKategorieTextField_.setText(lastKategorie);
             if (newValue == entryForNewGegenstand_) {
-                TreeItem<String> item = ausruestungTreeView_
-                        .getSelectionModel().getSelectedItem();
+                TreeItem<String> item = getTreeView().getSelectionModel().getSelectedItem();
                 if (item != null) {
                     String kategorie = item.getValue();
                     ausruestungKategorieTextField_.setText(kategorie);
@@ -178,7 +182,12 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
     
     @Override
     protected String getFullKategorie() {
-        return Gegenstand.getFullSubkategoriePath(ausruestungKategorieTextField_.getText(), alleAusruestung_);
+        String declaredKategorie = ausruestungKategorieTextField_.getText();
+        String subKategoriePath = Gegenstand.getFullSubkategoriePath(declaredKategorie, alleAusruestung_);
+        if(subKategoriePath == null || subKategoriePath.isEmpty())
+            return declaredKategorie;
+        else
+            return subKategoriePath;
     }
     
     @Override

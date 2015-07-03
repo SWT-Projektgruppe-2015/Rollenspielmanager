@@ -2,7 +2,6 @@ package view.controller;
 
 import java.util.List;
 
-import view.NotificationTexts;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -43,8 +42,7 @@ public class InventarHaendlerController extends HaendlerTabController {
         
         initializeGegenstandKategorienTreeView();
         initializeListView();
-        if(gegenstandKategorieTreeView_.getRoot().getChildren() != null)
-            gegenstandKategorieTreeView_.getSelectionModel().select(0);
+        gegenstandKategorieTreeView_.getSelectionModel().select(0);
     }
     
     
@@ -82,21 +80,29 @@ public class InventarHaendlerController extends HaendlerTabController {
     
     
     @Override
-    protected void fillWithValues(Gegenstand selectedGegenstand) {
+    protected boolean fillWithValues(Gegenstand selectedGegenstand) {
         String newName = gegenstandNameTextField_.getText();
-        int newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
         String newBeschreibung = gegenstandBeschreibungTextField_.getText();
-        int newTraglast = Integer.parseInt(gegenstandTraglastTextField_.getText());
         String newKategorie = getFullKategorie();
+        
+        int newKosten, newTraglast;
+        try {
+            newTraglast = Integer.parseInt(gegenstandTraglastTextField_.getText());
+            newKosten = Integer.parseInt(gegenstandKostenTextField_.getText());
+        }
+        catch (NumberFormatException e) {
+            return false;
+        }
 
-        if (!newName.isEmpty()) {
+        if (!newName.isEmpty() && Gegenstand.isValid(newKosten, newTraglast, newName)) {
             selectedGegenstand.setName_(newName);
             selectedGegenstand.setKosten_(newKosten);
             selectedGegenstand.setBeschreibung_(newBeschreibung);
             selectedGegenstand.setTraglast_(newTraglast);
             selectedGegenstand.setKategorie_(newKategorie);
+            return true;
         } else {
-            createNotification(NotificationTexts.textForFailedGegenstandUpdate(selectedGegenstand));
+            return false;
         }
     }
     
@@ -132,7 +138,7 @@ public class InventarHaendlerController extends HaendlerTabController {
             String lastKategorie = subKategorien.get(subKategorien.size()-1);
             gegenstandKategorieTextField_.setText(lastKategorie);
             if(newValue == entryForNewGegenstand_){
-                TreeItem<String> item = gegenstandKategorieTreeView_.getSelectionModel().getSelectedItem();
+                TreeItem<String> item = getTreeView().getSelectionModel().getSelectedItem();
                 if(item != null){
                     String kategorie = item.getValue();
                     gegenstandKategorieTextField_.setText(kategorie);
@@ -145,7 +151,12 @@ public class InventarHaendlerController extends HaendlerTabController {
 
     @Override
     protected String getFullKategorie() {
-        return Gegenstand.getFullSubkategoriePath(gegenstandKategorieTextField_.getText(), alleGegenstaende_);
+        String declaredKategorie = gegenstandKategorieTextField_.getText();
+        String subKategoriePath = Gegenstand.getFullSubkategoriePath(declaredKategorie, alleGegenstaende_);
+        if(subKategoriePath == null || subKategoriePath.isEmpty())
+            return declaredKategorie;
+        else
+            return subKategoriePath;
     }
 
 

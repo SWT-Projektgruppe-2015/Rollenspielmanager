@@ -76,6 +76,16 @@ public class GegenstandTest {
     
     
     
+    @Test
+    public void getSubKategoriesWhenKategorieIsSimple() {
+        String bsp = Gegenstand.WAFFE;
+        List<String> actual = Gegenstand.getSubKategories(bsp);
+        List<String> expected = Arrays.asList(Gegenstand.WAFFE);
+        assertEquals(actual, expected);
+    }
+    
+    
+    
      @Test
      public void isAusreustungTest() {
          Gegenstand gegenstandA = new Gegenstand();

@@ -202,11 +202,11 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     
     
     
-    public boolean isValid() {
+    public static boolean isValid(int kosten, int traglast, String name) {
         boolean isValid = true;
-        isValid = (getKosten_() >= 0) && isValid;
-        isValid = (getTraglast_() >= 0) && isValid;
-        isValid = (!getName_().equals(GEGENSTAND_NEU)) && isValid;
+        isValid = (kosten >= 0) && isValid;
+        isValid = (traglast >= 0) && isValid;
+        isValid = (!name.equals(GEGENSTAND_NEU)) && isValid;
         return isValid;
     }
     
@@ -375,5 +375,11 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
                 return Integer.compare(o1.computeValue(), o2.computeValue());
             } 
         });
+    }
+
+
+
+    public boolean isValid() {
+        return Gegenstand.isValid(kosten_, traglast_, name_);
     } 
 }
