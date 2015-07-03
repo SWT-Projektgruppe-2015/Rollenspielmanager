@@ -58,7 +58,7 @@ Im linken Bereich finden sich vier Buttons, um auf die Grundfunktionen des Progr
 
 \subsection{Gruppenauswahl}\label{subsection:gruppenauswahl}
 Im rechten Bereich findet sich die Gruppenauswahl. Jede zuvor im Charaktermanger zusammengestellte Gruppe kann in Combo-Box ganz oben ausgewählt werden, woraufhin alle Mitglieder mit Kreis und Level angezeigt werden.\\
-Die Auswahl einer Gruppe im Hauptmenü führt dazu, dass diese die Default-Gruppe in der Abenteuerverwaltung und bei Kämpfen ist.
+Die Auswahl einer Gruppe im Hauptmenü führt dazu, dass diese die Standardgruppe in der Abenteuerverwaltung und bei Kämpfen ist.
 
 \newpage
 
@@ -66,7 +66,8 @@ Die Auswahl einer Gruppe im Hauptmenü führt dazu, dass diese die Default-Grupp
 Um den Kampfhelfer zu nutzen, müssen 'DLVC Taverne' Spielercharaktere und Nichtspieler-Typen bekannt sein. Dafür ist der Charaktermanager zuständig. Er teilt sich in die drei Tabs \textbf{Gruppen}, \textbf{Spielercharaktere} und \textbf{Nichtspieler-Typen}.
 
 \subsection{Der Gruppenmanager}
-Im Gruppenmanager können Abenteuergruppen verwaltet werden. Wenn mit verschiedenen Gruppen gespielt wird, ist dies sinnvoll, da ganze Gruppen zu einem Kampf hinzugefügt werden können. Auch kann stets eine Gruppe im Hauptmenü angezeigt werden, siehe Abschnitt \ref{subsection:gruppenauswahl}.\\
+Der Gruppenmanager ermöglicht das Speichern von Abenteuergruppen. Diese können dann schnell bei Neustart wiederverwendet und angepasst werden.\\
+Große Vorteile sind dass man im Kampf standardmäßig die entsprechenden Mitglieder der Gruppe als Teilnehmer hat und durch einmalige Auswahl im Hauptmenü stets verfolgen kann welche Stufe die Spieler haben und bemerken wenn sie geändert werden müssen (siehe Abschnitt \ref{subsection:gruppenauswahl}).\\
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Gruppenmanager}
@@ -74,47 +75,53 @@ Im Gruppenmanager können Abenteuergruppen verwaltet werden. Wenn mit verschiede
 \label{fig:Gruppenmanager}
 \end{figure}
 
-Im Gruppenmanager können neue Gruppen angelegt werden, indem ein Name in das obere Textfeld geschrieben und mit dem Button 'Neu' bestätigt wird. Alternativ kann auch die Enter-Taste bedient werden.\\
-Existieren bereits Gruppen, so kann man sie in der unter dem Textfeld liegenden Box auswählen. Der Name erscheint dann im Textfeld und kann editiert und mit einem Klick auf den Button 'Update' gespeichert werden. Mit dem 'Löschen'-Button wird die selektierte Gruppe gelöscht. \textit{Hinweis:} Dies löscht nur die Zuordnungen der Spielercharaktere zu der Gruppe, nicht die Spielercharaktere selbst.\\
+Der Gruppenmanager besteht im wesentlichen aus zwei Listen und dem oberen Bereich zum Anpassen der Gruppennamen.\\
+
+\textbf{Anlegen neuer Gruppen}: Dazu muss ein Name in das obere Textfeld geschrieben und mit dem Button '\textbf{Neu}' oder mit der 'Enter'-Taste bestätigt werden.\\
+
+\textbf{Ändern einer Gruppe}: Existieren bereits Gruppen, so kann man sie in der unter dem Textfeld liegenden Box auswählen. Der Name erscheint dann im Textfeld und kann editiert und mit einem Klick auf den Button '\textbf{Update}' gespeichert werden. \\
+
+\textbf{Löschen einer Gruppe}: Mit dem '\textbf{Löschen}'-Button wird die selektierte Gruppe gelöscht. \textit{Hinweis}: Dies löscht nur die Zuordnungen der Spielercharaktere zu der Gruppe, nicht die Spielercharaktere selbst.\\
 
 Um Spielercharaktere zu einer Gruppe hinzuzufügen oder zu entfernen, muss die entsprechende Gruppe selektiert werden. Durch Klicken auf die Pfeilbuttons wird die neue Aufteilung herbeigeführt und direkt abgespeichert.
 
 \subsection{Der Spielercharaktermanager}\label{subsection:Spielercharaktermanager}
 Im Spielercharaktermanager werden die kampfrelevanten Eigenschaften von Spielercharakteren abgespeichert. 
 Er ist dafür in die drei Untertabs 'Details', 'Waffen\&Fähigkeiten' und 'Ausrüstung' aufgeteilt.\\
-
-Um einen neuen Spielercharakter zu erstellen, muss der Eintrag 'Neuer Spieler' ausgewählt werden. Durch Abändern der Default-Werte und das Drücken der 'Enter'-Taste wird der neue Spieler gespeichert und erscheint in der Liste am linken Rand.\\
-Das Editieren eines bereits bestehenden Charakters funktioniert auf dieselbe Art und Weise, nur, dass man zunächst den zu ändernden Charakter aus der Liste wählt.\\
-
-Um einen ausgewählten Spielercharakter zu löschen, drückt man lediglich den 'Löschen'-Button im Tab 'Details'.
-\begin{figure}
+\begin{figure}[h!]
 \centering
-\includegraphics[width=1\linewidth]{Bilder/Spielercharaktermanager1}
-\caption{Der Spielercharaktermanager}
-\label{fig:Spielercharaktermanager}
+\includegraphics[width=1\linewidth]{Bilder/Charaktermanager1}
+\caption{Neuen Spieler auswählen und Löschen Button}
+\label{fig:Charaktermanager1}
 \end{figure}
+
+\textbf{Erstellen neuer Spielercharaktere}: Dazu muss der Eintrag 'Neuer Spieler' in der Spielercharakterliste ausgewählt werden (siehe Abb. \ref{fig:Charaktermanager1}). Durch Abändern der Standardwerte und das Drücken der 'Enter'-Taste wird der neue Spieler gespeichert und erscheint in der Liste am linken Rand.\\
+
+\textbf{Ändern von Spielercharakteren}: Das Editieren eines bereits bestehenden Charakters funktioniert auf dieselbe Art und Weise, nur, dass man zunächst den zu ändernden Charakter aus der Liste wählt.\\
+
+\textbf{Löschen von Spielercharakteren}: Um einen ausgewählten Spielercharakter zu löschen, drückt man lediglich den 'Löschen'-Button im Tab 'Details (siehe Abb. \ref{fig:Charaktermanager1})'.
+
 
 \subsubsection{Die drei Untertabs für Spielercharakter-Eigenschaften}
-Der Tab \textbf{Details} ist sehr simpel. Er enthält lediglich den Namen des Spielers, seinen Kreis und seine Stufe. Kreis und Stufe werden durch einschrittige Veränderungen mithilfe der '+'- und '-'-Buttons editiert. Zudem kann man in diesem Tab den Spielercharakter ganz löschen.\\
+\textbf{Details:} Dieser Tab ist sehr simpel. Er enthält lediglich den Namen des Spielers, seinen Kreis und seine Stufe. Kreis und Stufe werden durch einschrittige Veränderungen mithilfe der '+'- und '-'-Buttons editiert. Zudem kann man in diesem Tab den Spielercharakter ganz \textbf{löschen}.\\
 
-Im Tab \textbf{Waffen\&Fähigkeiten} können dem Spielercharakter Waffen hinzugefügt werden, die er im Kampf auswählen kann. \\
-Die Grundstruktur ist dieselbe wie die des Spielercharaktermanagers selbst: Am linken Rand ist eine Waffenliste mit einem Eintrag 'Neue Waffe', rechts können Eigenschaften manipuliert und die selektierte Waffe gelöscht werden.
-%TODO::Effekte genauer erklären.
+\textbf{Waffen\&Fähigkeiten}: Hier können dem Spielercharakter Waffen hinzugefügt werden, die er im Kampf auswählen kann. \\
+Die Grundstruktur ist dieselbe wie die des Spielercharaktermanagers selbst: Am linken Rand ist eine Waffenliste mit einem Eintrag '\textbf{Neue Waffe}', rechts können Eigenschaften manipuliert und die selektierte Waffe gelöscht werden.
 \begin{figure}[h]
 \centering
-\includegraphics[width=1\linewidth]{Bilder/Spielercharaktermanager2}
+\includegraphics[width=1\linewidth]{Bilder/Charaktermanager_Spieler1}
 \caption{Der Waffen\&Fähigkeiten-Tab}
-\label{fig:Spielercharaktermanager2}
+\label{fig:Charaktermanager_Spieler1}
 \end{figure}
 
-Jede Waffe kann neben einen Namen und einem Schadenwert auch einen Effekt besitzen. Dafür wird zunächst der Effekttyp ausgewählt und dann der Effektwert definiert. Die Bedeutung des Effektwerts hängt vom Effekttyp ab: \begin{itemize}
+Jede Waffe kann neben einen Namen und einem Schadenwert auch einen Effekt besitzen. Dafür wird zunächst der Effekttyp ausgewählt und dann der Effektwert definiert. Die Bedeutung des Effektwerts hängt vom Effekttyp ab (siehe Abschnitt \ref{Abschnitt: Effekte}): \begin{itemize}
 \item[] \textit{Rüstungsunabhängig} benötigt keinen Effektwert.
 \item[] \textit{Stärkemalus} spezifiziert einen absoluten Wert, der von der Stärke des Gegners subtrahiert wird.
 \item[] \textit{Geschickmalus} spezifiziert einen absoluten Wert, der vom Geschick des Gegners subtrahiert wird.
 \item[] \textit{Schaden an allen Gegnern} benötigt keinen Effektwert.
 \end{itemize}
 
-Im \textbf{Ausrüstung}-Tab wird die Rüstung des Spielercharakters spezifiziert. Dies beinhaltet natürlich den Rüstungs-, Helm- und Schildwert. Zusätzlich kann die Rüstung Effekte verursachen. Wie bei Waffen können Geschick- und Stärkemalus eingetragen werden. Hat die Rüstung keinen solchen Malus, entspricht diese einem Wert von 0. Zusätzlich kann die Rüstung eines Spielers ihm mehr Erfahrung im Kampf einbringen. Diese Steigerung wird in Prozent angegeben.\\
+\textbf{Ausrüstung}: Hier wird die Rüstung des Spielercharakters spezifiziert. Dies beinhaltet natürlich den Rüstungs-, Helm- und Schildwert. Zusätzlich kann die Rüstung Effekte verursachen. Wie bei Waffen können Geschick- und Stärkemalus eingetragen werden. Hat die Rüstung keinen solchen Malus, entspricht diese einem Wert von 0. Zusätzlich kann die Rüstung eines Spielers ihm mehr Erfahrung im Kampf einbringen. Diese Steigerung wird in Prozent angegeben und später im Kampfende gesondert angezeigt.\\ %TODO::Link zu Kampfendetab
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Spielercharaktermanager3}
@@ -123,6 +130,11 @@ Im \textbf{Ausrüstung}-Tab wird die Rüstung des Spielercharakters spezifiziert
 \end{figure}
 
 In jedem Tab führt ein Druck auf die 'Enter'-Taste zur Speicherung der Charakterwerte.
+
+
+\subsubsection{Effekte von Rüstung und Waffen} \label{Abschnitt: Effekte}
+
+
 \subsection{Der Nichtspieler-Typ-Manager}
 Im Nichtspieler-Typ-Manager werden potentielle Gegner der Abenteuergruppen verwaltet. \\
 
@@ -135,6 +147,7 @@ Mithilfe der Filterfunktion ist es leicht möglich, Nichtspieler-Typen eines bes
 \caption{Der Nichtspieler-Typ-Manager}
 \label{fig:Nichtspielertypmanager1}
 \end{figure}
+
 
 \subsubsection{Die zwei Untertabs für Nichtspieler-Typen-Eigenschaften}
 Da für Nichtspieler-Typen im Kampf andere Werte wichtig sind, hat der Nichtspieler-Typ-Manager nur die beiden Tabs 'Details' und 'Ausrüstung'.\\

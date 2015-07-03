@@ -16,6 +16,7 @@ import model.GegnerEinheit;
 import model.GegnerTyp;
 import model.Spieler;
 import model.Waffen;
+import model.Waffen.EffektTyp;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -477,8 +478,11 @@ public class SpielerrundeController extends NotificationController {
         int aoESchaden = 0;
         if(selectedSpieler != null) {
             Waffen waffe = selectedSpieler.getWaffe();
+            EffektTyp selectedEffect = waffe.getEffektTyp_(); 
+            if(selectedEffect == null)
+                return;
             aoESchaden  = getAddedSchaden();
-            switch(waffe.getEffektTyp_())   {
+            switch(selectedEffect )   {
                 case AOE_SCHADEN_RUE:   {
                     
                     for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {

@@ -21,7 +21,8 @@ public class Waffen implements DBObject, Comparable<Waffen> {
         MALUS_STAERKE,
         MALUS_GESCHICK,
         AOE_SCHADEN_RUA,
-        AOE_SCHADEN_RUE;
+        AOE_SCHADEN_RUE,
+        NO_EFFEKT;
         
         @Override
         public String toString() {
@@ -36,6 +37,8 @@ public class Waffen implements DBObject, Comparable<Waffen> {
                     return "Schadet allen Gegner r" + Hauptprogramm.UMLAUT_SMALL_UE + "stungsunabh" + Hauptprogramm.UMLAUT_SMALL_AE + "ngig";
                 case AOE_SCHADEN_RUE:
                     return "Schadet allen Gegnern";
+                case NO_EFFEKT:
+                    return "Kein Effekt";
                 default:
                     return "";
             }
@@ -126,7 +129,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
             updateInDB();
         }
     }
-
+    
 
 
     public String getWaffenName_() {
