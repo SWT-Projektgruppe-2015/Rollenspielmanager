@@ -11,9 +11,9 @@
 
 <AnchorPane stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.KampfendeController">
    <children>
-      <SplitPane id="kampfende-splitpane" dividerPositions="0.7627627627627628" orientation="VERTICAL" prefHeight="400.0" prefWidth="676.0" styleClass="background-color">
+      <SplitPane id="kampfende-splitpane" dividerPositions="0.7627627627627628" orientation="VERTICAL" prefHeight="400.0" prefWidth="676.0" styleClass="background-color" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
-            <SplitPane id="kampfende-splitpane" dividerPositions="0.608433734939759" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="664.0" stylesheets="@stylesheets/Kampfende.css">
+            <SplitPane id="kampfende-splitpane" dividerPositions="0.6084" minHeight="-Infinity" minWidth="-Infinity" prefHeight="212.0" prefWidth="664.0" stylesheets="@stylesheets/Kampfende.css">
                <items>
                   <AnchorPane prefHeight="289.0" prefWidth="385.0" styleClass="background-color">
                      <children>
@@ -163,15 +163,5 @@
             <URL value="@stylesheets/Kampfende.css" />
          </stylesheets>
       </SplitPane>
-      <Rectangle fill="DODGERBLUE" height="8.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-interior-vertical" width="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="674.0" />
-      <Rectangle fill="DODGERBLUE" height="1.0" layoutY="279.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-exterioir-left" width="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="674.0" />
-      <Rectangle fill="DODGERBLUE" height="1.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-exterioir-right" width="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="674.0" />
-      <Rectangle fill="DODGERBLUE" height="8.0" layoutX="674.0" layoutY="280.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-interior-vertical" width="2.0" AnchorPane.leftAnchor="674.0" AnchorPane.rightAnchor="0.0" />
-      <Rectangle fill="DODGERBLUE" height="1.0" layoutX="674.0" layoutY="288.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-exterioir-right" width="2.0" AnchorPane.leftAnchor="674.0" AnchorPane.rightAnchor="0.0" />
-      <Rectangle fill="DODGERBLUE" height="1.0" layoutX="674.0" layoutY="279.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-exterioir-left" width="2.0" AnchorPane.leftAnchor="674.0" AnchorPane.rightAnchor="0.0" />
-      <Rectangle fill="DODGERBLUE" height="2.0" layoutX="407.0" layoutY="278.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-interior" width="8.0" AnchorPane.topAnchor="278.0" />
-      <Rectangle fill="DODGERBLUE" height="2.0" layoutX="407.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-interior" width="8.0" AnchorPane.topAnchor="0.0" />
-      <Rectangle fill="DODGERBLUE" height="2.0" layoutX="406.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-exterioir-left" width="1.0" AnchorPane.topAnchor="0.0" />
-      <Rectangle fill="DODGERBLUE" height="2.0" layoutX="415.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="rectangle-exterioir-right" width="1.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>
