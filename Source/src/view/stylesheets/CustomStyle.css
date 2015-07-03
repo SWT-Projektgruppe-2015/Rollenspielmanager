@@ -37,9 +37,26 @@
 
 
 
+.button-bevel-gray:hover	{
+	-fx-text-fill: #339966;
+}
+
+
+
 .button-bevel-gray:focused	{
 	-fx-border-radius:10,10,10;
-	-fx-border-color: #339966;
+	-fx-effect: dropshadow(gaussian, #669933 , 15, 0.0 , 0 , 1 );
+}
+
+
+
+.button-bevel-gray:pressed	{
+	-fx-background-color: 
+	    linear-gradient(derive(#f6f6f6, -20%) 0%, derive(#d9d9d9, -20%)100%),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#dddddd 0%, #f9f9f9 50%);
+    -fx-background-radius: 10,10,10;
+    -fx-background-insets: 0,1,2;
 }
 
 
@@ -66,9 +83,23 @@
 
 
 
+.button-green:hover	{
+	-fx-effect: dropshadow( gaussian, rgba(0,0,0,0.4) , 15, 0.0 , 0 , 1 );
+}
+
+
+
 .button-green:focused	{
 	-fx-border-radius:6,5;
 	-fx-effect: dropshadow(gaussian, #669933 , 25, 0.0 , 0 , 1 );
+}
+
+
+
+.button-green:pressed	{
+	-fx-background-color:
+        linear-gradient(#f0ff35, #669933),
+        radial-gradient(center 50% -40%, radius 200%, #80c800 50%, #b8ee36 45%);
 }
 
 
