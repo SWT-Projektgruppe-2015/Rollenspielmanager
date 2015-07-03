@@ -26,12 +26,11 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Charaktermanager" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Zuuma&#10;die Wirtin" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <styleClass>
-                              <String fx:value="button-mainmenu" />
                               <String fx:value="button-gruppen" />
-                           </styleClass>
-                        </Button>
+                              <String fx:value="button-mainmenu" />
+                           </styleClass></Button>
                         <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Anakok&#10;die Kriegerin " textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="DejaVu Sans Bold" size="23.0" />
