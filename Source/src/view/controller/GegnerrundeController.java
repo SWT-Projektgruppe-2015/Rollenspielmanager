@@ -3,6 +3,7 @@ package view.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import view.customcell.TrefferzoneCell;
 import view.tabledata.SchadenAmSpieler;
 import controller.Dice;
 import model.GegnerEinheit;

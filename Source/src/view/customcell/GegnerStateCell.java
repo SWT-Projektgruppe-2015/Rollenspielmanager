@@ -1,4 +1,4 @@
-package view.controller;
+package view.customcell;
 
 import model.GegnerEinheit;
 import javafx.scene.control.TableCell;
@@ -9,6 +9,7 @@ public class GegnerStateCell extends TableCell<GegnerEinheit, String> {
         setText(name);
 
         if(name == null || name.isEmpty())  {
+            getStyleClass().remove("dead-gegner-cell");
             return;
         }
 

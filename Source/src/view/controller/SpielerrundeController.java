@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import org.controlsfx.control.action.Action;
 
 import view.NotificationTexts;
+import view.customcell.KampfWaffenCell;
 import view.tabledata.SharedGegnerTableEntry;
 import view.tabledata.SpielerMitWaffe;
 import model.Charakter;

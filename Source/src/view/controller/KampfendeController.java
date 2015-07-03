@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import view.NotificationTexts;
+import view.customcell.GegnerStateCell;
 import view.tabledata.ExpCategory;
 import view.tabledata.SchadenAmSpieler;
 import javafx.beans.value.ChangeListener;

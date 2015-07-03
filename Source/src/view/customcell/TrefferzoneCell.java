@@ -1,4 +1,4 @@
-package view.controller;
+package view.customcell;
 
 import javafx.scene.control.TableCell;
 import javafx.scene.paint.Color;

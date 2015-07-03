@@ -1,9 +1,11 @@
-package view.controller;
+package view.customcell;
 
 import javafx.event.EventHandler;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
+import view.controller.Hauptprogramm;
+import view.controller.SpielerrundeController;
 import view.tabledata.SpielerMitWaffe;
 
 public class KampfWaffenCell extends TableCell<SpielerMitWaffe, String> {
