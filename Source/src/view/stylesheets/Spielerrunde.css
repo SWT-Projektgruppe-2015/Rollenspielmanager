@@ -9,6 +9,25 @@
 
 
 
+#helm-button:hover	{
+	-fx-effect: dropshadow(gaussian, #669933, 10, 0.0 ,0.0, 0.0);
+	-fx-text-fill: black;
+}
+
+
+
+#helm-button:focused	{
+	-fx-effect: dropshadow(gaussian, #669933, 20, 0.0 ,0.0, 0.0);
+}
+
+
+
+#helm-button:pressed	{
+	-fx-effect: dropshadow(gaussian, gold, 20, 0.0 ,0.0, 0.0);
+}
+
+
+
 #ruestung-button	{
 	-fx-text-fill: white;
 	-fx-background-color: 
@@ -21,6 +40,25 @@
 
 
 
+#ruestung-button:hover	{
+	-fx-effect: dropshadow(gaussian, #669933, 10, 0.0 ,0.0, 0.0);
+	-fx-text-fill: white;
+}
+
+
+
+#ruestung-button:focused	{
+	-fx-effect: dropshadow(gaussian, #669933, 20, 0.0 ,0.0, 0.0);
+}
+
+
+
+#ruestung-button:pressed	{
+	-fx-effect: dropshadow(gaussian, #339966, 20, 0.0 ,0.0, 0.0);
+}
+
+
+
 #direkt-button	{
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
@@ -28,6 +66,25 @@
 	    linear-gradient(#ef6e00 10%, darkorange 30%, #ffba66 60%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
+}
+
+
+
+#direkt-button:hover	{
+	-fx-effect: dropshadow(gaussian, #669933, 10, 0.0 ,0.0, 0.0);
+	-fx-text-fill: black;
+}
+
+
+
+#direkt-button:focused	{
+	-fx-effect: dropshadow(gaussian, #669933, 20, 0.0 ,0.0, 0.0);
+}
+
+
+
+#direkt-button:pressed	{
+	-fx-effect: dropshadow(gaussian, darkorange, 20, 0.0 ,0.0, 0.0);
 }
 
 
@@ -44,6 +101,25 @@
 
 
 
+#block-button:hover	{
+	-fx-effect: dropshadow(gaussian, #669933, 10, 0.0 ,0.0, 0.0);
+	-fx-text-fill: black;
+}
+
+
+
+#block-button:focused	{
+	-fx-effect: dropshadow(gaussian, #669933, 20, 0.0 ,0.0, 0.0);
+}
+
+
+
+#block-button:pressed	{
+	-fx-effect: dropshadow(gaussian, salmon, 20, 0.0 ,0.0, 0.0);
+}
+
+
+
 #aoe-button	{
 	-fx-background-color:
 	    linear-gradient(#f6f6f6, #d9d9d9),
@@ -52,4 +128,23 @@
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold;
     -fx-effect: dropshadow( gaussian , #ffc700, 15, 0.0 , 0 , 1);
+}
+
+
+
+#aoe-button:hover	{
+	-fx-effect: dropshadow(gaussian, orange, 15, 0.0 ,0.0, 0.0);
+	-fx-text-fill: crimson;
+}
+
+
+
+#aoe-button:focused	{
+	-fx-effect: dropshadow(gaussian, darkorange , 15, 0.0 ,0.0, 0.0);
+}
+
+
+
+#aoe-button:pressed	{
+	-fx-effect: dropshadow(gaussian, crimson, 20, 0.0 ,0.0, 0.0);
 }
