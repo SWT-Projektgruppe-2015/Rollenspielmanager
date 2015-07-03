@@ -194,8 +194,8 @@ public class SpielerrundeController extends NotificationController {
 
     private void dealSchaden(int wuerfelErgebnis, int schadenModifier) {
         int selectedIndex = spielerTableView_.getSelectionModel().getSelectedIndex();
+        if(selectedIndex < 0) return;
         SpielerMitWaffe selectedSpieler = spielerTableView_.getItems().get(selectedIndex);
-        
         updateSchadenAmGegnerTable(selectedSpieler, wuerfelErgebnis, schadenModifier);
     }
     
