@@ -1,0 +1,27 @@
+﻿# ---- Resultate aus Gespräch mit Hans ---- #
+
+# Teil1 ------- (mit Britta)
+Release -> Testrunde am Wochenende -> Rückmeldung
+LP und Erfahrung drehen, sodass auch 100 000 sichtbar
+Exp Spalte kann ruhig größer sein / mehr gezogen werden dürfen.
+Papyrus ist erwünscht.
+Schriftrolle über Buttons
+Hilfetext -> Scrollbars wären nett.
+Nichtspielercharaktere.
+
+# Teil2 -------
+- Trefferzone Button wirft immernoch Exception wenn kein Spielerausgewählt wurde.
+- Reihenfolge von Helm und Rüstungstreffer Button ändern
+- Visibility von AoE Button mit Textfeld für Fähigkeiten anpassen.
+- Lebensfeld sollte einfacher zu editieren sein. Also "20" eingeben resultiert zu dem Eintrag "20/25".
+- Trefferzonen Feld sollte %-igen Zusatz für einzelne Trefferzonen anbieten, nicht nur für "Direkter Treffer".
+- (Prio) Blocken sollte nur bei "DefS > 0" möglich sein!
+
+# Teil3 ------ Neu-strukturieren der Spielerrunde Buttons
+- Struktur klar machen: Trefferzonen vs. Schadensverursacher.
+- Blocken soll zur Kategorie Schadensverursacher angepasst werden.
+- AoE soll zur Kategorie Schadensverursacher angepasst werden.
+- AoE soll keine Rote Schrit mehr bekommen bei Hover.
+- AoE & Blocken soll die Form des Schaden Buttons bekommen.
+- Blocken Button soll nicht mehr Fett geschrieben.
+- Schaden und Blocken Farben sollen gleich sein! Nicht mehr so viele Unterschiede.
