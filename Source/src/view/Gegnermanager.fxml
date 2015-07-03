@@ -39,8 +39,8 @@
             										<ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
                               <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
                               <ColumnConstraints hgrow="SOMETIMES" percentWidth="15.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="12.0" prefWidth="50.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="12.0" prefWidth="50.0" />
+                              <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" percentWidth="15.0" prefWidth="100.0" />
             									</columnConstraints>
             									<rowConstraints>
             										<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -60,10 +60,10 @@
                               <TextField fx:id="geschickTextField_" onAction="#updateGegner" prefHeight="26.0" prefWidth="61.0" styleClass="textfield-background" GridPane.columnIndex="3" />
                               <TextField fx:id="staerkeTextField_" onAction="#updateGegner" styleClass="textfield-background" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                               <TextField fx:id="lebenspunkteTextField_" onAction="#updateGegner" styleClass="textfield-background" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                              <Label fx:id="diceForGeschickLabel_" text="W20" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
-                              <Label fx:id="bonusForGeschickLabel_" text="+300" GridPane.columnIndex="5" GridPane.halignment="CENTER" />
-                              <Label fx:id="diceForStaerkeLabel_" text="W6" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                              <Label fx:id="bonusForStaerkeLabel_" text="-1" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                              <Label fx:id="diceForGeschickLabel_" text="W20" GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
+                              <Label fx:id="bonusForGeschickLabel_" text="+300" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
+                              <Label fx:id="diceForStaerkeLabel_" text="W6" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                              <Label fx:id="bonusForStaerkeLabel_" text="-1" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
             									</children>
             								</GridPane>
             								<Button layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteGegner" styleClass="button-bevel-gray" text="NSC löschen" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="170.0" />
