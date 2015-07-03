@@ -174,7 +174,8 @@ public class AusruestungBeuteTest extends AusruestungBeute {
           Gegenstand item = new Gegenstand();
           item.setName_(tmp.get(tmp.size()-1) + " " + String.valueOf(i));
           item.setKosten_(i);
-          item.setWert_(Integer.toString(i*10)+"+W9");
+          if(item.isAusruestung())
+              item.setWert_(Integer.toString(i*10)+"+W9");
           item.setKategorie_(kategorie);
           item.addToDB();
       }
@@ -190,8 +191,8 @@ public class AusruestungBeuteTest extends AusruestungBeute {
           tmp.setDefS(40);
           tmp.setSchaden_(250);
           tmp.setErfahrung_(1100);
-          tmp.setGeschick_(20 + Dice.rollDice(40));
-          tmp.setStaerke_(20 + Dice.rollDice(40));
+          tmp.setGeschick_(20 + Dice.rollDice(60));
+          tmp.setStaerke_(1 + Dice.rollDice(50));
           tmp.addToDB();
       }
   }
@@ -201,12 +202,13 @@ public class AusruestungBeuteTest extends AusruestungBeute {
       for(int i = 0 ; i < 3; ++i) {
           Spieler tmp = new Spieler();
           tmp.setName_("Spieler Nr." + Dice.rollDice(100));
-          tmp.setDefH(30);
-          tmp.setDefR(60);
-          tmp.setDefS(40);
+          tmp.setDefH(20 + Dice.rollDice(20));
+          tmp.setDefR(50 + Dice.rollDice(20));
+          tmp.setDefS(20 + Dice.rollDice(40));
           Waffen waffe = new Waffen();
           waffe.setWaffenName_("Waffe Nr. " + Dice.rollDice(100));
-          waffe.setWaffenSchaden_(250);
+          waffe.setWaffenSchaden_(250 + Dice.rollDice(250));
+          tmp.addWaffe(waffe);
           tmp.getAusruestung_().addWaffe(waffe);
           tmp.addToDB();
       }
