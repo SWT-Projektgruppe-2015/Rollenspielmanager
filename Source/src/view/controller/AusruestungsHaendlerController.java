@@ -145,6 +145,8 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
         this.ausruestungKostenTextField_.clear();
         this.ausruestungTraglastTextField_.clear();
         this.ausruestungBeschreibungTextField_.setText("");
+        this.ausruestungStaerkeTextField_.clear();
+        this.ausruestungWertTextField_.clear();
     }
     
     

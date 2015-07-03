@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.KampfendeController">
    <children>
       <SplitPane id="kampfende-splitpane" dividerPositions="0.7627627627627628" orientation="VERTICAL" prefHeight="400.0" prefWidth="676.0" styleClass="background-color">
@@ -141,7 +140,7 @@
                         </Label>
                         <TextField fx:id="ausruestungMalusTextField_" prefHeight="25.0" prefWidth="74.0" styleClass="textfield-background" text="0" GridPane.columnIndex="1" />
                         <TextField fx:id="ausruestungStreuungTextField_" prefHeight="25.0" prefWidth="74.0" styleClass="textfield-background" text="0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Streuung (%)" GridPane.rowIndex="1">
+                        <Label text="Abweichung (%)" GridPane.rowIndex="1">
                            <padding>
                               <Insets right="10.0" />
                            </padding>
