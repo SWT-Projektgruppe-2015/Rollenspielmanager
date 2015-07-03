@@ -59,14 +59,17 @@
 
 
 .button-wuerfeln	{
-	-fx-background-position: 45% 40%;
+	-fx-font-size: 1.15em;
+	-fx-padding: 79.0px 0.0px 0.0px 0.0px; 
+	-fx-background-position: 50% 0%;
+    -fx-background-size: 125%;
 	-fx-background-image: url('/img/dornelf_v3.png');
 }
 
 
 
 .button-gruppen	{
-	-fx-padding: 98 0 0 0;
+	-fx-padding: 0.0 0.0 0.0 0.0;
 	-fx-background-position: 50% 30%;
     -fx-background-size: 60%;
 	-fx-background-image: url('/img/gruppe.jpg');

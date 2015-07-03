@@ -50,7 +50,7 @@
                               <String fx:value="button-haendler" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" prefWidth="85.0" text="Würfeln" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Button mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" prefWidth="85.0" text="Ceto &#10;der Würfelspieler" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <styleClass>
                               <String fx:value="button-mainmenu" />
                               <String fx:value="button-wuerfeln" />
