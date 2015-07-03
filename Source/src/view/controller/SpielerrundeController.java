@@ -119,11 +119,13 @@ public class SpielerrundeController extends NotificationController {
             return;
         }
         String lebenspunkte = t.getNewValue();
-        boolean hasCorrectFormat = lebenspunkte.split("/").length == 2;
-        if(lebenspunkte == null || !hasCorrectFormat)    {
+        if(lebenspunkte == null || lebenspunkte == "")    {
             refresh(changedItem, changedGegner);
             createNotification(NotificationTexts.WRONG_LEBENSPUNKTE_FORMAT);
             return;
+        }
+        if(lebenspunkte.split("/").length != 2){
+           lebenspunkte += "/" + String.valueOf(((GegnerEinheit)changedGegner).getMaxLebenspunkte_());
         }
         try {
             int currentLebenspunkte = Integer.parseInt(t.getNewValue().split("/")[0]);
