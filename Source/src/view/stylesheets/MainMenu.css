@@ -53,8 +53,10 @@
 
 
 .button-haendler	{
-	-fx-background-position: 40% 30%;
-	-fx-background-image: url('/img/Hauptmenu_rund/schwerter_rund_v1.png');
+	-fx-font-size: 1.15em;
+	-fx-background-position: 55% 40%;
+    -fx-background-size: 160%;
+	-fx-background-image: url('/img/zerber-v1.png');
 }
 
 
