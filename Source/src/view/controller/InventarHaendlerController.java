@@ -11,7 +11,6 @@ import javafx.scene.control.TreeView;
 import model.Gegenstand;
 
 public class InventarHaendlerController extends HaendlerTabController {
-    Gegenstand entryForNewGegenstand_;
     List<Gegenstand> alleGegenstaende_;
     List<String> gegenstandKategorien_;
     
