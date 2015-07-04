@@ -433,21 +433,13 @@ public class SpielerrundeController extends NotificationController {
     
     @FXML
     private void onSchadenClick() {
-        SpielerMitWaffe selectedSpieler = getSelectedSpielerMitWaffe();
-        int ruaSchaden = 0;
-        if(selectedSpieler != null) {
-            Waffen waffe = selectedSpieler.getWaffe();
-            if(waffe.isRUA())   {
-                ruaSchaden  = getAddedSchaden();
-            }
-        }
         TreeItem<SharedGegnerTableEntry> selectedItem = getSelectedGegnerItem();
         if(isNullOrGegnerTyp(selectedItem)) {
             return;
         }
         
         GegnerEinheit gegner = (GegnerEinheit) selectedItem.getValue();
-        int sumOfDealtSchaden = gegner.getDealtSchaden_() + ruaSchaden;
+        int sumOfDealtSchaden = gegner.getDealtSchaden_();
         gegner.setCurrentLebenspunkte_(gegner.getCurrentLebenspunkte_() - sumOfDealtSchaden);
         gegner.setDealtSchaden_(0);
         addedSchadenTextField_.setText("0");
