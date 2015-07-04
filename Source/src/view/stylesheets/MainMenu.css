@@ -44,7 +44,7 @@
 
 
 .button-kampf	{
-	-fx-padding: 87.0px 0.0px 0.0px 0.0px; 
+	-fx-padding: 85.0px 0.0px 0.0px 0.0px; 
 	-fx-background-position: 45% 0%;
     -fx-background-size: 95%;
     -fx-background-image: url('/img/Hauptmenue_Buttons/Anakok-die-Kriegerin-ohne-text.png');   
@@ -53,7 +53,7 @@
 
 
 .button-haendler	{
-	-fx-padding: 84.0px 0.0px 0.0px 0.0px; 
+	-fx-padding: 80.0px 0.0px 0.0px 0.0px; 
 	-fx-background-position: 40% 0%;
     -fx-background-size: 95%;
 	-fx-background-image: url('/img/Hauptmenue_Buttons/Girikiri_der_Haendler-ohne-text.png');
@@ -62,7 +62,7 @@
 
 
 .button-wuerfeln	{
-	-fx-padding: 80.0px 0.0px 0.0px 0.0px; 
+	-fx-padding: 77.0px 0.0px 0.0px 0.0px; 
 	-fx-background-position: 20% 0%;
     -fx-background-size: 95%;
 	-fx-background-image: url('/img/Hauptmenue_Buttons/Ceto_der_Wuerfelspieler-ohne-text.png');
@@ -71,7 +71,7 @@
 
 
 .button-gruppen	{
-	-fx-padding: 79.0px 0.0px 0.0px 0.0px;  
+	-fx-padding: 76.0px 0.0px 0.0px 0.0px;  
 	-fx-background-position: -10% 0%;
     -fx-background-size: 95%;
    	-fx-background-image: url('/img/Hauptmenue_Buttons/Zuuma_die_Wirtin-ohne-text.png');
