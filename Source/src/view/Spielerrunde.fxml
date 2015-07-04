@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="0.0" minWidth="676.0" prefHeight="400.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
+<AnchorPane minHeight="0.0" minWidth="676.0" prefHeight="400.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
    <children>
       <TreeTableView fx:id="gegnerTreeTableView_" editable="true" layoutX="478.0" layoutY="47.0" prefHeight="305.0" prefWidth="300.0" showRoot="false" styleClass="tableview-background" AnchorPane.bottomAnchor="75.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
@@ -30,7 +30,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <GridPane layoutX="236.0" layoutY="19.0" prefHeight="170.0" prefWidth="100.0" vgap="4.0" AnchorPane.leftAnchor="236.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="19.0">
+      <GridPane layoutX="236.0" layoutY="19.0" prefHeight="170.0" prefWidth="100.0" vgap="4.0" AnchorPane.leftAnchor="230.0" AnchorPane.rightAnchor="330.0" AnchorPane.topAnchor="19.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
          </columnConstraints>
@@ -49,9 +49,9 @@
                   <Label layoutX="82.0" layoutY="7.0" text="\%" AnchorPane.bottomAnchor="17.0" />
                </children>
             </AnchorPane>
-            <Button id="helm-button" layoutX="241.0" layoutY="109.0" mnemonicParsing="false" onAction="#onHelmButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Helm" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <Button id="ruestung-button" layoutX="244.0" layoutY="65.0" mnemonicParsing="false" onAction="#onRuestungButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Rüstung" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Button id="direkt-button" layoutX="246.0" layoutY="153.0" mnemonicParsing="false" onAction="#onDirektButtonClick" prefWidth="80.0" styleClass="button-bevel-gray" text="Direkt" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <Button id="helm-button" layoutX="241.0" layoutY="109.0" mnemonicParsing="false" onAction="#onHelmButtonClick" prefWidth="90.0" styleClass="button-bevel-gray" text="Helm" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button id="ruestung-button" layoutX="244.0" layoutY="65.0" mnemonicParsing="false" onAction="#onRuestungButtonClick" prefWidth="90.0" styleClass="button-bevel-gray" text="Rüstung" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button id="direkt-button" layoutX="246.0" layoutY="153.0" mnemonicParsing="false" onAction="#onDirektButtonClick" prefWidth="90.0" styleClass="button-bevel-gray" text="Direkt" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
             <Label text="Trefferzonen" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -69,13 +69,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" onAction="#removeFromKampf" prefHeight="25.0" prefWidth="75.0" styleClass="button-bevel-gray" text="Entfernen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-          <Button mnemonicParsing="false" onAction="#deleteFromKampf" prefHeight="25.0" prefWidth="75.0" styleClass="button-bevel-gray" text="Löschen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#removeFromKampf" prefHeight="25.0" prefWidth="90.0" styleClass="button-bevel-gray" text="Entfernen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+          <Button mnemonicParsing="false" onAction="#deleteFromKampf" prefHeight="25.0" prefWidth="90.0" styleClass="button-bevel-gray" text="Löschen" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <TextField fx:id="staerkeWurfTextField_" alignment="CENTER" editable="false" maxWidth="90.0" prefWidth="90.0" styleClass="textfield-background" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#onStaerkeWurfClick" prefHeight="25.0" prefWidth="75.0" styleClass="button-bevel-gray" text="Stärkewurf" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#onStaerkeWurfClick" prefHeight="25.0" prefWidth="90.0" styleClass="button-bevel-gray" text="Stärkewurf" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <GridPane layoutX="248.0" layoutY="234.0" prefHeight="131.0" prefWidth="80.0" AnchorPane.leftAnchor="248.0" AnchorPane.rightAnchor="348.0" AnchorPane.topAnchor="234.0">
+      <GridPane layoutX="248.0" layoutY="234.0" prefHeight="131.0" prefWidth="80.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="340.0" AnchorPane.topAnchor="234.0">
         <columnConstraints>
           <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -85,18 +85,18 @@
             <RowConstraints minHeight="10.0" prefHeight="20.0" valignment="CENTER" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button defaultButton="true" mnemonicParsing="false" onAction="#onSchadenClick" prefHeight="40.0" prefWidth="80.0" styleClass="button-green" text="Schaden!" GridPane.halignment="CENTER" />
-            <Button id="block-button" defaultButton="true" mnemonicParsing="false" onAction="#onBlockClick" prefHeight="40.0" prefWidth="80.0" styleClass="button-green" text="Blocken!" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <GridPane GridPane.rowIndex="2">
+            <Button defaultButton="true" mnemonicParsing="false" onAction="#onSchadenClick" prefHeight="40.0" prefWidth="90.0" styleClass="button-green" text="Schaden!" GridPane.halignment="CENTER" />
+            <Button id="block-button" defaultButton="true" mnemonicParsing="false" onAction="#onBlockClick" prefHeight="40.0" prefWidth="90.0" styleClass="button-green" text="Blocken!" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <GridPane hgap="4.0" prefHeight="40.0" prefWidth="90.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="48.666656494140625" prefWidth="40.666656494140625" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="66.0" prefWidth="39.333343505859375" />
+                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="45.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button id="aoe-button" mnemonicParsing="false" onAction="#onAoESchadenClick" prefHeight="26.0" prefWidth="40.0" styleClass="menubar-bevel-gray" stylesheets="@stylesheets/CustomStyle.css" text="AoE">
+                  <Button id="aoe-button" mnemonicParsing="false" onAction="#onAoESchadenClick" prefHeight="26.0" prefWidth="45.0" styleClass="menubar-bevel-gray" stylesheets="@stylesheets/CustomStyle.css" text="AoE">
                      <tooltip>
                         <Tooltip text="Area of Effect:&#10;Schaden gegen&#10;alle Gegner." textAlignment="CENTER" />
                      </tooltip>
