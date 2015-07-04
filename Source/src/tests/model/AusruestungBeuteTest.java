@@ -117,8 +117,8 @@ public class AusruestungBeuteTest extends AusruestungBeute {
         
         assertTrue(waffenCount < tries * WAFFEN_RATIO * 1.1);
         assertTrue(waffenCount > tries * WAFFEN_RATIO * .9);
-        assertTrue(helmCount < tries * HELM_RATIO * 1.2);
-        assertTrue(helmCount > tries * HELM_RATIO * .8);
+        assertTrue(helmCount < tries * HELM_RATIO * 1.25);
+        assertTrue(helmCount > tries * HELM_RATIO * .75);
     }
     
     

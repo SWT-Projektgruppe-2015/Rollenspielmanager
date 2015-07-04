@@ -163,8 +163,11 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
     
     public static final List<GegnerEinheit> createEinheiten(GegnerTyp typ, int anzahl) {
         List<GegnerEinheit> gegner = new ArrayList<GegnerEinheit>();
-        for(int id = 1; id <= anzahl; ++id)
-            gegner.add(new GegnerEinheit(typ, id));
+        for(int id = 1; id <= anzahl; ++id){
+            GegnerEinheit tmp = new GegnerEinheit(typ, id);
+            tmp.setDefS(10);
+            gegner.add(tmp);
+        }
         return gegner;
     }
 
