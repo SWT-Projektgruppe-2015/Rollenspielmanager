@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="hauptmenu-anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="800.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
+<AnchorPane id="hauptmenu-anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="800.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.MainMenuController">
    <children>
       <SplitPane id="hauptmenu-splitpane" dividerPositions="0.6641604010025063" focusTraversable="false" layoutX="258.0" layoutY="95.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="800.0" styleClass="background-color" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -26,12 +26,15 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCharakterManagerClick" text="Zuuma&#10;die Wirtin" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#onCharakterManagerClick" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <styleClass>
                               <String fx:value="button-gruppen" />
                               <String fx:value="button-mainmenu" />
-                           </styleClass></Button>
-                        <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" text="Anakok&#10;die Kriegerin " textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           </styleClass>
+                           <font>
+                              <Font name="Papyrus" size="12.0" />
+                           </font></Button>
+                        <Button mnemonicParsing="false" onAction="#onKampfClick" prefHeight="150.0" prefWidth="150.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <font>
                               <Font name="DejaVu Sans Bold" size="23.0" />
                            </font>
@@ -40,7 +43,7 @@
                               <String fx:value="button-mainmenu" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onHaendlerClick" text="Girikiri&#10;der Händler" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Button mnemonicParsing="false" onAction="#onHaendlerClick" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <padding>
                               <Insets top="20.0" />
                            </padding>
@@ -49,7 +52,7 @@
                               <String fx:value="button-haendler" />
                            </styleClass>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" prefWidth="85.0" text="Ceto &#10;der Würfelspieler" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <Button mnemonicParsing="false" onAction="#onWuerfelSimulatorClick" prefWidth="85.0" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                            <styleClass>
                               <String fx:value="button-mainmenu" />
                               <String fx:value="button-wuerfeln" />

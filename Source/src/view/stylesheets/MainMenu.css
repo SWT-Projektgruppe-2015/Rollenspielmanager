@@ -20,7 +20,8 @@
 
 
 .button-mainmenu:hover	{
-	-fx-text-fill: #339966;
+	/* -fx-text-fill: #339966; */
+	-fx-effect: dropshadow( gaussian , #669933 , 35, 0.0 , 0 , 0 );
 }
 
 
@@ -43,39 +44,45 @@
 
 
 .button-kampf	{
+	-fx-font-family: Papyrus;
 	-fx-font-size: 1.15em;
 	-fx-padding: 79.0px 0.0px 0.0px 0.0px; 
-	-fx-background-position: 50% 0%;
+	-fx-background-position: 45% 0%;
     -fx-background-size: 95%;
-    -fx-background-image: url('/img/Kriegerin_2.png');   
+    -fx-background-image: url('/img/Hauptmenue_Buttons/Anakok-die-Kriegerin-mit-text.png');   
 }
 
 
 
 .button-haendler	{
+	-fx-font-family: Papyrus;
 	-fx-font-size: 1.15em;
-	-fx-background-position: 55% 40%;
-    -fx-background-size: 160%;
-	-fx-background-image: url('/img/zerber-v1.png');
+	-fx-padding: 79.0px 0.0px 0.0px 0.0px; 
+	-fx-background-position: 50% 0%;
+    -fx-background-size: 95%;
+	-fx-background-image: url('/img/Hauptmenue_Buttons/Girikiri_der_Händler-mit-text.png');
 }
 
 
 
 .button-wuerfeln	{
+	-fx-font-family: Papyrus;
 	-fx-font-size: 1.15em;
 	-fx-padding: 79.0px 0.0px 0.0px 0.0px; 
 	-fx-background-position: 50% 0%;
-    -fx-background-size: 125%;
-	-fx-background-image: url('/img/dornelf_v3.png');
+    -fx-background-size: 95%;
+	-fx-background-image: url('/img/Hauptmenue_Buttons/Ceto_der_Würfelspieler-mit-text.png');
 }
 
 
 
 .button-gruppen	{
+	-fx-font-family: Papyrus;
 	-fx-font-size: 1.15em;
-	-fx-background-position: 45% 75%;
-   	-fx-background-image: url('/img/trollin.png');
-    -fx-background-size: 160%;
+	-fx-padding: 79.0px 0.0px 0.0px 0.0px;  
+	-fx-background-position: 50% 0%;
+    -fx-background-size: 95%;
+   	-fx-background-image: url('/img/Hauptmenue_Buttons/Zuuma_die_Wirtin-mit-text.png');
  }
 
 
