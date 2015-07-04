@@ -165,7 +165,6 @@ public class GegnerEinheit extends Charakter implements SharedGegnerTableEntry {
         List<GegnerEinheit> gegner = new ArrayList<GegnerEinheit>();
         for(int id = 1; id <= anzahl; ++id){
             GegnerEinheit tmp = new GegnerEinheit(typ, id);
-            tmp.setDefS(10);
             gegner.add(tmp);
         }
         return gegner;
