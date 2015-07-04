@@ -1,11 +1,4 @@
-#helm-button	{
-	-fx-background-color: 
-	    transparent linear-gradient(#f6f6f6, #d9d9d9),
-	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#ffd559 10%, #ffe659 50%, #fff7cb 70%);
-	-fx-font-size: 1.02em;
-	-fx-font-weight: bold; 
-}
+
 
 
 
@@ -29,11 +22,30 @@
 
 
 #ruestung-button	{
-	-fx-text-fill: black;
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#f5ff9d 10%, #fbffdd 50%, #ffffff 70%);
+	    linear-gradient(#ffd559 5%, #f5ff9d 30%, #fff7cb 60%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
+
+
+#helm-button	{
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#ffb770 20%, #ffd559 50%, #fff7cb 70%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
+
+
+#direkt-button	{
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#ff9933 40%, #ffb770 60%, #ffeacd 78%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
@@ -42,7 +54,7 @@
 
 #ruestung-button:hover	{
 	-fx-effect: dropshadow(gaussian, #669933, 10, 0.0 ,0.0, 0.0);
-	-fx-text-fill: white;
+	-fx-text-fill: black;
 }
 
 
@@ -59,14 +71,7 @@
 
 
 
-#direkt-button	{
-	-fx-background-color: 
-	    transparent linear-gradient(#f6f6f6, #d9d9d9),
-	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#ff9933 10%, #ffb770 50%, #ffeacd 70%);
-	-fx-font-size: 1.02em;
-	-fx-font-weight: bold; 
-}
+
 
 
 
