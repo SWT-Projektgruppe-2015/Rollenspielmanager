@@ -326,7 +326,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     private GegnerTyp getEntryForNewGegner() {
         GegnerTyp entryForNewGegner = new GegnerTyp();
-        entryForNewGegner.setName_("Neuer GegnerTyp");
+        entryForNewGegner.setName_("Neuer Nichtspielercharakter");
 
         return entryForNewGegner;
     }

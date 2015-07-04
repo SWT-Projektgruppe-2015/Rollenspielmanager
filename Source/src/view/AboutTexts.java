@@ -14,7 +14,7 @@ public class AboutTexts {
             + Hauptprogramm.UMLAUT_SMALL_UE + "ber die aktuelle Abenteuergruppe, "
             + "bzw. eine Abenteuergruppe kann ausgew" + Hauptprogramm.UMLAUT_SMALL_AE + "hlt werden.\n\n"
             + "Die verschiedenen Funktionalit" + Hauptprogramm.UMLAUT_SMALL_AE + "ten sind:\n\n"
-            + "* Charaktermanager: Hier k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen Spielercharaktere und Nichtspiler-Charakter-Typen angelegt "
+            + "* Charaktermanager: Hier k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen Spielercharaktere und Nichtspielercharaktere angelegt "
                     + "sowie Abenteuergruppen verwaltet werden \n\n"
             + "* Kampf: Nach der Wahl von Spielercharakteren und Gegner werden hier Gegnerw" + Hauptprogramm.UMLAUT_SMALL_UE + "rfe simuliert und ausgewertet,"
                     + " Schadenswerte der Spieler berechnet und Erfahrungspunkte vergeben.\n\n"
@@ -48,11 +48,11 @@ public class AboutTexts {
                     + "entsprechenden Charakter aus und klicke auf den Button 'L" + Hauptprogramm.UMLAUT_SMALL_OE + "schen'.\n"
             + "4) Durch Eingaben in das 'Suche' Textfeld werden nur alle Charaktere angezeigt, deren Name den eingegebenen Begriff enth" + Hauptprogramm.UMLAUT_SMALL_AE + "lt."
             + "\n\n"
-            + "Nichtspielercharaktere: Verwaltung von Nichtspieler-Charakter-Typen\n\n"
+            + "Nichtspielercharaktere: Verwaltung von Nichtspielercharakteren\n\n"
             + "F" + Hauptprogramm.UMLAUT_SMALL_UE + "r die generelle Bedienung siehe 'Spielercharaktere'. Besonderheit:\n"
             + "Nichtspielercharakter k" + Hauptprogramm.UMLAUT_SMALL_OE + "nnen nach Kreis gefiltert werden. "
                     + "Wenn " + Hauptprogramm.UMLAUT_SMALL_UE + "berhalb der Charakterliste einige Checkboxen nicht markiert sind, "
-                    + "werden Nichtspieler-Charakter-Typen dieses Kreises nicht angezeigt.";
+                    + "werden Nichtspielercharaktere dieses Kreises nicht angezeigt.";
     
     public static final String KAMPF_TITLE = "Der Kampf";
     public static final String ABOUT_KAMPF = "Der Kampf gliedert sich in die drei Bereiche 'Gegnerrunde', 'Spielerrunde' und 'Kampfende'.\n\n"

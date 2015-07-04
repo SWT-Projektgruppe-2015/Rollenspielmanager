@@ -50,7 +50,7 @@ Das Hauptmenü besteht aus zwei vertikal getrennten Bereichen, den Buttons für 
 %\textbf{Button Bereich:}\\
 Im linken Bereich finden sich vier Buttons, um auf die Grundfunktionen des Programm zuzugreifen.
 \begin{itemize}
-	\item[] \textbf{Charaktermanager}: Hier können Spielercharaktere und Nichtspieler-Charakter-Typen angelegt, sowie Abenteuergruppen verwaltet werden.
+	\item[] \textbf{Charaktermanager}: Hier können Spieler- und Nichtspielercharaktere angelegt, sowie Abenteuergruppen verwaltet werden.
 	\item[] \textbf{Kampf}: Führt zu einer Teilnehmerauswahl für die Teilnehmer des Kampfes (Spieler und Gegner). Anschließend kann ein Kampfhelfer für den Kampf gestartet werden.
 	\item[] \textbf{Händler}: Hier können alle Gegenstände und Ausrüstungsteile erstellt, gesucht und anderweitig verwaltet werden.
 	\item[] \textbf{Würfeln}: Hier können diverse Würfelwürfe simuliert werden.
@@ -63,7 +63,7 @@ Die Auswahl einer Gruppe im Hauptmenü führt dazu, dass diese die Standardgrupp
 \newpage
 
 \section{Der Charaktermanager}
-Um den Kampfhelfer zu nutzen, müssen 'DLVC Taverne' Spielercharaktere und Nichtspieler-Typen bekannt sein. Dafür ist der Charaktermanager zuständig. Er teilt sich in die drei Tabs \textbf{Gruppen}, \textbf{Spielercharaktere} und \textbf{Nichtspieler-Typen}.
+Um den Kampfhelfer zu nutzen, müssen 'DLVC Taverne' Spieler- und Nichtspielercharaktere bekannt sein. Dafür ist der Charaktermanager zuständig. Er teilt sich in die drei Tabs \textbf{Gruppen}, \textbf{Spielercharaktere} und \textbf{Nichtspielercharaktere}.
 
 \subsection{Der Gruppenmanager}
 Der Gruppenmanager ermöglicht das Speichern von Abenteuergruppen. Diese können dann schnell bei Neustart wiederverwendet und angepasst werden.\\
@@ -135,27 +135,27 @@ In jedem Tab führt ein Druck auf die 'Enter'-Taste zur Speicherung der Charakte
 \subsubsection{Effekte von Rüstung und Waffen} \label{Abschnitt: Effekte}
 
 
-\subsection{Der Nichtspieler-Typ-Manager}
-Im Nichtspieler-Typ-Manager werden potentielle Gegner der Abenteuergruppen verwaltet. \\
+\subsection{Der Nichtspielercharakter-Manager}
+Im Nichtspielercharakter-Manager werden potentielle Gegner der Abenteuergruppen verwaltet. \\
 
-Von der Bedienung her funktioniert der Nichtspieler-Typ-Manager fast identisch zum Spielermanager, siehe Abschnitt \ref{subsection:Spielercharaktermanager}. Er besitzt lediglich andere Tabs und eine zusätzliche Filterfunktion.\\
+Von der Bedienung her funktioniert der Nichtspielercharakter-Manager fast identisch zum Spielermanager, siehe Abschnitt \ref{subsection:Spielercharaktermanager}. Er besitzt lediglich andere Tabs und eine zusätzliche Filterfunktion.\\
 
-Mithilfe der Filterfunktion ist es leicht möglich, Nichtspieler-Typen eines bestimmten Kreises zu finden: Es werden stets die Typen angezeigt, deren Kreise ausgewählt sind, siehe Abbildung \ref{fig:Nichtspielertypmanager1}.
+Mithilfe der Filterfunktion ist es leicht möglich, Nichtspielercharaktere eines bestimmten Kreises zu finden: Es werden stets die Typen angezeigt, deren Kreise ausgewählt sind, siehe Abbildung \ref{fig:Nichtspielertypmanager1}.
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Nichtspielertypmanager1}
-\caption{Der Nichtspieler-Typ-Manager}
+\caption{Der Nichtspielercharakter-Manager}
 \label{fig:Nichtspielertypmanager1}
 \end{figure}
 
 
-\subsubsection{Die zwei Untertabs für Nichtspieler-Typen-Eigenschaften}
-Da für Nichtspieler-Typen im Kampf andere Werte wichtig sind, hat der Nichtspieler-Typ-Manager nur die beiden Tabs 'Details' und 'Ausrüstung'.\\
+\subsubsection{Die zwei Untertabs für Nichtspielercharakter-Eigenschaften}
+Da für Nichtspielercharaktere im Kampf andere Werte wichtig sind, hat der Nichtspielercharakter-Manager nur die beiden Tabs 'Details' und 'Ausrüstung'.\\
 
-Der Tab \textbf{Details} enthält wie bei den Spielercharakteren Name, Stufe und Kreis des Typs. Auch hier kann ein Typ gelöscht werden. 
+Der Tab \textbf{Details} enthält wie bei den Spielercharakteren Name, Stufe und Kreis des Charakters. Auch hier kann ein Charakter gelöscht werden. 
 Zusätzlich können die Werte Geschick, Stärke, Erfahrung und LP gesetzt werden.\\
  Geschick und Stärke bestimmen, wie sich der Gegner im Kampf verhält. Wenn eine dieser Zahlen durch 'Enter' bestätigt wird, updaten sich auch die daneben angezeigten Würfel. 
-Sie zeigen an, welche Würfelwürfe intern simuliert werden. LP bestimmt die Lebenspunkte eines Gegnertyps, Erfahrung gibt an, wie viele Erfahrungspunkte eine Instanz dieses Typs einbringt.\\
+Sie zeigen an, welche Würfelwürfe intern simuliert werden. LP bestimmt die Lebenspunkte eines Charakters, Erfahrung gibt an, wie viele Erfahrungspunkte eine Instanz dieses Charakters einbringt.\\
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Nichtspielertypmanager2}
@@ -164,7 +164,7 @@ Sie zeigen an, welche Würfelwürfe intern simuliert werden. LP bestimmt die Leb
 \end{figure}
 
 Im \textbf{Ausrüstung}-Tab werden erneut DefR, DefH und DefS angegeben, siehe Abschnitt \ref{subsection:Spielercharaktermanager}. 
-Da einem Gegnertyp eine feste Waffe zugewiesen ist, wird hier zudem der Schaden dieser Waffe festgelegt. Effekte auf Nichtspieler-Typ-Seite sind in \textit{DLVC Taverne}, Version 1, noch nicht verfügbar.
+Da einem Nichtspielercharakter eine feste Waffe zugewiesen ist, wird hier zudem der Schaden dieser Waffe festgelegt. Effekte auf Nichtspielercharakter-Seite sind in \textit{DLVC Taverne}, Version 1, noch nicht verfügbar.
 
 \section{Der Kampf}
 \subsection{Die Gegnerrunde}

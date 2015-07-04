@@ -66,7 +66,7 @@
                               <Label fx:id="bonusForStaerkeLabel_" text="-1" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
             									</children>
             								</GridPane>
-            								<Button layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteGegner" styleClass="button-bevel-gray" text="NSC löschen" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="170.0" />
+            								<Button layoutX="184.0" layoutY="163.0" mnemonicParsing="false" onAction="#deleteGegner" prefWidth="110.0" styleClass="button-bevel-gray" text="Löschen" AnchorPane.leftAnchor="230.0" AnchorPane.topAnchor="170.0" />
             							</children>
             						</AnchorPane>
 					</content>
