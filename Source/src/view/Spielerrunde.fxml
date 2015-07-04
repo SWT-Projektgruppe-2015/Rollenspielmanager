@@ -96,7 +96,7 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button id="aoe-button" mnemonicParsing="false" onAction="#onAoESchadenClick" prefHeight="26.0" prefWidth="45.0" styleClass="menubar-bevel-gray" stylesheets="@stylesheets/CustomStyle.css" text="AoE">
+                  <Button id="aoe-button" mnemonicParsing="false" onAction="#onAoESchadenClick" prefHeight="26.0" prefWidth="45.0" styleClass="button-green" stylesheets="@stylesheets/CustomStyle.css" text="AoE">
                      <tooltip>
                         <Tooltip text="Area of Effect:&#10;Schaden gegen&#10;alle Gegner." textAlignment="CENTER" />
                      </tooltip>
