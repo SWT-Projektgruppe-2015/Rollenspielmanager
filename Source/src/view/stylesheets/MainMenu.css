@@ -13,7 +13,7 @@
 	
 	-fx-font-family: Papyrus;
     -fx-font-weight: bold;
-    -fx-font-size: 28px;
+	-fx-font-size: 1.0em;
 	-fx-effect: dropshadow(gaussian , #669933 , 15, 0.0 , 0 , 0 );
 	-fx-border-radius:100%;
 }
@@ -44,7 +44,6 @@
 
 
 .button-kampf	{
-	-fx-font-size: 1.15em;
 	-fx-padding: 87.0px 0.0px 0.0px 0.0px; 
 	-fx-background-position: 45% 0%;
     -fx-background-size: 95%;
@@ -54,7 +53,6 @@
 
 
 .button-haendler	{
-	-fx-font-size: 1.15em;
 	-fx-padding: 84.0px 0.0px 0.0px 0.0px; 
 	-fx-background-position: 40% 0%;
     -fx-background-size: 95%;
@@ -64,7 +62,6 @@
 
 
 .button-wuerfeln	{
-	-fx-font-size: 1.15em;
 	-fx-padding: 80.0px 0.0px 0.0px 0.0px; 
 	-fx-background-position: 20% 0%;
     -fx-background-size: 95%;
@@ -74,7 +71,6 @@
 
 
 .button-gruppen	{
-	-fx-font-size: 1.15em;
 	-fx-padding: 79.0px 0.0px 0.0px 0.0px;  
 	-fx-background-position: -10% 0%;
     -fx-background-size: 95%;
