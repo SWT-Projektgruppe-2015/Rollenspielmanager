@@ -2,7 +2,7 @@
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#ff9900 10%, #ffcc66 30%, #fcebb7 60%);
+	    linear-gradient(#ffd559 10%, #ffe659 50%, #fff7cb 70%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
@@ -29,11 +29,11 @@
 
 
 #ruestung-button	{
-	-fx-text-fill: white;
+	-fx-text-fill: black;
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#62a48e 10%, #77bfa7 30%, #8fdbc2 60%);
+	    linear-gradient(#f5ff9d 10%, #fbffdd 50%, #ffffff 70%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
@@ -63,7 +63,7 @@
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#f03e30 10%, #eb4f5c 30%, #fc6874 60%);
+	    linear-gradient(#ff9933 10%, #ffb770 50%, #ffeacd 70%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
@@ -134,7 +134,6 @@
 
 #aoe-button:hover	{
 	-fx-effect: dropshadow(gaussian, orange, 15, 0.0 ,0.0, 0.0);
-	-fx-text-fill: crimson;
 }
 
 
