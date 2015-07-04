@@ -2,7 +2,7 @@
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#fdb241 10%, #ffd559 30%, #fcebb7 60%);
+	    linear-gradient(#ff9900 10%, #ffcc66 30%, #fcebb7 60%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
@@ -33,7 +33,7 @@
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#939a5d 10%, #b4bc71 30%, #d8e285 60%);
+	    linear-gradient(#62a48e 10%, #77bfa7 30%, #8fdbc2 60%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
@@ -63,7 +63,7 @@
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#bd385a 10%, #e75077 30%, #f7688d 60%);
+	    linear-gradient(#f03e30 10%, #eb4f5c 30%, #fc6874 60%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
