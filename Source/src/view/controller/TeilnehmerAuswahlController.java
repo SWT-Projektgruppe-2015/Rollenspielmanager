@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import view.tabledata.GegnerEinheitImKampf;
-import view.tabledata.SpielerMitWaffe;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
 import model.GegnerEinheit;
@@ -16,19 +15,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
 
 public class TeilnehmerAuswahlController implements GruppenObserver {
     @FXML

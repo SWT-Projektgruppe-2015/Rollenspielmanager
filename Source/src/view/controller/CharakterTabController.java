@@ -2,12 +2,9 @@ package view.controller;
 
 import java.util.List;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Charakter;
-import model.Ruestungseffekt;
 
 public abstract class CharakterTabController extends NotificationController {
     protected <T> T getSelected(ListView<T> listView) {

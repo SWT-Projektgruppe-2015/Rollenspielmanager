@@ -7,7 +7,6 @@ import model.Spieler;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;

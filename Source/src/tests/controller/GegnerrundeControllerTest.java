@@ -2,10 +2,6 @@ package tests.controller;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javafx.collections.FXCollections;
 import model.Charakter;
 import model.GegnerEinheit;
 import model.GegnerTyp;
@@ -18,9 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import view.controller.GegnerrundeController;
-import view.controller.Hauptprogramm;
-import view.controller.KampfendeController;
-import view.controller.SpielerrundeController;
 
 public class GegnerrundeControllerTest extends GegnerrundeController {
     

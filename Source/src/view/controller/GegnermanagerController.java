@@ -24,7 +24,6 @@ import javafx.scene.control.TextField;
 public class GegnermanagerController extends CharakterTabController {
     private List<GegnerTyp> gegnerList_;
     private GegnerTyp entryForNewGegner_;
-    private Faehigkeiten entryForNewFaehigkeit_;
     
     @FXML
     private CheckBox kreis1CheckBox_;
@@ -107,7 +106,7 @@ public class GegnermanagerController extends CharakterTabController {
     
     @FXML
     private void filterByKreis() {
-        List<Integer> kreiseToShow = new ArrayList();
+        List<Integer> kreiseToShow = new ArrayList<>();
         if (kreis1CheckBox_.isSelected()) {
             kreiseToShow.add(1);
         }

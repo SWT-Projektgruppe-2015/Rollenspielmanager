@@ -1,16 +1,12 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import org.apache.*;
 
 import controller.Dice;
 
 public abstract class Beute {
     
-    private Gegenstand ausruestung_;
     static private Random random = new Random();
 
     protected static double generateGaussianValue(double mean, double variance) {

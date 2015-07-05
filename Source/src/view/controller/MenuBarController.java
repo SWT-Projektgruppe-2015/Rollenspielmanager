@@ -6,7 +6,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
-import javafx.scene.text.Text;
 
 public class MenuBarController {
     public static final String ABOUT_THE_PRODUCT = 
