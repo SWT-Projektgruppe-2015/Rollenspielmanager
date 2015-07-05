@@ -31,6 +31,7 @@ import javafx.scene.control.TreeTableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.util.Callback;
 
 public class SpielerrundeController extends NotificationController {
@@ -58,6 +59,9 @@ public class SpielerrundeController extends NotificationController {
     
     @FXML
     private TextField addedSchadenTextField_;
+    
+    @FXML
+    private GridPane effektPane_;
     
     private Hauptprogramm main_;
     private ObservableList<GegnerEinheit> allExpYieldingGegner_;
