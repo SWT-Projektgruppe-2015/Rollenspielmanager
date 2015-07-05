@@ -3,6 +3,10 @@ package view.controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.text.Text;
 
 public class MenuBarController {
     public static final String ABOUT_THE_PRODUCT = 
@@ -19,27 +23,46 @@ public class MenuBarController {
         aboutThisWindow_ = about;
     }
     
+    
+    
     @FXML
     public void onAboutWindowClick() {
-        Alert alert = new Alert(AlertType.INFORMATION);
+        Alert alert = getScrollingAlert(aboutThisWindow_, 600, 400);
         alert.setTitle("Hilfe zum aktuellen Fenster");
         alert.setHeaderText(windowTitle_);
-        alert.setContentText(aboutThisWindow_);
-        alert.setResizable(true);
-        alert.getDialogPane().setPrefSize(600, aboutThisWindow_.length() / 3 + 100);
+
+        alert.showAndWait();
+    }
+
+    
+    
+    @FXML
+    public void onAboutUsClick() {
+        Alert alert = getScrollingAlert(ABOUT_THE_PRODUCT, 400, 200);
+        alert.setTitle("Über DLVC Taverne");
+        alert.setHeaderText(null);
 
         alert.showAndWait();
     }
     
-    @FXML
-    public void onAboutUsClick() {
+    
+    
+    private Alert getScrollingAlert(String content, int width, int height) {
         Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Über DLVC Taverne");
-        alert.setHeaderText(null);
-        alert.setContentText(ABOUT_THE_PRODUCT);
         alert.setResizable(true);
-        alert.getDialogPane().setPrefSize(400, 200);
+        alert.getDialogPane().setPrefSize(width, height);
+        
+        ScrollPane pane = new ScrollPane();
+        Label text = new Label(content);
+        pane.setContent(text);
+        pane.setStyle("-fx-background-color: -fx-background");
 
-        alert.showAndWait();
+        text.setWrapText(true);
+        pane.setFitToWidth(true);
+        pane.setHbarPolicy(ScrollBarPolicy.NEVER);
+        
+        alert.getDialogPane().setContent(pane);
+        
+        return alert;
     }
 }
