@@ -59,4 +59,11 @@ public class SpielerMitWaffe implements Comparable<SpielerMitWaffe> {
     public int compareTo(SpielerMitWaffe o) {
         return getSpielerName_().compareTo(o.getSpielerName_());
     }
+
+    public boolean hasWaffenEffekt() {
+        if(currentWaffe_.hasEffekt())   {
+            return true;
+        }
+        return false;
+    }
 }

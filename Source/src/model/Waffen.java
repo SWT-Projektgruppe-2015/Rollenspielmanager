@@ -197,4 +197,13 @@ public class Waffen implements DBObject, Comparable<Waffen> {
         }
         return false;
     }
+
+
+
+    public boolean hasEffekt() {
+        if(this.effektTyp_ != null  && this.effektTyp_ != EffektTyp.NO_EFFEKT)  {
+            return true;
+        }
+        return false;
+    }
 }
