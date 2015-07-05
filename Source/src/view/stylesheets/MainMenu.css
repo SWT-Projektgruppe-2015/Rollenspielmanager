@@ -91,6 +91,14 @@
 
 
 
+.tableview-mainmenu .column-header	{
+	-fx-border-color: derive(darkgrey, 10%);
+	-fx-border-width: 0.5px;
+	-fx-background-color: linear-gradient(to top,derive(#fcfbf4,34%) 0%,derive(#fcfbf4,-18%) 100%);
+}
+
+
+
 #hauptmenu-splitpane.split-pane .split-pane-divider	{
    	-fx-border-color: transparent ladder(
         #704214,
