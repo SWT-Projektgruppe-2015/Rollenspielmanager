@@ -132,6 +132,14 @@
 
 
 
+.tableview-background .column-header	{
+	-fx-border-color: derive(darkgrey, 10%);
+	-fx-border-width: 0.5px;
+	-fx-background-color: linear-gradient(to top,derive(#fcfbf4,34%) 0%,derive(#fcfbf4,-18%) 100%);
+	}
+
+
+
 .textfield-background	{
 	-fx-border-color: darkgrey;
 	-fx-prompt-text-fill: rgb(107,107,107);
