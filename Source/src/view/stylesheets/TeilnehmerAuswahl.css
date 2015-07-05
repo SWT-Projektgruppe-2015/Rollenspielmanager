@@ -66,20 +66,20 @@
 
 #left-table-teilnehmer-auswahl.table-view .column-header-background {
 	-fx-background-color: #fcfbf4;
-	-fx-background-radius: 5px 5px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
 }
 
 
 
 #left-table-teilnehmer-auswahl.table-view .filler	{
 	-fx-background-color: #fcfbf4;
-	-fx-background-radius: 5px 5px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
 }
 
 
 
 #gegnertyp-column	{
-	-fx-background-radius: 5px 0px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
 	-fx-alignment: center;
 }
 
@@ -87,5 +87,5 @@
 
 
 #anzahl-column	{
-	-fx-background-radius: 0px 5px 0px 0px;
+	-fx-background-radius: 0px 0px 0px 0px;
 }
