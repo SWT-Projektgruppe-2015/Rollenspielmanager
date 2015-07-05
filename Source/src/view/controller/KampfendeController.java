@@ -8,7 +8,6 @@ import java.util.Map;
 import view.NotificationTexts;
 import view.customcell.GegnerStateCell;
 import view.tabledata.ExpCategory;
-import view.tabledata.SchadenAmSpieler;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -111,8 +110,8 @@ public class KampfendeController extends NotificationController {
         
         createNotification(NotificationTexts.textForBeuteGenerator(selectedGegner));
         beuteList_.clear();
-        generateInventarBeuteFromGegner(selectedGegner, inventarWert, inventarStreuung);
         generateAusruestungsBeuteFromGegner(selectedGegner, ausruestungsMalus, ausruestungStreuung);
+        generateInventarBeuteFromGegner(selectedGegner, inventarWert, inventarStreuung);
     }
 
 

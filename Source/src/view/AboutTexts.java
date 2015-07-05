@@ -97,7 +97,7 @@ public class AboutTexts {
             + "Die untere Textbox erlaubt es, dass dieser Wert nicht immer exakt getroffen wird, sondern eine Schwankung vorliegt. "
             + "Sie spezifiziert die erwartete Gr" + Hauptprogramm.UMLAUT_SMALL_OE + "ße dieser Schwankung.\n\n"
             + "Welche Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde als R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung gelten, wird im H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler festgelegt. "
-            + "Es sind die Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde der Kategorien 'Waffe', 'Harnisch', 'Helm', 'Handschuh' und 'Schuh'. "
+            + "Es sind die Gegenst" + Hauptprogramm.UMLAUT_SMALL_AE + "nde der Kategorien 'Waffe', 'Harnisch', 'Helm', 'Handschuh', 'G" + Hauptprogramm.UMLAUT_SMALL_UE + "rtel' und 'Schuh'. "
             + "Wenn einige dieser Kategorien nicht existieren, ist es m" + Hauptprogramm.UMLAUT_SMALL_OE + "glich, dass keine Ausr" + Hauptprogramm.UMLAUT_SMALL_UE + "stungsbeute generiert wird.";
 
     public static final String HAENDLER_TITLE = "Der H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler";
@@ -110,7 +110,7 @@ public class AboutTexts {
             + "\nZU SUBKATEGORIE HINZUF" + Hauptprogramm.UMLAUT_CAPITAL_UE + "GEN:   Wenn Subkategorie schon vorhanden dann reicht es als Kategorie nur die Subkategorie zu spezifizieren. Wenn eine neue Subkategorie erstellt werden soll dann siehe 'Kategorien - NEU ERSTELLEN'"
             + "\nAUSWAHL:   Das Ausw" + Hauptprogramm.UMLAUT_SMALL_AE + "hlen eines Gegenstandes f" + Hauptprogramm.UMLAUT_SMALL_UE + "llt die rechten Textfelder mit seinen Eigenschaften."
             + "\n\n----------- ACHTUNG -----------\n"
-            + "Der Beutegenerator im Kampfende Tab teilt seine Beute auf 'Waffe, Helm, Harnisch, Handschuh, Schuh'. Stellen Sie bitte sicher dass diese Kategorien existieren, da sonst zu wenig Beute verteilt wird."            
+            + "Der Beutegenerator im Kampfende Tab teilt seine Beute auf 'Waffe, Helm, Harnisch, Handschuh, G" + Hauptprogramm.UMLAUT_SMALL_UE + "rtel, Schuh'. Stellen Sie bitte sicher dass diese Kategorien existieren, da sonst zu wenig Beute verteilt wird."            
             + "";
    
     public static final String WUERFELSIMULATOR_TITLE = "Der W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelsimulator";
