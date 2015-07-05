@@ -385,7 +385,7 @@ public class Spieler extends Charakter implements DBObject {
 
     public int getTotalStaerkeMalus(Waffen current) {
         int totalMalus = 0;
-        if(current.getEffektTyp_() == Waffen.EffektTyp.MALUS_STAERKE && current != null) {
+        if(current != null && current.getEffektTyp_() == Waffen.EffektTyp.MALUS_STAERKE) {
             totalMalus += current.getEffektWert_();
         }
         for(Ruestungseffekt effekt : getEffekte()) {
@@ -401,7 +401,7 @@ public class Spieler extends Charakter implements DBObject {
     
     public int getTotalGeschickMalus(Waffen current) {
         int totalMalus = 0;
-        if(current.getEffektTyp_() == Waffen.EffektTyp.MALUS_GESCHICK && current != null) {
+        if(current != null && current.getEffektTyp_() == Waffen.EffektTyp.MALUS_GESCHICK) {
             totalMalus += current.getEffektWert_();
         }
        

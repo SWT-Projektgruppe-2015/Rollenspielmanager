@@ -131,9 +131,25 @@ public class GegnerEinheitTest {
     
     
     @Test
+    public void blockWithDefS0NeverSucceeds() {
+        GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
+        gegner.setGeschick_(500);
+        int numberOfSuccessfulBlocks = 0;
+        for(int i = 0; i<50; i++) {
+            if(gegner.blockIsSuccessful(0))
+                numberOfSuccessfulBlocks++;
+        }
+        
+        assertTrue(numberOfSuccessfulBlocks == 0);
+    }
+    
+    
+    
+    @Test
     public void weakBlockIsSuccessfulRightNumberOfTimes() {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
         gegner.setGeschick_(5);
+        gegner.setDefS(1);
         int numberOfSuccessfulBlocks = 0;
         for(int i = 0; i<1000; i++) {
             if(gegner.blockIsSuccessful(0))
@@ -150,6 +166,7 @@ public class GegnerEinheitTest {
     public void goodBlockIsSuccessfulRightNumberOfTimes() {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
         gegner.setGeschick_(61);
+        gegner.setDefS(1);
         int numberOfSuccessfulBlocks = 0;
         for(int i = 0; i<1000; i++) {
             if(gegner.blockIsSuccessful(0))
@@ -165,6 +182,7 @@ public class GegnerEinheitTest {
     @Test
     public void almostPerfectBlockIsSuccessfulRightNumberOfTimes() {
         GegnerEinheit gegner = GegnerEinheit.createEinheiten(new GegnerTyp(), 1).get(0);
+        gegner.setDefS(1);
         gegner.setGeschick_(341);
         int numberOfSuccessfulBlocks = 0;
         for(int i = 0; i<1000; i++) {

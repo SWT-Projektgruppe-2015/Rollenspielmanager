@@ -1,9 +1,15 @@
 package tests.controller;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.FXCollections;
 import model.Charakter;
 import model.GegnerEinheit;
 import model.GegnerTyp;
+import model.Ruestungseffekt;
 import model.Spieler;
 import model.Waffen;
 
@@ -12,6 +18,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import view.controller.GegnerrundeController;
+import view.controller.Hauptprogramm;
+import view.controller.KampfendeController;
+import view.controller.SpielerrundeController;
 
 public class GegnerrundeControllerTest extends GegnerrundeController {
     
@@ -79,15 +88,37 @@ public class GegnerrundeControllerTest extends GegnerrundeController {
         waffeWithGeschickMalus.setEffektWert_(100);
         spieler_.addWaffe(waffeWithGeschickMalus);
         
-        GegnerrundeController controller = new GegnerrundeController();
         gegnerTyp_.setGeschick_(100);
         GegnerEinheit geschickterGegner = GegnerEinheit.createEinheiten(gegnerTyp_, 1).get(0);
+        
+        GegnerrundeController controller = new GegnerrundeController();
+        
         for(int i = 0; i<100; i++) {
-            int wurf = controller.simulateGeschickWurf(geschickterGegner, spieler_);
+            int wurf = controller.simulateGeschickWurf(geschickterGegner, spieler_, waffeWithGeschickMalus);
+            assertTrue(wurf > 0 && wurf < 5);
+        }
+        spieler_.deleteWaffe(waffeWithGeschickMalus);
+        
+        Ruestungseffekt geschickMalusEffekt = new Ruestungseffekt();
+        geschickMalusEffekt.setEffektTyp_(Ruestungseffekt.EffektTyp.MALUS_GESCHICK);
+        geschickMalusEffekt.setEffektWert_(3);
+        spieler_.addRuestungsEffekt(geschickMalusEffekt);        
+        for(int i = 0; i<100; i++) {
+            int wurf = controller.simulateGeschickWurf(geschickterGegner, spieler_, waffeWithGeschickMalus);
             assertTrue(wurf > 0 && wurf < 5);
         }
         
+        geschickMalusEffekt.setEffektWert_(50);
+        waffeWithGeschickMalus.setEffektWert_(50);
+        spieler_.addWaffe(waffeWithGeschickMalus);
+        for(int i = 0; i<100; i++) {
+            int wurf = controller.simulateGeschickWurf(geschickterGegner, spieler_, waffeWithGeschickMalus);
+            assertTrue(wurf > 0 && wurf < 5);
+        }
         spieler_.deleteWaffe(waffeWithGeschickMalus);
+        
+        waffeWithGeschickMalus.deleteFromDB();
+        geschickMalusEffekt.deleteFromDB();
     }
     
     

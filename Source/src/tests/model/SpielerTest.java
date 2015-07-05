@@ -359,7 +359,9 @@ public class SpielerTest {
         effekt.setEffektWert_(4);
         testSpieler.addRuestungsEffekt(effekt);
         
-        assertTrue(testSpieler.getTotalStaerkeMalus(null) == 30);
+        assertTrue(testSpieler.getTotalStaerkeMalus(null) == 4);
+        assertTrue(testSpieler.getTotalStaerkeMalus(waffe1) == 27);
+        assertTrue(testSpieler.getTotalStaerkeMalus(waffe2) == 7);
         
         waffe1.deleteFromDB();
         waffe2.deleteFromDB();
@@ -390,7 +392,9 @@ public class SpielerTest {
         effekt.setEffektWert_(4);
         testSpieler.addRuestungsEffekt(effekt);
         
-        assertTrue(testSpieler.getTotalGeschickMalus(null) == 7);
+        assertTrue(testSpieler.getTotalGeschickMalus(null) == 4);
+        assertTrue(testSpieler.getTotalGeschickMalus(waffe1) == 4);
+        assertTrue(testSpieler.getTotalGeschickMalus(waffe2) == 7);
         
         waffe1.deleteFromDB();
         waffe2.deleteFromDB();
