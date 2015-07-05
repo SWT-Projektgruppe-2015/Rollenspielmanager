@@ -7,13 +7,16 @@ import model.Spieler;
 import controller.GruppenSubject;
 import controller.interfaces.GruppenObserver;
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.TextAlignment;
 
 public class MainMenuController implements GruppenObserver{
     @FXML
@@ -26,6 +29,16 @@ public class MainMenuController implements GruppenObserver{
     private TableColumn<Spieler, Integer> kreis_;
     @FXML
     private TableColumn<Spieler, Integer> level_;
+    @FXML
+    private Button gruppe_;
+    @FXML
+    private Button kampf_;
+    @FXML
+    private Button haendler_;
+    @FXML
+    private Button wuerfel_;
+    
+    
     
     private Hauptprogramm hauptProgramm_;
     
@@ -60,6 +73,14 @@ public class MainMenuController implements GruppenObserver{
             }
         });
         
+        setButtonTextAlignment(TextAlignment.CENTER);
+        setButtonTextLineSpacing(-13.0);
+        gruppe_.setText("Zuuma\ndie Wirtin");
+        kampf_.setText("Anankok\ndie Kriegerin");
+        haendler_.setText("Girikiri\nder H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler");
+        wuerfel_.setText("Ceto\nder W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelspieler");
+        
+        
         selectedGruppenObserver_ = new ChangeListener<Gruppe>() {            
             @Override
             public void changed(ObservableValue<? extends Gruppe> observable,
@@ -77,6 +98,24 @@ public class MainMenuController implements GruppenObserver{
         kreis_.setCellValueFactory(new PropertyValueFactory<Spieler, Integer>("kreis_"));
         level_.setCellValueFactory(new PropertyValueFactory<Spieler, Integer>("level_"));
         name_.setCellValueFactory(new PropertyValueFactory<Spieler, String>("name_"));
+    }
+
+
+
+    private void setButtonTextLineSpacing(double spacing) {
+        gruppe_.setLineSpacing(spacing);
+        kampf_.setLineSpacing(spacing);
+        haendler_.setLineSpacing(spacing);
+        wuerfel_.setLineSpacing(spacing);
+    }
+
+
+
+    private void setButtonTextAlignment(TextAlignment alignment) {
+        gruppe_.setTextAlignment(alignment);
+        kampf_.setTextAlignment(alignment);
+        haendler_.setTextAlignment(alignment);
+        wuerfel_.setTextAlignment(alignment);
     }
 
     

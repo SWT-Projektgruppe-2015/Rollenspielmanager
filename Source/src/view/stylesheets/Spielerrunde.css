@@ -1,12 +1,56 @@
-#helm-button	{
+/*
+#helm-button {
+ -fx-background-color: 
+     transparent linear-gradient(#f6f6f6, #d9d9d9),
+     linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+     linear-gradient(#ffc700 10%, gold 30%, #ffef97 60%);
+ -fx-font-size: 1.02em;
+ -fx-font-weight: bold; 
+}
+#ruestung-button {
+ -fx-text-fill: white;
+ -fx-background-color: 
+     transparent linear-gradient(#f6f6f6, #d9d9d9),
+     linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+     linear-gradient(#0e9954 10%, #339966 30%, #6bb48f 60%);
+ -fx-font-size: 1.02em;
+ -fx-font-weight: bold; 
+}
+#direkt-button {
+ -fx-background-color: 
+     transparent linear-gradient(#f6f6f6, #d9d9d9),
+     linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+     linear-gradient(#ef6e00 10%, darkorange 30%, #ffba66 60%);
+ -fx-font-size: 1.02em;
+ -fx-font-weight: bold; 
+}
+ */
+#ruestung-button	{
 	-fx-background-color: 
 	    transparent linear-gradient(#f6f6f6, #d9d9d9),
 	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#ffc700 10%, gold 30%, #ffef97 60%);
+	    linear-gradient(#ffd559 20%, #f5ff9d 50%, #fff7cb 70%);
 	-fx-font-size: 1.02em;
 	-fx-font-weight: bold; 
 }
 
+#helm-button	{
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#ffb770 20%, #ffd559 50%, #fff7cb 70%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
+
+#direkt-button	{
+	-fx-background-color: 
+	    transparent linear-gradient(#f6f6f6, #d9d9d9),
+	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
+	    linear-gradient(#ff9933 20%, #ffb770 50%, #ffeacd 70%);
+	-fx-font-size: 1.02em;
+	-fx-font-weight: bold; 
+}
 
 
 #helm-button:hover	{
@@ -28,21 +72,9 @@
 
 
 
-#ruestung-button	{
-	-fx-text-fill: white;
-	-fx-background-color: 
-	    transparent linear-gradient(#f6f6f6, #d9d9d9),
-	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#0e9954 10%, #339966 30%, #6bb48f 60%);
-	-fx-font-size: 1.02em;
-	-fx-font-weight: bold; 
-}
-
-
-
 #ruestung-button:hover	{
 	-fx-effect: dropshadow(gaussian, #669933, 10, 0.0 ,0.0, 0.0);
-	-fx-text-fill: white;
+	-fx-text-fill: black;
 }
 
 
@@ -59,14 +91,7 @@
 
 
 
-#direkt-button	{
-	-fx-background-color: 
-	    transparent linear-gradient(#f6f6f6, #d9d9d9),
-	    linear-gradient(#fafafa 0%, #d3d3d3 20%, #d6d6d6 100%),
-	    linear-gradient(#ef6e00 10%, darkorange 30%, #ffba66 60%);
-	-fx-font-size: 1.02em;
-	-fx-font-weight: bold; 
-}
+
 
 
 
@@ -134,7 +159,6 @@
 
 #aoe-button:hover	{
 	-fx-effect: dropshadow(gaussian, orange, 15, 0.0 ,0.0, 0.0);
-	-fx-text-fill: crimson;
 }
 
 
