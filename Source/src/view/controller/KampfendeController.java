@@ -258,4 +258,11 @@ public class KampfendeController extends NotificationController {
         }
         return expCategories;
     }
+
+
+
+    public void redrawGegnerTableView() {
+        gegnerColumn_.setVisible(false);
+        gegnerColumn_.setVisible(true);
+    }
 }

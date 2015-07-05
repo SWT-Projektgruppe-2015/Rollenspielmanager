@@ -163,6 +163,7 @@ public class NotificationTexts {
 
     public static final String WRONG_LEBENSPUNKTE_FORMAT = "Lebenspunkte m" + Hauptprogramm.UMLAUT_SMALL_UE + "ssen im Format '{momentan} / {max}' angegeben werden.";
     public static final String textForWrongInputIntoAdditionalDamage = "Geben Sie bei dem Schadentextfeld bitte nur Zahlen ein!";
+    public static final String AOE_SCHADEN_DEALT = "Lebenspunkte von allen Gegnern aktualisiert.\nGegner mit 0 Lebenspunkten entfernt.";
     
     public static String textForGegnerRemovedDueToLebenspunkte(
             GegnerEinheit changedGegner) {

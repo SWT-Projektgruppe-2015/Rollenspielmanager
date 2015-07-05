@@ -23,7 +23,7 @@ public class KampfsimulatorController extends NotificationController {
     public void initializeAllTabs(Hauptprogramm main, List<Spieler> allSpieler, ObservableList<GegnerEinheit> allExpYieldingGegner) {
         ObservableList<GegnerEinheit> allActiveGegner = FXCollections.observableList(new ArrayList<GegnerEinheit>(allExpYieldingGegner));
         gegnerRundeController.initializeParameters(allSpieler, allActiveGegner, spielerRundeController);
-        spielerRundeController.initialize(main, allSpieler, allActiveGegner, allExpYieldingGegner);
+        spielerRundeController.initialize(main, kampfEndeController, allSpieler, allActiveGegner, allExpYieldingGegner);
         kampfEndeController.initialize(allSpieler, allExpYieldingGegner);
     }
     

@@ -61,7 +61,7 @@
          <children>
             <Button defaultButton="true" mnemonicParsing="false" onAction="#onSchadenClick" prefHeight="40.0" prefWidth="90.0" styleClass="button-green" text="Schaden!" GridPane.halignment="CENTER" />
             <Button id="block-button" defaultButton="true" mnemonicParsing="false" onAction="#onBlockClick" prefHeight="40.0" prefWidth="90.0" styleClass="button-green" text="Blocken!" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <GridPane fx:id="effektPane_" hgap="4.0" prefHeight="40.0" prefWidth="90.0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <GridPane fx:id="effektPane_" hgap="4.0" prefHeight="40.0" prefWidth="90.0" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" />
                   <ColumnConstraints hgrow="SOMETIMES" percentWidth="45.0" />

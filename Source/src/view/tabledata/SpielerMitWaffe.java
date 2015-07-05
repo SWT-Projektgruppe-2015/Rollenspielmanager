@@ -10,6 +10,7 @@ import model.Waffen;
 public class SpielerMitWaffe implements Comparable<SpielerMitWaffe> {
     private Spieler spieler_;
     private Waffen currentWaffe_ = new Waffen();
+    
     private StringProperty spielerName_ = new SimpleStringProperty("name");
     private StringProperty waffenName_ = new SimpleStringProperty("");
     
@@ -53,6 +54,12 @@ public class SpielerMitWaffe implements Comparable<SpielerMitWaffe> {
     
     public boolean isArmed() {
         return currentWaffe_.getID_() > 0;
+    }
+    
+    
+    
+    public boolean needsEffektPane() {
+        return isArmed() ? currentWaffe_.isAoE() : false;
     }
 
     @Override

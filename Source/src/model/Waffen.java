@@ -197,4 +197,10 @@ public class Waffen implements DBObject, Comparable<Waffen> {
         }
         return false;
     }
+    
+    
+    
+    public boolean isAoE() {
+        return (effektTyp_ == EffektTyp.AOE_SCHADEN_RUA) || (effektTyp_ == EffektTyp.AOE_SCHADEN_RUE);
+    }
 }

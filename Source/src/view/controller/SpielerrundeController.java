@@ -17,6 +17,8 @@ import model.GegnerTyp;
 import model.Spieler;
 import model.Waffen;
 import model.Waffen.EffektTyp;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -58,25 +60,28 @@ public class SpielerrundeController extends NotificationController {
     private TextField staerkeWurfTextField_;
     
     @FXML
-    private TextField addedSchadenTextField_;
-    
+    private TextField addedSchadenTextField_;    
     @FXML
     private GridPane effektPane_;
     
     private Hauptprogramm main_;
+    private KampfendeController kampfEndeController_;
     private ObservableList<GegnerEinheit> allExpYieldingGegner_;
     private ObservableList<GegnerEinheit> allActiveGegner_;
     
     
     
-    public void initialize(Hauptprogramm main, List<Spieler> allSpieler, 
+    public void initialize(Hauptprogramm main, KampfendeController kampfEndeController,
+            List<Spieler> allSpieler, 
             ObservableList<GegnerEinheit> allActiveGegner, ObservableList<GegnerEinheit> allExpYieldingGegner) {
         main_ = main;
+        kampfEndeController_ = kampfEndeController;
         allExpYieldingGegner_ = allExpYieldingGegner;
         allActiveGegner_ = allActiveGegner;
         
         initializeSpielerTableView(allSpieler);      
         setCellValueFactoriesForSpieler();
+        addEffectListenerToSpieler();
         
         initializeGegnerTreeTableView(allActiveGegner);          
         setCellValueFactoriesForGegner();    
@@ -84,9 +89,9 @@ public class SpielerrundeController extends NotificationController {
         
         
     }
-    
-    
-    
+
+
+
     public Waffen getCurrentWaffeFromSpieler(Spieler spieler)   {
         for(SpielerMitWaffe currentspieler : spielerTableView_.getItems())  {
             if(currentspieler.getSpieler().compareTo(spieler) == 0) {
@@ -147,6 +152,7 @@ public class SpielerrundeController extends NotificationController {
     }
 
 
+    
     private void refresh(
             TreeItem<SharedGegnerTableEntry> changedItem,
             SharedGegnerTableEntry changedGegner) {
@@ -192,12 +198,6 @@ public class SpielerrundeController extends NotificationController {
         int schadenModifier = Integer.parseInt(schadenModifierTextField_.getText());
         dealSchaden(Charakter.LOWERBOUND_DIREKT, schadenModifier);
         schadenModifierTextField_.setText("0");
-    }
-
-
-    
-    private void dealSchaden(int wuerfelErgebnis) {
-        dealSchaden(wuerfelErgebnis, 0);
     }
 
 
@@ -253,7 +253,31 @@ public class SpielerrundeController extends NotificationController {
             spielerTableView_.getItems().add(new SpielerMitWaffe(spieler));
         }
     }
+    
+    
+    
+    private void addEffectListenerToSpieler() {
+        spielerTableView_.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<SpielerMitWaffe>() {
 
+            @Override
+            public void changed(
+                    ObservableValue<? extends SpielerMitWaffe> observable,
+                    SpielerMitWaffe oldValue, SpielerMitWaffe newValue) {
+                showEffectPaneIfNecessary(newValue);
+            }
+            
+        });
+    }
+
+    
+    
+    private void showEffectPaneIfNecessary(SpielerMitWaffe selectedSpieler) {
+        if(selectedSpieler == null || !selectedSpieler.needsEffektPane()) {
+            effektPane_.setVisible(false);
+        } else {
+            effektPane_.setVisible(true);
+        }
+    }
     
     
     private void initializeGegnerTreeTableView(ObservableList<GegnerEinheit> allGegner) {
@@ -410,9 +434,7 @@ public class SpielerrundeController extends NotificationController {
             allActiveGegner_.remove(selectedGegner);
             
             if(stillLootable) {
-                //force reload
-                allExpYieldingGegner_.remove(selectedGegner);
-                allExpYieldingGegner_.add(selectedGegner);
+                kampfEndeController_.redrawGegnerTableView();
             } else {
                 allExpYieldingGegner_.remove(selectedGegner);
             }
@@ -450,7 +472,7 @@ public class SpielerrundeController extends NotificationController {
         
         
         if(gegner.getCurrentLebenspunkte_() <= 0) {
-            removeGegnerFromTable(true, null);
+            removeGegnerFromTable(true, selectedItem);
             createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(gegner));
         } else {
             refresh(selectedItem, gegner);
@@ -477,65 +499,64 @@ public class SpielerrundeController extends NotificationController {
     @FXML
     private void onAoESchadenClick() {
         SpielerMitWaffe selectedSpieler = getSelectedSpielerMitWaffe();
-        int aoESchaden = 0;
-        if(selectedSpieler != null) {
-            Waffen waffe = selectedSpieler.getWaffe();
-            EffektTyp selectedEffect = waffe.getEffektTyp_(); 
-            if(selectedEffect == null)
-                return;
-            aoESchaden  = getAddedSchaden();
-            switch(selectedEffect )   {
-                case AOE_SCHADEN_RUE:   {
-                    
-                    for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
-                        //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
-                        List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
-                        for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
-                            SharedGegnerTableEntry entry = gegner.getValue();
-                            GegnerEinheit einheit = (GegnerEinheit) entry;
-                            applySchaden(aoESchaden, einheit);
-                            if(einheit.getCurrentLebenspunkte_() <= 0) {
-                                createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
-                            }else   {
-                                einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
-                            }
-                        }
-                        
-                        gegnerTyp.getChildren().clear();
-                        for(TreeItem<SharedGegnerTableEntry> item : einheitenList) {
-                            gegnerTyp.getChildren().add(item);
+        if(selectedSpieler == null)
+            return;
+        
+        Waffen waffe = selectedSpieler.getWaffe(); 
+        if(!waffe.isAoE())
+            return;
+        EffektTyp selectedEffect = waffe.getEffektTyp_();
+        int aoESchaden  = getAddedSchaden();
+        
+        //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
+        List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
+        switch(selectedEffect )   {
+            case AOE_SCHADEN_RUE:   {
+                
+                for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
+                    for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
+                        SharedGegnerTableEntry entry = gegner.getValue();
+                        GegnerEinheit einheit = (GegnerEinheit) entry;
+                        applySchaden(aoESchaden, einheit);
+                        if(einheit.getCurrentLebenspunkte_() > 0) {
+                            einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
                         }
                     }
-                    break;
+                    
+                    gegnerTyp.getChildren().clear();
+                    for(TreeItem<SharedGegnerTableEntry> item : einheitenList) {
+                        gegnerTyp.getChildren().add(item);
+                    }
+                    einheitenList.clear();
                 }
-                case AOE_SCHADEN_RUA:    {
-                    for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
-                        //Liste wird benötigt, um keine ConcurrentModificationException zu erzeugen
-                        List<TreeItem<SharedGegnerTableEntry>> einheitenList = new ArrayList<TreeItem<SharedGegnerTableEntry>>();
-                        for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
-                            SharedGegnerTableEntry entry = gegner.getValue();
-                            GegnerEinheit einheit = (GegnerEinheit) entry;
-                            einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-aoESchaden);
-                            if(einheit.getCurrentLebenspunkte_() <= 0) {
-                                createNotification(NotificationTexts.textForGegnerRemovedDueToLebenspunkte(einheit));
-                            }else   {
-                                einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
-                            }
-                        }
-                        
-                        gegnerTyp.getChildren().clear();
-                        for(TreeItem<SharedGegnerTableEntry> item : einheitenList) {
-                            gegnerTyp.getChildren().add(item);
+                createNotification(NotificationTexts.AOE_SCHADEN_DEALT);
+                break;
+            }
+            case AOE_SCHADEN_RUA:    {
+                for(TreeItem<SharedGegnerTableEntry> gegnerTyp : gegnerTreeTableView_.getRoot().getChildren()) {
+                     for(TreeItem<SharedGegnerTableEntry> gegner : gegnerTyp.getChildren()) {
+                        SharedGegnerTableEntry entry = gegner.getValue();
+                        GegnerEinheit einheit = (GegnerEinheit) entry;
+                        einheit.setCurrentLebenspunkte_(einheit.getCurrentLebenspunkte_()-aoESchaden);
+                        if(einheit.getCurrentLebenspunkte_() > 0) {
+                            einheitenList.add(new TreeItem<SharedGegnerTableEntry>(einheit));
                         }
                     }
-                    break;
-                }
-                default:    {
                     
+                    gegnerTyp.getChildren().clear();
+                    for(TreeItem<SharedGegnerTableEntry> item : einheitenList) {
+                        gegnerTyp.getChildren().add(item);
+                    }
+                    einheitenList.clear();
                 }
+                createNotification(NotificationTexts.AOE_SCHADEN_DEALT);
+                break;
+            }
+            default:    {
             }
         }
         addedSchadenTextField_.setText("0");
+        kampfEndeController_.redrawGegnerTableView();
     }
 
 
