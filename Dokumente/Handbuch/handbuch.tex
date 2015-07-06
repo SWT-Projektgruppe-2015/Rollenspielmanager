@@ -1,5 +1,4 @@
 \documentclass[11pt, a4paper, german]{article}
-%\usepackage[top=2cm, bottom=2cm]{geometry}
 \pagestyle{plain}
 
 \usepackage[german]{babel}
@@ -249,7 +248,7 @@ Die \textbf{gelb markierten} Gegner sind die mit 0 Lebenspunkten, die also nicht
 
 \textbf{Die Beutetabelle} zeigt jeweils den Namen der Beute und ihre Traglast. Wird eine Beute ausgewählt, erscheinen unten zusätzlich der Wert (nur sinnvoll bei Waffen oder Rüstung) und ihre Kategorie. Zusätzlich kann auch Geld Beute sein; dieses wird überhalb der Tabelle angezeigt. Anfangs ist die Beutetabelle für jeden Gegner leer. \textbf{Damit Beute zu sehen ist}, muss sie vorher generiert werden. Selektiert man den Gegner später ein zweites Mal, sieht man immer noch dieselbe Beute.
 
-\subsubsection{Generierung der Beute}
+\subsubsection{Generierung der Beute}\label{Abschnitt:Beute}
 Die Beute teilt sich auf in \textbf{Inventarbeute} und \textbf{Ausrüstungsbeute}. Wie gut die Beute ist, kann durch die Textfelder im unteren Teil des Kampfende-Fensters bestimmt werden, bevor mit 'generiere Beute' Beute für den ausgewählten Gegner generiert wird.\\
 
 Die angezeigten \textbf{Beutegegenstände kommen aus den Händler-Daten}. Möchte man also sinnvolle Beute, muss vorher der Händler aufgefüllt werden, siehe Abschnitt \ref{Abschnitt:Haendler}.\\
@@ -281,13 +280,27 @@ Die Parameter für die Generierung der Ausrüstungsbeute sind ähnlich zu denen 
 
 \textbf{Die Streuung} funktioniert ebenso für den Malus wie die Abweichung für den Inventarwert.\\
 
-Der Gegner lässt mit unterschiedlichen Wahrscheinlichkeiten die verschiedenen Teile seiner Ausrüstung fallen:
+Der Gegner lässt mit unterschiedlichen Wahrscheinlichkeiten die verschiedenen Teile seiner Ausrüstung fallen:\\
+\begin{center}
+\begin{tabular}{c|c}
+Kategorie & Wahrscheinlichkeit\\
+\hline
+Waffe & 40\% \\
+Helm & 12\% \\
+Harnisch & 12\% \\
+Schuhe & 12\% \\
+Handschuhe & 12\% \\
+Gürtel & 12\% \\
+\end{tabular}
+\end{center}
+Gibt es die entsprechende Kategorie nicht im Händler, kann es sein, dass kein Ausrüstungsteil in der Beute vorkommt.
 
 \section{Der Händler}\label{Abschnitt:Haendler}
+Im Händler können Gegenstände kategorisiert und gesucht werden. Auch für eine sinnvolle Beutegenerierung ist der Händler unerlässlich, siehe Abschnitt \ref{Abschnitt:Beute}.
 \subsection{Allgemein}
 \subsection{Inventar}
 \subsection{Rüstung und Waffen}
 
 \section{Würfeln}
-
+Sehr einfache Funktionalität, die es erlaubt, \textbf{beliebige Würfelwürfe} zu simulieren.
 \end{document}
