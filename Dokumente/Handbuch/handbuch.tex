@@ -24,11 +24,11 @@
 \pagebreak
 
 \section{Allgemeine Informationen}
-Die Zielsetzung von 'DLVC Taverne' ist es, Spielleitern im Pen\&Paper-Rollenspiel 'Die Legenden von Cystaron' (DLVC) ihre Aufgabe zu erleichtern. Insbesondere im Kampf sollen langwierige Würfeleien und Rechnungen vonseiten des Spielleiters vermieden werden.
+Die Zielsetzung von \textit{DLVC Taverne} ist es, Spielleitern im Pen\&Paper-Rollenspiel 'Die Legenden von Cystaron' (DLVC) ihre Aufgabe zu erleichtern. Insbesondere im Kampf sollen langwierige Würfeleien und Rechnungen vonseiten des Spielleiters vermieden werden.
 \subsection{Hinweis}
 Dieses Handbuch geht davon aus, dass dem Leser die Regeln von DLVC bekannt sind. 
 \subsection{Arbeitsgruppe}
-Das Programm 'DLVC Taverne' ist 2015 im Rahmen der Projektgruppe 'Angewandte Softwaretechnologie' unter der Leitung von Dr. Kniesel entstanden. Die Entwickler waren:
+Das Programm \textit{DLVC Taverne} ist 2015 im Rahmen der Projektgruppe 'Angewandte Softwaretechnologie' unter der Leitung von Dr. Kniesel entstanden. Die Entwickler waren:
 \begin{itemize}
 	\item[] Britta Heymann
 	\item[] Andreas Kofer
@@ -63,11 +63,11 @@ Die Auswahl einer Gruppe im Hauptmenü führt dazu, dass diese die Standardgrupp
 \newpage
 
 \section{Der Charaktermanager}
-Um den Kampfhelfer zu nutzen, müssen 'DLVC Taverne' Spieler- und Nichtspielercharaktere bekannt sein. Dafür ist der Charaktermanager zuständig. Er teilt sich in die drei Tabs \textbf{Gruppen}, \textbf{Spielercharaktere} und \textbf{Nichtspielercharaktere}.
+Um den Kampfhelfer zu nutzen, müssen \textit{DLVC Taverne} Spieler- und Nichtspielercharaktere bekannt sein. Dafür ist der Charaktermanager zuständig. Er teilt sich in die drei Tabs \textbf{Gruppen}, \textbf{Spielercharaktere} und \textbf{Nichtspielercharaktere}.
 
 \subsection{Der Gruppenmanager}
 Der Gruppenmanager ermöglicht das Speichern von Abenteuergruppen. Diese können dann schnell bei Neustart wiederverwendet und angepasst werden.\\
-Große Vorteile sind dass man im Kampf standardmäßig die entsprechenden Mitglieder der Gruppe als Teilnehmer hat und durch einmalige Auswahl im Hauptmenü stets verfolgen kann welche Stufe die Spieler haben und bemerken wenn sie geändert werden müssen (siehe Abschnitt \ref{subsection:gruppenauswahl}).\\
+Große Vorteile sind, dass man im Kampf standardmäßig die entsprechenden Mitglieder der Gruppe als Teilnehmer hat und durch einmalige Auswahl im Hauptmenü stets verfolgen kann, welche Stufe die Spieler haben und so bemerkt, wenn sie geändert werden müssen (siehe Abschnitt \ref{subsection:gruppenauswahl}).\\
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Gruppenmanager}
@@ -75,7 +75,7 @@ Große Vorteile sind dass man im Kampf standardmäßig die entsprechenden Mitgli
 \label{fig:Gruppenmanager}
 \end{figure}
 
-Der Gruppenmanager besteht im wesentlichen aus zwei Listen und dem oberen Bereich zum Anpassen der Gruppennamen.\\
+Der Gruppenmanager besteht im Wesentlichen aus zwei Listen und dem oberen Bereich zum Anpassen der Gruppennamen.\\
 
 \textbf{Anlegen neuer Gruppen}: Dazu muss ein Name in das obere Textfeld geschrieben und mit dem Button '\textbf{Neu}' oder mit der 'Enter'-Taste bestätigt werden.\\
 
@@ -133,14 +133,28 @@ In jedem Tab führt ein Druck auf die 'Enter'-Taste zur Speicherung der Charakte
 
 
 \subsubsection{Effekte von Rüstung und Waffen} \label{Abschnitt: Effekte}
-
+Eine \textbf{Waffe} kann höchstens einen der folgenden Effekte besitzen:
+\begin{itemize}
+\item[] \textit{Rüstungsunabhängig}: Benötigt einen Würfelwurf. Der so geworfene Schaden wird rüstungsunabhängig am Gegner verursacht. Dieser Effekt dient nur zur Erinnerung; da der konkrete Schaden abhängig vom Würfel ist, muss er manuell eingegeben werden, siehe Abschnitt \ref{Abschnitt:Kampf}.
+\item[] \textit{Stärkemalus} spezifiziert einen absoluten Wert, der von der Stärke des Gegners subtrahiert wird, wenn dieser eine Stärkeprobe im Kampf macht. Dies wird vom Programm geleistet, wenn der entsprechende Spieler in der Spielerrunde ausgewählt ist, siehe Abschnitt \ref{Abschnitt:Spielerrunde}.
+\item[] \textit{Geschickmalus} spezifiziert einen absoluten Wert, der vom Geschick des Gegners subtrahiert wird, wenn dieser blockt oder angreift. Dies wird vom Programm geleistet. Beim Blocken muss der entsprechende Spieler ausgewählt sein.
+\item[] \textit{Schadet an allen Gegnern} besagt, dass der Spieler die Fähigkeit hat, Schaden auf allen Gegner gleichzeitig auszulösen. Dann erscheint in der Spielerrunde (Abschnitt \ref{Abschnitt:Spielerrunde}) ein entsprechender Button.
+\item[] \textit{Schadet an allen Gegnern rüstungsunabhängig} Genauso wie 'Schadet allen Gegnern', nur, dass die Rüstung der Gegner ignoriert wird. Somit hängt die Wirkung des eben erwähnten Buttons auch vom genauen Effekt ab.
+\end{itemize}
+Jede \textbf{Rüstung} kann zusätzlich folgende Effekte haben:
+\begin{itemize}
+\item[] \textit{Stärkemalus}: Wie für Waffen.
+\item[] \textit{Geschickmalus}: Wie für Waffen.
+\item[] \textit{Mehr Erfahrung}: Prozentsatz, wie viele Erfahrungspunkte mehr der entsprechende Spieler bekommt. Wird automatisch beim Kampfende angewandt, siehe Abschnitt \ref{Abschnitt:Kampfende}.
+\end{itemize}
+\textbf{Soll einer der Rüstungseffekt nicht vorhanden sein}, setzt man seinen Wert auf 0.
 
 \subsection{Der Nichtspielercharakter-Manager}
 Im Nichtspielercharakter-Manager werden potentielle Gegner der Abenteuergruppen verwaltet. \\
 
 Von der Bedienung her funktioniert der Nichtspielercharakter-Manager fast identisch zum Spielermanager, siehe Abschnitt \ref{subsection:Spielercharaktermanager}. Er besitzt lediglich andere Tabs und eine zusätzliche Filterfunktion.\\
 
-Mithilfe der Filterfunktion ist es leicht möglich, Nichtspielercharaktere eines bestimmten Kreises zu finden: Es werden stets die Typen angezeigt, deren Kreise ausgewählt sind, siehe Abbildung \ref{fig:Nichtspielertypmanager1}.
+Mithilfe der Filterfunktion ist es leicht möglich, \textbf{Nichtspielercharaktere eines bestimmten Kreises zu finden}: Es werden stets die Typen angezeigt, deren Kreise ausgewählt sind, siehe Abbildung \ref{fig:Nichtspielertypmanager1}.
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Nichtspielertypmanager1}
@@ -150,9 +164,9 @@ Mithilfe der Filterfunktion ist es leicht möglich, Nichtspielercharaktere eines
 
 
 \subsubsection{Die zwei Untertabs für Nichtspielercharakter-Eigenschaften}
-Da für Nichtspielercharaktere im Kampf andere Werte wichtig sind, hat der Nichtspielercharakter-Manager nur die beiden Tabs 'Details' und 'Ausrüstung'.\\
+Da für Nichtspielercharaktere im Kampf andere Werte wichtig sind als für Spielercharaktere, hat der Nichtspielercharakter-Manager nur die beiden Tabs 'Details' und 'Ausrüstung'.\\
 
-Der Tab \textbf{Details} enthält wie bei den Spielercharakteren Name, Stufe und Kreis des Charakters. Auch hier kann ein Charakter gelöscht werden. 
+Der Tab \textbf{Details} enthält wie bei den Spielercharakteren Name, Stufe und Kreis des Charakters. Auch hier kann ein Charakter \textbf{gelöscht} werden. 
 Zusätzlich können die Werte Geschick, Stärke, Erfahrung und LP gesetzt werden.\\
  Geschick und Stärke bestimmen, wie sich der Gegner im Kampf verhält. Wenn eine dieser Zahlen durch 'Enter' bestätigt wird, updaten sich auch die daneben angezeigten Würfel. 
 Sie zeigen an, welche Würfelwürfe intern simuliert werden. LP bestimmt die Lebenspunkte eines Charakters, Erfahrung gibt an, wie viele Erfahrungspunkte eine Instanz dieses Charakters einbringt.\\
@@ -166,10 +180,10 @@ Sie zeigen an, welche Würfelwürfe intern simuliert werden. LP bestimmt die Leb
 Im \textbf{Ausrüstung}-Tab werden erneut DefR, DefH und DefS angegeben, siehe Abschnitt \ref{subsection:Spielercharaktermanager}. 
 Da einem Nichtspielercharakter eine feste Waffe zugewiesen ist, wird hier zudem der Schaden dieser Waffe festgelegt. Effekte auf Nichtspielercharakter-Seite sind in \textit{DLVC Taverne}, Version 1, noch nicht verfügbar.
 
-\section{Der Kampf}
+\section{Der Kampf}\label{Abschnitt:Kampf}
 \subsection{Die Gegnerrunde}
-\subsection{Die Spielerrunde}
-\subsection{Das Kampfende}
+\subsection{Die Spielerrunde}\label{Abschnitt:Spielerrunde}
+\subsection{Das Kampfende}\label{Abschnitt:Kampfende}
 
 \section{Der Händler}
 \subsection{Allgemein}

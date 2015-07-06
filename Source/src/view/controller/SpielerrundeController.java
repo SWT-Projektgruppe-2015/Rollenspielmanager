@@ -610,9 +610,7 @@ public class SpielerrundeController extends NotificationController {
                 SharedGegnerTableEntry entry = gegner.getValue();
                 GegnerEinheit einheit = (GegnerEinheit) entry;
                 
-                SpielerMitWaffe selectedSpielerMitWaffe = getSelectedSpielerMitWaffe();
-                Waffen waffe = selectedSpielerMitWaffe.getWaffe();
-                if(einheit.blockIsSuccessful(selectedSpielerMitWaffe.getSpieler().getTotalGeschickMalus(waffe))) {
+                if(einheit.blockIsSuccessful(currentGeschickMalus())) {
                     einheit.setDealtSchaden_(0);
                     gegner.setValue(einheit);
                     refreshList.add(gegner);
@@ -622,5 +620,15 @@ public class SpielerrundeController extends NotificationController {
             for(TreeItem<SharedGegnerTableEntry> item : refreshList)
                 refresh(item, item.getValue());
         }
+    }
+    
+    
+    
+    private int currentGeschickMalus() {
+        SpielerMitWaffe selectedSpielerMitWaffe = getSelectedSpielerMitWaffe();
+        if(selectedSpielerMitWaffe == null)
+            return 0;
+        Waffen waffe = selectedSpielerMitWaffe.getWaffe();
+        return selectedSpielerMitWaffe.getSpieler().getTotalGeschickMalus(waffe);
     }
 }
