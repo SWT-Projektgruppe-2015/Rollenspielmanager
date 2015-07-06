@@ -51,7 +51,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Deus Ex Machina'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(90) NOT NULL default 'Deus Ex Machina'")
     private String waffenName_;
     @Column(name = "SCHADEN", columnDefinition = "INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
     private int waffenSchaden_;
@@ -66,6 +66,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     public Waffen() {
         waffenSchaden_ = 0;
         effektWert_ = 0;
+        effektTyp_ = EffektTyp.NO_EFFEKT;
         ausruestung_ = new Ausruestung();
     }
     

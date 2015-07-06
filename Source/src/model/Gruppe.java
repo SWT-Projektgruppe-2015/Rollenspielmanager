@@ -24,7 +24,7 @@ public class Gruppe implements DBObject, Comparable<Gruppe> {
     @GeneratedValue
     @Column(name = "ID")
     public int ID_;
-    @Column(name = "NAME", columnDefinition = " VARCHAR(30) NOT NULL DEFAULT 'Montags Gruppe'")
+    @Column(name = "NAME", columnDefinition = " VARCHAR(100) NOT NULL DEFAULT 'Montags Gruppe'")
     private String name_;
     @ManyToMany(mappedBy = "membership_")
     private Set<Spieler> members_;    

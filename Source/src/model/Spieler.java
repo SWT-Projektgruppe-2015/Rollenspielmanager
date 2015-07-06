@@ -29,7 +29,7 @@ public class Spieler extends Charakter implements DBObject {
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Jane Doe'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(90) NOT NULL default 'Jane Doe'")
     private String name_;
     @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '" + MIN_KREIS + "' check(KREIS >= " + MIN_KREIS + " and KREIS <= " + MAX_KREIS + ")")
     private int kreis_;

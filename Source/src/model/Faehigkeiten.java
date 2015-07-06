@@ -19,7 +19,7 @@ public class Faehigkeiten implements DBObject {
     @GeneratedValue
     @Column(name = "ID", nullable = false)
     public int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(30) NOT NULL default 'Geheime Magie'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(90) NOT NULL default 'Geheime Magie'")
     private String name_;
     @Column(name = "EFFEKT_TYP", columnDefinition = "INTEGER NOT NULL default '0' check(EFFEKT_TYP >= 0 and EFFEKT_TYP <= 4)")
     private int effekttypen_;
