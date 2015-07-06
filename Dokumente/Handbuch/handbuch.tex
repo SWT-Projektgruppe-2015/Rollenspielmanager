@@ -22,7 +22,6 @@
 
 \tableofcontents
 \pagebreak
-
 \section{Allgemeine Informationen}
 Die Zielsetzung von \textit{DLVC Taverne} ist es, Spielleitern im Pen\&Paper-Rollenspiel 'Die Legenden von Cystaron' (DLVC) ihre Aufgabe zu erleichtern. Insbesondere im Kampf sollen langwierige Würfeleien und Rechnungen vonseiten des Spielleiters vermieden werden.
 \subsection{Hinweis}
@@ -135,7 +134,7 @@ In jedem Tab führt ein Druck auf die 'Enter'-Taste zur Speicherung der Charakte
 \subsubsection{Effekte von Rüstung und Waffen} \label{Abschnitt: Effekte}
 Eine \textbf{Waffe} kann höchstens einen der folgenden Effekte besitzen:
 \begin{itemize}
-\item[] \textit{Rüstungsunabhängig}: Benötigt einen Würfelwurf. Der so geworfene Schaden wird rüstungsunabhängig am Gegner verursacht. Dieser Effekt dient nur zur Erinnerung; da der konkrete Schaden abhängig vom Würfel ist, muss er manuell eingegeben werden, siehe Abschnitt \ref{Abschnitt:Kampf}.
+\item[] \textit{Rüstungsunabhängig}: Benötigt einen Würfelwurf. Der so geworfene Schaden wird rüstungsunabhängig am Gegner verursacht. Dieser Effekt dient nur zur Erinnerung; da der konkrete Schaden abhängig vom Würfel ist, muss er manuell eingegeben werden, siehe Abschnitt \ref{Abschnitt:standardkampf}: Lebenspunkte reduzieren.
 \item[] \textit{Stärkemalus} spezifiziert einen absoluten Wert, der von der Stärke des Gegners subtrahiert wird, wenn dieser eine Stärkeprobe im Kampf macht. Dies wird vom Programm geleistet, wenn der entsprechende Spieler in der Spielerrunde ausgewählt ist, siehe Abschnitt \ref{Abschnitt:Spielerrunde}.
 \item[] \textit{Geschickmalus} spezifiziert einen absoluten Wert, der vom Geschick des Gegners subtrahiert wird, wenn dieser blockt oder angreift. Dies wird vom Programm geleistet. Beim Blocken muss der entsprechende Spieler ausgewählt sein.
 \item[] \textit{Schadet an allen Gegnern} besagt, dass der Spieler die Fähigkeit hat, Schaden auf allen Gegner gleichzeitig auszulösen. Dann erscheint in der Spielerrunde (Abschnitt \ref{Abschnitt:Spielerrunde}) ein entsprechender Button.
@@ -180,17 +179,115 @@ Sie zeigen an, welche Würfelwürfe intern simuliert werden. LP bestimmt die Leb
 Im \textbf{Ausrüstung}-Tab werden erneut DefR, DefH und DefS angegeben, siehe Abschnitt \ref{subsection:Spielercharaktermanager}. 
 Da einem Nichtspielercharakter eine feste Waffe zugewiesen ist, wird hier zudem der Schaden dieser Waffe festgelegt. Effekte auf Nichtspielercharakter-Seite sind in \textit{DLVC Taverne}, Version 1, noch nicht verfügbar.
 
+\clearpage
 \section{Der Kampf}\label{Abschnitt:Kampf}
-\subsection{Die Gegnerrunde}
-\subsection{Die Spielerrunde}\label{Abschnitt:Spielerrunde}
-\subsection{Das Kampfende}\label{Abschnitt:Kampfende}
+Der Kampf fängt mit einer Teilnehmerauswahl an. Erst, wenn man dort auf 'Kampf' klickt, öffnet sich das eigentliche Fenster, dass aus den drei Tabs \textbf{Gegnerrunde}, \textbf{Spielerrunde} und \textbf{Kampfende} besteht.
+\subsection{Die Teilnehmerauswahl}
+Die Teilnehmerauwahl gliedert sich in 4 Tabellen. Die oberen beiden Tabellen beziehen sich auf Spielercharaktere und die unteren beiden auf Gegner. Die Tabellen auf der rechten Seite zeigen an, wer gerade ausgewählt ist, um am Kampf teilzunehmen.\\
 
-\section{Der Händler}
+\textbf{Spieler zum Kampf hinzufügen.} Am einfachsten lässt sich eine gesamte Abenteuergruppe zum Kampf hinzufügen. Dies funktioniert mit der links oben verankerten Dropdownliste. Einzelne Spieler können dann mithilfe der Pfeilbuttons wieder aus dem Kampf entfernt werden. Alternativ wählt man keine Gruppe aus und fügt die Spieler einzeln von der linken Tabelle in die recht ein. Zur Vereinfachung existiert hier eine Suchbox.\\
+\begin{figure}
+\centering
+\includegraphics[width=.7\linewidth]{Bilder/Teilnehmerauswahl}
+\caption{Die Teilnehmerauswahl}
+\end{figure}
+
+\textbf{Gegner zum Kampf hinzufügen.} Mithilfe des Filterbuttons am linken Rand können die Gegner nach Kreis angezeigt werden. Als zusätzliche Hilfestellung existiert eine Suchbox. Weiterhin kann man die Tabelle durch klicken auf die Spaltennamen nach Kreis, Level oder Name sortieren. Die gewünschten Gegner können dann wieder mit den Pfeiltasten zum Kampf hinzugefügt werden. Dabei können von jeder Gegnerart beliebig viele am Kampf teilnehmen, indem mehrmals auf '>' geklickt wird. Alternativ kann man die Anzahl der Gegner direkt in der Tabelle editieren, indem man das entsprechende Feld anklickt.\\
+
+Ist man mit den Kampfteilnehmern zufrieden, wird der Kampf mithilfe des grünen Buttons gestartet.
+\subsection{Die Gegnerrunde}
+In der Gegnerrunde wird angezeigt, wie viel Schaden die Gegner an den Spielercharakteren verursachen. 
+Dabei übernimmt \textit{DLVC Taverne} die Rolle des Spielleiters: Die Würfelwürfe der Gegner werden simuliert und der Schaden abhängig von der Rüstung der Spieler und dem Schadenswert des Gegners berechnet.\\
+
+\textbf{Um zu sehen, wie viel Schaden ein Gegner bei einem bestimmten Spieler auslöst}, muss nur der Gegner in der linken Tabelle selektiert und auf den 'Angriff'-Button geklickt werden. Dann wird in der rechten Tabelle für jeden Spieler angezeigt, wo und mit welchem Würfelwert der Gegner getroffen hat und wie viel Schaden das ergibt.
+\begin{figure}
+\centering
+\includegraphics[width=.7\linewidth]{Bilder/Gegnerrunde.png}
+\caption{Die Gegnerrunde}
+\end{figure}
+\subsection{Die Spielerrunde}\label{Abschnitt:Spielerrunde}
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Bilder/Spielerrunde.png}
+\caption{Die Spielerrunde}
+\label{Bild:Spielerrunde}
+\end{figure}
+Im Groben ist die Spielerrunde wie die Gegnerrunde aufgebaut: Links ist eine Tabelle der aktiven Kampfteilnehmer, also der Spielercharaktere. Rechts werden die Gegner angezeigt. Zusätzlich zum Schaden werden auch die aktuellen Lebenspunkte des Gegners angezeigt.\\
+
+\subsubsection{Der Standardkampfablauf}\label{Abschnitt:standardkampf}
+\textbf{Angriff eines Spielers.} Um anzugreifen, wird der angreifende Spielercharakter selektiert. Je nachdem, was der Spieler gewürfelt hat, kann nun einer der drei Trefferzone-Buttons geklickt werden. Besitzt der Spieler aus irgendeinem Grund einen Bonus, kann dieser vorher im Bonustextfeld spezifiziert werden, siehe Abbildung \ref{Bild:Spielerrunde}. Dann wird mithilfe der ausgewählten Waffe und der Rüstung der Gegner für jeden Gegner berechnet, wie viel Schaden dieser Angriff machen würde.\\
+
+\textbf{Blocken.} Blockversuche der Gegner können mit dem großen grünen 'Blocken!'-Knopf gestartet werden. Sofort versuchen alle Gegner, zu blocken. Sind sie erfolgreich, wird 'Schaden' bei diesen Gegnern auf 0 gesetzt. Es kann mehrmals geblockt werden. Ist in der rechten Tabelle ein Spieler ausgewählt, der einen Geschickmalus hat, wird dieser beim Blocken einberechnet.\\
+
+\textbf{Lebenspunkte reduzieren.} Durch Auswählen eines Gegners und einen Klick auf den großen grünen 'Schaden!'-Button werden die Punkte des Gegners, die in der Spalte 'Schaden' stehen, von seinen LP abgezogen. Sinken die LP auf 0, wird der Gegner direkt aus der Spieler- und Gegnerrunde entfernt. Alternativ kann die LP-Spalte durch Klicken auch direkt editiert werden.
+
+\subsubsection{Manuelles 'Töten'}
+
+\textbf{Um einen Gegner manuell aus dem Kampf zu entfernen,} kann man ihn auswählen und entweder auf den \textbf{Entfernen}- oder \textbf{Löschen}-Button klicken. Der 'Entfernen'-Button wirkt genauso, als hätte man die LP auf 0 gesetzt. Im Fall des 'Löschen'-Buttons wird der Gegner komplett aus dem Kampf entfernt, d.h. er zählt nicht für Erfahrungspunkte und gibt auch keine Beute.
+
+\subsubsection{Stärkewurf}
+Unter der Gegnertabelle findet sich die Möglichkeit eines Stärkewurfs. Dazu wird der gewünscht Gegner selektiert und 'Stärkewurf' gedrückt. Das Ergebnis erscheint in dem darüber liegenden Textfeld. Ist in der linken Tabelle ein Spielercharakter selektiert, der einen Stärkemalus-Effekt hat, wird dieser mit einberechnet.
+
+\subsubsection{Waffenwechsel}
+Um die \textbf{Waffe eines Spielers zu wechseln}, reicht ein Doppelklick auf diese Waffe. Es öffnet sich ein Fenster, welches alle Waffen des Spielers sowie deren Schaden und Effekt anzeigt. Dort kann eine neue Waffe gewählt werden.
+
+\subsubsection{Schaden auf allen Gegnern / AoE}
+Hat eine ausgewählte Waffe den \textbf{'Schadet allen Gegnern'-Effekt}, so erscheint zusätzlich der 'AoE'-Button und ein Textfeld, siehe Abbildung \ref{Bild:Spielerrunde}. In das Textfeld kann ein Schadenswert eingetragen werden. Dann verursacht ein Klick auf 'AoE', dass jeder Gegner mit diesem Schaden angegriffen wird, bei entsprechendem Effekt auch rüstungsunabhängig. Der Schaden wird direkt von den LP subtrahiert. Möglicherweise werden dann Gegner, deren LP auf 0 gesunken sind, aus der Tabelle entfernt.
+
+\subsection{Das Kampfende}\label{Abschnitt:Kampfende}
+Das Kampfende ist zuständig für Erfahrungspunkte und Beute.\\
+Es gliedert sich in 3 Bereiche: Im linken oberen Bereich finden sich alle Gegner, die nicht in der Spielerrunde gelöscht wurden, und in der Tabelle daneben die Summe an Erfahrungspunkten, die sie bringen. Im rechten oberen Bereich wird die Beute des selektierten Gegners angezeigt, und im unteren Bereich kann diese Beute (neu) generiert werden.\\
+\begin{figure}
+\centering
+\includegraphics[width=\linewidth]{Bilder/Kampfende.png}
+\caption{Das Kampfende}
+\label{Bild:Kampfende}
+\end{figure}
+Die \textbf{gelb markierten} Gegner sind die mit 0 Lebenspunkten, die also nicht mehr aktiv am Kampf teilnehmen.\\
+
+\textbf{Die Erfahrungspunkte} können durch den 'Mehr Erfahrung'-Rüstungseffekt vergrößert werden. Alle Spielercharaktere, die einen solchen Effekt besitzen, werden einzeln in der Tabelle aufgeführt. Ansonsten gilt die Zahl bei 'Normal':\\
+
+\textbf{Die Beutetabelle} zeigt jeweils den Namen der Beute und ihre Traglast. Wird eine Beute ausgewählt, erscheinen unten zusätzlich der Wert (nur sinnvoll bei Waffen oder Rüstung) und ihre Kategorie. Zusätzlich kann auch Geld Beute sein; dieses wird überhalb der Tabelle angezeigt. Anfangs ist die Beutetabelle für jeden Gegner leer. \textbf{Damit Beute zu sehen ist}, muss sie vorher generiert werden. Selektiert man den Gegner später ein zweites Mal, sieht man immer noch dieselbe Beute.
+
+\subsubsection{Generierung der Beute}
+Die Beute teilt sich auf in \textbf{Inventarbeute} und \textbf{Ausrüstungsbeute}. Wie gut die Beute ist, kann durch die Textfelder im unteren Teil des Kampfende-Fensters bestimmt werden, bevor mit 'generiere Beute' Beute für den ausgewählten Gegner generiert wird.\\
+
+Die angezeigten \textbf{Beutegegenstände kommen aus den Händler-Daten}. Möchte man also sinnvolle Beute, muss vorher der Händler aufgefüllt werden, siehe Abschnitt \ref{Abschnitt:Haendler}.\\
+
+Für die Beute sind folgende Kategorien des Händlers wichtig: \begin{itemize}
+\item Rüstung
+\item Waffen
+\item Handschuh bzw. Handschuhe
+\item Schuh bzw. Schuhe
+\item Gürtel
+\item Harnisch
+\item Helm
+\end{itemize}
+
+\subsection{Generierung der Inventarbeute}
+Inventarbeute kann aus allen Kategorien außer 'Rüstung' und 'Waffen' stammen. Das Geld zählt ebenfalls als Inventarbeute.\\
+
+\textbf{Der Inventarwert} legt fest, wie viel die Inventarbeute wert sein soll. Dabei hat ein Geld einen Wert von 1, und ein Gegenstand den Wert, den er laut Händler kostet. Gegenstände, die 0 kosten, haben ebenfalls Wert 1.\\
+
+\textbf{Eine Abweichung} von mehr als 0 erlaubt es, dass der Wert der Beute zwar wahrscheinlich in der Nähe des Inventarwerts liegt, aber schwankt.\footnote{Für die, die es genau wissen wollen: Es handelt sich um eine Gaußverteilung mit Erwartungswert des Inventarwerts und Varianz der Abweichung.} Dabei legt die Abweichung die ungefähre Schwankung fest.\\
+
+Wie \textbf{groß der Anteil des Geldes an der Inventarbeute} ist, wird zufällig bestimmt.
+
+\subsection{Generierung der Ausrüstungsbeute}
+Ausrüstungsbeute stammt nur aus den Kategorien 'Rüstung' und 'Waffen'. 
+Die Parameter für die Generierung der Ausrüstungsbeute sind ähnlich zu denen des Inventars:\\
+
+\textbf{Der Malus} legt fest, wie gut die Ausrüstung ist. Dabei sagt er prozentual, wie viel schlechter sie sein soll als die tatsächliche Ausrüstung des Gegners. Dabei wird bei der Rüstung davon ausgegangen, dass der Harnisch 50\% von DefR ausmacht und Schuh, Gürtel und Handschuhe zu gleichen Teilen den Rest.\\
+
+\textbf{Die Streuung} funktioniert ebenso für den Malus wie die Abweichung für den Inventarwert.\\
+
+Der Gegner lässt mit unterschiedlichen Wahrscheinlichkeiten die verschiedenen Teile seiner Ausrüstung fallen:
+
+\section{Der Händler}\label{Abschnitt:Haendler}
 \subsection{Allgemein}
 \subsection{Inventar}
 \subsection{Rüstung und Waffen}
 
 \section{Würfeln}
-
 
 \end{document}
