@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -23,13 +22,14 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "SPIELER")
 public class Spieler extends Charakter implements DBObject {
+    public static final int MAX_NAME_LENGTH = 90;
     private static SpielerManipulator spielerManipulator_ = SpielerManipulator.getInstance();
 
     @Id
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(90) NOT NULL default 'Jane Doe'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(" + MAX_NAME_LENGTH + ") NOT NULL default 'Jane Doe'")
     private String name_;
     @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '" + MIN_KREIS + "' check(KREIS >= " + MIN_KREIS + " and KREIS <= " + MAX_KREIS + ")")
     private int kreis_;

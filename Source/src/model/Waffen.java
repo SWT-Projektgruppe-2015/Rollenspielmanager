@@ -16,6 +16,8 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name = "WAFFEN")
 public class Waffen implements DBObject, Comparable<Waffen> {
+    public static final int MAX_NAME_LENGTH = 90;
+    
     public enum EffektTyp {
         RUA_SCHADEN,
         MALUS_STAERKE,
@@ -51,7 +53,7 @@ public class Waffen implements DBObject, Comparable<Waffen> {
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(90) NOT NULL default 'Deus Ex Machina'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(" + MAX_NAME_LENGTH + ") NOT NULL default 'Deus Ex Machina'")
     private String waffenName_;
     @Column(name = "SCHADEN", columnDefinition = "INTEGER NOT NULL default '0' check(SCHADEN >= 0)")
     private int waffenSchaden_;

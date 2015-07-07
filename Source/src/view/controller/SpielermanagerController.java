@@ -69,6 +69,9 @@ public class SpielermanagerController extends CharakterTabController{
         spielerList_ = spielerList;
         gruppenManagerController = gruppenController;
         
+        spielerNameTextField_.textProperty().addListener(new MaxTextLengthListener(spielerNameTextField_, this, Spieler.MAX_NAME_LENGTH));
+        waffenNameTextField_.textProperty().addListener(new MaxTextLengthListener(waffenNameTextField_, this, Waffen.MAX_NAME_LENGTH));
+        
         initializeSpielerList();
         initializeWaffenList();
         initializeRuestungseffekts();
