@@ -25,6 +25,9 @@
 Die Zielsetzung von \textit{DLVC Taverne} ist es, Spielleitern im Pen\&Paper-Rollenspiel 'Die Legenden von Cystaron' (DLVC) ihre Aufgabe zu erleichtern. Insbesondere im Kampf sollen langwierige Würfeleien und Rechnungen vonseiten des Spielleiters vermieden werden.
 \subsection{Hinweis}
 Dieses Handbuch geht davon aus, dass dem Leser die Regeln von DLVC bekannt sind. 
+\subsection{Technische Voraussetzungen}
+\textit{DLVC Taverne} ist auf Windows ausgelegt. Auf anderen Betriebssystemen kann es zu Darstellungsmängeln kommen. \\
+Zudem wird Java in Version von mindestens 1.8.0\_40 benötigt.
 \subsection{Arbeitsgruppe}
 Das Programm \textit{DLVC Taverne} ist 2015 im Rahmen der Projektgruppe 'Angewandte Softwaretechnologie' unter der Leitung von Dr. Kniesel entstanden. Die Entwickler waren:
 \begin{itemize}
@@ -40,7 +43,7 @@ Das Hauptmenü besteht aus zwei vertikal getrennten Bereichen, den Buttons für 
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Hauptmenue1}
-\caption{Hauptmenü}
+\caption{Hauptmenü mit Gruppenauswahl und Hlife Button}
 \label{fig:Hauptmenue1}
 \end{figure}
 
@@ -48,19 +51,19 @@ Das Hauptmenü besteht aus zwei vertikal getrennten Bereichen, den Buttons für 
 %\textbf{Button Bereich:}\\
 Im linken Bereich finden sich vier Buttons, um auf die Grundfunktionen des Programm zuzugreifen.
 \begin{itemize}
-	\item[] \textbf{Charaktermanager}: Hier können Spieler- und Nichtspielercharaktere angelegt, sowie Abenteuergruppen verwaltet werden.
-	\item[] \textbf{Kampf}: Führt zu einer Teilnehmerauswahl für die Teilnehmer des Kampfes (Spieler und Gegner). Anschließend kann ein Kampfhelfer für den Kampf gestartet werden.
-	\item[] \textbf{Händler}: Hier können alle Gegenstände und Ausrüstungsteile erstellt, gesucht und anderweitig verwaltet werden.
-	\item[] \textbf{Würfeln}: Hier können diverse Würfelwürfe simuliert werden.
+	\item[] \textbf{Zuuma, die Wirtin (Charaktermanager)}: Hier können Spieler- und Nichtspielercharaktere angelegt, sowie Abenteuergruppen verwaltet werden.
+	\item[] \textbf{Anakok, die Kriegerin (Kampf)}: Führt zu einer Teilnehmerauswahl für die Teilnehmer des Kampfes (Spieler und Gegner). Anschließend kann ein Kampfhelfer für den Kampf gestartet werden.
+	\item[] \textbf{Giriki, der Händler}: Hier können alle Gegenstände und Ausrüstungsteile erstellt, gesucht und anderweitig verwaltet werden.
+	\item[] \textbf{Ceto, der Würfelspieler (Würfeln)}: Hier können diverse Würfelwürfe simuliert werden.
 \end{itemize}
 
 \subsection{Gruppenauswahl}\label{subsection:gruppenauswahl}
-Im rechten Bereich findet sich die Gruppenauswahl. Jede zuvor im Charaktermanger zusammengestellte Gruppe kann in Combo-Box ganz oben ausgewählt werden, woraufhin alle Mitglieder mit Kreis und Level angezeigt werden.\\
+Im rechten Bereich findet sich die Gruppenauswahl. Jede zuvor im Charaktermanger zusammengestellte Gruppe kann in der Liste ganz oben ausgewählt werden, woraufhin alle Mitglieder mit Kreis und Level angezeigt werden.\\
 Die Auswahl einer Gruppe im Hauptmenü führt dazu, dass diese die Standardgruppe in der Abenteuerverwaltung und bei Kämpfen ist.
 
 \newpage
 
-\section{Der Charaktermanager}
+\section{Charaktermanager (Zuuma, die Wirtin)}
 Um den Kampfhelfer zu nutzen, müssen \textit{DLVC Taverne} Spieler- und Nichtspielercharaktere bekannt sein. Dafür ist der Charaktermanager zuständig. Er teilt sich in die drei Tabs \textbf{Gruppen}, \textbf{Spielercharaktere} und \textbf{Nichtspielercharaktere}.
 
 \subsection{Der Gruppenmanager}
@@ -69,7 +72,7 @@ Große Vorteile sind, dass man im Kampf standardmäßig die entsprechenden Mitgl
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Gruppenmanager}
-\caption{Der Gruppenmanager}
+\caption{Der Gruppenmanager. Die Spielercharaktere auf der rechten Seite gehören zu der ausgewählten Gruppe.}
 \label{fig:Gruppenmanager}
 \end{figure}
 
@@ -100,7 +103,7 @@ Er ist dafür in die drei Untertabs 'Details', 'Waffen\&Fähigkeiten' und 'Ausr�
 \textbf{Löschen von Spielercharakteren}: Um einen ausgewählten Spielercharakter zu löschen, drückt man lediglich den 'Löschen'-Button im Tab 'Details (siehe Abb. \ref{fig:Charaktermanager1})'.
 
 
-\subsubsection{Die drei Untertabs für Spielercharakter-Eigenschaften}
+\subsubsection{Die 3 Untertabs für Spielercharakter-Eigenschaften}
 \textbf{Details:} Dieser Tab ist sehr simpel. Er enthält lediglich den Namen des Spielers, seinen Kreis und seine Stufe. Kreis und Stufe werden durch einschrittige Veränderungen mithilfe der '+'- und '-'-Buttons editiert. Zudem kann man in diesem Tab den Spielercharakter ganz \textbf{löschen}.\\
 
 \textbf{Waffen\&Fähigkeiten}: Hier können dem Spielercharakter Waffen hinzugefügt werden, die er im Kampf auswählen kann. \\
@@ -119,11 +122,11 @@ Jede Waffe kann neben einen Namen und einem Schadenwert auch einen Effekt besitz
 \item[] \textit{Schaden an allen Gegnern} benötigt keinen Effektwert.
 \end{itemize}
 
-\textbf{Ausrüstung}: Hier wird die Rüstung des Spielercharakters spezifiziert. Dies beinhaltet natürlich den Rüstungs-, Helm- und Schildwert. Zusätzlich kann die Rüstung Effekte verursachen. Wie bei Waffen können Geschick- und Stärkemalus eingetragen werden. Hat die Rüstung keinen solchen Malus, entspricht diese einem Wert von 0. Zusätzlich kann die Rüstung eines Spielers ihm mehr Erfahrung im Kampf einbringen. Diese Steigerung wird in Prozent angegeben und später im Kampfende gesondert angezeigt.\\ %TODO::Link zu Kampfendetab
+\textbf{Ausrüstung}: Hier wird die Rüstung des Spielercharakters spezifiziert. Dies beinhaltet natürlich den Rüstungs-, Helm- und Schildwert (DefR, DefH, DefS). Zusätzlich kann die Rüstung Effekte verursachen, siehe Abbildung \ref{fig:Spielercharaktermanager3}. Wie bei Waffen können Geschick- und Stärkemalus eingetragen werden. Hat die Rüstung keinen solchen Malus, entspricht diese einem Wert von 0. Zusätzlich kann die Rüstung eines Spielers ihm mehr Erfahrung im Kampf einbringen. Diese Steigerung wird in Prozent angegeben und später im Kampfende gesondert angezeigt, siehe Abschnitt \ref{Abschnitt:Kampfende}.\\
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Spielercharaktermanager3}
-\caption{Der Ausrüstungstab}
+\caption{Der Ausrüstungstab. Die Werte für Effekt sind markiert. Eine 0 heißt hier, dass die Rüstung diesen Effekt nicht besitzt.}
 \label{fig:Spielercharaktermanager3}
 \end{figure}
 
@@ -134,16 +137,16 @@ In jedem Tab führt ein Druck auf die 'Enter'-Taste zur Speicherung der Charakte
 Eine \textbf{Waffe} kann höchstens einen der folgenden Effekte besitzen:
 \begin{itemize}
 \item[] \textit{Rüstungsunabhängig}: Benötigt einen Würfelwurf. Der so geworfene Schaden wird rüstungsunabhängig am Gegner verursacht. Dieser Effekt dient nur zur Erinnerung; da der konkrete Schaden abhängig vom Würfel ist, muss er manuell eingegeben werden, siehe Abschnitt \ref{Abschnitt:standardkampf}: Lebenspunkte reduzieren.
-\item[] \textit{Stärkemalus} spezifiziert einen absoluten Wert, der von der Stärke des Gegners subtrahiert wird, wenn dieser eine Stärkeprobe im Kampf macht. Dies wird vom Programm geleistet, wenn der entsprechende Spieler in der Spielerrunde ausgewählt ist, siehe Abschnitt \ref{Abschnitt:Spielerrunde}.
-\item[] \textit{Geschickmalus} spezifiziert einen absoluten Wert, der vom Geschick des Gegners subtrahiert wird, wenn dieser blockt oder angreift. Dies wird vom Programm geleistet. Beim Blocken muss der entsprechende Spieler ausgewählt sein.
-\item[] \textit{Schadet an allen Gegnern} besagt, dass der Spieler die Fähigkeit hat, Schaden auf allen Gegner gleichzeitig auszulösen. Dann erscheint in der Spielerrunde (Abschnitt \ref{Abschnitt:Spielerrunde}) ein entsprechender Button.
+\item[] \textit{Stärkemalus} spezifiziert einen absoluten Wert, der von der Stärke des Gegners subtrahiert wird, wenn dieser eine Stärkeprobe im Kampf macht. Dies wird vom Programm geleistet, wenn der entsprechende Spieler in der Spielerrunde ausgewählt ist, siehe Abschnitt \ref{Abschnitt:staerkewurf}.
+\item[] \textit{Geschickmalus} spezifiziert einen absoluten Wert, der vom Geschick des Gegners subtrahiert wird, wenn dieser blockt oder angreift. Dies wird vom Programm geleistet. Beim Blocken muss der entsprechende Spieler ausgewählt sein, siehe Abschnitt \ref{Abschnitt:standardkampf}: Blocken.
+\item[] \textit{Schadet an allen Gegnern} besagt, dass der Spieler die Fähigkeit hat, Schaden auf allen Gegner gleichzeitig auszulösen. Dann erscheint in der Spielerrunde (Abschnitt \ref{Abschnitt:aoe}) ein entsprechender Button.
 \item[] \textit{Schadet an allen Gegnern rüstungsunabhängig} Genauso wie 'Schadet allen Gegnern', nur, dass die Rüstung der Gegner ignoriert wird. Somit hängt die Wirkung des eben erwähnten Buttons auch vom genauen Effekt ab.
 \end{itemize}
 Jede \textbf{Rüstung} kann zusätzlich folgende Effekte haben:
 \begin{itemize}
 \item[] \textit{Stärkemalus}: Wie für Waffen.
 \item[] \textit{Geschickmalus}: Wie für Waffen.
-\item[] \textit{Mehr Erfahrung}: Prozentsatz, wie viele Erfahrungspunkte mehr der entsprechende Spieler bekommt. Wird automatisch beim Kampfende angewandt, siehe Abschnitt \ref{Abschnitt:Kampfende}.
+\item[] \textit{Mehr Erfahrung}: Prozentsatz, wie viele Erfahrungspunkte mehr der entsprechende Spieler bekommt. Wird automatisch beim Kampfende angewandt, siehe Abschnitt \ref{Abschnitt:Kampfende}: Die Erfahrungpunkte.
 \end{itemize}
 \textbf{Soll einer der Rüstungseffekt nicht vorhanden sein}, setzt man seinen Wert auf 0.
 
@@ -156,12 +159,12 @@ Mithilfe der Filterfunktion ist es leicht möglich, \textbf{Nichtspielercharakte
 \begin{figure}
 \centering
 \includegraphics[width=1\linewidth]{Bilder/Nichtspielertypmanager1}
-\caption{Der Nichtspielercharakter-Manager}
+\caption{Der Nichtspielercharakter-Manager. Markiert sind die Filterfunktion und die Anzeige der zu den Geschick und Stärke passenden Würfelwerte.}
 \label{fig:Nichtspielertypmanager1}
 \end{figure}
 
 
-\subsubsection{Die zwei Untertabs für Nichtspielercharakter-Eigenschaften}
+\subsubsection{Die 2 Untertabs für Nichtspielercharakter-Eigenschaften}
 Da für Nichtspielercharaktere im Kampf andere Werte wichtig sind als für Spielercharaktere, hat der Nichtspielercharakter-Manager nur die beiden Tabs 'Details' und 'Ausrüstung'.\\
 
 Der Tab \textbf{Details} enthält wie bei den Spielercharakteren Name, Stufe und Kreis des Charakters. Auch hier kann ein Charakter \textbf{gelöscht} werden. 
@@ -176,10 +179,10 @@ Sie zeigen an, welche Würfelwürfe intern simuliert werden. LP bestimmt die Leb
 \end{figure}
 
 Im \textbf{Ausrüstung}-Tab werden erneut DefR, DefH und DefS angegeben, siehe Abschnitt \ref{subsection:Spielercharaktermanager}. 
-Da einem Nichtspielercharakter eine feste Waffe zugewiesen ist, wird hier zudem der Schaden dieser Waffe festgelegt. Effekte auf Nichtspielercharakter-Seite sind in \textit{DLVC Taverne}, Version 1, noch nicht verfügbar.
+Da einem Nichtspielercharakter eine feste Waffe zugewiesen ist, wird hier zudem der Schaden dieser Waffe festgelegt.
 
 \clearpage
-\section{Der Kampf}\label{Abschnitt:Kampf}
+\section{Der Kampf (Anakok die Kriegerin)}\label{Abschnitt:Kampf}
 Der Kampf fängt mit einer Teilnehmerauswahl an. Erst, wenn man dort auf 'Kampf' klickt, öffnet sich das eigentliche Fenster, dass aus den drei Tabs \textbf{Gegnerrunde}, \textbf{Spielerrunde} und \textbf{Kampfende} besteht.
 \subsection{Die Teilnehmerauswahl}
 Die Teilnehmerauwahl gliedert sich in 4 Tabellen. Die oberen beiden Tabellen beziehen sich auf Spielercharaktere und die unteren beiden auf Gegner. Die Tabellen auf der rechten Seite zeigen an, wer gerade ausgewählt ist, um am Kampf teilzunehmen.\\
@@ -188,12 +191,13 @@ Die Teilnehmerauwahl gliedert sich in 4 Tabellen. Die oberen beiden Tabellen bez
 \begin{figure}
 \centering
 \includegraphics[width=.7\linewidth]{Bilder/Teilnehmerauswahl}
-\caption{Die Teilnehmerauswahl}
+\caption{Die Teilnehmerauswahl. Rechts stehen die aktuell ausgewählten Kampfteilnehmer.\\ Man sieht, wie man die Anzahl der Gegner manuell editieren kann.}
+\label{Abbildung: Teilnehmerauswahl}
 \end{figure}
 
-\textbf{Gegner zum Kampf hinzufügen.} Mithilfe des Filterbuttons am linken Rand können die Gegner nach Kreis angezeigt werden. Als zusätzliche Hilfestellung existiert eine Suchbox. Weiterhin kann man die Tabelle durch klicken auf die Spaltennamen nach Kreis, Level oder Name sortieren. Die gewünschten Gegner können dann wieder mit den Pfeiltasten zum Kampf hinzugefügt werden. Dabei können von jeder Gegnerart beliebig viele am Kampf teilnehmen, indem mehrmals auf '>' geklickt wird. Alternativ kann man die Anzahl der Gegner direkt in der Tabelle editieren, indem man das entsprechende Feld anklickt.\\
+\textbf{Gegner zum Kampf hinzufügen.} Mithilfe des Filterbuttons am linken Rand können die Gegner nach Kreis angezeigt werden. Als zusätzliche Hilfestellung existiert eine Suchbox. Weiterhin kann man die Tabelle durch klicken auf die Spaltennamen nach Kreis, Level oder Name sortieren. Die gewünschten Gegner können dann wieder mit den Pfeiltasten zum Kampf hinzugefügt werden. Dabei können von jeder Gegnerart beliebig viele am Kampf teilnehmen, indem mehrmals auf '$>$' geklickt wird. Alternativ kann man die Anzahl der Gegner direkt in der Tabelle editieren, indem man das entsprechende Feld anklickt, siehe Abbildung \ref{Abbildung: Teilnehmerauswahl}.\\
 
-Ist man mit den Kampfteilnehmern zufrieden, wird der Kampf mithilfe des grünen Buttons gestartet.
+Ist man mit den Kampfteilnehmern zufrieden, wird der Kampf mithilfe des grünen 'Kampf!'-Buttons gestartet.
 \subsection{Die Gegnerrunde}
 In der Gegnerrunde wird angezeigt, wie viel Schaden die Gegner an den Spielercharakteren verursachen. 
 Dabei übernimmt \textit{DLVC Taverne} die Rolle des Spielleiters: Die Würfelwürfe der Gegner werden simuliert und der Schaden abhängig von der Rüstung der Spieler und dem Schadenswert des Gegners berechnet.\\
@@ -211,7 +215,7 @@ Dabei übernimmt \textit{DLVC Taverne} die Rolle des Spielleiters: Die Würfelw�
 \caption{Die Spielerrunde}
 \label{Bild:Spielerrunde}
 \end{figure}
-Im Groben ist die Spielerrunde wie die Gegnerrunde aufgebaut: Links ist eine Tabelle der aktiven Kampfteilnehmer, also der Spielercharaktere. Rechts werden die Gegner angezeigt. Zusätzlich zum Schaden werden auch die aktuellen Lebenspunkte des Gegners angezeigt.\\
+Im Groben ist die Spielerrunde wie die Gegnerrunde aufgebaut: Links ist eine Tabelle der aktiven Kampfteilnehmer, also der Spielercharaktere. Rechts werden die Gegner angezeigt. Zusätzlich zum Schaden werden auch die aktuellen Lebenspunkte des Gegners angezeigt.
 
 \subsubsection{Der Standardkampfablauf}\label{Abschnitt:standardkampf}
 \textbf{Angriff eines Spielers.} Um anzugreifen, wird der angreifende Spielercharakter selektiert. Je nachdem, was der Spieler gewürfelt hat, kann nun einer der drei Trefferzone-Buttons geklickt werden. Besitzt der Spieler aus irgendeinem Grund einen Bonus, kann dieser vorher im Bonustextfeld spezifiziert werden, siehe Abbildung \ref{Bild:Spielerrunde}. Dann wird mithilfe der ausgewählten Waffe und der Rüstung der Gegner für jeden Gegner berechnet, wie viel Schaden dieser Angriff machen würde.\\
@@ -224,13 +228,13 @@ Im Groben ist die Spielerrunde wie die Gegnerrunde aufgebaut: Links ist eine Tab
 
 \textbf{Um einen Gegner manuell aus dem Kampf zu entfernen,} kann man ihn auswählen und entweder auf den \textbf{Entfernen}- oder \textbf{Löschen}-Button klicken. Der 'Entfernen'-Button wirkt genauso, als hätte man die LP auf 0 gesetzt. Im Fall des 'Löschen'-Buttons wird der Gegner komplett aus dem Kampf entfernt, d.h. er zählt nicht für Erfahrungspunkte und gibt auch keine Beute.
 
-\subsubsection{Stärkewurf}
+\subsubsection{Stärkewurf}\label{Abschnitt:staerkewurf}
 Unter der Gegnertabelle findet sich die Möglichkeit eines Stärkewurfs. Dazu wird der gewünscht Gegner selektiert und 'Stärkewurf' gedrückt. Das Ergebnis erscheint in dem darüber liegenden Textfeld. Ist in der linken Tabelle ein Spielercharakter selektiert, der einen Stärkemalus-Effekt hat, wird dieser mit einberechnet.
 
 \subsubsection{Waffenwechsel}
 Um die \textbf{Waffe eines Spielers zu wechseln}, reicht ein Doppelklick auf diese Waffe. Es öffnet sich ein Fenster, welches alle Waffen des Spielers sowie deren Schaden und Effekt anzeigt. Dort kann eine neue Waffe gewählt werden.
 
-\subsubsection{Schaden auf allen Gegnern / AoE}
+\subsubsection{Schaden auf allen Gegnern / AoE}\label{Abschnitt:aoe}
 Hat eine ausgewählte Waffe den \textbf{'Schadet allen Gegnern'-Effekt}, so erscheint zusätzlich der 'AoE'-Button und ein Textfeld, siehe Abbildung \ref{Bild:Spielerrunde}. In das Textfeld kann ein Schadenswert eingetragen werden. Dann verursacht ein Klick auf 'AoE', dass jeder Gegner mit diesem Schaden angegriffen wird, bei entsprechendem Effekt auch rüstungsunabhängig. Der Schaden wird direkt von den LP subtrahiert. Möglicherweise werden dann Gegner, deren LP auf 0 gesunken sind, aus der Tabelle entfernt.
 
 \subsection{Das Kampfende}\label{Abschnitt:Kampfende}
