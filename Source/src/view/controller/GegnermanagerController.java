@@ -9,7 +9,6 @@ import org.controlsfx.control.action.Action;
 import controller.Dice;
 import view.NotificationTexts;
 import model.Charakter;
-import model.Faehigkeiten;
 import model.GegnerEinheit;
 import model.GegnerTyp;
 import javafx.beans.value.ChangeListener;
@@ -71,8 +70,6 @@ public class GegnermanagerController extends CharakterTabController {
     @FXML
     private TextField gegnerDamageTextField_;
 
-    @FXML
-    private ListView<Faehigkeiten> gegnerFaehigkeitenListView_;
     @FXML
     private TextField gegnerFaehigkeitenNameTextField_;
     

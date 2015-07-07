@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.List;
 
 import model.Charakter;
-import model.Faehigkeiten;
 import model.Ruestungseffekt;
 import model.Spieler;
 import model.Waffen;
@@ -274,26 +273,6 @@ public class SpielerTest {
         secondWaffe.deleteFromDB();
         thirdWaffe.deleteFromDB();
         spielerWithWaffe.deleteFromDB();
-    }
-
-    @Ignore
-    @Test
-    public void addFaehigkeit() {
-        Faehigkeiten faehigkeit = new Faehigkeiten();
-
-        normalSpieler.addFaehigkeit(faehigkeit);
-        assertTrue(normalSpieler.getFaehigkeiten().contains(faehigkeit));
-    }
-
-
-    
-    @Test
-    public void deleteFaehigkeit() {
-        Faehigkeiten faehigkeit = new Faehigkeiten();
-        normalSpieler.addFaehigkeit(faehigkeit);
-        
-        normalSpieler.deleteFaehigkeit(faehigkeit);
-        assertTrue(!normalSpieler.getFaehigkeiten().contains(faehigkeit));
     }
 
 

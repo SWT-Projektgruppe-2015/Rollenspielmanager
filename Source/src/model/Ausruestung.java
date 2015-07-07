@@ -4,14 +4,10 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Persistence;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.TypedQuery;
 
 import controller.manipulators.AusruestungsManipulator;
 import controller.manipulators.RuestungseffektManipulator;
@@ -113,15 +109,7 @@ public class Ausruestung implements DBObject {
         
     }
     
-    public List<Faehigkeiten> getFaehigkeiten() {
-        EntityManagerFactory factory = Persistence
-                .createEntityManagerFactory("thePersistenceUnit");
-        EntityManager theManager = factory.createEntityManager();
-        TypedQuery<Faehigkeiten> getFaehigkeitenInAusruestung = theManager
-                .createQuery("FROM Faehigkeiten f WHERE f.ausruestung_ = "
-                        + getID_(), Faehigkeiten.class);
-        return getFaehigkeitenInAusruestung.getResultList();
-    }
+    
     
     public void addWaffe(Waffen selectedWaffe) {       
         selectedWaffe.setAusruestung_(this);
@@ -135,13 +123,7 @@ public class Ausruestung implements DBObject {
         waffe.deleteFromDB();
     }
     
-    public void addFaehigkeit(Faehigkeiten faehigkeit) {
-        faehigkeit.setAusruestung_(this);
-    }
     
-    public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
-        faehigkeit.remove();
-    }
 
     /**
      * @return the iD_

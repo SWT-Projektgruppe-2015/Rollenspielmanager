@@ -278,16 +278,6 @@ public class Spieler extends Charakter implements DBObject {
     }
 
     
-    
-    public List<Faehigkeiten> getFaehigkeiten() {
-        Ausruestung ausruestung = getAusruestung_();
-        if (ausruestung == null)
-            return new ArrayList<Faehigkeiten>();
-        
-        return getAusruestung_().getFaehigkeiten();
-    }
-
-    
 
     public void increaseLevel() {
         boolean spielerHasMaximumLevelInKreis = getLevel_() == MAX_LEVEL;
@@ -347,20 +337,6 @@ public class Spieler extends Charakter implements DBObject {
     public void deleteWaffe(Waffen waffe) {
         Ausruestung ausruestung = getAusruestungForModification();
         ausruestung.deleteWaffe(waffe);
-    }
-    
-    
-    
-    public void addFaehigkeit(Faehigkeiten faehigkeit) {
-        Ausruestung ausruestung = getAusruestungForModification();
-        ausruestung.addFaehigkeit(faehigkeit);
-    }
-    
-    
-    
-    public void deleteFaehigkeit(Faehigkeiten faehigkeit) {
-        Ausruestung ausruestung = getAusruestungForModification();
-        ausruestung.deleteFaehigkeit(faehigkeit);
     }
 
 
