@@ -37,7 +37,7 @@ public class MenuBarController {
     
     @FXML
     public void onAboutUsClick() {
-        Alert alert = getScrollingAlert(ABOUT_THE_PRODUCT, 400, 200);
+        Alert alert = getScrollingAlert(ABOUT_THE_PRODUCT, 480, 200);
         alert.setTitle("Über DLVC Taverne");
         alert.setHeaderText(null);
 
