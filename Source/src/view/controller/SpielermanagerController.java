@@ -488,23 +488,32 @@ public class SpielermanagerController extends CharakterTabController{
             defHTextField_.setText(Integer.toString(spieler.getDefH()));
             defSTextField_.setText(Integer.toString(spieler.getDefS()));
             
-            for (Ruestungseffekt selectedEffekt : spieler.getEffekte()) {
-                switch (selectedEffekt.getEffektTyp_()) {
-                    case MALUS_GESCHICK: {
-                        setIntTextField(selectedEffekt.getEffektWert_(),
-                                geschickMalusTextField_);
-                        break;
-                    }
-                    case MALUS_STAERKE: {
-                        setIntTextField(selectedEffekt.getEffektWert_(),
-                                staerkeMalusTextField_);
-                        break;
-                    }
-                    case EXP_BOOST: {
-                        setIntTextField(selectedEffekt.getEffektWert_(),
-                                expBoostTextField_);
-                        break;
-                    }
+            showEffectDetails(spieler);
+        }
+    }
+
+
+
+    private void showEffectDetails(Spieler spieler) {
+        geschickMalusTextField_.setText("0");
+        staerkeMalusTextField_.setText("0");
+        expBoostTextField_.setText("0");
+        for (Ruestungseffekt selectedEffekt : spieler.getEffekte()) {
+            switch (selectedEffekt.getEffektTyp_()) {
+                case MALUS_GESCHICK: {
+                    setIntTextField(selectedEffekt.getEffektWert_(),
+                            geschickMalusTextField_);
+                    break;
+                }
+                case MALUS_STAERKE: {
+                    setIntTextField(selectedEffekt.getEffektWert_(),
+                            staerkeMalusTextField_);
+                    break;
+                }
+                case EXP_BOOST: {
+                    setIntTextField(selectedEffekt.getEffektWert_(),
+                            expBoostTextField_);
+                    break;
                 }
             }
         }

@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="background-color" stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
+<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="background-color" stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.GegnermanagerController">
 	<children>
       <HBox layoutY="-14.0" prefHeight="20.0" prefWidth="200.0" spacing="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="25.0">
          <children>
@@ -95,7 +95,7 @@
       										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="DefH:" GridPane.rowIndex="1" />
       										<TextField fx:id="gegnerDefSTextField_" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" styleClass="textfield-background" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="DefS:" GridPane.rowIndex="2" />
-      										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Damage:" GridPane.rowIndex="3" />
+      										<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Schaden:" GridPane.rowIndex="3" />
       										<TextField fx:id="gegnerDamageTextField_" onAction="#updateGegner" prefHeight="25.0" prefWidth="40.0" styleClass="textfield-background" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
