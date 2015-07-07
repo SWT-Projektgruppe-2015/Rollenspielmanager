@@ -46,6 +46,11 @@ public class AusruestungsHaendlerController extends HaendlerTabController {
         alleAusruestung_ = Gegenstand.getAllAusruestung();
         ausruestungKategorien_ = Gegenstand.getKategorien(alleAusruestung_);
         
+        ausruestungNameTextField_.textProperty().addListener(new MaxTextLengthListener(ausruestungNameTextField_, this, Gegenstand.MAX_NAME_LENGTH));
+        ausruestungWertTextField_.textProperty().addListener(new MaxTextLengthListener(ausruestungWertTextField_, this, Gegenstand.MAX_WERT_LENGTH));
+        ausruestungBeschreibungTextField_.textProperty().addListener(new MaxTextLengthListener(ausruestungBeschreibungTextField_, this, Gegenstand.MAX_BESCHREIBUNG_LENGTH));
+        ausruestungKategorieTextField_.textProperty().addListener(new MaxTextLengthListener(ausruestungKategorieTextField_, this, Gegenstand.MAX_KATEGORIE_LENGTH));
+        
         initializeAusruestungKategorienTreeView();
         initializeListView();
     }

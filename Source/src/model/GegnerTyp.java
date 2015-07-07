@@ -23,13 +23,14 @@ import model.interfaces.DBObject;
 @Table(name = "GEGNER_TYP")
 
 public class GegnerTyp extends Charakter implements DBObject, SharedGegnerTableEntry {
+    public static final int MAX_NAME_LENGTH = 90;
     private static GegnerManipulator dbManipulator_ = GegnerManipulator.getInstance();
     
     @Id
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(90) NOT NULL default 'GegnerTyp Nr. 420'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(" + MAX_NAME_LENGTH + ") NOT NULL default 'GegnerTyp Nr. 420'")
     private String name_;
     @Column(name = "KREIS", columnDefinition = "INTEGER NOT NULL default '" + MIN_KREIS + "' check(KREIS >=" + MIN_KREIS + "and KREIS<=" + MAX_KREIS + ")")
     private int kreis_;

@@ -22,6 +22,10 @@ import model.interfaces.DBObject;
 @Entity
 @Table(name="GEGENSTAND")
 public class Gegenstand implements DBObject, Comparable<Gegenstand> {
+    public static final int MAX_NAME_LENGTH = 100;
+    public static final int MAX_BESCHREIBUNG_LENGTH = 400;
+    public static final int MAX_KATEGORIE_LENGTH = 400;
+    public static final int MAX_WERT_LENGTH = 400;
     
     public static final String RUESTUNG = "R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung"; 
     public static final String WAFFE = "Waffe";
@@ -38,11 +42,11 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     @GeneratedValue
     @Column(name = "ID")
     private int ID_;
-    @Column(name = "NAME", columnDefinition = "VARCHAR(100) NOT NULL default 'Einfacher Gegenstand'")
+    @Column(name = "NAME", columnDefinition = "VARCHAR(" + MAX_NAME_LENGTH + ") NOT NULL default 'Einfacher Gegenstand'")
     private String name_;
-    @Column(name = "BESCHREIBUNG", columnDefinition = "VARCHAR(400)")
+    @Column(name = "BESCHREIBUNG", columnDefinition = "VARCHAR(" + MAX_BESCHREIBUNG_LENGTH + ")")
     private String beschreibung_;
-    @Column(name = "KATEGORIE", columnDefinition = "VARCHAR(400)")
+    @Column(name = "KATEGORIE", columnDefinition = "VARCHAR(" + MAX_KATEGORIE_LENGTH + ")")
     private String kategorie_;
 
 
@@ -56,7 +60,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     private int traglast_;
     @Column(name = "STAERKE", columnDefinition = "INTEGER DEFAULT '0' CHECK(STAERKE >= 0)")
     private int staerke_;
-    @Column(name = "WERT", columnDefinition = "VARCHAR(400)")
+    @Column(name = "WERT", columnDefinition = "VARCHAR("+ MAX_WERT_LENGTH + ")")
     private String wert_;
     
     

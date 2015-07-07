@@ -69,14 +69,11 @@ public class GegnermanagerController extends CharakterTabController {
     private TextField gegnerDefSTextField_;
     @FXML
     private TextField gegnerDamageTextField_;
-
-    @FXML
-    private TextField gegnerFaehigkeitenNameTextField_;
     
     
     void initialize() {
         initializeGegnerList();
-//        initializeRuestungseffektList(gegnerFaehigkeitenListView_);
+        gegnerNameTextField_.textProperty().addListener(new MaxTextLengthListener(gegnerNameTextField_, this, GegnerTyp.MAX_NAME_LENGTH));
     }
     
     

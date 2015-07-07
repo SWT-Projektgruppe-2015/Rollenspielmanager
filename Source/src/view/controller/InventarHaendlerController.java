@@ -38,6 +38,10 @@ public class InventarHaendlerController extends HaendlerTabController {
         super.initialize();
         alleGegenstaende_ = Gegenstand.getAllInventar();
         gegenstandKategorien_ = Gegenstand.getKategorien(alleGegenstaende_);
+
+        gegenstandNameTextField_.textProperty().addListener(new MaxTextLengthListener(gegenstandNameTextField_, this, Gegenstand.MAX_NAME_LENGTH));
+        gegenstandKategorieTextField_.textProperty().addListener(new MaxTextLengthListener(gegenstandKategorieTextField_, this, Gegenstand.MAX_KATEGORIE_LENGTH));
+        gegenstandBeschreibungTextField_.textProperty().addListener(new MaxTextLengthListener(gegenstandBeschreibungTextField_, this, Gegenstand.MAX_BESCHREIBUNG_LENGTH));
         
         initializeGegenstandKategorienTreeView();
         initializeListView();
