@@ -175,6 +175,9 @@ public abstract class HaendlerTabController extends NotificationController {
             createNotification(NotificationTexts.textForNewGegenstand(selectedGegenstand));
             entryForNewGegenstand_ = new Gegenstand();
             entryForNewGegenstand_.setName_(Gegenstand.GEGENSTAND_NEU);
+            
+            if(!getKategorien().contains(selectedGegenstand.getKategorie_()))
+                getKategorien().add(selectedGegenstand.getKategorie_());
         } else {
             createNotification(NotificationTexts.textForGegenstandUpdate(selectedGegenstand));
         }
@@ -233,7 +236,8 @@ public abstract class HaendlerTabController extends NotificationController {
     
     protected void searchTreeView() {
         String search = getTreeSearch().toLowerCase();
-        List<String> matchingKategorien = Gegenstand.getSearchMatchingKategorien(search, getKategorien());
+        List<String> kategorien = getKategorien();
+        List<String> matchingKategorien = Gegenstand.getSearchMatchingKategorien(search, kategorien);
         TreeItem<String> root = getTreeView().getRoot();
         root.getChildren().clear();
         for(String matchingKategorie : matchingKategorien)
