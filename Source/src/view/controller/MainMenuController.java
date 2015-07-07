@@ -87,7 +87,7 @@ public class MainMenuController implements GruppenObserver{
         }
         
         gruppe_.setText("Zuuma\ndie Wirtin");
-        kampf_.setText("Anankok\ndie Kriegerin");
+        kampf_.setText("Anakok\ndie Kriegerin");
         haendler_.setText("Giakiri\nder H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler");
         wuerfel_.setText("Ceto\nder W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelspieler");
         
