@@ -72,7 +72,7 @@ public class KampfWaffenCell extends TableCell<SpielerMitWaffe, String> {
                 return "Effekt: Rua. Fl" + Hauptprogramm.UMLAUT_SMALL_AE + "chenschaden\n";
             }
             case AOE_SCHADEN_RUE:   {
-                return "Effekt: Fl" + Hauptprogramm.UMLAUT_SMALL_AE + "chenschaden an R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung\n";
+                return "Effekt: Fl" + Hauptprogramm.UMLAUT_SMALL_AE + "chenschaden\n";
             }
             case MALUS_STAERKE: {
                 return "Effekt: St" + Hauptprogramm.UMLAUT_SMALL_AE + "rke Malus\n";
