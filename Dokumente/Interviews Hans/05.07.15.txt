@@ -1,0 +1,4 @@
+- Spielercharakter: Kreis und Stufe tauschen.
+- Blenden als Effekt hinzufügen.
+- Fragerunde: Durchschnittslevel & 10% Erfahrung.
+- Schilde können nicht droppen.
