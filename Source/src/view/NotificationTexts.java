@@ -182,4 +182,8 @@ public class NotificationTexts {
     public static String textForGenerateBeuteWithoutSelectedGegner() {
         return "Es wurde kein Gegner ausgew" + Hauptprogramm.UMLAUT_SMALL_AE + "hlt.";
     }
+
+    public static String textForMaxTextFieldLengthExceeded(int maxLength_) {
+        return "Textfeldlänge von " + maxLength_ + " " + Hauptprogramm.UMLAUT_SMALL_UE + "berschritten.";
+    }
 }

@@ -58,6 +58,7 @@ public class GruppenmanagerController extends NotificationController implements 
                         updateGruppenListViews(newValue);
                     }
                 });
+        newGruppenNameTextField_.textProperty().addListener(new MaxTextLengthListener(newGruppenNameTextField_, this, Gruppe.MAX_NAME_LENGTH));
     }
     
     
