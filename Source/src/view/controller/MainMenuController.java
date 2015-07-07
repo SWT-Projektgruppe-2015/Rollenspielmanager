@@ -170,7 +170,7 @@ public class MainMenuController implements GruppenObserver{
         int stufe = Gruppe.getStufe(stufenSumme);
         int kreis = Gruppe.getKreis(stufenSumme);
         int erfahrung = Gruppe.getBenoetigteErfahrung(stufe, kreis);
-        this.stufeLabel_.setText(Integer.toString(kreis) + "\\" + Integer.toString(stufe));
+        this.stufeLabel_.setText(Integer.toString(kreis) + " \\ " + Integer.toString(stufe));
         this.erfahrungLabel_.setText(Integer.toString((int) (erfahrung*0.1)));
     }
     
