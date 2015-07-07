@@ -37,6 +37,8 @@ public class MainMenuController implements GruppenObserver{
     @FXML
     private Button wuerfel_;
     
+    private static String OS = System.getProperty("os.name").toLowerCase();
+    
     
     
     private Hauptprogramm hauptProgramm_;
@@ -71,9 +73,19 @@ public class MainMenuController implements GruppenObserver{
                 updateGruppenTableView(newValue);
             }
         });
+        setButtonTextAlignment(TextAlignment.CENTER);  
+        /* 
+         * Um den Abstand zwischen den Zeilen in den Button-texten 
+         * zu aendern die Eingabe  
+         */
+        if(isWindows() || isSolaris())   {
+            setButtonTextLineSpacing(-13.0);
+        }else if(isMac())   {
+            setButtonTextLineSpacing(-13.5);
+        }else if(isUnix())   {
+            setButtonTextLineSpacing(-3.0);
+        }
         
-        setButtonTextAlignment(TextAlignment.CENTER);
-        setButtonTextLineSpacing(-13.0);
         gruppe_.setText("Zuuma\ndie Wirtin");
         kampf_.setText("Anankok\ndie Kriegerin");
         haendler_.setText("Giakiri\nder H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler");
@@ -97,6 +109,31 @@ public class MainMenuController implements GruppenObserver{
         kreis_.setCellValueFactory(new PropertyValueFactory<Spieler, Integer>("kreis_"));
         level_.setCellValueFactory(new PropertyValueFactory<Spieler, Integer>("level_"));
         name_.setCellValueFactory(new PropertyValueFactory<Spieler, String>("name_"));
+    }
+    
+    
+    
+    public static boolean isWindows()   {
+        return (OS.indexOf("win") >= 0); 
+    }
+    
+    
+ 
+    public static boolean isMac()   {
+        return (OS.indexOf("mac") >= 0); 
+    }
+ 
+    
+    
+    public static boolean isUnix()  {
+ 
+        return (OS.indexOf("nix") >= 0 || OS.indexOf("nux") >= 0 || OS.indexOf("aix") > 0 );
+    }
+ 
+    
+    
+    public static boolean isSolaris() {
+        return (OS.indexOf("sunos") >= 0);
     }
 
 
