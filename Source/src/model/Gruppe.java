@@ -130,5 +130,81 @@ public class Gruppe implements DBObject, Comparable<Gruppe> {
     public int compareTo(Gruppe otherGruppe) {
         return getName_().compareTo(otherGruppe.getName_());
     }
+
+
+
+    public int getStufenSumme() {
+        int stufe = 0;
+        for(Spieler spieler : members_) {
+            stufe += spieler.getLevel_() + (spieler.getKreis_() - 1)*12; 
+        }
+        return stufe/members_.size();
+    }
     
+    
+    
+    public static int getBenoetigteErfahrung(int Stufe, int Kreis){
+        int erfahrung = 0;
+        switch(Stufe){
+            case 0:
+                erfahrung = 100;
+                break;
+            case 1:
+                erfahrung = 150;
+                break;
+            case 2:
+                erfahrung = 225;
+                break;
+            case 3:
+                erfahrung = 330;
+                break;
+            case 4:
+                erfahrung = 500;
+                break;
+            case 5:
+                erfahrung = 750;
+                break;
+            case 6:
+                erfahrung = 1125;
+                break;
+            case 7:
+                erfahrung = 1650;
+                break;
+            case 8:
+                erfahrung = 2475;
+                break;
+            case 9:
+                erfahrung = 3700;
+                break;
+            case 10:
+                erfahrung = 5550;
+                break;
+            case 11:
+                erfahrung = 8325;
+                break;
+        }
+        switch(Kreis){
+            case 1:
+                return erfahrung;
+            case 2:
+                return erfahrung*100;
+            case 3:
+                return erfahrung*10000;
+            case 4:
+                return erfahrung*1000000;
+        }
+        return 0;
+    }
+
+
+
+    public static int getStufe(int stufenSumme) {
+        return stufenSumme % 12;
+    }
+
+
+
+    public static int getKreis(int stufenSumme) {
+        return stufenSumme / 12 + 1;
+    }
 }

@@ -12,6 +12,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -36,6 +37,10 @@ public class MainMenuController implements GruppenObserver{
     private Button haendler_;
     @FXML
     private Button wuerfel_;
+    @FXML
+    private Label stufeLabel_;
+    @FXML
+    private Label erfahrungLabel_;
     
     private static String OS = System.getProperty("os.name").toLowerCase();
     
@@ -156,11 +161,17 @@ public class MainMenuController implements GruppenObserver{
 
     
     
-    private void updateGruppenTableView(Gruppe newValue) {
-        if(newValue == null)
+    private void updateGruppenTableView(Gruppe gruppe) {
+        if(gruppe == null)
             spielerInGruppe_.getItems().clear();
         else
-            spielerInGruppe_.getItems().setAll(newValue.getOrderedMemberList());
+            spielerInGruppe_.getItems().setAll(gruppe.getOrderedMemberList());
+        int stufenSumme = gruppe.getStufenSumme();
+        int stufe = Gruppe.getStufe(stufenSumme);
+        int kreis = Gruppe.getKreis(stufenSumme);
+        int erfahrung = Gruppe.getBenoetigteErfahrung(stufe, kreis);
+        this.stufeLabel_.setText(Integer.toString(stufe) +" Kreis: " + Integer.toString(kreis));
+        this.erfahrungLabel_.setText(Integer.toString((int) (erfahrung*0.1)));
     }
     
     
