@@ -245,8 +245,11 @@ public class TeilnehmerAuswahlController implements GruppenObserver {
     
     @FXML
     private void removeGegnerFromKampf() {
-        GegnerTyp chosenGegner = gegnerInKampfTableView_.getSelectionModel()
-                .getSelectedItem().getGegnerTyp();
+        GegnerEinheitImKampf selectedItem = gegnerInKampfTableView_.getSelectionModel()
+                .getSelectedItem();
+        if(selectedItem == null)
+            return;
+        GegnerTyp chosenGegner = selectedItem.getGegnerTyp();
         if (chosenGegner != null) {
             removeGegnerEinheit(chosenGegner);
         }
