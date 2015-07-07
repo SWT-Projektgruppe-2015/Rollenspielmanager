@@ -76,7 +76,7 @@ public class MainMenuController implements GruppenObserver{
         setButtonTextLineSpacing(-13.0);
         gruppe_.setText("Zuuma\ndie Wirtin");
         kampf_.setText("Anankok\ndie Kriegerin");
-        haendler_.setText("Girikiri\nder H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler");
+        haendler_.setText("Giakiri\nder H" + Hauptprogramm.UMLAUT_SMALL_AE + "ndler");
         wuerfel_.setText("Ceto\nder W" + Hauptprogramm.UMLAUT_SMALL_UE + "rfelspieler");
         
         
