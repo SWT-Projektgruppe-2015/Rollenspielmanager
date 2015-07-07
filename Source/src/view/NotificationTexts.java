@@ -151,7 +151,7 @@ public class NotificationTexts {
 
     public static final String GEGNER_TYP_CANNOT_BE_REMOVED = "Ein Gegnertyp mit k" + Hauptprogramm.UMLAUT_SMALL_AE + "mpfenden Einheiten muss in der Tabelle bleiben.";
     public static String textForRemovingGegnerFromKampf(String removedName) {
-        return "Gegner '" + removedName + "' ist kampfunf" + Hauptprogramm.UMLAUT_SMALL_AE + "hig und wurde aus der Tabelle entfernt.\n"
+        return "Gegner '" + removedName + "' ist kampfunf" + Hauptprogramm.UMLAUT_SMALL_AE + "hig \n" + "und wurde aus der Tabelle entfernt.\n"
                 + "Er z" + Hauptprogramm.UMLAUT_SMALL_AE + "hlt noch f" + Hauptprogramm.UMLAUT_SMALL_UE + "r Erfahrung.";
     }
 
@@ -167,7 +167,7 @@ public class NotificationTexts {
     
     public static String textForGegnerRemovedDueToLebenspunkte(
             GegnerEinheit changedGegner) {
-        return "Gegner '" + changedGegner.getName_() + "' hat 0 Lebenspunkte und wurde aus der Tabelle entfernt.\n"
+        return "Gegner '" + changedGegner.getName_() + "' hat 0 Lebenspunkte\n" + "und wurde aus der Tabelle entfernt.\n"
                 + "Er z" + Hauptprogramm.UMLAUT_SMALL_AE + "hlt noch f" + Hauptprogramm.UMLAUT_SMALL_UE + "r Erfahrung.";
     }
 
