@@ -79,7 +79,7 @@
                     <columns>
                       <TableColumn fx:id="name_" prefWidth="172.0" text="Name" />
                       <TableColumn fx:id="kreis_" prefWidth="45.0" text="Kreis" />
-                        <TableColumn fx:id="level_" prefWidth="47.0" text="Level" />
+                        <TableColumn fx:id="level_" prefWidth="47.0" text="Stufe" />
                     </columns>
                   </TableView>
                </children>
