@@ -90,7 +90,7 @@ public class Hauptprogramm extends Application {
             
             charakterManagerBorder.setCenter(page);
             
-            Stage newStage = createNamedStage("Charaktermanager", notificationPane);            
+            Stage newStage = createNamedStage("Zuumas Charaktermanager", notificationPane);            
             newStage.showAndWait();
         }
         catch (IOException e) {
@@ -110,7 +110,7 @@ public class Hauptprogramm extends Application {
             controller.setGruppenSubject_(gruppenSubject_);
             gruppenSubject_.addGruppenObserver(controller);
             
-            kampfStage_ = createNamedStage("Kampf - Teilnehmerauswahl", page);            
+            kampfStage_ = createNamedStage("Anakoks Kampfsimulator - Teilnehmerauswahl", page);            
             kampfStage_.showAndWait();
             
         }
@@ -135,7 +135,7 @@ public class Hauptprogramm extends Application {
            
             pane.setCenter(page);
             
-            kampfStage_.setTitle("Kampf");
+            kampfStage_.setTitle("Anakoks Kampfsimulator");
             kampfStage_.setScene(new Scene(notificationPane));
         }
         catch (IOException e) {
@@ -154,7 +154,7 @@ public class Hauptprogramm extends Application {
             WaffenwechselController controller = loader.getController();
             controller.initialize(spielerRundeController, currentSpieler);
             
-            Stage newStage = createNamedStage("Kampf - Waffenwechsel", page);            
+            Stage newStage = createNamedStage("Anakoks Kampfsimulator - Waffenwechsel", page);            
             controller.setStage(newStage);
             newStage.setResizable(false);
             newStage.showAndWait();
@@ -178,7 +178,7 @@ public class Hauptprogramm extends Application {
             
             border.setCenter(page);
             
-            Stage newStage = this.createNamedStage("H" + UMLAUT_SMALL_AE +"ndler", notificationPane);            
+            Stage newStage = this.createNamedStage("Giakiri, der H" + UMLAUT_SMALL_AE +"ndler", notificationPane);            
             newStage.showAndWait();
         }
         catch (IOException e) {
@@ -196,7 +196,7 @@ public class Hauptprogramm extends Application {
             
             border.setCenter(page);
             
-            Stage newStage = this.createNamedStage("W" + UMLAUT_SMALL_UE + "rfelsimulator", border);
+            Stage newStage = this.createNamedStage("Cetos W" + UMLAUT_SMALL_UE + "rfelsimulator", border);
             newStage.showAndWait();
         }
         catch (IOException e) {
