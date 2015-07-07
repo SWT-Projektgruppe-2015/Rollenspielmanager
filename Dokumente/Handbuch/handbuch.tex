@@ -277,7 +277,7 @@ Inventarbeute kann aus allen Kategorien außer 'Rüstung' und 'Waffen' stammen. 
 \textbf{Eine Abweichung} von mehr als 0 erlaubt es, dass der Wert der Beute zwar wahrscheinlich in der Nähe des Inventarwerts liegt, aber schwankt.\footnote{Für die, die es genau wissen wollen: Es handelt sich um eine Gaußverteilung mit Erwartungswert des Inventarwerts und Varianz der Abweichung.} Dabei legt die Abweichung die ungefähre Schwankung fest.\\
 
 Wie \textbf{groß der Anteil des Geldes an der Inventarbeute} ist, wird zufällig bestimmt.\\
-
+\clearpage
 \textbf{Generierung der Ausrüstungsbeute}\\
 
 Ausrüstungsbeute stammt nur aus den Kategorien 'Rüstung' und 'Waffen'. 
@@ -317,7 +317,7 @@ Diese Aufteilung ergibt sich daraus, dass Rüstung und Waffen zusätzlich noch e
 Die beiden Tabs sind von Aussehen und Bedienung annähernd gleich.\\
 
 \textbf{Ein Gegenstand kann hinzufügt werden}, indem wie üblich auf 'Neuer Gegenstand' geklickt wird, dessen Werte editiert werden und dann entweder 'Enter' gedrückt wird oder auf 'Speichern' geklickt wird. \\
-Für das erstellen in einer neue (Sub-)Kategorie siehe weiter unten "Neue Kategorien". Um den Gegenstand einer vorhandenen Kategorie hinzuzufügen kann entweder einfach der Name der (Sub-)Kategorie hineingeschrieben werden (Das Programm findet die vorhandene Subkategorie) oder die gewünschte Kategorie in der Kategorieliste ausgewählt werden (und dann erneut neuer Gegenstand).\\
+Für das erstellen in einer neue (Sub-)Kategorie siehe weiter unten 'Neue Kategorien'. Um den Gegenstand einer vorhandenen Kategorie hinzuzufügen kann entweder einfach der komplette Name (mit Oberkategorien) der \\(Sub-)Kategorie hineingeschrieben werden oder die gewünschte Kategorie in der Kategorieliste ausgewählt werden (und dann erneut neuer Gegenstand).\\
 
 \textbf{Gegenstände editieren} funktioniert genauso wie Gegenstände hinzufügen, nur, dass der zu editierende Gegenstand auszuwählen ist.\\
 
@@ -327,11 +327,24 @@ Es gibt zwei Möglichkeiten, \textbf{Gegenstände zu suchen}. Entweder, man nutz
 
 \textbf{Neue Kategorien} werden automatisch angelegt, wenn man sie für einen Gegenstand festlegt. Dabei bedeutet z.B. 'Rüstung/Handschuh/Eiserner Handschuh', dass das Objekt in der Kategorie 'Eiserner Handschuh' ist, die wiederum eine Unterkategorie von 'Handschuh' ist, was wiederum eine Unterkategorie von 'Rüstung' ist.\\
 
-\textbf{Kategorien löschen}. Kategorien werden automatisch entfernt, wenn es keine Gegenstände dieser Kategorie mehr gibt. Dies ist allerdings erst bei Neustart des Händlers ersichtlich.\\
-\subsection{Einfache Gegenstände}
+\textbf{Kategorien löschen}. Kategorien werden automatisch entfernt, wenn es keine Gegenstände dieser Kategorie mehr gibt. Dies ist allerdings erst bei Neustart des Händlers ersichtlich.
+
 \subsection{Rüstung und Waffen}
+\begin{figure}
+\centering
+\includegraphics[width=.8\linewidth]{Bilder/AusruestungsHaendler.png}
+\caption{Der Ausrüstungs-Händler}
+\label{fig:Ausruestungshaendler}
+\end{figure}
+
+Rüstung und Waffen besitzen im Gegensatz zu anderen Gegenständen die Eigenschaften der benötigten Stärke und des Wertes, siehe Abbildung \ref{fig:Ausruestungshaendler}.
 
 \clearpage
 \section{Würfeln (Ceto, der Würfelspieler)}
 Sehr einfache Funktionalität, die es erlaubt, \textbf{beliebige Würfelwürfe} zu simulieren.
+\begin{figure}
+\centering
+\includegraphics[width=.8\linewidth]{Bilder/wuerfeln.png}
+\caption{9 verschiedene Würfel im Würfelspieler}
+\end{figure}
 \end{document}
