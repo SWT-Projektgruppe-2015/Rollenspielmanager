@@ -164,14 +164,15 @@ public class MainMenuController implements GruppenObserver{
     private void updateGruppenTableView(Gruppe gruppe) {
         if(gruppe == null)
             spielerInGruppe_.getItems().clear();
-        else
+        else {
             spielerInGruppe_.getItems().setAll(gruppe.getOrderedMemberList());
-        int stufenSumme = gruppe.getStufenSumme();
-        int stufe = Gruppe.getStufe(stufenSumme);
-        int kreis = Gruppe.getKreis(stufenSumme);
-        int erfahrung = Gruppe.getBenoetigteErfahrung(stufe, kreis);
-        this.stufeLabel_.setText(Integer.toString(kreis) + " \\ " + Integer.toString(stufe));
-        this.erfahrungLabel_.setText(Integer.toString((int) (erfahrung*0.1)));
+            int stufenSumme = gruppe.getStufenSumme();
+            int stufe = Gruppe.getStufe(stufenSumme);
+            int kreis = Gruppe.getKreis(stufenSumme);
+            int erfahrung = Gruppe.getBenoetigteErfahrung(stufe, kreis);
+            this.stufeLabel_.setText(Integer.toString(kreis) + " \\ " + Integer.toString(stufe));
+            this.erfahrungLabel_.setText(Integer.toString((int) (erfahrung*0.1)));
+        }
     }
     
     
