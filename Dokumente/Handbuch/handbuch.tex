@@ -212,13 +212,13 @@ Dabei übernimmt \textit{DLVC Taverne} die Rolle des Spielleiters: Die Würfelw�
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{Bilder/Spielerrunde.png}
-\caption{Die Spielerrunde}
+\caption{Die Spielerrunde. Markiert sind das Bonustextfeld und die zusätzlichen Elemente, die für den 'Schadet allen Gegnern'-Effekt  erscheinen.}
 \label{Bild:Spielerrunde}
 \end{figure}
 Im Groben ist die Spielerrunde wie die Gegnerrunde aufgebaut: Links ist eine Tabelle der aktiven Kampfteilnehmer, also der Spielercharaktere. Rechts werden die Gegner angezeigt. Zusätzlich zum Schaden werden auch die aktuellen Lebenspunkte des Gegners angezeigt.
 
 \subsubsection{Der Standardkampfablauf}\label{Abschnitt:standardkampf}
-\textbf{Angriff eines Spielers.} Um anzugreifen, wird der angreifende Spielercharakter selektiert. Je nachdem, was der Spieler gewürfelt hat, kann nun einer der drei Trefferzone-Buttons geklickt werden. Besitzt der Spieler aus irgendeinem Grund einen Bonus, kann dieser vorher im Bonustextfeld spezifiziert werden, siehe Abbildung \ref{Bild:Spielerrunde}. Dann wird mithilfe der ausgewählten Waffe und der Rüstung der Gegner für jeden Gegner berechnet, wie viel Schaden dieser Angriff machen würde.\\
+\textbf{Angriff eines Spielers.} Um anzugreifen, wird der angreifende Spielercharakter selektiert. Je nachdem, was der Spieler gewürfelt hat, kann nun einer der drei Trefferzone-Buttons geklickt werden. Besitzt der Spieler aus irgendeinem Grund einen Bonus, kann dieser vorher im Bonustextfeld spezifiziert werden, siehe Abbildung \ref{Bild:Spielerrunde}. Dann wird mithilfe der ausgewählten Waffe und der Rüstung der Gegner für jeden Gegner berechnet, wie viel Schaden dieser Angriff verursachen würde.\\
 
 \textbf{Blocken.} Blockversuche der Gegner können mit dem großen grünen 'Blocken!'-Knopf gestartet werden. Sofort versuchen alle Gegner, zu blocken. Sind sie erfolgreich, wird 'Schaden' bei diesen Gegnern auf 0 gesetzt. Es kann mehrmals geblockt werden. Ist in der rechten Tabelle ein Spieler ausgewählt, der einen Geschickmalus hat, wird dieser beim Blocken einberechnet.\\
 
@@ -235,10 +235,10 @@ Unter der Gegnertabelle findet sich die Möglichkeit eines Stärkewurfs. Dazu wi
 Um die \textbf{Waffe eines Spielers zu wechseln}, reicht ein Doppelklick auf diese Waffe. Es öffnet sich ein Fenster, welches alle Waffen des Spielers sowie deren Schaden und Effekt anzeigt. Dort kann eine neue Waffe gewählt werden.
 
 \subsubsection{Schaden auf allen Gegnern / AoE}\label{Abschnitt:aoe}
-Hat eine ausgewählte Waffe den \textbf{'Schadet allen Gegnern'-Effekt}, so erscheint zusätzlich der 'AoE'-Button und ein Textfeld, siehe Abbildung \ref{Bild:Spielerrunde}. In das Textfeld kann ein Schadenswert eingetragen werden. Dann verursacht ein Klick auf 'AoE', dass jeder Gegner mit diesem Schaden angegriffen wird, bei entsprechendem Effekt auch rüstungsunabhängig. Der Schaden wird direkt von den LP subtrahiert. Möglicherweise werden dann Gegner, deren LP auf 0 gesunken sind, aus der Tabelle entfernt.
+Hat eine ausgewählte Waffe den \textbf{'Schadet allen Gegnern'-Effekt}, so erscheint zusätzlich der 'AoE'-Button und ein Textfeld, siehe Abbildung \ref{Bild:Spielerrunde}. In das Textfeld kann ein Schadenswert eingetragen werden. Dann verursacht ein Klick auf 'AoE', dass jeder Gegner mit diesem Schaden angegriffen wird, bei entsprechendem Effekt auch rüstungsunabhängig. Der Schaden wird direkt von den LP subtrahiert. Gegner, deren LP auf 0 gesunken sind, werden aus der Tabelle entfernt.
 
 \subsection{Das Kampfende}\label{Abschnitt:Kampfende}
-Das Kampfende ist zuständig für Erfahrungspunkte und Beute.\\
+Das Kampfende ist zuständig für \textbf{Erfahrungspunkte und Beute}.\\
 Es gliedert sich in 3 Bereiche: Im linken oberen Bereich finden sich alle Gegner, die nicht in der Spielerrunde gelöscht wurden, und in der Tabelle daneben die Summe an Erfahrungspunkten, die sie bringen. Im rechten oberen Bereich wird die Beute des selektierten Gegners angezeigt, und im unteren Bereich kann diese Beute (neu) generiert werden.\\
 \begin{figure}
 \centering
