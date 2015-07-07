@@ -103,11 +103,14 @@
 								<Insets bottom="5.0" top="5.0" />
 							</VBox.margin>
 						</Text>
-						<TextArea id="custom-text-area" fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="226.0" prefWidth="244.0" style=": ;" wrapText="true" VBox.vgrow="ALWAYS">
+						<TextArea id="custom-text-area" fx:id="gegenstandBeschreibungTextField_" onInputMethodTextChanged="#changeGegenstand" prefHeight="225.0" prefWidth="244.0" style=": ;" wrapText="true" VBox.vgrow="ALWAYS">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
-                     </cursor></TextArea>
-						<ButtonBar prefHeight="45.0" prefWidth="185.0">
+                     </cursor>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></TextArea>
+						<ButtonBar maxHeight="-Infinity" prefHeight="45.0" prefWidth="185.0">
 							<buttons>
 								<Button mnemonicParsing="false" onAction="#deleteGegenstand" styleClass="button-bevel-gray" text="Löschen">
 									<font>

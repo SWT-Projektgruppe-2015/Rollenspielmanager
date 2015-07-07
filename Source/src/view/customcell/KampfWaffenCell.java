@@ -1,6 +1,5 @@
 package view.customcell;
 
-import model.Waffen;
 import javafx.event.EventHandler;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.Tooltip;

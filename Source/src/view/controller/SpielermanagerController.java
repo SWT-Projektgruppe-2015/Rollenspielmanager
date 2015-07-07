@@ -6,7 +6,6 @@ import java.util.function.Consumer;
 import org.controlsfx.control.action.Action;
 
 import view.NotificationTexts;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -17,7 +16,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import model.Charakter;
-import model.Gruppe;
 import model.Ruestungseffekt;
 import model.Spieler;
 import model.Waffen;

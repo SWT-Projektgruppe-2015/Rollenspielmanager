@@ -111,7 +111,7 @@
 								<Insets bottom="5.0" top="5.0" />
 							</VBox.margin>
 						</Label>
-						<TextArea id="custom-text-area" fx:id="ausruestungBeschreibungTextField_" prefHeight="197.0" prefWidth="244.0" styleClass="text-area" VBox.vgrow="ALWAYS">
+						<TextArea id="custom-text-area" fx:id="ausruestungBeschreibungTextField_" prefHeight="197.0" prefWidth="244.0" styleClass="text-area" wrapText="true" VBox.vgrow="ALWAYS">
 							<VBox.margin>
 								<Insets />
 							</VBox.margin>
