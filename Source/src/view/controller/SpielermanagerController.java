@@ -409,6 +409,7 @@ public class SpielermanagerController extends CharakterTabController{
         }
         catch (NumberFormatException e) {
             createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
+            waffenEffektTextField_.setText(Integer.toString(selectedWaffe.getEffektWert_()));
         }
         return false;
     }
@@ -453,6 +454,7 @@ public class SpielermanagerController extends CharakterTabController{
         }
         catch (NumberFormatException e) {
             createNotification(NotificationTexts.textForWaffenUpdateFailed(selectedWaffe));
+            waffenDamageTextField_.setText(Integer.toString(selectedWaffe.getWaffenSchaden_()));
         }
         return false;
     }
