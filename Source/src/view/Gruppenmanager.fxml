@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.text.*?>
@@ -29,16 +30,24 @@
               <ComboBox fx:id="gruppenComboBox_" prefHeight="41.0" prefWidth="203.0" promptText="wähle Gruppe aus ..." styleClass="combobox-bevel-gray" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-        <ListView fx:id="spielerNotInGruppeListView_" layoutX="100.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" styleClass="listview-background" stylesheets="@stylesheets/CustomStyle.css" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="107.0" />
-        <ListView fx:id="spielerInGruppeListView_" layoutX="300.0" layoutY="107.0" prefHeight="200.0" prefWidth="200.0" styleClass="listview-background" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="107.0" />
-        <Button layoutX="274.0" layoutY="210.0" mnemonicParsing="false" onAction="#removeSpielerFromGruppe" prefHeight="25.0" prefWidth="35.0" styleClass="button-bevel-gray" text="&lt;" AnchorPane.bottomAnchor="75.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="210.0">
+        <ListView id="left-listview" fx:id="spielerNotInGruppeListView_" layoutX="100.0" layoutY="107.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="200.0" prefWidth="250.0" styleClass="listview-background" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="107.0">
+         <stylesheets>
+            <URL value="@stylesheets/CustomStyle.css" />
+            <URL value="@stylesheets/TeilnehmerAuswahl.css" />
+         </stylesheets></ListView>
+        <ListView id="right-listview" fx:id="spielerInGruppeListView_" layoutX="300.0" layoutY="107.0" prefHeight="200.0" prefWidth="250.0" styleClass="listview-background" stylesheets="@stylesheets/TeilnehmerAuswahl.css" AnchorPane.bottomAnchor="4.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="107.0" />
+        <Button layoutX="274.0" layoutY="210.0" mnemonicParsing="false" onAction="#removeSpielerFromGruppe" prefHeight="25.0" prefWidth="35.0" styleClass="button-bevel-gray" text="&lt;" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="210.0">
          <padding>
             <Insets bottom="3.0" right="1.0" />
          </padding></Button>
-        <Button layoutX="301.0" layoutY="210.0" mnemonicParsing="false" onAction="#addSpielerToGruppe" prefHeight="25.0" prefWidth="35.0" styleClass="button-bevel-gray" text="&gt;" AnchorPane.bottomAnchor="75.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="210.0">
+        <Button layoutX="301.0" layoutY="210.0" mnemonicParsing="false" onAction="#addSpielerToGruppe" prefHeight="25.0" prefWidth="35.0" text="&gt;" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="210.0">
          <padding>
             <Insets bottom="3.0" left="1.0" />
-         </padding></Button>
+         </padding>
+         <styleClass>
+            <String fx:value="button-bevel-gray" />
+            <String fx:value="button-arrows" />
+         </styleClass></Button>
         <Label layoutX="116.0" layoutY="88.0" text="Spielercharakterliste" />
         <Label layoutX="318.0" layoutY="88.0" text="Abenteuergruppe" AnchorPane.rightAnchor="150.0" />
      </children>
