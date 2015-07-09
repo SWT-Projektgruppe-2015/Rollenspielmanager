@@ -8,7 +8,7 @@
 <JVMSearchPath>jview</JVMSearchPath>
 <embeddedJar>true</embeddedJar>
 <executableName>DLVC Taverne.exe</executableName>
-<iconLocation>..\Pictures\Logo3_1.png</iconLocation>
+<iconLocation>Logo3_1.png</iconLocation>
 <initialMemoryHeap>-1</initialMemoryHeap>
 <jarLocation>taverne.jar</jarLocation>
 <mainClassName>view.controller.Hauptprogramm</mainClassName>
@@ -22,6 +22,7 @@
 </skeletonProperties>
 <skeletonProperties>
 <key>URL</key>
+<value></value>
 </skeletonProperties>
 <skeletonProperties>
 <key>SingleProcess</key>
