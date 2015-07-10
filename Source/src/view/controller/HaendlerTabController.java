@@ -17,7 +17,7 @@ import javafx.scene.control.TreeView;
 
 public abstract class HaendlerTabController extends NotificationController {    
     protected Gegenstand entryForNewGegenstand_;
-    protected static final String ALLE_KATEGORIEN = "Alle Kategorien";
+    public static final String ALLE_KATEGORIEN = "Alle Kategorien";
     
     void initialize() {
         entryForNewGegenstand_ = new Gegenstand();

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import view.controller.HaendlerTabController;
 import view.controller.Hauptprogramm;
 import controller.manipulators.EinfacherGegenstandManipulator;
 import model.interfaces.DBObject;
@@ -304,11 +305,58 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
         if(gegenstaende != null){
             for(Gegenstand current : gegenstaende) {
                 String currentKategorie = current.getKategorie_();
+                eraseKategorieOnGegenstand(current, HaendlerTabController.ALLE_KATEGORIEN);
                 if(!kategorien.contains(currentKategorie))
                     kategorien.add(currentKategorie);
             }
         }
         return kategorien;
+    }
+
+
+
+    private static void eraseKategorieOnGegenstand(Gegenstand current, String erasingKategorie) {
+        if(current == null || erasingKategorie == null)
+            return;
+        
+        String oldKategorie = current.getKategorie_();
+        if(oldKategorie.contains(erasingKategorie)){
+            List<String> subKategorien = getSubKategories(oldKategorie);
+            List<String> newSubKategorien = getRemainingSubkategories(erasingKategorie, subKategorien);
+            String newKategorie = buildFullKategoriePath(subKategorien, newSubKategorien);
+            current.setKategorie_(newKategorie);
+        }
+    }
+
+
+
+    private static String buildFullKategoriePath(List<String> subKategorien,
+            List<String> newSubKategorien) {
+        String newKategorie = "";
+        if(newSubKategorien.size() == 0){
+            newKategorie = "Ohne Kategorie";
+        }
+        else{
+            newKategorie += newSubKategorien.get(0);
+            for(int i = 1; i < newSubKategorien.size(); ++i){
+                newKategorie += "/" + subKategorien.get(i);
+            }
+        }
+        return newKategorie;
+    }
+
+
+
+    private static List<String> getRemainingSubkategories(
+            String erasingKategorie, List<String> subKategorien) {
+        List<String> newSubKategorien = new ArrayList<String>();
+        for(String sub : subKategorien){
+            if(!sub.contentEquals(erasingKategorie)){
+//                    subKategorien.remove(subKategorien.indexOf(sub)); // throws exception
+                newSubKategorien.add(sub);
+            }
+        }
+        return newSubKategorien;
     }
     
     
