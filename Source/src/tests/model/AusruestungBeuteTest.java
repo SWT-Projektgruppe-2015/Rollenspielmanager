@@ -115,20 +115,20 @@ public class AusruestungBeuteTest extends AusruestungBeute {
             }
         }
         
-        assertTrue(waffenCount < tries * WAFFEN_RATIO * 1.1);
-        assertTrue(waffenCount > tries * WAFFEN_RATIO * .9);
-        assertTrue(helmCount < tries * HELM_RATIO * 1.25);
-        assertTrue(helmCount > tries * HELM_RATIO * .75);
+        assertTrue(waffenCount < tries * WAFFEN_WKT * 1.1);
+        assertTrue(waffenCount > tries * WAFFEN_WKT * .9);
+        assertTrue(helmCount < tries * 1./RUESTUNG_TEILE * 1.25);
+        assertTrue(helmCount > tries * 1./RUESTUNG_TEILE * .75);
     }
     
     
     
-    @Test
-    public void ratiosAreConsistent() {
-        assertEquals(HELM_RATIO 
-                + WAFFEN_RATIO 
-                + HANDSCHUH_RATIO + HARNISCH_RATIO + SCHUH_RATIO + GUERTEL_RATIO, 1, 0.001);
-    }
+//    @Test
+//    public void ratiosAreConsistent() {
+//        assertEquals(HELM_WKT 
+//                + WAFFEN_WKT 
+//                + HANDSCHUH_RATIO + HARNISCH_RATIO + SCHUH_RATIO + GUERTEL_RATIO, 1, 0.001);
+//    }
     
     
     private void generateRuestungsItems() {

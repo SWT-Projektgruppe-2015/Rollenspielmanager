@@ -31,6 +31,7 @@ public class Gegenstand implements DBObject, Comparable<Gegenstand> {
     public static final String RUESTUNG = "R" + Hauptprogramm.UMLAUT_SMALL_UE + "stung"; 
     public static final String WAFFE = "Waffe";
     public static final String HANDSCHUH = "Handschuh";
+    public static final String SCHILD = "Schild";
     public static final String SCHUH = "Schuh";
     public static final String GUERTEL = "G" + Hauptprogramm.UMLAUT_SMALL_UE + "rtel";
     public static final String HARNISCH = "Harnisch";

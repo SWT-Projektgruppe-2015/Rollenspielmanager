@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -61,6 +62,8 @@ public class KampfendeController extends NotificationController {
     private TextField ausruestungStreuungTextField_;
     @FXML
     private TextField geldTextField_;
+    @FXML
+    private Label beuteWertLabel_;
     
     
     private Map<GegnerEinheit, InventarBeute> inventarBeute_;
@@ -231,6 +234,12 @@ public class KampfendeController extends NotificationController {
             beuteWertTextField_.clear();
             beuteKategorieTextField_.clear();
         } else {
+            if(beute.isAusruestung()){
+                beuteWertTextField_.setVisible(true);
+                beuteWertLabel_.setVisible(true);
+            }
+            else
+                beuteWertTextField_.setVisible(false);
             beuteWertTextField_.setText(beute.getWert_());
             beuteKategorieTextField_.setText(beute.getKategorie_());
         }

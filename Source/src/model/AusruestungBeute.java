@@ -6,12 +6,15 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import controller.Dice;
 
 public class AusruestungBeute extends Beute {
-    public static final double WAFFEN_RATIO = 0.4;
-    public static final double HELM_RATIO = 0.12;
-    public static final double HARNISCH_RATIO = 0.12;
-    public static final double SCHUH_RATIO = 0.12;
-    public static final double HANDSCHUH_RATIO = 0.12;
-    public static final double GUERTEL_RATIO = 0.12;
+    public static final double WAFFEN_WKT = 0.4;
+    public static final int RUESTUNG_TEILE = 5;  // Jedes Teil ist gleich Wahrscheinlich -> 1\5
+    public static final int SCHILD_RUESTUNG_TEILE = 6;
+    private int anzahlRuestungsTeile_;
+//    public static final double HELM_WKT = 0.12;
+//    public static final double HARNISCH_RATIO = 0.12;
+//    public static final double SCHUH_RATIO = 0.12;
+//    public static final double HANDSCHUH_RATIO = 0.12;
+//    public static final double GUERTEL_RATIO = 0.12;
     
     
     private Gegenstand ruestungsTeil_;
@@ -19,10 +22,12 @@ public class AusruestungBeute extends Beute {
     
     
     public AusruestungBeute(int malus, int streuung) {
+        anzahlRuestungsTeile_ = RUESTUNG_TEILE;
         gesamtMalus_ = (int)generateGaussianValue(malus, streuung);
     }
     
     public AusruestungBeute() {
+        anzahlRuestungsTeile_ = RUESTUNG_TEILE;
         gesamtMalus_ = 0;
     }
     
@@ -35,9 +40,13 @@ public class AusruestungBeute extends Beute {
     
     
     public Gegenstand generateAusruestungBeute(GegnerEinheit gegner) {
+        if(gegner.getDefS() > 0) anzahlRuestungsTeile_ = SCHILD_RUESTUNG_TEILE;
+        else anzahlRuestungsTeile_ = RUESTUNG_TEILE;
         if(ruestungIsDropped()) {
-            if(helmIsDropped())
+            if(specifiItemDropped())
                 ruestungsTeil_ = generateHelmBeute(gegner.getDefH());
+            else if(specifiItemDropped() && gegner.getDefS() > 0) 
+                ruestungsTeil_ = generateSchildBeute(gegner.getDefS());
             else
                 ruestungsTeil_ = generateRuestungsBeute(gegner.getDefR());
         } else {
@@ -46,6 +55,13 @@ public class AusruestungBeute extends Beute {
         return ruestungsTeil_;
     }
     
+    
+
+    private Gegenstand generateSchildBeute(int defS) {
+        List<Gegenstand> sortedList = Gegenstand.getAll(Gegenstand.SCHILD);
+        Gegenstand.sortByValue(sortedList);
+        return getItemWithApproximateValue((int)(defS*getMalusFactor()), sortedList);
+    }
     
     
 
@@ -111,15 +127,15 @@ public class AusruestungBeute extends Beute {
     
     private boolean ruestungIsDropped() {
         int wert = Dice.rollDice(100);
-        return wert <= (1-WAFFEN_RATIO)*100;
+        return wert <= (1-WAFFEN_WKT)*100;
     }
     
     
     
-    private boolean helmIsDropped() {
-        double interval = 1-WAFFEN_RATIO;
-        int wert = Dice.rollDice((int)(100 * interval));
-        return wert <= HELM_RATIO * 100;
+    private boolean specifiItemDropped() {
+        double interval = 100./anzahlRuestungsTeile_;
+        int wert = Dice.rollDice(100);
+        return wert <= interval;
     }
     
     
