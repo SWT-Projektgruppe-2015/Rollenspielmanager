@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane minHeight="0.0" minWidth="676.0" prefHeight="400.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
+<AnchorPane minHeight="0.0" minWidth="676.0" prefHeight="400.0" styleClass="background-color" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielerrundeController">
    <children>
       <TableView fx:id="spielerTableView_" layoutX="34.0" layoutY="47.0" prefHeight="200.0" prefWidth="200.0" styleClass="tableview-background" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
@@ -82,9 +82,9 @@
       </GridPane>
       <TreeTableView fx:id="gegnerTreeTableView_" editable="true" layoutX="478.0" layoutY="47.0" prefHeight="305.0" prefWidth="300.0" showRoot="false" styleClass="tableview-background" AnchorPane.bottomAnchor="75.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
         <columns>
-          <TreeTableColumn fx:id="gegnerNameColumn_" maxWidth="300.0" minWidth="60.0" prefWidth="140.0" text="Gegner" />
-          <TreeTableColumn fx:id="gegnerDealtSchadenColumn_" maxWidth="70.0" minWidth="70.0" prefWidth="70.0" text="Schaden" />
-            <TreeTableColumn fx:id="gegnerLebenspunkteColumn_" maxWidth="100.0" minWidth="80.0" prefWidth="90.0" text="LP" />
+          <TreeTableColumn fx:id="gegnerNameColumn_" maxWidth="300.0" minWidth="60.0" prefWidth="173.0" text="Gegner" />
+          <TreeTableColumn fx:id="gegnerDealtSchadenColumn_" maxWidth="97.0" minWidth="42.0" prefWidth="61.0" text="Schaden" />
+            <TreeTableColumn fx:id="gegnerLebenspunkteColumn_" maxWidth="100.0" minWidth="44.0" prefWidth="62.0" text="LP" />
         </columns>
          <columnResizePolicy>
             <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
