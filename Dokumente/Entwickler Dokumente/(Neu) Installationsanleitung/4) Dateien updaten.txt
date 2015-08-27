@@ -2,6 +2,7 @@
 https://www.versioneye.com/java/org.javassist:javassist/3.18.1-GA
 ganz unten:
 javassist-3.18.1-GA.jar oder höher.
+Die alte kann man aus dem Build Path löschen unter "Configure Build path -> Libraries".
 
 2) Um einen release Build zu machen braucht muss man folgende Datei erneuern:
 "controlsfx-8.40.9.jar"
