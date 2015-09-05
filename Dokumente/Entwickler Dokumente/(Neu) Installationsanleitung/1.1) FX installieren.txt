@@ -1,0 +1,2 @@
+Falls nicht schon in 1) geschehen: 
+http://www.eclipse.org/efxclipse/install.html#for-the-lazy

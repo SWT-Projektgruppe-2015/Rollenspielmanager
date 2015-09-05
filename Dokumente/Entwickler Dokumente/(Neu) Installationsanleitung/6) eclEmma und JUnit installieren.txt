@@ -1,2 +1,0 @@
-JUnit: unter Eclipse: Build Path -> add Libraries -> JUnit.
-eclEmma: unter Eclipse: Help -> Eclipse Marketplace -> eclEmma ins Suchfeld eingeben.

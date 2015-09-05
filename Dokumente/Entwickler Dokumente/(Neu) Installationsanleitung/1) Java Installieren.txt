@@ -1,4 +1,0 @@
-download den java jdk 8.45 oder höher z.B. bei:
-http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
-
-anschließend Eclipse herunterladen.

@@ -1,0 +1,8 @@
+Stelle am besten sicher diese Anforderungen und Einstellungen hier zu erfüllen:
+http://code.makery.ch/library/javafx-8-tutorial/part1/
+
+download den java jdk 8.45 oder höher z.B. bei:
+http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+
+ggf. Eclipse herunterladen:
+https://www.eclipse.org/downloads/index.php
