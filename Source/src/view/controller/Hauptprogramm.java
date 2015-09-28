@@ -25,7 +25,7 @@ import javafx.scene.layout.BorderPane;
 /**
  * Startet das Programm und zeigt das Hauptmenue an.
  * 
- * @author Britta Heymann
+ * @author Boris Prochnau
  *
  */
 public class Hauptprogramm extends Application {
