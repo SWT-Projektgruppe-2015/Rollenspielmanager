@@ -45,7 +45,7 @@ public class Hauptprogramm extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage_ = primaryStage;
         this.primaryStage_.getIcons().add(new Image("/img/Logo3_1.png"));
-        this.primaryStage_.setTitle("DLVC Taverne");
+        this.primaryStage_.setTitle("DLVC Taverne v1.31");
         
         gruppenSubject_ = new GruppenSubject();
         

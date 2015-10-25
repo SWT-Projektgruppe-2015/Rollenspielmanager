@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="background-color" stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
+<AnchorPane prefHeight="303.0" prefWidth="600.0" styleClass="background-color" stylesheets="@stylesheets/CustomStyle.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.controller.SpielermanagerController">
 	<children>
 		<Label layoutX="7.0" layoutY="26.0" text="Spielercharakterliste" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="25.0" />
 		<TextField fx:id="searchSpielerTextField_" layoutX="7.0" layoutY="52.0" onAction="#searchSpieler" onKeyReleased="#searchSpieler" prefHeight="25.0" prefWidth="200.0" promptText="Suche ..." styleClass="textfield-background" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0" />
@@ -67,12 +67,12 @@
 									<children>
 										<Label text="Name" />
 										<TextField fx:id="waffenNameTextField_" onAction="#updateSpieler" styleClass="textfield-background" />
+										<Label text="Schaden" />
+										<TextField fx:id="waffenDamageTextField_" onAction="#updateSpieler" prefHeight="25.0" prefWidth="66.0" styleClass="textfield-background" />
 										<Label text="Effekttyp" />
 										<ComboBox fx:id="waffenEffektComboBox_" prefHeight="25.0" prefWidth="200.0" promptText="Wähle einen Effekt" styleClass="combobox-bevel-gray" />
                               <Label text="Effektwert" />
                               <TextField fx:id="waffenEffektTextField_" onAction="#updateSpieler" styleClass="textfield-background" />
-										<Label text="Schaden" />
-										<TextField fx:id="waffenDamageTextField_" onAction="#updateSpieler" prefHeight="25.0" prefWidth="66.0" styleClass="textfield-background" />
 									</children>
 								</VBox>
 							</children>
